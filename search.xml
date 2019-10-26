@@ -4,13 +4,25 @@
   
     
     <entry>
-      <title>Spider</title>
-      <link href="/2019/10/24/Spider/"/>
-      <url>/2019/10/24/Spider/</url>
+      <title>Hexo主体设置知识点</title>
+      <link href="/2019/10/26/Hexo%E4%B8%BB%E4%BD%93%E8%AE%BE%E7%BD%AE%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
+      <url>/2019/10/26/Hexo%E4%B8%BB%E4%BD%93%E8%AE%BE%E7%BD%AE%E7%9F%A5%E8%AF%86%E7%82%B9/</url>
       
-        <content type="html"><![CDATA[<p>大家好–^^__^^–，我叫陈浩东<br><br><img src="" width="https://cdn.jsdelivr.net/gh/FioraLove/CDN@1.0/5d4d2f1ba61c7.jpg" height=60%><br><br>&nbsp;&nbsp;&nbsp;这是一篇有关我如何使用 Github Pages 和 Hexo 搭建属于自己独立博客的功能展示。&nbsp;&nbsp;&nbsp;<code>本人是嘉兴双环第二分公司GP-12线,滚齿磨齿操作员</code>，目前正学习清洗包装流程、磨齿、滚齿、齿轮生产工艺以及安全生产。&nbsp;&nbsp;&nbsp;对网站开发的有关知识几乎为零，这也是我搭建好自己的不完全博客之后写的第一篇博客，刚开始搭建博客的时候自己也是网上各种百度，由于自己属于小白那种，历经了千辛万苦才弄好，所以借这个机会会一直坚持下去分析自己的知识，一起走向成功的彼岸！</p>]]></content>
+        <content type="html"><![CDATA[<h4 id="1-Hexo创建文章、标签、分类的Front-matter方法-Ⅰ-nbsp-nbsp-Front-matter-Ⅱ"><a href="#1-Hexo创建文章、标签、分类的Front-matter方法-Ⅰ-nbsp-nbsp-Front-matter-Ⅱ" class="headerlink" title="1.Hexo创建文章、标签、分类的Front-matter方法 Ⅰ&nbsp;&nbsp; Front-matter Ⅱ"></a>1.<a href="https://www.jianshu.com/p/6e4af897a3f0" target="_blank" rel="noopener">Hexo创建文章、标签、分类的Front-matter方法 Ⅰ</a>&nbsp;&nbsp; <a href="https://xaoxuu.com/wiki/material-x/pages/index.html#Front-matter" target="_blank" rel="noopener">Front-matter Ⅱ</a></h4><p><code>Front-matter 是md文件最上方以 --- 分隔的区域，用于指定个别文件的变量</code></p><blockquote><p>其实Front-matter就是在\Hexo\source_posts下的.md文件中书写文章标题，上传时间，分类名，标签名等等</p></blockquote><table><thead><tr><th align="center">字段</th><th align="center">含义</th><th align="center">值类型</th><th align="center">默认值</th></tr></thead><tbody><tr><td align="center">layout</td><td align="center">布局模版</td><td align="center">String</td><td align="center">-</td></tr><tr><td align="center">title</td><td align="center">标题</td><td align="center">String</td><td align="center">-</td></tr><tr><td align="center">date</td><td align="center">创建时间</td><td align="center">Date</td><td align="center">文件创建时间</td></tr><tr><td align="center">description</td><td align="center">页面描述、摘要</td><td align="center">String</td><td align="center">-</td></tr><tr><td align="center">cover</td><td align="center">是否显示封面</td><td align="center">Bool</td><td align="center">true</td></tr></tbody></table>]]></content>
       
       
+      <categories>
+          
+          <category> -博客Hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> front-matter </tag>
+            
+        </tags>
       
     </entry>
     
@@ -24,6 +36,33 @@
         <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
       
       
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>初次见面，请多关照</title>
+      <link href="/2019/10/20/%E5%88%9D%E6%AC%A1%E8%A7%81%E9%9D%A2_%E8%AF%B7%E5%A4%9A%E5%85%B3%E7%85%A7/"/>
+      <url>/2019/10/20/%E5%88%9D%E6%AC%A1%E8%A7%81%E9%9D%A2_%E8%AF%B7%E5%A4%9A%E5%85%B3%E7%85%A7/</url>
+      
+        <content type="html"><![CDATA[<p>大家好–^^__^^–，我叫陈浩东<br><br><img src="" width="https://cdn.jsdelivr.net/gh/FioraLove/CDN@1.0/5d4d2f1ba61c7.jpg" height=60%><br><br>&nbsp;&nbsp;&nbsp;这是一篇有关我如何使用 Github Pages 和 Hexo 搭建属于自己独立博客的功能展示。&nbsp;&nbsp;&nbsp;<code>本人是嘉兴双环第二分公司GP-12线,滚齿磨齿操作员</code>，目前正学习清洗包装流程、磨齿、滚齿、齿轮生产工艺以及安全生产。&nbsp;&nbsp;&nbsp;对网站开发的有关知识几乎为零，这也是我搭建好自己的不完全博客之后写的第一篇博客，刚开始搭建博客的时候自己也是网上各种百度，由于自己属于小白那种，历经了千辛万苦才弄好，所以借这个机会会一直坚持下去分析自己的知识，一起走向成功的彼岸！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> -博客Hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Github Page </tag>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
       
     </entry>
     
