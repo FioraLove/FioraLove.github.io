@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>Python模拟登录淘宝(Ⅰ)</title>
+      <link href="/2019/10/30/requests%E5%BA%93%E6%A8%A1%E6%8B%9F%E7%99%BB%E5%BD%95%E6%B7%98%E5%AE%9D(%E2%85%A0)/"/>
+      <url>/2019/10/30/requests%E5%BA%93%E6%A8%A1%E6%8B%9F%E7%99%BB%E5%BD%95%E6%B7%98%E5%AE%9D(%E2%85%A0)/</url>
+      
+        <content type="html"><![CDATA[<p>讲模拟登录淘宝之前，我们来回顾一下之前用requests库模拟登录GitHub和新浪微博的过程:<font color=#00ffff>这一类模拟登录是比较简单的登录，只需要在请求登录时将用户名和密码上传验证通过就成功了</font>，也就是说一步到位！<br>而淘宝登录就比较复杂，为什么说复杂呢？因为淘宝登录涉及参数多且请求不止一次！</p><a id="more"></a><p><a href="https://blog.csdn.net/u014044812/article/details/99584382" target="_blank" rel="noopener">参考文章</a></p><pre>淘宝系列欲更新文章内容：    第一篇：Python模拟登录淘宝，详细讲解如何使用requests库登录淘宝pc端。    第二篇：淘宝自动登录2.0，新增Cookies序列化，教大家如何将cookies保存起来。    第三篇：Python爬取淘宝商品避孕套，教大家如何爬取淘宝pc端商品信息。    第四篇：Python分析2000款避孕套，教大家如何做数据分析得出结论。    ————————————————</pre><h4 id="1-淘宝登录流程"><a href="#1-淘宝登录流程" class="headerlink" title="1.淘宝登录流程"></a>1.淘宝登录流程</h4>]]></content>
+      
+      
+      <categories>
+          
+          <category> Python </category>
+          
+          <category> 模拟登录 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Requests </tag>
+            
+            <tag> POST请求 </tag>
+            
+            <tag> token </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hexo主体设置知识点</title>
       <link href="/2019/10/26/Hexo%E4%B8%BB%E4%BD%93%E8%AE%BE%E7%BD%AE%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
       <url>/2019/10/26/Hexo%E4%B8%BB%E4%BD%93%E8%AE%BE%E7%BD%AE%E7%9F%A5%E8%AF%86%E7%82%B9/</url>
