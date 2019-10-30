@@ -382,7 +382,7 @@
         <p>介绍Hexo关于文章一些基本设置，比如分类，标签，作者，简要概述等等以及MakeDown的写法</p>
 <a id="more"></a>
 <p><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1572260590229&di=c342004ec7897ef8697bd65876b3b9c5&imgtype=0&src=http%3A%2F%2F02imgmini.eastday.com%2Fmobile%2F20180822%2F20180822234333_351cde5dc9236b7836296868f06a44b4_2.jpeg" height="50%"><br></p>
-<h4 id="1-Hexo创建文章、标签、分类的Front-matter方法-Ⅰ-nbsp-nbsp-Front-matter-Ⅱ"><a href="#1-Hexo创建文章、标签、分类的Front-matter方法-Ⅰ-nbsp-nbsp-Front-matter-Ⅱ" class="headerlink" title="1.Hexo创建文章、标签、分类的Front-matter方法 Ⅰ&nbsp;&nbsp; Front-matter Ⅱ"></a>1.<a href="https://www.jianshu.com/p/6e4af897a3f0" target="_blank" rel="noopener">Hexo创建文章、标签、分类的Front-matter方法 Ⅰ</a>&nbsp;&nbsp; <a href="https://xaoxuu.com/wiki/material-x/pages/index.html#Front-matter" target="_blank" rel="noopener">Front-matter Ⅱ</a></h4><p><code>Front-matter 是md文件最上方以 --- 分隔的区域，用于指定个别文件的变量</code><br></p>
+<h4 id="1-Hexo创建文章、标签、分类的Front-matter方法-Ⅰ-nbsp-nbsp-Front-matter-Ⅱ"><a href="#1-Hexo创建文章、标签、分类的Front-matter方法-Ⅰ-nbsp-nbsp-Front-matter-Ⅱ" class="headerlink" title="1.Hexo创建文章、标签、分类的Front-matter方法 Ⅰ&nbsp;&nbsp; Front-matter Ⅱ"></a>1.<a href="https://www.jianshu.com/p/6e4af897a3f0" target="_blank" rel="noopener">Hexo创建文章、标签、分类的Front-matter方法 Ⅰ</a>&nbsp;&nbsp; <a href="https://xaoxuu.com/wiki/material-x/pages/index.html#Front-matter" target="_blank" rel="noopener">Front-matter Ⅱ</a></h4><p>Front-matter 是md文件最上方以 — 分隔的区域，用于指定个别文件的变量<br></p>
 <blockquote>
 <p>其实Front-matter就是在\Hexo\source_posts下的.md文件中书写文章标题，上传时间，分类名，标签名等等</p>
 </blockquote>
@@ -436,7 +436,10 @@
     tags: 
       - 文章标签一
       - 文章标签二
-    categories: 文章分类
+    categories: # 文章分类（文章分类等级）
+                - 父分类
+                - 子分类
+                - 孙分类
     description: 文章描述，即要在首页显示的摘要（仅部分主题支持）
     ---
 
@@ -465,7 +468,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">| Tables        | Are           | Cool  |</span><br><span class="line">| ------------- |:-------------:| -----:|</span><br><span class="line">| col 3 is      | right-aligned | $1600 |</span><br><span class="line">| col 2 is      | centered      |   $12 |</span><br><span class="line">| zebra stripes | are neat      |    $1 |</span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>3.5. 颜色和字体以及背景颜色</p>
+<p>3.5. <a href="https://www.114la.com/other/rgb.htm" target="_blank" rel="noopener">颜色RGB</a>和字体以及背景颜色</p>
 </blockquote>
 <figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">font</span> <span class="attr">face</span>=<span class="string">"Tahoma"</span>&gt;</span></span>这是一串Tahoma字体<span class="xml"><span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">font</span> <span class="attr">face</span>=<span class="string">"黑体"</span>&gt;</span></span>这是一串黑体字<span class="xml"><span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">font</span> <span class="attr">face</span>=<span class="string">"微软雅黑"</span>&gt;</span></span>这是一串微软雅黑<span class="xml"><span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">font</span> <span class="attr">face</span>=<span class="string">"STCAIYUN"</span>&gt;</span></span>这是一串华文彩云<span class="xml"><span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">#00ced1</span> <span class="attr">size</span>=<span class="string">7</span> <span class="attr">face</span>=<span class="string">"黑体"</span>&gt;</span></span>背景色+字体+字的size<span class="xml"><span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">#00ffff</span> <span class="attr">size</span>=<span class="string">72</span>&gt;</span></span>颜色设置<span class="xml"><span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">gray</span> <span class="attr">size</span>=<span class="string">72</span>&gt;</span></span>灰色处理<span class="xml"><span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">td</span> <span class="attr">bgcolor</span>=<span class="string">#bfe1f1</span>&gt;</span></span>背景色是：#bfe1f1<span class="xml"><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">Size：规定文本的尺寸大小。可能的值：从 1 到 7 的数字。浏览器默认值是 3</span><br></pre></td></tr></table></figure>
 
@@ -485,10 +488,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-10-28T17:04:42+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-10-30T10:55:50+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年10月28日</p>
+    <p>更新于 2019年10月30日</p>
   </a>
 </div>
 
