@@ -4,6 +4,43 @@
   
     
     <entry>
+      <title>docker容器虚拟化技术</title>
+      <link href="/2019/10/31/docker%E5%AE%B9%E5%99%A8%E8%99%9A%E6%8B%9F%E6%8A%80%E6%9C%AF/"/>
+      <url>/2019/10/31/docker%E5%AE%B9%E5%99%A8%E8%99%9A%E6%8B%9F%E6%8A%80%E6%9C%AF/</url>
+      
+        <content type="html"><![CDATA[<p><font color=#00CD00>简单来说，在Windows系统下安装各种运行环境的坑简直不要太多了(●￣(ｴ)￣●)，并不仅限于docker、Nginx、PHP、Python等等</font>，我会尽详细写出实际过程中遇到的各种各样的奇葩问题</p><a id="more"></a><h3 id="1-docker适用环境"><a href="#1-docker适用环境" class="headerlink" title="1.docker适用环境"></a>1.docker适用环境</h3><p>其实docker本身也没有太多在Windows下花功夫。<font color=#00CD00>目前，docker仅支持Linux与Windows企业版、专业版、教育版。ps：家庭版不支持docker</font>,并且win10下可以安装<a href="https://hub.docker.com/editions/community/docker-ce-desktop-windows?tab=description" target="_blank" rel="noopener">docker-for-windows</a>,这个安装包是<br>专门适用于win10，安装简单，而对于win7/8则可以使用<a href="https://github.com/docker/toolbox/releases" target="_blank" rel="noopener">Docker Toolbox下载地址</a></p><h3 id="2-Windows下无法对docker容器进行端口访问（端口映射的问题）"><a href="#2-Windows下无法对docker容器进行端口访问（端口映射的问题）" class="headerlink" title="2.Windows下无法对docker容器进行端口访问（端口映射的问题）"></a>2.Windows下无法对docker容器进行端口访问（端口映射的问题）</h3><p>1.问题详情<br><br>&nbsp;&nbsp;&nbsp;在Windows10系统服务器中安装了docker和docker-compose<br><br>&nbsp;&nbsp;&nbsp;并尝试在其中运行Nginx服务，映射也做好<br><br>&nbsp;&nbsp;&nbsp;问题：在主机的浏览器中，打开localhost:port无法访问对应的Web服务。<br><br>2.问题解析<br><br>&nbsp;&nbsp;&nbsp;原因：docker是运行在Linux上的，在Windows中运行docker，实际上还是在Windows下先安装了一个Linux环境，然后在这个系统中运行的docker。也就是说，服务中使用的localhost指的是这个Linux环境的地址，而不是我们的宿主环境Windows10。<br><br>3.解决办法<br><br>&nbsp;&nbsp;&nbsp;启动docker命令行窗口<br><br>&nbsp;&nbsp;&nbsp;输入命令:docker-machine ip default<br><br>&nbsp;&nbsp;&nbsp;Linux的ip地址，一般情况下这个地址是192.168.99.100<br><br>&nbsp;&nbsp;&nbsp;然后在Windows的浏览器中，输入 <a href="http://IP:port" target="_blank" rel="noopener">http://IP:port</a> 即可启用（<a href="http://192.168.99.100：8069）" target="_blank" rel="noopener">http://192.168.99.100：8069）</a><br></p><h3 id="3-docker与VMware不可兼容"><a href="#3-docker与VMware不可兼容" class="headerlink" title="3.docker与VMware不可兼容"></a>3.docker与VMware不可兼容</h3><p>&nbsp;&nbsp;&nbsp;在Windows下安装docker，第一步就是要打开Hyper-V(打开控制面板 - 程序和功能 - 启用或关闭Windows功能，勾选Hyper-V),开启win自带的虚拟管理技术。但是若想要使用VMware，则必须关闭Hyper-V，鱼和熊掌不可兼得呀！(′д｀ )…彡…彡</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> docker </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> docker </tag>
+            
+            <tag> VMware </tag>
+            
+            <tag> images </tag>
+            
+            <tag> container </tag>
+            
+            <tag> Hyper-V </tag>
+            
+            <tag> Linux </tag>
+            
+            <tag> 交互式与守护式创建 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Python模拟登录淘宝(Ⅰ)</title>
       <link href="/2019/10/30/requests%E5%BA%93%E6%A8%A1%E6%8B%9F%E7%99%BB%E5%BD%95%E6%B7%98%E5%AE%9D(%E2%85%A0)/"/>
       <url>/2019/10/30/requests%E5%BA%93%E6%A8%A1%E6%8B%9F%E7%99%BB%E5%BD%95%E6%B7%98%E5%AE%9D(%E2%85%A0)/</url>
