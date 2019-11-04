@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>python文件读read()、readline()、readlines()对比</title>
+      <link href="/2019/11/04/python%E7%9A%84read_readlines_readline/"/>
+      <url>/2019/11/04/python%E7%9A%84read_readlines_readline/</url>
+      
+        <content type="html"><![CDATA[<p>&nbsp;&nbsp;&nbsp;read():读取整个文件，将文件内容放到一个字符串变量中<br><br>&nbsp;&nbsp;&nbsp;readline():读取整行，包括行结束符，并以其作为字符串返回<br><br>&nbsp;&nbsp;&nbsp;readline():读取所有行然后把它们作为一个字符串列表返回（即把每一行作为一个列表元素）<br></p><a id="more"></a>]]></content>
+      
+      
+      <categories>
+          
+          <category> Python </category>
+          
+          <category> read、readline、readlines对比 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> read() - readline() - readlines() </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>docker容器虚拟化技术</title>
       <link href="/2019/10/31/docker%E5%AE%B9%E5%99%A8%E8%99%9A%E6%8B%9F%E6%8A%80%E6%9C%AF/"/>
       <url>/2019/10/31/docker%E5%AE%B9%E5%99%A8%E8%99%9A%E6%8B%9F%E6%8A%80%E6%9C%AF/</url>
