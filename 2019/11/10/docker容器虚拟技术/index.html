@@ -297,7 +297,7 @@
         
   
     <h1 class="title">
-      <a href="/2019/11/07/docker%E5%AE%B9%E5%99%A8%E8%99%9A%E6%8B%9F%E6%8A%80%E6%9C%AF/">
+      <a href="/2019/11/10/docker%E5%AE%B9%E5%99%A8%E8%99%9A%E6%8B%9F%E6%8A%80%E6%9C%AF/">
         docker容器虚拟化技术
       </a>
     </h1>
@@ -329,7 +329,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-11-07</p>
+    <p>2019-11-10</p>
   </a>
 </div>
 
@@ -381,7 +381,7 @@
 
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
-        <p><font color=#00CD00>简单来说，在Windows系统下安装各种运行环境的坑简直不要太多了(●￣(ｴ)￣●)，并不仅限于docker、Nginx、PHP、Python等等</font>，我会尽详细写出实际过程中遇到的各种各样的奇葩问题</p>
+        <p><font color=#00CD00>简单来说，在Windows系统下安装各种运行环境的坑简直不要太多了(●￣(ｴ)￣●)，并不仅限于docker、Nginx、PHP、Python等等</font>，我会尽详细写出实际过程中遇到的各种各样的奇葩问题<br><fancybox><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573382566146&di=7b10832832e7d3c37d3f4e2e84d45d5d&imgtype=jpg&src=http%3A%2F%2Fimg3.imgtn.bdimg.com%2Fit%2Fu%3D859959778%2C1194286727%26fm%3D214%26gp%3D0.jpg" alt=""></fancybox></p>
 <a id="more"></a>
 
 
@@ -422,7 +422,24 @@
 
 <h3 id="8-宿主机与docker容器权限纠纷"><a href="#8-宿主机与docker容器权限纠纷" class="headerlink" title="8.宿主机与docker容器权限纠纷"></a>8.宿主机与docker容器权限纠纷</h3><p>问题描述：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;它来了！问题又出现了！哭啦。数据卷挂载时，即使声明了rw权限，在宿主机中创建文件，数据共享后，容器内能够具有正常的rw权限；但在容器内新建了文件后，宿主机就只有只读权限，无法修改文件内容。</p>
 <p>解决方案：宿主机的权限不够<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在（7）式中的万能公式中添加：docker run ··· –privileged=true ···</p>
-<h3 id="9-docker配置nginx的配置文件"><a href="#9-docker配置nginx的配置文件" class="headerlink" title="9.docker配置nginx的配置文件"></a>9.<a href="https://www.cnblogs.com/zfding/p/11429695.html" target="_blank" rel="noopener">docker配置nginx的配置文件</a></h3><p>命令：<code>docker run --name dnmp_nginx -p 80:80 -v /home/docker-nginx/nginx.conf:/etc/nginx/nginx.conf -v /home/docker-nginx/log:/var/log/nginx -v /home/docker-nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf -di nginx:\[tags]</code><br>&nbsp;&nbsp;&nbsp;&nbsp;第一个-v 表示将你本地的nginx.conf覆盖你要起启动的容器的nginx.conf文件，第二个表示将日志文件进行挂载，就是把nginx服务器的日志写到你docker宿主机的/home/docker-nginx/log/下面。第三个-v 表示的和第一个-v意思一样的<br>&nbsp;&nbsp;&nbsp;&nbsp;我个人更喜欢守护式映射的方式，麻烦的是需要自己准备好nginx.conf 和default.conf文件，我是直接从容器里面复制的，然后根据自己的需要改的</p>
+<h3 id="9-docker配置nginx的配置文件"><a href="#9-docker配置nginx的配置文件" class="headerlink" title="9.docker配置nginx的配置文件"></a>9.<a href="https://www.cnblogs.com/zfding/p/11429695.html" target="_blank" rel="noopener">docker配置nginx的配置文件</a></h3><p>命令：<code>docker run --name=&quot;dnmp_nginx&quot; -p 80:80 -v /home/docker-nginx/nginx.conf:/etc/nginx/nginx.conf -v /home/docker-nginx/log:/var/log/nginx -v /home/docker-nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf -di nginx:\[tags]</code><br>&nbsp;&nbsp;&nbsp;&nbsp;第一个-v 表示将你本地的nginx.conf覆盖你要起启动的容器的nginx.conf文件，第二个表示将日志文件进行挂载，就是把nginx服务器的日志写到你docker宿主机的/home/docker-nginx/log/下面。第三个-v 表示的和第一个-v意思一样的<br>&nbsp;&nbsp;&nbsp;&nbsp;我个人更喜欢守护式映射的方式，麻烦的是需要自己准备好nginx.conf 和default.conf文件，我是直接从容器里面复制的，然后根据自己的需要改的</p>
+<h3 id="10-docker配置MySQL，redis教程等，请点击此处链接"><a href="#10-docker配置MySQL，redis教程等，请点击此处链接" class="headerlink" title="10.docker配置MySQL，redis教程等，请点击此处链接"></a>10.docker配置MySQL，redis教程等，<a href="https://pan.baidu.com/s/1nUE4pfe2wThYVGMEYqADXw" target="_blank" rel="noopener">请点击此处链接</a></h3><p>命令:<code>docker run -di -p 12345:3306 --name=&quot;mysql&quot; -v /lnmp/mysql/conf:/etc/mysql/conf.d -v /lnmp/mysql/logs:/logs -v /lnmp/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456:rw  mysql:5.6</code></p>
+<p>命令说明：<br>-p 12345:3306：将主机的12345端口映射到docker容器的3306端口。<br>–name mysql：运行服务名字<br>-v /lnmp/mysql/conf:/etc/mysql/conf.d ：将主机/zzyyuse/mysql录下的conf/my.cnf 挂载到容器的 /etc/mysql/conf.d<br>-v /lnmp/mysql/logs:/logs：将主机/zzyyuse/mysql目录下的 logs 目录挂载到容器的 /logs。<br>-v /lnmp/mysql/data:/var/lib/mysql ：将主机/zzyyuse/mysql目录下的data目录挂载到容器的 /var/lib/mysql<br>-e MYSQL_ROOT_PASSWORD=123456：初始化 root 用户的密码。<br>-d mysql:5.6 : 后台程序运行mysql5.6</p>
+<h3 id="11-外部Windows如何访问docker内的容器"><a href="#11-外部Windows如何访问docker内的容器" class="headerlink" title="11.外部Windows如何访问docker内的容器"></a>11.外部Windows如何访问docker内的容器</h3><blockquote>
+<p>1.基本架构：Windows，Dockers，Linux三者关系</p>
+</blockquote>
+<p><fancybox><img src="https://images2018.cnblogs.com/blog/1228818/201805/1228818-20180510183714998-435698473.png" alt=""></fancybox></p>
+<blockquote>
+<p>2.相关操作</p>
+</blockquote>
+<p>2.1 关闭Linux防火墙：systemctl stop firewalld.service</p>
+<p>2.2 查看Linux，Docker的IP地址:ifconfig(区别于Windows的ipconfig命令)</p>
+<p><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/CDN@1.2.2/docker.png" width="60%"></fancybox></p>
+<p>2.3 Windows访问测试:</p>
+<blockquote>
+<p>思想：docker作为一个容器虚拟技术，创建并启动相关的容器服务，并把端口映射到Linux系统中。比如MySQL：docker启动MySQL服务后，并映射了一个外部访问的某端口（比如还是3306）<br>，则此刻Linux就具有了3306这个一个端口=&gt;外界访问方式应该是：访问虚拟机Linux上与之相绑定docker容器映射出的端口。</p>
+</blockquote>
+<p><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/CDN@1.2.2/test.JPG" height="60%"></fancybox></p>
 
       </div>
       
@@ -434,10 +451,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-07T17:01:01+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-10T15:56:59+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年11月7日</p>
+    <p>更新于 2019年11月10日</p>
   </a>
 </div>
 
@@ -459,7 +476,7 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/11/07/docker%E5%AE%B9%E5%99%A8%E8%99%9A%E6%8B%9F%E6%8A%80%E6%9C%AF/&title=docker容器虚拟化技术 | AhriLove&summary=简单来说，在Windows系统下安装各种运行环境的坑简直不要太多了(●￣(ｴ)￣●)，并不仅限于docker、Nginx、PHP、Python等等，我会尽详细写出实际过程中遇到的各种各样的奇葩问题"
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/11/10/docker%E5%AE%B9%E5%99%A8%E8%99%9A%E6%8B%9F%E6%8A%80%E6%9C%AF/&title=docker容器虚拟化技术 | AhriLove&summary=简单来说，在Windows系统下安装各种运行环境的坑简直不要太多了(●￣(ｴ)￣●)，并不仅限于docker、Nginx、PHP、Python等等，我会尽详细写出实际过程中遇到的各种各样的奇葩问题"
           
           >
           
@@ -471,7 +488,7 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2019/11/07/docker%E5%AE%B9%E5%99%A8%E8%99%9A%E6%8B%9F%E6%8A%80%E6%9C%AF/&title=docker容器虚拟化技术 | AhriLove&summary=简单来说，在Windows系统下安装各种运行环境的坑简直不要太多了(●￣(ｴ)￣●)，并不仅限于docker、Nginx、PHP、Python等等，我会尽详细写出实际过程中遇到的各种各样的奇葩问题"
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2019/11/10/docker%E5%AE%B9%E5%99%A8%E8%99%9A%E6%8B%9F%E6%8A%80%E6%9C%AF/&title=docker容器虚拟化技术 | AhriLove&summary=简单来说，在Windows系统下安装各种运行环境的坑简直不要太多了(●￣(ｴ)￣●)，并不仅限于docker、Nginx、PHP、Python等等，我会尽详细写出实际过程中遇到的各种各样的奇葩问题"
           
           >
           
@@ -483,7 +500,7 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/11/07/docker%E5%AE%B9%E5%99%A8%E8%99%9A%E6%8B%9F%E6%8A%80%E6%9C%AF/&title=docker容器虚拟化技术 | AhriLove&summary=简单来说，在Windows系统下安装各种运行环境的坑简直不要太多了(●￣(ｴ)￣●)，并不仅限于docker、Nginx、PHP、Python等等，我会尽详细写出实际过程中遇到的各种各样的奇葩问题"
+          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/11/10/docker%E5%AE%B9%E5%99%A8%E8%99%9A%E6%8B%9F%E6%8A%80%E6%9C%AF/&title=docker容器虚拟化技术 | AhriLove&summary=简单来说，在Windows系统下安装各种运行环境的坑简直不要太多了(●￣(ｴ)￣●)，并不仅限于docker、Nginx、PHP、Python等等，我会尽详细写出实际过程中遇到的各种各样的奇葩问题"
           
           >
           
@@ -507,40 +524,21 @@
       
           <div class="prev-next">
               
-                  <section class="prev">
-                      <span class="art-item-left">
-                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+              
+                  <section class="next">
+                      <span class="art-item-right" aria-hidden="true">
+                          <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                           <h4>
                               <a href="/2019/11/08/Vue/" rel="prev" title="Vue">
-                                
-                                    Vue
-                                
+                                  
+                                      Vue
+                                  
                               </a>
                           </h4>
                           
                               
                               <h6 class="tags">
                                   <a class="tag" href="/tags/Vue/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Vue</a> <a class="tag" href="/tags/Jquery/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Jquery</a>
-                              </h6>
-                          
-                      </span>
-                  </section>
-              
-              
-                  <section class="next">
-                      <span class="art-item-right" aria-hidden="true">
-                          <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
-                          <h4>
-                              <a href="/2019/11/07/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="prev" title="MySQL数据库">
-                                  
-                                      MySQL数据库
-                                  
-                              </a>
-                          </h4>
-                          
-                              
-                              <h6 class="tags">
-                                  <a class="tag" href="/tags/database/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> database</a> <a class="tag" href="/tags/DDL/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> DDL</a> <a class="tag" href="/tags/DML/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> DML</a>
                               </h6>
                           
                       </span>
@@ -557,7 +555,21 @@
 
 
 
-  
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      
+      
+        <section id="comments">
+          <div id="lv-container" data-id="city" data-uid="MTAyMC80NzQ0NS8yMzk0NQ==">
+            <noscript><div><i class='fas fa-exclamation-triangle'>&nbsp;无法加载Livere评论系统，请确保您的网络能够正常访问。</div></noscript>
+          </div>
+        </section>
+      
+      
+      
+    </section>
+  </article>
 
 
 
@@ -680,7 +692,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-docker适用环境"><span class="toc-text">1.docker适用环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Windows下无法对docker容器进行端口访问（端口映射的问题）"><span class="toc-text">2.Windows下无法对docker容器进行端口访问（端口映射的问题）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-docker与VMware不可兼容"><span class="toc-text">3.docker与VMware不可兼容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Windows：vmware与hyper-v不兼容-请移除hyper-v角色"><span class="toc-text">4.Windows：vmware与hyper-v不兼容,请移除hyper-v角色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-docker-run后接-bin-sh和接-bin-bash的区别是什么："><span class="toc-text">5.docker run后接/bin/sh和接/bin/bash的区别是什么：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-docker运行MySQL服务"><span class="toc-text">6.docker运行MySQL服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-最强万能公式-数据卷挂载式创建容器"><span class="toc-text">7.最强万能公式:数据卷挂载式创建容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-宿主机与docker容器权限纠纷"><span class="toc-text">8.宿主机与docker容器权限纠纷</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-docker配置nginx的配置文件"><span class="toc-text">9.docker配置nginx的配置文件</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-docker适用环境"><span class="toc-text">1.docker适用环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Windows下无法对docker容器进行端口访问（端口映射的问题）"><span class="toc-text">2.Windows下无法对docker容器进行端口访问（端口映射的问题）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-docker与VMware不可兼容"><span class="toc-text">3.docker与VMware不可兼容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Windows：vmware与hyper-v不兼容-请移除hyper-v角色"><span class="toc-text">4.Windows：vmware与hyper-v不兼容,请移除hyper-v角色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-docker-run后接-bin-sh和接-bin-bash的区别是什么："><span class="toc-text">5.docker run后接/bin/sh和接/bin/bash的区别是什么：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-docker运行MySQL服务"><span class="toc-text">6.docker运行MySQL服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-最强万能公式-数据卷挂载式创建容器"><span class="toc-text">7.最强万能公式:数据卷挂载式创建容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-宿主机与docker容器权限纠纷"><span class="toc-text">8.宿主机与docker容器权限纠纷</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-docker配置nginx的配置文件"><span class="toc-text">9.docker配置nginx的配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-docker配置MySQL，redis教程等，请点击此处链接"><span class="toc-text">10.docker配置MySQL，redis教程等，请点击此处链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-外部Windows如何访问docker内的容器"><span class="toc-text">11.外部Windows如何访问docker内的容器</span></a></li></ol>
     </div>
   </section>
 
@@ -1102,6 +1114,17 @@
 
 
 
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
 
 
 
