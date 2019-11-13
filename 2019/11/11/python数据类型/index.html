@@ -392,7 +392,7 @@
 
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
-        <p>Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等<br><fancybox><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573535588082&di=d71746cb12806b9ce26862e1a2976671&imgtype=0&src=http%3A%2F%2Fimg2018.cnblogs.com%2Fblog%2F1457234%2F201905%2F1457234-20190506010127395-1632502037.gif" alt=""></fancybox></p>
+        <p>Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等<br><fancybox><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573535588082&di=d71746cb12806b9ce26862e1a2976671&imgtype=0&src=http%3A%2F%2Fimg2018.cnblogs.com%2Fblog%2F1457234%2F201905%2F1457234-20190506010127395-1632502037.gif" alt=""></fancybox><br>字符串：len(),split(),join()…<br>列表：append(),pop(),count()…<br>元组与列表类似，不同之处在于元组的元素不能修改<br>字典：</p>
 <a id="more"></a>
 <h3 id="1-字符串"><a href="#1-字符串" class="headerlink" title="1.字符串"></a>1.字符串</h3><blockquote>
 <p>zip()函数：将可迭代对象所包含的元素是由原列表元素组成的元组</p>
@@ -407,7 +407,7 @@
 </blockquote>
 <p>s=’index’ s[0]=i<br>s.index(‘i’) = 0  : 查找目标字符串索引值</p>
 <blockquote>
-<p>str.find(‘ ‘)查找目标字符串,不存在就返回数值1</p>
+<p>str.find(‘目标字符串’)查找目标字符串,不存在就返回数值1</p>
 </blockquote>
 <blockquote>
 <p>移除指定字符串 str.strip()</p>
@@ -427,6 +427,85 @@
 <blockquote>
 <p>string.capitalize()把字符串的第一个字符大写</p>
 </blockquote>
+<blockquote>
+<p>str.count(‘目标字符串’):返回 str 在 string 里面出现的次数</p>
+</blockquote>
+<blockquote>
+<p>“连接字符”.join(seq序列):返回 str 在 string 里面出现的次数</p>
+</blockquote>
+<p>以指定字符串作为分隔符，将 seq 中所有的元素(的字符串表示)合并为一个新的字符串</p>
+<blockquote>
+<p>str.lower()/upper() 将字符串全部转换为小写/大写</p>
+</blockquote>
+<p>“hello world”.lower()/upper() =&gt;”hello world” / “HELLO WORLD”</p>
+<blockquote>
+<p>str.split(指定字符串) 以指定字符串来分割目标字符串，以列表形式返回</p>
+</blockquote>
+<p>url = “<a href="http://www.baidu.com/python/image/123456.jpg&quot;" target="_blank" rel="noopener">http://www.baidu.com/python/image/123456.jpg&quot;</a><br>#以“.” 进行分隔<br>path =url.split(“.”)<br>path=[‘<a href="http://www&#39;" target="_blank" rel="noopener">http://www&#39;</a>, ‘baidu’, ‘com/python/image/123456’, ‘jpg’]</p>
+<h3 id="2-列表"><a href="#2-列表" class="headerlink" title="2.列表"></a>2.列表</h3><blockquote>
+<p>列表截取（索引从0开始，且满足左闭右开原则）与拼接:从右至左取值，则索引默认从-1开始</p>
+</blockquote>
+<p>L=[‘Google’, ‘Runoob’, ‘Taobao’]<br>L[2]=’Taobao’ L[-1]=’Taobao’</p>
+<blockquote>
+<p>列表函数和方法</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>函数和方法</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>len(list)</td>
+<td align="center">列表元素个数</td>
+</tr>
+<tr>
+<td>list(seq)</td>
+<td align="center">将元组或字符串转换为列表</td>
+</tr>
+<tr>
+<td>max/min(list)</td>
+<td align="center">返回列表元素最大/最小值</td>
+</tr>
+<tr>
+<td>list.append(obj)</td>
+<td align="center">在列表末尾添加新的对象</td>
+</tr>
+<tr>
+<td>list.count(obj)</td>
+<td align="center">统计某个元素在列表中出现的次数</td>
+</tr>
+<tr>
+<td>list.extend(seq)</td>
+<td align="center">在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表）</td>
+</tr>
+<tr>
+<td>list.index(obj)</td>
+<td align="center">从列表中找出某个值第一个匹配项的索引位置</td>
+</tr>
+<tr>
+<td>list.insert(index, obj)</td>
+<td align="center">将对象插入列表</td>
+</tr>
+<tr>
+<td>list.pop([index=-1])</td>
+<td align="center">移除列表中的一个元素（默认最后一个元素），并且返回该元素的值</td>
+</tr>
+<tr>
+<td>list.remove(obj)</td>
+<td align="center">移除列表中某个值的第一个匹配项</td>
+</tr>
+<tr>
+<td>list.reverse()</td>
+<td align="center">反向列表中元素</td>
+</tr>
+<tr>
+<td>list.sort( key=None, reverse=False)</td>
+<td align="center">对原列表进行排序</td>
+</tr>
+</tbody></table>
+<h3 id="3-元组"><a href="#3-元组" class="headerlink" title="3.元组"></a>3.元组</h3><p>tuple(seq)：将列表转换为元组。</p>
 
       </div>
       
@@ -438,10 +517,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-12T19:51:09+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-13T09:45:13+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年11月12日</p>
+    <p>更新于 2019年11月13日</p>
   </a>
 </div>
 
@@ -463,7 +542,7 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/11/11/python%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&title=Python全栈系列章节更新（一） | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等"
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/11/11/python%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&title=Python全栈系列章节更新（一） | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等字符串：len(),split(),join()…列表：append(),pop(),count()…元组与列表类似，不同之处在于元组的元素不能修改字典："
           
           >
           
@@ -475,7 +554,7 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2019/11/11/python%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&title=Python全栈系列章节更新（一） | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等"
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2019/11/11/python%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&title=Python全栈系列章节更新（一） | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等字符串：len(),split(),join()…列表：append(),pop(),count()…元组与列表类似，不同之处在于元组的元素不能修改字典："
           
           >
           
@@ -487,7 +566,7 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/11/11/python%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&title=Python全栈系列章节更新（一） | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等"
+          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/11/11/python%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&title=Python全栈系列章节更新（一） | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等字符串：len(),split(),join()…列表：append(),pop(),count()…元组与列表类似，不同之处在于元组的元素不能修改字典："
           
           >
           
@@ -649,7 +728,7 @@
           
         
           
-            <a href="https://space.bilibili.com/215893581"
+            <a href="https://space.bilibili.com/215893581/favlist"
               class="social fas fa-mobile flat-btn"
               target="_blank"
               rel="external nofollow noopener noreferrer">
@@ -698,7 +777,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-字符串"><span class="toc-text">1.字符串</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-字符串"><span class="toc-text">1.字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-列表"><span class="toc-text">2.列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-元组"><span class="toc-text">3.元组</span></a></li></ol>
     </div>
   </section>
 
@@ -980,6 +1059,71 @@
           
         
       
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+
+
+  <section class='widget music'>
+    
+<header class='material'>
+  <div><i class="fas fa-compact-disc fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;最近在听</div>
+  
+    <a class="rightBtn"
+    
+      rel="external nofollow noopener noreferrer"
+    
+    
+      target="_blank"
+    
+    href="https://music.163.com/#/user/home?id=63035382"
+    title="https://music.163.com/#/user/home?id=63035382">
+    <i class="far fa-heart fa-fw"></i></a>
+  
+</header>
+
+    <div class='content material'>
+      
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
+  <div class="aplayer"
+    data-theme="#1BCDFC"
+    
+    
+    data-mode="circulation"
+    data-server="netease"
+    data-type="playlist"
+    data-id="2615636388"
+    data-volume="0.5">
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
+
+
+    </div>
+  </section>
+
+
+            
+          
+        
+      
     
 
   
@@ -1029,7 +1173,7 @@
         
       
         
-          <a href="https://space.bilibili.com/215893581"
+          <a href="https://space.bilibili.com/215893581/favlist"
             class="social fas fa-mobile flat-btn"
             target="_blank"
             rel="external nofollow noopener noreferrer">
