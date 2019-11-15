@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>JSON通常用于与服务端交换数据,在向服务器发送数据时一般是字符串</title>
+      <link href="/2019/11/14/json/"/>
+      <url>/2019/11/14/json/</url>
+      
+        <content type="html"><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;json语法规则</p><ul><li>数据在名称/值对中</li><li>数据由逗号分隔</li><li>大括号保存对象</li><li>中括号保存数组<br>PS:json键值对一定要用双引号包裹起来<a id="more"></a></li></ul><h3 id="1-Python的json规则"><a href="#1-Python的json规则" class="headerlink" title="1.Python的json规则"></a>1.Python的json规则</h3><p>python程序中的json有一点点区别于JavaScript中的json，它是通过对象和数组的组合来表示数据</p><blockquote><p>对象型数组</p></blockquote><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;它在JavaScript是使用花括号{}包裹起来的内容，数据结构为{key1:value1,key2:value2…}的键值对结构，key为对象的属性，value为对应的值。键名可以使用整数和字符串来表示，<br>所以，一个json对象跨用写作如下格式(对象型数组)</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"chd"</span>,</span><br><span class="line">  <span class="attr">"age"</span>: <span class="number">18</span>,</span><br><span class="line">  <span class="attr">"sex"</span>: <span class="string">"man"</span></span><br><span class="line">  &#125;,&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"Monica"</span>,</span><br><span class="line">  <span class="attr">"gender"</span>: <span class="string">"woman"</span>,</span><br><span class="line">  <span class="attr">"birthday"</span>: <span class="string">"1997-1-25"</span></span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure><blockquote><p>调用方式:通过中括号加0索引，可以得到第一个字典元素，然后调用其键名即可得到相应的键值</p></blockquote><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;调用方式一：中括号加键名<br>data[index][“键名”] =&gt; data[0][‘name’]，结果为‘chd’<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;调用方式二：get()方法传入键名，如果键名不存在，不会报错，会返回none（python中推荐使用）<br>data[index].get(‘键名’) =&gt; data[1].get(“birthday”),结果为”1997-1-25”</p><h3 id="javascript中的json"><a href="#javascript中的json" class="headerlink" title="javascript中的json"></a>javascript中的json</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var stu = &#123;&quot;student&quot;:           //stu 对象包含student的key,值为一个数组</span><br><span class="line">            [                                     //数组的每一个值为一个具体的学生对象</span><br><span class="line">                &#123;&quot;name&quot;: &quot;Tom&quot;,&quot;Grade&quot;:1, &quot;age&quot;:11, &quot;gender&quot;: &quot;M&quot;&#125;,     //学生对象的键为名字,值为对应属性</span><br><span class="line">                &#123;&quot;name&quot;: &quot;Jerry&quot;, &quot;Grade&quot;:1, &quot;age&quot;:10, &quot;gender&quot;: &quot;M&quot;&#125;       //每个属性对应的是一个key,value对</span><br><span class="line">            ],</span><br><span class="line">            &quot;classroom&quot;: &#123;&quot;class1&quot;: &quot;room1&quot;, &quot;class2&quot;: &quot;room2&quot;&#125;         //对象的值,嵌套对象</span><br><span class="line">        &#125;;</span><br></pre></td></tr></table></figure><blockquote><p>json.parse()方法将数据转换为 JavaScript 对象</p></blockquote><blockquote><p>json.stringify() 方法将 JavaScript 对象转换为字符串。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> json </category>
+          
+          <category> json对象 </category>
+          
+          <category> json语法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> json.parse() </tag>
+            
+            <tag> json.stringify() </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>数据库存储引擎与索引,视图</title>
       <link href="/2019/11/12/mysql(%E4%BA%8C)/"/>
       <url>/2019/11/12/mysql(%E4%BA%8C)/</url>
