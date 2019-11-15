@@ -4,6 +4,39 @@
   
     
     <entry>
+      <title>ThinkPHP</title>
+      <link href="/2019/11/15/ThinkPHP/"/>
+      <url>/2019/11/15/ThinkPHP/</url>
+      
+        <content type="html"><![CDATA[<p>最近一直在做一个有关于ThinkPHP的前后分离的移动报表项目。记录从建彬师傅那里学到的知识以及自己遇到的一些问题</p><p>涉及到的知识点包含：jQuery、Vue、PHP、Echarts、Bootstrap、HTML+CSS+JavaScript。。。</p><blockquote><p>js的push()<br>js的clone()</p></blockquote><a id="more"></a><h3 id="1-js的clone-与push函数的一些生活纠纷"><a href="#1-js的clone-与push函数的一些生活纠纷" class="headerlink" title="1.js的clone()与push函数的一些生活纠纷"></a>1.js的clone()与push函数的一些生活纠纷</h3><blockquote><p>push()函数：向数组的末尾添加一个或多个元素，并返回新的长度。返回值是把指定的值添加到数组后的新长度<br>语法：arrayObject.push(newelement1,newelement2,….)</p></blockquote><p>push() 方法可把它的参数顺序添加到 arrayObject（数组对象）的尾部。它直接修改 arrayObject，而不是创建一个新的数组，而是在原数组基础上修改。push() 方法和 pop() 方法使用数组提供的先进后出栈的功能，该方法会改变数组的长度。</p><p>案例1：push()</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">3</span>);</span><br><span class="line">arr[<span class="number">0</span>] = <span class="string">"chd"</span>;</span><br><span class="line">arr[<span class="number">1</span>] = <span class="string">"sjb"</span>;</span><br><span class="line">arr[<span class="number">2</span>] = <span class="string">"sgx"</span>;</span><br><span class="line"> </span><br><span class="line"><span class="built_in">console</span>.log(arr);<span class="comment">//输出原素组 ['chd','sjb','sgx']</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.push(<span class="string">"badwoman"</span>));  <span class="comment">// 输出 4</span></span><br></pre></td></tr></table></figure><p>PS:来了，push添加元素之后没有直接输出添加元素之后的数组，只显示了数组的个数（长度）</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 展示push后的新数组</span></span><br><span class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">3</span>);</span><br><span class="line">arr[<span class="number">0</span>] = <span class="string">"chd"</span>;</span><br><span class="line">arr[<span class="number">1</span>] = <span class="string">"sjb"</span>;</span><br><span class="line">arr[<span class="number">2</span>] = <span class="string">"sgx"</span>;</span><br><span class="line">arr.push(<span class="string">'badwoman'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br><span class="line"><span class="comment">//输出结果为：['chd','sjb','sgx','badwoman']</span></span><br></pre></td></tr></table></figure><blockquote><p>js的clone()函数</p></blockquote><p>js对象之间的赋值，如果直接用”=”会发现来两个对象还是同一个对象，改变其中一个另外的一个也会做出对应的改变。为了解决这个问题，可以利用java里面的clone的原理。<br>假设有这样一个场景：当存在一个公共数组(对象型)时，一个需要加{“name”:”chd”,”age”:18}另一个需要在数组尾加上{“name”:”sgx”,”age”:108}</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> commonCondition=[&#123;<span class="string">"id"</span>:<span class="number">15</span>&#125;];</span><br><span class="line"><span class="keyword">let</span> a=&#123;<span class="string">"name"</span>:<span class="string">"chd"</span>,<span class="string">"age"</span>:<span class="number">18</span>&#125;;</span><br><span class="line"><span class="keyword">let</span> b=&#123;<span class="string">"name"</span>:<span class="string">"sgx"</span>,<span class="string">"age"</span>:<span class="number">108</span>&#125;;</span><br><span class="line"><span class="comment">// 当我们利用a = commonCondition.push(a)时，此时原来的commonCondition也会跟着改变</span></span><br><span class="line"><span class="comment">// 赋值b = commonCondition.push(b)。此时，b中也会包含a的数据，此刻js的clone函数就出现了</span></span><br></pre></td></tr></table></figure><p>js的clone()函数源代码:</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">clone</span>(<span class="params">Obj</span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> o;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> obj == <span class="string">"object"</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (obj === <span class="literal">null</span>) &#123;</span><br><span class="line">                o = <span class="literal">null</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> <span class="built_in">Array</span>) &#123;</span><br><span class="line">                    o = [];</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, len = obj.length; i &lt; len; i++) &#123;</span><br><span class="line">                        o.push(<span class="keyword">this</span>.clone(obj[i])); <span class="comment">// 有可能不要this</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    o = &#123;&#125;;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">var</span> j <span class="keyword">in</span> obj) &#123;</span><br><span class="line">                        o[j] = <span class="keyword">this</span>.clone(obj[j]);  <span class="comment">// 有可能不要this</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            o = obj;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> o;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><p>即此刻，我们才有如下最正确的式子</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> new_a = clone(commonCondition);</span><br><span class="line">a = new_a.push(a);</span><br><span class="line"><span class="keyword">let</span> new_b = clone(commonCondition);</span><br><span class="line">b = new_b.push(b);</span><br></pre></td></tr></table></figure><h3 id="2-thinkphp项目调用Vue扩展函数方式"><a href="#2-thinkphp项目调用Vue扩展函数方式" class="headerlink" title="2. thinkphp项目调用Vue扩展函数方式"></a>2. thinkphp项目调用Vue扩展函数方式</h3><p>2.1 声明方法：新建一个与项目名同名的js文件，新增如下内容</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Vue.prototype.项目名 = &#123;</span><br><span class="line">    // 这里表示扩展函数</span><br><span class="line">    函数名一:function(obj)&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;,</span><br><span class="line">    函数名二:function(obj)&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>2.2 调用方法：Vue实例化名.项目名.函数名()<br>Vue实力化名即：let app = new Vue({})中的app</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> ThinkPHP </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> API </tag>
+            
+            <tag> Ajax </tag>
+            
+            <tag> CSS </tag>
+            
+            <tag> $.post() </tag>
+            
+            <tag> thinkPHP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>JSON通常用于与服务端交换数据,在向服务器发送数据时一般是字符串</title>
       <link href="/2019/11/14/json/"/>
       <url>/2019/11/14/json/</url>
@@ -14,10 +47,6 @@
       <categories>
           
           <category> json </category>
-          
-          <category> json对象 </category>
-          
-          <category> json语法 </category>
           
       </categories>
       
@@ -108,9 +137,9 @@
       
       <categories>
           
-          <category> 前端 </category>
+          <category> Python </category>
           
-          <category> jQuery </category>
+          <category> 基本数据类型 </category>
           
       </categories>
       
@@ -336,7 +365,7 @@
       
       <categories>
           
-          <category> -博客Hexo </category>
+          <category> 博客Hexo </category>
           
       </categories>
       
