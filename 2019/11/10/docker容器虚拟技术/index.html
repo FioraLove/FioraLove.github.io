@@ -434,7 +434,7 @@
 <h3 id="8-宿主机与docker容器权限纠纷"><a href="#8-宿主机与docker容器权限纠纷" class="headerlink" title="8.宿主机与docker容器权限纠纷"></a>8.宿主机与docker容器权限纠纷</h3><p>问题描述：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;它来了！问题又出现了！哭啦。数据卷挂载时，即使声明了rw权限，在宿主机中创建文件，数据共享后，容器内能够具有正常的rw权限；但在容器内新建了文件后，宿主机就只有只读权限，无法修改文件内容。</p>
 <p>解决方案：宿主机的权限不够<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在（7）式中的万能公式中添加：docker run ··· --privileged=true ···</p>
 <h3 id="9-docker配置nginx的配置文件"><a href="#9-docker配置nginx的配置文件" class="headerlink" title="9.docker配置nginx的配置文件"></a>9.<a href="https://www.cnblogs.com/zfding/p/11429695.html" target="_blank" rel="noopener">docker配置nginx的配置文件</a></h3><p><del>命令：<code>docker run --name=&quot;dnmp_nginx&quot; -p 80:80 -v /home/docker-nginx/nginx.conf:/etc/nginx/nginx.conf -v /home/docker-nginx/log:/var/log/nginx -v /home/docker-nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf -di nginx:\[tags]</code><br>&nbsp;&nbsp;&nbsp;&nbsp;第一个-v 表示将你本地的nginx.conf覆盖你要起启动的容器的nginx.conf文件，第二个表示将日志文件进行挂载，就是把nginx服务器的日志写到你docker宿主机的/home/docker-nginx/log/下面。第三个-v 表示的和第一个-v意思一样的<br>&nbsp;&nbsp;&nbsp;&nbsp;我个人更喜欢守护式映射的方式，麻烦的是需要自己准备好nginx.conf 和default.conf文件，我是直接从容器里面复制的，然后根据自己的需要改的</del></p>
-<p>我都想把杀了，部署nginx太多坑了，不过参考了<a href="https://blog.csdn.net/qierkang/article/details/92657302" target="_blank" rel="noopener">此博文</a>，最终解决了问题，解决方法：</p>
+<p>我都想把它杀了，部署nginx太多坑了，不过参考了<a href="https://blog.csdn.net/qierkang/article/details/92657302" target="_blank" rel="noopener">此博文</a>，最终解决了问题，解决方法：</p>
 <blockquote>
 <p>1.创建三个根目录根据情况创建：/docker/nginx/conf www logs</p>
 </blockquote>
@@ -486,10 +486,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-11T08:39:23+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-19T09:11:32+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年11月11日</p>
+    <p>更新于 2019年11月19日</p>
   </a>
 </div>
 
@@ -660,6 +660,17 @@
         <img class='avatar' src='https://cdn.jsdelivr.net/gh/FioraLove/CDN@1.0/Avatar.png'/>
       </div>
     
+    
+      <div class='text'>
+        
+          <h2>AHRILOVE' BLOG</h2>
+        
+        
+          <p>只有被明日的我们铭记 今天才有意义</p>
+
+        
+        
+      </div>
     
     
       <div class="social-wrapper">
@@ -911,7 +922,7 @@
         
           <li><a class="flat-box" title="/categories/ThinkPHP/" href="/categories/ThinkPHP/"><div class='name'>ThinkPHP</div><div class='badge'>(1)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/docker/" href="/categories/docker/"><div class='name'>docker</div><div class='badge'>(1)</div></a></li>
+          <li><a class="flat-box" title="/categories/docker/" href="/categories/docker/"><div class='name'>docker</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box" title="/categories/json/" href="/categories/json/"><div class='name'>json</div><div class='badge'>(1)</div></a></li>
         
@@ -968,7 +979,7 @@
 </header>
 
     <div class='content material'>
-      <a href="/tags/post/" style="font-size: 14px; color: #999">$.post()</a> <a href="/tags/API/" style="font-size: 24px; color: #555">API</a> <a href="/tags/Ajax/" style="font-size: 24px; color: #555">Ajax</a> <a href="/tags/CSS/" style="font-size: 24px; color: #555">CSS</a> <a href="/tags/DDL/" style="font-size: 14px; color: #999">DDL</a> <a href="/tags/DML/" style="font-size: 14px; color: #999">DML</a> <a href="/tags/Github-Page/" style="font-size: 14px; color: #999">Github Page</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/Hyper-V/" style="font-size: 14px; color: #999">Hyper-V</a> <a href="/tags/InnoDB/" style="font-size: 14px; color: #999">InnoDB</a> <a href="/tags/Jquery/" style="font-size: 14px; color: #999">Jquery</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/MyISAM/" style="font-size: 14px; color: #999">MyISAM</a> <a href="/tags/POST%E8%AF%B7%E6%B1%82/" style="font-size: 14px; color: #999">POST请求</a> <a href="/tags/Requests/" style="font-size: 14px; color: #999">Requests</a> <a href="/tags/VMware/" style="font-size: 14px; color: #999">VMware</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a> <a href="/tags/container/" style="font-size: 14px; color: #999">container</a> <a href="/tags/database/" style="font-size: 14px; color: #999">database</a> <a href="/tags/docker/" style="font-size: 14px; color: #999">docker</a> <a href="/tags/front-matter/" style="font-size: 14px; color: #999">front-matter</a> <a href="/tags/images/" style="font-size: 14px; color: #999">images</a> <a href="/tags/jQuery/" style="font-size: 19px; color: #777">jQuery</a> <a href="/tags/json-parse/" style="font-size: 14px; color: #999">json.parse()</a> <a href="/tags/json-stringify/" style="font-size: 14px; color: #999">json.stringify()</a> <a href="/tags/read-readline-readlines/" style="font-size: 14px; color: #999">read() - readline() - readlines()</a> <a href="/tags/thinkPHP/" style="font-size: 14px; color: #999">thinkPHP</a> <a href="/tags/token/" style="font-size: 14px; color: #999">token</a> <a href="/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E4%B8%8E%E5%AE%88%E6%8A%A4%E5%BC%8F%E5%88%9B%E5%BB%BA/" style="font-size: 14px; color: #999">交互式与守护式创建</a> <a href="/tags/%E9%80%89%E6%8B%A9%E5%99%A8/" style="font-size: 19px; color: #777">选择器</a>
+      <a href="/tags/post/" style="font-size: 14px; color: #999">$.post()</a> <a href="/tags/API/" style="font-size: 24px; color: #555">API</a> <a href="/tags/Ajax/" style="font-size: 24px; color: #555">Ajax</a> <a href="/tags/CSS/" style="font-size: 24px; color: #555">CSS</a> <a href="/tags/DDL/" style="font-size: 14px; color: #999">DDL</a> <a href="/tags/DML/" style="font-size: 14px; color: #999">DML</a> <a href="/tags/Github-Page/" style="font-size: 14px; color: #999">Github Page</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/Hyper-V/" style="font-size: 14px; color: #999">Hyper-V</a> <a href="/tags/InnoDB/" style="font-size: 14px; color: #999">InnoDB</a> <a href="/tags/Jquery/" style="font-size: 14px; color: #999">Jquery</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/MyISAM/" style="font-size: 14px; color: #999">MyISAM</a> <a href="/tags/POST%E8%AF%B7%E6%B1%82/" style="font-size: 14px; color: #999">POST请求</a> <a href="/tags/Requests/" style="font-size: 14px; color: #999">Requests</a> <a href="/tags/VMware/" style="font-size: 14px; color: #999">VMware</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a> <a href="/tags/container/" style="font-size: 14px; color: #999">container</a> <a href="/tags/database/" style="font-size: 14px; color: #999">database</a> <a href="/tags/docker/" style="font-size: 19px; color: #777">docker</a> <a href="/tags/front-matter/" style="font-size: 14px; color: #999">front-matter</a> <a href="/tags/git/" style="font-size: 14px; color: #999">git</a> <a href="/tags/images/" style="font-size: 14px; color: #999">images</a> <a href="/tags/jQuery/" style="font-size: 19px; color: #777">jQuery</a> <a href="/tags/json-parse/" style="font-size: 14px; color: #999">json.parse()</a> <a href="/tags/json-stringify/" style="font-size: 14px; color: #999">json.stringify()</a> <a href="/tags/python-Django-MySQL/" style="font-size: 14px; color: #999">python+Django+MySQL</a> <a href="/tags/read-readline-readlines/" style="font-size: 14px; color: #999">read() - readline() - readlines()</a> <a href="/tags/thinkPHP/" style="font-size: 14px; color: #999">thinkPHP</a> <a href="/tags/token/" style="font-size: 14px; color: #999">token</a> <a href="/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E4%B8%8E%E5%AE%88%E6%8A%A4%E5%BC%8F%E5%88%9B%E5%BB%BA/" style="font-size: 14px; color: #999">交互式与守护式创建</a> <a href="/tags/%E9%80%89%E6%8B%A9%E5%99%A8/" style="font-size: 19px; color: #777">选择器</a>
     </div>
   </section>
 
