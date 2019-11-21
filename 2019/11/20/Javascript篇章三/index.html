@@ -395,12 +395,12 @@
         <a id="more"></a>
 
 <h2 id="1-数值方法"><a href="#1-数值方法" class="headerlink" title="1.数值方法"></a>1.数值方法</h2><blockquote>
-<p>number.toString():将数值转化为字符串</p>
+<p>number.toString():将数值型转化为字符串型</p>
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> n = <span class="number">15</span>; </span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span>(n));  <span class="comment">// 为字数值类型number</span></span><br><span class="line">a = n.toString();  <span class="comment">// a为字符串类型</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>toFixed(number) 返回保留指定小数位数的字符数值</p>
+<p>toFixed(number) 返回保留指定小数位数的数值</p>
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">9.656</span>;</span><br><span class="line">x.toFixed(<span class="number">0</span>);           <span class="comment">// 返回 10</span></span><br><span class="line">x.toFixed(<span class="number">2</span>);           <span class="comment">// 返回 9.66</span></span><br><span class="line">x.toFixed(<span class="number">4</span>);           <span class="comment">// 返回 9.6560</span></span><br><span class="line">x.toFixed(<span class="number">6</span>);           <span class="comment">// 返回 9.656000</span></span><br></pre></td></tr></table></figure>
 
@@ -410,9 +410,89 @@
 <p>这三种 JavaScript 方法可用于将变量转换为数字：</p>
 <ul>
 <li>Number() 方法</li>
-<li>parseInt() 方法:解析一段字符串并返回数值。允许空格。只返回首个数字</li>
-<li>parseFloat() 方法:解析一段字符串并返回数值。允许空格,只返回首个数字<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">"10"</span>);         <span class="comment">// 返回 10</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">"10.33"</span>);      <span class="comment">// 返回 10</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">"10 20 30"</span>);   <span class="comment">// 返回 10</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">"10 years"</span>);   <span class="comment">// 返回 10</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">"years 10"</span>);   <span class="comment">// 返回 NaN</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">"10"</span>);         <span class="comment">// 返回 10</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">"10.33"</span>);      <span class="comment">// 返回 10</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">"10 20 30"</span>);   <span class="comment">// 返回 10</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">"10 years"</span>);   <span class="comment">// 返回 10</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">"years 10"</span>);   <span class="comment">// 返回 NaN</span></span><br></pre></td></tr></table></figure></li>
+<li>parseFloat(string) 方法:指定字符串的首个字符是否是数字。如果首字符为数字，则对其进行解析直到完整取出第一个数值，并返回首个数值，如果首字符不是数字则直接返回NaN</li>
+<li>parseInt(string，radix) 方法:指定字符串的首个字符是否是数字。如果首字符为数字，将字符串取出首个完整数值，并转化为指定radix进制，如果首字符不是数字，就直接返回NaN</li>
 </ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">"10.008"</span>);      <span class="comment">// 返回 10</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">"10.33"</span>);      <span class="comment">// 返回 10</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">"10 20 30"</span>);   <span class="comment">// 返回 10</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">"10 years"</span>);   <span class="comment">// 返回 10</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">"years 10"</span>);   <span class="comment">// 返回 NaN</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">"30"</span>,<span class="number">8</span>);       <span class="comment">// 返回24，将30转化为8进制</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">"10"</span>);         <span class="comment">// 返回 10</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">"10.33"</span>);      <span class="comment">// 返回 10.33</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">"10 20 30"</span>);   <span class="comment">// 返回 10</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">"10 years"</span>);   <span class="comment">// 返回 10</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">"years 10"</span>);   <span class="comment">// 返回 NaN</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-数组"><a href="#2-数组" class="headerlink" title="2.数组"></a>2.数组</h2><blockquote>
+<p>数组是一种特殊的变量，它能够一次存放一个以上的值。</p>
+</blockquote>
+<p>var cars=[“Saab”,”Volov”,”BMW”];</p>
+<blockquote>
+<p>访问数组元素：通过索引（从0开始，下标号）来引用某个数组元素</p>
+</blockquote>
+<p>var name=car[0]  访问数组值<br>var car[0] = “Benz”  修改数组值，即新数组为[“Benz”,”Volov”,”BMW”]</p>
+<h3 id="数组属性和方法"><a href="#数组属性和方法" class="headerlink" title="数组属性和方法"></a>数组属性和方法</h3><ol>
+<li><p>length:返回数组元素的数目</p>
+</li>
+<li><p>遍历数组元素：最安全是使用for循环</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fruits;</span><br><span class="line">fruits = [<span class="string">"Banana"</span>, <span class="string">"Orange"</span>, <span class="string">"Apple"</span>, <span class="string">"Mango"</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; fruits.length; i++) &#123;</span><br><span class="line">     <span class="built_in">console</span>.log(fruits[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>向数组添加新元素的最佳方法是使用 push() 方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fruits = [<span class="string">"Banana"</span>, <span class="string">"Orange"</span>, <span class="string">"Apple"</span>, <span class="string">"Mango"</span>];</span><br><span class="line">fruits.push(<span class="string">"Lemon"</span>);                <span class="comment">// 向 fruits 添加一个新元素 (Lemon),并返回数组元素个数</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>join() 方法也可将所有数组元素结合为一个字符串</p>
+</li>
+</ol>
+<p>格式：数组名.join(“指定拼接符”)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fruits = [<span class="string">"Banana"</span>, <span class="string">"Orange"</span>,<span class="string">"Apple"</span>, <span class="string">"Mango"</span>];</span><br><span class="line"><span class="built_in">console</span>.log(fruits.join(<span class="string">" * "</span>));</span><br><span class="line"><span class="comment">// Banana * Orange * Apple * Mango</span></span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li><p>pop()从数组中删除最后一个元素,并返回该值<br>var fruits = [“Banana”, “Orange”, “Apple”, “Mango”];<br>var x = fruits.pop();       // x 的值是 “Mango”</p>
+</li>
+<li><p>sort()方法以字母顺序对数组进行排序</p>
+</li>
+<li><p>reverse()反转数组中的元素</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fruits = [<span class="string">"Banana"</span>, <span class="string">"Orange"</span>, <span class="string">"Apple"</span>, <span class="string">"Mango"</span>];</span><br><span class="line">fruits.sort();            <span class="comment">// 对 fruits 中的元素进行排序</span></span><br><span class="line">fruitS.reverse();         <span class="comment">// 对数组元素进行反转</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="3-日期"><a href="#3-日期" class="headerlink" title="3.日期"></a>3.日期</h2><p>使用方法：<br>var d = new Date();<br>d.getDate()/d.getFullYear()…</p>
+<table>
+<thead>
+<tr>
+<th align="right">方法</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">getDate()</td>
+<td align="left">以数值返回天（1-31）</td>
+</tr>
+<tr>
+<td align="right">getDay()</td>
+<td align="left">以数值获取周名（0-6）</td>
+</tr>
+<tr>
+<td align="right">getFullYear()</td>
+<td align="left">获取四位的年（yyyy）</td>
+</tr>
+<tr>
+<td align="right">getHours()</td>
+<td align="left">获取小时（0-23）</td>
+</tr>
+<tr>
+<td align="right">getMilliseconds()</td>
+<td align="left">获取毫秒（0-999）</td>
+</tr>
+<tr>
+<td align="right">getMinutes()</td>
+<td align="left">获取分（0-59）</td>
+</tr>
+<tr>
+<td align="right">getMonth()</td>
+<td align="left">获取月（0-11）</td>
+</tr>
+<tr>
+<td align="right">getSeconds()</td>
+<td align="left">获取秒（0-59）</td>
+</tr>
+<tr>
+<td align="right">getTime()</td>
+<td align="left">获取时间（从 1970 年 1 月 1 日至今）</td>
+</tr>
+</tbody></table>
 
       </div>
       
@@ -424,10 +504,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-20T17:07:31+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-21T10:20:41+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年11月20日</p>
+    <p>更新于 2019年11月21日</p>
   </a>
 </div>
 
@@ -687,7 +767,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-数值方法"><span class="toc-text">1.数值方法</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-数值方法"><span class="toc-text">1.数值方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-数组"><span class="toc-text">2.数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数组属性和方法"><span class="toc-text">数组属性和方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-日期"><span class="toc-text">3.日期</span></a></li></ol>
     </div>
   </section>
 
