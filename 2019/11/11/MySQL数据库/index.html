@@ -543,8 +543,20 @@
 </tr>
 </tbody></table>
 <p>1.可以不用指定字段名称，但此时后面的values应该与表的字段顺序保持一致<br>2.对于某些字段允许空值、非空但是有指定的默认值、自增长等，这些字段在insert时如果没有指定value，那么将会右系统自动配置</p>
-<h3 id="7-DCL语句"><a href="#7-DCL语句" class="headerlink" title="7.DCL语句"></a>7.<a href="https://blog.csdn.net/ywk_hax/article/details/83351552" target="_blank" rel="noopener">DCL语句</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">创建z1用户，密码为123，对数据库test1里的所有表具有查询和插入权限</span><br><span class="line">mysql&gt; grant select,insert on test1.* to &apos;z1&apos;@&apos;localhost&apos; identified by &apos;123&apos;;</span><br><span class="line">Query OK, 0 rows affected, 1 warning (0.01 sec)</span><br><span class="line"> </span><br><span class="line">mysql&gt; exit</span><br><span class="line">Bye</span><br><span class="line"> </span><br><span class="line">用户z1登陆，这里提示密码最好不要直接写在在命令行，会有风险</span><br><span class="line">C:\Users\15330&gt;mysql -u z1 -p123</span><br><span class="line">mysql: [Warning] Using a password on the command line interface can be insecure.</span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 18</span><br><span class="line">Server version: 5.7.17-log MySQL Community Server (GPL)</span><br><span class="line"> </span><br><span class="line">Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"> </span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"> </span><br><span class="line">Type &apos;help;&apos; or &apos;\h&apos; for help. Type &apos;\c&apos; to clear the current input statement.</span><br><span class="line"> </span><br><span class="line">mysql&gt; use test1;      登陆后该用户对test1库内的表插入操作都是成功的</span><br><span class="line">Database changed</span><br><span class="line">mysql&gt; insert into emp1 values(&apos;24&apos;,&apos;hwtong&apos;,&apos;1989-07-24&apos;,&apos;2017-08-16&apos;,&apos;10000&apos;,5);</span><br><span class="line">Query OK, 1 row affected (0.01 sec)</span><br></pre></td></tr></table></figure>
-
+<h3 id="7-DCL语句"><a href="#7-DCL语句" class="headerlink" title="7.DCL语句"></a>7.<a href="https://blog.csdn.net/ywk_hax/article/details/83351552" target="_blank" rel="noopener">DCL语句</a></h3><blockquote>
+<ol>
+<li>创建数据库用户，并声明权限</li>
+</ol>
+</blockquote>
+<p>创建操作数据库的专用用户，格式：<br>grant 权限 on 数据库名.数据表名 to 用户名@主机IP IDENTIFIED BY 密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">说明：</span><br><span class="line">权限：ALL PRIVILEGES(所有权限),select,insert,update,delete,create,alter,drop</span><br><span class="line">主机IP： &apos;%&apos; 匹配所有主机，localhost</span><br><span class="line">表名： * 表示所有表</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ol start="2">
+<li>刷新权限</li>
+</ol>
+</blockquote>
+<p>flush privileges</p>
+<p><font color=#FF6347>这里向大家拓展一个知识点，那就是主机IP指的是该用户只能在对应的主机IP上进行登录。例如：假如user用户设置的主机IP为localhost，那么其他人就将无法从本地以外的地方使用user用户进行登录。</font></p>
 <h3 id="8-查询记录"><a href="#8-查询记录" class="headerlink" title="8.查询记录"></a>8.查询记录</h3><blockquote>
 <p>8.1 distinct 查询不重复的记录</p>
 </blockquote>
@@ -569,10 +581,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-21T16:13:01+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-22T10:24:57+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年11月21日</p>
+    <p>更新于 2019年11月22日</p>
   </a>
 </div>
 

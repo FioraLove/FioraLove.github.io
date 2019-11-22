@@ -466,6 +466,16 @@
 <h3 id="5-优化SQL语句一般步骤"><a href="#5-优化SQL语句一般步骤" class="headerlink" title="5.优化SQL语句一般步骤"></a>5.优化SQL语句一般步骤</h3><blockquote>
 <p>5.1 通过show status 查看各语句的频率</p>
 </blockquote>
+<h3 id="6-数据库Leetcode"><a href="#6-数据库Leetcode" class="headerlink" title="6.数据库Leetcode"></a>6.数据库Leetcode</h3><p>1.求薪水第二高，不存在就返回null</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">ifnull</span>((<span class="keyword">select</span> <span class="keyword">distinct</span>(Salary) </span><br><span class="line"><span class="keyword">from</span> Employee </span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> Salary <span class="keyword">desc</span> <span class="keyword">limit</span> <span class="number">1</span>,<span class="number">1</span>),<span class="literal">null</span>) <span class="keyword">as</span> SecondHighestSalary;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>超过5名学生的课(having用法)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">class</span></span><br><span class="line"><span class="keyword">from</span> courses</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">class</span></span><br><span class="line"><span class="keyword">having</span> <span class="keyword">count</span>(<span class="keyword">distinct</span> student) &gt;= <span class="number">5</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>DATEDIFF是两个日期的天数差集</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> a.Id <span class="keyword">as</span> newId</span><br><span class="line"><span class="keyword">from</span> Weather a <span class="keyword">left</span> <span class="keyword">join</span> Weather b </span><br><span class="line"><span class="keyword">on</span> <span class="keyword">datediff</span>(a.RecordDate,b.RecordDate)=<span class="number">1</span> <span class="keyword">where</span> a.Temperature&gt;b.Temperature</span><br></pre></td></tr></table></figure></li>
+</ol>
 
       </div>
       
@@ -477,7 +487,7 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-21T17:04:50+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-21T20:14:18+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
     <p>更新于 2019年11月21日</p>
@@ -766,7 +776,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-索引概述"><span class="toc-text">1.索引概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-索引作用"><span class="toc-text">2.索引作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-视图（5-0-1提供视图功能）"><span class="toc-text">3.视图（5.0.1提供视图功能）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#视图有什么作用"><span class="toc-text">视图有什么作用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-视图的操作"><span class="toc-text">4.视图的操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-优化SQL语句一般步骤"><span class="toc-text">5.优化SQL语句一般步骤</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-索引概述"><span class="toc-text">1.索引概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-索引作用"><span class="toc-text">2.索引作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-视图（5-0-1提供视图功能）"><span class="toc-text">3.视图（5.0.1提供视图功能）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#视图有什么作用"><span class="toc-text">视图有什么作用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-视图的操作"><span class="toc-text">4.视图的操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-优化SQL语句一般步骤"><span class="toc-text">5.优化SQL语句一般步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-数据库Leetcode"><span class="toc-text">6.数据库Leetcode</span></a></li></ol>
     </div>
   </section>
 
