@@ -403,7 +403,9 @@
 
 <h3 id="1-索引概述"><a href="#1-索引概述" class="headerlink" title="1.索引概述"></a>1.索引概述</h3><p>索引在创建表的时候可以同时创建，也可以随时增加新的索引<br>创建新索引的语法为:<br>create [unique|fulltext|spatial] index index_name [using index_type] on table_name( col_name [(length)] [asc|desc])<br>删除索引： DROP INDEX index_name on table_name</p>
 <h3 id="2-索引作用"><a href="#2-索引作用" class="headerlink" title="2.索引作用"></a>2.索引作用</h3><p>合理的创建索引是提高查询速度最有效的方式之一。<br>&nbsp;&nbsp;&nbsp;&nbsp;在没有建立索引的情况下，查询一条数据的过程是这样：<br>MySQL是从第一条记录开始查表，在某一个地方查到了匹配的数据，停止？NO，继续查询剩下的数据，直到查完整张表。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;在建立合适索引的情况下，查询一条数据的过程又是这样：<br>MySQL先根据索引快速到达一个位置去搜索数据文件，然后查出数据，而不必查看整张表的数据。<br>因此，为了提高查询速度，合理建立索引是非常有必要的。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;在建立合适索引的情况下，查询一条数据的过程又是这样：<br>MySQL先根据索引快速到达一个位置去搜索数据文件，然后查出数据，而不必查看整张表的数据。<br>tips:<br><font color=#FF3030><br>1、索引的效率取决于索引列的值是否散列，即该列的值如果越互不相同，那么索引效率越高。<br>2、索引的优点是提高了查询效率，缺点是在插入、更新和删除记录时，需要同时修改索引，因此，索引越多，插入、更新和删除记录的速度就越慢。<br>3、通过创建唯一索引，可以保证某一列的值具有唯一性。</font></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*添加唯一索引：*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> students</span><br><span class="line"></span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> unique_name(<span class="keyword">name</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*只添加唯一约束而不添加唯一索引：*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> students</span><br><span class="line"></span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> unique_name <span class="keyword">UNIQUE</span>(<span class="keyword">name</span>);</span><br></pre></td></tr></table></figure>
+<p>因此，为了提高查询速度，合理建立索引是非常有必要的。</p>
 <hr>
 
 <table>
@@ -487,10 +489,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-21T20:14:18+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-25T10:16:03+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年11月21日</p>
+    <p>更新于 2019年11月25日</p>
   </a>
 </div>
 
