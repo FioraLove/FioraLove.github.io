@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>Nginx | AhriLove</title>
+  <title>Nginx（一）：基本概念 | AhriLove</title>
   
   
 
@@ -309,7 +309,7 @@
   
     <h1 class="title">
       <a href="/2019/11/25/Nginx/">
-        Nginx
+        Nginx（一）：基本概念
       </a>
     </h1>
   
@@ -395,7 +395,7 @@
         <p><font size=5 color=#00ced1 size=5 face="黑体">守住一方平安，尽力而为，问心无愧就好。</font></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;Nginx同Apache一样都是一种WEB服务器，Nginx是一款自由的、开源的、高性能的HTTP服务器和反向代理服务器；同时也是一个IMAP、POP3、SMTP代理服务器；Nginx可以作为一个HTTP服务器进行网站的发布处理，另外Nginx可以作为反向代理进行负载均衡的实现。</p>
 <blockquote>
-<p><font size=4 color=#FF0000>本文要点：</font><br>正向代理<br>反向代理<br>负载均衡<br>动静分离</p>
+<p><font size=4 color=#FF0000>本文要点：</font><br>正向代理<br>反向代理<br>负载均衡<br>动静分离<br>Nginx安装教程</p>
 </blockquote>
 <a id="more"></a>
 <h2 id="1-正向代理"><a href="#1-正向代理" class="headerlink" title="1.正向代理"></a>1.正向代理</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在如今的网络环境下，我们如果由于技术需要要去访问国外的某些网站，此时你会发现位于国外的某网站我们通过浏览器是没有办法访问的，此时大家可能都会用一个操作FQ进行访问，FQ的方式主要是找到一个可以访问国外网站的代理服务器，我们将请求发送给代理服务器，代理服务器去访问国外的网站，然后将访问到的数据传递给我们！<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上述这样的代理模式称为正向代理，正向代理最大的特点是<font size=#FF0000>客户端非常明确要访问的服务器地址；服务器只清楚请求来自哪个代理服务器，而不清楚来自哪个具体的客户端；正向代理模式屏蔽或者隐藏了真实客户端信息。</font>来看个示意图（我把客户端和正向代理框在一块，同属于一个环境，后面我有介绍）：<br><fancybox><img src="https://img2018.cnblogs.com/blog/1202586/201812/1202586-20181211123717325-1261206014.png" alt=""></fancybox><br><font size=#FF0000>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;客户端必须设置正向代理服务器，当然前提是要知道正向代理服务器的IP地址</font>，还有代理程序的端口。如图。<br><fancybox><img src="https://img2018.cnblogs.com/blog/1202586/201812/1202586-20181211121039404-1910765480.png" alt=""></fancybox><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总结来说：正向代理，”它代理的是客户端，代客户端发出请求”，是一个位于客户端和原始服务器(origin server)之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标(原始服务器)，然后代理向原始服务器转交请求并将获得的内容返回给客户端。客户端必须要进行一些特别的设置才能使用正向代理<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;正向代理的用途：<br>（1）访问原来无法访问的资源，如Google<br>（2） 可以做缓存，加速访问资源<br>（3）对客户端访问授权，上网进行认证<br>（4）代理可以记录用户访问记录（上网行为管理），对外隐藏用户信息</p>
@@ -413,7 +413,7 @@
 <p>　　所以，将服务器接收到的请求按照规则分发的过程，称为负载均衡。</p>
 <p>　　负载均衡在实际项目操作过程中，有硬件负载均衡和软件负载均衡两种，硬件负载均衡也称为硬负载，如F5负载均衡，相对造价昂贵成本较高，但是数据的稳定性安全性等等有非常好的保障，如中国移动中国联通这样的公司才会选择硬负载进行操作；更多的公司考虑到成本原因，会选择使用软件负载均衡，软件负载均衡是利用现有的技术结合主机硬件实现的一种消息队列分发机制。<br><fancybox><img src="https://images2018.cnblogs.com/blog/1202586/201804/1202586-20180406180405961-333776342.png" alt=""></fancybox><br>Nginx支持的负载均衡调度算法方式如下：</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.weight轮询(默认，常用)：接收到的请求按照权重分配到不同的后端服务器，即使在使用过程中，某一台后端服务器宕机，Nginx会自动将该服务器剔除出队列，请求受理情况不会受到任何影响。 这种方式下，可以给不同的后端服务器设置一个权重值(weight)，用于调整不同的服务器上请求的分配率；权重数据越大，被分配到请求的几率越大；该权重值，主要是针对实际工作环境中不同的后端服务器硬件配置进行调整的。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.ip_hash（常用）：每个请求按照发起客户端的ip的hash结果进行匹配，这样的算法下一个固定ip地址的客户端总会访问到同一个后端服务器，这也在一定程度上解决了集群部署环境下session共享的问题。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.fair：智能调整调度算法，动态的根据后端服务器的请求处理到响应的时间进行均衡分配，响应时间短处理效率高的服务器分配到请求的概率高，响应时间长处理效率低的服务器分配到的请求少；结合了前两者的优点的一种调度算法。但是需要注意的是Nginx默认不支持fair算法，如果要使用这种调度算法，请安装upstream_fair模块。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.url_hash：按照访问的url的hash结果分配请求，每个请求的url会指向后端固定的某个服务器，可以在Nginx作为静态服务器的情况下提高缓存效率。同样要注意Nginx默认不支持这种调度算法，要使用的话需要安装Nginx的hash软件包。</p>
-<h2 id="5-动静分离"><a href="#5-动静分离" class="headerlink" title="5.动静分离"></a>5.动静分离</h2><h2 id="6-nginx安装"><a href="#6-nginx安装" class="headerlink" title="6.nginx安装"></a>6.nginx安装</h2><p><i class="fas fa-hand-point-right"></i><a href="https://www.cnblogs.com/wcwnina/p/8728430.html" target="_blank" rel="noopener">windows下安装与部署Nginx</a><br><i class="fas fa-hand-point-right"></i><a href="https://www.cnblogs.com/wcwnina/p/8728430.html" target="_blank" rel="noopener">Linux下安装与部署Nginx</a><br><i class="fas fa-hand-point-right"></i><a href="http://ahrilove.top/2019/11/10/docker容器虚拟技术/" target="_blank" rel="noopener">Ubuntu+docker下安装与部署Nginx</a></p>
+<h2 id="5-动静分离"><a href="#5-动静分离" class="headerlink" title="5.动静分离"></a>5.动静分离</h2><h2 id="6-nginx安装"><a href="#6-nginx安装" class="headerlink" title="6.nginx安装"></a>6.nginx安装</h2><p><i class="fas fa-hand-point-right"></i><a href="https://www.cnblogs.com/wcwnina/p/8728430.html" target="_blank" rel="noopener">windows下安装与部署Nginx</a><br><i class="fas fa-hand-point-right"></i><a href="https://www.cnblogs.com/wcwnina/p/8728430.html" target="_blank" rel="noopener">Linux下安装与部署Nginx</a><br><i class="fas fa-hand-point-right"></i>以后都推荐再docker下安装各式各样的环境<a href="http://ahrilove.top/2019/11/10/docker容器虚拟技术/" target="_blank" rel="noopener">Ubuntu+docker下安装与部署Nginx</a></p>
 
       </div>
       
@@ -425,7 +425,7 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-27T13:23:15+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-27T22:33:22+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
     <p>更新于 2019年11月27日</p>
@@ -450,10 +450,10 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=http://fioralove.github.io/2019/11/25/Nginx/&title=Nginx | AhriLove&summary=守住一方平安，尽力而为，问心无愧就好。
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://fioralove.github.io/2019/11/25/Nginx/&title=Nginx（一）：基本概念 | AhriLove&summary=守住一方平安，尽力而为，问心无愧就好。
 &nbsp;&nbsp;&nbsp;&nbsp;Nginx同Apache一样都是一种WEB服务器，Nginx是一款自由的、开源的、高性能的HTTP服务器和反向代理服务器；同时也是一个IMAP、POP3、SMTP代理服务器；Nginx可以作为一个HTTP服务器进行网站的发布处理，另外Nginx可以作为反向代理进行负载均衡的实现。
 
-本文要点：正向代理反向代理负载均衡动静分离
+本文要点：正向代理反向代理负载均衡动静分离Nginx安装教程
 "
           
           >
@@ -466,10 +466,10 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://fioralove.github.io/2019/11/25/Nginx/&title=Nginx | AhriLove&summary=守住一方平安，尽力而为，问心无愧就好。
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://fioralove.github.io/2019/11/25/Nginx/&title=Nginx（一）：基本概念 | AhriLove&summary=守住一方平安，尽力而为，问心无愧就好。
 &nbsp;&nbsp;&nbsp;&nbsp;Nginx同Apache一样都是一种WEB服务器，Nginx是一款自由的、开源的、高性能的HTTP服务器和反向代理服务器；同时也是一个IMAP、POP3、SMTP代理服务器；Nginx可以作为一个HTTP服务器进行网站的发布处理，另外Nginx可以作为反向代理进行负载均衡的实现。
 
-本文要点：正向代理反向代理负载均衡动静分离
+本文要点：正向代理反向代理负载均衡动静分离Nginx安装教程
 "
           
           >
@@ -482,10 +482,10 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=http://fioralove.github.io/2019/11/25/Nginx/&title=Nginx | AhriLove&summary=守住一方平安，尽力而为，问心无愧就好。
+          href="http://service.weibo.com/share/share.php?url=http://fioralove.github.io/2019/11/25/Nginx/&title=Nginx（一）：基本概念 | AhriLove&summary=守住一方平安，尽力而为，问心无愧就好。
 &nbsp;&nbsp;&nbsp;&nbsp;Nginx同Apache一样都是一种WEB服务器，Nginx是一款自由的、开源的、高性能的HTTP服务器和反向代理服务器；同时也是一个IMAP、POP3、SMTP代理服务器；Nginx可以作为一个HTTP服务器进行网站的发布处理，另外Nginx可以作为反向代理进行负载均衡的实现。
 
-本文要点：正向代理反向代理负载均衡动静分离
+本文要点：正向代理反向代理负载均衡动静分离Nginx安装教程
 "
           
           >
@@ -515,16 +515,16 @@
                       <span class="art-item-right" aria-hidden="true">
                           <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                           <h4>
-                              <a href="/2019/11/22/Javascript%E7%AF%87%E7%AB%A0%E4%B8%89/" rel="prev" title="Javascript篇章三：js数字，数组与日期">
+                              <a href="/2019/11/25/Nginx(%E4%BA%8C)/" rel="prev" title="Nginx（二）：Nginx的命令和配置文件">
                                   
-                                      Javascript篇章三：js数字，数组与日期
+                                      Nginx（二）：Nginx的命令和配置文件
                                   
                               </a>
                           </h4>
                           
                               
                               <h6 class="tags">
-                                  <a class="tag" href="/tags/%E5%AF%B9%E8%B1%A1/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 对象</a> <a class="tag" href="/tags/%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 属性与方法</a>
+                                  <a class="tag" href="/tags/nginx/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> nginx</a> <a class="tag" href="/tags/nginx-conf/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> nginx.conf</a>
                               </h6>
                           
                       </span>
@@ -568,7 +568,7 @@
 
   <script>
     window.subData = {
-      title: 'Nginx',
+      title: 'Nginx（一）：基本概念',
       tools: true
     }
   </script>
@@ -866,7 +866,7 @@
         
           <li><a class="flat-box" title="/categories/%E5%8D%9A%E5%AE%A2Hexo/" href="/categories/%E5%8D%9A%E5%AE%A2Hexo/"><div class='name'>博客Hexo</div><div class='badge'>(2)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%B6%E6%9E%84/" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%B6%E6%9E%84/"><div class='name'>服务器架构</div><div class='badge'>(1)</div></a></li>
+          <li><a class="flat-box" title="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%B6%E6%9E%84/" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%B6%E6%9E%84/"><div class='name'>服务器架构</div><div class='badge'>(2)</div></a></li>
         
       </ul>
     </div>
@@ -917,7 +917,7 @@
 </header>
 
     <div class='content material'>
-      <a href="/tags/post/" style="font-size: 14px; color: #999">$.post()</a> <a href="/tags/API/" style="font-size: 24px; color: #555">API</a> <a href="/tags/Ajax/" style="font-size: 24px; color: #555">Ajax</a> <a href="/tags/CSS/" style="font-size: 24px; color: #555">CSS</a> <a href="/tags/DDL/" style="font-size: 14px; color: #999">DDL</a> <a href="/tags/DML/" style="font-size: 14px; color: #999">DML</a> <a href="/tags/Github-Page/" style="font-size: 14px; color: #999">Github Page</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/Hyper-V/" style="font-size: 14px; color: #999">Hyper-V</a> <a href="/tags/InnoDB/" style="font-size: 14px; color: #999">InnoDB</a> <a href="/tags/Jquery/" style="font-size: 14px; color: #999">Jquery</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/MyISAM/" style="font-size: 14px; color: #999">MyISAM</a> <a href="/tags/POST%E8%AF%B7%E6%B1%82/" style="font-size: 14px; color: #999">POST请求</a> <a href="/tags/Requests/" style="font-size: 14px; color: #999">Requests</a> <a href="/tags/VMware/" style="font-size: 14px; color: #999">VMware</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a> <a href="/tags/apache/" style="font-size: 14px; color: #999">apache</a> <a href="/tags/clone/" style="font-size: 14px; color: #999">clone</a> <a href="/tags/component/" style="font-size: 14px; color: #999">component</a> <a href="/tags/container/" style="font-size: 14px; color: #999">container</a> <a href="/tags/database/" style="font-size: 14px; color: #999">database</a> <a href="/tags/docker/" style="font-size: 19px; color: #777">docker</a> <a href="/tags/front-matter/" style="font-size: 14px; color: #999">front-matter</a> <a href="/tags/git/" style="font-size: 14px; color: #999">git</a> <a href="/tags/git-pull-push/" style="font-size: 14px; color: #999">git pull/push</a> <a href="/tags/images/" style="font-size: 14px; color: #999">images</a> <a href="/tags/jQuery/" style="font-size: 19px; color: #777">jQuery</a> <a href="/tags/json-parse/" style="font-size: 14px; color: #999">json.parse()</a> <a href="/tags/json-stringify/" style="font-size: 14px; color: #999">json.stringify()</a> <a href="/tags/js%E7%B2%BE%E7%A1%AE%E5%BA%A6%E4%B8%A2%E5%A4%B1/" style="font-size: 14px; color: #999">js精确度丢失</a> <a href="/tags/nginx/" style="font-size: 14px; color: #999">nginx</a> <a href="/tags/push/" style="font-size: 14px; color: #999">push</a> <a href="/tags/python-Django-MySQL/" style="font-size: 14px; color: #999">python+Django+MySQL</a> <a href="/tags/read-readline-readlines/" style="font-size: 14px; color: #999">read() - readline() - readlines()</a> <a href="/tags/thinkPHP/" style="font-size: 19px; color: #777">thinkPHP</a> <a href="/tags/token/" style="font-size: 14px; color: #999">token</a> <a href="/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E4%B8%8E%E5%AE%88%E6%8A%A4%E5%BC%8F%E5%88%9B%E5%BB%BA/" style="font-size: 14px; color: #999">交互式与守护式创建</a> <a href="/tags/%E5%AF%B9%E8%B1%A1/" style="font-size: 14px; color: #999">对象</a> <a href="/tags/%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">属性与方法</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 14px; color: #999">负载均衡</a> <a href="/tags/%E9%80%89%E6%8B%A9%E5%99%A8/" style="font-size: 19px; color: #777">选择器</a>
+      <a href="/tags/post/" style="font-size: 14px; color: #999">$.post()</a> <a href="/tags/API/" style="font-size: 24px; color: #555">API</a> <a href="/tags/Ajax/" style="font-size: 24px; color: #555">Ajax</a> <a href="/tags/CSS/" style="font-size: 24px; color: #555">CSS</a> <a href="/tags/DDL/" style="font-size: 14px; color: #999">DDL</a> <a href="/tags/DML/" style="font-size: 14px; color: #999">DML</a> <a href="/tags/Github-Page/" style="font-size: 14px; color: #999">Github Page</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/Hyper-V/" style="font-size: 14px; color: #999">Hyper-V</a> <a href="/tags/InnoDB/" style="font-size: 14px; color: #999">InnoDB</a> <a href="/tags/Jquery/" style="font-size: 14px; color: #999">Jquery</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/MyISAM/" style="font-size: 14px; color: #999">MyISAM</a> <a href="/tags/POST%E8%AF%B7%E6%B1%82/" style="font-size: 14px; color: #999">POST请求</a> <a href="/tags/Requests/" style="font-size: 14px; color: #999">Requests</a> <a href="/tags/VMware/" style="font-size: 14px; color: #999">VMware</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a> <a href="/tags/apache/" style="font-size: 14px; color: #999">apache</a> <a href="/tags/clone/" style="font-size: 14px; color: #999">clone</a> <a href="/tags/component/" style="font-size: 14px; color: #999">component</a> <a href="/tags/container/" style="font-size: 14px; color: #999">container</a> <a href="/tags/database/" style="font-size: 14px; color: #999">database</a> <a href="/tags/docker/" style="font-size: 19px; color: #777">docker</a> <a href="/tags/front-matter/" style="font-size: 14px; color: #999">front-matter</a> <a href="/tags/git/" style="font-size: 14px; color: #999">git</a> <a href="/tags/git-pull-push/" style="font-size: 14px; color: #999">git pull/push</a> <a href="/tags/images/" style="font-size: 14px; color: #999">images</a> <a href="/tags/jQuery/" style="font-size: 19px; color: #777">jQuery</a> <a href="/tags/json-parse/" style="font-size: 14px; color: #999">json.parse()</a> <a href="/tags/json-stringify/" style="font-size: 14px; color: #999">json.stringify()</a> <a href="/tags/js%E7%B2%BE%E7%A1%AE%E5%BA%A6%E4%B8%A2%E5%A4%B1/" style="font-size: 14px; color: #999">js精确度丢失</a> <a href="/tags/nginx/" style="font-size: 19px; color: #777">nginx</a> <a href="/tags/nginx-conf/" style="font-size: 14px; color: #999">nginx.conf</a> <a href="/tags/push/" style="font-size: 14px; color: #999">push</a> <a href="/tags/python-Django-MySQL/" style="font-size: 14px; color: #999">python+Django+MySQL</a> <a href="/tags/read-readline-readlines/" style="font-size: 14px; color: #999">read() - readline() - readlines()</a> <a href="/tags/thinkPHP/" style="font-size: 19px; color: #777">thinkPHP</a> <a href="/tags/token/" style="font-size: 14px; color: #999">token</a> <a href="/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E4%B8%8E%E5%AE%88%E6%8A%A4%E5%BC%8F%E5%88%9B%E5%BB%BA/" style="font-size: 14px; color: #999">交互式与守护式创建</a> <a href="/tags/%E5%AF%B9%E8%B1%A1/" style="font-size: 14px; color: #999">对象</a> <a href="/tags/%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">属性与方法</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 14px; color: #999">负载均衡</a> <a href="/tags/%E9%80%89%E6%8B%A9%E5%99%A8/" style="font-size: 19px; color: #777">选择器</a>
     </div>
   </section>
 
