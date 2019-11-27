@@ -476,7 +476,8 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">class</span></span><br><span class="line"><span class="keyword">from</span> courses</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">class</span></span><br><span class="line"><span class="keyword">having</span> <span class="keyword">count</span>(<span class="keyword">distinct</span> student) &gt;= <span class="number">5</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>DATEDIFF是两个日期的天数差集</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> a.Id <span class="keyword">as</span> newId</span><br><span class="line"><span class="keyword">from</span> Weather a <span class="keyword">left</span> <span class="keyword">join</span> Weather b </span><br><span class="line"><span class="keyword">on</span> <span class="keyword">datediff</span>(a.RecordDate,b.RecordDate)=<span class="number">1</span> <span class="keyword">where</span> a.Temperature&gt;b.Temperature</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> a.Id <span class="keyword">as</span> newId</span><br><span class="line"><span class="keyword">from</span> Weather a <span class="keyword">left</span> <span class="keyword">join</span> Weather b </span><br><span class="line"><span class="keyword">on</span> <span class="keyword">datediff</span>(a.RecordDate,b.RecordDate)=<span class="number">1</span> <span class="keyword">where</span> a.Temperature&gt;b.Temperature</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
 
       </div>
@@ -489,10 +490,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-25T10:16:03+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-27T13:32:24+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年11月25日</p>
+    <p>更新于 2019年11月27日</p>
   </a>
 </div>
 

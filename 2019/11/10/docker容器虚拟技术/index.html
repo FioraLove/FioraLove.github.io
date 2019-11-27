@@ -461,9 +461,8 @@
 <h3 id="10-docker配置MySQL，redis教程等，请点击此处链接"><a href="#10-docker配置MySQL，redis教程等，请点击此处链接" class="headerlink" title="10.docker配置MySQL，redis教程等，请点击此处链接"></a>10.docker配置MySQL，redis教程等，<a href="https://pan.baidu.com/s/1nUE4pfe2wThYVGMEYqADXw" target="_blank" rel="noopener">请点击此处链接</a></h3><p>命令:<code>docker run -di -p 12345:3306 \--name=&quot;mysql&quot; -v /lnmp/mysql/conf:/etc/mysql/conf.d -v /lnmp/mysql/logs:/logs -v /lnmp/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456:rw  mysql:5.6</code></p>
 <p>命令说明：<br>-p 12345:3306：将主机的12345端口映射到docker容器的3306端口。<br>--name mysql：运行服务名字<br>-v /lnmp/mysql/conf:/etc/mysql/conf.d ：将主机/lnmp/mysql录下的conf/my.cnf 挂载到容器的 /etc/mysql/conf.d<br>-v /lnmp/mysql/logs:/logs：将主机/lnmp/mysql目录下的 logs 目录挂载到容器的 /logs。<br>-v /lnmp/mysql/data:/var/lib/mysql ：将主机/lnmp/mysql目录下的data目录挂载到容器的 /var/lib/mysql<br>-e MYSQL_ROOT_PASSWORD=123456：初始化 root 用户的密码。<br>-d mysql:5.6 : 后台程序运行mysql5.6</p>
 <h3 id="11-外部Windows如何访问docker内的容器"><a href="#11-外部Windows如何访问docker内的容器" class="headerlink" title="11.外部Windows如何访问docker内的容器"></a>11.外部Windows如何访问docker内的容器</h3><blockquote>
-<p>1.基本架构：Windows，Dockers，Linux三者关系</p>
+<p>1.基本架构：Windows，Dockers，Linux三者关系<br><fancybox><img src="https://images2018.cnblogs.com/blog/1228818/201805/1228818-20180510183714998-435698473.png" alt="Windows，Dockers，Linux三者关系"></fancybox></p>
 </blockquote>
-<p><fancybox><img src="https://images2018.cnblogs.com/blog/1228818/201805/1228818-20180510183714998-435698473.png" alt=""></fancybox></p>
 <blockquote>
 <p>2.相关操作</p>
 </blockquote>
@@ -486,10 +485,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-19T09:11:32+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-27T09:32:11+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年11月19日</p>
+    <p>更新于 2019年11月27日</p>
   </a>
 </div>
 
