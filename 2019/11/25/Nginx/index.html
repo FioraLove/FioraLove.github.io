@@ -413,7 +413,8 @@
 <p>　　所以，将服务器接收到的请求按照规则分发的过程，称为负载均衡。</p>
 <p>　　负载均衡在实际项目操作过程中，有硬件负载均衡和软件负载均衡两种，硬件负载均衡也称为硬负载，如F5负载均衡，相对造价昂贵成本较高，但是数据的稳定性安全性等等有非常好的保障，如中国移动中国联通这样的公司才会选择硬负载进行操作；更多的公司考虑到成本原因，会选择使用软件负载均衡，软件负载均衡是利用现有的技术结合主机硬件实现的一种消息队列分发机制。<br><fancybox><img src="https://images2018.cnblogs.com/blog/1202586/201804/1202586-20180406180405961-333776342.png" alt=""></fancybox><br>Nginx支持的负载均衡调度算法方式如下：</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.weight轮询(默认，常用)：接收到的请求按照权重分配到不同的后端服务器，即使在使用过程中，某一台后端服务器宕机，Nginx会自动将该服务器剔除出队列，请求受理情况不会受到任何影响。 这种方式下，可以给不同的后端服务器设置一个权重值(weight)，用于调整不同的服务器上请求的分配率；权重数据越大，被分配到请求的几率越大；该权重值，主要是针对实际工作环境中不同的后端服务器硬件配置进行调整的。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.ip_hash（常用）：每个请求按照发起客户端的ip的hash结果进行匹配，这样的算法下一个固定ip地址的客户端总会访问到同一个后端服务器，这也在一定程度上解决了集群部署环境下session共享的问题。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.fair：智能调整调度算法，动态的根据后端服务器的请求处理到响应的时间进行均衡分配，响应时间短处理效率高的服务器分配到请求的概率高，响应时间长处理效率低的服务器分配到的请求少；结合了前两者的优点的一种调度算法。但是需要注意的是Nginx默认不支持fair算法，如果要使用这种调度算法，请安装upstream_fair模块。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.url_hash：按照访问的url的hash结果分配请求，每个请求的url会指向后端固定的某个服务器，可以在Nginx作为静态服务器的情况下提高缓存效率。同样要注意Nginx默认不支持这种调度算法，要使用的话需要安装Nginx的hash软件包。</p>
-<h2 id="5-动静分离"><a href="#5-动静分离" class="headerlink" title="5.动静分离"></a>5.动静分离</h2><h2 id="6-nginx安装"><a href="#6-nginx安装" class="headerlink" title="6.nginx安装"></a>6.nginx安装</h2><p><i class="fas fa-hand-point-right"></i><a href="https://www.cnblogs.com/wcwnina/p/8728430.html" target="_blank" rel="noopener">windows下安装与部署Nginx</a><br><i class="fas fa-hand-point-right"></i><a href="https://www.cnblogs.com/wcwnina/p/8728430.html" target="_blank" rel="noopener">Linux下安装与部署Nginx</a><br><i class="fas fa-hand-point-right"></i>以后都推荐再docker下安装各式各样的环境<a href="http://ahrilove.top/2019/11/10/docker容器虚拟技术/" target="_blank" rel="noopener">Ubuntu+docker下安装与部署Nginx</a></p>
+<h2 id="5-动静分离"><a href="#5-动静分离" class="headerlink" title="5.动静分离"></a>5.动静分离</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为了加快网站的解析速度，可以把动态页面和静态页面由不同的服务器来解析，加快解析速度。降低原来单个服务器的压力。 </p>
+<h2 id="6-nginx安装"><a href="#6-nginx安装" class="headerlink" title="6.nginx安装"></a>6.nginx安装</h2><p><i class="fas fa-hand-point-right"></i><a href="https://www.cnblogs.com/wcwnina/p/8728430.html" target="_blank" rel="noopener">windows下安装与部署Nginx</a><br><i class="fas fa-hand-point-right"></i><a href="https://www.cnblogs.com/wcwnina/p/8728430.html" target="_blank" rel="noopener">Linux下安装与部署Nginx</a><br><i class="fas fa-hand-point-right"></i>以后都推荐再docker下安装各式各样的环境<a href="http://ahrilove.top/2019/11/10/docker容器虚拟技术/" target="_blank" rel="noopener">Ubuntu+docker下安装与部署Nginx</a></p>
 
       </div>
       
@@ -425,10 +426,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-27T22:33:22+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-28T08:31:56+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年11月27日</p>
+    <p>更新于 2019年11月28日</p>
   </a>
 </div>
 
@@ -510,21 +511,40 @@
       
           <div class="prev-next">
               
-              
-                  <section class="next">
-                      <span class="art-item-right" aria-hidden="true">
-                          <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                  <section class="prev">
+                      <span class="art-item-left">
+                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
                           <h4>
-                              <a href="/2019/11/25/Nginx(%E4%BA%8C)/" rel="prev" title="Nginx（二）：Nginx的命令和配置文件">
-                                  
-                                      Nginx（二）：Nginx的命令和配置文件
-                                  
+                              <a href="/2019/11/27/Nginx(%E4%BA%8C)/" rel="prev" title="Nginx（二）：Nginx的命令和配置文件">
+                                
+                                    Nginx（二）：Nginx的命令和配置文件
+                                
                               </a>
                           </h4>
                           
                               
                               <h6 class="tags">
                                   <a class="tag" href="/tags/nginx/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> nginx</a> <a class="tag" href="/tags/nginx-conf/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> nginx.conf</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+              
+                  <section class="next">
+                      <span class="art-item-right" aria-hidden="true">
+                          <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                          <h4>
+                              <a href="/2019/11/22/Javascript%E7%AF%87%E7%AB%A0%E4%B8%89/" rel="prev" title="Javascript篇章三：js数字，数组与日期">
+                                  
+                                      Javascript篇章三：js数字，数组与日期
+                                  
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/%E5%AF%B9%E8%B1%A1/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 对象</a> <a class="tag" href="/tags/%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 属性与方法</a>
                               </h6>
                           
                       </span>
@@ -917,7 +937,7 @@
 </header>
 
     <div class='content material'>
-      <a href="/tags/post/" style="font-size: 14px; color: #999">$.post()</a> <a href="/tags/API/" style="font-size: 24px; color: #555">API</a> <a href="/tags/Ajax/" style="font-size: 24px; color: #555">Ajax</a> <a href="/tags/CSS/" style="font-size: 24px; color: #555">CSS</a> <a href="/tags/DDL/" style="font-size: 14px; color: #999">DDL</a> <a href="/tags/DML/" style="font-size: 14px; color: #999">DML</a> <a href="/tags/Github-Page/" style="font-size: 14px; color: #999">Github Page</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/Hyper-V/" style="font-size: 14px; color: #999">Hyper-V</a> <a href="/tags/InnoDB/" style="font-size: 14px; color: #999">InnoDB</a> <a href="/tags/Jquery/" style="font-size: 14px; color: #999">Jquery</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/MyISAM/" style="font-size: 14px; color: #999">MyISAM</a> <a href="/tags/POST%E8%AF%B7%E6%B1%82/" style="font-size: 14px; color: #999">POST请求</a> <a href="/tags/Requests/" style="font-size: 14px; color: #999">Requests</a> <a href="/tags/VMware/" style="font-size: 14px; color: #999">VMware</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a> <a href="/tags/apache/" style="font-size: 14px; color: #999">apache</a> <a href="/tags/clone/" style="font-size: 14px; color: #999">clone</a> <a href="/tags/component/" style="font-size: 14px; color: #999">component</a> <a href="/tags/container/" style="font-size: 14px; color: #999">container</a> <a href="/tags/database/" style="font-size: 14px; color: #999">database</a> <a href="/tags/docker/" style="font-size: 19px; color: #777">docker</a> <a href="/tags/front-matter/" style="font-size: 14px; color: #999">front-matter</a> <a href="/tags/git/" style="font-size: 14px; color: #999">git</a> <a href="/tags/git-pull-push/" style="font-size: 14px; color: #999">git pull/push</a> <a href="/tags/images/" style="font-size: 14px; color: #999">images</a> <a href="/tags/jQuery/" style="font-size: 19px; color: #777">jQuery</a> <a href="/tags/json-parse/" style="font-size: 14px; color: #999">json.parse()</a> <a href="/tags/json-stringify/" style="font-size: 14px; color: #999">json.stringify()</a> <a href="/tags/js%E7%B2%BE%E7%A1%AE%E5%BA%A6%E4%B8%A2%E5%A4%B1/" style="font-size: 14px; color: #999">js精确度丢失</a> <a href="/tags/nginx/" style="font-size: 19px; color: #777">nginx</a> <a href="/tags/nginx-conf/" style="font-size: 14px; color: #999">nginx.conf</a> <a href="/tags/push/" style="font-size: 14px; color: #999">push</a> <a href="/tags/python-Django-MySQL/" style="font-size: 14px; color: #999">python+Django+MySQL</a> <a href="/tags/read-readline-readlines/" style="font-size: 14px; color: #999">read() - readline() - readlines()</a> <a href="/tags/thinkPHP/" style="font-size: 19px; color: #777">thinkPHP</a> <a href="/tags/token/" style="font-size: 14px; color: #999">token</a> <a href="/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E4%B8%8E%E5%AE%88%E6%8A%A4%E5%BC%8F%E5%88%9B%E5%BB%BA/" style="font-size: 14px; color: #999">交互式与守护式创建</a> <a href="/tags/%E5%AF%B9%E8%B1%A1/" style="font-size: 14px; color: #999">对象</a> <a href="/tags/%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">属性与方法</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 14px; color: #999">负载均衡</a> <a href="/tags/%E9%80%89%E6%8B%A9%E5%99%A8/" style="font-size: 19px; color: #777">选择器</a>
+      <a href="/tags/post/" style="font-size: 14px; color: #999">$.post()</a> <a href="/tags/API/" style="font-size: 24px; color: #555">API</a> <a href="/tags/Ajax/" style="font-size: 24px; color: #555">Ajax</a> <a href="/tags/CSS/" style="font-size: 24px; color: #555">CSS</a> <a href="/tags/DDL/" style="font-size: 14px; color: #999">DDL</a> <a href="/tags/DML/" style="font-size: 14px; color: #999">DML</a> <a href="/tags/Github-Page/" style="font-size: 14px; color: #999">Github Page</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/Hyper-V/" style="font-size: 14px; color: #999">Hyper-V</a> <a href="/tags/InnoDB/" style="font-size: 14px; color: #999">InnoDB</a> <a href="/tags/Jquery/" style="font-size: 14px; color: #999">Jquery</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/MyISAM/" style="font-size: 14px; color: #999">MyISAM</a> <a href="/tags/POST%E8%AF%B7%E6%B1%82/" style="font-size: 14px; color: #999">POST请求</a> <a href="/tags/Requests/" style="font-size: 14px; color: #999">Requests</a> <a href="/tags/VMware/" style="font-size: 14px; color: #999">VMware</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a> <a href="/tags/apache/" style="font-size: 14px; color: #999">apache</a> <a href="/tags/clone/" style="font-size: 14px; color: #999">clone</a> <a href="/tags/component/" style="font-size: 14px; color: #999">component</a> <a href="/tags/container/" style="font-size: 14px; color: #999">container</a> <a href="/tags/database/" style="font-size: 14px; color: #999">database</a> <a href="/tags/docker/" style="font-size: 19px; color: #777">docker</a> <a href="/tags/front-matter/" style="font-size: 14px; color: #999">front-matter</a> <a href="/tags/git/" style="font-size: 14px; color: #999">git</a> <a href="/tags/git-pull-push/" style="font-size: 14px; color: #999">git pull/push</a> <a href="/tags/images/" style="font-size: 14px; color: #999">images</a> <a href="/tags/jQuery/" style="font-size: 19px; color: #777">jQuery</a> <a href="/tags/json-parse/" style="font-size: 14px; color: #999">json.parse()</a> <a href="/tags/json-stringify/" style="font-size: 14px; color: #999">json.stringify()</a> <a href="/tags/js%E7%B2%BE%E7%A1%AE%E5%BA%A6%E4%B8%A2%E5%A4%B1/" style="font-size: 14px; color: #999">js精确度丢失</a> <a href="/tags/nginx/" style="font-size: 19px; color: #777">nginx</a> <a href="/tags/nginx-conf/" style="font-size: 14px; color: #999">nginx.conf</a> <a href="/tags/push/" style="font-size: 14px; color: #999">push</a> <a href="/tags/python-Django-MySQL/" style="font-size: 14px; color: #999">python+Django+MySQL</a> <a href="/tags/read-readline-readlines/" style="font-size: 14px; color: #999">read() - readline() - readlines()</a> <a href="/tags/thinkPHP/" style="font-size: 19px; color: #777">thinkPHP</a> <a href="/tags/token/" style="font-size: 14px; color: #999">token</a> <a href="/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E4%B8%8E%E5%AE%88%E6%8A%A4%E5%BC%8F%E5%88%9B%E5%BB%BA/" style="font-size: 14px; color: #999">交互式与守护式创建</a> <a href="/tags/%E5%AE%9A%E4%BD%8D%E7%85%A7%E7%89%87%E6%8B%8D%E6%91%84%E4%BD%8D%E7%BD%AE/" style="font-size: 14px; color: #999">定位照片拍摄位置</a> <a href="/tags/%E5%AF%B9%E8%B1%A1/" style="font-size: 14px; color: #999">对象</a> <a href="/tags/%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">属性与方法</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 14px; color: #999">负载均衡</a> <a href="/tags/%E9%80%89%E6%8B%A9%E5%99%A8/" style="font-size: 19px; color: #777">选择器</a>
     </div>
   </section>
 

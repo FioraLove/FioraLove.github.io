@@ -308,7 +308,7 @@
         
   
     <h1 class="title">
-      <a href="/2019/11/25/Nginx(%E4%BA%8C)/">
+      <a href="/2019/11/27/Nginx(%E4%BA%8C)/">
         Nginx（二）：Nginx的命令和配置文件
       </a>
     </h1>
@@ -340,7 +340,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-11-25</p>
+    <p>2019-11-27</p>
   </a>
 </div>
 
@@ -392,33 +392,33 @@
 
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
-        <p><font size=5 color=#00ced1 size=5 face="黑体">守住一方平安，尽力而为，问心无愧就好。</font></p>
+        <p><font size=5 color=#00ced1 size=5 face="黑体">与众不同的生活方式很累人呢，因为找不到借口</font></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;在上一章节中，我们以及了解到正向、反向代理、负载均衡和动静分离的基本概念，安装教程，而在本节中将会了解到在</p>
 <blockquote>
-<p><font size=4 color=#FF0000>本文要点：</font><br>1.理清概念<br>2.Linux下Nginx的常用命令<br>3.ginx的基本配置文件nginx.conf<br>4.Nginx 配置实例-反向代理实例 1 </p>
+<p><font size=4 color=#FF0000>本文要点：</font><br>1.理清概念<br>2.Linux下Nginx的常用命令<br>3.Nginx的基本配置文件nginx.conf<br>4.Nginx 配置实例-反向代理实例 1 </p>
 </blockquote>
 <a id="more"></a>
 
 <h3 id="1-理清概念"><a href="#1-理清概念" class="headerlink" title="1.理清概念"></a>1.理清概念</h3><p>docker创建Nginx容器很简单：共享数据卷，外部访问端口映射<br>window下运行nginx，只需简单式一直点击“NEXT”安装，然后添加到环境变量即可<br><font color=#00ced1 size=5 face="黑体">在Linux下启动nginx相对比较麻烦，如果你采用其它两种方式，可以跳过本节，本节主要是介绍Linux下的运行命令</font><br>无论哪种方式启动Nginx，其核心的配置文件以及接下来的几个配置实例都是通用的</p>
 <h3 id="2-Linux下Nginx的常用命令"><a href="#2-Linux下Nginx的常用命令" class="headerlink" title="2.Linux下Nginx的常用命令"></a>2.Linux下Nginx的常用命令</h3><p><a href="http://ahrilove.top/2019/11/10/docker容器虚拟技术/" target="_blank" rel="noopener">先关闭防火墙或者是开放目标端口</a></p>
 <blockquote>
-<p>进入 nginx 目录中 </p>
+<p>进入nginx目录中 </p>
 </blockquote>
 <p>cd  /usr/local/nginx/sbin (前面路径有可能不同，主要是nginx内的nginx/sbin路径)</p>
 <blockquote>
-<p>1、查看 nginx 版本号  </p>
+<p>1、查看nginx版本号  </p>
 </blockquote>
 <p>./nginx -v </p>
 <blockquote>
-<p>2、启动 nginx </p>
+<p>2、启动nginx </p>
 </blockquote>
 <p>./nginx </p>
 <blockquote>
-<p>3、停止<br>nginx  </p>
+<p>3、停止nginx  </p>
 </blockquote>
 <p>./nginx  -s  stop </p>
 <blockquote>
-<p>4、重新加载 nginx  </p>
+<p>4、重新加载nginx  </p>
 </blockquote>
 <p>./nginx -s reload </p>
 <h3 id="3-ginx的基本配置文件nginx-conf"><a href="#3-ginx的基本配置文件nginx-conf" class="headerlink" title="3.ginx的基本配置文件nginx.conf"></a>3.ginx的基本配置文件nginx.conf</h3><h4 id="3-1、nginx-配置文件位置"><a href="#3-1、nginx-配置文件位置" class="headerlink" title="3.1、nginx 配置文件位置"></a>3.1、nginx 配置文件位置</h4><p>cd /usr/local/nginx/conf/nginx.conf </p>
@@ -429,10 +429,20 @@
 
 <h3 id="4-Nginx-配置实例-反向代理实例-1"><a href="#4-Nginx-配置实例-反向代理实例-1" class="headerlink" title="4.Nginx 配置实例-反向代理实例 1"></a>4.Nginx 配置实例-反向代理实例 1</h3><h4 id="4-1、实现效果"><a href="#4-1、实现效果" class="headerlink" title="4.1、实现效果"></a>4.1、实现效果</h4><p>（1）打开浏览器，在浏览器地址栏输入地址 <a href="http://www.123.com，跳转到" target="_blank" rel="noopener">www.123.com，跳转到</a> liunx 系统 tomcat 主页 面中 </p>
 <h4 id="4-2、准备工作"><a href="#4-2、准备工作" class="headerlink" title="4.2、准备工作"></a>4.2、准备工作</h4><p>（1）在 liunx 系统安装 tomcat，使用默认端口 8080 * tomcat 安装文件放到 liunx 系统中，解压 * 进入 tomcat 的 bin 目录中，./startup.sh 启动 tomcat 服务器 </p>
-<p>（2）对外开放访问的端口 firewall-cmd --add-port=8080/tcp --permanent firewall-cmd --reload </p>
-<p>（3）查看已经开放的端口号 firewall-cmd –list-all </p>
+<p>（2）对外开放访问的端口<br>firewall-cmd --add-port=8080/tcp --permanent<br>firewall-cmd --reload </p>
+<p>（3）查看已经开放的端口号<br>firewall-cmd –list-all </p>
 <p>（4）在 windows 系统中通过浏览器访问 tomcat 服务器(linux_IP + tomcat_Port)</p>
-<h4 id="4-3、"><a href="#4-3、" class="headerlink" title="4.3、"></a>4.3、</h4>
+<h4 id="4-3、访问过程分析"><a href="#4-3、访问过程分析" class="headerlink" title="4.3、访问过程分析"></a>4.3、访问过程分析</h4><blockquote>
+<p>映射IP</p>
+</blockquote>
+<p>假设域名<a href="http://www.123.com映射的IP为Linux上的nginx的ip地址（比如我的是192.168.17.129:80）,nginx也相当于一个分发器，将请求发送至tomcat服务器" target="_blank" rel="noopener">www.123.com映射的IP为Linux上的nginx的ip地址（比如我的是192.168.17.129:80）,nginx也相当于一个分发器，将请求发送至tomcat服务器</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">访问过程分析</span><br><span class="line">windows端   ----------&gt;Nginx（linux_IP：80）------&gt;tomcat(127.0.0.1:8080)</span><br><span class="line">（假设访问www.123.com）</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在 nginx 进行请求转发的配置（反向代理配置）</p>
+</blockquote>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">server&#123;</span></span><br><span class="line">    <span class="string">listen</span> <span class="number">80</span><span class="string">;</span> <span class="comment"># 监听端口</span></span><br><span class="line">    <span class="string">server_name</span>   <span class="string">www.123.com;</span>  <span class="comment"># 配置域名</span></span><br><span class="line">    </span><br><span class="line">    <span class="string">location</span> <span class="string">/&#123;</span></span><br><span class="line">        <span class="string">proxy_pass</span> <span class="attr">http://127.0.0.1:8080;</span>  <span class="comment"># 跳转到127.0.0.1：8080路径</span></span><br><span class="line">        <span class="string">index</span> <span class="string">index.html</span> <span class="string">index.htm</span> <span class="string">index.jsp;</span></span><br><span class="line">    <span class="string">&#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>如上配置，我们监听 80 端口，访问域名为 <a href="http://www.123.com，不加端口号时默认为" target="_blank" rel="noopener">www.123.com，不加端口号时默认为</a> 80 端口，故 访问该域名时会跳转到 127.0.0.1:8080 路径上。在浏览器端输入 <a href="http://www.123.com后，成功后直接跳转到tomcat主页" target="_blank" rel="noopener">www.123.com后，成功后直接跳转到tomcat主页</a></p>
+
       </div>
       
         <br>
@@ -443,10 +453,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-27T23:17:57+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-28T09:24:24+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年11月27日</p>
+    <p>更新于 2019年11月28日</p>
   </a>
 </div>
 
@@ -468,10 +478,10 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=http://fioralove.github.io/2019/11/25/Nginx(%E4%BA%8C)/&title=Nginx（二）：Nginx的命令和配置文件 | AhriLove&summary=守住一方平安，尽力而为，问心无愧就好。
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://fioralove.github.io/2019/11/27/Nginx(%E4%BA%8C)/&title=Nginx（二）：Nginx的命令和配置文件 | AhriLove&summary=与众不同的生活方式很累人呢，因为找不到借口
 &nbsp;&nbsp;&nbsp;&nbsp;在上一章节中，我们以及了解到正向、反向代理、负载均衡和动静分离的基本概念，安装教程，而在本节中将会了解到在
 
-本文要点：1.理清概念2.Linux下Nginx的常用命令3.ginx的基本配置文件nginx.conf4.Nginx 配置实例-反向代理实例 1 
+本文要点：1.理清概念2.Linux下Nginx的常用命令3.Nginx的基本配置文件nginx.conf4.Nginx 配置实例-反向代理实例 1 
 "
           
           >
@@ -484,10 +494,10 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://fioralove.github.io/2019/11/25/Nginx(%E4%BA%8C)/&title=Nginx（二）：Nginx的命令和配置文件 | AhriLove&summary=守住一方平安，尽力而为，问心无愧就好。
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://fioralove.github.io/2019/11/27/Nginx(%E4%BA%8C)/&title=Nginx（二）：Nginx的命令和配置文件 | AhriLove&summary=与众不同的生活方式很累人呢，因为找不到借口
 &nbsp;&nbsp;&nbsp;&nbsp;在上一章节中，我们以及了解到正向、反向代理、负载均衡和动静分离的基本概念，安装教程，而在本节中将会了解到在
 
-本文要点：1.理清概念2.Linux下Nginx的常用命令3.ginx的基本配置文件nginx.conf4.Nginx 配置实例-反向代理实例 1 
+本文要点：1.理清概念2.Linux下Nginx的常用命令3.Nginx的基本配置文件nginx.conf4.Nginx 配置实例-反向代理实例 1 
 "
           
           >
@@ -500,10 +510,10 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=http://fioralove.github.io/2019/11/25/Nginx(%E4%BA%8C)/&title=Nginx（二）：Nginx的命令和配置文件 | AhriLove&summary=守住一方平安，尽力而为，问心无愧就好。
+          href="http://service.weibo.com/share/share.php?url=http://fioralove.github.io/2019/11/27/Nginx(%E4%BA%8C)/&title=Nginx（二）：Nginx的命令和配置文件 | AhriLove&summary=与众不同的生活方式很累人呢，因为找不到借口
 &nbsp;&nbsp;&nbsp;&nbsp;在上一章节中，我们以及了解到正向、反向代理、负载均衡和动静分离的基本概念，安装教程，而在本节中将会了解到在
 
-本文要点：1.理清概念2.Linux下Nginx的常用命令3.ginx的基本配置文件nginx.conf4.Nginx 配置实例-反向代理实例 1 
+本文要点：1.理清概念2.Linux下Nginx的常用命令3.Nginx的基本配置文件nginx.conf4.Nginx 配置实例-反向代理实例 1 
 "
           
           >
@@ -532,16 +542,16 @@
                       <span class="art-item-left">
                           <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
                           <h4>
-                              <a href="/2019/11/25/Nginx/" rel="prev" title="Nginx（一）：基本概念">
+                              <a href="/2019/11/28/%E7%85%A7%E7%89%87%E7%9A%84GPS%E4%BF%A1%E6%81%AF%E5%AE%9A%E4%BD%8D/" rel="prev" title="技术小白教你如何定位照片拍摄位置">
                                 
-                                    Nginx（一）：基本概念
+                                    技术小白教你如何定位照片拍摄位置
                                 
                               </a>
                           </h4>
                           
                               
                               <h6 class="tags">
-                                  <a class="tag" href="/tags/apache/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> apache</a> <a class="tag" href="/tags/nginx/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> nginx</a> <a class="tag" href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 负载均衡</a>
+                                  <a class="tag" href="/tags/%E5%AE%9A%E4%BD%8D%E7%85%A7%E7%89%87%E6%8B%8D%E6%91%84%E4%BD%8D%E7%BD%AE/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 定位照片拍摄位置</a>
                               </h6>
                           
                       </span>
@@ -552,16 +562,16 @@
                       <span class="art-item-right" aria-hidden="true">
                           <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                           <h4>
-                              <a href="/2019/11/22/Javascript%E7%AF%87%E7%AB%A0%E4%B8%89/" rel="prev" title="Javascript篇章三：js数字，数组与日期">
+                              <a href="/2019/11/25/Nginx/" rel="prev" title="Nginx（一）：基本概念">
                                   
-                                      Javascript篇章三：js数字，数组与日期
+                                      Nginx（一）：基本概念
                                   
                               </a>
                           </h4>
                           
                               
                               <h6 class="tags">
-                                  <a class="tag" href="/tags/%E5%AF%B9%E8%B1%A1/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 对象</a> <a class="tag" href="/tags/%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 属性与方法</a>
+                                  <a class="tag" href="/tags/apache/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> apache</a> <a class="tag" href="/tags/nginx/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> nginx</a> <a class="tag" href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 负载均衡</a>
                               </h6>
                           
                       </span>
@@ -726,7 +736,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-理清概念"><span class="toc-text">1.理清概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Linux下Nginx的常用命令"><span class="toc-text">2.Linux下Nginx的常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-ginx的基本配置文件nginx-conf"><span class="toc-text">3.ginx的基本配置文件nginx.conf</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1、nginx-配置文件位置"><span class="toc-text">3.1、nginx 配置文件位置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2、配置文件中的内容-包含三部分内容"><span class="toc-text">3.2、配置文件中的内容 包含三部分内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-默认的nginx-conf"><span class="toc-text">3.3 默认的nginx.conf</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Nginx-配置实例-反向代理实例-1"><span class="toc-text">4.Nginx 配置实例-反向代理实例 1</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1、实现效果"><span class="toc-text">4.1、实现效果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2、准备工作"><span class="toc-text">4.2、准备工作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3、"><span class="toc-text">4.3、</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-理清概念"><span class="toc-text">1.理清概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Linux下Nginx的常用命令"><span class="toc-text">2.Linux下Nginx的常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-ginx的基本配置文件nginx-conf"><span class="toc-text">3.ginx的基本配置文件nginx.conf</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1、nginx-配置文件位置"><span class="toc-text">3.1、nginx 配置文件位置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2、配置文件中的内容-包含三部分内容"><span class="toc-text">3.2、配置文件中的内容 包含三部分内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-默认的nginx-conf"><span class="toc-text">3.3 默认的nginx.conf</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Nginx-配置实例-反向代理实例-1"><span class="toc-text">4.Nginx 配置实例-反向代理实例 1</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1、实现效果"><span class="toc-text">4.1、实现效果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2、准备工作"><span class="toc-text">4.2、准备工作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3、访问过程分析"><span class="toc-text">4.3、访问过程分析</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -954,7 +964,7 @@
 </header>
 
     <div class='content material'>
-      <a href="/tags/post/" style="font-size: 14px; color: #999">$.post()</a> <a href="/tags/API/" style="font-size: 24px; color: #555">API</a> <a href="/tags/Ajax/" style="font-size: 24px; color: #555">Ajax</a> <a href="/tags/CSS/" style="font-size: 24px; color: #555">CSS</a> <a href="/tags/DDL/" style="font-size: 14px; color: #999">DDL</a> <a href="/tags/DML/" style="font-size: 14px; color: #999">DML</a> <a href="/tags/Github-Page/" style="font-size: 14px; color: #999">Github Page</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/Hyper-V/" style="font-size: 14px; color: #999">Hyper-V</a> <a href="/tags/InnoDB/" style="font-size: 14px; color: #999">InnoDB</a> <a href="/tags/Jquery/" style="font-size: 14px; color: #999">Jquery</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/MyISAM/" style="font-size: 14px; color: #999">MyISAM</a> <a href="/tags/POST%E8%AF%B7%E6%B1%82/" style="font-size: 14px; color: #999">POST请求</a> <a href="/tags/Requests/" style="font-size: 14px; color: #999">Requests</a> <a href="/tags/VMware/" style="font-size: 14px; color: #999">VMware</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a> <a href="/tags/apache/" style="font-size: 14px; color: #999">apache</a> <a href="/tags/clone/" style="font-size: 14px; color: #999">clone</a> <a href="/tags/component/" style="font-size: 14px; color: #999">component</a> <a href="/tags/container/" style="font-size: 14px; color: #999">container</a> <a href="/tags/database/" style="font-size: 14px; color: #999">database</a> <a href="/tags/docker/" style="font-size: 19px; color: #777">docker</a> <a href="/tags/front-matter/" style="font-size: 14px; color: #999">front-matter</a> <a href="/tags/git/" style="font-size: 14px; color: #999">git</a> <a href="/tags/git-pull-push/" style="font-size: 14px; color: #999">git pull/push</a> <a href="/tags/images/" style="font-size: 14px; color: #999">images</a> <a href="/tags/jQuery/" style="font-size: 19px; color: #777">jQuery</a> <a href="/tags/json-parse/" style="font-size: 14px; color: #999">json.parse()</a> <a href="/tags/json-stringify/" style="font-size: 14px; color: #999">json.stringify()</a> <a href="/tags/js%E7%B2%BE%E7%A1%AE%E5%BA%A6%E4%B8%A2%E5%A4%B1/" style="font-size: 14px; color: #999">js精确度丢失</a> <a href="/tags/nginx/" style="font-size: 19px; color: #777">nginx</a> <a href="/tags/nginx-conf/" style="font-size: 14px; color: #999">nginx.conf</a> <a href="/tags/push/" style="font-size: 14px; color: #999">push</a> <a href="/tags/python-Django-MySQL/" style="font-size: 14px; color: #999">python+Django+MySQL</a> <a href="/tags/read-readline-readlines/" style="font-size: 14px; color: #999">read() - readline() - readlines()</a> <a href="/tags/thinkPHP/" style="font-size: 19px; color: #777">thinkPHP</a> <a href="/tags/token/" style="font-size: 14px; color: #999">token</a> <a href="/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E4%B8%8E%E5%AE%88%E6%8A%A4%E5%BC%8F%E5%88%9B%E5%BB%BA/" style="font-size: 14px; color: #999">交互式与守护式创建</a> <a href="/tags/%E5%AF%B9%E8%B1%A1/" style="font-size: 14px; color: #999">对象</a> <a href="/tags/%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">属性与方法</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 14px; color: #999">负载均衡</a> <a href="/tags/%E9%80%89%E6%8B%A9%E5%99%A8/" style="font-size: 19px; color: #777">选择器</a>
+      <a href="/tags/post/" style="font-size: 14px; color: #999">$.post()</a> <a href="/tags/API/" style="font-size: 24px; color: #555">API</a> <a href="/tags/Ajax/" style="font-size: 24px; color: #555">Ajax</a> <a href="/tags/CSS/" style="font-size: 24px; color: #555">CSS</a> <a href="/tags/DDL/" style="font-size: 14px; color: #999">DDL</a> <a href="/tags/DML/" style="font-size: 14px; color: #999">DML</a> <a href="/tags/Github-Page/" style="font-size: 14px; color: #999">Github Page</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/Hyper-V/" style="font-size: 14px; color: #999">Hyper-V</a> <a href="/tags/InnoDB/" style="font-size: 14px; color: #999">InnoDB</a> <a href="/tags/Jquery/" style="font-size: 14px; color: #999">Jquery</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/MyISAM/" style="font-size: 14px; color: #999">MyISAM</a> <a href="/tags/POST%E8%AF%B7%E6%B1%82/" style="font-size: 14px; color: #999">POST请求</a> <a href="/tags/Requests/" style="font-size: 14px; color: #999">Requests</a> <a href="/tags/VMware/" style="font-size: 14px; color: #999">VMware</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a> <a href="/tags/apache/" style="font-size: 14px; color: #999">apache</a> <a href="/tags/clone/" style="font-size: 14px; color: #999">clone</a> <a href="/tags/component/" style="font-size: 14px; color: #999">component</a> <a href="/tags/container/" style="font-size: 14px; color: #999">container</a> <a href="/tags/database/" style="font-size: 14px; color: #999">database</a> <a href="/tags/docker/" style="font-size: 19px; color: #777">docker</a> <a href="/tags/front-matter/" style="font-size: 14px; color: #999">front-matter</a> <a href="/tags/git/" style="font-size: 14px; color: #999">git</a> <a href="/tags/git-pull-push/" style="font-size: 14px; color: #999">git pull/push</a> <a href="/tags/images/" style="font-size: 14px; color: #999">images</a> <a href="/tags/jQuery/" style="font-size: 19px; color: #777">jQuery</a> <a href="/tags/json-parse/" style="font-size: 14px; color: #999">json.parse()</a> <a href="/tags/json-stringify/" style="font-size: 14px; color: #999">json.stringify()</a> <a href="/tags/js%E7%B2%BE%E7%A1%AE%E5%BA%A6%E4%B8%A2%E5%A4%B1/" style="font-size: 14px; color: #999">js精确度丢失</a> <a href="/tags/nginx/" style="font-size: 19px; color: #777">nginx</a> <a href="/tags/nginx-conf/" style="font-size: 14px; color: #999">nginx.conf</a> <a href="/tags/push/" style="font-size: 14px; color: #999">push</a> <a href="/tags/python-Django-MySQL/" style="font-size: 14px; color: #999">python+Django+MySQL</a> <a href="/tags/read-readline-readlines/" style="font-size: 14px; color: #999">read() - readline() - readlines()</a> <a href="/tags/thinkPHP/" style="font-size: 19px; color: #777">thinkPHP</a> <a href="/tags/token/" style="font-size: 14px; color: #999">token</a> <a href="/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E4%B8%8E%E5%AE%88%E6%8A%A4%E5%BC%8F%E5%88%9B%E5%BB%BA/" style="font-size: 14px; color: #999">交互式与守护式创建</a> <a href="/tags/%E5%AE%9A%E4%BD%8D%E7%85%A7%E7%89%87%E6%8B%8D%E6%91%84%E4%BD%8D%E7%BD%AE/" style="font-size: 14px; color: #999">定位照片拍摄位置</a> <a href="/tags/%E5%AF%B9%E8%B1%A1/" style="font-size: 14px; color: #999">对象</a> <a href="/tags/%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">属性与方法</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 14px; color: #999">负载均衡</a> <a href="/tags/%E9%80%89%E6%8B%A9%E5%99%A8/" style="font-size: 19px; color: #777">选择器</a>
     </div>
   </section>
 
