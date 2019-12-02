@@ -440,23 +440,32 @@
 </blockquote>
 <p>docker run -d -p 80:80 --name=”nginx” --net host -v /docker/nginx/www:/usr/share/nginx/html -v /docker/nginx/logs:/var/log/nginx nginx:1.17.5</p>
 <blockquote>
-<p>2.不对配置文件进行数据挂载即 -v /docker/nginx/conf/nginx.conf:/etc/nginx/nginx.conf 这个   </p>
+<p>2.不对配置文件进行数据挂载即 </p>
 </blockquote>
+<p>-v /docker/nginx/conf/nginx.conf:/etc/nginx/nginx.conf 这个   </p>
 <blockquote>
-<p>3.docker exec -it nginx /bin/bash （进入容器 获取文件）</p>
+<p>3.进入容器 获取文件</p>
 </blockquote>
+<p>docker exec -it nginx /bin/bash </p>
 <blockquote>
-<p>4.cd /etc/nginx/ （这里主要获取配置文件路径的）,然后exit</p>
+<p>4.cd /etc/nginx/ </p>
 </blockquote>
+<p>（这里主要获取配置文件路径的）,然后exit</p>
 <blockquote>
-<p>5.数据拷贝<br>进入宿主机目录文件 cd /docker/nginx/conf/<br>将已经运行成功的容器的配置文件拷贝到宿主机的配置文件目录：docker cp 容器ID:/etc/nginx/nginx.conf .（ps：“.”表示拷贝到当前目录）</p>
+<p>5.数据拷贝</p>
 </blockquote>
+<p>进入宿主机目录文件 cd /docker/nginx/conf/<br>将已经运行成功的容器的配置文件拷贝到宿主机的配置文件目录：docker cp 容器ID:/etc/nginx/nginx.conf .（ps：“.”表示拷贝到当前目录）</p>
 <p>ps：文件copy成功后 把nginx容器先删除掉</p>
 <blockquote>
 <p>6.创建最终的nginx容器</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker run -di -p 80:80 </span><br><span class="line">--name nginx </span><br><span class="line">[--net host] :再思考一下有没有必要写，使用–net = host时,它告诉容器使用主机网络堆栈.因此无法将端口暴露给主机,因为它是主机(就网络堆栈而言).</span><br><span class="line">-v /docker/nginx/www:/usr/share/nginx/html </span><br><span class="line">-v /docker/nginx/conf/nginx.conf:/etc/nginx/nginx.conf </span><br><span class="line">-v /docker/nginx/logs:/var/log/nginx </span><br><span class="line">nginx:1.17.5</span><br><span class="line"></span><br><span class="line">ps:成功后就代表部署成功</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run -di -p 80:80 </span><br><span class="line">--name nginx </span><br><span class="line">[--net host] :再思考一下有没有必要写，使用–net = host时,它告诉容器使用主机网络堆栈.因此无法将端口暴露给主机,因为它是主机(就网络堆栈而言).</span><br><span class="line">-v /docker/nginx/www:/usr/share/nginx/html </span><br><span class="line">-v /docker/nginx/conf/nginx.conf:/etc/nginx/nginx.conf</span><br><span class="line">-v /docker/nginx/logs:/var/log/nginx </span><br><span class="line">nginx:1.17.5</span><br><span class="line">ps:成功后就代表部署成功</span><br></pre></td></tr></table></figure>
+
+<p><font color=#ef4136>2019-11-29 新增：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里宿主机的nginx.conf其实是挂载了一个文件，docker是不推荐这样使用的，可以尝试在宿主机上创建目录为：/docker/nginx/conf/nginx.conf/nginx.conf(当前conf文件是一个具体的配置文件，不是一个目录)，这样上式就不会出现docker warning</font>，结合<a href="https://blog.csdn.net/u014106644/article/details/83152366" target="_blank" rel="noopener">此篇文章</a> 。</p>
 <p>PS：访问可能会403 因为/docker/nginx/www/ 里面没有index.html放进去就好了</p>
+<blockquote>
+<p>7.权限赋予</p>
+</blockquote>
 <p>挂载成功后，给宿主机上的www目录（或整个文件目录）增加权限，不然一直无法读写：<br>&nbsp;&nbsp;&nbsp;&nbsp;sudo chmod -R 777 目标目录 ：给目标目录赋予最大管理员权限<br>&nbsp;&nbsp;&nbsp;&nbsp;sudo chmod +/-rwx 文件名|目录  给文件或目录的赋予权限</p>
 <h3 id="10-docker配置MySQL，redis教程等，请点击此处链接"><a href="#10-docker配置MySQL，redis教程等，请点击此处链接" class="headerlink" title="10.docker配置MySQL，redis教程等，请点击此处链接"></a>10.docker配置MySQL，redis教程等，<a href="https://pan.baidu.com/s/1nUE4pfe2wThYVGMEYqADXw" target="_blank" rel="noopener">请点击此处链接</a></h3><p>命令:<code>docker run -di -p 12345:3306 \--name=&quot;mysql&quot; -v /lnmp/mysql/conf:/etc/mysql/conf.d -v /lnmp/mysql/logs:/logs -v /lnmp/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456:rw  mysql:5.6</code></p>
 <p>命令说明：<br>-p 12345:3306：将主机的12345端口映射到docker容器的3306端口。<br>--name mysql：运行服务名字<br>-v /lnmp/mysql/conf:/etc/mysql/conf.d ：将主机/lnmp/mysql录下的conf/my.cnf 挂载到容器的 /etc/mysql/conf.d<br>-v /lnmp/mysql/logs:/logs：将主机/lnmp/mysql目录下的 logs 目录挂载到容器的 /logs。<br>-v /lnmp/mysql/data:/var/lib/mysql ：将主机/lnmp/mysql目录下的data目录挂载到容器的 /var/lib/mysql<br>-e MYSQL_ROOT_PASSWORD=123456：初始化 root 用户的密码。<br>-d mysql:5.6 : 后台程序运行mysql5.6</p>
@@ -497,10 +506,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-28T09:25:19+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-29T22:43:11+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年11月28日</p>
+    <p>更新于 2019年11月29日</p>
   </a>
 </div>
 
@@ -574,16 +583,16 @@
                       <span class="art-item-left">
                           <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
                           <h4>
-                              <a href="/2019/11/11/python(%E4%BA%8C)%E5%B8%B8%E8%A7%81%E5%BA%93%E5%87%BD%E6%95%B0/" rel="prev" title="Python全栈系列章节更新（二）：常见库模块">
+                              <a href="/2019/11/11/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="prev" title="MySQL数据库(一)：DDL，DML，DCL">
                                 
-                                    Python全栈系列章节更新（二）：常见库模块
+                                    MySQL数据库(一)：DDL，DML，DCL
                                 
                               </a>
                           </h4>
                           
                               
                               <h6 class="tags">
-                                  <a class="tag" href="/tags/time/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> time</a>
+                                  <a class="tag" href="/tags/database/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> database</a> <a class="tag" href="/tags/DDL/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> DDL</a> <a class="tag" href="/tags/DML/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> DML</a> <a class="tag" href="/tags/mysql/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> mysql</a>
                               </h6>
                           
                       </span>
@@ -927,9 +936,9 @@
     <div class='content material'>
       <ul class="entry">
         
-          <li><a class="flat-box" title="/categories/Memcached/" href="/categories/Memcached/"><div class='name'>Memcached</div><div class='badge'>(1)</div></a></li>
+          <li><a class="flat-box" title="/categories/Database/" href="/categories/Database/"><div class='name'>Database</div><div class='badge'>(3)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/MySQL/" href="/categories/MySQL/"><div class='name'>MySQL</div><div class='badge'>(2)</div></a></li>
+          <li><a class="flat-box" title="/categories/Database/" href="/categories/Database/"><div class='name'>-Database</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Python/" href="/categories/Python/"><div class='name'>Python</div><div class='badge'>(4)</div></a></li>
         
@@ -996,7 +1005,7 @@
 </header>
 
     <div class='content material'>
-      <a href="/tags/post/" style="font-size: 14px; color: #999">$.post()</a> <a href="/tags/API/" style="font-size: 24px; color: #555">API</a> <a href="/tags/Ajax/" style="font-size: 24px; color: #555">Ajax</a> <a href="/tags/CSS/" style="font-size: 24px; color: #555">CSS</a> <a href="/tags/DDL/" style="font-size: 14px; color: #999">DDL</a> <a href="/tags/DML/" style="font-size: 14px; color: #999">DML</a> <a href="/tags/Github-Page/" style="font-size: 14px; color: #999">Github Page</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/Hyper-V/" style="font-size: 14px; color: #999">Hyper-V</a> <a href="/tags/InnoDB/" style="font-size: 14px; color: #999">InnoDB</a> <a href="/tags/Jquery/" style="font-size: 14px; color: #999">Jquery</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/MyISAM/" style="font-size: 14px; color: #999">MyISAM</a> <a href="/tags/POST%E8%AF%B7%E6%B1%82/" style="font-size: 14px; color: #999">POST请求</a> <a href="/tags/Requests/" style="font-size: 14px; color: #999">Requests</a> <a href="/tags/VMware/" style="font-size: 14px; color: #999">VMware</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a> <a href="/tags/apache/" style="font-size: 14px; color: #999">apache</a> <a href="/tags/clone/" style="font-size: 14px; color: #999">clone</a> <a href="/tags/component/" style="font-size: 14px; color: #999">component</a> <a href="/tags/container/" style="font-size: 14px; color: #999">container</a> <a href="/tags/database/" style="font-size: 14px; color: #999">database</a> <a href="/tags/docker/" style="font-size: 24px; color: #555">docker</a> <a href="/tags/front-matter/" style="font-size: 14px; color: #999">front-matter</a> <a href="/tags/git/" style="font-size: 14px; color: #999">git</a> <a href="/tags/git-pull-push/" style="font-size: 14px; color: #999">git pull/push</a> <a href="/tags/images/" style="font-size: 14px; color: #999">images</a> <a href="/tags/jQuery/" style="font-size: 14px; color: #999">jQuery</a> <a href="/tags/json-parse/" style="font-size: 14px; color: #999">json.parse()</a> <a href="/tags/json-stringify/" style="font-size: 14px; color: #999">json.stringify()</a> <a href="/tags/js%E7%B2%BE%E7%A1%AE%E5%BA%A6%E4%B8%A2%E5%A4%B1/" style="font-size: 14px; color: #999">js精确度丢失</a> <a href="/tags/nginx/" style="font-size: 24px; color: #555">nginx</a> <a href="/tags/nginx-conf/" style="font-size: 14px; color: #999">nginx.conf</a> <a href="/tags/push/" style="font-size: 14px; color: #999">push</a> <a href="/tags/python-Django-MySQL/" style="font-size: 14px; color: #999">python+Django+MySQL</a> <a href="/tags/read-readline-readlines/" style="font-size: 14px; color: #999">read() - readline() - readlines()</a> <a href="/tags/thinkPHP/" style="font-size: 24px; color: #555">thinkPHP</a> <a href="/tags/time/" style="font-size: 14px; color: #999">time</a> <a href="/tags/token/" style="font-size: 14px; color: #999">token</a> <a href="/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E4%B8%8E%E5%AE%88%E6%8A%A4%E5%BC%8F%E5%88%9B%E5%BB%BA/" style="font-size: 14px; color: #999">交互式与守护式创建</a> <a href="/tags/%E5%85%83%E7%BB%84/" style="font-size: 14px; color: #999">元组</a> <a href="/tags/%E5%88%97%E8%A1%A8/" style="font-size: 14px; color: #999">列表</a> <a href="/tags/%E5%AD%97%E5%85%B8/" style="font-size: 14px; color: #999">字典</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 14px; color: #999">字符串</a> <a href="/tags/%E5%AE%9A%E4%BD%8D%E7%85%A7%E7%89%87%E6%8B%8D%E6%91%84%E4%BD%8D%E7%BD%AE/" style="font-size: 14px; color: #999">定位照片拍摄位置</a> <a href="/tags/%E5%AF%B9%E8%B1%A1/" style="font-size: 14px; color: #999">对象</a> <a href="/tags/%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">属性与方法</a> <a href="/tags/%E6%95%B0%E5%80%BC/" style="font-size: 14px; color: #999">数值</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 14px; color: #999">负载均衡</a> <a href="/tags/%E9%80%89%E6%8B%A9%E5%99%A8/" style="font-size: 14px; color: #999">选择器</a>
+      <a href="/tags/post/" style="font-size: 14px; color: #999">$.post()</a> <a href="/tags/API/" style="font-size: 24px; color: #555">API</a> <a href="/tags/Ajax/" style="font-size: 24px; color: #555">Ajax</a> <a href="/tags/CSS/" style="font-size: 24px; color: #555">CSS</a> <a href="/tags/DDL/" style="font-size: 14px; color: #999">DDL</a> <a href="/tags/DML/" style="font-size: 14px; color: #999">DML</a> <a href="/tags/Github-Page/" style="font-size: 14px; color: #999">Github Page</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/Hyper-V/" style="font-size: 14px; color: #999">Hyper-V</a> <a href="/tags/InnoDB/" style="font-size: 14px; color: #999">InnoDB</a> <a href="/tags/Jquery/" style="font-size: 14px; color: #999">Jquery</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Memcached/" style="font-size: 14px; color: #999">Memcached</a> <a href="/tags/MyISAM/" style="font-size: 14px; color: #999">MyISAM</a> <a href="/tags/POST%E8%AF%B7%E6%B1%82/" style="font-size: 14px; color: #999">POST请求</a> <a href="/tags/Requests/" style="font-size: 14px; color: #999">Requests</a> <a href="/tags/VMware/" style="font-size: 14px; color: #999">VMware</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a> <a href="/tags/apache/" style="font-size: 14px; color: #999">apache</a> <a href="/tags/clone/" style="font-size: 14px; color: #999">clone</a> <a href="/tags/component/" style="font-size: 14px; color: #999">component</a> <a href="/tags/container/" style="font-size: 14px; color: #999">container</a> <a href="/tags/database/" style="font-size: 14px; color: #999">database</a> <a href="/tags/docker/" style="font-size: 24px; color: #555">docker</a> <a href="/tags/fetchall/" style="font-size: 14px; color: #999">fetchall()</a> <a href="/tags/fetchone/" style="font-size: 14px; color: #999">fetchone()</a> <a href="/tags/front-matter/" style="font-size: 14px; color: #999">front-matter</a> <a href="/tags/git/" style="font-size: 14px; color: #999">git</a> <a href="/tags/git-pull-push/" style="font-size: 14px; color: #999">git pull/push</a> <a href="/tags/images/" style="font-size: 14px; color: #999">images</a> <a href="/tags/jQuery/" style="font-size: 14px; color: #999">jQuery</a> <a href="/tags/json-parse/" style="font-size: 14px; color: #999">json.parse()</a> <a href="/tags/json-stringify/" style="font-size: 14px; color: #999">json.stringify()</a> <a href="/tags/js%E7%B2%BE%E7%A1%AE%E5%BA%A6%E4%B8%A2%E5%A4%B1/" style="font-size: 14px; color: #999">js精确度丢失</a> <a href="/tags/mysql/" style="font-size: 24px; color: #555">mysql</a> <a href="/tags/nginx/" style="font-size: 24px; color: #555">nginx</a> <a href="/tags/nginx-conf/" style="font-size: 14px; color: #999">nginx.conf</a> <a href="/tags/push/" style="font-size: 14px; color: #999">push</a> <a href="/tags/python-Django-MySQL/" style="font-size: 14px; color: #999">python+Django+MySQL</a> <a href="/tags/read-readline-readlines/" style="font-size: 14px; color: #999">read() - readline() - readlines()</a> <a href="/tags/thinkPHP/" style="font-size: 14px; color: #999">thinkPHP</a> <a href="/tags/time/" style="font-size: 14px; color: #999">time</a> <a href="/tags/token/" style="font-size: 14px; color: #999">token</a> <a href="/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E4%B8%8E%E5%AE%88%E6%8A%A4%E5%BC%8F%E5%88%9B%E5%BB%BA/" style="font-size: 14px; color: #999">交互式与守护式创建</a> <a href="/tags/%E5%85%83%E7%BB%84/" style="font-size: 14px; color: #999">元组</a> <a href="/tags/%E5%88%97%E8%A1%A8/" style="font-size: 14px; color: #999">列表</a> <a href="/tags/%E5%AD%97%E5%85%B8/" style="font-size: 14px; color: #999">字典</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 14px; color: #999">字符串</a> <a href="/tags/%E5%AE%9A%E4%BD%8D%E7%85%A7%E7%89%87%E6%8B%8D%E6%91%84%E4%BD%8D%E7%BD%AE/" style="font-size: 14px; color: #999">定位照片拍摄位置</a> <a href="/tags/%E5%AF%B9%E8%B1%A1/" style="font-size: 14px; color: #999">对象</a> <a href="/tags/%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">属性与方法</a> <a href="/tags/%E6%95%B0%E5%80%BC/" style="font-size: 14px; color: #999">数值</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 14px; color: #999">负载均衡</a> <a href="/tags/%E9%80%89%E6%8B%A9%E5%99%A8/" style="font-size: 14px; color: #999">选择器</a>
     </div>
   </section>
 
