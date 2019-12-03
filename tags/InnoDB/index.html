@@ -40,6 +40,20 @@
 
   
   
+  <script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+    </script>
 </head>
 
 <!-- 样式二（飘动的彩带） -->
@@ -413,11 +427,11 @@
     
       <div class="full-width auto-padding tags">
         
+          <a href="/tags/mysql/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> mysql</a>
+        
           <a href="/tags/InnoDB/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> InnoDB</a>
         
           <a href="/tags/MyISAM/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> MyISAM</a>
-        
-          <a href="/tags/mysql/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> mysql</a>
         
       </div>
     

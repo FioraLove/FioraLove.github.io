@@ -40,6 +40,20 @@
 
   
   
+  <script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+    </script>
 </head>
 
 <!-- 样式二（飘动的彩带） -->
@@ -403,7 +417,7 @@
 <a id="more"></a>
 
 <h3 id="1-理清概念"><a href="#1-理清概念" class="headerlink" title="1.理清概念"></a>1.理清概念</h3><p>docker创建Nginx容器很简单：共享数据卷，外部访问端口映射<br>window下运行nginx，只需简单式一直点击“NEXT”安装，然后添加到环境变量即可<br><font color=#00ced1 size=5 face="黑体">在Linux下启动nginx相对比较麻烦，如果你采用其它两种方式，可以跳过本节，本节主要是介绍Linux下的运行命令</font><br>无论哪种方式启动Nginx，其核心的配置文件以及接下来的几个配置实例都是通用的</p>
-<h3 id="2-Linux下Nginx的常用命令"><a href="#2-Linux下Nginx的常用命令" class="headerlink" title="2.Linux下Nginx的常用命令"></a>2.Linux下Nginx的常用命令</h3><p><a href="http://ahrilove.top/2019/11/10/docker容器虚拟技术/" target="_blank" rel="noopener">先关闭防火墙或者是开放目标端口</a></p>
+<h3 id="2-Linux下Nginx的常用命令"><a href="#2-Linux下Nginx的常用命令" class="headerlink" title="2.Linux下Nginx的常用命令"></a>2.Linux下Nginx的常用命令</h3><p><a href="http://ahrilove.top/2019/11/10/docker容器虚拟技术/">先关闭防火墙或者是开放目标端口</a></p>
 <blockquote>
 <p>进入nginx目录中 </p>
 </blockquote>

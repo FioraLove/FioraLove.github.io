@@ -40,6 +40,20 @@
 
   
   
+  <script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+    </script>
 </head>
 
 <!-- 样式二（飘动的彩带） -->
@@ -417,7 +431,7 @@
 <p>　　负载均衡在实际项目操作过程中，有硬件负载均衡和软件负载均衡两种，硬件负载均衡也称为硬负载，如F5负载均衡，相对造价昂贵成本较高，但是数据的稳定性安全性等等有非常好的保障，如中国移动中国联通这样的公司才会选择硬负载进行操作；更多的公司考虑到成本原因，会选择使用软件负载均衡，软件负载均衡是利用现有的技术结合主机硬件实现的一种消息队列分发机制。<br><fancybox><img src="https://images2018.cnblogs.com/blog/1202586/201804/1202586-20180406180405961-333776342.png" alt=""></fancybox><br>Nginx支持的负载均衡调度算法方式如下：</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.weight轮询(默认，常用)：接收到的请求按照权重分配到不同的后端服务器，即使在使用过程中，某一台后端服务器宕机，Nginx会自动将该服务器剔除出队列，请求受理情况不会受到任何影响。 这种方式下，可以给不同的后端服务器设置一个权重值(weight)，用于调整不同的服务器上请求的分配率；权重数据越大，被分配到请求的几率越大；该权重值，主要是针对实际工作环境中不同的后端服务器硬件配置进行调整的。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.ip_hash（常用）：每个请求按照发起客户端的ip的hash结果进行匹配，这样的算法下一个固定ip地址的客户端总会访问到同一个后端服务器，这也在一定程度上解决了集群部署环境下session共享的问题。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.fair：智能调整调度算法，动态的根据后端服务器的请求处理到响应的时间进行均衡分配，响应时间短处理效率高的服务器分配到请求的概率高，响应时间长处理效率低的服务器分配到的请求少；结合了前两者的优点的一种调度算法。但是需要注意的是Nginx默认不支持fair算法，如果要使用这种调度算法，请安装upstream_fair模块。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.url_hash：按照访问的url的hash结果分配请求，每个请求的url会指向后端固定的某个服务器，可以在Nginx作为静态服务器的情况下提高缓存效率。同样要注意Nginx默认不支持这种调度算法，要使用的话需要安装Nginx的hash软件包。</p>
 <h2 id="5-动静分离"><a href="#5-动静分离" class="headerlink" title="5.动静分离"></a>5.动静分离</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为了加快网站的解析速度，可以把动态页面和静态页面由不同的服务器来解析，加快解析速度。降低原来单个服务器的压力。 </p>
-<h2 id="6-nginx安装"><a href="#6-nginx安装" class="headerlink" title="6.nginx安装"></a>6.nginx安装</h2><p><i class="fas fa-hand-point-right"></i><a href="https://www.cnblogs.com/wcwnina/p/8728430.html" target="_blank" rel="noopener">windows下安装与部署Nginx</a><br><i class="fas fa-hand-point-right"></i><a href="https://www.cnblogs.com/wcwnina/p/8728430.html" target="_blank" rel="noopener">Linux下安装与部署Nginx</a><br><i class="fas fa-hand-point-right"></i>以后都推荐再docker下安装各式各样的环境<a href="http://ahrilove.top/2019/11/10/docker容器虚拟技术/" target="_blank" rel="noopener">Ubuntu+docker下安装与部署Nginx</a></p>
+<h2 id="6-nginx安装"><a href="#6-nginx安装" class="headerlink" title="6.nginx安装"></a>6.nginx安装</h2><p><i class="fas fa-hand-point-right"></i><a href="https://www.cnblogs.com/wcwnina/p/8728430.html" target="_blank" rel="noopener">windows下安装与部署Nginx</a><br><i class="fas fa-hand-point-right"></i><a href="https://www.cnblogs.com/wcwnina/p/8728430.html" target="_blank" rel="noopener">Linux下安装与部署Nginx</a><br><i class="fas fa-hand-point-right"></i>以后都推荐再docker下安装各式各样的环境<a href="http://ahrilove.top/2019/11/10/docker容器虚拟技术/">Ubuntu+docker下安装与部署Nginx</a></p>
 
       </div>
       
