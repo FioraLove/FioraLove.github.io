@@ -411,7 +411,7 @@
       <div class="article-entry" itemprop="articleBody">
         <p>Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等</p>
 <blockquote>
-<p>1.time模块<br>2.DBUtils管理数据库连接池</p>
+<p>1.time模块<br>2.DBUtils管理数据库连接池<br>3.ftplib模块<br>4.os模块<br>5.datetime模块</p>
 </blockquote>
 <a id="more"></a>
 <h2 id="1-time模块"><a href="#1-time模块" class="headerlink" title="1.time模块"></a>1.time模块</h2><h3 id="Unix时间戳转与时间的转换"><a href="#Unix时间戳转与时间的转换" class="headerlink" title="Unix时间戳转与时间的转换"></a>Unix时间戳转与时间的转换</h3><blockquote>
@@ -496,21 +496,117 @@
 <p>启动线程任务</p>
 </blockquote>
 <p>每调用一次插入函数就从连接池中取出一个链接操作,完成后关闭链接;<br>executemany 批量操作,减少 commit 次数,提升效率;</p>
-<h2 id="3-python的数据库连接模块的execute-与executemany"><a href="#3-python的数据库连接模块的execute-与executemany" class="headerlink" title="3.python的数据库连接模块的execute()与executemany()"></a>3.python的数据库连接模块的execute()与executemany()</h2><p><font color=#f15a22>在使用executemany方法时，需要注意的几个问题：</font></p>
-<blockquote>
-<p>1.在写sql语句时，不管字段为什么类型，占位符统一使用%s,且不能加上引号。例如</p>
-</blockquote>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sql="<span class="keyword">insert</span> <span class="keyword">into</span> tablename (<span class="keyword">id</span>,<span class="keyword">name</span>) <span class="keyword">values</span> (%s,%s)<span class="string">"</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-ftplib操作ftp实现上传和下载的"><a href="#3-ftplib操作ftp实现上传和下载的" class="headerlink" title="3.ftplib操作ftp实现上传和下载的"></a>3.ftplib操作ftp实现上传和下载的</h2><p>ftplib模块是系统默认安装的，实现文件的上传与下载</p>
+<h3 id="3-1-ftp登陆连接"><a href="#3-1-ftp登陆连接" class="headerlink" title="3.1 ftp登陆连接"></a>3.1 ftp登陆连接</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> ftplib <span class="keyword">import</span> FTP            <span class="comment">#加载ftp模块</span></span><br><span class="line">ftp=FTP()                         <span class="comment">#设置变量</span></span><br><span class="line">ftp.set_debuglevel(<span class="number">2</span>)             <span class="comment">#打开调试级别2，显示详细信息</span></span><br><span class="line">ftp.connect(<span class="string">"IP"</span>,<span class="string">"port"</span>)          <span class="comment">#连接的ftp sever和端口</span></span><br><span class="line">ftp.login(<span class="string">"user"</span>,<span class="string">"password"</span>)      <span class="comment">#连接的用户名，密码</span></span><br><span class="line">print(ftp.getwelcome())            <span class="comment">#打印出欢迎信息</span></span><br><span class="line"></span><br><span class="line">bufsize=<span class="number">1024</span>                      <span class="comment">#设置的缓冲区大小</span></span><br><span class="line">filename=<span class="string">"filename.txt"</span>           <span class="comment">#需要下载的文件</span></span><br><span class="line">file_handle=open(filename,<span class="string">"wb"</span>).write <span class="comment">#以写模式在本地打开文件</span></span><br><span class="line">ftp.retrbinaly(<span class="string">"RETR filename.txt"</span>,file_handle,bufsize) <span class="comment">#接收服务器上文件并写入本地文件</span></span><br><span class="line">ftp.set_debuglevel(<span class="number">0</span>)             <span class="comment">#关闭调试模式</span></span><br><span class="line">ftp.quit()                        <span class="comment">#退出ftp</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># ftp相关命令操作</span></span><br><span class="line">ftp.cwd(pathname)                 <span class="comment">#设置FTP当前操作的路径</span></span><br><span class="line">ftp.dir()                         <span class="comment">#显示目录下所有目录信息</span></span><br><span class="line">ftp.nlst()                        <span class="comment">#获取目录下的文件</span></span><br><span class="line">ftp.mkd(pathname)                 <span class="comment">#新建远程目录</span></span><br><span class="line">ftp.pwd()                         <span class="comment">#返回当前所在位置</span></span><br><span class="line">ftp.rmd(dirname)                  <span class="comment">#删除远程目录</span></span><br><span class="line">ftp.delete(filename)              <span class="comment">#删除远程文件</span></span><br><span class="line">ftp.rename(fromname, toname)<span class="comment">#将fromname修改名称为toname。</span></span><br><span class="line">ftp.storbinary(<span class="string">"STOR filename.txt"</span>,file_content,bufsize)  <span class="comment">#上传目标文件</span></span><br><span class="line">ftp.retrbinary(<span class="string">"RETR filename.txt"</span>,file_content,bufsize)  <span class="comment">#下载FTP文件</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-2-ftp上传或下载文件-目录"><a href="#3-2-ftp上传或下载文件-目录" class="headerlink" title="3.2 ftp上传或下载文件/目录"></a>3.2 ftp上传或下载文件/目录</h3><h2 id="4-os模块"><a href="#4-os模块" class="headerlink" title="4.os模块"></a>4.os模块</h2><p>记下常用的os模块的操作指令</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>os.getcwd()</td>
+<td align="center">获取当前工作目录，即当前python脚本工作的目录路径,相当于shell的pwd</td>
+</tr>
+<tr>
+<td>os.chdir(“dirname”)</td>
+<td align="center">改变当前脚本工作目录；相当于shell下cd</td>
+</tr>
+<tr>
+<td>os.curdir</td>
+<td align="center">返回当前目录: (‘.’)</td>
+</tr>
+<tr>
+<td>os.pardir</td>
+<td align="center">获取当前目录的父目录字符串名：(‘..’)</td>
+</tr>
+<tr>
+<td>os.makedirs(‘dirname1/dirname2’)</td>
+<td align="center">可生成多层递归目录</td>
+</tr>
+<tr>
+<td>os.removedirs(‘dirname1’)</td>
+<td align="center">若目录为空，则删除，并递归到上一级目录，如若也为空，则删除，依此类推</td>
+</tr>
+<tr>
+<td>os.mkdir(‘dirname’)</td>
+<td align="center">生成单级目录；相当于shell中mkdir dirname</td>
+</tr>
+<tr>
+<td>os.rmdir(‘dirname’)</td>
+<td align="center">删除单级空目录，若目录不为空则无法删除，报错；相当于shell中rmdir dirname</td>
+</tr>
+<tr>
+<td>os.listdir(‘dirname’)</td>
+<td align="center">列出指定目录下的所有文件和子目录，包括隐藏文件，并以列表方式打印</td>
+</tr>
+<tr>
+<td>os.remove()</td>
+<td align="center">删除一个文件</td>
+</tr>
+<tr>
+<td>os.rename(“oldname”,”newname”)</td>
+<td align="center">重命名文件/目录</td>
+</tr>
+<tr>
+<td>os.stat(‘path/filename’)</td>
+<td align="center">获取文件/目录信息</td>
+</tr>
+<tr>
+<td>os.name</td>
+<td align="center">输出字符串指示当前使用平台。win-&gt;’nt’; Linux-&gt;’posix’</td>
+</tr>
+<tr>
+<td>os.system(“执行的命令”)</td>
+<td align="center">运行shell命令，直接显示,相当于直接在cmd命令中执行</td>
+</tr>
+<tr>
+<td>os.environ</td>
+<td align="center">获取系统环境变量</td>
+</tr>
+<tr>
+<td>os.path.abspath(path)</td>
+<td align="center">返回path规范化的绝对路径</td>
+</tr>
+<tr>
+<td>os.path.split(path)</td>
+<td align="center">将path分割成目录和文件名二元组返回</td>
+</tr>
+<tr>
+<td>os.path.dirname(path)</td>
+<td align="center">返回path的目录。其实就是os.path.split(path)的第一个元素</td>
+</tr>
+<tr>
+<td>os.path.basename(path)</td>
+<td align="center">返回path最后的文件名。如何path以／或\结尾，那么就会返回空值。即os.path.split(path)的第二个元素</td>
+</tr>
+<tr>
+<td>os.path.exists(path/file)</td>
+<td align="center">如果路径或文件存在，返回True；如果path不存在，返回False</td>
+</tr>
+<tr>
+<td>os.path.isabs(path)</td>
+<td align="center">如果path是绝对路径，返回True</td>
+</tr>
+<tr>
+<td>os.path.isfile(path)</td>
+<td align="center">如果path是一个存在的文件，返回True。否则返回False</td>
+</tr>
+<tr>
+<td>os.path.join(path1,path2,…,pathn)</td>
+<td align="center">将多个路径组合后返回</td>
+</tr>
+</tbody></table>
+<p>简要样例说明：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; os.path.split(&quot;/Users/hqs/PycharmProjects/startMyPython3.0&quot;)             </span><br><span class="line">(&apos;/Users/hqs/PycharmProjects&apos;, &apos;startMyPython3.0&apos;)</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; os.path.dirname(&apos;/Users/hqs/PycharmProjects/startMyPython3.0&apos;)</span><br><span class="line">&apos;/Users/hqs/PycharmProjects&apos;</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;os.system(&quot;ping 127.0.0.1&quot;)</span><br><span class="line">正在 Ping 127.0.0.1 具有 32 字节的数据:</span><br><span class="line">来自 127.0.0.1 的回复: 字节=32 时间&lt;1ms TTL=64</span><br><span class="line">来自 127.0.0.1 的回复: 字节=32 时间&lt;1ms TTL=64</span><br><span class="line">来自 127.0.0.1 的回复: 字节=32 时间&lt;1ms TTL=64</span><br><span class="line">来自 127.0.0.1 的回复: 字节=32 时间&lt;1ms TTL=64</span><br><span class="line"></span><br><span class="line">127.0.0.1 的 Ping 统计信息:</span><br><span class="line">    数据包: 已发送 = 4，已接收 = 4，丢失 = 0 (0% 丢失)，</span><br><span class="line">往返行程的估计时间(以毫秒为单位):</span><br><span class="line">    最短 = 0ms，最长 = 0ms，平均 = 0ms</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;os.path.abspath(__file__) </span><br><span class="line">当前文件的绝对路径</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;os.path.dirname(os.path.abspath(__file__))</span><br><span class="line">当前文件的上一层目录的绝对路径</span><br><span class="line"></span><br><span class="line">os.path.dirname(os.path.dirname(os.path.abspath(__file__)))</span><br><span class="line">当前文件的上上层目录的绝对路径</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>2.添加的数据的格式必须为元组型列表或元组型元组:list[tuple(),tuple(),tuple()]或者tuple(tuple(),tuple(),tuple())例如</p>
-</blockquote>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">values</span>=[(<span class="number">1</span>,<span class="string">"zhangsan"</span>),(<span class="number">2</span>,<span class="string">"lisi"</span>)]</span><br><span class="line"><span class="comment">#或者</span></span><br><span class="line"><span class="keyword">values</span>=((<span class="number">1</span>,<span class="string">"zhangsan"</span>),(<span class="number">2</span>,<span class="string">"lisi"</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="5-datetime模块"><a href="#5-datetime模块" class="headerlink" title="5 datetime模块"></a>5 <a href="https://blog.csdn.net/qq_24753293/article/details/80954840" target="_blank" rel="noopener">datetime模块</a></h2><p>1.datetime.date：表示日期的类<br>2.datetime.datetime：表示日期时间的类<br>3.datetime.time：表示时间的类<br>4.datetime.timedelta：表示时间间隔，即两个时间点的间隔<br>5.datetime.tzinfo：时区的相关信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;datetime.datetime.now()</span><br><span class="line">当前系统时间：datetime.datetime(2019, 12, 3, 20, 31, 10, 740869)</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;datetime.datetime.now().year/month/day</span><br><span class="line">分别为：2019，12，3</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;datetime.datetime.now().weekday()</span><br><span class="line">1 表示在第几周</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;time1 = datetime.datetime(2016, 10, 20)</span><br><span class="line">&gt;&gt;&gt;time2 = datetime.datetime(2015, 11, 2)</span><br><span class="line"> </span><br><span class="line">&quot;&quot;&quot;计算天数差值&quot;&quot;&quot;</span><br><span class="line">print(time1-time2).days</span><br><span class="line"> </span><br><span class="line">&quot;&quot;&quot;计算两个日期之间相隔的秒数&quot;&quot;&quot;</span><br><span class="line">print (time1-time2).total_seconds()</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>3.最后通过executemany插入</p>
-</blockquote>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cursor.executemany(sql,<span class="keyword">values</span>)</span><br><span class="line">cursor.commit()</span><br></pre></td></tr></table></figure>
+
+
       </div>
       
         <br>
@@ -521,7 +617,7 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-03T10:09:28+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-03T20:37:58+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
     <p>更新于 2019年12月3日</p>
@@ -548,7 +644,7 @@
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=http://ahrilove.top/2019/11/29/python(%E4%BA%8C)%E5%B8%B8%E8%A7%81%E5%BA%93%E5%87%BD%E6%95%B0/&title=Python全栈系列章节更新（二）：常见库模块 | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等
 
-1.time模块2.DBUtils管理数据库连接池
+1.time模块2.DBUtils管理数据库连接池3.ftplib模块4.os模块5.datetime模块
 "
           
           >
@@ -563,7 +659,7 @@
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://ahrilove.top/2019/11/29/python(%E4%BA%8C)%E5%B8%B8%E8%A7%81%E5%BA%93%E5%87%BD%E6%95%B0/&title=Python全栈系列章节更新（二）：常见库模块 | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等
 
-1.time模块2.DBUtils管理数据库连接池
+1.time模块2.DBUtils管理数据库连接池3.ftplib模块4.os模块5.datetime模块
 "
           
           >
@@ -578,7 +674,7 @@
           
           href="http://service.weibo.com/share/share.php?url=http://ahrilove.top/2019/11/29/python(%E4%BA%8C)%E5%B8%B8%E8%A7%81%E5%BA%93%E5%87%BD%E6%95%B0/&title=Python全栈系列章节更新（二）：常见库模块 | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等
 
-1.time模块2.DBUtils管理数据库连接池
+1.time模块2.DBUtils管理数据库连接池3.ftplib模块4.os模块5.datetime模块
 "
           
           >
@@ -801,7 +897,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-time模块"><span class="toc-text">1.time模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Unix时间戳转与时间的转换"><span class="toc-text">Unix时间戳转与时间的转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#按指定的格式获取当前时间"><span class="toc-text">按指定的格式获取当前时间</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-DBUtils管理数据库连接池"><span class="toc-text">2.DBUtils管理数据库连接池</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-连接池原理"><span class="toc-text">2.1 连接池原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-多线程（连接池）操作MySQL插入数据"><span class="toc-text">2.2 多线程（连接池）操作MySQL插入数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-python的数据库连接模块的execute-与executemany"><span class="toc-text">3.python的数据库连接模块的execute()与executemany()</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-time模块"><span class="toc-text">1.time模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Unix时间戳转与时间的转换"><span class="toc-text">Unix时间戳转与时间的转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#按指定的格式获取当前时间"><span class="toc-text">按指定的格式获取当前时间</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-DBUtils管理数据库连接池"><span class="toc-text">2.DBUtils管理数据库连接池</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-连接池原理"><span class="toc-text">2.1 连接池原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-多线程（连接池）操作MySQL插入数据"><span class="toc-text">2.2 多线程（连接池）操作MySQL插入数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-ftplib操作ftp实现上传和下载的"><span class="toc-text">3.ftplib操作ftp实现上传和下载的</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-ftp登陆连接"><span class="toc-text">3.1 ftp登陆连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-ftp上传或下载文件-目录"><span class="toc-text">3.2 ftp上传或下载文件/目录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-os模块"><span class="toc-text">4.os模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-datetime模块"><span class="toc-text">5 datetime模块</span></a></li></ol>
     </div>
   </section>
 
