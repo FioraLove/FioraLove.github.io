@@ -141,7 +141,7 @@ var SearchService = "";
     };
 
     /**
-     * Close the modal, resume body scrolling
+     * Close the modal, game body scrolling
      * no param
      */
     self.close = function() {
