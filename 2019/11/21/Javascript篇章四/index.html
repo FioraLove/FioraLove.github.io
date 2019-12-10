@@ -450,8 +450,16 @@
 <p>map/reduce函数，与python的map，reduce作用相同</p>
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>];</span><br><span class="line"><span class="keyword">var</span> results = arr.map(pow); <span class="comment">// [1, 4, 9, 16, 25, 36, 49, 64, 81]</span></span><br><span class="line"><span class="comment">// 对于reduce函数：函数必须接收两个参数，reduce()把结果继续和序列的下一个元素做累积计算</span></span><br><span class="line">[x1, x2, x3, x4].reduce(f) = f(f(f(x1, x2), x3), x4)</span><br></pre></td></tr></table></figure>
-
-
+<blockquote>
+<p>instanceof关键字</p>
+</blockquote>
+<p>这个关键字的用法是：A instanceof B ，返回值为boolean类型。用来判断A是否是B的实例对象或者B子类的实例对象。如果是则返回true,否则返回false</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Man是Person的子类</span></span><br><span class="line">p = <span class="keyword">new</span> Person() ; <span class="comment">//</span></span><br><span class="line">m = <span class="keyword">new</span> Man() ; </span><br><span class="line">a = <span class="keyword">new</span> Animal() ;</span><br><span class="line">m <span class="keyword">instanceof</span> Man <span class="comment">//返回true</span></span><br><span class="line">m <span class="keyword">instanceof</span> Animal<span class="comment">//返回false</span></span><br><span class="line">m <span class="keyword">instanceof</span> Person<span class="comment">//返回true</span></span><br></pre></td></tr></table></figure>
+<h4 id="面向对象编程"><a href="#面向对象编程" class="headerlink" title="面向对象编程"></a>面向对象编程</h4><blockquote>
+<p>构造函数</p>
+</blockquote>
+<p>构造函数与普通函数的区别就是调用方式不同：普通函数是直接调用，而构造函数需要使用new关键字来调用<br>PS:构造函数的函数名一般默认首字母大写；构造函数里可以使用this;<a href="http://ahrilove.top/2019/12/03/python的executemany方法/">参考：本质与python的构造函数相同</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name=name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">    <span class="keyword">this</span>.sayHi = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(<span class="keyword">this</span>.name)  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 创建一个对象per</span></span><br><span class="line"><span class="keyword">var</span> per = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="built_in">console</span>.log(per);</span><br></pre></td></tr></table></figure>
 
 
       </div>
@@ -464,7 +472,7 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-10T09:36:26+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-10T20:33:22+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
     <p>更新于 2019年12月10日</p>
@@ -735,7 +743,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-条件判断以及prompt-方法"><span class="toc-text">1.条件判断以及prompt() 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-循环"><span class="toc-text">2.循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-return终止函数"><span class="toc-text">3. return终止函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Map与Set运用"><span class="toc-text">4.Map与Set运用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Map是一组键值对的结构，具有很快的查找速度"><span class="toc-text">Map是一组键值对的结构，具有很快的查找速度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Set"><span class="toc-text">Set()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#全局作用域"><span class="toc-text">全局作用域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#高阶函数"><span class="toc-text">高阶函数</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-条件判断以及prompt-方法"><span class="toc-text">1.条件判断以及prompt() 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-循环"><span class="toc-text">2.循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-return终止函数"><span class="toc-text">3. return终止函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Map与Set运用"><span class="toc-text">4.Map与Set运用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Map是一组键值对的结构，具有很快的查找速度"><span class="toc-text">Map是一组键值对的结构，具有很快的查找速度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Set"><span class="toc-text">Set()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#全局作用域"><span class="toc-text">全局作用域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#高阶函数"><span class="toc-text">高阶函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#面向对象编程"><span class="toc-text">面向对象编程</span></a></li></ol></li></ol>
     </div>
   </section>
 
