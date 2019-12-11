@@ -68,7 +68,7 @@
     <cover class='cover post half'>
       
         
-  <h1 class='title'>AhriLove</h1>
+  <img class='logo' src='https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imagesaaa.png'/>
 
 
   <div class="m_search">
@@ -409,8 +409,7 @@
 
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-<a id="more"></a>
+        <a id="more"></a>
 <h3 id="1-条件判断以及prompt-方法"><a href="#1-条件判断以及prompt-方法" class="headerlink" title="1.条件判断以及prompt() 方法"></a>1.条件判断以及prompt() 方法</h3><p>多条件判断：if…else if…else if…else<br>prompt(text,defaultText)方法用于显示可提示用户进行输入的对话框（即输入数据）,参数一表示提示文本，参数二表示默认值<br>var name=prompt(“Please enter your name”,”ritian zhao”)</p>
 <h3 id="2-循环"><a href="#2-循环" class="headerlink" title="2.循环"></a>2.循环</h3><ol>
 <li>for(i=1;i&lt;=1000;i++){}</li>
@@ -446,6 +445,26 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s.add(<span class="number">4</span>);</span><br><span class="line">s; <span class="comment">// Set &#123;1, 2, 3, 4&#125;</span></span><br><span class="line">s.add(<span class="number">4</span>);</span><br><span class="line">s; <span class="comment">// 仍然是 Set &#123;1, 2, 3, 4&#125;</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="全局作用域"><a href="#全局作用域" class="headerlink" title="全局作用域"></a>全局作用域</h4><p>1.不在任何函数内定义的变量就具有全局作用域，实际上，JavaScript默认有一个全局对象window，全局作用域的变量实际上被绑定到window的一个属性。<br>window.属性/window.方法<br>2.ES6引入了新的关键字let，用let替代var可以申明一个块级作用域的变量<br>3.ES6标准引入了新的关键字const来定义常量，const与let都具有块级作用域</p>
+<p>浏览器对象：window,navigator,screen,Location，document</p>
+<blockquote>
+<p>window对象不仅充当全局作用域，而且表示浏览器的窗口</p>
+</blockquote>
+<p>window.innerWidth和window.innerHeight<br>windows.outerWidth和outerHeight属性，可以获取浏览器窗口的整个宽高</p>
+<blockquote>
+<p>navigator对象表示浏览器信息</p>
+</blockquote>
+<p>navigator.appName：浏览器名称；<br>navigator.appVersion：浏览器版本；<br>navigator.language：浏览器设置的语言；<br>navigator.platform：操作系统类型；<br>navigator.userAgent：浏览器设定的User-Agent字符串</p>
+<blockquote>
+<p>screen表示屏幕信息</p>
+</blockquote>
+<p>screen.width：屏幕宽度，以像素为单位；<br>screen.height：屏幕高度，以像素为单位；<br>screen.colorDepth：返回颜色位数，如8、16、24。</p>
+<blockquote>
+<p>Location对象表示当前页面的URL信息</p>
+</blockquote>
+<p>location.protocol; // ‘http’<br>location.host; // ‘<a href="http://www.example.com&#39;" target="_blank" rel="noopener">www.example.com&#39;</a><br>location.port; // ‘8080’<br>location.pathname; // ‘/path/index.html’<br>location.search; // ‘?a=1&amp;b=2’<br>location.hash; // ‘TOP’<br>location.href 获取完整url<br>location.assign()：加载一个新页面，可以调用<br>location.reload()：如果要重新加载当前页面</p>
+<blockquote>
+<p>document对象表示当前页面</p>
+</blockquote>
 <h4 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h4><blockquote>
 <p>map/reduce函数，与python的map，reduce作用相同</p>
 </blockquote>
@@ -455,6 +474,18 @@
 </blockquote>
 <p>这个关键字的用法是：A instanceof B ，返回值为boolean类型。用来判断A是否是B的实例对象或者B子类的实例对象。如果是则返回true,否则返回false</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Man是Person的子类</span></span><br><span class="line">p = <span class="keyword">new</span> Person() ; <span class="comment">//</span></span><br><span class="line">m = <span class="keyword">new</span> Man() ; </span><br><span class="line">a = <span class="keyword">new</span> Animal() ;</span><br><span class="line">m <span class="keyword">instanceof</span> Man <span class="comment">//返回true</span></span><br><span class="line">m <span class="keyword">instanceof</span> Animal<span class="comment">//返回false</span></span><br><span class="line">m <span class="keyword">instanceof</span> Person<span class="comment">//返回true</span></span><br></pre></td></tr></table></figure>
+<h4 id="操作表单"><a href="#操作表单" class="headerlink" title="操作表单"></a>操作表单</h4><p>文本框，对应的<input type="text">，用于输入文本；</p>
+<p>口令框，对应的<input type="password">，用于输入口令；</p>
+<p>单选框，对应的<input type="radio">，用于选择一项；</p>
+<p>复选框，对应的<input type="checkbox">，用于选择多项；</p>
+<p>下拉框，对应的<select>，用于选择一项；</p>
+<p>隐藏文本，对应的<input type="hidden">，用户不可见，但表单提交时会把隐藏文本发送到服务器。</p>
+<blockquote>
+<p>获取值</p>
+</blockquote>
+<p>如果我们获得了一个<input>节点的引用，就可以直接调用value获得对应的用户输入值，使用样例：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;变量名.value可以应用于text、password、hidden以及select。但是，对于单选框和复选框，value属性返回的永远是HTML预设的值，而我们需要获得的实际是用户是否“勾上了”选项，所以应该用checked判断：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &lt;label&gt;&lt;input type="radio" name="weekday" id="monday" value="1"&gt; Monday&lt;/label&gt;</span></span><br><span class="line"><span class="comment">// &lt;label&gt;&lt;input type="radio" name="weekday" id="tuesday" value="2"&gt; Tuesday&lt;/label&gt;</span></span><br><span class="line"><span class="keyword">var</span> mon = <span class="built_in">document</span>.getElementById(<span class="string">'monday'</span>);</span><br><span class="line"><span class="keyword">var</span> tue = <span class="built_in">document</span>.getElementById(<span class="string">'tuesday'</span>);</span><br><span class="line">mon.value; <span class="comment">// '1'</span></span><br><span class="line">tue.value; <span class="comment">// '2'</span></span><br><span class="line">mon.checked; <span class="comment">// true或者false</span></span><br><span class="line">tue.checked; <span class="comment">// true或者false</span></span><br></pre></td></tr></table></figure>
+
 <h4 id="面向对象编程"><a href="#面向对象编程" class="headerlink" title="面向对象编程"></a>面向对象编程</h4><blockquote>
 <p>构造函数</p>
 </blockquote>
@@ -472,10 +503,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-10T20:33:22+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-11T16:18:26+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年12月10日</p>
+    <p>更新于 2019年12月11日</p>
   </a>
 </div>
 
@@ -494,7 +525,7 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=http://ahrilove.top/2019/11/21/Javascript%E7%AF%87%E7%AB%A0%E5%9B%9B/&title=Javascript篇章四：快速入门 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://ahrilove.top/2019/11/21/Javascript%E7%AF%87%E7%AB%A0%E5%9B%9B/&title=Javascript篇章四：快速入门 | AhriLove&summary="
           
           >
           
@@ -506,7 +537,7 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://ahrilove.top/2019/11/21/Javascript%E7%AF%87%E7%AB%A0%E5%9B%9B/&title=Javascript篇章四：快速入门 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://ahrilove.top/2019/11/21/Javascript%E7%AF%87%E7%AB%A0%E5%9B%9B/&title=Javascript篇章四：快速入门 | AhriLove&summary="
           
           >
           
@@ -518,7 +549,7 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=http://ahrilove.top/2019/11/21/Javascript%E7%AF%87%E7%AB%A0%E5%9B%9B/&title=Javascript篇章四：快速入门 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+          href="http://service.weibo.com/share/share.php?url=http://ahrilove.top/2019/11/21/Javascript%E7%AF%87%E7%AB%A0%E5%9B%9B/&title=Javascript篇章四：快速入门 | AhriLove&summary="
           
           >
           
@@ -743,7 +774,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-条件判断以及prompt-方法"><span class="toc-text">1.条件判断以及prompt() 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-循环"><span class="toc-text">2.循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-return终止函数"><span class="toc-text">3. return终止函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Map与Set运用"><span class="toc-text">4.Map与Set运用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Map是一组键值对的结构，具有很快的查找速度"><span class="toc-text">Map是一组键值对的结构，具有很快的查找速度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Set"><span class="toc-text">Set()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#全局作用域"><span class="toc-text">全局作用域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#高阶函数"><span class="toc-text">高阶函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#面向对象编程"><span class="toc-text">面向对象编程</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-条件判断以及prompt-方法"><span class="toc-text">1.条件判断以及prompt() 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-循环"><span class="toc-text">2.循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-return终止函数"><span class="toc-text">3. return终止函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Map与Set运用"><span class="toc-text">4.Map与Set运用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Map是一组键值对的结构，具有很快的查找速度"><span class="toc-text">Map是一组键值对的结构，具有很快的查找速度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Set"><span class="toc-text">Set()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#全局作用域"><span class="toc-text">全局作用域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#高阶函数"><span class="toc-text">高阶函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#操作表单"><span class="toc-text">操作表单</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#面向对象编程"><span class="toc-text">面向对象编程</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -1221,17 +1252,17 @@
       $(function(){
         if ('.cover') {
           $('.cover').backstretch(
-          ["https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.2.1/images/background/021.webp"],
+          ["https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.2.1/images/background/021.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(1).jpg.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(8).jpg.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(6).jpg.webp", "https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imageskda.jpg.webp"],
           {
             duration: "6000",
-            fade: "2500"
+            fade: "3000"
           });
         } else {
           $.backstretch(
-          ["https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.2.1/images/background/021.webp"],
+          ["https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.2.1/images/background/021.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(1).jpg.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(8).jpg.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(6).jpg.webp", "https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imageskda.jpg.webp"],
           {
             duration: "6000",
-            fade: "2500"
+            fade: "3000"
           });
         }
       });
