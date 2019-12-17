@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>2020 新年快乐  \﻿ (•◡•) / | AhriLove</title>
+  <title>Vue(二)：生命周期函数 | AhriLove</title>
   
   
 
@@ -319,31 +319,14 @@
 
   <section class='meta'>
     
-      
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
-  <div class="aplayer"
-    data-theme=""
-    data-mini=true 
-    
-    data-mode="circulation"
-    data-server="netease"
-    data-type="song"
-    data-id="395167"
-    data-volume="0.7">
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
-
-
-    
     
     <div class="meta" id="header-meta">
       
         
   
     <h1 class="title">
-      <a href="/2020/01/24/HappyNewYear/">
-        2020 新年快乐  \﻿ (•◡•) /
+      <a href="/2019/12/17/Vue(%E4%BA%8C)/">
+        Vue(二)：生命周期函数
       </a>
     </h1>
   
@@ -374,22 +357,9 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2020-01-24</p>
+    <p>2019-12-17</p>
   </a>
 </div>
-
-          
-        
-          
-            
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/%E9%9A%8F%E7%AC%94/' rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>随笔</p>
-    </a>
-  </div>
-
 
           
         
@@ -426,8 +396,36 @@
 
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
-        <p><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/images2020.jpg" alt=""></fancybox></p>
+        <blockquote>
+<p><font size=4 color=#FF0000>本文要点：</font><br>1.生命周期函数<br>2.Watch方法<br>3.计算属性computed</p>
+</blockquote>
 <a id="more"></a>
+
+<h3 id="1-生命周期函数（与el，data，methods，computed等等同级）"><a href="#1-生命周期函数（与el，data，methods，computed等等同级）" class="headerlink" title="1.生命周期函数（与el，data，methods，computed等等同级）"></a>1.生命周期函数（与el，data，methods，computed等等同级）</h3><blockquote>
+<p>创建阶段</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1.beforeCreate():表示实例完全被创建时，会执行它</span><br><span class="line">    /ps：在beforCreate生命周期函数执行时，data和methods中的数据均未被初始化</span><br><span class="line"></span><br><span class="line">2.created():在created中，data与methods都已经被实例化了，</span><br><span class="line"></span><br><span class="line">3.beforeMount(): 表示模板已经在内存中编译好了，只是未渲染到真正要展示的页面上</span><br><span class="line"></span><br><span class="line">4.mounted():是实例创建期间最后一个生命周期函数，当执行完mounted就表示，实例已经完全创建好了，</span><br><span class="line">            此时，如果没有其它操作的话，这个实例就静静地躺在内存中</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>组件运行阶段：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.beforeUpdate(): 表示我们的界面还没有更新，但数据肯定被更新了 </span><br><span class="line">        结论：运行beforeUpdate，页面上显示的数据还没有被更新，但数据已经更新了，页面与数据更新不同步</span><br><span class="line"></span><br><span class="line">2.updated():页面都data数据已经保持同步了，都是最新的</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>销毁过程</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.beforeDestroy：Vue示例已经从运行阶段，进入到销毁阶段，实例身上的所有data，methods以及过滤器，指令都处于可用状态，未执行真正的销毁动作</span><br><span class="line"></span><br><span class="line">2.destroyed：组件已经完全销毁了，一切data，方法，指令，过滤器均不可使用</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-Watch属性"><a href="#2-Watch属性" class="headerlink" title="2.Watch属性"></a>2.Watch属性</h3><p>Watch，可以监听data属性域中的数据变化，主要有handler方法，immediate属性，deep属性<br>handler方法就是你watch中需要具体执行的方法；<br>immediate为true时则立即触发回调函数；如果为false，则和上面的例子一样，不会立即执行回调<br>deep顾名思义就是深入监听，也就是在对象中层层遍历，并在监听对象上的每一个属性上都添加监听，固然也会损耗性能</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">    orgBarChartData: &#123;      <span class="comment">//  监听的目标属性</span></span><br><span class="line">        handler(newVal,oldVal)&#123;</span><br><span class="line">            <span class="keyword">this</span>.renderOrgBarChart();       <span class="comment">//重设图表，这两个都是动作体</span></span><br><span class="line">            <span class="keyword">this</span>.orgBarChart.resize();     <span class="comment">//重新设置图表高宽</span></span><br><span class="line">        &#125;,</span><br><span class="line">        deep: <span class="literal">true</span>  <span class="comment">// deep:true </span></span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-methods与computed的区别："><a href="#3-methods与computed的区别：" class="headerlink" title="3.methods与computed的区别："></a>3.methods与computed的区别：</h3><blockquote>
+<p>computed 和 methods虽然都可以实现对数据的计算,但两者有一定的区别:</p>
+</blockquote>
+<p> methods:使用methods方法可以接受外部传参,使用更加灵活;computed:计算属性computed的亮点在于:它能够依赖缓存当计算属性所依赖的数据发生改变时,才会重新触发计算属性方法执行所以对于较复杂或消耗效率的计算,一定要采用计算属性。<br>计算属性computed里面也可以写函数，并且调用函数时使用的mustache语法不用加括号，案例如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">    &lt;!--这里的mustache语法调用函数时没有声明括号---&gt;</span><br><span class="line">    &lt;p&gt;&#123;&#123;fullName&#125;&#125;&lt;<span class="regexp">/p&gt;  </span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line">&lt;script &gt;</span><br><span class="line">    <span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">        el: <span class="string">'#app'</span>,</span><br><span class="line">        data:&#123;</span><br><span class="line">            firstName:<span class="string">"浩东"</span>,</span><br><span class="line">            lastName:<span class="string">"陈"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        computed:&#123;</span><br><span class="line">            fullname () &#123;</span><br><span class="line">              <span class="keyword">return</span> <span class="keyword">this</span>.lastName+<span class="keyword">this</span>.firstName;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        methods:&#123;&#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>使用methods的方法,每次页面刷新都会触发方法的执行而使用计算属性,只要依赖的数据没有变化,就会直接从缓存中读取结果,不需要重新计算,这种做法可以提升效率更可以带来更好的用户体验</p>
+
       </div>
       
         <br>
@@ -438,17 +436,12 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-16T09:53:42+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-17T11:17:16+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年12月16日</p>
+    <p>更新于 2019年12月17日</p>
   </a>
 </div>
-
-        
-      
-        
-          
 
         
       
@@ -460,7 +453,9 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=http://ahrilove.top/2020/01/24/HappyNewYear/&title=2020 新年快乐  \﻿ (•◡•) / | AhriLove&summary="
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://ahrilove.top/2019/12/17/Vue(%E4%BA%8C)/&title=Vue(二)：生命周期函数 | AhriLove&summary=
+本文要点：1.生命周期函数2.Watch方法3.计算属性computed
+"
           
           >
           
@@ -472,7 +467,9 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://ahrilove.top/2020/01/24/HappyNewYear/&title=2020 新年快乐  \﻿ (•◡•) / | AhriLove&summary="
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://ahrilove.top/2019/12/17/Vue(%E4%BA%8C)/&title=Vue(二)：生命周期函数 | AhriLove&summary=
+本文要点：1.生命周期函数2.Watch方法3.计算属性computed
+"
           
           >
           
@@ -484,7 +481,9 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=http://ahrilove.top/2020/01/24/HappyNewYear/&title=2020 新年快乐  \﻿ (•◡•) / | AhriLove&summary="
+          href="http://service.weibo.com/share/share.php?url=http://ahrilove.top/2019/12/17/Vue(%E4%BA%8C)/&title=Vue(二)：生命周期函数 | AhriLove&summary=
+本文要点：1.生命周期函数2.Watch方法3.计算属性computed
+"
           
           >
           
@@ -508,21 +507,35 @@
       
           <div class="prev-next">
               
+                  <section class="prev">
+                      <span class="art-item-left">
+                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                          <h4>
+                              <a href="/2020/01/24/HappyNewYear/" rel="prev" title="2020 新年快乐  \﻿ (•◡•) /">
+                                
+                                    2020 新年快乐  \﻿ (•◡•) /
+                                
+                              </a>
+                          </h4>
+                          
+                      </span>
+                  </section>
+              
               
                   <section class="next">
                       <span class="art-item-right" aria-hidden="true">
                           <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                           <h4>
-                              <a href="/2019/12/17/Vue(%E4%BA%8C)/" rel="prev" title="Vue(二)：生命周期函数">
+                              <a href="/2019/12/15/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AB%A0%E8%8A%82%EF%BC%88%E4%B8%80%EF%BC%89/" rel="prev" title="数据分析章节（一）：初始数学之美">
                                   
-                                      Vue(二)：生命周期函数
+                                      数据分析章节（一）：初始数学之美
                                   
                               </a>
                           </h4>
                           
                               
                               <h6 class="tags">
-                                  <a class="tag" href="/tags/Vue/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Vue</a>
+                                  <a class="tag" href="/tags/python/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> python</a> <a class="tag" href="/tags/numpy/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> numpy</a>
                               </h6>
                           
                       </span>
@@ -566,7 +579,7 @@
 
   <script>
     window.subData = {
-      title: '2020 新年快乐  \﻿ (•◡•) /',
+      title: 'Vue(二)：生命周期函数',
       tools: true
     }
   </script>
@@ -680,6 +693,20 @@
           
             
               
+  <section class='widget toc-wrapper'>
+    
+<header class='material'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目录</div>
+  
+    <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
+  
+</header>
+
+    <div class='content material'>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-生命周期函数（与el，data，methods，computed等等同级）"><span class="toc-text">1.生命周期函数（与el，data，methods，computed等等同级）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Watch属性"><span class="toc-text">2.Watch属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-methods与computed的区别："><span class="toc-text">3.methods与computed的区别：</span></a></li></ol>
+    </div>
+  </section>
+
 
             
           
