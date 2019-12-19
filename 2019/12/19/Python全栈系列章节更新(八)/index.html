@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>兄弟萌！枯啦，要恰不了饭了 | AhriLove</title>
+  <title>Python全栈系列章节更新（八）：js逆向爬虫的奇技淫巧 | AhriLove</title>
   
   
 
@@ -325,8 +325,8 @@
         
   
     <h1 class="title">
-      <a href="/2019/12/08/%E6%81%B0%E9%A5%AD%E5%8D%B1%E6%9C%BA/">
-        兄弟萌！枯啦，要恰不了饭了
+      <a href="/2019/12/19/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E5%85%AB)/">
+        Python全栈系列章节更新（八）：js逆向爬虫的奇技淫巧
       </a>
     </h1>
   
@@ -341,9 +341,9 @@
             
   <div class='new-meta-item author'>
     
-      <a href="https://ahrilove.top" rel="nofollow">
+      <a href="/" rel="nofollow">
         
-          <i class="fas fa-user" aria-hidden="true"></i>
+          <img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imagesNaruto.jpg">
         
         <p>AhriLove</p>
       </a>
@@ -357,7 +357,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-12-08</p>
+    <p>2019-12-19</p>
   </a>
 </div>
 
@@ -367,9 +367,9 @@
             
   
   <div class='new-meta-item category'>
-    <a href='/categories/%E9%9A%8F%E7%AC%94/' rel="nofollow">
+    <a href='/categories/Python/' rel="nofollow">
       <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>随笔</p>
+      <p>Python</p>
     </a>
   </div>
 
@@ -409,11 +409,28 @@
 
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;兄弟萌，怎么办？我要枯啦，要恰不了饭了，要吃红牌出场了</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在的反爬措施越来越复杂，一些常见的反爬措施有Headers and referer反爬机制、语音动作识别、各种变态二维码（12306）、字符js加密、Ajax动态加载、模拟登录和cookie限制。。。</p>
+<blockquote>
+<p>目标网站：<a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">微信公众平台</a><br>反爬机制：<font color=#d71345>用户名不变，密码加密</font><br>相关技术：selenium，requests，execjs<br>技术难度：<font color=#d71345>★★☆☆☆☆</font><br>爬取目标：模拟登陆公共号，获取页面的所有信息<br>源代码：<br>说明：第一次玩js逆向爬虫，如有不足，多多指教</p>
+</blockquote>
 <a id="more"></a>
-
-<p>最近一直没有什么活干，每天就是混吃等死，建彬哥说也没有什么我能做的项目，呀！糟了呀，以前一直打趣说“你有你的好果子吃”，现在才明白过来，原来是我才没有好果子吃。<br>而且就目前的市场和我最近咸鱼，我也感觉我要直接吃红牌了，看不到生活的希望（55555。。。）<br>算了吧！！走一步算一步，做好心理准备，每天使劲多学一些，也不至于打包回家的时候那么狼狈，现在回想起来，15年做决定的时候是不是选对了？是当时脑瘫了？</p>
-
+<h3 id="1-分析js，找到目标接口函数"><a href="#1-分析js，找到目标接口函数" class="headerlink" title="1.分析js，找到目标接口函数"></a>1.分析js，找到目标接口函数</h3><p>F12打开 开发者工具, 按照一般逻辑步骤，先输入一个错误账号密码，找到真正的入口接口函数,案例如下：<br><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/images20191219154415.png" alt=""></fancybox><br>继续向下翻动，我们可以看到请求参数表单数据的pwd密码是明显经过加密的<br><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/images20191219154530.png" alt=""></fancybox></p>
+<h3 id="2-破解"><a href="#2-破解" class="headerlink" title="2.破解"></a>2.破解</h3><p>在Search功能栏下搜索pwd 很快可以定位到以下代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">_loginPost: <span class="function"><span class="keyword">function</span>(<span class="params">e, i</span>) </span>&#123;</span><br><span class="line">    n.post(&#123;</span><br><span class="line">        url: i.url,</span><br><span class="line">        data: &#123;</span><br><span class="line">            username: i.account,</span><br><span class="line">            pwd: o(i.pwd.substr(<span class="number">0</span>, <span class="number">16</span>)), <span class="comment">// 关键代码</span></span><br><span class="line">            imgcode: i.verify,</span><br><span class="line">            f: <span class="string">"json"</span>,</span><br><span class="line">            userlang: i.currentLang,</span><br><span class="line">            redire</span><br></pre></td></tr></table></figure>
+<p>我们在pwd: o(i.pwd.substr(0, 16))行处下断点。然后步入进去.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">t.exports = <span class="function"><span class="keyword">function</span>(<span class="params">n, r, t</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> r ? t ? c(r, n) : <span class="function"><span class="keyword">function</span>(<span class="params">n, r</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> e(c(n, r))</span><br><span class="line">    &#125;(r, n) : t ? o(n) : <span class="function"><span class="keyword">function</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> e(o(n)) <span class="comment">// *****</span></span><br><span class="line">    &#125;(n)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>继续步入一次，代码最后会走到我标****的地方。这就是我们需要的关键函数,扣代码吧。</p>
+<p>扣下代码。然后自己编写一个Js function</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">JsKiller</span>(<span class="params">pwd</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> e(o(pwd));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>js逆向加密源代码：pwd.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">d</span>(<span class="params">n, r</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> t = (<span class="number">65535</span> &amp; n) + (<span class="number">65535</span> &amp; r);</span><br><span class="line">    <span class="keyword">return</span> (n &gt;&gt; <span class="number">16</span>) + (r &gt;&gt; <span class="number">16</span>) + (t &gt;&gt; <span class="number">16</span>) &lt;&lt; <span class="number">16</span> | <span class="number">65535</span> &amp; t</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">n, r, t, e, u, o</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> d(<span class="function"><span class="keyword">function</span> (<span class="params">n, r</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> n &lt;&lt; r | n &gt;&gt;&gt; <span class="number">32</span> - r</span><br><span class="line">    &#125;(d(d(r, n), d(e, o)), u), t)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">g</span>(<span class="params">n, r, t, e, u, o, c</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> f(r &amp; t | ~r &amp; e, n, r, u, o, c)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">l</span>(<span class="params">n, r, t, e, u, o, c</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> f(r &amp; e | t &amp; ~e, n, r, u, o, c)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">v</span>(<span class="params">n, r, t, e, u, o, c</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> f(r ^ t ^ e, n, r, u, o, c)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">s</span>(<span class="params">n, r, t, e, u, o, c</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> f(t ^ (r | ~e), n, r, u, o, c)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">i</span>(<span class="params">n, r</span>) </span>&#123;</span><br><span class="line">    n[r &gt;&gt; <span class="number">5</span>] |= <span class="number">128</span> &lt;&lt; r % <span class="number">32</span>;</span><br><span class="line">        n[<span class="number">14</span> + (r + <span class="number">64</span> &gt;&gt;&gt; <span class="number">9</span> &lt;&lt; <span class="number">4</span>)] = r;</span><br><span class="line">    <span class="keyword">var</span> t, e, u, o, c, f = <span class="number">1732584193</span>, i = <span class="number">-271733879</span>, a = <span class="number">-1732584194</span>, h = <span class="number">271733878</span>;</span><br><span class="line">    <span class="keyword">for</span> (t = <span class="number">0</span>; t &lt; n.length; t += <span class="number">16</span>)</span><br><span class="line">        i = s(i = s(i = s(i = s(i = v(i = v(i = v(i = v(i = l(i = l(i = l(i = l(i = g(i = g(i = g(i = g(u = i, a = g(o = a, h = g(c = h, f = g(e = f, i, a, h, n[t], <span class="number">7</span>, <span class="number">-680876936</span>), i, a, n[t + <span class="number">1</span>], <span class="number">12</span>, <span class="number">-389564586</span>), f, i, n[t + <span class="number">2</span>], <span class="number">17</span>, <span class="number">606105819</span>), h, f, n[t + <span class="number">3</span>], <span class="number">22</span>, <span class="number">-1044525330</span>), a = g(a, h = g(h, f = g(f, i, a, h, n[t + <span class="number">4</span>], <span class="number">7</span>, <span class="number">-176418897</span>), i, a, n[t + <span class="number">5</span>], <span class="number">12</span>, <span class="number">1200080426</span>), f, i, n[t + <span class="number">6</span>], <span class="number">17</span>, <span class="number">-1473231341</span>), h, f, n[t + <span class="number">7</span>], <span class="number">22</span>, <span class="number">-45705983</span>), a = g(a, h = g(h, f = g(f, i, a, h, n[t + <span class="number">8</span>], <span class="number">7</span>, <span class="number">1770035416</span>), i, a, n[t + <span class="number">9</span>], <span class="number">12</span>, <span class="number">-1958414417</span>), f, i, n[t + <span class="number">10</span>], <span class="number">17</span>, <span class="number">-42063</span>), h, f, n[t + <span class="number">11</span>], <span class="number">22</span>, <span class="number">-1990404162</span>), a = g(a, h = g(h, f = g(f, i, a, h, n[t + <span class="number">12</span>], <span class="number">7</span>, <span class="number">1804603682</span>), i, a, n[t + <span class="number">13</span>], <span class="number">12</span>, <span class="number">-40341101</span>), f, i, n[t + <span class="number">14</span>], <span class="number">17</span>, <span class="number">-1502002290</span>), h, f, n[t + <span class="number">15</span>], <span class="number">22</span>, <span class="number">1236535329</span>), a = l(a, h = l(h, f = l(f, i, a, h, n[t + <span class="number">1</span>], <span class="number">5</span>, <span class="number">-165796510</span>), i, a, n[t + <span class="number">6</span>], <span class="number">9</span>, <span class="number">-1069501632</span>), f, i, n[t + <span class="number">11</span>], <span class="number">14</span>, <span class="number">643717713</span>), h, f, n[t], <span class="number">20</span>, <span class="number">-373897302</span>), a = l(a, h = l(h, f = l(f, i, a, h, n[t + <span class="number">5</span>], <span class="number">5</span>, <span class="number">-701558691</span>), i, a, n[t + <span class="number">10</span>], <span class="number">9</span>, <span class="number">38016083</span>), f, i, n[t + <span class="number">15</span>], <span class="number">14</span>, <span class="number">-660478335</span>), h, f, n[t + <span class="number">4</span>], <span class="number">20</span>, <span class="number">-405537848</span>), a = l(a, h = l(h, f = l(f, i, a, h, n[t + <span class="number">9</span>], <span class="number">5</span>, <span class="number">568446438</span>), i, a, n[t + <span class="number">14</span>], <span class="number">9</span>, <span class="number">-1019803690</span>), f, i, n[t + <span class="number">3</span>], <span class="number">14</span>, <span class="number">-187363961</span>), h, f, n[t + <span class="number">8</span>], <span class="number">20</span>, <span class="number">1163531501</span>), a = l(a, h = l(h, f = l(f, i, a, h, n[t + <span class="number">13</span>], <span class="number">5</span>, <span class="number">-1444681467</span>), i, a, n[t + <span class="number">2</span>], <span class="number">9</span>, <span class="number">-51403784</span>), f, i, n[t + <span class="number">7</span>], <span class="number">14</span>, <span class="number">1735328473</span>), h, f, n[t + <span class="number">12</span>], <span class="number">20</span>, <span class="number">-1926607734</span>), a = v(a, h = v(h, f = v(f, i, a, h, n[t + <span class="number">5</span>], <span class="number">4</span>, <span class="number">-378558</span>), i, a, n[t + <span class="number">8</span>], <span class="number">11</span>, <span class="number">-2022574463</span>), f, i, n[t + <span class="number">11</span>], <span class="number">16</span>, <span class="number">1839030562</span>), h, f, n[t + <span class="number">14</span>], <span class="number">23</span>, <span class="number">-35309556</span>), a = v(a, h = v(h, f = v(f, i, a, h, n[t + <span class="number">1</span>], <span class="number">4</span>, <span class="number">-1530992060</span>), i, a, n[t + <span class="number">4</span>], <span class="number">11</span>, <span class="number">1272893353</span>), f, i, n[t + <span class="number">7</span>], <span class="number">16</span>, <span class="number">-155497632</span>), h, f, n[t + <span class="number">10</span>], <span class="number">23</span>, <span class="number">-1094730640</span>), a = v(a, h = v(h, f = v(f, i, a, h, n[t + <span class="number">13</span>], <span class="number">4</span>, <span class="number">681279174</span>), i, a, n[t], <span class="number">11</span>, <span class="number">-358537222</span>), f, i, n[t + <span class="number">3</span>], <span class="number">16</span>, <span class="number">-722521979</span>), h, f, n[t + <span class="number">6</span>], <span class="number">23</span>, <span class="number">76029189</span>), a = v(a, h = v(h, f = v(f, i, a, h, n[t + <span class="number">9</span>], <span class="number">4</span>, <span class="number">-640364487</span>), i, a, n[t + <span class="number">12</span>], <span class="number">11</span>, <span class="number">-421815835</span>), f, i, n[t + <span class="number">15</span>], <span class="number">16</span>, <span class="number">530742520</span>), h, f, n[t + <span class="number">2</span>], <span class="number">23</span>, <span class="number">-995338651</span>), a = s(a, h = s(h, f = s(f, i, a, h, n[t], <span class="number">6</span>, <span class="number">-198630844</span>), i, a, n[t + <span class="number">7</span>], <span class="number">10</span>, <span class="number">1126891415</span>), f, i, n[t + <span class="number">14</span>], <span class="number">15</span>, <span class="number">-1416354905</span>), h, f, n[t + <span class="number">5</span>], <span class="number">21</span>, <span class="number">-57434055</span>), a = s(a, h = s(h, f = s(f, i, a, h, n[t + <span class="number">12</span>], <span class="number">6</span>, <span class="number">1700485571</span>), i, a, n[t + <span class="number">3</span>], <span class="number">10</span>, <span class="number">-1894986606</span>), f, i, n[t + <span class="number">10</span>], <span class="number">15</span>, <span class="number">-1051523</span>), h, f, n[t + <span class="number">1</span>], <span class="number">21</span>, <span class="number">-2054922799</span>), a = s(a, h = s(h, f = s(f, i, a, h, n[t + <span class="number">8</span>], <span class="number">6</span>, <span class="number">1873313359</span>), i, a, n[t + <span class="number">15</span>], <span class="number">10</span>, <span class="number">-30611744</span>), f, i, n[t + <span class="number">6</span>], <span class="number">15</span>, <span class="number">-1560198380</span>), h, f, n[t + <span class="number">13</span>], <span class="number">21</span>, <span class="number">1309151649</span>), a = s(a, h = s(h, f = s(f, i, a, h, n[t + <span class="number">4</span>], <span class="number">6</span>, <span class="number">-145523070</span>), i, a, n[t + <span class="number">11</span>], <span class="number">10</span>, <span class="number">-1120210379</span>), f, i, n[t + <span class="number">2</span>], <span class="number">15</span>, <span class="number">718787259</span>), h, f, n[t + <span class="number">9</span>], <span class="number">21</span>, <span class="number">-343485551</span>),</span><br><span class="line">            f = d(f, e);</span><br><span class="line">            i = d(i, u);</span><br><span class="line">            a = d(a, o);</span><br><span class="line">            h = d(h, c);</span><br><span class="line">    <span class="keyword">return</span> [f, i, a, h]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> r, t = <span class="string">""</span>;</span><br><span class="line">    <span class="keyword">for</span> (r = <span class="number">0</span>; r &lt; <span class="number">32</span> * n.length; r += <span class="number">8</span>)</span><br><span class="line">        t += <span class="built_in">String</span>.fromCharCode(n[r &gt;&gt; <span class="number">5</span>] &gt;&gt;&gt; r % <span class="number">32</span> &amp; <span class="number">255</span>);</span><br><span class="line">    <span class="keyword">return</span> t</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">h</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> r, t = [];</span><br><span class="line">    <span class="keyword">for</span> (t[(n.length &gt;&gt; <span class="number">2</span>) - <span class="number">1</span>] = <span class="keyword">void</span> <span class="number">0</span>,</span><br><span class="line">             r = <span class="number">0</span>; r &lt; t.length; r += <span class="number">1</span>)</span><br><span class="line">        t[r] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (r = <span class="number">0</span>; r &lt; <span class="number">8</span> * n.length; r += <span class="number">8</span>)</span><br><span class="line">        t[r &gt;&gt; <span class="number">5</span>] |= (<span class="number">255</span> &amp; n.charCodeAt(r / <span class="number">8</span>)) &lt;&lt; r % <span class="number">32</span>;</span><br><span class="line">    <span class="keyword">return</span> t</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">e</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> r, t, e = <span class="string">"0123456789abcdef"</span>, u = <span class="string">""</span>;</span><br><span class="line">    <span class="keyword">for</span> (t = <span class="number">0</span>; t &lt; n.length; t += <span class="number">1</span>)</span><br><span class="line">        r = n.charCodeAt(t);</span><br><span class="line">            u += e.charAt(r &gt;&gt;&gt; <span class="number">4</span> &amp; <span class="number">15</span>) + e.charAt(<span class="number">15</span> &amp; r);</span><br><span class="line">    <span class="keyword">return</span> u</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">u</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">unescape</span>(<span class="built_in">encodeURIComponent</span>(n))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">o</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a(i(h(n), <span class="number">8</span> * n.length))</span><br><span class="line">    &#125;(u(n))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">c</span>(<span class="params">n, r</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">n, r</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> t, e, u = h(n), o = [], c = [];</span><br><span class="line">        <span class="keyword">for</span> (o[<span class="number">15</span>] = c[<span class="number">15</span>] = <span class="keyword">void</span> <span class="number">0</span>,</span><br><span class="line">             <span class="number">16</span> &lt; u.length &amp;&amp; (u = i(u, <span class="number">8</span> * n.length)),</span><br><span class="line">                 t = <span class="number">0</span>; t &lt; <span class="number">16</span>; t += <span class="number">1</span>)</span><br><span class="line">            o[t] = <span class="number">909522486</span> ^ u[t];</span><br><span class="line">                c[t] = <span class="number">1549556828</span> ^ u[t];</span><br><span class="line">        <span class="keyword">return</span> e = i(o.concat(h(r)), <span class="number">512</span> + <span class="number">8</span> * r.length);</span><br><span class="line">            a(i(c.concat(e), <span class="number">640</span>))</span><br><span class="line">    &#125;(u(n), u(r))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">JsKiller</span>(<span class="params">pwd</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> e(o(pwd))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-执行破解出的js"><a href="#3-执行破解出的js" class="headerlink" title="3.执行破解出的js"></a>3.执行破解出的js</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> execjs</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parseJS</span><span class="params">(pwd)</span>:</span></span><br><span class="line">    <span class="comment"># 读取pwd.js文件内容</span></span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">"pwd.js"</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        js_code = f.read()</span><br><span class="line">    <span class="comment"># 编译js函数</span></span><br><span class="line">    ctx = execjs.compile(js_code)</span><br><span class="line">    <span class="comment"># 执行js中的JsKiller函数，参数为pwd</span></span><br><span class="line">    result = ctx.call(<span class="string">'JsKiller'</span>, pwd)</span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+<p>比如我们来执行一下这个python代码，测试一下结果：令pwd=”Github”<br> ctx.call(‘JsKiller’, pwd) ==&gt; &quot;e1adbcbb92c622d0b3e619f9d0730abf”,即将GitHub加密成32位。</p>
+<h3 id="4-模拟登陆"><a href="#4-模拟登陆" class="headerlink" title="4.模拟登陆"></a>4.模拟登陆</h3><p> 这里直接列出来模拟登录的源代码，这里需要注意一定要加referer<br> <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> execjs</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">"https://mp.weixin.qq.com/cgi-bin/bizlogin?action=startlogin"</span>  <span class="comment"># 这就是真正的入口url</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_content</span><span class="params">(username, pwd)</span>:</span></span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">"referer"</span>: <span class="string">"https://mp.weixin.qq.com/"</span>,  <span class="comment"># 必须要写</span></span><br><span class="line">        <span class="string">"User-Agent"</span>: <span class="string">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"</span></span><br><span class="line">    &#125;</span><br><span class="line">    data = &#123;</span><br><span class="line">        <span class="string">"username"</span>: username,</span><br><span class="line">        <span class="string">"pwd"</span>: pwd,</span><br><span class="line">        <span class="string">"f"</span>: <span class="string">"json"</span>,</span><br><span class="line">        <span class="string">"imgcode"</span>: <span class="string">""</span>,</span><br><span class="line">        <span class="string">"userlang"</span>: <span class="string">"zh_CN"</span>,</span><br><span class="line">        <span class="string">"lang"</span>: <span class="string">"zh_CN"</span>,</span><br><span class="line">        <span class="string">"ajax"</span>: <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        response = requests.post(url=url, headers=headers, data=data, timeout=<span class="number">10</span>)</span><br><span class="line">        <span class="keyword">if</span> (response.status_code == <span class="number">200</span>):</span><br><span class="line">            <span class="keyword">return</span> response.text</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(e)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parseJS</span><span class="params">(pwd)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">"pwd.js"</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        js_code = f.read()</span><br><span class="line"></span><br><span class="line">    ctx = execjs.compile(js_code)</span><br><span class="line">    result = ctx.call(<span class="string">'JsKiller'</span>, pwd)</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    username = <span class="string">"980710425@qq.com"</span></span><br><span class="line">    pwd = <span class="string">"XXXXXXXX"</span></span><br><span class="line">    pwd = parseJS(pwd)</span><br><span class="line">    print(get_content(username, pwd))</span><br></pre></td></tr></table></figure></p>
+<h3 id="5-结果分析"><a href="#5-结果分析" class="headerlink" title="5.结果分析"></a>5.结果分析</h3><p>得到返回结果：这里返回了一个json格式数据，并且我们可以得知，这里其实是重定向到了这个新的URL地址</p>
+ <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">"base_resp"</span>:&#123;</span><br><span class="line">      <span class="attr">"err_msg"</span>:<span class="string">"ok"</span>,</span><br><span class="line">      <span class="attr">"ret"</span>:<span class="number">0</span>&#125;,</span><br><span class="line">  <span class="attr">"redirect_url"</span>:<span class="string">"/cgi-bin/bizlogin?action=validate&amp;lang=zh_CN&amp;account=980710425%40qq.com"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> <a href="https://mp.weixin.qq.com/cgi-bin/bizlogin?action=validate&amp;lang=zh_CN&amp;account=980710425%40qq.com" target="_blank" rel="noopener">https://mp.weixin.qq.com/cgi-bin/bizlogin?action=validate&amp;lang=zh_CN&amp;account=980710425%40qq.com</a><br><font color=#00ced1>这个链接其实是需要微信扫码登陆认证的链接，我也不知道怎么去绕过这个扫码认证，如果有大神巨佬知道，请带带我。我的笨办法是通过selenium自动化测试，还是不可避免要扫码，然后扫码登陆，获取目标数据</font></p>
+<h3 id="未完待续。。。"><a href="#未完待续。。。" class="headerlink" title="未完待续。。。"></a>未完待续。。。</h3>
       </div>
       
         <br>
@@ -424,10 +441,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-08T18:49:29+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-19T16:39:31+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年12月8日</p>
+    <p>更新于 2019年12月19日</p>
   </a>
 </div>
 
@@ -435,6 +452,9 @@
       
         
           
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E9%80%86%E5%90%91%E7%88%AC%E8%99%AB/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>逆向爬虫</p></a></div>
+
 
         
       
@@ -446,7 +466,10 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/12/08/%E6%81%B0%E9%A5%AD%E5%8D%B1%E6%9C%BA/&title=兄弟萌！枯啦，要恰不了饭了 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;兄弟萌，怎么办？我要枯啦，要恰不了饭了，要吃红牌出场了"
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/12/19/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E5%85%AB)/&title=Python全栈系列章节更新（八）：js逆向爬虫的奇技淫巧 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在的反爬措施越来越复杂，一些常见的反爬措施有Headers and referer反爬机制、语音动作识别、各种变态二维码（12306）、字符js加密、Ajax动态加载、模拟登录和cookie限制。。。
+
+目标网站：微信公众平台反爬机制：用户名不变，密码加密相关技术：selenium，requests，execjs技术难度：★★☆☆☆☆爬取目标：模拟登陆公共号，获取页面的所有信息源代码：说明：第一次玩js逆向爬虫，如有不足，多多指教
+"
           
           >
           
@@ -458,7 +481,10 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/12/08/%E6%81%B0%E9%A5%AD%E5%8D%B1%E6%9C%BA/&title=兄弟萌！枯啦，要恰不了饭了 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;兄弟萌，怎么办？我要枯啦，要恰不了饭了，要吃红牌出场了"
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/12/19/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E5%85%AB)/&title=Python全栈系列章节更新（八）：js逆向爬虫的奇技淫巧 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在的反爬措施越来越复杂，一些常见的反爬措施有Headers and referer反爬机制、语音动作识别、各种变态二维码（12306）、字符js加密、Ajax动态加载、模拟登录和cookie限制。。。
+
+目标网站：微信公众平台反爬机制：用户名不变，密码加密相关技术：selenium，requests，execjs技术难度：★★☆☆☆☆爬取目标：模拟登陆公共号，获取页面的所有信息源代码：说明：第一次玩js逆向爬虫，如有不足，多多指教
+"
           
           >
           
@@ -470,7 +496,10 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/12/08/%E6%81%B0%E9%A5%AD%E5%8D%B1%E6%9C%BA/&title=兄弟萌！枯啦，要恰不了饭了 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;兄弟萌，怎么办？我要枯啦，要恰不了饭了，要吃红牌出场了"
+          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/12/19/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E5%85%AB)/&title=Python全栈系列章节更新（八）：js逆向爬虫的奇技淫巧 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在的反爬措施越来越复杂，一些常见的反爬措施有Headers and referer反爬机制、语音动作识别、各种变态二维码（12306）、字符js加密、Ajax动态加载、模拟登录和cookie限制。。。
+
+目标网站：微信公众平台反爬机制：用户名不变，密码加密相关技术：selenium，requests，execjs技术难度：★★☆☆☆☆爬取目标：模拟登陆公共号，获取页面的所有信息源代码：说明：第一次玩js逆向爬虫，如有不足，多多指教
+"
           
           >
           
@@ -498,17 +527,12 @@
                       <span class="art-item-left">
                           <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
                           <h4>
-                              <a href="/2019/12/10/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%B8%83%EF%BC%89/" rel="prev" title="Python全栈系列章节更新（七）：爬虫解析库">
+                              <a href="/2020/01/24/HappyNewYear/" rel="prev" title="2020 新年快乐  \﻿ (•◡•) /">
                                 
-                                    Python全栈系列章节更新（七）：爬虫解析库
+                                    2020 新年快乐  \﻿ (•◡•) /
                                 
                               </a>
                           </h4>
-                          
-                              
-                              <h6 class="tags">
-                                  <a class="tag" href="/tags/%E8%A7%A3%E6%9E%90%E5%BA%93/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 解析库</a>
-                              </h6>
                           
                       </span>
                   </section>
@@ -518,17 +542,12 @@
                       <span class="art-item-right" aria-hidden="true">
                           <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                           <h4>
-                              <a href="/2019/12/08/%E6%B5%85%E8%B0%88%E5%AF%86%E7%A0%81%E5%8A%A0%E7%9B%90%E5%8E%9F%E7%90%86/" rel="prev" title="探究密码加salt原理以及PHP防止SQL注入">
+                              <a href="/2019/12/18/Javascript%E7%AF%87%E7%AB%A0%E4%BA%94/" rel="prev" title="Javascript篇章五：常见函数和属性">
                                   
-                                      探究密码加salt原理以及PHP防止SQL注入
+                                      Javascript篇章五：常见函数和属性
                                   
                               </a>
                           </h4>
-                          
-                              
-                              <h6 class="tags">
-                                  <a class="tag" href="/tags/salt/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> salt</a> <a class="tag" href="/tags/PHP/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> PHP</a>
-                              </h6>
                           
                       </span>
                   </section>
@@ -571,7 +590,7 @@
 
   <script>
     window.subData = {
-      title: '兄弟萌！枯啦，要恰不了饭了',
+      title: 'Python全栈系列章节更新（八）：js逆向爬虫的奇技淫巧',
       tools: true
     }
   </script>
@@ -685,6 +704,20 @@
           
             
               
+  <section class='widget toc-wrapper'>
+    
+<header class='material'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目录</div>
+  
+    <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
+  
+</header>
+
+    <div class='content material'>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-分析js，找到目标接口函数"><span class="toc-text">1.分析js，找到目标接口函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-破解"><span class="toc-text">2.破解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-执行破解出的js"><span class="toc-text">3.执行破解出的js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-模拟登陆"><span class="toc-text">4.模拟登陆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-结果分析"><span class="toc-text">5.结果分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#未完待续。。。"><span class="toc-text">未完待续。。。</span></a></li></ol>
+    </div>
+  </section>
+
 
             
           
