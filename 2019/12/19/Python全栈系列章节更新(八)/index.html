@@ -411,7 +411,7 @@
       <div class="article-entry" itemprop="articleBody">
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在的反爬措施越来越复杂，一些常见的反爬措施有Headers and referer反爬机制、语音动作识别、各种变态二维码（12306）、字符js加密、Ajax动态加载、模拟登录和cookie限制。。。</p>
 <blockquote>
-<p>目标网站：<a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">微信公众平台</a><br>反爬机制：<font color=#d71345>用户名不变，密码加密</font><br>相关技术：selenium，requests，execjs<br>技术难度：<font color=#d71345>★★☆☆☆☆</font><br>爬取目标：模拟登陆公共号，获取页面的所有信息<br>源代码：<br>说明：第一次玩js逆向爬虫，如有不足，多多指教</p>
+<p>目标网站：<a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">微信公众平台</a><br>反爬机制：<font color=#d71345>用户名不变，密码加密</font><br>相关技术：selenium，requests，execjs<br>技术难度：<font color=#d71345>★★☆☆☆☆</font><br>爬取目标：模拟登陆公共号，获取页面的所有信息<br>源代码：本页面（selenium代码还在测试更新当中）<br>说明：第一次玩js逆向爬虫，如有不足，多多指教</p>
 </blockquote>
 <a id="more"></a>
 <h3 id="1-分析js，找到目标接口函数"><a href="#1-分析js，找到目标接口函数" class="headerlink" title="1.分析js，找到目标接口函数"></a>1.分析js，找到目标接口函数</h3><p>F12打开 开发者工具, 按照一般逻辑步骤，先输入一个错误账号密码，找到真正的入口接口函数,案例如下：<br><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/images20191219154415.png" alt=""></fancybox><br>继续向下翻动，我们可以看到请求参数表单数据的pwd密码是明显经过加密的<br><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/images20191219154530.png" alt=""></fancybox></p>
@@ -441,10 +441,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-19T16:39:31+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-20T14:13:19+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年12月19日</p>
+    <p>更新于 2019年12月20日</p>
   </a>
 </div>
 
@@ -468,7 +468,7 @@
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/12/19/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E5%85%AB)/&title=Python全栈系列章节更新（八）：js逆向爬虫的奇技淫巧 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在的反爬措施越来越复杂，一些常见的反爬措施有Headers and referer反爬机制、语音动作识别、各种变态二维码（12306）、字符js加密、Ajax动态加载、模拟登录和cookie限制。。。
 
-目标网站：微信公众平台反爬机制：用户名不变，密码加密相关技术：selenium，requests，execjs技术难度：★★☆☆☆☆爬取目标：模拟登陆公共号，获取页面的所有信息源代码：说明：第一次玩js逆向爬虫，如有不足，多多指教
+目标网站：微信公众平台反爬机制：用户名不变，密码加密相关技术：selenium，requests，execjs技术难度：★★☆☆☆☆爬取目标：模拟登陆公共号，获取页面的所有信息源代码：本页面（selenium代码还在测试更新当中）说明：第一次玩js逆向爬虫，如有不足，多多指教
 "
           
           >
@@ -483,7 +483,7 @@
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/12/19/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E5%85%AB)/&title=Python全栈系列章节更新（八）：js逆向爬虫的奇技淫巧 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在的反爬措施越来越复杂，一些常见的反爬措施有Headers and referer反爬机制、语音动作识别、各种变态二维码（12306）、字符js加密、Ajax动态加载、模拟登录和cookie限制。。。
 
-目标网站：微信公众平台反爬机制：用户名不变，密码加密相关技术：selenium，requests，execjs技术难度：★★☆☆☆☆爬取目标：模拟登陆公共号，获取页面的所有信息源代码：说明：第一次玩js逆向爬虫，如有不足，多多指教
+目标网站：微信公众平台反爬机制：用户名不变，密码加密相关技术：selenium，requests，execjs技术难度：★★☆☆☆☆爬取目标：模拟登陆公共号，获取页面的所有信息源代码：本页面（selenium代码还在测试更新当中）说明：第一次玩js逆向爬虫，如有不足，多多指教
 "
           
           >
@@ -498,7 +498,7 @@
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/12/19/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E5%85%AB)/&title=Python全栈系列章节更新（八）：js逆向爬虫的奇技淫巧 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在的反爬措施越来越复杂，一些常见的反爬措施有Headers and referer反爬机制、语音动作识别、各种变态二维码（12306）、字符js加密、Ajax动态加载、模拟登录和cookie限制。。。
 
-目标网站：微信公众平台反爬机制：用户名不变，密码加密相关技术：selenium，requests，execjs技术难度：★★☆☆☆☆爬取目标：模拟登陆公共号，获取页面的所有信息源代码：说明：第一次玩js逆向爬虫，如有不足，多多指教
+目标网站：微信公众平台反爬机制：用户名不变，密码加密相关技术：selenium，requests，execjs技术难度：★★☆☆☆☆爬取目标：模拟登陆公共号，获取页面的所有信息源代码：本页面（selenium代码还在测试更新当中）说明：第一次玩js逆向爬虫，如有不足，多多指教
 "
           
           >

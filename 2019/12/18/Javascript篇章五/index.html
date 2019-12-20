@@ -429,6 +429,39 @@
 <p>Math 对象方法</p>
 </blockquote>
 <p><fancybox><img src="http://img.mukewang.com/532fe841000174db05160622.jpg" alt=""></fancybox></p>
+<h3 id="4-数据类型判断"><a href="#4-数据类型判断" class="headerlink" title="4.数据类型判断"></a>4.数据类型判断</h3><p>PS:typeof无法判断数组，null和对象，因为他会把这些都判断为Object，其余都可以正常判断。<br>最完美的检测数组类型的方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isArrayFn</span> (<span class="params">o</span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(o) === <span class="string">'[object Array]'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>];</span><br><span class="line">alert(isArrayFn(arr));<span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>其实这个函数可以改进一下，使得同样能够判断其它数据类型：数组，null，function，String，object等等</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isArrayFn</span> (<span class="params">o</span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(o);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>实例</th>
+<th align="center">测试结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[1,2,3,1]</td>
+<td align="center">[object Array]</td>
+</tr>
+<tr>
+<td>{a:”chenhaodong”,age:18}</td>
+<td align="center">[object Object]</td>
+</tr>
+<tr>
+<td>function a(){return null}</td>
+<td align="center">[object Function]</td>
+</tr>
+<tr>
+<td>“hello world”</td>
+<td align="center">[object String]</td>
+</tr>
+<tr>
+<td>null</td>
+<td align="center">[object Null]</td>
+</tr>
+</tbody></table>
+<h3 id="5-arguments参数属性"><a href="#5-arguments参数属性" class="headerlink" title="5.arguments参数属性"></a>5.arguments参数属性</h3><p>arguments.length 属性返回函数调用过程接收到的参数个数<br>arguments[0]:获取传入的第一个参数值<br>arguments[1]:获取传入的第二个参数值</p>
 
       </div>
       
@@ -440,10 +473,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-19T16:28:44+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-20T10:20:49+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年12月19日</p>
+    <p>更新于 2019年12月20日</p>
   </a>
 </div>
 
@@ -717,7 +750,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-isFinite-函数"><span class="toc-text">1.isFinite()函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-jQuery中的-inArray（）"><span class="toc-text">2.jQuery中的$.inArray（）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Math-算术对象"><span class="toc-text">3.Math(算术对象)</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-isFinite-函数"><span class="toc-text">1.isFinite()函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-jQuery中的-inArray（）"><span class="toc-text">2.jQuery中的$.inArray（）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Math-算术对象"><span class="toc-text">3.Math(算术对象)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-数据类型判断"><span class="toc-text">4.数据类型判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-arguments参数属性"><span class="toc-text">5.arguments参数属性</span></a></li></ol>
     </div>
   </section>
 

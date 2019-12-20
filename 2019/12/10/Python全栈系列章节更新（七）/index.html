@@ -411,7 +411,7 @@
       <div class="article-entry" itemprop="articleBody">
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;列举几个常用的python爬虫解析库</p>
 <blockquote>
-<p>正则表达式<br>Xpath<br>BeautifulSoup<br>pyquery<br>Scrapy的selector的用法</p>
+<p>正则表达式<br>Xpath<br>BeautifulSoup<br>pyquery<br>Scrapy的selector的用法<br>Selenium自动测试库学习</p>
 </blockquote>
 <a id="more"></a>
 <h2 id="1-正则表达式"><a href="#1-正则表达式" class="headerlink" title="1.正则表达式"></a>1.<a href="https://meethigher.top/blog/2019/11/29/regular-expression/" target="_blank" rel="noopener">正则表达式</a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&apos;.&apos;     默认匹配除\n之外的任意一个字符，若指定flag DOTALL,则匹配任意字符，包括换行</span><br><span class="line">&apos;^&apos;     匹配字符开头，若指定flags MULTILINE,这种也可以匹配上(r&quot;^a&quot;,&quot;\nabc\neee&quot;,flags=re.MULTILINE)</span><br><span class="line">&apos;$&apos;     匹配字符结尾， 若指定flags MULTILINE ,re.search(&apos;foo.$&apos;,&apos;foo1\nfoo2\n&apos;,re.MULTILINE).group() 会匹配到foo1</span><br><span class="line">&apos;*&apos;     匹配*号前的字符0次或多次， re.search(&apos;a*&apos;,&apos;aaaabac&apos;)  结果&apos;aaaa&apos;</span><br><span class="line">&apos;+&apos;     匹配前一个字符1次或多次，re.findall(&quot;ab+&quot;,&quot;ab+cd+abb+bba&quot;) 结果[&apos;ab&apos;, &apos;abb&apos;]</span><br><span class="line">&apos;?&apos;     匹配前一个字符1次或0次 ,re.search(&apos;b?&apos;,&apos;alex&apos;).group() 匹配b 0次</span><br><span class="line">&apos;&#123;m&#125;&apos;   匹配前一个字符m次 ,re.search(&apos;b&#123;3&#125;&apos;,&apos;alexbbbs&apos;).group()  匹配到&apos;bbb&apos;</span><br><span class="line">&apos;&#123;n,m&#125;&apos; 匹配前一个字符n到m次，re.findall(&quot;ab&#123;1,3&#125;&quot;,&quot;abb abc abbcbbb&quot;) 结果&apos;abb&apos;, &apos;ab&apos;, &apos;abb&apos;]</span><br><span class="line">&apos;|&apos;     匹配|左或|右的字符，re.search(&quot;abc|ABC&quot;,&quot;ABCBabcCD&quot;).group() 结果&apos;ABC&apos;</span><br><span class="line">&apos;(...)&apos; 分组匹配， re.search(&quot;(abc)&#123;2&#125;a(123|45)&quot;, &quot;abcabca456c&quot;).group() 结果为&apos;abcabca45&apos;</span><br><span class="line">&apos;[...]&apos; 用来表示一组字符，单独列出，比如匹配[amk]匹配a,m或k</span><br><span class="line"> </span><br><span class="line">&apos;\A&apos;    只从字符开头匹配，re.search(&quot;\Aabc&quot;,&quot;alexabc&quot;) 是匹配不到的，相当于re.match(&apos;abc&apos;,&quot;alexabc&quot;) 或^</span><br><span class="line">&apos;\Z&apos;    匹配字符结尾，同$</span><br><span class="line">&apos;\d&apos;    匹配数字0-9</span><br><span class="line">&apos;\D&apos;    匹配非数字</span><br><span class="line">&apos;\w&apos;    匹配[A-Za-z0-9],还包括下划线‘_’</span><br><span class="line">&apos;\W&apos;    匹配非[A-Za-z0-9]</span><br><span class="line">&apos;s&apos;     匹配空白字符、\t、\n、\r , re.search(&quot;\s+&quot;,&quot;ab\tc1\n3&quot;).group() 结果 &apos;\t&apos;</span><br><span class="line">&apos;(.*?)&apos; 贪婪匹配，用来获取目标字符</span><br><span class="line">&apos;.*?&apos;   非贪婪匹配，用来替换任意非目标字符</span><br></pre></td></tr></table></figure>
@@ -607,6 +607,22 @@
 <p>pyquery获取信息</p>
 </blockquote>
 <p>1.获取属性值：变量名.attr(属性名) 或者 变量名.attr.属性名<br>2.获取文本内容：变量名.text()<br>3.获取html： 变量名.html()<br>4.<font color=#ef4136>找寻某一特定标签：变量名.find(标签名).eq(n) n从0开始，表示find某标签，并选择第n个目标值</font></p>
+<h2 id="4-Selenium库学习"><a href="#4-Selenium库学习" class="headerlink" title="4.Selenium库学习"></a>4.Selenium库学习</h2><p>动态渲染页面不仅仅涉及到Ajax技术，绝大多数的网页是通过Javascript计算生成新页面的，比如说百度Echarts，淘宝，中国青年网。。。</p>
+<blockquote>
+<p> 4.1基本库导入</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdrive</span><br><span class="line"><span class="keyword">from</span> selenium.webdrive.common.by <span class="keyword">import</span> By</span><br><span class="line"><span class="comment"># 若想要模拟键盘，就需要导入keys()类</span></span><br><span class="line"><span class="keyword">from</span> selenium.webdrive.common.keys <span class="keyword">import</span> Keys</span><br><span class="line"><span class="comment"># 等待条件类</span></span><br><span class="line"><span class="keyword">from</span> selenium.webdrive.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC</span><br><span class="line"><span class="comment"># 等待条件</span></span><br><span class="line"><span class="keyword">from</span> selenium.webdrive.support.wait <span class="keyword">import</span> WebDriverWait</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>4.2 声明浏览器对象</p>
+</blockquote>
+<p>browser = webdriver.Chrome()/Firefox()/PhantomJS() 等等</p>
+<blockquote>
+<p>4.3 访问目标页面</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 访问目标网址</span></span><br><span class="line">browser.get(<span class="string">"https://www.taobao.com"</span>)</span><br><span class="line"><span class="comment"># 打印页面源代码</span></span><br><span class="line">print(browser.page_source)</span><br><span class="line"><span class="comment"># 关闭浏览器</span></span><br><span class="line">browser.close()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>4.4 获取单个节点的方法<br>find_element(By.xx)</p>
+</blockquote>
 <h3 id="未完待续。。。"><a href="#未完待续。。。" class="headerlink" title="未完待续。。。"></a>未完待续。。。</h3>
       </div>
       
@@ -618,10 +634,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-11T17:03:28+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-20T14:47:24+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年12月11日</p>
+    <p>更新于 2019年12月20日</p>
   </a>
 </div>
 
@@ -645,7 +661,7 @@
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/12/10/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%B8%83%EF%BC%89/&title=Python全栈系列章节更新（七）：爬虫解析库 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;列举几个常用的python爬虫解析库
 
-正则表达式XpathBeautifulSouppyqueryScrapy的selector的用法
+正则表达式XpathBeautifulSouppyqueryScrapy的selector的用法Selenium自动测试库学习
 "
           
           >
@@ -660,7 +676,7 @@
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/12/10/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%B8%83%EF%BC%89/&title=Python全栈系列章节更新（七）：爬虫解析库 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;列举几个常用的python爬虫解析库
 
-正则表达式XpathBeautifulSouppyqueryScrapy的selector的用法
+正则表达式XpathBeautifulSouppyqueryScrapy的selector的用法Selenium自动测试库学习
 "
           
           >
@@ -675,7 +691,7 @@
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/12/10/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%B8%83%EF%BC%89/&title=Python全栈系列章节更新（七）：爬虫解析库 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;列举几个常用的python爬虫解析库
 
-正则表达式XpathBeautifulSouppyqueryScrapy的selector的用法
+正则表达式XpathBeautifulSouppyqueryScrapy的selector的用法Selenium自动测试库学习
 "
           
           >
@@ -891,7 +907,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-正则表达式"><span class="toc-text">1.正则表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-xpath"><span class="toc-text">2.xpath</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-pyquery"><span class="toc-text">3.pyquery</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#未完待续。。。"><span class="toc-text">未完待续。。。</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-正则表达式"><span class="toc-text">1.正则表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-xpath"><span class="toc-text">2.xpath</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-pyquery"><span class="toc-text">3.pyquery</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Selenium库学习"><span class="toc-text">4.Selenium库学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#未完待续。。。"><span class="toc-text">未完待续。。。</span></a></li></ol></li></ol>
     </div>
   </section>
 
