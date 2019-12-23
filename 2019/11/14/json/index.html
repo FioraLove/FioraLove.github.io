@@ -438,12 +438,13 @@
 <p>JSON的键名和字符串都必须使用双引号引起来，而Python中单引号也可以表示为字符串，所以这是个比较容易犯的错误！<br>Python类型与JSON相互转换的时候到底是用load//dump还是用loads\dumps？<br>他们之间有什么区别？什么时候该加s什么时候不该加s？<br>这个我们可以通过查看源码找到答案：<br>不加s的方法入参多了一个fp表示filepath，最后多了一个写入文件的操作。<br>所以我们在记忆的时候可以这样记忆：<br><font color=#f05b72>加s表示转成字符串(str)，不加s表示转成文件。</font></p>
 <h2 id="2-javascript中的json"><a href="#2-javascript中的json" class="headerlink" title="2.javascript中的json"></a>2.javascript中的json</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var stu = &#123;&quot;student&quot;:           //stu 对象包含student的key,值为一个数组</span><br><span class="line">            [                                     //数组的每一个值为一个具体的学生对象</span><br><span class="line">                &#123;&quot;name&quot;: &quot;Tom&quot;,&quot;Grade&quot;:1, &quot;age&quot;:11, &quot;gender&quot;: &quot;M&quot;&#125;,     //学生对象的键为名字,值为对应属性</span><br><span class="line">                &#123;&quot;name&quot;: &quot;Jerry&quot;, &quot;Grade&quot;:1, &quot;age&quot;:10, &quot;gender&quot;: &quot;M&quot;&#125;       //每个属性对应的是一个key,value对</span><br><span class="line">            ],</span><br><span class="line">            &quot;classroom&quot;: &#123;&quot;class1&quot;: &quot;room1&quot;, &quot;class2&quot;: &quot;room2&quot;&#125;         //对象的值,嵌套对象</span><br><span class="line">        &#125;;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>json.parse()方法将数据转换为 JavaScript 对象</p>
+<p>json.parse()：是从一个字符串中解析出 json 对象</p>
 </blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义一个字符串</span></span><br><span class="line"><span class="keyword">var</span> data=<span class="string">'&#123;"name":"goatling"&#125;'</span>;</span><br><span class="line"><span class="comment">//解析对象​</span></span><br><span class="line">​<span class="keyword">var</span> a = <span class="built_in">JSON</span>.parse(data);</span><br><span class="line"><span class="keyword">typeof</span>(a) <span class="comment">// 对象类型</span></span><br><span class="line"><span class="comment">/*结果是：</span></span><br><span class="line"><span class="comment">*Object</span></span><br><span class="line"><span class="comment">* &#123;name:"goatling"&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>json.stringify() 方法将 JavaScript 对象转换为字符串。</p>
+<p>json.stringify() 是从一个对象中解析出字符串</p>
 </blockquote>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> data=&#123;<span class="attr">name</span>:<span class="string">'goatling'</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = <span class="built_in">JSON</span>.stringify(data);</span><br><span class="line"><span class="keyword">typeof</span>(a) <span class="comment">// 对象类型</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 结果是：</span></span><br><span class="line"><span class="comment">* '&#123;"name":"goatling"&#125;'</span></span><br><span class="line"><span class="comment">* 字符串类型</span></span><br><span class="line"><span class="comment">* */</span></span><br></pre></td></tr></table></figure>
       </div>
       
         <br>
@@ -454,10 +455,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-08T19:04:40+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-23T09:15:50+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年12月8日</p>
+    <p>更新于 2019年12月23日</p>
   </a>
 </div>
 
@@ -799,16 +800,16 @@
           轻松一刻
         </a></li>
       
-        <li><a class="flat-box" title="/sport/" href="/sport/"
+        <li><a class="flat-box" title="/about/" href="/about/"
           
             rel="nofollow"
           
           
-          id="sport">
+          id="about">
           
             <i class="fas fa-paper-plane fa-fw" aria-hidden="true"></i>
           
-          每日计划
+          相册
         </a></li>
       
         <li><a class="flat-box" title="/cv/" href="/cv/"
@@ -899,16 +900,16 @@
           主题文档
         </a></li>
       
-        <li><a class="flat-box" title="/about/" href="/about/"
+        <li><a class="flat-box" title="/sport/" href="/sport/"
           
             rel="nofollow"
           
           
-          id="about">
+          id="sport">
           
             <i class="fas fa-info-circle fa-fw" aria-hidden="true"></i>
           
-          关于小站
+          每日计划
         </a></li>
       
     </ul>
@@ -971,6 +972,8 @@
           <li><a class="flat-box" title="/categories/Python/" href="/categories/Python/"><div class='name'>Python</div><div class='badge'>(11)</div></a></li>
         
           <li><a class="flat-box" title="/categories/ThinkPHP/" href="/categories/ThinkPHP/"><div class='name'>ThinkPHP</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/TypeScript/" href="/categories/TypeScript/"><div class='name'>TypeScript</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box" title="/categories/docker/" href="/categories/docker/"><div class='name'>docker</div><div class='badge'>(3)</div></a></li>
         

@@ -411,7 +411,7 @@
       <div class="article-entry" itemprop="articleBody">
         <p>线程顾名思义，就是一条流水线工作的过程（流水线的工作需要电源，电源就相当于cpu），而一条流水线必须属于一个车间，一个车间的工作过程是一个进程，车间负责把资源整合到一起，是一个资源单位，而一个车间内至少有一条流水线。<br>所以，<font color=#ef4136>进程只是用来把资源集中到一起（进程只是一个资源单位，或者说资源调度集合），而线程才是cpu上的执行单位</font></p>
 <blockquote>
-<p>1.线程与进程的区别<br>2.为何会选择多线程<br>3.创建多线程的方式<br>4.线程对象的属性和方法<br>5.守护线程<br>6.线程池与进程池</p>
+<p>1.线程与进程的区别<br>2.为何会选择多线程<br>3.创建多线程的方式<br>4.线程对象的属性和方法<br>5.守护线程<br>6.线程池与进程池<br>7.多线程，到底该设置多少个线程？</p>
 </blockquote>
 <a id="more"></a>
 <h3 id="1-线程与进程的区别"><a href="#1-线程与进程的区别" class="headerlink" title="1.线程与进程的区别"></a>1.线程与进程的区别</h3><p>1、每启动一个进程，进程内都至少有一个线程。</p>
@@ -451,6 +451,17 @@
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> concurrent.futures <span class="keyword">import</span> ProcessPoolExecutor,ThreadPoolExecutor</span><br><span class="line"><span class="keyword">import</span> os, time, random</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">task</span><span class="params">(name)</span>:</span></span><br><span class="line">    print(<span class="string">"name: %s pid: %s run"</span> % (name, os.getpid()))</span><br><span class="line">    time.sleep(random.randint(<span class="number">1</span>,<span class="number">3</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    pool = ProcessPoolExecutor(<span class="number">4</span>)    <span class="comment"># 指定进程池大小，最大进程数，如果不指定默认是CPU核数</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">        <span class="string">"""从始至终四个进程解决这10个任务，谁没事了接新任务"""</span></span><br><span class="line">        pool.submit(task, <span class="string">'egon%s'</span> %i)   <span class="comment"># 提交任务的方式————异步调用：提交完任务，不用在原地等任务执行拿到结果。</span></span><br><span class="line"></span><br><span class="line">    pool.shutdown()   <span class="comment"># 把提交任务入口关闭，默认参数wait=True；同时还进行了pool.join()操作，等任务提交结束，再结束主进程</span></span><br><span class="line"></span><br><span class="line">    print(<span class="string">"主进程"</span>)</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">name: egon0 pid: 12502 run</span></span><br><span class="line"><span class="string">name: egon1 pid: 12503 run</span></span><br><span class="line"><span class="string">....</span></span><br><span class="line"><span class="string">name: egon9 pid: 12505 run</span></span><br><span class="line"><span class="string">主进程</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
 
+<h3 id="7-多线程，到底该设置多少个线程？"><a href="#7-多线程，到底该设置多少个线程？" class="headerlink" title="7.多线程，到底该设置多少个线程？"></a>7.多线程，到底该设置多少个线程？</h3><p>那我们如何分配线程？我们提供一个公式：</p>
+<p><font color=#d71345>最佳线程数目 = （（线程等待时间+线程CPU时间）/线程CPU时间 ）* CPU数目</font></p>
+<p>备注：这个公式也是前辈们分享的，当然之前看了淘宝前台系统优化实践的文章，和上面的公式很类似，不过在CPU数目那边，他们更细化了，上面的公式只是参考。不过不管什么公式，最终还是在生产环境中运行后，再优化调整。</p>
+<p>我们继续上面的任务，我们的服务器CPU核数为4核，一个任务线程cpu耗时为20ms，线程等待（网络IO、磁盘IO）耗时80ms，那最佳线程数目：( 80 + 20 )/20 * 4 = 20。也就是设置20个线程数最佳。</p>
+<p>从这个公式上面我们就得出，线程的等待时间越大，线程数就要设置越大，这个正好符合我们上面的分析，可提升CPU利用率。那从另一个角度上面说，线程数设置多大，是根据我们自身的业务的，需要自己去压力测试，设置一个合理的数值。</p>
+<blockquote>
+<p>基础常规标准</p>
+</blockquote>
+<p>我们可以尝试去猜想，因为很多业务集中到一个线程池中，不像上面的案例比较简单，事实上业务太多，怎么设置呢？这个就是要去压力测试去调整。不过我们的前辈已经帮我们总结了一个基础的值（最终还是要看运行情况自行调整）</p>
+<p>1、CPU密集型：操作内存处理的业务，一般线程数设置为：CPU核数 + 1 或者 CPU核数*2。核数为4的话，一般设置 5 或 8</p>
+<p>2、IO密集型：文件操作，网络操作，数据库操作，一般线程设置为：cpu核数 / (1-0.9)，核数为4的话，一般设置 40</p>
 
       </div>
       
@@ -462,10 +473,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-05T16:24:35+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-23T10:25:40+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年12月5日</p>
+    <p>更新于 2019年12月23日</p>
   </a>
 </div>
 
@@ -489,7 +500,7 @@
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/12/04/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%BA%94%EF%BC%89/&title=Python全栈系列章节更新（五）：并发编程~多线程 | AhriLove&summary=线程顾名思义，就是一条流水线工作的过程（流水线的工作需要电源，电源就相当于cpu），而一条流水线必须属于一个车间，一个车间的工作过程是一个进程，车间负责把资源整合到一起，是一个资源单位，而一个车间内至少有一条流水线。所以，进程只是用来把资源集中到一起（进程只是一个资源单位，或者说资源调度集合），而线程才是cpu上的执行单位
 
-1.线程与进程的区别2.为何会选择多线程3.创建多线程的方式4.线程对象的属性和方法5.守护线程6.线程池与进程池
+1.线程与进程的区别2.为何会选择多线程3.创建多线程的方式4.线程对象的属性和方法5.守护线程6.线程池与进程池7.多线程，到底该设置多少个线程？
 "
           
           >
@@ -504,7 +515,7 @@
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/12/04/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%BA%94%EF%BC%89/&title=Python全栈系列章节更新（五）：并发编程~多线程 | AhriLove&summary=线程顾名思义，就是一条流水线工作的过程（流水线的工作需要电源，电源就相当于cpu），而一条流水线必须属于一个车间，一个车间的工作过程是一个进程，车间负责把资源整合到一起，是一个资源单位，而一个车间内至少有一条流水线。所以，进程只是用来把资源集中到一起（进程只是一个资源单位，或者说资源调度集合），而线程才是cpu上的执行单位
 
-1.线程与进程的区别2.为何会选择多线程3.创建多线程的方式4.线程对象的属性和方法5.守护线程6.线程池与进程池
+1.线程与进程的区别2.为何会选择多线程3.创建多线程的方式4.线程对象的属性和方法5.守护线程6.线程池与进程池7.多线程，到底该设置多少个线程？
 "
           
           >
@@ -519,7 +530,7 @@
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/12/04/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%BA%94%EF%BC%89/&title=Python全栈系列章节更新（五）：并发编程~多线程 | AhriLove&summary=线程顾名思义，就是一条流水线工作的过程（流水线的工作需要电源，电源就相当于cpu），而一条流水线必须属于一个车间，一个车间的工作过程是一个进程，车间负责把资源整合到一起，是一个资源单位，而一个车间内至少有一条流水线。所以，进程只是用来把资源集中到一起（进程只是一个资源单位，或者说资源调度集合），而线程才是cpu上的执行单位
 
-1.线程与进程的区别2.为何会选择多线程3.创建多线程的方式4.线程对象的属性和方法5.守护线程6.线程池与进程池
+1.线程与进程的区别2.为何会选择多线程3.创建多线程的方式4.线程对象的属性和方法5.守护线程6.线程池与进程池7.多线程，到底该设置多少个线程？
 "
           
           >
@@ -745,7 +756,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-线程与进程的区别"><span class="toc-text">1.线程与进程的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-为何会选择多线程？"><span class="toc-text">2.为何会选择多线程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-创建线程的方式"><span class="toc-text">3.创建线程的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-线程对象的属性和方法"><span class="toc-text">4.线程对象的属性和方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-守护线程"><span class="toc-text">5.守护线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-进程池和线程池"><span class="toc-text">6.进程池和线程池</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-线程与进程的区别"><span class="toc-text">1.线程与进程的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-为何会选择多线程？"><span class="toc-text">2.为何会选择多线程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-创建线程的方式"><span class="toc-text">3.创建线程的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-线程对象的属性和方法"><span class="toc-text">4.线程对象的属性和方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-守护线程"><span class="toc-text">5.守护线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-进程池和线程池"><span class="toc-text">6.进程池和线程池</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-多线程，到底该设置多少个线程？"><span class="toc-text">7.多线程，到底该设置多少个线程？</span></a></li></ol>
     </div>
   </section>
 
@@ -801,16 +812,16 @@
           轻松一刻
         </a></li>
       
-        <li><a class="flat-box" title="/sport/" href="/sport/"
+        <li><a class="flat-box" title="/about/" href="/about/"
           
             rel="nofollow"
           
           
-          id="sport">
+          id="about">
           
             <i class="fas fa-paper-plane fa-fw" aria-hidden="true"></i>
           
-          每日计划
+          相册
         </a></li>
       
         <li><a class="flat-box" title="/cv/" href="/cv/"
@@ -901,16 +912,16 @@
           主题文档
         </a></li>
       
-        <li><a class="flat-box" title="/about/" href="/about/"
+        <li><a class="flat-box" title="/sport/" href="/sport/"
           
             rel="nofollow"
           
           
-          id="about">
+          id="sport">
           
             <i class="fas fa-info-circle fa-fw" aria-hidden="true"></i>
           
-          关于小站
+          每日计划
         </a></li>
       
     </ul>
@@ -973,6 +984,8 @@
           <li><a class="flat-box" title="/categories/Python/" href="/categories/Python/"><div class='name'>Python</div><div class='badge'>(11)</div></a></li>
         
           <li><a class="flat-box" title="/categories/ThinkPHP/" href="/categories/ThinkPHP/"><div class='name'>ThinkPHP</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/TypeScript/" href="/categories/TypeScript/"><div class='name'>TypeScript</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box" title="/categories/docker/" href="/categories/docker/"><div class='name'>docker</div><div class='badge'>(3)</div></a></li>
         
