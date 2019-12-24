@@ -411,7 +411,7 @@
       <div class="article-entry" itemprop="articleBody">
         <p><font size=5 color=#00ced1 size=5 face="黑体">关关雎鸠，在河之洲。窈窕淑女，君子好逑</font></p>
 <blockquote>
-<p><font size=4 color=#FF0000>本文要点：</font><br>1.数值方法<br>2.数组以及数组属性和方法<br>3.日期<br><fancybox><img src="http://hd.wallpaperswide.com/thumbs/shhh_woman-t2.jpg" alt="一日不读书，我浑身难受"></fancybox></p>
+<p><font size=4 color=#FF0000>本文要点：</font><br>1.数值方法<br>2.数组以及数组属性和方法<br>3.日期<br>4.js数据类型转换大全<br>5.js的休眠函数<br><fancybox><img src="http://hd.wallpaperswide.com/thumbs/shhh_woman-t2.jpg" alt="一日不读书，我浑身难受"></fancybox></p>
 </blockquote>
 <a id="more"></a>
 
@@ -515,6 +515,9 @@
 <td align="left">获取时间戳（从 1970 年 1 月 1 日至今）</td>
 </tr>
 </tbody></table>
+<h2 id="4-js数据类型转换大全"><a href="#4-js数据类型转换大全" class="headerlink" title="4.js数据类型转换大全"></a>4.js数据类型转换大全</h2><p>【转载】<a href="https://blog.csdn.net/weixin_41218855/article/details/89408233" target="_blank" rel="noopener">js数据类型转换</a></p>
+<h2 id="5-js的休眠函数"><a href="#5-js的休眠函数" class="headerlink" title="5.js的休眠函数"></a>5.js的休眠函数</h2><p><font color=#FF0000>获取的时间戳是秒级还是毫秒级：js里面获取到的是毫秒级（十三位），而像python，php的时间戳是秒级的（十位数字）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params">n</span>) </span>&#123; <span class="comment">//n表示的毫秒数</span></span><br><span class="line">     <span class="keyword">var</span> start = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line">     <span class="keyword">while</span> (<span class="literal">true</span>) <span class="keyword">if</span> (<span class="keyword">new</span> <span class="built_in">Date</span>().getTime() - start &gt; n) <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h2>
       </div>
       
@@ -526,10 +529,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-23T08:51:31+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-24T19:28:07+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年12月23日</p>
+    <p>更新于 2019年12月24日</p>
   </a>
 </div>
 
@@ -553,7 +556,7 @@
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/11/22/Javascript%E7%AF%87%E7%AB%A0%E4%B8%89/&title=Javascript篇章三：js数字，数组与日期 | AhriLove&summary=关关雎鸠，在河之洲。窈窕淑女，君子好逑
 
-本文要点：1.数值方法2.数组以及数组属性和方法3.日期
+本文要点：1.数值方法2.数组以及数组属性和方法3.日期4.js数据类型转换大全5.js的休眠函数
 "
           
           >
@@ -568,7 +571,7 @@
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/11/22/Javascript%E7%AF%87%E7%AB%A0%E4%B8%89/&title=Javascript篇章三：js数字，数组与日期 | AhriLove&summary=关关雎鸠，在河之洲。窈窕淑女，君子好逑
 
-本文要点：1.数值方法2.数组以及数组属性和方法3.日期
+本文要点：1.数值方法2.数组以及数组属性和方法3.日期4.js数据类型转换大全5.js的休眠函数
 "
           
           >
@@ -583,7 +586,7 @@
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/11/22/Javascript%E7%AF%87%E7%AB%A0%E4%B8%89/&title=Javascript篇章三：js数字，数组与日期 | AhriLove&summary=关关雎鸠，在河之洲。窈窕淑女，君子好逑
 
-本文要点：1.数值方法2.数组以及数组属性和方法3.日期
+本文要点：1.数值方法2.数组以及数组属性和方法3.日期4.js数据类型转换大全5.js的休眠函数
 "
           
           >
@@ -804,7 +807,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-数值方法"><span class="toc-text">1.数值方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-数组"><span class="toc-text">2.数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数组属性和方法"><span class="toc-text">数组属性和方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-日期"><span class="toc-text">3.日期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#未完待续…"><span class="toc-text">未完待续…</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-数值方法"><span class="toc-text">1.数值方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-数组"><span class="toc-text">2.数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数组属性和方法"><span class="toc-text">数组属性和方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-日期"><span class="toc-text">3.日期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-js数据类型转换大全"><span class="toc-text">4.js数据类型转换大全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-js的休眠函数"><span class="toc-text">5.js的休眠函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#未完待续…"><span class="toc-text">未完待续…</span></a></li></ol>
     </div>
   </section>
 
