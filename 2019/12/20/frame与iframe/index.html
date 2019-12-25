@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>数据库存储引擎与索引,视图 | AhriLove</title>
+  <title>Frame与iFrame标签 | AhriLove</title>
   
   
 
@@ -325,8 +325,8 @@
         
   
     <h1 class="title">
-      <a href="/2019/11/12/mysql(%E4%BA%8C)/">
-        数据库存储引擎与索引,视图
+      <a href="/2019/12/20/frame%E4%B8%8Eiframe/">
+        Frame与iFrame标签
       </a>
     </h1>
   
@@ -341,11 +341,11 @@
             
   <div class='new-meta-item author'>
     
-      <a href="https://ahrilove.top" rel="nofollow">
+      <a href="/" rel="nofollow">
         
-          <i class="fas fa-user" aria-hidden="true"></i>
+          <img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imagesNaruto.jpg">
         
-        <p>AhriLove</p>
+        <p>Badwoman</p>
       </a>
     
   </div>
@@ -357,22 +357,9 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-11-12</p>
+    <p>2019-12-20</p>
   </a>
 </div>
-
-          
-        
-          
-            
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/Database/' rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>Database</p>
-    </a>
-  </div>
-
 
           
         
@@ -409,93 +396,21 @@
 
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;MySQL支持多种存储引擎，以适用于不同领域的数据库应用需要，用户可以根据需要进行选择甚至是定制自己的引擎以提高应用效率。</p>
-<ul>
-<li>索引概述</li>
-<li>索引作用</li>
-<li>视图</li>
-<li>视图的操作</li>
-</ul>
+        <blockquote>
+<p><font size=4 color=#FF0000>本文要点：</font><br>1.Frame 和 IFrame 对象<br>2.frame 和 iframe 的区别<br>3.frame<br>4.iframe</p>
+</blockquote>
 <a id="more"></a>
+<h3 id="1-Frame-和-IFrame-对象"><a href="#1-Frame-和-IFrame-对象" class="headerlink" title="1. Frame 和 IFrame 对象"></a>1. <a href="https://www.cnblogs.com/showcase/p/11162091.html" target="_blank" rel="noopener">Frame 和 IFrame 对象</a></h3><p>其实就是在HTML页面中镶入了一个框架，并且框架可拆分为多个内容区。<br>Frame 对象代表一个 HTML 框架。&lt;frame&gt;标签定义了在框架中一个特定的窗口（框架）。在 HTML 文档中 &lt;frame&gt; 每出现一次，就会创建一个 Frame对象。</p>
+<p>IFrame 对象代表一个 HTML 的内联框架。&lt;iframe&gt; 标签定义了包含另外一个文档的内联框架。在 HTML 文档中 &lt;iframe&gt; 每出现一次，一个 IFrame 对象就会被创建。</p>
+<h3 id="2-frame-和-iframe-的区别"><a href="#2-frame-和-iframe-的区别" class="headerlink" title="2.frame 和 iframe 的区别"></a>2.frame 和 iframe 的区别</h3><p>　1、frame 不能脱离 frameset 单独使用，iframe 可以；</p>
+<p>　2、frame 不能放到body中，否则将无法显示；</p>
+<p>　3、iframe 也可以嵌套在frameset ，但是必须放到body中，不嵌套在frameset 中的iframe 可以随意使用；</p>
+<p>　4、frame 的高度只能通过 frameset 控制，iframe 是自己本身控制，不能通过 frameset 设置；</p>
+<p>　5、iframe 可以放到表格中；</p>
+<h3 id="3-frame"><a href="#3-frame" class="headerlink" title="3.frame"></a>3.frame</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">    noresize: 规定无法调整框架的大小</span></span><br><span class="line"><span class="comment">    frameborder: 规定是否显示框架周围的边框 0为无边框 1为有</span></span><br><span class="line"><span class="comment">    marginheight: 定义框架的上方和下方的边距</span></span><br><span class="line"><span class="comment">    marginwidth: 定义框架的左侧和右侧的边距</span></span><br><span class="line"><span class="comment">    noresize: 规定无法调整框架的大小</span></span><br><span class="line"><span class="comment">    scrolling: 规定是否在框架中显示滚动条 yes no auto</span></span><br><span class="line"><span class="comment">    src:      规定在框架中显示的文档的 URL。</span></span><br><span class="line"><span class="comment"> --&gt;</span></span><br><span class="line"> <span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">    cols: 定义框架集中列的数目和尺寸</span></span><br><span class="line"><span class="comment">    rows: 定义框架集中行的数目和尺寸</span></span><br><span class="line"><span class="comment">  --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">frameset</span> <span class="attr">cols</span>=<span class="string">"25%,50%,25%"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">frame</span> <span class="attr">src</span>=<span class="string">"frame_a.htm"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">frame</span> <span class="attr">src</span>=<span class="string">"frame_b.htm"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">frame</span> <span class="attr">src</span>=<span class="string">"frame_c.htm"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">frameset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="1-索引概述"><a href="#1-索引概述" class="headerlink" title="1.索引概述"></a>1.索引概述</h3><p>索引在创建表的时候可以同时创建，也可以随时增加新的索引<br>创建新索引的语法为:<br>create [unique|fulltext|spatial] index index_name [using index_type] on table_name( col_name [(length)] [asc|desc])<br>删除索引： DROP INDEX index_name on table_name</p>
-<h3 id="2-索引作用"><a href="#2-索引作用" class="headerlink" title="2.索引作用"></a>2.索引作用</h3><p>合理的创建索引是提高查询速度最有效的方式之一。<br>&nbsp;&nbsp;&nbsp;&nbsp;在没有建立索引的情况下，查询一条数据的过程是这样：<br>MySQL是从第一条记录开始查表，在某一个地方查到了匹配的数据，停止？NO，继续查询剩下的数据，直到查完整张表。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;在建立合适索引的情况下，查询一条数据的过程又是这样：<br>MySQL先根据索引快速到达一个位置去搜索数据文件，然后查出数据，而不必查看整张表的数据。<br>tips:<br><font color=#FF3030><br>1、索引的效率取决于索引列的值是否散列，即该列的值如果越互不相同，那么索引效率越高。<br>2、索引的优点是提高了查询效率，缺点是在插入、更新和删除记录时，需要同时修改索引，因此，索引越多，插入、更新和删除记录的速度就越慢。<br>3、通过创建唯一索引，可以保证某一列的值具有唯一性。</font></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*添加唯一索引：*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> students</span><br><span class="line"></span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> unique_name(<span class="keyword">name</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*只添加唯一约束而不添加唯一索引：*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> students</span><br><span class="line"></span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> unique_name <span class="keyword">UNIQUE</span>(<span class="keyword">name</span>);</span><br></pre></td></tr></table></figure>
-<p>因此，为了提高查询速度，合理建立索引是非常有必要的。</p>
-<hr>
-
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th align="center">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>普通索引</td>
-<td align="center">基本的索引类型，允许定义索引的列中插入重复值和空值</td>
-</tr>
-<tr>
-<td>唯一索引</td>
-<td align="center">索引列值必须唯一，但允许有空值。如果是组合索引，则列值的组合必须唯一</td>
-</tr>
-<tr>
-<td>主键索引</td>
-<td align="center">特殊的唯一索引，不允许有空值</td>
-</tr>
-<tr>
-<td>全文索引</td>
-<td align="center">类型为FULLTEXT,支持值的全文查找，允许在索引列中插入重复值和空值</td>
-</tr>
-<tr>
-<td>组合索引</td>
-<td align="center">在表的多个字段组合上创建的索引</td>
-</tr>
-</tbody></table>
-<h3 id="3-视图（5-0-1提供视图功能）"><a href="#3-视图（5-0-1提供视图功能）" class="headerlink" title="3.视图（5.0.1提供视图功能）"></a>3.视图（5.0.1提供视图功能）</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;视图是一种虚拟存在的表，它存储的是查询语句，显示出来的是查询的结果；更直白的说就是当我们需要从表中查询一些信息时需要编写相关SQL语句，将这些SQL语句存储为视图，那么我们调用这些视图的时候就相当于执行了SQL语句，从而可以得到想要的结果<br>eg:创建视图并执行查询操作<br> create view view_name as select qty,price,qty*price as value from temp;</p>
-<h4 id="视图有什么作用"><a href="#视图有什么作用" class="headerlink" title="视图有什么作用"></a>视图有什么作用</h4><blockquote>
-<p>1.视图就像是一个封装了很多功能的函数，我们把一系列复杂的查询语句存储为一个视图，这样在需要频繁使用这些语句时不必反复编写，直接使用视图代替即可</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">如果要频繁获取表user的name和表goods的name。就应该使用以下sql语句：</span><br><span class="line">select a.name as username, b.name as goodsname from user as a, goods as b, ug as c where a.id=c.userid and c.goodsid=b.id;</span><br><span class="line"></span><br><span class="line">但有了视图就不一样了，创建视图other。示例</span><br><span class="line">create view other as select a.name as username, b.name as goodsname from user as a, goods as b, ug as c where a.id=c.userid and c.goodsid=b.id;</span><br><span class="line"></span><br><span class="line">创建好视图后，就可以这样获取user的name和goods的name：</span><br><span class="line"> select * from other;</span><br></pre></td></tr></table></figure>
-
-
-
-
-<blockquote>
-<p>2.对数据库进行重构但仍不会影响程序运行</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">假如因为某种需求，需要将user表拆成表usera和表userb，该两张表的结构如下：</span><br><span class="line">        测试表:usera有id，name，age字段</span><br><span class="line">        测试表:userb有id，name，sex字段</span><br><span class="line">这时如果程序端一直使用的sql语句是：select * from user;那就会报错提示该表不存在，这时要么去更改程序的查询语句要么就创建视图。显然，创建视图更简单，成本更低。</span><br><span class="line">以下sql语句创建视图：</span><br><span class="line">create view user as select a.name,a.age,b.sex from usera as a, userb as b where a.name=b.name;</span><br><span class="line">以上假设name都是唯一的。</span><br><span class="line">这时程序端端使用的sql语句：select * from user;就不会报错。这就实现了更改数据库结构，而不用更改脚本程序的功能。</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-视图的操作"><a href="#4-视图的操作" class="headerlink" title="4.视图的操作"></a>4.视图的操作</h3><blockquote>
-<p>4.1 创建或修改视图</p>
-</blockquote>
-<p>create [ or replace ] [ algorithm = { undefined | merge | temptable } ] view view_name [ (column_list) ] as select_statement [ with [ cascaded | local ] check option ]</p>
-<ul>
-<li>使用了OR REPLACE可以修改视图，或者直接就CREATE OR REPLACE 替换为ALTER 即变成修改语法；</li>
-<li>UNDEFINED：未定义指定算法；MERGE：更新视图表数据的同时会更新真实表的数据（默认）；TEMPTABLE：只能查询不能更新；</li>
-<li>CASCADED(默认)：必须满足所有针对该视图的所有视图的条件才可以更新；LOCAL：只需满足本视图的条件就可以更新；</li>
-<li>WITH CHECK OPTION：需要满足相关的检查条件才能进行更新<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--常量视图</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> <span class="keyword">replace</span> <span class="keyword">view</span> <span class="keyword">pi</span> <span class="keyword">as</span> <span class="keyword">select</span> <span class="number">3.1415926</span> <span class="keyword">as</span> <span class="keyword">pi</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">--select中包含子查询</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> <span class="keyword">replace</span> <span class="keyword">view</span> city_view <span class="keyword">as</span> <span class="keyword">select</span> (<span class="keyword">select</span> city <span class="keyword">from</span> city <span class="keyword">where</span> city_id=<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<blockquote>
-<p>4.2 查看当前数据库下所有视图 show full tables where table_type like ‘view’;</p>
-</blockquote>
-<h3 id="5-优化SQL语句一般步骤"><a href="#5-优化SQL语句一般步骤" class="headerlink" title="5.优化SQL语句一般步骤"></a>5.优化SQL语句一般步骤</h3><blockquote>
-<p>5.1 通过show status 查看各语句的频率</p>
-</blockquote>
-<h3 id="6-数据库Leetcode"><a href="#6-数据库Leetcode" class="headerlink" title="6.数据库Leetcode"></a>6.数据库Leetcode</h3><p>1.求薪水第二高，不存在就返回null</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">ifnull</span>((<span class="keyword">select</span> <span class="keyword">distinct</span>(Salary) </span><br><span class="line"><span class="keyword">from</span> Employee </span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> Salary <span class="keyword">desc</span> <span class="keyword">limit</span> <span class="number">1</span>,<span class="number">1</span>),<span class="literal">null</span>) <span class="keyword">as</span> SecondHighestSalary;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><p>超过5名学生的课(having用法)</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">class</span></span><br><span class="line"><span class="keyword">from</span> courses</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">class</span></span><br><span class="line"><span class="keyword">having</span> <span class="keyword">count</span>(<span class="keyword">distinct</span> student) &gt;= <span class="number">5</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>DATEDIFF是两个日期的天数差集</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> a.Id <span class="keyword">as</span> newId</span><br><span class="line"><span class="keyword">from</span> Weather a <span class="keyword">left</span> <span class="keyword">join</span> Weather b </span><br><span class="line"><span class="keyword">on</span> <span class="keyword">datediff</span>(a.RecordDate,b.RecordDate)=<span class="number">1</span> <span class="keyword">where</span> a.Temperature&gt;b.Temperature</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
+<h3 id="4-iframe"><a href="#4-iframe" class="headerlink" title="4.iframe"></a>4.iframe</h3><p>126邮箱登陆框就涉及到iframe</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="tag">&lt;<span class="name">iframe</span> <span class="attr">id</span>=<span class="string">"x-URS-iframe"</span> <span class="attr">...</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">           ...</span><br><span class="line">           <span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"email"</span> &gt;</span></span><br></pre></td></tr></table></figure>
 
       </div>
       
@@ -507,20 +422,12 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-02T21:06:44+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-25T17:41:50+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年12月2日</p>
+    <p>更新于 2019年12月25日</p>
   </a>
 </div>
-
-        
-      
-        
-          
-  
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/mysql/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>mysql</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/InnoDB/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>InnoDB</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/MyISAM/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>MyISAM</p></a></div>
-
 
         
       
@@ -532,12 +439,8 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/11/12/mysql(%E4%BA%8C)/&title=数据库存储引擎与索引,视图 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;MySQL支持多种存储引擎，以适用于不同领域的数据库应用需要，用户可以根据需要进行选择甚至是定制自己的引擎以提高应用效率。
-
-索引概述
-索引作用
-视图
-视图的操作
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/12/20/frame%E4%B8%8Eiframe/&title=Frame与iFrame标签 | AhriLove&summary=
+本文要点：1.Frame 和 IFrame 对象2.frame 和 iframe 的区别3.frame4.iframe
 "
           
           >
@@ -550,12 +453,8 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/11/12/mysql(%E4%BA%8C)/&title=数据库存储引擎与索引,视图 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;MySQL支持多种存储引擎，以适用于不同领域的数据库应用需要，用户可以根据需要进行选择甚至是定制自己的引擎以提高应用效率。
-
-索引概述
-索引作用
-视图
-视图的操作
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/12/20/frame%E4%B8%8Eiframe/&title=Frame与iFrame标签 | AhriLove&summary=
+本文要点：1.Frame 和 IFrame 对象2.frame 和 iframe 的区别3.frame4.iframe
 "
           
           >
@@ -568,12 +467,8 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/11/12/mysql(%E4%BA%8C)/&title=数据库存储引擎与索引,视图 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;MySQL支持多种存储引擎，以适用于不同领域的数据库应用需要，用户可以根据需要进行选择甚至是定制自己的引擎以提高应用效率。
-
-索引概述
-索引作用
-视图
-视图的操作
+          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/12/20/frame%E4%B8%8Eiframe/&title=Frame与iFrame标签 | AhriLove&summary=
+本文要点：1.Frame 和 IFrame 对象2.frame 和 iframe 的区别3.frame4.iframe
 "
           
           >
@@ -602,16 +497,16 @@
                       <span class="art-item-left">
                           <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
                           <h4>
-                              <a href="/2019/11/14/json/" rel="prev" title="JSON通常用于与服务端交换数据,在向服务器发送数据时一般是字符串">
+                              <a href="/2019/12/22/Vue(%E4%B8%89)/" rel="prev" title="Vue(三)：组件与webpack">
                                 
-                                    JSON通常用于与服务端交换数据,在向服务器发送数据时一般是字符串
+                                    Vue(三)：组件与webpack
                                 
                               </a>
                           </h4>
                           
                               
                               <h6 class="tags">
-                                  <a class="tag" href="/tags/json-parse/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> json.parse()</a> <a class="tag" href="/tags/json-stringify/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> json.stringify()</a>
+                                  <a class="tag" href="/tags/Vue/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Vue</a>
                               </h6>
                           
                       </span>
@@ -622,16 +517,16 @@
                       <span class="art-item-right" aria-hidden="true">
                           <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                           <h4>
-                              <a href="/2019/11/11/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="prev" title="MySQL数据库(一)：DDL，DML，DCL">
+                              <a href="/2019/12/19/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E5%85%AB)/" rel="prev" title="Python全栈系列章节更新（八）：js逆向爬虫的奇技淫巧">
                                   
-                                      MySQL数据库(一)：DDL，DML，DCL
+                                      Python全栈系列章节更新（八）：js逆向爬虫的奇技淫巧
                                   
                               </a>
                           </h4>
                           
                               
                               <h6 class="tags">
-                                  <a class="tag" href="/tags/database/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> database</a> <a class="tag" href="/tags/mysql/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> mysql</a> <a class="tag" href="/tags/DDL/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> DDL</a> <a class="tag" href="/tags/DML/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> DML</a>
+                                  <a class="tag" href="/tags/%E9%80%86%E5%90%91%E7%88%AC%E8%99%AB/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 逆向爬虫</a>
                               </h6>
                           
                       </span>
@@ -675,7 +570,7 @@
 
   <script>
     window.subData = {
-      title: '数据库存储引擎与索引,视图',
+      title: 'Frame与iFrame标签',
       tools: true
     }
   </script>
@@ -799,7 +694,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-索引概述"><span class="toc-text">1.索引概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-索引作用"><span class="toc-text">2.索引作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-视图（5-0-1提供视图功能）"><span class="toc-text">3.视图（5.0.1提供视图功能）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#视图有什么作用"><span class="toc-text">视图有什么作用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-视图的操作"><span class="toc-text">4.视图的操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-优化SQL语句一般步骤"><span class="toc-text">5.优化SQL语句一般步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-数据库Leetcode"><span class="toc-text">6.数据库Leetcode</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Frame-和-IFrame-对象"><span class="toc-text">1. Frame 和 IFrame 对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-frame-和-iframe-的区别"><span class="toc-text">2.frame 和 iframe 的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-frame"><span class="toc-text">3.frame</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-iframe"><span class="toc-text">4.iframe</span></a></li></ol>
     </div>
   </section>
 
