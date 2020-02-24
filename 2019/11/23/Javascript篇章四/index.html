@@ -476,6 +476,11 @@
 </blockquote>
 <p>window.innerWidth和window.innerHeight:可以获取浏览器窗口的内部宽度和高度。内部宽高是指除去菜单栏、工具栏、边框等占位元素后，用于显示网页的净宽高</p>
 <p>windows.outerWidth和outerHeight属性，可以获取浏览器窗口的整个宽高</p>
+<p>拓：<strong>window.onresize()监听浏览器窗口高宽变化，注意要使用箭头函数</strong>：<br>window.onresize()官方定义为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">window.onresize=function()&#123;</span><br><span class="line">    SomeJavaScriptCode</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>但是最近的一个项目（Vue+ThinkPHP）中，监听浏览器窗口变化时，不适用箭头函数就会报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">    //重设图表高宽</span><br><span class="line">    resizeChart()&#123;</span><br><span class="line">        //监听窗口高宽变化，注意要使用箭头函数</span><br><span class="line">        window.onresize = () =&gt; &#123;</span><br><span class="line">            this.formTableMain2Chart.resize();     //重设费用报销单图表的高宽</span><br><span class="line">            this.formTableMain147Chart.resize();     //重设147招待费用报销单图表的高宽</span><br><span class="line">            this.formTableMain58Chart.resize();     //重设58差旅费用报销单图表的高宽</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>navigator对象表示浏览器信息</p>
 </blockquote>
@@ -554,10 +559,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-24T19:24:22+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-22T17:15:05+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年12月24日</p>
+    <p>更新于 2020年2月22日</p>
   </a>
 </div>
 
