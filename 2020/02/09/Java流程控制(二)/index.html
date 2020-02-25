@@ -468,9 +468,9 @@
 <td align="center">格式化字符串</td>
 </tr>
 </tbody></table>
-<p><strong>输入：</strong> 直接看案例</p>
+<p><strong>输入：</strong> 直接看案例<br>输入类型：<br>方法&nbsp;&nbsp;&nbsp;&nbsp;    描述<br>nextBoolean()&nbsp;&nbsp;&nbsp;&nbsp;    从用户输入中读取1个 boolean 值<br>nextByte()    &nbsp;&nbsp;&nbsp;&nbsp;    从用户输入中读取1个 byte 值<br>nextDouble()&nbsp;&nbsp;&nbsp;&nbsp;    从用户输入中读取1个 double 值<br>nextFloat()&nbsp;&nbsp;&nbsp;&nbsp;    从用户输入中读取1个 float 值<br>nextInt()&nbsp;&nbsp;&nbsp;&nbsp;    从用户输入中读取1个 int 值<br>nextLine()&nbsp;&nbsp;&nbsp;&nbsp;    从用户输入中读取1个 String 值<br>nextLong()    &nbsp;&nbsp;&nbsp;&nbsp;从用户输入中读取1个 long 值<br>nextShort()    &nbsp;&nbsp;&nbsp;&nbsp;从用户输入中读取1个 short 值</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner scanner = <span class="keyword">new</span> Scanner(System.in); <span class="comment">// 创建Scanner对象</span></span><br><span class="line">        System.out.print(<span class="string">"Input your name: "</span>); <span class="comment">// 打印提示</span></span><br><span class="line">        String name = scanner.nextLine(); <span class="comment">// 读取一行输入并获取字符串</span></span><br><span class="line">        System.out.print(<span class="string">"Input your age: "</span>); <span class="comment">// 打印提示</span></span><br><span class="line">        <span class="keyword">int</span> age = scanner.nextInt(); <span class="comment">// 读取一行输入并获取整数</span></span><br><span class="line">        System.out.printf(<span class="string">"Hi, %s, you are %d\n"</span>, name, age); <span class="comment">// 格式化输出</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>首先，我们通过import语句导入java.util.Scanner，import是导入某个类的语句，必须放到Java源代码的开头，后面我们在Java的package中会详细讲解如何使用import。</p>
+<p>首先，我们通过import语句导入java.util.Scanner，import是导入某个类的语句，必须放到Java源代码的开头</p>
 <p>然后，创建Scanner对象并传入System.in。System.out代表标准输出流，而System.in代表标准输入流。直接使用System.in读取用户输入虽然是可以的，但需要更复杂的代码，而通过Scanner就可以简化后续的代码。</p>
 <p>有了Scanner对象后，要读取用户输入的字符串，使用<code>scanner.nextLine()</code>；要读取用户输入的整数，使用<code>scanner.nextInt()</code>。Scanner会自动转换数据类型，因此不必手动转换。</p>
 <h3 id="2-if判断"><a href="#2-if判断" class="headerlink" title="2.if判断"></a>2.if判断</h3><p>if语句的基本语法是：</p>
@@ -503,10 +503,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-18T15:29:26+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-25T14:07:13+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年2月18日</p>
+    <p>更新于 2020年2月25日</p>
   </a>
 </div>
 
@@ -1151,7 +1151,7 @@
 <footer id="footer" class="clearfix">
   
     <div class="footer">
-      <p>Copyright © 2019 谁知你知我，我知你知深。此恨经年深，比情度日久。</p>
+      <p>Copyright © 2019-2020 谁知你知我，我知你知深。此恨经年深，比情度日久。</p>
 
     </div>
     <br>

@@ -560,19 +560,31 @@
 <p>要特别注意的一点是，InputStream并不是一个接口，而是一个抽象类，它是所有输入流的超类。这个抽象类定义的一个最重要的方法就是int read()</p>
 <h3 id="9-日期与时间"><a href="#9-日期与时间" class="headerlink" title="9.日期与时间"></a>9.日期与时间</h3><p>我们再来看一下Java标准库提供的API。Java标准库有两套处理日期和时间的API：</p>
 <ul>
-<li>一套定义在java.util这个包里面，主要包括Date、Calendar和TimeZone这几个类；</li>
-<li>一套新的API是在Java 8引入的，定义在java.time这个包里面，主要包括LocalDateTime、ZonedDateTime、ZoneId等</li>
+<li>定义在java.util这个包里面，主要包括Date、Calendar和TimeZone这几个类(这里面有很多方法已经过时，废弃了，会报出warning)；</li>
+<li>新的API是在Java 8引入的，定义在java.time这个包里面，主要包括LocalDateTime、ZonedDateTime、ZoneId等（推荐使用这个API）</li>
 </ul>
-<h4 id="Date"><a href="#Date" class="headerlink" title="Date"></a>Date</h4><p>java.util.Date是用于表示一个日期和时间的对象，注意与java.sql.Date区分，后者用在数据库中。如果观察Date的源码，可以发现它实际上存储了一个long类型的以毫秒表示的时间戳<br>使用方式：<a href="https://ahrilove.top/2019/11/22/Javascript%E7%AF%87%E7%AB%A0%E4%B8%89/">【与JavaScript使用方式大同小异，作为参考】</a></p>
+<h4 id="Date（废弃）"><a href="#Date（废弃）" class="headerlink" title="Date（废弃）"></a><del>Date（废弃）</del></h4><p><del>java.util.Date是用于表示一个日期和时间的对象，注意与java.sql.Date区分，后者用在数据库中。如果观察Date的源码，可以发现它实际上存储了一个long类型的以毫秒表示的时间戳</del><br>使用方式：<a href="https://ahrilove.top/2019/11/22/Javascript%E7%AF%87%E7%AB%A0%E4%B8%89/">【与JavaScript使用方式大同小异，作为参考】</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Date date = new Date();</span><br><span class="line">(date.getYear()+1900):获取当前的年份，不同于其它编程语言，一定要加上1900</span><br><span class="line">(date.getMonth()+1)： 获取当前月份，不同于其它编程语言，一定要+1</span><br><span class="line">(date.getDate())：获取当前天数，范围为1-31天，不能+1</span><br><span class="line">(date.getDay())：获取当前周几，范围为0-6</span><br><span class="line">(date.toString())：转换为String</span><br><span class="line">(date.toGMTString())：转换为GMT时区</span><br><span class="line">(date.toLocaleString())：转换为本地地区（2020年2月24日 下午4:07:14）</span><br></pre></td></tr></table></figure>
 
-<h4 id="自定义日期格式"><a href="#自定义日期格式" class="headerlink" title="自定义日期格式"></a>自定义日期格式</h4><p>举一个自定义日期格式</p>
+<h4 id="自定义日期格式-废弃"><a href="#自定义日期格式-废弃" class="headerlink" title="自定义日期格式(废弃)"></a><del>自定义日期格式(废弃)</del></h4><p>举一个自定义日期格式</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.*;</span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 获取当前时间:</span></span><br><span class="line">        Date date = <span class="keyword">new</span> Date();</span><br><span class="line">        <span class="keyword">var</span> sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line">        System.out.println(sdf.format(date));  <span class="comment">// 2020-02-24 16:18:20</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>拓展：对于Java中的var表示声明局部变量，java在var上是有要求的。总结起来，有以下三点很重要：</p>
 <p>（1）只能用于局部变量上；</p>
 <p>（2）声明时必须初始化；</p>
 <p>（3）不能用作方法参数。</p>
-<h4 id="Calendar"><a href="#Calendar" class="headerlink" title="Calendar"></a>Calendar</h4><p>Calendar可以用于获取并设置年、月、日、时、分、秒，它和Date比，主要多了一个可以做简单的日期和时间运算的功能</p>
+<h4 id="Calendar"><a href="#Calendar" class="headerlink" title="Calendar"></a><del>Calendar</del></h4><p><del>Calendar可以用于获取并设置年、月、日、时、分、秒，它和Date比，主要多了一个可以做简单的日期和时间运算的功能</del></p>
+<p>从Java 8开始，java.time包提供了新的日期和时间API，主要涉及的类型有：</p>
+<ol>
+<li>本地日期和时间：LocalDateTime，LocalDate，LocalTime；</li>
+<li>带时区的日期和时间：ZonedDateTime；</li>
+<li>时刻：Instant；</li>
+<li>时区：ZoneId，ZoneOffset；</li>
+<li>时间间隔：Duration。</li>
+<li>以及一套新的用于取代SimpleDateFormat的格式化类型DateTimeFormatter。</li>
+</ol>
+<p>和旧的API相比，新API严格区分了时刻、本地日期、本地时间和带时区的日期时间，并且，对日期和时间进行运算更加方便。</p>
+<p><font color=#ed1941>此外，新API修正了旧API不合理的常量设计：</p>
+<p>Month的范围用1<del>12表示1月到12月；<br>Week的范围用1</del>7表示周一到周日。<br>最后，新API的类型几乎全部是不变类型（和String类似），可以放心使用不必担心被修改。</font></p>
 
       </div>
       
@@ -584,10 +596,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-24T17:15:50+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-25T17:16:02+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年2月24日</p>
+    <p>更新于 2020年2月25日</p>
   </a>
 </div>
 
@@ -867,7 +879,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-字符串与编码"><span class="toc-text">1.字符串与编码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#包装类型："><span class="toc-text">包装类型：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-定义常量"><span class="toc-text">2.定义常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-enum枚举类"><span class="toc-text">3.enum枚举类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-常用工具类"><span class="toc-text">4.常用工具类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#MAth：进行数学计算"><span class="toc-text">MAth：进行数学计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Random：创建伪随机数"><span class="toc-text">Random：创建伪随机数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-异常处理机制"><span class="toc-text">5.异常处理机制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#多catch语句"><span class="toc-text">多catch语句</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#finally语句"><span class="toc-text">finally语句</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-集合"><span class="toc-text">6.集合</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#collection接口"><span class="toc-text">collection接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Iterator迭代器接口"><span class="toc-text">Iterator迭代器接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ArrayList"><span class="toc-text">ArrayList</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#找出一组整数缺失的数值案例"><span class="toc-text">找出一组整数缺失的数值案例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#集合的综合运用：斗地主游戏"><span class="toc-text">集合的综合运用：斗地主游戏</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-IO，【File类的操作大全】"><span class="toc-text">7.IO，【File类的操作大全】</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#文件和目录"><span class="toc-text">文件和目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#遍历文件和目录"><span class="toc-text">遍历文件和目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建和删除目录"><span class="toc-text">创建和删除目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Path"><span class="toc-text">Path</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-InputStream与OutputStream"><span class="toc-text">8.InputStream与OutputStream</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-日期与时间"><span class="toc-text">9.日期与时间</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Date"><span class="toc-text">Date</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自定义日期格式"><span class="toc-text">自定义日期格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Calendar"><span class="toc-text">Calendar</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-字符串与编码"><span class="toc-text">1.字符串与编码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#包装类型："><span class="toc-text">包装类型：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-定义常量"><span class="toc-text">2.定义常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-enum枚举类"><span class="toc-text">3.enum枚举类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-常用工具类"><span class="toc-text">4.常用工具类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#MAth：进行数学计算"><span class="toc-text">MAth：进行数学计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Random：创建伪随机数"><span class="toc-text">Random：创建伪随机数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-异常处理机制"><span class="toc-text">5.异常处理机制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#多catch语句"><span class="toc-text">多catch语句</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#finally语句"><span class="toc-text">finally语句</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-集合"><span class="toc-text">6.集合</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#collection接口"><span class="toc-text">collection接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Iterator迭代器接口"><span class="toc-text">Iterator迭代器接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ArrayList"><span class="toc-text">ArrayList</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#找出一组整数缺失的数值案例"><span class="toc-text">找出一组整数缺失的数值案例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#集合的综合运用：斗地主游戏"><span class="toc-text">集合的综合运用：斗地主游戏</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-IO，【File类的操作大全】"><span class="toc-text">7.IO，【File类的操作大全】</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#文件和目录"><span class="toc-text">文件和目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#遍历文件和目录"><span class="toc-text">遍历文件和目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建和删除目录"><span class="toc-text">创建和删除目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Path"><span class="toc-text">Path</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-InputStream与OutputStream"><span class="toc-text">8.InputStream与OutputStream</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-日期与时间"><span class="toc-text">9.日期与时间</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Date（废弃）"><span class="toc-text">Date（废弃）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自定义日期格式-废弃"><span class="toc-text">自定义日期格式(废弃)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Calendar"><span class="toc-text">Calendar</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -1232,7 +1244,7 @@
 <footer id="footer" class="clearfix">
   
     <div class="footer">
-      <p>Copyright © 2019 谁知你知我，我知你知深。此恨经年深，比情度日久。</p>
+      <p>Copyright © 2019-2020 谁知你知我，我知你知深。此恨经年深，比情度日久。</p>
 
     </div>
     <br>

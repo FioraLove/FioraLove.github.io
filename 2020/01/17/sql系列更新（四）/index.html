@@ -433,7 +433,7 @@
       <div class="article-entry" itemprop="articleBody">
         <p>数据库是每一个IT工程师必备的技能树，而select往往是使用频率最大的，总结并补充之前有关于select查询的补充</p>
 <blockquote>
-<p><font color=#FF3030>本文要点：</font><br>1.sql的执行顺序<br>2.select+case…when…then语句<br>3.select top语句<br>4.where条件查询</p>
+<p><font color=#FF3030>本文要点：</font><br>1.sql的执行顺序<br>2.select+case…when…then语句<br>3.select top语句<br>4.where条件查询<br>5.sql函数大全</p>
 </blockquote>
 <a id="more"></a>
 <h3 id="1-sql的执行顺序"><a href="#1-sql的执行顺序" class="headerlink" title="1.sql的执行顺序"></a>1.sql的执行顺序</h3><p>下面展示一张sql的执行图：<br><fancybox><img src="https://img-blog.csdn.net/20150621112546457?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbDI5NDI2NTQyMQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></fancybox><br>这里我们可以理解为：先执行from语句，获取表----&gt;然后在使用where过滤掉不相关的记录----&gt;再执行聚合函数或者group by分组----&gt;紧接着执行having进行二次过滤----&gt;最后执行sql的select语句</p>
@@ -455,7 +455,9 @@
 </blockquote>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column_name(s)</span><br><span class="line"><span class="keyword">FROM</span> table_name</span><br><span class="line"><span class="keyword">LIMIT</span> <span class="built_in">number</span></span><br></pre></td></tr></table></figure>
 <h3 id="4-where条件查询"><a href="#4-where条件查询" class="headerlink" title="4.where条件查询"></a>4.where条件查询</h3><p><fancybox><img src="https://img-blog.csdnimg.cn/20200114093851576.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NoYW5nXzAxMjI=,size_16,color_FFFFFF,t_70" alt=""></fancybox></p>
-
+<h3 id="5-sql函数大全"><a href="#5-sql函数大全" class="headerlink" title="5.sql函数大全"></a>5.sql函数大全</h3><p><a href="https://www.cnblogs.com/tongbiao/p/6823427.html" target="_blank" rel="noopener">【常用经典SQL语句大全完整版–详解+实例】</a><br><a href="https://blog.csdn.net/sundna/article/details/89926586" target="_blank" rel="noopener">【SQL函数大全及示例汇总】</a></p>
+<p>补充：left(filed,numbers):字段从左边开始截取指定位数<br>geohash通过算法将1个定位的经度和纬度2个数值，转换成1个hash字符串。如果2个地方距离越近，那么他们的hash值的前缀越相同。然后通过数据库中like操作符 “ like wtw366%” 快速查找到附近的车。比如上海腾讯大厦的经纬度是： （31.1688749, 121.3975184），那么转换成geohash就是 wtw366ngz5qt，我们想找附近的车子，可以用：<br>left(filed,numbers):字段从左边开始截取指定位数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> cart <span class="keyword">where</span> geohash <span class="keyword">like</span> <span class="string">'wtw366%'</span> ;</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> cart <span class="keyword">where</span> <span class="keyword">LEFT</span>(geohash, <span class="number">6</span>) = <span class="string">'wtw366'</span>;</span><br></pre></td></tr></table></figure>
       </div>
       
         <br>
@@ -466,10 +468,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-01-17T14:01:25+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-25T17:14:36+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年1月17日</p>
+    <p>更新于 2020年2月25日</p>
   </a>
 </div>
 
@@ -493,7 +495,7 @@
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/01/17/sql%E7%B3%BB%E5%88%97%E6%9B%B4%E6%96%B0%EF%BC%88%E5%9B%9B%EF%BC%89/&title=sql查询大全补充 | AhriLove&summary=数据库是每一个IT工程师必备的技能树，而select往往是使用频率最大的，总结并补充之前有关于select查询的补充
 
-本文要点：1.sql的执行顺序2.select+case…when…then语句3.select top语句4.where条件查询
+本文要点：1.sql的执行顺序2.select+case…when…then语句3.select top语句4.where条件查询5.sql函数大全
 "
           
           >
@@ -508,7 +510,7 @@
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/01/17/sql%E7%B3%BB%E5%88%97%E6%9B%B4%E6%96%B0%EF%BC%88%E5%9B%9B%EF%BC%89/&title=sql查询大全补充 | AhriLove&summary=数据库是每一个IT工程师必备的技能树，而select往往是使用频率最大的，总结并补充之前有关于select查询的补充
 
-本文要点：1.sql的执行顺序2.select+case…when…then语句3.select top语句4.where条件查询
+本文要点：1.sql的执行顺序2.select+case…when…then语句3.select top语句4.where条件查询5.sql函数大全
 "
           
           >
@@ -523,7 +525,7 @@
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/01/17/sql%E7%B3%BB%E5%88%97%E6%9B%B4%E6%96%B0%EF%BC%88%E5%9B%9B%EF%BC%89/&title=sql查询大全补充 | AhriLove&summary=数据库是每一个IT工程师必备的技能树，而select往往是使用频率最大的，总结并补充之前有关于select查询的补充
 
-本文要点：1.sql的执行顺序2.select+case…when…then语句3.select top语句4.where条件查询
+本文要点：1.sql的执行顺序2.select+case…when…then语句3.select top语句4.where条件查询5.sql函数大全
 "
           
           >
@@ -749,7 +751,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-sql的执行顺序"><span class="toc-text">1.sql的执行顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Select-case…when…then语句"><span class="toc-text">2.Select+case…when…then语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-select-top语句"><span class="toc-text">3.select top语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-where条件查询"><span class="toc-text">4.where条件查询</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-sql的执行顺序"><span class="toc-text">1.sql的执行顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Select-case…when…then语句"><span class="toc-text">2.Select+case…when…then语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-select-top语句"><span class="toc-text">3.select top语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-where条件查询"><span class="toc-text">4.where条件查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-sql函数大全"><span class="toc-text">5.sql函数大全</span></a></li></ol>
     </div>
   </section>
 
@@ -1114,7 +1116,7 @@
 <footer id="footer" class="clearfix">
   
     <div class="footer">
-      <p>Copyright © 2019 谁知你知我，我知你知深。此恨经年深，比情度日久。</p>
+      <p>Copyright © 2019-2020 谁知你知我，我知你知深。此恨经年深，比情度日久。</p>
 
     </div>
     <br>
