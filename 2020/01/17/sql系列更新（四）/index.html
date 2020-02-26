@@ -433,11 +433,11 @@
       <div class="article-entry" itemprop="articleBody">
         <p>数据库是每一个IT工程师必备的技能树，而select往往是使用频率最大的，总结并补充之前有关于select查询的补充</p>
 <blockquote>
-<p><font color=#FF3030>本文要点：</font><br>1.sql的执行顺序<br>2.select+case…when…then语句<br>3.select top语句<br>4.where条件查询<br>5.sql函数大全</p>
+<p><font color=#FF3030>本文要点：</font><br>1.sql的执行顺序<br>2.select+case…when…then…end 语句<br>3.select top语句<br>4.where条件查询<br>5.sql函数大全</p>
 </blockquote>
 <a id="more"></a>
 <h3 id="1-sql的执行顺序"><a href="#1-sql的执行顺序" class="headerlink" title="1.sql的执行顺序"></a>1.sql的执行顺序</h3><p>下面展示一张sql的执行图：<br><fancybox><img src="https://img-blog.csdn.net/20150621112546457?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbDI5NDI2NTQyMQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></fancybox><br>这里我们可以理解为：先执行from语句，获取表----&gt;然后在使用where过滤掉不相关的记录----&gt;再执行聚合函数或者group by分组----&gt;紧接着执行having进行二次过滤----&gt;最后执行sql的select语句</p>
-<h3 id="2-Select-case…when…then语句"><a href="#2-Select-case…when…then语句" class="headerlink" title="2.Select+case…when…then语句"></a>2.Select+case…when…then语句</h3><p><strong>case…when…then语句，相当于编程语言中if判断</strong></p>
+<h3 id="2-Select-case…when…then…end-语句"><a href="#2-Select-case…when…then…end-语句" class="headerlink" title="2.Select+case…when…then…end 语句"></a>2.Select+case…when…then…end 语句</h3><p><strong>case…when…then语句，相当于编程语言中if判断(important)</strong></p>
 <ul>
 <li>例1:根据IsUser字段查询学生是否在线<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> a.StudentID,</span><br><span class="line">	(<span class="keyword">case</span> a.IsUse </span><br><span class="line">	<span class="keyword">when</span> <span class="string">'0'</span> <span class="keyword">then</span> <span class="string">'未在线'</span> </span><br><span class="line">	<span class="keyword">when</span> <span class="string">'1'</span> <span class="keyword">then</span> <span class="string">'在线'</span> <span class="keyword">else</span> <span class="string">'未上传'</span> <span class="keyword">end</span>) <span class="keyword">as</span> 在线情况</span><br><span class="line"><span class="keyword">from</span> StudentBindPaperTypeEntity <span class="keyword">as</span> a</span><br></pre></td></tr></table></figure>
 
@@ -468,10 +468,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-25T17:14:36+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-26T17:56:15+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年2月25日</p>
+    <p>更新于 2020年2月26日</p>
   </a>
 </div>
 
@@ -495,7 +495,7 @@
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/01/17/sql%E7%B3%BB%E5%88%97%E6%9B%B4%E6%96%B0%EF%BC%88%E5%9B%9B%EF%BC%89/&title=sql查询大全补充 | AhriLove&summary=数据库是每一个IT工程师必备的技能树，而select往往是使用频率最大的，总结并补充之前有关于select查询的补充
 
-本文要点：1.sql的执行顺序2.select+case…when…then语句3.select top语句4.where条件查询5.sql函数大全
+本文要点：1.sql的执行顺序2.select+case…when…then…end 语句3.select top语句4.where条件查询5.sql函数大全
 "
           
           >
@@ -510,7 +510,7 @@
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/01/17/sql%E7%B3%BB%E5%88%97%E6%9B%B4%E6%96%B0%EF%BC%88%E5%9B%9B%EF%BC%89/&title=sql查询大全补充 | AhriLove&summary=数据库是每一个IT工程师必备的技能树，而select往往是使用频率最大的，总结并补充之前有关于select查询的补充
 
-本文要点：1.sql的执行顺序2.select+case…when…then语句3.select top语句4.where条件查询5.sql函数大全
+本文要点：1.sql的执行顺序2.select+case…when…then…end 语句3.select top语句4.where条件查询5.sql函数大全
 "
           
           >
@@ -525,7 +525,7 @@
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/01/17/sql%E7%B3%BB%E5%88%97%E6%9B%B4%E6%96%B0%EF%BC%88%E5%9B%9B%EF%BC%89/&title=sql查询大全补充 | AhriLove&summary=数据库是每一个IT工程师必备的技能树，而select往往是使用频率最大的，总结并补充之前有关于select查询的补充
 
-本文要点：1.sql的执行顺序2.select+case…when…then语句3.select top语句4.where条件查询5.sql函数大全
+本文要点：1.sql的执行顺序2.select+case…when…then…end 语句3.select top语句4.where条件查询5.sql函数大全
 "
           
           >
@@ -751,7 +751,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-sql的执行顺序"><span class="toc-text">1.sql的执行顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Select-case…when…then语句"><span class="toc-text">2.Select+case…when…then语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-select-top语句"><span class="toc-text">3.select top语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-where条件查询"><span class="toc-text">4.where条件查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-sql函数大全"><span class="toc-text">5.sql函数大全</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-sql的执行顺序"><span class="toc-text">1.sql的执行顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Select-case…when…then…end-语句"><span class="toc-text">2.Select+case…when…then…end 语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-select-top语句"><span class="toc-text">3.select top语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-where条件查询"><span class="toc-text">4.where条件查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-sql函数大全"><span class="toc-text">5.sql函数大全</span></a></li></ol>
     </div>
   </section>
 

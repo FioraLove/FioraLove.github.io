@@ -1,6 +1,6 @@
 # AhriLove.github.io
 
-![](https://cdn.jsdelivr.net/gh/FioraLove/Images/D:\data\images20191207103058.png)
+![](https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/images20191207103058.png)
 
 > 个人网站： https://AhriLove.top
 
@@ -19,5 +19,6 @@
 > 转载：Hexo 博客搭建专栏（从搭建到美化一条龙）：https://blog.csdn.net/qq_36759224/article/category/9285510
 
 
-我一路向北，离开有你的季节！！！慢慢的写，好好的活。
+
+## 我一路向北，离开有你的季节！！！慢慢的写，好好的活。
 

@@ -458,14 +458,17 @@
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">"10.008"</span>);      <span class="comment">// 返回 10</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">"10.33"</span>);      <span class="comment">// 返回 10</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">"10 20 30"</span>);   <span class="comment">// 返回 10</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">"10 years"</span>);   <span class="comment">// 返回 10</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">"years 10"</span>);   <span class="comment">// 返回 NaN</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">"30"</span>,<span class="number">8</span>);       <span class="comment">// 返回24，将30转化为8进制</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">"10"</span>);         <span class="comment">// 返回 10</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">"10.33"</span>);      <span class="comment">// 返回 10.33</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">"10 20 30"</span>);   <span class="comment">// 返回 10</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">"10 years"</span>);   <span class="comment">// 返回 10</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">"years 10"</span>);   <span class="comment">// 返回 NaN</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="2-数组"><a href="#2-数组" class="headerlink" title="2.数组"></a>2.数组</h2><blockquote>
+<h2 id="2-数组"><a href="#2-数组" class="headerlink" title="2.数组"></a>2.数组</h2><p>创建方式：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一种(推荐)</span></span><br><span class="line"><span class="keyword">let</span> A=[<span class="number">12</span>,<span class="number">78</span>,<span class="number">78</span>,<span class="number">78</span>,<span class="number">89</span>];</span><br><span class="line"><span class="built_in">console</span>.log(A);</span><br><span class="line"> </span><br><span class="line"><span class="comment">//第二种</span></span><br><span class="line"><span class="keyword">let</span> B=<span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line">B[<span class="number">0</span>]=<span class="number">12</span>;</span><br><span class="line">B[<span class="number">1</span>]=<span class="number">34</span>;</span><br><span class="line">B[<span class="number">2</span>]=<span class="number">56</span>;</span><br><span class="line"><span class="built_in">console</span>.log(B);</span><br><span class="line">  </span><br><span class="line"><span class="comment">//第三种</span></span><br><span class="line"><span class="keyword">let</span> C=<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">3</span>);</span><br><span class="line">C[<span class="number">0</span>]=<span class="number">12</span>;</span><br><span class="line">C[<span class="number">1</span>]=<span class="number">34</span>;</span><br><span class="line">C[<span class="number">2</span>]=<span class="number">56</span>;</span><br><span class="line"><span class="built_in">console</span>.log(C);</span><br><span class="line"> </span><br><span class="line"><span class="comment">//第四种</span></span><br><span class="line"><span class="keyword">let</span> D=<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">45</span>,<span class="number">78</span>,<span class="number">89</span>,<span class="number">45</span>);</span><br><span class="line"><span class="built_in">console</span>.log(D);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
 <p>数组是一种特殊的变量，它能够一次存放一个以上的值。</p>
 </blockquote>
 <p>var cars=[“Saab”,”Volov”,”BMW”];</p>
 <blockquote>
 <p>访问数组元素：通过索引（从0开始，下标号）来引用某个数组元素</p>
 </blockquote>
-<p>var name=car[0]  访问数组值<br>var car[0] = “Benz”  修改数组值，即新数组为[“Benz”,”Volov”,”BMW”]</p>
+<p>var name=car[0]  访问数组值<br>var car[0] = “Benz”  修改数组值，即新数组为[“Benz”,”Volvo”,”BMW”]</p>
 <h3 id="数组属性和方法"><a href="#数组属性和方法" class="headerlink" title="数组属性和方法"></a>数组属性和方法</h3><ol>
 <li><p>length:返回数组元素的数目</p>
 </li>
@@ -555,10 +558,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-01-15T10:39:45+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-26T10:32:27+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年1月15日</p>
+    <p>更新于 2020年2月26日</p>
   </a>
 </div>
 

@@ -634,7 +634,43 @@
 oracle的sql语句中没有limit,limit是mysql中特有的,在oracle中可用rownum来表示,用于查询结果中的前N行数据。如要查询emp表中的前5行数据,可用如下语句: &nbsp;&nbsp;select * from emp where rownum<=5;
 </font>
 
-<h3 id="未完待续……"><a href="#未完待续……" class="headerlink" title="未完待续……"></a>未完待续……</h3>
+<blockquote>
+<p>9.5 Oracle 使用<code>||</code> 将多列合并成一列,字符串连接</p>
+</blockquote>
+<p>使用方法：<code>字段A || &#39;连接符&#39; || 字段B || &#39;连接符&#39; || 字段C</code> ：将多列拼接成一列</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Oracle 将多列合并成一列,字符串连接,直接上查询语句</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    STU.XH,</span><br><span class="line">    STU.XM,</span><br><span class="line">    GRA. <span class="keyword">NAME</span> || <span class="string">'-'</span> || CLA.BJ <span class="keyword">AS</span> <span class="keyword">CLASS</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    CYT_BASE_STUDENT STU,</span><br><span class="line">    CYT_BASE_GRADE GRA,</span><br><span class="line">    CYT_BASE_CLASS CLA</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    STU.GRADE_ID = GRA. <span class="keyword">ID</span></span><br><span class="line"><span class="keyword">AND</span> STU.CLASS_ID = CLA. <span class="keyword">ID</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20181017094408908?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3podWxpdWZ1/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""></p>
+<blockquote>
+<p>9.6 sql的select查询添加一个虚拟字段进去</p>
+</blockquote>
+<p>需求：<strong>像下面需要取多张表的数据存合并成一张表的时候，有时候为了区分哪些数据是出自于具体的哪张表，可以加一个表的标识字段进去，这样就方便明了多了</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> ( </span><br><span class="line">    <span class="keyword">select</span> <span class="keyword">id</span>,title,uId,fabuTime,<span class="string">'招商'</span> <span class="keyword">AS</span> <span class="keyword">name</span>  <span class="keyword">from</span> zhaoshangInfo </span><br><span class="line">    <span class="keyword">union</span> <span class="keyword">all</span> </span><br><span class="line">    <span class="keyword">select</span> <span class="keyword">id</span>,title,userId <span class="keyword">AS</span> uId,createTime <span class="keyword">AS</span> fabuTime,<span class="string">'求职'</span> <span class="keyword">AS</span> <span class="keyword">name</span> <span class="keyword">from</span> <span class="keyword">resume</span> </span><br><span class="line">    <span class="keyword">union</span> <span class="keyword">all</span> </span><br><span class="line">    <span class="keyword">select</span> <span class="keyword">id</span>,title,uId,fabutime <span class="keyword">AS</span> fabuTime,<span class="string">'招聘'</span> <span class="keyword">AS</span> <span class="keyword">name</span> <span class="keyword">from</span> zhaopin</span><br><span class="line">    <span class="keyword">union</span> <span class="keyword">all</span> </span><br><span class="line">    <span class="keyword">select</span> <span class="keyword">id</span>,title,uId,fabuTime,<span class="string">'加盟'</span> <span class="keyword">AS</span> <span class="keyword">name</span> <span class="keyword">from</span> jiamengInfo</span><br><span class="line">    )  </span><br><span class="line"><span class="keyword">WHERE</span> uId <span class="keyword">IN</span>(<span class="number">1</span>,<span class="number">349</span>) <span class="keyword">ORDER</span> <span class="keyword">BY</span> fabuTime <span class="keyword">DESC</span></span><br></pre></td></tr></table></figure>
+<p>即在zhangsanInfo表中添加name字段，赋初值为‘招商’<br>在resume表中添加name字段，赋初值为‘求职’<br>…<br>在jiamengInfo表添加name字段，赋初值为‘加盟’。</p>
+<blockquote>
+<p>9.7 sql实现替换功能</p>
+</blockquote>
+<ul>
+<li>方式一：replace()字符串替换函数</li>
+<li>方式二：case…when…then…end 函数</li>
+</ul>
+<p>replace函数定义：replace(original-string，str_a，str_b):查询在sql的字段，用b替换目标字段中的a</p>
+<p>参数：</p>
+<ol>
+<li>original-string： 被搜索的字符串。可为任意长度。</li>
+<li>search-string： 要搜索并被 replace-string 替换的字符串。该字符串的长度不应超过 255 个字节。如果 search-string 是空字符串，则按原样返回原始字符串。</li>
+<li>replace-string： 该字符串用于替换 search-string。可为任意长度。如果 replacement-string 是空字符串，则删除出现的所有 search-string。</li>
+</ol>
+<p>说明：<br>用字符串表达式3替换字符串表达式1中出现的所有字符串表达式2的匹配项。返回新的字符串。如果有某个参数为 NULL，此函数返回 NULL</p>
+<p>方式二：<a href="https://www.cnblogs.com/HDK2016/p/8134802.html" target="_blank" rel="noopener">Case…when..then…end</a></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--简单Case函数(推荐)</span></span><br><span class="line"><span class="keyword">select</span> </span><br><span class="line">(<span class="keyword">CASE</span> sex</span><br><span class="line"><span class="keyword">WHEN</span> <span class="string">'1'</span> <span class="keyword">THEN</span> <span class="string">'男'</span></span><br><span class="line"><span class="keyword">WHEN</span> <span class="string">'2'</span> <span class="keyword">THEN</span> <span class="string">'女'</span></span><br><span class="line"><span class="keyword">ELSE</span> <span class="string">'其他'</span> <span class="keyword">END</span>) <span class="keyword">as</span> gender</span><br><span class="line"></span><br><span class="line"><span class="comment">--Case搜索函数</span></span><br><span class="line"><span class="keyword">select</span> </span><br><span class="line">(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> sex = <span class="string">'1'</span> <span class="keyword">THEN</span> <span class="string">'男'</span></span><br><span class="line"><span class="keyword">WHEN</span> sex = <span class="string">'2'</span> <span class="keyword">THEN</span> <span class="string">'女'</span></span><br><span class="line"><span class="keyword">ELSE</span> <span class="string">'其他'</span> <span class="keyword">END</span> ) <span class="keyword">as</span> gender</span><br><span class="line"></span><br><span class="line">两种方式，可以实现相同的功能。简单<span class="keyword">Case</span>函数的写法相对比较简洁，但是和<span class="keyword">Case</span>搜索函数相比，功能方面会有些限制，</span><br><span class="line">比如写判断式。还有一个需要注意的问题，<span class="keyword">Case</span>函数只返回第一个符合条件的值，剩下的<span class="keyword">Case</span>部分将会被自动忽略。</span><br></pre></td></tr></table></figure>
+
+<h3 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h3><ul>
+<li>Oracle中case when的用法：<a href="https://blog.csdn.net/weixin_40417658/article/details/82633834" target="_blank" rel="noopener">https://blog.csdn.net/weixin_40417658/article/details/82633834</a></li>
+<li><a href="https://blog.csdn.net/qq_33866778/article/details/75258200" target="_blank" rel="noopener">https://blog.csdn.net/qq_33866778/article/details/75258200</a></li>
+<li><a href="https://zhidao.baidu.com/question/464433814.html" target="_blank" rel="noopener">https://zhidao.baidu.com/question/464433814.html</a></li>
+<li>sql的replace函数 <a href="https://www.cnblogs.com/1906859953Lucas/p/9244495.html" target="_blank" rel="noopener">https://www.cnblogs.com/1906859953Lucas/p/9244495.html</a></li>
+</ul>
+
       </div>
       
         <br>
@@ -645,10 +681,10 @@ oracle的sql语句中没有limit,limit是mysql中特有的,在oracle中可用row
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-12T09:47:30+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-26T18:13:18+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年12月12日</p>
+    <p>更新于 2020年2月26日</p>
   </a>
 </div>
 
@@ -919,7 +955,7 @@ oracle的sql语句中没有limit,limit是mysql中特有的,在oracle中可用row
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-启动服务"><span class="toc-text">1.启动服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-登录与修改密码"><span class="toc-text">2.登录与修改密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-基本使用"><span class="toc-text">3.基本使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-DDL-amp-DML"><span class="toc-text">4.DDL&amp;DML</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-DDL"><span class="toc-text">5.DDL</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1主键"><span class="toc-text">5.1主键</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-DML语句"><span class="toc-text">6.DML语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-DCL语句"><span class="toc-text">7.DCL语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-查询记录"><span class="toc-text">8.查询记录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-注意要点"><span class="toc-text">9.注意要点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#未完待续……"><span class="toc-text">未完待续……</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-启动服务"><span class="toc-text">1.启动服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-登录与修改密码"><span class="toc-text">2.登录与修改密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-基本使用"><span class="toc-text">3.基本使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-DDL-amp-DML"><span class="toc-text">4.DDL&amp;DML</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-DDL"><span class="toc-text">5.DDL</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1主键"><span class="toc-text">5.1主键</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-DML语句"><span class="toc-text">6.DML语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-DCL语句"><span class="toc-text">7.DCL语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-查询记录"><span class="toc-text">8.查询记录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-注意要点"><span class="toc-text">9.注意要点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章："><span class="toc-text">参考文章：</span></a></li></ol>
     </div>
   </section>
 
