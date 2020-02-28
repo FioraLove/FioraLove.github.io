@@ -578,6 +578,9 @@
 <td>选取 bookstore 元素中的 book 元素的所有 title 元素，且其中的 price 元素的值须大于 35.00。</td>
 </tr>
 </tbody></table>
+<p>举例说明如何使用xpath：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.指定url</span></span><br><span class="line">url = <span class="string">'https://ishuo.cn/joke'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.发起请求</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">'user-agent'</span>: <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36'</span></span><br><span class="line">&#125;</span><br><span class="line">response = requests.get(url=url, headers=headers)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.获取页面内容</span></span><br><span class="line">page_text = response.text</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.数据解析</span></span><br><span class="line">tree = etree.HTML(page_text)</span><br><span class="line"><span class="comment"># 获取所有的li标签（已经经过了xpath插件验证）</span></span><br><span class="line">li_list = tree.xpath(<span class="string">'//div[@id="list"]/ul/li'</span>)</span><br><span class="line"><span class="comment"># 这段话的意思是：选择所有子孙节点是id="list"的div标签，在选择子节点ul标签，再选择子节点li标签</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">[&lt;Element li at 0x10e32c248&gt;, &lt;Element li at 0x10e30ae88&gt;,...,&lt;Element li at 0x10ef5bfc8&gt;]</span></span><br><span class="line"><span class="string"># 注意：Element类型的对象可以继续调用xpath函数，对该对象表示的局部内容进行指定内容的解析</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line">fp = open(<span class="string">'./duanZi.txt'</span>, <span class="string">'w'</span>, encoding=<span class="string">'utf-8'</span>)  <span class="comment"># 一次打开多次写入</span></span><br><span class="line"><span class="keyword">for</span> li <span class="keyword">in</span> li_list:</span><br><span class="line">    content = li.xpath(<span class="string">'./div[@class="content"]/text()'</span>)[<span class="number">0</span>]  <span class="comment"># 调用text()函数取得段子内容</span></span><br><span class="line">    title = li.xpath(<span class="string">'./div[@class="info"]/a/text()'</span>)[<span class="number">0</span>]   <span class="comment"># 获得a标签文本内容</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 5.持久化</span></span><br><span class="line">    fp.write(title + <span class="string">":"</span> + content + <span class="string">"\n\n"</span>)  <span class="comment"># 段子换行分隔</span></span><br><span class="line">    print(<span class="string">"一条数据写入成功"</span>)</span><br></pre></td></tr></table></figure>
+
 <h2 id="3-pyquery"><a href="#3-pyquery" class="headerlink" title="3.pyquery"></a>3.pyquery</h2><blockquote>
 <p>导入相关库包</p>
 </blockquote>
@@ -585,7 +588,7 @@
 <blockquote>
 <p>初始化工作</p>
 </blockquote>
-<p>doc = pq(html)字符串初始化<br>doc = pq(url)URL初始化<br>doc = pq(filename=””)文件初始化<br>print(doc(‘li’))</p>
+<p>doc = pq(html)字符串初始化<br>doc = pq(url)URL初始化<br>doc = pq(filename=””)文件初始化<br>item = doc(&#39;li&#39;))  获取li标签的变量为item</p>
 <blockquote>
 <p>css选择器</p>
 </blockquote>
@@ -622,13 +625,16 @@
 </tr>
 <tr>
 <td>div p</td>
-<td>选择div下的所有p标签（子集）</td>
+<td>选择div下的所有p标签（子集），空格代表嵌套关系</td>
 </tr>
 </tbody></table>
 <blockquote>
 <p>pyquery获取信息(跟jQuery用法一样)</p>
 </blockquote>
-<p>1.获取属性值：变量名.attr(属性名) 或者 变量名.attr.属性名<br>2.获取文本内容：变量名.text()<br>3.获取html： 变量名.html()<br>4.<font color=#ef4136>找寻某一特定标签：变量名.find(标签名).eq(n) n从0开始，表示find某标签，并选择第n个目标值</font></p>
+<p>1.获取属性值：变量名.attr(属性名) 或者 变量名.attr.属性名<br>2.获取文本内容：变量名.text()<br>3.获取html： 变量名.html()<br>4.获取父节点： 变量名.parent()<br>5.获取所有的祖先节点： 变量名.parents()<br>6.获取所有的兄弟元素： 变量名.siblings()<br>7.过滤选择器：li = doc(&quot;li:first-child&quot;)#第一个子节点<br>8.过滤选择器：li = doc(&quot;li:gt(2)&quot;)#索引值大于2的<br>9.<font color=#ef4136><strong>找寻某一特定标签：变量名.find(标签名).eq(n) n从0开始，表示find某标签，并选择第n个目标值</strong></font></p>
+<p>举例说明：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyquery <span class="keyword">import</span> PyQuery <span class="keyword">as</span> pq</span><br><span class="line"><span class="comment"># 初始化</span></span><br><span class="line">doc = pq(html)</span><br><span class="line"><span class="comment">#首先选class=“.list”，空格即使选择list里面的标签，再选class=“item-0”，并列active（实际就是一个整体）</span></span><br><span class="line">li = doc(<span class="string">'.list .item-0.active'</span>)</span><br><span class="line"><span class="comment">#获取所有的兄弟元素</span></span><br><span class="line">print(li.siblings())</span><br><span class="line"></span><br><span class="line"><span class="comment">#在向其中筛选</span></span><br><span class="line">print(li.siblings(<span class="string">'.active'</span>))</span><br></pre></td></tr></table></figure>
+
 <h2 id="4-Selenium库学习"><a href="#4-Selenium库学习" class="headerlink" title="4.Selenium库学习"></a>4.<a href="https://blog.csdn.net/weixin_36279318/article/details/79475388" target="_blank" rel="noopener">Selenium库学习</a></h2><p>动态渲染页面不仅仅涉及到Ajax技术，绝大多数的网页是通过Javascript计算生成新页面的，比如说百度Echarts，淘宝，中国青年网。。。</p>
 <blockquote>
 <p> 4.1基本库导入</p>
@@ -846,10 +852,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-01T18:09:15+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-28T14:41:54+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年2月1日</p>
+    <p>更新于 2020年2月28日</p>
   </a>
 </div>
 

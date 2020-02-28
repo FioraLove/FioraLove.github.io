@@ -458,9 +458,22 @@
 <h3 id="7-echarts小知识点"><a href="#7-echarts小知识点" class="headerlink" title="7.echarts小知识点"></a>7.echarts小知识点</h3><blockquote>
 <p>legend默认不显示某些图例(selected属性)</p>
 </blockquote>
-<p>selected属性将目标图例设置为false</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">legend: &#123;</span><br><span class="line">　　show: &apos;&apos;,</span><br><span class="line">　　icon:&quot;circle&quot;,　　//更改图列的默认样式    （ &apos;circle&apos;, &apos;rect&apos;, &apos;roundRect&apos;, &apos;triangle&apos;, &apos;diamond&apos;, &apos;pin&apos;, &apos;arrow&apos;）（全部的图例类型改变）</span><br><span class="line">　　selected:&#123;</span><br><span class="line">　　　　&quot;上期增长率&quot;:false  //图例为‘上期增长率’的一项默认置灰</span><br><span class="line">　　　　&quot;同比增长率&quot;:false  //图例为‘同比增长率’的一项默认置灰</span><br><span class="line">　　&#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
+<ol>
+<li><p>selected属性将目标图例设置为false</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">legend: &#123;</span><br><span class="line">　　show: &apos;&apos;,</span><br><span class="line">　　icon:&quot;circle&quot;,　　//更改图列的默认样式    （ &apos;circle&apos;, &apos;rect&apos;, &apos;roundRect&apos;, &apos;triangle&apos;, &apos;diamond&apos;, &apos;pin&apos;, &apos;arrow&apos;）（全部的图例类型改变）</span><br><span class="line">　　selected:&#123;</span><br><span class="line">　　　　&quot;上期增长率&quot;:false  //图例为‘上期增长率’的一项默认置灰</span><br><span class="line">　　　　&quot;同比增长率&quot;:false  //图例为‘同比增长率’的一项默认置灰</span><br><span class="line">　　&#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
+<li><p>图例的列表布局与文本对齐方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">legend: &#123;</span><br><span class="line">    orient:&apos;horizontal&apos; 或 &apos;vertical&apos;  // 图例列表的布局朝向。</span><br><span class="line">    align: &apos;auto&apos;或 &apos;left&apos; 或&apos;right&apos;   // 图例标记和文本的对齐</span><br><span class="line">　　&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这就是legend.align由right变为left的效果<br><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/demo.png" alt=""></p>
+</li>
+<li><p>legend的其它参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">legend: &#123;</span><br><span class="line">    orient: &apos;vertical&apos;,</span><br><span class="line">    x:&apos;right&apos;,      //可设定图例在左、右、居中</span><br><span class="line">    y:&apos;center&apos;,     //可设定图例在上、下、居中</span><br><span class="line">    padding:[0,50,0,0],   //可设定图例[距上方距离，距右方距离，距下方距离，距左方距离]</span><br><span class="line">    data: [&apos;直接访问&apos;,&apos;微信&apos;,&apos;百度&apos;,&apos;其他文章&apos;,&apos;网页&apos;]</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>①x : 可以设定图例在—-左（left）、右（right）、居中（center）、填写数字（如:100px）<br>②y : 可以设定图例在—-上（top）、下（bottom）、居中（center）、填写数字（如:100px）<br>③另外，可使用padding:<br>padding:[0,50,0,0] [（距离上方距离），（距离右方距离）、（距离下方距离）、（距离左方距离）]</p>
+</li>
+</ol>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
+<li>Echarts图例位置 - legend属性：<a href="https://blog.csdn.net/woteafuck/article/details/91986313" target="_blank" rel="noopener">https://blog.csdn.net/woteafuck/article/details/91986313</a></li>
+<li>ECharts图例组件配置: <a href="https://www.w3cschool.cn/echarts_tutorial/echarts_tutorial-vnga2cgx.html" target="_blank" rel="noopener">https://www.w3cschool.cn/echarts_tutorial/echarts_tutorial-vnga2cgx.html</a></li>
+</ul>
 
       </div>
       
@@ -472,10 +485,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-22T17:17:16+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-27T17:25:25+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年2月22日</p>
+    <p>更新于 2020年2月27日</p>
   </a>
 </div>
 
@@ -755,7 +768,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-引入ECharts"><span class="toc-text">1.引入ECharts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-为-ECharts-准备一个具备高宽的-DOM-容器"><span class="toc-text">2.为 ECharts 准备一个具备高宽的 DOM 容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-echarts-init-方法初始化一个-echarts-实例并通过-setOption-方法生成一个简单的柱状图"><span class="toc-text">3. echarts.init 方法初始化一个 echarts 实例并通过 setOption 方法生成一个简单的柱状图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-异步加载"><span class="toc-text">4.异步加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-移动端自适应"><span class="toc-text">5.移动端自适应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-Echarts的标题title设置大全"><span class="toc-text">6.Echarts的标题title设置大全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-echarts小知识点"><span class="toc-text">7.echarts小知识点</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-引入ECharts"><span class="toc-text">1.引入ECharts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-为-ECharts-准备一个具备高宽的-DOM-容器"><span class="toc-text">2.为 ECharts 准备一个具备高宽的 DOM 容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-echarts-init-方法初始化一个-echarts-实例并通过-setOption-方法生成一个简单的柱状图"><span class="toc-text">3. echarts.init 方法初始化一个 echarts 实例并通过 setOption 方法生成一个简单的柱状图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-异步加载"><span class="toc-text">4.异步加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-移动端自适应"><span class="toc-text">5.移动端自适应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-Echarts的标题title设置大全"><span class="toc-text">6.Echarts的标题title设置大全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-echarts小知识点"><span class="toc-text">7.echarts小知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
     </div>
   </section>
 
