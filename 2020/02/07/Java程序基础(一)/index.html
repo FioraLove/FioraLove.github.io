@@ -476,11 +476,11 @@
 <li>数组一旦创建后，大小就不可改变。</li>
 <li>要访问数组中的某一个元素，需要使用索引。数组索引从0开始，例如，5个元素的数组，索引范围是0~4。</li>
 <li>可以修改数组中的某一个元素，使用赋值语句，例如，ns[1] = 79;。</li>
-<li>可以用数组变量.length获取数组大小</li>
+<li>可以用数组变量.length 获取数组大小</li>
 </ul>
 <p><a href="https://blog.csdn.net/wu1226419614/article/details/80870120" target="_blank" rel="noopener">python的列表List与python的数组的区别</a>：<br>List（列表） 是 Python 中使用最频繁的数据类型。<strong>列表中元素的类型可以不相同，它支持数字，字符串甚至可以包含列表（所谓嵌套）</strong>。</p>
 <p>Java数值初始化：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int[] ns = new int[] &#123; 68, 79, 91, 85, 62 &#125;;</span><br><span class="line">int[] ns = &#123; 68, 79, 91, 85, 62 &#125;   // 这是简写</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int[] ns = new int[] &#123; 68, 79, 91, 85, 62 &#125;;</span><br><span class="line">int[] ns = &#123; 68, 79, 91, 85, 62 &#125;   // 这是简写</span><br><span class="line">ns[index] // 按索引值查找</span><br><span class="line">int[] bb = &#123;1,2,3&#125;;</span><br><span class="line">System.out.println(Arrays.toString(bb));  // 直接打印数组</span><br></pre></td></tr></table></figure>
 <p>小结：</p>
 <ul>
 <li><p>数组是同一数据类型的集合，数组一旦创建后，大小就不可变；</p>
@@ -488,6 +488,8 @@
 <li><p>可以通过索引访问数组元素，但索引超出范围将报错；</p>
 </li>
 <li><p>数组元素可以是值类型（如int）或引用类型（如String），但数组本身是引用类型；</p>
+</li>
+<li><p>java不同于python，Java的数组无法直接打印，可以使用Arrays.toString(数组名)来直接打印出来</p>
 </li>
 </ul>
 <h3 id="6-访问修饰符"><a href="#6-访问修饰符" class="headerlink" title="6.访问修饰符"></a>6.访问修饰符</h3><table>
@@ -545,10 +547,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-20T09:24:26+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-29T14:40:00+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年2月20日</p>
+    <p>更新于 2020年2月29日</p>
   </a>
 </div>
 
@@ -1048,7 +1050,7 @@
         
           <li><a class="flat-box" title="/categories/Database/" href="/categories/Database/"><div class='name'>Database</div><div class='badge'>(7)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Java/" href="/categories/Java/"><div class='name'>Java</div><div class='badge'>(5)</div></a></li>
+          <li><a class="flat-box" title="/categories/Java/" href="/categories/Java/"><div class='name'>Java</div><div class='badge'>(6)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Python/" href="/categories/Python/"><div class='name'>Python</div><div class='badge'>(16)</div></a></li>
         

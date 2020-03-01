@@ -466,8 +466,14 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int n1 = Integer.parseInt(&quot;123&quot;); // 123</span><br><span class="line">boolean b1 = Boolean.parseBoolean(&quot;true&quot;); // true</span><br><span class="line">double d1 = Double.parseDouble(&quot;3.1415927&quot;);  // 3.1415927</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 
 <ol start="9">
-<li>是否包含子字符串<br>字符串.contains(“目标字符串”)：返回结果true 或者 false</li>
+<li><p>是否包含子字符串<br>字符串.contains(“目标字符串”)：返回结果true 或者 false</p>
+</li>
+<li><p>分割字符串<br>字符串.split(“指定字符串”)=》数组格式</p>
+</li>
 </ol>
+<p><strong>按指定字符（串）或正则去分割某个字符串，结果以字符串数组形式返回</strong>，记住：返回结果是数组，数组无法直接打印</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String s = <span class="string">"hello world java!!!"</span>;</span><br><span class="line">String[] aa = s.split(<span class="string">" "</span>);</span><br><span class="line">System.out.println(aa[<span class="number">2</span>]);</span><br></pre></td></tr></table></figure>
+
 <h4 id="包装类型："><a href="#包装类型：" class="headerlink" title="包装类型："></a>包装类型：</h4><p>基本类型===&gt;    对应的引用类型<br>boolean    ===&gt; java.lang.Boolean<br>byte    ===&gt; java.lang.Byte<br>short    ===&gt; java.lang.Short<br>int        ===&gt; java.lang.Integer<br>long    ===&gt; java.lang.Long<br>float    ===&gt; java.lang.Float<br>double    ===&gt; java.lang.Double<br>char    ===&gt; java.lang.Character</p>
 <h3 id="2-定义常量"><a href="#2-定义常量" class="headerlink" title="2.定义常量"></a>2.定义常量</h3><p>Java 语言使用 final 关键字来定义一个常量（常量有三种类型：静态常量、成员常量和局部常量。），其语法如下所示：<br><strong>final dataType variableName = value</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 静态常量</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">double</span> PI = <span class="number">3.14</span>;</span><br><span class="line">    <span class="comment">// 声明成员常量</span></span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> y = <span class="number">10</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 声明局部常量</span></span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">double</span> x = <span class="number">3.3</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -584,7 +590,7 @@
 </ol>
 <p>和旧的API相比，新API严格区分了时刻、本地日期、本地时间和带时区的日期时间，并且，对日期和时间进行运算更加方便。</p>
 <p><font color=#ed1941>此外，新API修正了旧API不合理的常量设计：</p>
-<p>Month的范围用1<del>12表示1月到12月；<br>Week的范围用1</del>7表示周一到周日。<br>最后，新API的类型几乎全部是不变类型（和String类似），可以放心使用不必担心被修改。</font></p>
+<p>Month的范围用1~12表示1月到12月；<br>Week的范围用1~7表示周一到周日。<br>最后，新API的类型几乎全部是不变类型（和String类似），可以放心使用不必担心被修改。</font></p>
 
       </div>
       
@@ -596,10 +602,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-25T17:16:02+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-29T14:25:46+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年2月25日</p>
+    <p>更新于 2020年2月29日</p>
   </a>
 </div>
 
@@ -1104,7 +1110,7 @@
         
           <li><a class="flat-box" title="/categories/Database/" href="/categories/Database/"><div class='name'>Database</div><div class='badge'>(7)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Java/" href="/categories/Java/"><div class='name'>Java</div><div class='badge'>(5)</div></a></li>
+          <li><a class="flat-box" title="/categories/Java/" href="/categories/Java/"><div class='name'>Java</div><div class='badge'>(6)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Python/" href="/categories/Python/"><div class='name'>Python</div><div class='badge'>(16)</div></a></li>
         
