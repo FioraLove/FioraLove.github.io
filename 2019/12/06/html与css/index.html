@@ -501,6 +501,9 @@
 <p>-和h系列标签/p标签还有hr标签不一样，img标签不会独占一行，如果我们手动指定了img标签显示的图片的宽度和高度，有可能会导致图片变形，那么如果又想指定宽度和高度，<br>&lt;img src=”当前电脑图片的路径” width=”200px” height=”200px” /&gt;</p>
 <p>又不想让图片发生变形，我们可以只指定宽度或者高度其中的一个值即可</p>
 <p>-只要指定了宽度，系统会自动根据宽度计算出高度，只要指定了高度，系统会自动根据高度计算出宽度，并且都是等比拉伸的，也就是说不会变形：<br>&lt;img src=”当前电脑图片的路径” width=”200px” /&gt;<br>&lt;img src=”当前电脑图片的路径” height=”200px” /&gt;</p>
+<p>利用border属性来创建缩略图：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#ddd</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">4px</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">5px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">40%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*&lt;img src="paris.jpg" alt="Paris"&gt;*/</span></span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>10.postion属性</p>
 </blockquote>
@@ -549,8 +552,38 @@
 
 <p>tips：<br><strong>1.HTML下的表单标签中的&lt;input&gt;便签的value属性：定义表单元素的值,此值是数据提交时键的值</strong><br><strong>2.单选框radio与多选框checkbox的name，type属性必须要全部一样，value值可以不一样，因为value值定义表单元素的值,此值是数据提交时键的值</strong></p>
 <h3 id="3-PC与移动端响应式布局"><a href="#3-PC与移动端响应式布局" class="headerlink" title="3.PC与移动端响应式布局"></a>3.PC与移动端响应式布局</h3><p><a href="https://www.jb51.net/web/459394.html" target="_blank" rel="noopener">【转载：PC端和移动端自适应问题的快速解决方法】</a><br><a href="https://blog.csdn.net/dalqyou/article/details/87880895" target="_blank" rel="noopener">【转载：解决PC端和移动端自适应问题？】</a></p>
+<h3 id="4-css知识点补充"><a href="#4-css知识点补充" class="headerlink" title="4.css知识点补充"></a>4.css知识点补充</h3><p>文本格式：</p>
+<ul>
+<li>text-align:center,right,justify :文本对齐方式</li>
+<li>text-decoration :none 主要是用来删除链接的下划线</li>
+<li>text-transform：uppercase，lowercase，capitalize 所有字句变成大写，小写或首字母大写     </li>
+<li>text-indent：50px 用来指定文本的第一行的缩进</li>
+</ul>
+<p>css边框属性：</p>
+<ul>
+<li>border: 边框样式的简写，可同时包含颜色，宽度，样式</li>
+<li>border-width ：属性为边框指定宽度</li>
+<li>border-color ：设置边框的颜色</li>
+<li>border-style： 定义边框样式（可以使得四个边框分别由四个不同样式，满足上右下左四个次序）</li>
+<li>border-（top，right，bottom，left）-style: 设置某一边的具体属性</li>
+<li>border-radius ：用于创建边框圆角（拓：四个值: 第一个值为左上角，第二个值为右上角，第三个值为右下角，第四个值为左下角。）</li>
+<li>border-shadow： 在div中添加阴影属性，并设置阴影的颜色（10px 10px 5px #888888）</li>
+</ul>
+<p>css渐变属性：</p>
+<ul>
+<li>background-image：linear-gradient（direction，color1，color2… ）：线性渐变（linear-gradient(to bottom right, red , yellow)从左上方开始渐变）</li>
+<li>background-image：radial-gradient（direction，color1，color2… ）：径向渐变</li>
+</ul>
+<p>css的透明度：</p>
+<ul>
+<li>rgba(a,b,c,d):rgba 是 CSS3 中的属性。rgba 括号中前 3 个数字代表着 red green blue 三种颜色的 rgb 值（0-255），最后一个是设定这个颜色的透明度即 alpha 值。范围从 0 到 1，越接近 1，代表透明度越低。</li>
+<li>opacity: 0-1 设置透明度(<strong>&lt;body&gt;标签里面是不能直接设置背景图片的透明度的，要利用&lt;div&gt;标签</strong>)</li>
+<li>filter:alpha(opacity=10-100) IE和更早的版本使用</li>
+</ul>
 <h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
 <li><a href="https://blog.csdn.net/nanjinzhu/article/details/82251110?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task" target="_blank" rel="noopener">HTML-表单（非常详细）原创 北方的南先生</a></li>
+<li><a href="https://blog.csdn.net/cooooooooco/article/details/79656358" target="_blank" rel="noopener">关于设置背景图片的透明度（html+css）</a></li>
+<li><a href="https://www.runoob.com/try/try.php?filename=trycss_ex_images_thumbnail" target="_blank" rel="noopener">HTML创建图片缩略图</a></li>
 </ul>
 
       </div>
@@ -563,10 +596,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-02T11:01:33+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-05T16:43:08+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年3月2日</p>
+    <p>更新于 2020年3月5日</p>
   </a>
 </div>
 
@@ -837,7 +870,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-HTML的音视频播放"><span class="toc-text">1.HTML的音视频播放</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-HTML视频Video播放"><span class="toc-text">1.1 HTML视频Video播放</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-audio音频文件的播放设置"><span class="toc-text">1.2 audio音频文件的播放设置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-CSS的易混易错点"><span class="toc-text">2.CSS的易混易错点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-PC与移动端响应式布局"><span class="toc-text">3.PC与移动端响应式布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文献"><span class="toc-text">参考文献</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-HTML的音视频播放"><span class="toc-text">1.HTML的音视频播放</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-HTML视频Video播放"><span class="toc-text">1.1 HTML视频Video播放</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-audio音频文件的播放设置"><span class="toc-text">1.2 audio音频文件的播放设置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-CSS的易混易错点"><span class="toc-text">2.CSS的易混易错点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-PC与移动端响应式布局"><span class="toc-text">3.PC与移动端响应式布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-css知识点补充"><span class="toc-text">4.css知识点补充</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文献"><span class="toc-text">参考文献</span></a></li></ol>
     </div>
   </section>
 
@@ -1062,7 +1095,7 @@
         
           <li><a class="flat-box" title="/categories/Database/" href="/categories/Database/"><div class='name'>Database</div><div class='badge'>(7)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Java/" href="/categories/Java/"><div class='name'>Java</div><div class='badge'>(6)</div></a></li>
+          <li><a class="flat-box" title="/categories/Java/" href="/categories/Java/"><div class='name'>Java</div><div class='badge'>(7)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Python/" href="/categories/Python/"><div class='name'>Python</div><div class='badge'>(17)</div></a></li>
         

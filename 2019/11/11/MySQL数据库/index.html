@@ -661,18 +661,28 @@ oracle的sql语句中没有limit,limit是mysql中特有的,在oracle中可用row
 <li>replace-string： 该字符串用于替换 search-string。可为任意长度。如果 replacement-string 是空字符串，则删除出现的所有 search-string。</li>
 </ol>
 <p>说明：<br>用字符串表达式3替换字符串表达式1中出现的所有字符串表达式2的匹配项。返回新的字符串。如果有某个参数为 NULL，此函数返回 NULL</p>
-<p>方式二：<a href="https://www.cnblogs.com/HDK2016/p/8134802.html" target="_blank" rel="noopener">Case…when..then…end</a></p>
+<p>方式二：<a href="https://www.cnblogs.com/HDK2016/p/8134802.html" target="_blank" rel="noopener">Case…when..then…else…end</a></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--简单Case函数(推荐)</span></span><br><span class="line"><span class="keyword">select</span> </span><br><span class="line">(<span class="keyword">CASE</span> sex</span><br><span class="line"><span class="keyword">WHEN</span> <span class="string">'1'</span> <span class="keyword">THEN</span> <span class="string">'男'</span></span><br><span class="line"><span class="keyword">WHEN</span> <span class="string">'2'</span> <span class="keyword">THEN</span> <span class="string">'女'</span></span><br><span class="line"><span class="keyword">ELSE</span> <span class="string">'其他'</span> <span class="keyword">END</span>) <span class="keyword">as</span> gender</span><br><span class="line"></span><br><span class="line"><span class="comment">--Case搜索函数</span></span><br><span class="line"><span class="keyword">select</span> </span><br><span class="line">(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> sex = <span class="string">'1'</span> <span class="keyword">THEN</span> <span class="string">'男'</span></span><br><span class="line"><span class="keyword">WHEN</span> sex = <span class="string">'2'</span> <span class="keyword">THEN</span> <span class="string">'女'</span></span><br><span class="line"><span class="keyword">ELSE</span> <span class="string">'其他'</span> <span class="keyword">END</span> ) <span class="keyword">as</span> gender</span><br><span class="line"></span><br><span class="line">两种方式，可以实现相同的功能。简单<span class="keyword">Case</span>函数的写法相对比较简洁，但是和<span class="keyword">Case</span>搜索函数相比，功能方面会有些限制，</span><br><span class="line">比如写判断式。还有一个需要注意的问题，<span class="keyword">Case</span>函数只返回第一个符合条件的值，剩下的<span class="keyword">Case</span>部分将会被自动忽略。</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>9.8 oracle 通配符匹配字符限制字符长度</p>
 </blockquote>
 <p><code>length(字段)&lt;Number</code> 限制字符串的长度，如果是数字型的，那么再to_char一下</p>
+<blockquote>
+<p>9.9 oracle截取字符串指定位数</p>
+</blockquote>
+<p>substr(field,start_index,[length]):select截取field字段，索引值从1或者0开始，截取指定length长度</p>
+<blockquote>
+<p>9.10 oracle怎样把查询的null转换为指定值</p>
+</blockquote>
+<p>nvl(field,Expr2)如果field字段为NULL，返回Expr2的值，否则返回Expr1的值</p>
 <h3 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h3><ul>
 <li>Oracle中case when的用法：<a href="https://blog.csdn.net/weixin_40417658/article/details/82633834" target="_blank" rel="noopener">https://blog.csdn.net/weixin_40417658/article/details/82633834</a></li>
 <li><a href="https://blog.csdn.net/qq_33866778/article/details/75258200" target="_blank" rel="noopener">https://blog.csdn.net/qq_33866778/article/details/75258200</a></li>
 <li><a href="https://zhidao.baidu.com/question/464433814.html" target="_blank" rel="noopener">https://zhidao.baidu.com/question/464433814.html</a></li>
 <li>sql的replace函数 <a href="https://www.cnblogs.com/1906859953Lucas/p/9244495.html" target="_blank" rel="noopener">https://www.cnblogs.com/1906859953Lucas/p/9244495.html</a></li>
+<li>Oracle实现判断的三种方法： <a href="https://blog.csdn.net/yangzjchn/article/details/81019449" target="_blank" rel="noopener">https://blog.csdn.net/yangzjchn/article/details/81019449</a></li>
+<li>Oracle中字符串截取常用方法总结： <a href="https://blog.csdn.net/rongtaoup/article/details/82217740" target="_blank" rel="noopener">https://blog.csdn.net/rongtaoup/article/details/82217740</a></li>
 </ul>
 
       </div>
@@ -685,10 +695,10 @@ oracle的sql语句中没有limit,limit是mysql中特有的,在oracle中可用row
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-03T14:14:05+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-05T11:38:49+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年3月3日</p>
+    <p>更新于 2020年3月5日</p>
   </a>
 </div>
 
@@ -1184,7 +1194,7 @@ oracle的sql语句中没有limit,limit是mysql中特有的,在oracle中可用row
         
           <li><a class="flat-box" title="/categories/Database/" href="/categories/Database/"><div class='name'>Database</div><div class='badge'>(7)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Java/" href="/categories/Java/"><div class='name'>Java</div><div class='badge'>(6)</div></a></li>
+          <li><a class="flat-box" title="/categories/Java/" href="/categories/Java/"><div class='name'>Java</div><div class='badge'>(7)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Python/" href="/categories/Python/"><div class='name'>Python</div><div class='badge'>(17)</div></a></li>
         
