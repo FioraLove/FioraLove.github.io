@@ -433,7 +433,7 @@
       <div class="article-entry" itemprop="articleBody">
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Java是一门面向对象编程语言，不仅吸收了C++语言的各种优点，还摒弃了C++里难以理解的多继承、指针等概念，因此Java语言具有功能强大和简单易用两个特征。Java语言作为静态面向对象编程语言的代表，极好地实现了面向对象理论，允许程序员以优雅的思维方式进行复杂的编程  。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Java具有简单性、面向对象、分布式、健壮性、安全性、平台独立与可移植性、多线程、动态性等特点 。Java可以编写桌面应用程序、Web应用程序、分布式系统和嵌入式系统应用程序等</p>
 <blockquote>
-<p>1.Java基础结构<br>2.Java命名规范与注释<br>3.变量，常量与数据类型<br>4.字符与字符串类型<br>5.数组类型</p>
+<p>1.Java基础结构<br>2.Java命名规范与注释<br>3.变量，常量与数据类型<br>4.字符与字符串类型<br>5.数组类型<br>6.常量<br>7.访问修饰符</p>
 </blockquote>
 <a id="more"></a>
 <h3 id="1-Java基础结构"><a href="#1-Java基础结构" class="headerlink" title="1.Java基础结构"></a>1.Java基础结构</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 类名与Java文件名相同</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123; <span class="comment">// 方法名是main，main方法表示为入口文件</span></span><br><span class="line">        <span class="comment">// 方法代码...</span></span><br><span class="line">    &#125; <span class="comment">// 方法定义结束</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -460,7 +460,7 @@
 <li><p>常量在初始化后不可重新赋值，使用常量便于理解程序意图。</p>
 </li>
 </ul>
-<h3 id="5-字符与字符串类型"><a href="#5-字符与字符串类型" class="headerlink" title="5.字符与字符串类型"></a>5.字符与字符串类型</h3><p>字符类型：字符char是基本数据类型，一个char保存一个Unicode字符</p>
+<h3 id="6-字符与字符串类型"><a href="#6-字符与字符串类型" class="headerlink" title="6.字符与字符串类型"></a>6.字符与字符串类型</h3><p>字符类型：字符char是基本数据类型，一个char保存一个Unicode字符</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">char c1 = &apos;A&apos;;</span><br><span class="line">char c2 = &apos;中&apos;;</span><br></pre></td></tr></table></figure>
 <p>要显示一个字符的Unicode编码，只需将char类型直接赋值给int类型即可：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int n1 = &apos;A&apos;; // 字母“A”的Unicodde编码是65</span><br><span class="line">int n2 = &apos;中&apos;; // 汉字“中”的Unicode编码是20013</span><br></pre></td></tr></table></figure>
@@ -468,7 +468,7 @@
 <p>字符串类型：<br>和char类型不同，字符串类型String是引用类型，常常使用双引号包裹起来</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String s = &quot;&quot;; // 空字符串，包含0个字符</span><br><span class="line">String s1 = &quot;A&quot;; // 包含一个字符</span><br><span class="line">String s2 = &quot;ABC&quot;; // 包含3个字符</span><br><span class="line">String s3 = &quot;中文 ABC&quot;; // 包含6个字符，其中有一个空格</span><br></pre></td></tr></table></figure>
 
-<h3 id="6-数组类型"><a href="#6-数组类型" class="headerlink" title="6.数组类型"></a>6.数组类型</h3><p>语法：定义一个数组类型的变量，使用数组类型<code>“类型[]”</code>，例如，<code>int[]</code>。和单个基本类型变量不同，<strong>数组变量初始化必须使用new int[5]表示创建一个可容纳5个int元素的数组</strong>。</p>
+<h3 id="7-数组类型"><a href="#7-数组类型" class="headerlink" title="7.数组类型"></a>7.数组类型</h3><p>语法：定义一个数组类型的变量，使用数组类型<code>“类型[]”</code>，例如，<code>int[]</code>。和单个基本类型变量不同，<strong>数组变量初始化必须使用new int[5]表示创建一个可容纳5个int元素的数组</strong>。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 数组的创建方式</span></span><br><span class="line">        <span class="keyword">int</span>[] grades = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">5</span>];</span><br><span class="line">        System.out.println(ns.length); <span class="comment">// 5</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Java的数组有几个特点：</p>
 <ul>
@@ -492,7 +492,7 @@
 <li><p>java不同于python，Java的数组无法直接打印，可以使用Arrays.toString(数组名)来直接打印出来</p>
 </li>
 </ul>
-<h3 id="6-访问修饰符"><a href="#6-访问修饰符" class="headerlink" title="6.访问修饰符"></a>6.访问修饰符</h3><table>
+<h3 id="8-访问修饰符"><a href="#8-访问修饰符" class="headerlink" title="8.访问修饰符"></a>8.访问修饰符</h3><table>
 <thead>
 <tr>
 <th>作用域</th>
@@ -547,10 +547,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-29T14:40:00+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-09T21:21:31+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年2月29日</p>
+    <p>更新于 2020年3月9日</p>
   </a>
 </div>
 
@@ -574,7 +574,7 @@
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/02/07/Java%E7%A8%8B%E5%BA%8F%E5%9F%BA%E7%A1%80(%E4%B8%80)/&title=Java（一）：程序基础 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Java是一门面向对象编程语言，不仅吸收了C++语言的各种优点，还摒弃了C++里难以理解的多继承、指针等概念，因此Java语言具有功能强大和简单易用两个特征。Java语言作为静态面向对象编程语言的代表，极好地实现了面向对象理论，允许程序员以优雅的思维方式进行复杂的编程  。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Java具有简单性、面向对象、分布式、健壮性、安全性、平台独立与可移植性、多线程、动态性等特点 。Java可以编写桌面应用程序、Web应用程序、分布式系统和嵌入式系统应用程序等
 
-1.Java基础结构2.Java命名规范与注释3.变量，常量与数据类型4.字符与字符串类型5.数组类型
+1.Java基础结构2.Java命名规范与注释3.变量，常量与数据类型4.字符与字符串类型5.数组类型6.常量7.访问修饰符
 "
           
           >
@@ -589,7 +589,7 @@
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/02/07/Java%E7%A8%8B%E5%BA%8F%E5%9F%BA%E7%A1%80(%E4%B8%80)/&title=Java（一）：程序基础 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Java是一门面向对象编程语言，不仅吸收了C++语言的各种优点，还摒弃了C++里难以理解的多继承、指针等概念，因此Java语言具有功能强大和简单易用两个特征。Java语言作为静态面向对象编程语言的代表，极好地实现了面向对象理论，允许程序员以优雅的思维方式进行复杂的编程  。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Java具有简单性、面向对象、分布式、健壮性、安全性、平台独立与可移植性、多线程、动态性等特点 。Java可以编写桌面应用程序、Web应用程序、分布式系统和嵌入式系统应用程序等
 
-1.Java基础结构2.Java命名规范与注释3.变量，常量与数据类型4.字符与字符串类型5.数组类型
+1.Java基础结构2.Java命名规范与注释3.变量，常量与数据类型4.字符与字符串类型5.数组类型6.常量7.访问修饰符
 "
           
           >
@@ -604,7 +604,7 @@
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/02/07/Java%E7%A8%8B%E5%BA%8F%E5%9F%BA%E7%A1%80(%E4%B8%80)/&title=Java（一）：程序基础 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Java是一门面向对象编程语言，不仅吸收了C++语言的各种优点，还摒弃了C++里难以理解的多继承、指针等概念，因此Java语言具有功能强大和简单易用两个特征。Java语言作为静态面向对象编程语言的代表，极好地实现了面向对象理论，允许程序员以优雅的思维方式进行复杂的编程  。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Java具有简单性、面向对象、分布式、健壮性、安全性、平台独立与可移植性、多线程、动态性等特点 。Java可以编写桌面应用程序、Web应用程序、分布式系统和嵌入式系统应用程序等
 
-1.Java基础结构2.Java命名规范与注释3.变量，常量与数据类型4.字符与字符串类型5.数组类型
+1.Java基础结构2.Java命名规范与注释3.变量，常量与数据类型4.字符与字符串类型5.数组类型6.常量7.访问修饰符
 "
           
           >
@@ -825,7 +825,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Java基础结构"><span class="toc-text">1.Java基础结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-命名规范"><span class="toc-text">2.命名规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-注释"><span class="toc-text">3.注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-变量与数据类型"><span class="toc-text">4.变量与数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-常量-通常大写"><span class="toc-text">5.常量(通常大写)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-字符与字符串类型"><span class="toc-text">5.字符与字符串类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-数组类型"><span class="toc-text">6.数组类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-访问修饰符"><span class="toc-text">6.访问修饰符</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Java基础结构"><span class="toc-text">1.Java基础结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-命名规范"><span class="toc-text">2.命名规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-注释"><span class="toc-text">3.注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-变量与数据类型"><span class="toc-text">4.变量与数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-常量-通常大写"><span class="toc-text">5.常量(通常大写)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-字符与字符串类型"><span class="toc-text">6.字符与字符串类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-数组类型"><span class="toc-text">7.数组类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-访问修饰符"><span class="toc-text">8.访问修饰符</span></a></li></ol>
     </div>
   </section>
 

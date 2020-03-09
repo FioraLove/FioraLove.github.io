@@ -458,7 +458,10 @@
 <p>1.3 需要注意到点</p>
 </blockquote>
 <p>JSON的键名和字符串都必须使用双引号引起来，而Python中单引号也可以表示为字符串，所以这是个比较容易犯的错误！<br>Python类型与JSON相互转换的时候到底是用load//dump还是用loads\dumps？<br>他们之间有什么区别？什么时候该加s什么时候不该加s？<br>这个我们可以通过查看源码找到答案：<br>不加s的方法入参多了一个fp表示filepath，最后多了一个写入文件的操作。<br>所以我们在记忆的时候可以这样记忆：<br><font color=#f05b72>加s表示转成字符串(str)，不加s表示转成文件。</font></p>
-<h2 id="2-javascript中的json"><a href="#2-javascript中的json" class="headerlink" title="2.javascript中的json"></a>2.javascript中的json</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var stu = &#123;&quot;student&quot;:           //stu 对象包含student的key,值为一个数组</span><br><span class="line">            [                                     //数组的每一个值为一个具体的学生对象</span><br><span class="line">                &#123;&quot;name&quot;: &quot;Tom&quot;,&quot;Grade&quot;:1, &quot;age&quot;:11, &quot;gender&quot;: &quot;M&quot;&#125;,     //学生对象的键为名字,值为对应属性</span><br><span class="line">                &#123;&quot;name&quot;: &quot;Jerry&quot;, &quot;Grade&quot;:1, &quot;age&quot;:10, &quot;gender&quot;: &quot;M&quot;&#125;       //每个属性对应的是一个key,value对</span><br><span class="line">            ],</span><br><span class="line">            &quot;classroom&quot;: &#123;&quot;class1&quot;: &quot;room1&quot;, &quot;class2&quot;: &quot;room2&quot;&#125;         //对象的值,嵌套对象</span><br><span class="line">        &#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Python一般脚本文件编写流程"><a href="#Python一般脚本文件编写流程" class="headerlink" title="Python一般脚本文件编写流程"></a>Python一般脚本文件编写流程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">1.文件配置一般在config.json中，比如：用户名，账号，密码，人员信息等等</span><br><span class="line">2.在settings.py 文件中导入.json文件中的配置</span><br><span class="line">    # 载入配置文件</span><br><span class="line">    BASE_DIR = os.path.dirname(os.path.abspath(__file__)) # 返回当前path文件的上一级目录</span><br><span class="line">    with open(os.path.join(BASE_DIR,&quot;settings.json&quot;),&quot;r&quot;) as f:</span><br><span class="line">    SETTINGS = json.load(f)</span><br><span class="line"></span><br><span class="line">    #  配置文件的内容获取</span><br><span class="line">    SERVER = SETTINGS[&quot;DB_CONFIG&quot;][&quot;DB_SERVER&quot;]</span><br><span class="line">    # json格式新的调用方法：json.load(f)的变量名[&quot;对象名&quot;][&quot;键名&quot;]</span><br><span class="line"></span><br><span class="line">3.在主文件.py 中导入文件import settings</span><br><span class="line">    文本格式内容为：settings.SERVER，settings.PASSWORD等等</span><br><span class="line"></span><br><span class="line">脚本目录：</span><br><span class="line">    |</span><br><span class="line">    |--core.py</span><br><span class="line">    |</span><br><span class="line">    |--settings.py</span><br><span class="line">    |</span><br><span class="line">    |--config.json</span><br><span class="line">    |</span><br><span class="line">    |--a.py</span><br><span class="line">    |--b.py</span><br><span class="line">    |</span><br><span class="line">    |--.gitignore</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-javascript中的json"><a href="#2-javascript中的json" class="headerlink" title="2.javascript中的json"></a>2.javascript中的json</h2><p>javascript的访问方式与python大同小异，但也有细分之处<br>访问方式一：变量名[“键名”]<br>访问方式二：变量名.键名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">let stu = &#123;&quot;student&quot;:           //stu 对象包含student的key,值为一个数组</span><br><span class="line">    [                  //数组的每一个值为一个具体的学生对象</span><br><span class="line">        &#123;&quot;name&quot;: &quot;Tom&quot;,&quot;Grade&quot;:1, &quot;age&quot;:11, &quot;gender&quot;: &quot;M&quot;&#125;,     //学生对象的键为名字,值为对应属性</span><br><span class="line">        &#123;&quot;name&quot;: &quot;Jerry&quot;, &quot;Grade&quot;:1, &quot;age&quot;:10, &quot;gender&quot;: &quot;M&quot;&#125;       //每个属性对应的是一个key,value对</span><br><span class="line">    ],</span><br><span class="line">    &quot;classroom&quot;: &#123;&quot;class1&quot;: &quot;room1&quot;, &quot;class2&quot;: &quot;room2&quot;&#125;         //对象的值,嵌套对象</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">stu[&quot;classroom&quot;][&quot;class1&quot;]:&quot;room1&quot;</span><br><span class="line">stu.classroom.class1 : &quot;room1&quot;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>json.parse()：是从一个字符串中解析出 json 对象</p>
 </blockquote>
@@ -467,6 +470,11 @@
 <p>json.stringify() 是从一个对象中解析出字符串</p>
 </blockquote>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> data=&#123;<span class="attr">name</span>:<span class="string">'goatling'</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = <span class="built_in">JSON</span>.stringify(data);</span><br><span class="line"><span class="keyword">typeof</span>(a) <span class="comment">// 对象类型</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 结果是：</span></span><br><span class="line"><span class="comment">* '&#123;"name":"goatling"&#125;'</span></span><br><span class="line"><span class="comment">* 字符串类型</span></span><br><span class="line"><span class="comment">* */</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li><a href="https://www.cnblogs.com/zishengY/p/10994621.html" target="_blank" rel="noopener">10分钟学分js处理json常用方法</a></li>
+</ul>
+
       </div>
       
         <br>
@@ -477,10 +485,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-23T09:15:50+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-09T20:00:18+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年12月23日</p>
+    <p>更新于 2020年3月9日</p>
   </a>
 </div>
 
@@ -766,7 +774,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Python的json规则"><span class="toc-text">1.Python的json规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-javascript中的json"><span class="toc-text">2.javascript中的json</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Python的json规则"><span class="toc-text">1.Python的json规则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Python一般脚本文件编写流程"><span class="toc-text">Python一般脚本文件编写流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-javascript中的json"><span class="toc-text">2.javascript中的json</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
     </div>
   </section>
 
