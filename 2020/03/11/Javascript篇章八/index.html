@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>Tag: salt | AhriLove</title>
+  <title>Javascript篇章八：js的事件响应机制 | AhriLove</title>
   
   
 
@@ -65,7 +65,7 @@
   
   
   <div class="cover-wrapper">
-    <cover class='cover  half'>
+    <cover class='cover post half'>
       
         
   <img class='logo' src='https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imagesaaa.png'/>
@@ -332,25 +332,11 @@
 
   <div class="l_body">
     <div class='body-wrapper'>
-      
-<div class='l_main'>
+      <div class='l_main'>
   
+
+  <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
     
-      
-  <section class="post-list">
-    
-      
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
-  
 
 
   <section class='meta'>
@@ -359,11 +345,13 @@
     <div class="meta" id="header-meta">
       
         
-  <h2 class="title">
-    <a href="/2019/12/08/%E6%B5%85%E8%B0%88%E5%AF%86%E7%A0%81%E5%8A%A0%E7%9B%90%E5%8E%9F%E7%90%86/">
-      探究密码加salt原理以及PHP防止SQL注入
-    </a>
-  </h2>
+  
+    <h1 class="title">
+      <a href="/2020/03/11/Javascript%E7%AF%87%E7%AB%A0%E5%85%AB/">
+        Javascript篇章八：js的事件响应机制
+      </a>
+    </h1>
+  
 
 
       
@@ -375,11 +363,11 @@
             
   <div class='new-meta-item author'>
     
-      <a href="https://ahrilove.top" rel="nofollow">
+      <a href="/" rel="nofollow">
         
-          <i class="fas fa-user" aria-hidden="true"></i>
+          <img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imagesNaruto.jpg">
         
-        <p>AhriLove</p>
+        <p>陈浩东</p>
       </a>
     
   </div>
@@ -391,7 +379,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-12-08</p>
+    <p>2020-03-11</p>
   </a>
 </div>
 
@@ -401,9 +389,9 @@
             
   
   <div class='new-meta-item category'>
-    <a href='/categories/Python/' rel="nofollow">
+    <a href='/categories/javascript/' rel="nofollow">
       <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>Python</p>
+      <p>javascript</p>
     </a>
   </div>
 
@@ -412,6 +400,19 @@
         
           
             
+  
+    <div class="new-meta-item browse busuanzi">
+      <a class='notlink'>
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <p>
+          <span id="busuanzi_value_page_pv">
+            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+          </span>
+        </p>
+      </a>
+    </div>
+  
+
 
           
         
@@ -428,46 +429,212 @@
   </section>
 
 
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一般来说，一些小网站，小公司对于用户的账号密码很大概率是对其进行散列处理。我们知道，如果直接对密码进行散列，那么黑客可以对通过获得这个密码散列值，然后通过查散列值字典（例如某MD5密码破解网站），得到某用户的密码。</p>
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <p>HTML 事件是发生在 HTML 元素上的事情。当在 HTML 页面中使用 JavaScript 时， JavaScript 可以触发这些事件。<br><strong>本章内容：</strong></p>
+<blockquote>
+<p>1.HTML事件响应机制</p>
+</blockquote>
+<a id="more"></a>
+
+<h3 id="1-常见的HTML事件"><a href="#1-常见的HTML事件" class="headerlink" title="1.常见的HTML事件"></a>1.常见的HTML事件</h3><table>
+<thead>
+<tr>
+<th>事件</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>onchange</td>
+<td align="center">HTML 元素改变</td>
+</tr>
+<tr>
+<td>onclick</td>
+<td align="center">用户点击 HTML 元素</td>
+</tr>
+<tr>
+<td>onmouseover</td>
+<td align="center">用户在一个HTML元素上移动鼠标</td>
+</tr>
+<tr>
+<td>onmouseout</td>
+<td align="center">用户从一个HTML元素上移开鼠标</td>
+</tr>
+<tr>
+<td>onkeydown</td>
+<td align="center">用户按下键盘按键</td>
+</tr>
+<tr>
+<td>onload</td>
+<td align="center">浏览器已完成页面的加载</td>
+</tr>
+<tr>
+<td>…</td>
+<td align="center">…</td>
+</tr>
+</tbody></table>
+<p><a href="https://www.runoob.com/jsref/dom-obj-event.html" target="_blank" rel="noopener">HTML DOM事件大全</a><br>举例说明：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>点击这个按钮，来调用带参数的函数。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"myFunction('Harry Potter','Wizard')"</span>&gt;</span>点击这里<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">myFunction</span><span class="params">(name,job)</span></span>&#123;</span></span><br><span class="line"><span class="actionscript">    alert(<span class="string">"Welcome "</span> + name + <span class="string">", the "</span> + job);</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-js获取表单元素和标签节点内容"><a href="#2-js获取表单元素和标签节点内容" class="headerlink" title="2.js获取表单元素和标签节点内容"></a>2.js获取表单元素和标签节点内容</h3><p>首先document.getElementById(“节点id”)获取节点的DOM<br>对于表单元素，获取其中的内容，通过<code>.value</code>的属性<br>对于标签节点，<code>.innerHTML</code>获取标签间的内容</p>
+<p><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/20200311214808.png" alt=""></fancybox></p>
+
+      </div>
       
-        <div class="readmore">
-          <a href="/2019/12/08/%E6%B5%85%E8%B0%88%E5%AF%86%E7%A0%81%E5%8A%A0%E7%9B%90%E5%8E%9F%E7%90%86/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
-        </div>
+        <br>
+        
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-11T21:48:36+08:00">
+  <a class='notlink'>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>更新于 2020年3月11日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/js/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>js</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/03/11/Javascript%E7%AF%87%E7%AB%A0%E5%85%AB/&title=Javascript篇章八：js的事件响应机制 | AhriLove&summary=HTML 事件是发生在 HTML 元素上的事情。当在 HTML 页面中使用 JavaScript 时， JavaScript 可以触发这些事件。本章内容：
+
+1.HTML事件响应机制
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/03/11/Javascript%E7%AF%87%E7%AB%A0%E5%85%AB/&title=Javascript篇章八：js的事件响应机制 | AhriLove&summary=HTML 事件是发生在 HTML 元素上的事情。当在 HTML 页面中使用 JavaScript 时， JavaScript 可以触发这些事件。本章内容：
+
+1.HTML事件响应机制
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/03/11/Javascript%E7%AF%87%E7%AB%A0%E5%85%AB/&title=Javascript篇章八：js的事件响应机制 | AhriLove&summary=HTML 事件是发生在 HTML 元素上的事情。当在 HTML 页面中使用 JavaScript 时， JavaScript 可以触发这些事件。本章内容：
+
+1.HTML事件响应机制
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
       
     </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/salt/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> salt</a>
-        
-          <a href="/tags/PHP/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> PHP</a>
-        
-      </div>
-    
   </section>
-</article>
 
-          </div>
-        
+
       
-    
-  </section>
-  
-    
-    <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
-    
-    
+      
+          <div class="prev-next">
+              
+              
+                  <section class="next">
+                      <span class="art-item-right" aria-hidden="true">
+                          <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                          <h4>
+                              <a href="/2020/03/10/json(%E4%BA%8C)/" rel="prev" title="Json（二）：关于json的前后分离">
+                                  
+                                      Json（二）：关于json的前后分离
+                                  
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/json/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> json</a> <a class="tag" href="/tags/%E5%89%8D%E5%90%8E%E5%88%86%E7%A6%BB/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 前后分离</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+          </div>
+      
+    </section>
+  </article>
 
-  
 
 
-    
-  
+  <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      
+      
+        <section id="comments">
+          <div id="lv-container" data-id="city" data-uid="MTAyMC80NzQ0NS8yMzk0NQ==">
+            <noscript><div><i class='fas fa-exclamation-triangle'>&nbsp;无法加载Livere评论系统，请确保您的网络能够正常访问。</div></noscript>
+          </div>
+        </section>
+      
+      
+      
+    </section>
+  </article>
+
+
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'Javascript篇章八：js的事件响应机制',
+      tools: true
+    }
+  </script>
+
+
 </div>
 <aside class='l_side'>
   
@@ -573,6 +740,25 @@
           
         
           
+          
+            
+              
+  <section class='widget toc-wrapper'>
+    
+<header class='material'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目录</div>
+  
+    <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
+  
+</header>
+
+    <div class='content material'>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-常见的HTML事件"><span class="toc-text">1.常见的HTML事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-js获取表单元素和标签节点内容"><span class="toc-text">2.js获取表单元素和标签节点内容</span></a></li></ol>
+    </div>
+  </section>
+
+
+            
           
         
           
@@ -899,50 +1085,28 @@
         
           
           
-            
-              
-
-
-  <section class='widget music'>
-    
-<header class='material'>
-  <div><i class="fas fa-compact-disc fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;最近在听</div>
-  
-    <a class="rightBtn"
-    
-      rel="external nofollow noopener noreferrer"
-    
-    
-      target="_blank"
-    
-    href="https://music.163.com/#/user/home?id=1398315803"
-    title="https://music.163.com/#/user/home?id=1398315803">
-    <i class="far fa-heart fa-fw"></i></a>
-  
-</header>
-
-    <div class='content material'>
+        
       
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
-  <div class="aplayer"
-    data-theme="#1BCDFC"
-    
-    
-    data-mode="circulation"
-    data-server="netease"
-    data-type="playlist"
-    data-id="2163223807"
-    data-volume="0.3">
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
-
-
-    </div>
-  </section>
-
-
-            
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
           
         
       
@@ -1094,6 +1258,17 @@
 
 
 
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
 
 
 
