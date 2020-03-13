@@ -528,15 +528,27 @@
 <h4 id="接口使用步骤"><a href="#接口使用步骤" class="headerlink" title="接口使用步骤"></a>接口使用步骤</h4><ul>
 <li>接口不能直接使用，必须有一个“实现类”来“实现”该接口</li>
 </ul>
-<p><font color=#d93a49 >格式：public class 实现类 implements 接口名称{…}</font></p>
+<p><font color=#d93a49 >格式：public class <strong>实现类名</strong> implements 接口名称{…}</font></p>
 <ul>
 <li><p>接口的实现类必须重写接口中所有的抽象方法（即去掉abstract关键字，加上方法体和大括号）</p>
 </li>
 <li><p>创建实现类的对象，进行使用（即直接 new 实现类的对象，才能使用）。</p>
 </li>
+<li><p>接口是没有静态代码块或者构造方法的</p>
+</li>
+<li><p>Java的类只能单继承，但接口可以implement多个接口<br>接口的小结：<br><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/interfaceasd.jpg" alt=""></fancybox></p>
+</li>
 </ul>
-<p>接口的小结：<br><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/interfaceasd.jpg" alt=""></fancybox></p>
-
+<h3 id="7-多态性的补充"><a href="#7-多态性的补充" class="headerlink" title="7.多态性的补充"></a>7.多态性的补充</h3><p>代码当中体现多态性，其实就是一句话：父类引用指向子类对象（extends，implement是体现多态性的前提）</p>
+<p>格式：父类引用指向子类对象（<strong>即以左父右子</strong>）<br>父类名称. 对象名 = new 子类名称();<br>或者：<br>接口名称. 对象名 = new 实现类名称()</p>
+<p>在多态的代码，父类引用指向子类对象是，即 <code>Fu obj = new Zi()</code> 中：</p>
+<ol>
+<li><p>成员方法的访问规则： 看new的是谁（即看左边），就优先用谁，没有就向上一级找</p>
+</li>
+<li><p>成员变量的访问规则：<br>Ⅰ. 直接通过对象名称访问成员变量，看等号左边是谁，优先用谁<br>Ⅱ. 间接通过成员方法访问成员变量：看该方法属于谁（假如子类覆盖重写了父类，则通过访问子类调用成员方法来访问成员变量），就优先用谁</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.Alibaba;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mult</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Fu1 fu1 = <span class="keyword">new</span> Zi1();</span><br><span class="line">        System.out.println(fu1.num); <span class="comment">// 10:通过对象名称访问成员变量</span></span><br><span class="line">        fu1.showNum();  <span class="comment">// 20</span></span><br><span class="line">        System.out.println(<span class="string">"===="</span>);</span><br><span class="line">        <span class="comment">// 开始覆盖重写父类</span></span><br><span class="line">        fu1.showNum(); <span class="comment">// 20</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建父类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fu1</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">10</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showNum</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(num);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 创建子类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Zi1</span> <span class="keyword">extends</span> <span class="title">Fu1</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">20</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showNum</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(num);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       </div>
       
         <br>
@@ -547,10 +559,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-11T21:35:08+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-12T21:25:57+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年3月11日</p>
+    <p>更新于 2020年3月12日</p>
   </a>
 </div>
 
@@ -830,7 +842,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-如何创建一个标准的类"><span class="toc-text">1.如何创建一个标准的类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-API的概述与使用"><span class="toc-text">2. API的概述与使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-对象型数组"><span class="toc-text">3.对象型数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-面向对象的三大特性"><span class="toc-text">4.面向对象的三大特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-抽象类和抽象方法补充"><span class="toc-text">5.抽象类和抽象方法补充</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-接口"><span class="toc-text">6.接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#如何定义一个接口的格式："><span class="toc-text">如何定义一个接口的格式：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#接口内容"><span class="toc-text">接口内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#接口使用步骤"><span class="toc-text">接口使用步骤</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-如何创建一个标准的类"><span class="toc-text">1.如何创建一个标准的类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-API的概述与使用"><span class="toc-text">2. API的概述与使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-对象型数组"><span class="toc-text">3.对象型数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-面向对象的三大特性"><span class="toc-text">4.面向对象的三大特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-抽象类和抽象方法补充"><span class="toc-text">5.抽象类和抽象方法补充</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-接口"><span class="toc-text">6.接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#如何定义一个接口的格式："><span class="toc-text">如何定义一个接口的格式：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#接口内容"><span class="toc-text">接口内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#接口使用步骤"><span class="toc-text">接口使用步骤</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-多态性的补充"><span class="toc-text">7.多态性的补充</span></a></li></ol>
     </div>
   </section>
 
