@@ -433,7 +433,7 @@
       <div class="article-entry" itemprop="articleBody">
         <p><strong>本章内容：</strong></p>
 <blockquote>
-<p>1.如何创建一个标准的类<br>2.API的概述与使用<br>3.对象型数组<br>4.面向对象的三大特性<br>5.抽象类和抽象方法补充<br>6.接口</p>
+<p>1.如何创建一个标准的类<br>2.API的概述与使用<br>3.对象型数组<br>4.面向对象的三大特性<br>5.抽象类和抽象方法补充<br>6.接口<br>7.多态性的补充<br>8.final关键字</p>
 </blockquote>
 <a id="more"></a>
 <h3 id="1-如何创建一个标准的类"><a href="#1-如何创建一个标准的类" class="headerlink" title="1.如何创建一个标准的类"></a>1.如何创建一个标准的类</h3><p>一个标准的类通常要拥有下面四个部分：</p>
@@ -549,6 +549,51 @@
 </li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.Alibaba;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mult</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Fu1 fu1 = <span class="keyword">new</span> Zi1();</span><br><span class="line">        System.out.println(fu1.num); <span class="comment">// 10:通过对象名称访问成员变量</span></span><br><span class="line">        fu1.showNum();  <span class="comment">// 20</span></span><br><span class="line">        System.out.println(<span class="string">"===="</span>);</span><br><span class="line">        <span class="comment">// 开始覆盖重写父类</span></span><br><span class="line">        fu1.showNum(); <span class="comment">// 20</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建父类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fu1</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">10</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showNum</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(num);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 创建子类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Zi1</span> <span class="keyword">extends</span> <span class="title">Fu1</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">20</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showNum</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(num);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="对象的向上转型"><a href="#对象的向上转型" class="headerlink" title="对象的向上转型"></a>对象的向上转型</h4><ol>
+<li>对象的向上转型，其实就是多态的写法；</li>
+</ol>
+<p>格式：父类名称 对象名 = new 子类名称()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Animal animal = new Cat();</span><br><span class="line">创建了一只猫，当作中午来看，是没问题的。</span><br></pre></td></tr></table></figure>
+
+<p>含义：右侧创建一个子类对象，把它当作父类来看待<br>注意事项；向上转型一定是安全的，从小范围转向了大范围。从小范围的猫，向上转换成为了范围更大的动物</p>
+<h4 id="对象的向下转型"><a href="#对象的向下转型" class="headerlink" title="对象的向下转型"></a>对象的向下转型</h4><ol start="2">
+<li>对象的向下转型，其实是一个【还原】的动作</li>
+</ol>
+<p><strong>若想要实现向下转型的前提是有一个向上转型成功的对象名</strong></p>
+<p>格式：子类名称 对象名 = （子类名称） <strong>父类对象名</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Animal animal = new Cat(); //向上转型成功，将本来是猫，向上转型成为动物</span><br><span class="line">Cat cat = (Cat) animal; // 本来是猫，已经被当做动物了，还原回来成为了原本的猫</span><br></pre></td></tr></table></figure>
+
+<p>注意事项；<br>Ⅰ. 必须保证对象本来创建的时候，就是猫，才能向下转型成为猫<br>Ⅱ. 如果对象创建的时候本来不是猫。现在非要向下转型成为猫，就会报错(ClassCastException)</p>
+<ol start="3">
+<li>用instanceof关键字判断一个父类的引用对象，本来是什么子类？</li>
+</ol>
+<p>格式：对象名 instanceof 类名称</p>
+<p>完整的源代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InstanceofDemo</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="comment">// 多态写法；新建一只猫</span></span><br><span class="line">        Animal animal = <span class="keyword">new</span> Cat();</span><br><span class="line">        animal.eat();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 如果希望调用子类的特有方法，需要向下转型</span></span><br><span class="line">        <span class="keyword">if</span>(animal <span class="keyword">instanceof</span> Dog)&#123; <span class="comment">// 判断父类引用animal是不是Dog</span></span><br><span class="line">            Dog dog = (Dog) animal;</span><br><span class="line">            dog.watchHOuse();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(animal <span class="keyword">instanceof</span> Cat)&#123;</span><br><span class="line">            Cat cat = (Cat) animal;</span><br><span class="line">            cat.catchMOnth();</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    <span class="comment">// 调用getMeAPet函数:传参为Dog()子类</span></span><br><span class="line">    getMeAPet(<span class="keyword">new</span> Dog());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">getMeAPet</span><span class="params">(Animal animal)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(animal <span class="keyword">instanceof</span> Dog)&#123; <span class="comment">// 判断父类引用animal是不是Dog</span></span><br><span class="line">            Dog dog = (Dog) animal;</span><br><span class="line">            dog.watchHOuse();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(animal <span class="keyword">instanceof</span> Cat)&#123;</span><br><span class="line">            Cat cat = (Cat) animal;</span><br><span class="line">            cat.catchMouse();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建抽象父类</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 创建Cat子类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Systeam.out.println(<span class="string">"猫吃鱼"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">catchMouse</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Systeam.out.println(<span class="string">"猫抓老鼠吃"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//创建Dog子类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Dog</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Systeam.out.println(<span class="string">"狗吃骨头"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">watchHouse</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Systeam.out.println(<span class="string">"狗正在看家"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><fancybox><img src="https://d47jbcq60tnr6.cloudfront.net/2020315/13732-1r8jiqw.reuc.JPG" alt=""></fancybox></p>
+<h3 id="8-final关键字"><a href="#8-final关键字" class="headerlink" title="8.final关键字"></a>8.final关键字</h3><p>final关键字代表最终，不可改变，常见的四种方法：</p>
+<ul>
+<li>可以用来修饰一个类</li>
+</ul>
+<p><strong>当final关键字用来修饰一个类时（表示当前这个类不能有任何子类，即无法继承）</strong>，格式：<br>public final class 类名称{属性和方法}</p>
+<ul>
+<li>可以用来修饰一个方法</li>
+</ul>
+<p><strong>当final关键字修饰一个方法时，这个方法就是最终方法，也无法被覆盖重写</strong>，格式：<br>修饰符 final 返回值类型 方法名（参数列表）{方法体}</p>
+<ul>
+<li>还可以修饰一个局部变量</li>
+</ul>
+<p>一般局部变量：int age = 18; int age = 20(对于普通变量来说可以任意重新赋值)<br>final最终变量：一旦使用final用来修饰局部变量，那么这个变量就无法更改：final int age = 18</p>
+<ul>
+<li>还可以修饰一个成员变量</li>
+</ul>
+<p>对于成员变量来说，如果使用final关键字修饰，那么这个变量也照样不可变<br>由于成员变量具有默认值，所以采用final之后必须要手动赋值，不会再给默认值<br>对于final的成员变量，要么使用直接赋值，要么通过构造方法赋值，二者选其一<br>必须保证类当中的所有重载的构造方法，都最终会对final的成员变量进行赋值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">当使用构造方法时，无参构造也要赋值，且因为final特性，构造函数就不存在Setter方法了</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> String name; <span class="comment">/* = 鹿晗*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">()</span></span>&#123;</span><br><span class="line">name = <span class="string">"关晓彤"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line"><span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">gerName</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">return</span> name;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>PS：<br>对于类和方法来说，abstract与final关键字不能同时使用，因为自相矛盾</p>
+
       </div>
       
         <br>
@@ -559,10 +604,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-12T21:25:57+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-16T10:12:53+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年3月12日</p>
+    <p>更新于 2020年3月16日</p>
   </a>
 </div>
 
@@ -586,7 +631,7 @@
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/02/19/Java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%A1%A5%E5%85%85%EF%BC%88%E4%BA%94%EF%BC%89/&title=Java（五）：Java面向对象的补充 | AhriLove&summary=本章内容：
 
-1.如何创建一个标准的类2.API的概述与使用3.对象型数组4.面向对象的三大特性5.抽象类和抽象方法补充6.接口
+1.如何创建一个标准的类2.API的概述与使用3.对象型数组4.面向对象的三大特性5.抽象类和抽象方法补充6.接口7.多态性的补充8.final关键字
 "
           
           >
@@ -601,7 +646,7 @@
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/02/19/Java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%A1%A5%E5%85%85%EF%BC%88%E4%BA%94%EF%BC%89/&title=Java（五）：Java面向对象的补充 | AhriLove&summary=本章内容：
 
-1.如何创建一个标准的类2.API的概述与使用3.对象型数组4.面向对象的三大特性5.抽象类和抽象方法补充6.接口
+1.如何创建一个标准的类2.API的概述与使用3.对象型数组4.面向对象的三大特性5.抽象类和抽象方法补充6.接口7.多态性的补充8.final关键字
 "
           
           >
@@ -616,7 +661,7 @@
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/02/19/Java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%A1%A5%E5%85%85%EF%BC%88%E4%BA%94%EF%BC%89/&title=Java（五）：Java面向对象的补充 | AhriLove&summary=本章内容：
 
-1.如何创建一个标准的类2.API的概述与使用3.对象型数组4.面向对象的三大特性5.抽象类和抽象方法补充6.接口
+1.如何创建一个标准的类2.API的概述与使用3.对象型数组4.面向对象的三大特性5.抽象类和抽象方法补充6.接口7.多态性的补充8.final关键字
 "
           
           >
@@ -842,7 +887,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-如何创建一个标准的类"><span class="toc-text">1.如何创建一个标准的类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-API的概述与使用"><span class="toc-text">2. API的概述与使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-对象型数组"><span class="toc-text">3.对象型数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-面向对象的三大特性"><span class="toc-text">4.面向对象的三大特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-抽象类和抽象方法补充"><span class="toc-text">5.抽象类和抽象方法补充</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-接口"><span class="toc-text">6.接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#如何定义一个接口的格式："><span class="toc-text">如何定义一个接口的格式：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#接口内容"><span class="toc-text">接口内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#接口使用步骤"><span class="toc-text">接口使用步骤</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-多态性的补充"><span class="toc-text">7.多态性的补充</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-如何创建一个标准的类"><span class="toc-text">1.如何创建一个标准的类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-API的概述与使用"><span class="toc-text">2. API的概述与使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-对象型数组"><span class="toc-text">3.对象型数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-面向对象的三大特性"><span class="toc-text">4.面向对象的三大特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-抽象类和抽象方法补充"><span class="toc-text">5.抽象类和抽象方法补充</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-接口"><span class="toc-text">6.接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#如何定义一个接口的格式："><span class="toc-text">如何定义一个接口的格式：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#接口内容"><span class="toc-text">接口内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#接口使用步骤"><span class="toc-text">接口使用步骤</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-多态性的补充"><span class="toc-text">7.多态性的补充</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#对象的向上转型"><span class="toc-text">对象的向上转型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#对象的向下转型"><span class="toc-text">对象的向下转型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-final关键字"><span class="toc-text">8.final关键字</span></a></li></ol>
     </div>
   </section>
 
