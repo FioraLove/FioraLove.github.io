@@ -487,9 +487,15 @@
 
 <h3 id="5-异常处理机制"><a href="#5-异常处理机制" class="headerlink" title="5.异常处理机制"></a>5.<a href="https://blog.csdn.net/weixin_42359237/article/details/89502035" target="_blank" rel="noopener">异常处理机制</a></h3><p>在Java中，凡是可能抛出异常的语句，都可以用<code>try ... catch</code>捕获。把可能发生异常的语句放在try { … }中，然后使用catch捕获对应的Exception及其子类。</p>
 <p>在使用try…catch捕获处理异常时需要注意：<br><strong>·</strong> 不要过度使用异常，不能使用异常处理机制来代替正常的流程控制语句<br><strong>·</strong> 异常捕获时，一定要先捕获小异常，再捕获大异常。否则小异常将无法被捕获<br><strong>·</strong> 避免出现庞大的try块<br><strong>·</strong> 避免使用catch(Exception e){}<br><strong>·</strong> 不要忽略异常</p>
-<p>Exception类的常用的几种情况：<br>IOException有：<br>EOFException文件已结束异常；<br>FileNotFoundException文件未找到异常。</p>
-<p>RuntimeException有：<br>IndexOutOfBoundsException索引越界异常；<br>ArrayIndexOutOfBoundsException数组索引越界异常；<br>ArithmeticException算数条件异常，譬如:整数除零等；<br>NullPointerException空指针异常；<br>NegativeArraySizeException数组长度为负异常；<br>ArrayStoreException数组存储异常，当向数组中存放非数组声明类型对象时抛出；<br>SecurityException违背安全原则异常；<br>IllegalArgumentException非法参数异常；<br>ClassCastException类型强制转换异常。<br>ReflectiveOperationException有：<br>ClassNotFoundException找不到类异常；<br>NoSuchMethodException方法未找到异常；<br>NoSuchFieldException找不到属性异常。</p>
-<p>错误类Error：<br>一般是指与虚拟机相关的问题，如系统崩溃、虚拟机错误、动态链接失败<br>等，这种错误无法恢复或不可能捕获，将导致应用程序中断。所以不应该试图使用catch块来捕捉Error和不能在throws子句中声明该方法可能抛出Error及其任何子类</p>
+<p>Exception类的常用的几种情况：</p>
+<ol>
+<li><p>IOException有：<br>EOFException文件已结束异常；<br>FileNotFoundException文件未找到异常。</p>
+</li>
+<li><p>RuntimeException有：<br>IndexOutOfBoundsException索引越界异常；<br>ArrayIndexOutOfBoundsException数组索引越界异常；<br>ArithmeticException算数条件异常，譬如:整数除零等；<br>NullPointerException空指针异常；<br>NegativeArraySizeException数组长度为负异常；<br>ArrayStoreException数组存储异常，当向数组中存放非数组声明类型对象时抛出；<br>SecurityException违背安全原则异常；<br>IllegalArgumentException非法参数异常；<br>ClassCastException类型强制转换异常。<br>ReflectiveOperationException有：<br>ClassNotFoundException找不到类异常；<br>NoSuchMethodException方法未找到异常；<br>NoSuchFieldException找不到属性异常。</p>
+</li>
+<li><p>错误类Error：<br>一般是指与虚拟机相关的问题，如系统崩溃、虚拟机错误、动态链接失败<br>等，这种错误无法恢复或不可能捕获，将导致应用程序中断。所以不应该试图使用catch块来捕捉Error和不能在throws子句中声明该方法可能抛出Error及其任何子类</p>
+</li>
+</ol>
 <h4 id="多catch语句"><a href="#多catch语句" class="headerlink" title="多catch语句"></a>多catch语句</h4><p><strong>多catch语句:简单来说，多个catch语句只有一个能被执行</strong> 可以使用多个catch语句，每个catch分别捕获对应的Exception及其子类。JVM在捕获到异常后，会从上到下匹配catch语句，匹配到某个catch后，执行catch代码块，然后不再继续匹配。</p>
 <h4 id="finally语句"><a href="#finally语句" class="headerlink" title="finally语句"></a>finally语句</h4><p>无论是否有异常发生，程序语句最终都要执行</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            process1();</span><br><span class="line">            process2();</span><br><span class="line">            process3();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (UnsupportedEncodingException e) &#123;</span><br><span class="line">            System.out.println(<span class="string">"Bad encoding"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            System.out.println(<span class="string">"IO error"</span>);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"END"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -608,10 +614,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-09T13:49:35+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-17T19:50:41+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年3月9日</p>
+    <p>更新于 2020年3月17日</p>
   </a>
 </div>
 
@@ -1116,7 +1122,7 @@
         
           <li><a class="flat-box" title="/categories/Database/" href="/categories/Database/"><div class='name'>Database</div><div class='badge'>(7)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Java/" href="/categories/Java/"><div class='name'>Java</div><div class='badge'>(7)</div></a></li>
+          <li><a class="flat-box" title="/categories/Java/" href="/categories/Java/"><div class='name'>Java</div><div class='badge'>(8)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Python/" href="/categories/Python/"><div class='name'>Python</div><div class='badge'>(17)</div></a></li>
         
