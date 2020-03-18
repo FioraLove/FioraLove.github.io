@@ -439,6 +439,7 @@
 <h3 id="1-Java基础结构"><a href="#1-Java基础结构" class="headerlink" title="1.Java基础结构"></a>1.Java基础结构</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 类名与Java文件名相同</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123; <span class="comment">// 方法名是main，main方法表示为入口文件</span></span><br><span class="line">        <span class="comment">// 方法代码...</span></span><br><span class="line">    &#125; <span class="comment">// 方法定义结束</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>PS：<strong>我们注意到public除了可以修饰class外，也可以修饰方法。而关键字static是另一个修饰符，它表示静态方法，后面我们会讲解方法的类型，目前，我们只需要知道，Java入口程序规定的方法必须是静态方法，方法名必须为main，括号内的参数必须是String数组。</strong></p>
 <h3 id="2-命名规范"><a href="#2-命名规范" class="headerlink" title="2.命名规范"></a>2.命名规范</h3><p>命名规则：包含数字，字母，下划线与$符号（不能以数字开头；不能为关键字）<br>命名规范：类名（大驼峰原则），方法名与变量名（小驼峰原则）</p>
+<p>补充：<a href="https://blog.csdn.net/weixin_39723544/article/details/82144280" target="_blank" rel="noopener">【python的命名规范】</a></p>
 <h3 id="3-注释"><a href="#3-注释" class="headerlink" title="3.注释"></a>3.注释</h3><p>单行注释：\\<br>多行注释：\* content *\<br>从Java 13开始，字符串可以用<code>&quot;&quot;&quot;...&quot;&quot;&quot;</code>表示多行字符串（Text Blocks）</p>
 <h3 id="4-变量与数据类型"><a href="#4-变量与数据类型" class="headerlink" title="4.变量与数据类型"></a>4.变量与数据类型</h3><p><strong>在Java中，变量必须先定义后使用，定义时，也可以赋值一个初始值</strong>，在Java中，变量分为两种：<code>基本类型的变量</code>和<code>引用类型的变量</code>。<br>基本数据类型是CPU可以直接进行运算的类型。Java定义了以下几种基本数据类型：</p>
 <ul>
@@ -547,10 +548,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-09T21:21:31+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-18T20:35:55+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年3月9日</p>
+    <p>更新于 2020年3月18日</p>
   </a>
 </div>
 

@@ -636,6 +636,7 @@
 <h2 id="5-tqdm模块（最优雅的进度条）"><a href="#5-tqdm模块（最优雅的进度条）" class="headerlink" title="5.tqdm模块（最优雅的进度条）"></a>5.tqdm模块（最优雅的进度条）</h2><p>from tqdm import tqdm<br>使用方法：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> tqdm(range(<span class="number">1000</span>)):</span><br><span class="line">        time.sleep(<span class="number">0.5</span>)</span><br></pre></td></tr></table></figure>
 
+<p>拓：如何解决tqdm一直向下滚动的问题？<br>当我们使用控制台输出时，使用tqdm有可能会一直向下滚动，原因是进度条太长了，只能换行显示，此我们规定一下滚动条的长度<br><code>for i in tqdm(range(1000, ncols = 80))</code> :ncols规定长度为80</p>
 <h2 id="6-控制台输出带颜色文字的方法"><a href="#6-控制台输出带颜色文字的方法" class="headerlink" title="6.控制台输出带颜色文字的方法"></a>6.<a href="https://www.jianshu.com/p/6610b0abb2ea" target="_blank" rel="noopener">控制台输出带颜色文字的方法</a></h2><p>设置颜色开始 ：\033[显示方式;前景色;背景色m 文本内容 \033[0m（此处为结束语）</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'\033[1;31m我以我血荐轩辕\033[0m'</span>)</span><br><span class="line">print(<span class="string">'\033[4;35m我以我血荐轩辕\033[0m'</span>)</span><br><span class="line">print(<span class="string">'\033[5;37;40m我以我血荐轩辕\033[0m'</span>)</span><br><span class="line">print(<span class="string">'\033[0;32m我以我血荐轩辕\033[0m'</span>)</span><br><span class="line">print(<span class="string">'\033[1;32m我以我血荐轩辕\033[0m'</span>)</span><br></pre></td></tr></table></figure>
 
@@ -687,10 +688,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-24T10:10:54+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-18T20:26:16+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年2月24日</p>
+    <p>更新于 2020年3月18日</p>
   </a>
 </div>
 

@@ -433,11 +433,11 @@
       <div class="article-entry" itemprop="articleBody">
         <p><strong>本章内容：</strong></p>
 <blockquote>
-<p>1.如何创建一个标准的类</p>
+<p>1.异常的产生过程解析<br>2.异常的处理<br>3.异常的注意事项</p>
 </blockquote>
 <a id="more"></a>
 
-<h3 id="1-异常的产生过程解析"><a href="#1-异常的产生过程解析" class="headerlink" title="1.异常的产生过程解析"></a>1.异常的产生过程解析</h3><p>异常产生的原理（示意图）：<br>Ⅰ. jvm的getElement方法把异常对象抛给main方法<br>Ⅱ. main方法没有异常的处理逻辑会继续把对象抛给JVM<br><fancybox></fancybox></p>
+<h3 id="1-异常的产生过程解析"><a href="#1-异常的产生过程解析" class="headerlink" title="1.异常的产生过程解析"></a>1.异常的产生过程解析</h3><p>异常产生的原理（示意图）：<br>Ⅰ. jvm的getElement方法把异常对象抛给main方法<br>Ⅱ. main方法没有异常的处理逻辑会继续把对象抛给JVM<br><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/%E5%BC%82%E5%B8%B8.JPG" alt=""></fancybox></p>
 <h3 id="2-异常的处理"><a href="#2-异常的处理" class="headerlink" title="2.异常的处理"></a>2.异常的处理</h3><p>异常的处理常涉及到五个关键字：</p>
 <h4 id="throw关键字"><a href="#throw关键字" class="headerlink" title="throw关键字"></a>throw关键字</h4><p>作用：可以使用throw关键字在指定方法中抛出指定的异常<br>使用格式：throw new xxxException(“异常的产生原因”)<br>注意：</p>
 <ul>
@@ -455,7 +455,51 @@
 
 <p>注意:<br>1.throws关键字必须写在方法声明处<br>2.throws关键字后边声明的异常必须是Exception或者是Exception的子类<br>3.方法内部如果抛出了多个异常对象,那么throws后边必须也声明多个异常：如果抛出的多个异常对象有子父类关系,那么直接声明父类异常即可<br>4.<strong>调用了一个声明抛出异常的方法,我们就必须的处理声明的异常：要么继续使用throws声明抛出,交给方法的调用者处理,最终交给JVM;要么try…catch自己处理异常</strong>，（参考下列实例代码11-13行）</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bytedance.demo01.Exception;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.FileNotFoundException;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo05Throws</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        FileNotFoundException extends IOException extends Excepiton</span></span><br><span class="line"><span class="comment">        如果抛出的多个异常对象有子父类关系,那么直接声明父类异常即可</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="comment">//public static void main(String[] args) throws FileNotFoundException,IOException &#123;</span></span><br><span class="line">    <span class="comment">//public static void main(String[] args) throws IOException &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        readFile(<span class="string">"c:\\a.tx"</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"后续代码"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        定义一个方法,对传递的文件路径进行合法性判断</span></span><br><span class="line"><span class="comment">        如果路径不是"c:\\a.txt",那么我们就抛出文件找不到异常对象,告知方法的调用者</span></span><br><span class="line"><span class="comment">        注意:</span></span><br><span class="line"><span class="comment">            FileNotFoundException是编译异常,抛出了编译异常,就必须处理这个异常</span></span><br><span class="line"><span class="comment">            可以使用throws继续声明抛出FileNotFoundException这个异常对象,让方法的调用者处理</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">readFile</span><span class="params">(String fileName)</span> <span class="keyword">throws</span> FileNotFoundException,IOException</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!fileName.equals(<span class="string">"c:\\a.txt"</span>))&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> FileNotFoundException(<span class="string">"传递的文件路径不是c:\\a.txt"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">            如果传递的路径,不是.txt结尾</span></span><br><span class="line"><span class="comment">            那么我们就抛出IO异常对象,告知方法的调用者,文件的后缀名不对</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">if</span>(!fileName.endsWith(<span class="string">".txt"</span>))&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IOException(<span class="string">"文件的后缀名不对"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"路径没有问题,读取文件"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="try…catch-关键字"><a href="#try…catch-关键字" class="headerlink" title="try…catch 关键字"></a>try…catch 关键字</h4><p>try…catch:异常处理的第二种方式,自己处理异常<br>格式:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">try&#123;</span><br><span class="line">    可能产生异常的代码</span><br><span class="line">&#125;catch(定义一个异常的变量,用来接收try中抛出的异常对象)&#123;</span><br><span class="line">    异常的处理逻辑,异常异常对象之后,怎么处理异常对象</span><br><span class="line">    一般在工作中,会把异常的信息记录到一个日志中</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line">catch(异常类名 变量名)&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>注意:<br>1.try中可能会抛出多个异常对象,那么就可以使用多个catch来处理这些异常对象<br>2.如果try中产生了异常,那么就会执行catch中的异常处理逻辑,执行完毕catch中的处理逻辑,继续执行try…catch之后的代码。如果try中没有产生异常,那么就不会执行catch中异常的处理逻辑,执行完try中的代码,继续执行try…catch之后的代码</p>
+<p>举例说明：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo01TryCatch</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="comment">//可能产生异常的代码</span></span><br><span class="line">            readFile(<span class="string">"d:\\a.tx"</span>);</span><br><span class="line">            System.out.println(<span class="string">"资源释放"</span>);</span><br><span class="line">        &#125;<span class="keyword">catch</span> (IOException e)&#123;<span class="comment">//try中抛出什么异常对象,catch就定义什么异常变量,用来接收这个异常对象</span></span><br><span class="line">            <span class="comment">//异常的处理逻辑,异常异常对象之后,怎么处理异常对象</span></span><br><span class="line">            System.out.println(<span class="string">"catch - 传递的文件后缀不是.txt"</span>);</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// throwable类出来try catch中的异常</span></span><br><span class="line">            System.out.println(e.getMessage());</span><br><span class="line">            System.out.println(e.toString());</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"程序后续代码"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">       如果传递的路径,不是.txt结尾</span></span><br><span class="line"><span class="comment">       那么我们就抛出IO异常对象,告知方法的调用者,文件的后缀名不对</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">readFile</span><span class="params">(String fileName)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(!fileName.endsWith(<span class="string">".txt"</span>))&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IOException(<span class="string">"文件的后缀名不对"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"路径没有问题,读取文件"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Throwable类"><a href="#Throwable类" class="headerlink" title="Throwable类"></a>Throwable类</h4><p>Throwable 类是 Java 语言中所有错误或异常的超类（终极父类）。</p>
+<p>try…catch代码块处理异常时可以使用的Throwable类中定义了3个异常处理的方法：</p>
+<ul>
+<li>String getMessage() 返回此 throwable 的简短描述。</li>
+<li>String toString() 返回此 throwable 的详细消息字符串。</li>
+<li>void printStackTrace()  JVM打印异常对象,默认此方法,打印的异常信息是最全面的</li>
+</ul>
+<h4 id="finally关键字"><a href="#finally关键字" class="headerlink" title="finally关键字"></a>finally关键字</h4><p>finally代码块<br>格式:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">try&#123;</span><br><span class="line">    可能产生异常的代码</span><br><span class="line">&#125;catch(定义一个异常的变量,用来接收try中抛出的异常对象)&#123;</span><br><span class="line">    异常的处理逻辑,异常异常对象之后,怎么处理异常对象</span><br><span class="line">    一般在工作中,会把异常的信息记录到一个日志中</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line">catch(异常类名 变量名)&#123;</span><br><span class="line"></span><br><span class="line">&#125;finally&#123;</span><br><span class="line">    无论是否出现异常都会执行</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意:<br>1.finally不能单独使用,必须和try一起使用<br>2.finally一般用于资源释放(资源回收),无论程序是否出现异常,最后都要资源释放(IO)</p>
+<p>举例说明：        </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo02TryCatchFinally</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//可能会产生异常的代码</span></span><br><span class="line">            readFile(<span class="string">"c:\\a.tx"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            <span class="comment">//异常的处理逻辑</span></span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="comment">//无论是否出现异常,都会执行</span></span><br><span class="line">            System.out.println(<span class="string">"资源释放"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">       如果传递的路径,不是.txt结尾</span></span><br><span class="line"><span class="comment">       那么我们就抛出IO异常对象,告知方法的调用者,文件的后缀名不对</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">readFile</span><span class="params">(String fileName)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!fileName.endsWith(<span class="string">".txt"</span>))&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IOException(<span class="string">"文件的后缀名不对"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"路径没有问题,读取文件"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-异常的注意事项"><a href="#3-异常的注意事项" class="headerlink" title="3.异常的注意事项"></a>3.异常的注意事项</h3><ul>
+<li>多个异常使用捕获又该如何处理呢？</li>
+</ul>
+<ol>
+<li>多个异常分别处理。</li>
+<li>多个异常一次捕获，多次处理。</li>
+<li>多个异常一次捕获一次处理。</li>
+</ol>
+<p>一般我们是使用一次捕获多次处理方式，格式如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">   编写可能会出现异常的代码</span><br><span class="line">&#125;<span class="keyword">catch</span>(异常类型A  e)&#123;  当<span class="keyword">try</span>中出现A类型异常,就用该<span class="keyword">catch</span>来捕获.</span><br><span class="line">   处理异常的代码</span><br><span class="line">   <span class="comment">//记录日志/打印异常信息/继续抛出异常</span></span><br><span class="line">&#125;<span class="keyword">catch</span>(异常类型B  e)&#123;  当<span class="keyword">try</span>中出现B类型异常,就用该<span class="keyword">catch</span>来捕获.</span><br><span class="line">   处理异常的代码</span><br><span class="line">   <span class="comment">//记录日志/打印异常信息/继续抛出异常</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<blockquote>
+<p>注意:这种异常处理方式，要求多个catch中的异常不能相同，并且若catch中的多个异常之间有子父类异常的关系，那么子类异常要求在上面的catch处理，父类异常在下面的catch处理。(Exception类是IO异常，Runtime异常，error错误的父类)</p>
+</blockquote>
+</blockquote>
+<ul>
+<li><p>运行时异常被抛出可以不处理。即不捕获也不声明抛出。</p>
+</li>
+<li><p>如果finally有return语句,永远返回finally中的结果,避免该情况. </p>
+</li>
+<li><p>如果父类抛出了多个异常,子类重写父类方法时,抛出和父类相同的异常或者是父类异常的子类或者不抛出异常。</p>
+</li>
+<li><p>父类方法没有抛出异常，子类重写父类该方法时也不可抛出异常。此时子类产生该异常，只能捕获处理，不能声明抛出</p>
+</li>
+</ul>
 <h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
 <li><a href="https://www.cnblogs.com/xiohao/p/3547443.html" target="_blank" rel="noopener">Java的throw与throws关键字区别</a></li>
 </ul>
@@ -470,10 +514,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-17T21:58:50+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-18T21:54:30+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年3月17日</p>
+    <p>更新于 2020年3月18日</p>
   </a>
 </div>
 
@@ -497,7 +541,7 @@
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/03/17/Java%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6%E8%A1%A5%E5%85%85%EF%BC%88%E5%85%AB%EF%BC%89/&title=Java（八）：Java异常处理机制的补充 | AhriLove&summary=本章内容：
 
-1.如何创建一个标准的类
+1.异常的产生过程解析2.异常的处理3.异常的注意事项
 "
           
           >
@@ -512,7 +556,7 @@
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/03/17/Java%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6%E8%A1%A5%E5%85%85%EF%BC%88%E5%85%AB%EF%BC%89/&title=Java（八）：Java异常处理机制的补充 | AhriLove&summary=本章内容：
 
-1.如何创建一个标准的类
+1.异常的产生过程解析2.异常的处理3.异常的注意事项
 "
           
           >
@@ -527,7 +571,7 @@
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/03/17/Java%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6%E8%A1%A5%E5%85%85%EF%BC%88%E5%85%AB%EF%BC%89/&title=Java（八）：Java异常处理机制的补充 | AhriLove&summary=本章内容：
 
-1.如何创建一个标准的类
+1.异常的产生过程解析2.异常的处理3.异常的注意事项
 "
           
           >
@@ -734,7 +778,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-异常的产生过程解析"><span class="toc-text">1.异常的产生过程解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-异常的处理"><span class="toc-text">2.异常的处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#throw关键字"><span class="toc-text">throw关键字</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#throws关键字"><span class="toc-text">throws关键字</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-异常的产生过程解析"><span class="toc-text">1.异常的产生过程解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-异常的处理"><span class="toc-text">2.异常的处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#throw关键字"><span class="toc-text">throw关键字</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#throws关键字"><span class="toc-text">throws关键字</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#try…catch-关键字"><span class="toc-text">try…catch 关键字</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Throwable类"><span class="toc-text">Throwable类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#finally关键字"><span class="toc-text">finally关键字</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-异常的注意事项"><span class="toc-text">3.异常的注意事项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
     </div>
   </section>
 
