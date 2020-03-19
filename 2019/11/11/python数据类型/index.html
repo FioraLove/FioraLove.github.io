@@ -431,20 +431,12 @@
 
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
-        <p>Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等</p>
+        <p>Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等<br>python的六大基本数据类型：</p>
 <blockquote>
-<p>字符串：len(),split(),join()…<br>列表：append(),pop(),count()…<br>元组：与列表类似，不同之处在于元组的元素不能修改<br>字典：是另一种可变容器模型，且可存储任意类型对象</p>
+<p>数字：数字数据类型用于存储数值<br>字符串：是 Python 中最常用的数据类型。我们可以使用引号( ‘ 或 “ )来创建字符串<br>列表：作为一个方括号内的逗号分隔值出现<br>元组：与列表类似，不同之处在于元组的元素不能修改<br>字典：是另一种可变容器模型，且可存储任意类型对象<br>集合：集合（set）是一个无序的不重复元素序列</p>
 </blockquote>
-<ul>
-<li><p>直接赋值：其实就是对象的引用（别名）。</p>
-</li>
-<li><p>浅拷贝(copy)：拷贝父对象，不会拷贝对象的内部的子对象。</p>
-</li>
-<li><p>深拷贝(deepcopy)： copy 模块的 deepcopy 方法，完全拷贝了父对象及其子对象。</p>
 <a id="more"></a>
-<h3 id="1-字符串"><a href="#1-字符串" class="headerlink" title="1.字符串"></a>1.字符串</h3></li>
-</ul>
-<blockquote>
+<h3 id="1-字符串"><a href="#1-字符串" class="headerlink" title="1.字符串"></a>1.字符串</h3><blockquote>
 <p>zip()函数：将可迭代对象所包含的元素是由原列表元素组成的元组</p>
 </blockquote>
 <p>a = [“a”,”b”,”c”]  b = [1, 2, 3]<br>c = [x for x in zip(a,b)]<br>c = [(“a”, 1), (“b”, 2), (“c”, 3)]<br>结果为元祖型列表</p>
@@ -582,19 +574,19 @@
 <blockquote>
 <p>3.3 元组的修改</p>
 </blockquote>
-<p>元组中的元素是不允许修改或删除的，但我们开始对其进行拼接组合<br>tuple(seq)：将列表转换为元组。</p>
+<p>元组中的元素是不允许修改或删除的，但我们可以使用<code>+</code>对其进行拼接组合<br>tuple(seq)：将列表转换为元组。</p>
 <h3 id="4-字典-可变模型，可存储任意类型对象"><a href="#4-字典-可变模型，可存储任意类型对象" class="headerlink" title="4.字典:可变模型，可存储任意类型对象"></a>4.字典:可变模型，可存储任意类型对象</h3><blockquote>
 <p>4.1字典的创建</p>
 </blockquote>
 <p>字典的每个键值 key=&gt;value 对用冒号 : 分割，每个键值对之间用逗号&nbsp;&nbsp;,&nbsp;&nbsp;分割，整个字典包括在花括号 {}</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d = &#123;key1 : value1, key2 : value2 &#125;</span><br></pre></td></tr></table></figure>
-<p><font color=#EE9A49>值可以取任何数据类型，但键必须是不可变的，如字符串，数字或元组</font></p>
+<p><font color=#EE9A49>值可以取任何数据类型，但键必须是不可变的，如<em>字符串，数字或元组</em></font></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dict = &#123;<span class="string">'Alice'</span>: <span class="string">'2341'</span>, <span class="string">'Beth'</span>: <span class="string">'9102'</span>, <span class="string">'Cecil'</span>: <span class="string">'3258'</span>,<span class="number">9527</span>:<span class="string">'badwoman'</span>,<span class="number">6394</span>:<span class="number">998</span>&#125;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>4.2 字典的访问</p>
 </blockquote>
-<p>访问方式：<br>字典名[&quot;键名&quot;] 或者<br>字典名.(&quot;键名&quot;,自定义数据)：当目标键名不存在时，使用自定义数据值作为默认值，注意此刻不会修改原字典</p>
+<p>访问方式：<br>字典名[&quot;键名&quot;] 或者<br>字典名.get(&quot;键名&quot;,自定义数据)：当目标键名不存在时，使用自定义数据值作为默认值，注意此刻不会修改原字典</p>
 <blockquote>
 <p>4.3 字典的更新</p>
 </blockquote>
@@ -623,12 +615,32 @@
 </tr>
 <tr>
 <td>dict.pop(key[,default])</td>
-<td align="center">删除字典给定键 key 所对应的值，返回值为被删除的值。key值必须给出。</td>
+<td align="center">删除字典给定键 key 所对应的值，返回值为被删除的值。key值必须给出。否则，返回default值。</td>
 </tr>
 </tbody></table>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">demo=&#123;<span class="string">'Name'</span>: <span class="string">'Zara'</span>, <span class="string">'Age'</span>: <span class="number">8</span>, <span class="string">'Class'</span>: <span class="string">'First'</span>, <span class="string">'School'</span>: <span class="string">'RUNOOB'</span>&#125;</span><br><span class="line">demo.items() </span><br><span class="line"><span class="comment"># dict_items([('Name', 'Zara'), ('Age', 8), ('Class', 'First'), ('School', 'RUNOOB')])</span></span><br><span class="line"></span><br><span class="line">a = [x <span class="keyword">for</span> x <span class="keyword">in</span> demo.items()]</span><br><span class="line">print(a)  <span class="comment"># a=[('Name', 'Zara'), ('Age', 8), ('Class', 'First'), ('School', 'RUNOOB')]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">demo=&#123;<span class="string">'Name'</span>: <span class="string">'Zara'</span>, <span class="string">'Age'</span>: <span class="number">8</span>, <span class="string">'Class'</span>: <span class="string">'First'</span>, <span class="string">'School'</span>: <span class="string">'RUNOOB'</span>&#125;</span><br><span class="line">demo.items() </span><br><span class="line"><span class="comment"># dict_items([('Name', 'Zara'), ('Age', 8), ('Class', 'First'), ('School', 'RUNOOB')])</span></span><br><span class="line"></span><br><span class="line">a = [x <span class="keyword">for</span> x <span class="keyword">in</span> demo.items()]</span><br><span class="line">print(a)  <span class="comment"># a=[('Name', 'Zara'), ('Age', 8), ('Class', 'First'), ('School', 'RUNOOB')]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取到字典的每一个key，value</span></span><br><span class="line">dict = &#123;<span class="number">1</span>: <span class="number">1</span>, <span class="number">2</span>: <span class="string">'aa'</span>, <span class="string">'D'</span>: <span class="string">'ee'</span>, <span class="string">'Ty'</span>: <span class="number">45</span>&#125;</span><br><span class="line"><span class="keyword">for</span> key, value <span class="keyword">in</span> dict.items():</span><br><span class="line">    print(key, value)</span><br></pre></td></tr></table></figure>
 
-<h3 id="python的直接赋值，浅拷贝和深拷贝"><a href="#python的直接赋值，浅拷贝和深拷贝" class="headerlink" title="python的直接赋值，浅拷贝和深拷贝"></a>python的直接赋值，浅拷贝和深拷贝</h3><ul>
+<h3 id="5-python的数字Number"><a href="#5-python的数字Number" class="headerlink" title="5.python的数字Number"></a>5.python的数字Number</h3><p>Python3 支持 int、float、bool、complex（复数）等数字类型。<br>对数字类型常见的操作为：</p>
+<ul>
+<li>数字类型转换：int(x),float(x),complex(x,y)表示将x转换为相应的数据类型</li>
+<li>数学函数运算：abs,exp,log,sqrt,round</li>
+<li>随机数函数：choice，randrange ([start,] stop [,step]),random,shuffle</li>
+<li>三角函数：sin，cos，tan</li>
+<li>数学常量：pi，e</li>
+</ul>
+<h3 id="6-python的集合"><a href="#6-python的集合" class="headerlink" title="6. python的集合"></a>6. python的集合</h3><p>集合set是一个无序的不重复的序列，可以使用大括号<code>{}</code>或者<code>set()</code>函数创建集合。<em>创建一个空集合必须用 set() 而不是 { }，因为 { } 是用来创建一个空字典</em></p>
+<p>创建格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">param = &#123;&apos;apple&apos;,&apos;orange&apos;,&apos;pear&apos;&#125;</span><br><span class="line">或者</span><br><span class="line">set((&quot;Google&quot;, &quot;Runoob&quot;, &quot;Taobao&quot;))</span><br></pre></td></tr></table></figure>
+
+<p>集合的基本操作：</p>
+<ol>
+<li>add():添加元素到集合中，如元素已存在，不进行任何操作</li>
+<li>remove():将目标元素移出集合中</li>
+<li>pop()：随机删除集合中的一个元素</li>
+<li>len():计算集合的元素个数</li>
+<li>in：判断元素是否在集合中存在</li>
+</ol>
+<h3 id="7-python的直接赋值，浅拷贝和深拷贝"><a href="#7-python的直接赋值，浅拷贝和深拷贝" class="headerlink" title="7.python的直接赋值，浅拷贝和深拷贝"></a>7.python的直接赋值，浅拷贝和深拷贝</h3><ul>
 <li><p>直接赋值：其实就是对象的引用（别名）。</p>
 </li>
 <li><p>浅拷贝(copy)：拷贝父对象，不会拷贝对象的内部的子对象。</p>
@@ -667,10 +679,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-01T17:55:47+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-19T15:07:13+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年2月1日</p>
+    <p>更新于 2020年3月19日</p>
   </a>
 </div>
 
@@ -692,16 +704,10 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/11/11/python%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&title=Python全栈系列章节更新（一）：基本数据类型 | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/11/11/python%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&title=Python全栈系列章节更新（一）：基本数据类型 | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等python的六大基本数据类型：
 
-字符串：len(),split(),join()…列表：append(),pop(),count()…元组：与列表类似，不同之处在于元组的元素不能修改字典：是另一种可变容器模型，且可存储任意类型对象
-
-
-直接赋值：其实就是对象的引用（别名）。
-
-浅拷贝(copy)：拷贝父对象，不会拷贝对象的内部的子对象。
-
-深拷贝(deepcopy)： copy 模块的 deepcopy 方法，完全拷贝了父对象及其子对象。"
+数字：数字数据类型用于存储数值字符串：是 Python 中最常用的数据类型。我们可以使用引号( ‘ 或 “ )来创建字符串列表：作为一个方括号内的逗号分隔值出现元组：与列表类似，不同之处在于元组的元素不能修改字典：是另一种可变容器模型，且可存储任意类型对象集合：集合（set）是一个无序的不重复元素序列
+"
           
           >
           
@@ -713,16 +719,10 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/11/11/python%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&title=Python全栈系列章节更新（一）：基本数据类型 | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/11/11/python%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&title=Python全栈系列章节更新（一）：基本数据类型 | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等python的六大基本数据类型：
 
-字符串：len(),split(),join()…列表：append(),pop(),count()…元组：与列表类似，不同之处在于元组的元素不能修改字典：是另一种可变容器模型，且可存储任意类型对象
-
-
-直接赋值：其实就是对象的引用（别名）。
-
-浅拷贝(copy)：拷贝父对象，不会拷贝对象的内部的子对象。
-
-深拷贝(deepcopy)： copy 模块的 deepcopy 方法，完全拷贝了父对象及其子对象。"
+数字：数字数据类型用于存储数值字符串：是 Python 中最常用的数据类型。我们可以使用引号( ‘ 或 “ )来创建字符串列表：作为一个方括号内的逗号分隔值出现元组：与列表类似，不同之处在于元组的元素不能修改字典：是另一种可变容器模型，且可存储任意类型对象集合：集合（set）是一个无序的不重复元素序列
+"
           
           >
           
@@ -734,16 +734,10 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/11/11/python%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&title=Python全栈系列章节更新（一）：基本数据类型 | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等
+          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/11/11/python%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&title=Python全栈系列章节更新（一）：基本数据类型 | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等python的六大基本数据类型：
 
-字符串：len(),split(),join()…列表：append(),pop(),count()…元组：与列表类似，不同之处在于元组的元素不能修改字典：是另一种可变容器模型，且可存储任意类型对象
-
-
-直接赋值：其实就是对象的引用（别名）。
-
-浅拷贝(copy)：拷贝父对象，不会拷贝对象的内部的子对象。
-
-深拷贝(deepcopy)： copy 模块的 deepcopy 方法，完全拷贝了父对象及其子对象。"
+数字：数字数据类型用于存储数值字符串：是 Python 中最常用的数据类型。我们可以使用引号( ‘ 或 “ )来创建字符串列表：作为一个方括号内的逗号分隔值出现元组：与列表类似，不同之处在于元组的元素不能修改字典：是另一种可变容器模型，且可存储任意类型对象集合：集合（set）是一个无序的不重复元素序列
+"
           
           >
           
@@ -968,7 +962,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-字符串"><span class="toc-text">1.字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-列表"><span class="toc-text">2.列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-元组"><span class="toc-text">3.元组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-字典-可变模型，可存储任意类型对象"><span class="toc-text">4.字典:可变模型，可存储任意类型对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#python的直接赋值，浅拷贝和深拷贝"><span class="toc-text">python的直接赋值，浅拷贝和深拷贝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#map与reducde函数（python2与python3的区别）"><span class="toc-text">map与reducde函数（python2与python3的区别）</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-字符串"><span class="toc-text">1.字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-列表"><span class="toc-text">2.列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-元组"><span class="toc-text">3.元组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-字典-可变模型，可存储任意类型对象"><span class="toc-text">4.字典:可变模型，可存储任意类型对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-python的数字Number"><span class="toc-text">5.python的数字Number</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-python的集合"><span class="toc-text">6. python的集合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-python的直接赋值，浅拷贝和深拷贝"><span class="toc-text">7.python的直接赋值，浅拷贝和深拷贝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#map与reducde函数（python2与python3的区别）"><span class="toc-text">map与reducde函数（python2与python3的区别）</span></a></li></ol>
     </div>
   </section>
 

@@ -481,7 +481,11 @@
 <td>使.匹配包括换行在内的所有字符</td>
 </tr>
 </tbody></table>
-<h2 id="2-xpath"><a href="#2-xpath" class="headerlink" title="2.xpath"></a>2.xpath</h2><p>1.导入相关库包<br>from lxml import etree<br>2.初始化<br>html = etree.HTML(response.text)<br>3.常用规则</p>
+<h2 id="2-xpath"><a href="#2-xpath" class="headerlink" title="2.xpath"></a>2.xpath</h2><p>1.导入相关库包<br>from lxml import etree<br>2.初始化<br>html = etree.HTML(response.text)</p>
+<p>3.文本内容的获取<br>标签的属性值获取：/@属性名（如：@href，@class…）<br>文本内容的获取：/text()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree </span><br><span class="line">text = <span class="string">'''</span></span><br><span class="line"><span class="string">    &lt;html&gt;&lt;body&gt;&lt;div&gt;</span></span><br><span class="line"><span class="string">    &lt;ul&gt;</span></span><br><span class="line"><span class="string">        &lt;li class="item-0"&gt;&lt;a href="link1.html"&gt;first item&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">        &lt;li class="item-1"&gt;&lt;a href="link2.html"&gt;second item&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">        &lt;li class="item-inactive"&gt;&lt;a href="link3.html"&gt;third item&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">        &lt;li class="item-1"&gt;&lt;a href="link4.html"&gt;fourth item&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">        &lt;li class="item-0"&gt;&lt;a href="link5.html"&gt;fifth item&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">    &lt;/ul&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;&lt;/body&gt;&lt;/html&gt;</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="comment"># 初始化</span></span><br><span class="line">html = etree.HTML(text)</span><br><span class="line"></span><br><span class="line">result = html.xpath(<span class="string">'//li[2]/a/text()'</span>)     <span class="comment"># second item</span></span><br><span class="line">response = html.xpath(<span class="string">".//li[2]/a/@href"</span>)   <span class="comment"># link2.html</span></span><br></pre></td></tr></table></figure>
+
+<p>4.常用规则</p>
 <table>
 <thead>
 <tr>
@@ -547,7 +551,7 @@
 </tr>
 <tr>
 <td>/bookstore/book[1]</td>
-<td>选取属于 bookstore 子元素的第一个 book 元素。索引默认从1开始</td>
+<td>选取属于 bookstore 子元素的第一个 book 元素。<strong>索引默认从1开始</strong></td>
 </tr>
 <tr>
 <td>/bookstore/book[last()]</td>
@@ -852,10 +856,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-29T09:39:31+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-19T13:07:37+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年2月29日</p>
+    <p>更新于 2020年3月19日</p>
   </a>
 </div>
 
