@@ -484,7 +484,7 @@
 <p>我们可以尝试去猜想，因为很多业务集中到一个线程池中，不像上面的案例比较简单，事实上业务太多，怎么设置呢？这个就是要去压力测试去调整。不过我们的前辈已经帮我们总结了一个基础的值（最终还是要看运行情况自行调整）</p>
 <p>1、CPU密集型：操作内存处理的业务，一般线程数设置为：CPU核数 + 1 或者 CPU核数*2。核数为4的话，一般设置 5 或 8</p>
 <p>2、IO密集型：文件操作，网络操作，数据库操作，一般线程设置为：cpu核数 / (1-0.9)，核数为4的话，一般设置 40</p>
-
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3>
       </div>
       
         <br>
@@ -495,10 +495,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-23T10:25:40+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-20T15:50:05+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年12月23日</p>
+    <p>更新于 2020年3月20日</p>
   </a>
 </div>
 
@@ -778,7 +778,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-线程与进程的区别"><span class="toc-text">1.线程与进程的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-为何会选择多线程？"><span class="toc-text">2.为何会选择多线程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-创建线程的方式"><span class="toc-text">3.创建线程的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-线程对象的属性和方法"><span class="toc-text">4.线程对象的属性和方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-守护线程"><span class="toc-text">5.守护线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-进程池和线程池"><span class="toc-text">6.进程池和线程池</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-多线程，到底该设置多少个线程？"><span class="toc-text">7.多线程，到底该设置多少个线程？</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-线程与进程的区别"><span class="toc-text">1.线程与进程的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-为何会选择多线程？"><span class="toc-text">2.为何会选择多线程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-创建线程的方式"><span class="toc-text">3.创建线程的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-线程对象的属性和方法"><span class="toc-text">4.线程对象的属性和方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-守护线程"><span class="toc-text">5.守护线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-进程池和线程池"><span class="toc-text">6.进程池和线程池</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-多线程，到底该设置多少个线程？"><span class="toc-text">7.多线程，到底该设置多少个线程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
     </div>
   </section>
 

@@ -663,12 +663,25 @@
 <li>b = copy.deepcopy(a) 深拷贝：深度拷贝, a 和 b 完全拷贝了父对象及其子对象，两者是完全独立的,是两块独立的地址。<br><fancybox><img src="https://www.runoob.com/wp-content/uploads/2017/03/1489720930-5882-BO4qO.png"></fancybox></li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; import copy</span><br><span class="line">&gt;&gt;&gt; c = copy.deepcopy(a)</span><br><span class="line">&gt;&gt;&gt; a, c</span><br><span class="line">(&#123;1: [1, 2, 3, 4]&#125;, &#123;1: [1, 2, 3, 4]&#125;)</span><br><span class="line">&gt;&gt;&gt; a[1].append(5)</span><br><span class="line">&gt;&gt;&gt; a, c</span><br><span class="line">(&#123;1: [1, 2, 3, 4, 5]&#125;, &#123;1: [1, 2, 3, 4]&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="map与reducde函数（python2与python3的区别）"><a href="#map与reducde函数（python2与python3的区别）" class="headerlink" title="map与reducde函数（python2与python3的区别）"></a>map与reducde函数（python2与python3的区别）</h3><p>map()函数接收两个参数，一个是函数，一个是Iterable（可迭代对象），map将传入的函数依次作用到序列的每个元素，并把结果作为新的Iterator（迭代器）返回(可以使用list转换为数组)，而python2返回的是一个数组</p>
+<h3 id="8-map与reducde函数（python2与python3的区别）"><a href="#8-map与reducde函数（python2与python3的区别）" class="headerlink" title="8.map与reducde函数（python2与python3的区别）"></a>8.map与reducde函数（python2与python3的区别）</h3><p>map()函数接收两个参数，一个是函数，一个是Iterable（可迭代对象），map将传入的函数依次作用到序列的每个元素，并把结果作为新的Iterator（迭代器）返回(可以使用list转换为数组)，而python2返回的是一个数组</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x)</span>:</span></span><br><span class="line">   <span class="keyword">return</span> x * x</span><br><span class="line"></span><br><span class="line">r = map(f, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>])</span><br><span class="line">list(r)  <span class="comment"># [1, 4, 9, 16, 25, 36, 49, 64, 81]</span></span><br></pre></td></tr></table></figure>
 <p>使用map返回结果是迭代器，将数据转换为列表<br>reduce把一个函数作用在一个序列[x1, x2, x3, …]上，这个函数必须接收两个参数，reduce把结果继续和序列的下一个元素做累积计算，其效果就是</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reduce(f, [x1, x2, x3, x4]) = f(f(f(x1, x2), x3), x4)</span><br></pre></td></tr></table></figure>
 <p>比方说对一个序列求和，就可以用reduce实现：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; from functools import reduce</span><br><span class="line">&gt;&gt;&gt; def add(x, y):</span><br><span class="line">...     return x + y</span><br><span class="line">...</span><br><span class="line">&gt;&gt;&gt; reduce(add, [1, 3, 5, 7, 9])</span><br><span class="line">25</span><br></pre></td></tr></table></figure>
+
+<h3 id="9-Python的遍历技巧"><a href="#9-Python的遍历技巧" class="headerlink" title="9.Python的遍历技巧"></a>9.Python的遍历技巧</h3><ul>
+<li>在字典中遍历时，关键字和对应的值使用item()方法同时解读出来</li>
+</ul>
+<p>knights = {‘name’: ‘chd’, ‘age’: 18 } for k, v in knights.items():</p>
+<ul>
+<li>枚举函数，在序列遍历时，索引值和对应值使用enumerate()函数得到</li>
+</ul>
+<p>for i, v in enumerate([‘tic’, ‘tac’, ‘toe’]):</p>
+<ul>
+<li>zip()函数：同时遍历两个或更多的序列</li>
+</ul>
+
       </div>
       
         <br>
@@ -679,10 +692,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-19T15:07:13+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-20T14:20:49+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年3月19日</p>
+    <p>更新于 2020年3月20日</p>
   </a>
 </div>
 
@@ -962,7 +975,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-字符串"><span class="toc-text">1.字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-列表"><span class="toc-text">2.列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-元组"><span class="toc-text">3.元组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-字典-可变模型，可存储任意类型对象"><span class="toc-text">4.字典:可变模型，可存储任意类型对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-python的数字Number"><span class="toc-text">5.python的数字Number</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-python的集合"><span class="toc-text">6. python的集合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-python的直接赋值，浅拷贝和深拷贝"><span class="toc-text">7.python的直接赋值，浅拷贝和深拷贝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#map与reducde函数（python2与python3的区别）"><span class="toc-text">map与reducde函数（python2与python3的区别）</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-字符串"><span class="toc-text">1.字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-列表"><span class="toc-text">2.列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-元组"><span class="toc-text">3.元组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-字典-可变模型，可存储任意类型对象"><span class="toc-text">4.字典:可变模型，可存储任意类型对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-python的数字Number"><span class="toc-text">5.python的数字Number</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-python的集合"><span class="toc-text">6. python的集合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-python的直接赋值，浅拷贝和深拷贝"><span class="toc-text">7.python的直接赋值，浅拷贝和深拷贝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-map与reducde函数（python2与python3的区别）"><span class="toc-text">8.map与reducde函数（python2与python3的区别）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-Python的遍历技巧"><span class="toc-text">9.Python的遍历技巧</span></a></li></ol>
     </div>
   </section>
 
