@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>python的requirement.txt文件 | AhriLove</title>
+  <title>Python全栈系列章节更新（十五）：Requests库 | AhriLove</title>
   
   
 
@@ -347,8 +347,8 @@
         
   
     <h1 class="title">
-      <a href="/2020/01/22/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89/">
-        python的requirement.txt文件
+      <a href="/2020/03/21/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89/">
+        Python全栈系列章节更新（十五）：Requests库
       </a>
     </h1>
   
@@ -365,9 +365,9 @@
     
       <a href="/" rel="nofollow">
         
-          <img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imagesNaruto.jpg">
+          <img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/lovezhuge.jpg">
         
-        <p>Badwoman</p>
+        <p>曲率矩阵</p>
       </a>
     
   </div>
@@ -379,7 +379,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2020-01-22</p>
+    <p>2020-03-21</p>
   </a>
 </div>
 
@@ -431,21 +431,65 @@
 
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;正如 PHP 中使用 Composer 维护依赖一样，Python 也需要维护项目相关的依赖包。通常我们会在项目的根目录下放置一个 requirement.txt 文件，用于记录所有依赖包和它的确切版本号。</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Requests 库中有很多方法，但所有的方法在底层都是通过调用 request() 方法来实现的。因此，严格来说，Requests 库只有一个 request() 方法。但一般都不会直接使用这个方法。<br><strong>本章内容：</strong></p>
+<blockquote>
+<p>1.requests的请求方式<br>2.请求参数传递<br>3.响应response<br>4.Cookie和Session</p>
+</blockquote>
 <a id="more"></a>
-<p><strong>1.Python的依赖</strong><br>requirement.txt 的内容长这样：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">alembic==1.0.10</span><br><span class="line">appnope==0.1.0</span><br><span class="line">astroid==2.2.5</span><br><span class="line">attrs==19.1.0</span><br><span class="line">backcall==0.1.0</span><br><span class="line">bcrypt==3.1.6</span><br><span class="line">bleach==3.1.0</span><br><span class="line">cffi==1.12.3</span><br><span class="line">Click==7.0</span><br><span class="line">decorator==4.4.0</span><br><span class="line">defusedxml==0.6.0</span><br><span class="line">entrypoints==0.3</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="1-requests请求方式"><a href="#1-requests请求方式" class="headerlink" title="1.requests请求方式"></a>1.requests请求方式</h3><p>requests库下主要有两个请求方式：POST，GET请求</p>
+<blockquote>
+<p>GET请求</p>
+</blockquote>
+<p>举例说明：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">response = requests.get(<span class="string">"http://www.baidu.com"</span>)</span><br><span class="line">print(type(response))  <span class="comment"># &lt;class ‘requests.models.Response’&gt;</span></span><br><span class="line">print(response.status_code)     <span class="comment"># 200</span></span><br></pre></td></tr></table></figure>
 
-<p><strong>2.如何使用：</strong><br>那么 requirement.txt 究竟如何使用呢？<br>当我们拿到一个项目时，首先要在项目运行环境安装 requirement.txt 所包含的依赖：</p>
-<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -r requirement.txt</span><br></pre></td></tr></table></figure>
-<p>当我们要把环境中的依赖写入 requirement.txt 中时，可以借助 freeze 命令：</p>
-<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip freeze &gt;requirements.txt</span><br></pre></td></tr></table></figure>
-<p><strong>3.环境混用怎么办？</strong><br>在导出依赖到 requirement.txt 文件时会有一种尴尬的情况。<br>你的本地环境不仅包含项目 A 所需要的依赖，也包含着项目 B 所需要的依赖。此时我们要如何做到只把项目 A 的依赖导出呢？</p>
-<p>pipreqs 可以通过扫描项目目录，帮助我们仅生成当前项目的依赖清单。</p>
-<p>通过以下命令安装：</p>
-<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pipreqs</span><br></pre></td></tr></table></figure>
-<p>运行：</p>
-<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pipreqs ./</span><br></pre></td></tr></table></figure>
+<p>将参数写成字典的形式，利用get()方法的参数进行请求，可以动态更改请求参数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">params = &#123;</span><br><span class="line">    <span class="string">'name'</span>:<span class="string">"M.lu"</span>,</span><br><span class="line">    <span class="string">'age'</span>:<span class="number">22</span></span><br><span class="line">&#125;</span><br><span class="line">response = requests.get(<span class="string">"http://httpbin.org/get"</span>, params=params)</span><br><span class="line">print(response.text)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>POST请求</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="comment"># 基本 post 请求</span></span><br><span class="line">data = &#123;</span><br><span class="line">    <span class="string">'name'</span>:<span class="string">'M.Lu'</span>, </span><br><span class="line">    <span class="string">'age'</span>:<span class="string">'22'</span></span><br><span class="line">&#125;</span><br><span class="line">response = requests.post(<span class="string">"http://httpbin.org/post"</span>, data=data)</span><br><span class="line">print(response.text)</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="2-传递参数"><a href="#2-传递参数" class="headerlink" title="2.传递参数"></a>2.传递参数</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;无论是post还是get请求，对url进行请求时，都可以传递参数</p>
+<ol>
+<li>headers：反爬虫措施的基本操作，将爬虫伪装成正常的浏览器，躲过服务器的验证</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">headers = &#123;</span><br><span class="line">    &quot;User-Agent&quot;: &quot;&quot;,   浏览器对象</span><br><span class="line">    &quot;Cookie&quot;:&quot;&quot;,    cookie能够存储浏览器上次访问的信息</span><br><span class="line">    &quot;host&quot;:&quot;&quot;,      计算机ip</span><br><span class="line">    &quot;referer&quot;:&quot;&quot;    引用</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>timeout超时设置</li>
+</ol>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;超时是请求能够容忍的最大时间，如果在这个时间内，还没有响应返回过来，那么这次请求就算失败了，不再继续等待请求的结果。浏览器发送请求后，服务器接受数据处理后，再返回目标数据，这过程中可能因为各种原因导致响应很慢，设置timeout，超时后停止访问<br>response = requests.post(“<a href="http://httpbin.org/post&quot;" target="_blank" rel="noopener">http://httpbin.org/post&quot;</a>, data=data，<strong>timeout = 10</strong>)</p>
+<ol start="3">
+<li><p>证书验证<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;证书验证也是我们经常会遇到的问题，通常情况下，访问一些网站的时候，都会验证访问者的证书是否合法，如果不合法，就不允许访问。<font color=#65c294>大部分情况，我们之间设置证书验证为 False 即可</font></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 有验证</span><br><span class="line">response = requests.get(&quot;https://cms.hit.edu.cn/&quot;) # 程序会中断</span><br><span class="line">print(response.status_code)</span><br><span class="line"># 没有验证</span><br><span class="line">response = requests.get(&quot;https://cms.hit.edu.cn/&quot;, verify=False)</span><br><span class="line">print(response.status_code)</span><br><span class="line">去除 warning 方法</span><br><span class="line">from requests.packages import urllib3</span><br><span class="line">urllib3.disable_warnings()</span><br><span class="line">response = requests.get(&quot;https://cms.hit.edu.cn/&quot;, verify=False)</span><br><span class="line">print(response.status_code)</span><br><span class="line">cert 手动指定证书</span><br><span class="line">response = requests.get(&quot;https://cms.hit.edu.cn/&quot;,cert=&#123;&apos;path/server.crt&apos;, &apos;/path/key&apos;&#125;)</span><br><span class="line">print(response.status_code)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>代理设置</p>
+</li>
+</ol>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;代理也是一个很常用的方法。通常，在我们需要多个主机进行访问或需要绕过防火墙时，可以利用代理进行访问</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 无密码</span><br><span class="line">proxies = &#123;</span><br><span class="line">    &quot;http&quot;:&quot;http://178.128.63.64:8388&quot;</span><br><span class="line">&#125;</span><br><span class="line"># 有密码</span><br><span class="line">proxies = &#123;</span><br><span class="line">    &quot;http&quot;:&quot;http://user:password@178.128.63.64:8388&quot;</span><br><span class="line">&#125;</span><br><span class="line">response = requests.get(&quot;https://www.taobao.com&quot;, proxies=proxies)</span><br><span class="line">print(response.status_code)</span><br><span class="line"># 利用 socks 进行代理设置</span><br><span class="line">proxies = &#123;</span><br><span class="line">    &quot;http&quot;:&quot;socks5://178.128.63.64:8388&quot;,</span><br><span class="line">    &quot;https&quot;:&quot;socks5://178.128.63.64:8388&quot;</span><br><span class="line">&#125;</span><br><span class="line">response = requests.get(&quot;https://www.taobao.com&quot;, proxies=proxies)</span><br><span class="line">print(response.status_code)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-响应response"><a href="#3-响应response" class="headerlink" title="3.响应response"></a>3.响应response</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;响应是浏览器返回过来的信息，它有不同的属性</p>
+<ul>
+<li>response.status_code: 状态码，不同的状态码代表了不同的请求状态</li>
+<li>response.headers: 获取请求头</li>
+<li>response.cookies: 获取cookies</li>
+<li>response.url: 获取统一资源定位符url</li>
+<li><font color=#65c294>response.text: 获取请求成功后的响应内容，数据类型为字符串型</font></li>
+<li><font color=#65c294>response.content: 获取请求成功后的响应内容，数据类型为byte型。如果想取图片，文件，则可以通过response.content.</font></li>
+<li><font color=#65c294>response.json(): 返回的是json格式的数据，也就是字典。现在的前后端的数据交互绝大部分都是通过json交互了</font></li>
+</ul>
+<h3 id="4-Cookie和Session"><a href="#4-Cookie和Session" class="headerlink" title="4.Cookie和Session"></a>4.Cookie和Session</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="comment"># 两次 get 请求， 没有任何关联，不可以</span></span><br><span class="line">requests.get(<span class="string">"http://httpbin.org/cookies/set/number/123456789"</span>) <span class="comment"># 第一次请求</span></span><br><span class="line">response = requests.get(<span class="string">"http://httpbin.org/cookies"</span>)   <span class="comment"># 第二次请求</span></span><br><span class="line">print(response.text)</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">“cookies”: &#123;&#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+
+<p>我们可以看到利用cookie模拟登陆时，两次访问，没有存储登录的状态。但我们利用 Session 对象，可以模拟登录：<br>第一利用session登录，存储浏览器信息，再发送请求，访问目标网站</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="comment"># Session 对象， 相当于在一个浏览器中先后访问（例如：登录验证）</span></span><br><span class="line">session = requests.Session()</span><br><span class="line">result = session.get(<span class="string">"http://httpbin.org/cookies/set/number/123456789"</span>)</span><br><span class="line">response = session.get(<span class="string">"http://httpbin.org/cookies"</span>)</span><br><span class="line">print(response.text)</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">    “cookies”: &#123;“number”: “123456789”&#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
+<li><a href="https://blog.csdn.net/meteor_93/article/details/103380179" target="_blank" rel="noopener">Session 和 Cookies</a></li>
+</ul>
 
       </div>
       
@@ -457,10 +501,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-01-22T14:29:48+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-21T13:34:00+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年1月22日</p>
+    <p>更新于 2020年3月21日</p>
   </a>
 </div>
 
@@ -469,7 +513,7 @@
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/requirement-txt/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>requirement.txt</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Requests/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>Requests</p></a></div>
 
 
         
@@ -482,7 +526,10 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/01/22/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89/&title=python的requirement.txt文件 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;正如 PHP 中使用 Composer 维护依赖一样，Python 也需要维护项目相关的依赖包。通常我们会在项目的根目录下放置一个 requirement.txt 文件，用于记录所有依赖包和它的确切版本号。"
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/03/21/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89/&title=Python全栈系列章节更新（十五）：Requests库 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Requests 库中有很多方法，但所有的方法在底层都是通过调用 request() 方法来实现的。因此，严格来说，Requests 库只有一个 request() 方法。但一般都不会直接使用这个方法。本章内容：
+
+1.requests的请求方式2.请求参数传递3.响应response4.Cookie和Session
+"
           
           >
           
@@ -494,7 +541,10 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/01/22/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89/&title=python的requirement.txt文件 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;正如 PHP 中使用 Composer 维护依赖一样，Python 也需要维护项目相关的依赖包。通常我们会在项目的根目录下放置一个 requirement.txt 文件，用于记录所有依赖包和它的确切版本号。"
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/03/21/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89/&title=Python全栈系列章节更新（十五）：Requests库 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Requests 库中有很多方法，但所有的方法在底层都是通过调用 request() 方法来实现的。因此，严格来说，Requests 库只有一个 request() 方法。但一般都不会直接使用这个方法。本章内容：
+
+1.requests的请求方式2.请求参数传递3.响应response4.Cookie和Session
+"
           
           >
           
@@ -506,7 +556,10 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/01/22/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89/&title=python的requirement.txt文件 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;正如 PHP 中使用 Composer 维护依赖一样，Python 也需要维护项目相关的依赖包。通常我们会在项目的根目录下放置一个 requirement.txt 文件，用于记录所有依赖包和它的确切版本号。"
+          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/03/21/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89/&title=Python全栈系列章节更新（十五）：Requests库 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Requests 库中有很多方法，但所有的方法在底层都是通过调用 request() 方法来实现的。因此，严格来说，Requests 库只有一个 request() 方法。但一般都不会直接使用这个方法。本章内容：
+
+1.requests的请求方式2.请求参数传递3.响应response4.Cookie和Session
+"
           
           >
           
@@ -530,40 +583,21 @@
       
           <div class="prev-next">
               
-                  <section class="prev">
-                      <span class="art-item-left">
-                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
-                          <h4>
-                              <a href="/2020/01/22/Javascript%E7%AF%87%E7%AB%A0%E4%B8%83/" rel="prev" title="Javascript篇章七：js函数与构造函数">
-                                
-                                    Javascript篇章七：js函数与构造函数
-                                
-                              </a>
-                          </h4>
-                          
-                              
-                              <h6 class="tags">
-                                  <a class="tag" href="/tags/js/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> js</a>
-                              </h6>
-                          
-                      </span>
-                  </section>
-              
               
                   <section class="next">
                       <span class="art-item-right" aria-hidden="true">
                           <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                           <h4>
-                              <a href="/2020/01/20/html%E5%85%B3%E4%BA%8E%E5%9B%BE%E7%89%87%E8%87%AA%E9%80%82%E5%BA%94%E5%A4%A7%E5%B0%8F%E7%9A%84%E8%AF%B4%E6%98%8E/" rel="prev" title="html关于图片自适应大小的说明">
+                              <a href="/2020/03/17/Java%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6%E8%A1%A5%E5%85%85%EF%BC%88%E5%85%AB%EF%BC%89/" rel="prev" title="Java（八）：Java异常处理机制的补充">
                                   
-                                      html关于图片自适应大小的说明
+                                      Java（八）：Java异常处理机制的补充
                                   
                               </a>
                           </h4>
                           
                               
                               <h6 class="tags">
-                                  <a class="tag" href="/tags/html/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> html</a> <a class="tag" href="/tags/css/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> css</a>
+                                  <a class="tag" href="/tags/Java/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Java</a>
                               </h6>
                           
                       </span>
@@ -607,7 +641,7 @@
 
   <script>
     window.subData = {
-      title: 'python的requirement.txt文件',
+      title: 'Python全栈系列章节更新（十五）：Requests库',
       tools: true
     }
   </script>
@@ -721,6 +755,20 @@
           
             
               
+  <section class='widget toc-wrapper'>
+    
+<header class='material'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目录</div>
+  
+    <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
+  
+</header>
+
+    <div class='content material'>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-requests请求方式"><span class="toc-text">1.requests请求方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-传递参数"><span class="toc-text">2.传递参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-响应response"><span class="toc-text">3.响应response</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Cookie和Session"><span class="toc-text">4.Cookie和Session</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
+    </div>
+  </section>
+
 
             
           
