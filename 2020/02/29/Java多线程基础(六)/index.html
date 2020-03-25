@@ -687,6 +687,7 @@
 <p>PS:java的线程，进程与python的线程，进程类似。</p>
 <ol>
 <li>对于Python：进程对象的join方法使得主进程在等待子进程运行完毕之后，再运行下一行代码( 而不是主进程先运行代码，等待子进程运行结束 )；而python的线程之间没有先后之分，主线程需要等待子线程全部运行结束后,才能释放掉子线程所占用的资源。主线程代表了一个进程的生命周期,而一个进程一定要等到内部包含的所有线程都运行结束后,才能释放资源</li>
+<li>python的 join 会卡住主线程，并让当前已经 start 的子线程继续运行，直到调用.join的这个线程运行完毕</li>
 <li>对于Java：线程的join方法优先运行子线程，主线程卡在原地，子线程结束后，运行主线程后面的代码，即join就是指等待该线程结束，然后才继续往下执行自身线程</li>
 <li>Java的线程池是不会自动关闭的，若没有shutdown()方法，则进程池文件会一直运行下去</li>
 </ol>
@@ -724,7 +725,7 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-24T22:20:11+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-24T22:34:32+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
     <p>更新于 2020年3月24日</p>
