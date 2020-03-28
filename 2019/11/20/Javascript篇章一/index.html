@@ -433,12 +433,13 @@
       <div class="article-entry" itemprop="articleBody">
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JavaScript是一种属于网络的脚本语言,已经被广泛用于Web应用开发,常用来为网页添加各式各样的动态功能,为用户提供更流畅美观的浏览效果。通常JavaScript脚本是通过嵌入在HTML中来实现自身的功能的，一个前端项目必离不开HTML+CSS+JavaScript。</p>
 <blockquote>
-<p><font size=4 color=#FF0000>本文要点：</font><br>1.变量及数据类型<br>2.对象<br>3.javascript的字符串</p>
+<p><font size=4 color=#FF0000>本文要点：</font><br>1.声明变量以及变量规范<br>2. js基本数据类型<br>3.对象<br>4.javascript的字符串</p>
 </blockquote>
 <p><fancybox><img src="http://hd.wallpaperswide.com/thumbs/pin_up_001-t2.jpg" alt="一日不读书，我浑身难受"></fancybox></p>
 <a id="more"></a>
 
-<h3 id="1-变量及数据类型：JavaScript变量是数据值的容器"><a href="#1-变量及数据类型：JavaScript变量是数据值的容器" class="headerlink" title="1. 变量及数据类型：JavaScript变量是数据值的容器"></a>1. 变量及数据类型：JavaScript变量是数据值的容器</h3><p><del>变量修饰符：var,let,const</del><br><font color=#ed1941>2020-01-22 修改：js的变量作用域</font><br>（1）局部变量：在函数中通过var声明的变量。</p>
+<h3 id="1-变量及数据类型：JavaScript变量是数据值的容器"><a href="#1-变量及数据类型：JavaScript变量是数据值的容器" class="headerlink" title="1. 变量及数据类型：JavaScript变量是数据值的容器"></a>1. 变量及数据类型：JavaScript变量是数据值的容器</h3><h4 id="声明变量"><a href="#声明变量" class="headerlink" title="声明变量"></a>声明变量</h4><p><strong>js在创建变量或对象时，一定要声明其数据类型，否者会默认设置为全局变量，这是我们导入其它js等文件时就会造成污染数据</strong></p>
+<p><font color=#ed1941>2020-01-22 修改：js的变量作用域</font><br>（1）局部变量：在函数中通过var声明的变量。</p>
 <p>　　全局变量：在函数外通过var声明的变量。</p>
 <p>　　没有声明就使用的变量，默认为全局变量，不论这个变量在哪被使用。</p>
 <p>（2）var 可以先使用再定义。如下</p>
@@ -452,8 +453,35 @@
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> length = <span class="number">7</span>;                             <span class="comment">// 数字</span></span><br><span class="line"><span class="keyword">let</span> lastName = <span class="string">"Gates"</span>;                      <span class="comment">// 字符串</span></span><br><span class="line"><span class="keyword">let</span> cars = [<span class="string">"Porsche"</span>, <span class="string">"Volvo"</span>, <span class="string">"BMW"</span>];         <span class="comment">// 数组</span></span><br><span class="line"><span class="keyword">let</span> x = &#123;<span class="attr">firstName</span>:<span class="string">"Bill"</span>, <span class="attr">lastName</span>:<span class="string">"Gates"</span>&#125;;    <span class="comment">// 对象</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="2-对象"><a href="#2-对象" class="headerlink" title="2.对象"></a>2.对象</h3><p>对象的值以名称:值对的方式来书写（名称和值由冒号分隔）</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;  <span class="comment">//这里的person称为对象</span></span><br><span class="line">    firstName:<span class="string">"Bill"</span>,  <span class="comment">//  这是属性</span></span><br><span class="line">    lastName:<span class="string">"Gates"</span>, </span><br><span class="line">    age:<span class="number">62</span>, </span><br><span class="line">    eyeColor:<span class="string">"blue"</span>,</span><br><span class="line">    fullName : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;  <span class="comment">// 这就是方法</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.firstName + <span class="string">" "</span> + <span class="keyword">this</span>.lastName;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 对person对象中进行新增实例</span></span><br><span class="line">person.sex = <span class="string">"man"</span></span><br></pre></td></tr></table></figure>
+<h4 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h4><p>一般很多代码语言的命名规则都是类似的，例如:</p>
+<ul>
+<li>变量和函数为小驼峰法标识, 即除第一个单词之外，其他单词首字母大写（ lowerCamelCase）</li>
+<li>全局变量为大写 (UPPERCASE )</li>
+<li>常量 (如 PI) 为大写 (UPPERCASE )</li>
+<li>构造函数名与class名均使用大驼峰标识</li>
+</ul>
+<h3 id="2-js数据类型"><a href="#2-js数据类型" class="headerlink" title="2.js数据类型"></a>2.js数据类型</h3><p>在 JavaScript 中有 6 种不同的数据类型：</p>
+<ul>
+<li>string</li>
+<li>number</li>
+<li>boolean</li>
+<li>object</li>
+<li>function</li>
+<li>symbol</li>
+</ul>
+<p>3 种对象类型：</p>
+<ul>
+<li>Object</li>
+<li>Date</li>
+<li>Array</li>
+</ul>
+<p>2 个不包含任何值的数据类型：</p>
+<ul>
+<li>null</li>
+<li>undefined</li>
+</ul>
+<h3 id="3-对象"><a href="#3-对象" class="headerlink" title="3.对象"></a>3.对象</h3><p>对象的值以名称:值对的方式来书写（名称和值由冒号分隔）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;  <span class="comment">//这里的person称为对象</span></span><br><span class="line">    firstName:<span class="string">"Bill"</span>,  <span class="comment">//  这是属性</span></span><br><span class="line">    lastName:<span class="string">"Gates"</span>, </span><br><span class="line">    age:<span class="number">62</span>, </span><br><span class="line">    eyeColor:<span class="string">"blue"</span>,</span><br><span class="line">    fullName : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;  <span class="comment">// 这就是方法</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.firstName + <span class="string">" "</span> + <span class="keyword">this</span>.lastName;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 对person对象中进行新增实例</span></span><br><span class="line">person.sex = <span class="string">"man"</span>;</span><br><span class="line">person.fullName();</span><br></pre></td></tr></table></figure>
 <p>JavaScript中的this关键词</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">在函数定义中，this 引用该函数的“拥有者”。</span><br><span class="line"></span><br><span class="line">在上面的例子中，this 指的是“拥有” fullName 函数的 person 对象。</span><br><span class="line"></span><br><span class="line">换言之，this.firstName 的意思是 this 对象的 firstName 属性。</span><br></pre></td></tr></table></figure>
 
@@ -463,7 +491,7 @@
 <p>对象名.属性名 或者<br>对象名[&quot;属性名&quot;]</p>
 <h4 id="案例：数据集构造"><a href="#案例：数据集构造" class="headerlink" title="案例：数据集构造"></a>案例：数据集构造</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">let</span> dimensions = [];  <span class="comment">//维度</span></span><br><span class="line"><span class="keyword">let</span> source = [];      <span class="comment">//数据集</span></span><br><span class="line"><span class="keyword">let</span> series = [];        <span class="comment">//图系列</span></span><br><span class="line"></span><br><span class="line">dimensions.push(<span class="string">"groupcus_name"</span>);</span><br><span class="line">dimensions.push(<span class="string">"剩余发出商品"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;response.Rows.length;i++)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> obj = &#123;&#125;;</span><br><span class="line">    obj[<span class="string">"groupcus_name"</span>] = response.Rows[i].groupcus_name;  <span class="comment">// 对象的调用方式obj["key_name"]或obj.key_name</span></span><br><span class="line">    obj[<span class="string">"剩余发出商品"</span>] = response.Rows[i].surplusp;</span><br><span class="line"></span><br><span class="line">    source.push(obj);   <span class="comment">// 记住push只适用于数组的元素添加，并返回数组元素个数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="3-j字符串"><a href="#3-j字符串" class="headerlink" title="3.j字符串"></a>3.j字符串</h3><blockquote>
+<h3 id="4-j字符串"><a href="#4-j字符串" class="headerlink" title="4.j字符串"></a>4.j字符串</h3><blockquote>
 <p>函数语法</p>
 </blockquote>
 <p>function function_name(param1,param2,…){code}<br>PS:不使用 () 访问函数将返回函数声明而不是函数结果</p>
@@ -487,7 +515,7 @@
 </li>
 <li><p>substring()方法：类似于 slice()，不同之处在于 substring() 无法接受负的索引</p>
 </li>
-<li><p>substr(start,length)：第二个参数规定被提取部分的长度，如果省略第二个参数，则该 substr() 将裁剪字符串的剩余部分。</p>
+<li><p>substr(start,length)：start表示起始的索引值，默认为0。第二个参数规定被提取部分的长度，如果省略第二个参数，则该 substr() 将裁剪字符串的剩余部分。</p>
 </li>
 <li><p>str.replace(a,b) 在字符串str中用b替换a</p>
 </li>
@@ -515,7 +543,11 @@
 </blockquote>
 <ul>
 <li>Numbers.toFixed(number):保留小数点位数，并将数值型转换为字符串型</li>
-<li>Numbers.toString():将数值型转换为字符串型<h3 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h3></li>
+<li>Numbers.toString():将数值型转换为字符串型</li>
+<li>String(Number):将数值型转换为字符串类型</li>
+</ul>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
+<li><a href="https://www.runoob.com/js/js-type-conversion.html" target="_blank" rel="noopener">JavaScript基本数据类型以及详细使用</a></li>
 </ul>
 
       </div>
@@ -528,10 +560,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-11T21:40:12+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-28T17:47:47+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年3月11日</p>
+    <p>更新于 2020年3月28日</p>
   </a>
 </div>
 
@@ -555,7 +587,7 @@
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/11/20/Javascript%E7%AF%87%E7%AB%A0%E4%B8%80/&title=Javascript篇章一：JavaScript基本知识 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JavaScript是一种属于网络的脚本语言,已经被广泛用于Web应用开发,常用来为网页添加各式各样的动态功能,为用户提供更流畅美观的浏览效果。通常JavaScript脚本是通过嵌入在HTML中来实现自身的功能的，一个前端项目必离不开HTML+CSS+JavaScript。
 
-本文要点：1.变量及数据类型2.对象3.javascript的字符串
+本文要点：1.声明变量以及变量规范2. js基本数据类型3.对象4.javascript的字符串
 
 "
           
@@ -571,7 +603,7 @@
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/11/20/Javascript%E7%AF%87%E7%AB%A0%E4%B8%80/&title=Javascript篇章一：JavaScript基本知识 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JavaScript是一种属于网络的脚本语言,已经被广泛用于Web应用开发,常用来为网页添加各式各样的动态功能,为用户提供更流畅美观的浏览效果。通常JavaScript脚本是通过嵌入在HTML中来实现自身的功能的，一个前端项目必离不开HTML+CSS+JavaScript。
 
-本文要点：1.变量及数据类型2.对象3.javascript的字符串
+本文要点：1.声明变量以及变量规范2. js基本数据类型3.对象4.javascript的字符串
 
 "
           
@@ -587,7 +619,7 @@
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/11/20/Javascript%E7%AF%87%E7%AB%A0%E4%B8%80/&title=Javascript篇章一：JavaScript基本知识 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JavaScript是一种属于网络的脚本语言,已经被广泛用于Web应用开发,常用来为网页添加各式各样的动态功能,为用户提供更流畅美观的浏览效果。通常JavaScript脚本是通过嵌入在HTML中来实现自身的功能的，一个前端项目必离不开HTML+CSS+JavaScript。
 
-本文要点：1.变量及数据类型2.对象3.javascript的字符串
+本文要点：1.声明变量以及变量规范2. js基本数据类型3.对象4.javascript的字符串
 
 "
           
@@ -814,7 +846,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-变量及数据类型：JavaScript变量是数据值的容器"><span class="toc-text">1. 变量及数据类型：JavaScript变量是数据值的容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-对象"><span class="toc-text">2.对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#案例：数据集构造"><span class="toc-text">案例：数据集构造</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-j字符串"><span class="toc-text">3.j字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#未完待续…"><span class="toc-text">未完待续…</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-变量及数据类型：JavaScript变量是数据值的容器"><span class="toc-text">1. 变量及数据类型：JavaScript变量是数据值的容器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#声明变量"><span class="toc-text">声明变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命名规范"><span class="toc-text">命名规范</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-js数据类型"><span class="toc-text">2.js数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-对象"><span class="toc-text">3.对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#案例：数据集构造"><span class="toc-text">案例：数据集构造</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-j字符串"><span class="toc-text">4.j字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
     </div>
   </section>
 

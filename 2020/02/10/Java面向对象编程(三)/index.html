@@ -445,6 +445,29 @@
 </ul>
 <h3 id="2-方法"><a href="#2-方法" class="headerlink" title="2.方法"></a>2.方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">修饰符 方法返回类型 方法名(方法参数列表) &#123;</span><br><span class="line">    若干方法语句;</span><br><span class="line">    return 方法返回值;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>方法返回值通过return语句实现，如果没有返回值，返回类型设置为void，可以省略return</strong>。</p>
+<p><font color=#33a3dc>2020-3-26 补充：</font><br>  最近看到很多面试题，整理到值传递、引用传递，到网上搜了一圈，争议很大。带着一脸蒙圈，线上线下查了好多资料。最终有所收获，所以分享给大家，希望能对你有所帮助。<br>首先说下我的感受，这个题目出的很好，但是在 Java 中这个题目是有问题的(在下面我会解释)。并且，<strong>有很多结论是 Java 中只有 值传递</strong>。我认为这样说不够严谨。当然如果针对 <strong>Java 语言本身来讲，Java 中只有 值传递，没有引用传递</strong>，是正确的。但是如果针对 <strong>值传递，引用传递的定义来说，Java 中还是有引用传递</strong>的</p>
+<p>方法的参数有实参和形参之分，我们现在深入思考一下，方法中可以传递什么类型的值</p>
+<ul>
+<li><p>基本数据类型：整型，字符型，浮点型，布尔型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public static void test(int a, char b, double c, float d, boolean e)&#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>引用数据类型：字符串，接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public static void test(String a)&#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数组类型传递：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public static void test(int[] a, char[] b, double[] c,...)&#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>class类类型传递：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public static void test(employee a,employee b)&#123;&#125;</span><br><span class="line">...</span><br><span class="line">class employee&#123;</span><br><span class="line">	private int id;</span><br><span class="line"></span><br><span class="line">	public int getId() &#123;</span><br><span class="line">		return id;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setId(int id) &#123;</span><br><span class="line">		this.id = id;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>…</p>
+</li>
+</ul>
+<p>总结：</p>
+<ol>
+<li>基本数据类型、引用类型定义<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基本数据类：Java 中有八种基本数据类型“byte、short、int、long、float、double、char、boolean”<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;引用类型：new 创建的实体类、对象、及数组</li>
+<li>基本数据类型、引用类型在内存中的存储方式<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基本数据类型：存放在栈内存中。用完就消失。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;引用类型：在栈内存中存放引用堆内存的地址，在堆内存中存储类、对象、数组等。当没用引用指向堆内存中的类、对象、数组时，由 GC回收机制不定期自动清理。</li>
+</ol>
 <h3 id="3-this变量"><a href="#3-this变量" class="headerlink" title="3.this变量"></a>3.this变量</h3><p>在方法内部，可以使用一个隐含的变量this，它始终指向当前实例。因此，通过this.field就可以访问当前实例的字段。</p>
 <p>如果没有命名冲突，可以省略this。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">    private String name;</span><br><span class="line"></span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name; // 相当于this.name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">但是，如果有局部变量和字段重名，那么局部变量优先级更高，就必须加上this：</span><br><span class="line"></span><br><span class="line">class Person &#123;</span><br><span class="line">    private String name;</span><br><span class="line"></span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        this.name = name; // 前面的this不可少，少了就变成局部变量name了</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -574,10 +597,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-09T21:01:23+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-26T10:08:29+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年3月9日</p>
+    <p>更新于 2020年3月26日</p>
   </a>
 </div>
 
