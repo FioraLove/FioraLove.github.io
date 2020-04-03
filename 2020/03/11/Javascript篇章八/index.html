@@ -504,6 +504,9 @@
 <li><p>通过class类名来查找元素 document.getElementByClassName(“元素节点的class名”)</p>
 </li>
 </ol>
+<p>拓：获取HTML的DOM元素节点集合：<strong>其实就是将getElement变为getElements</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myCollection = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"p"</span>);</span><br><span class="line"><span class="keyword">let</span> i;</span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; myCollection.length; i++) &#123;</span><br><span class="line">    myCollection[i].style.backgroundColor = <span class="string">"red"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>HTMLCollection 对象的 length 属性定义了集合中元素的数量<br>HTMLCollection 不是一个数组！HTMLCollection 看起来可能是一个数组，但其实不是。<br>你可以像数组一样，使用索引来获取元素，但无法使用数组的方法： valueOf(), pop(), push(), 或 join() 。</p>
 <h3 id="4-改变-HTML-元素的内容-innerHTML"><a href="#4-改变-HTML-元素的内容-innerHTML" class="headerlink" title="4.改变 HTML 元素的内容 (innerHTML)"></a>4.改变 HTML 元素的内容 (innerHTML)</h3><ul>
 <li>改变HTML输出流<br>js能够创建动态的HTML内容，而document.write() 可用于直接向 HTML 输出流写内容</li>
 <li>改变HTML内容（推荐）<br>document.getElementById(id).innerHTML=新的 HTML（推荐）</li>
@@ -522,10 +525,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-31T09:31:20+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-02T09:17:50+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年3月31日</p>
+    <p>更新于 2020年4月2日</p>
   </a>
 </div>
 
@@ -1030,7 +1033,7 @@
         
           <li><a class="flat-box" title="/categories/Database/" href="/categories/Database/"><div class='name'>Database</div><div class='badge'>(7)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Java/" href="/categories/Java/"><div class='name'>Java</div><div class='badge'>(8)</div></a></li>
+          <li><a class="flat-box" title="/categories/Java/" href="/categories/Java/"><div class='name'>Java</div><div class='badge'>(9)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Python/" href="/categories/Python/"><div class='name'>Python</div><div class='badge'>(20)</div></a></li>
         

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>Tag: docker | AhriLove</title>
+  <title>Java（九）：Java数据结构基础 | AhriLove</title>
   
   
 
@@ -65,7 +65,7 @@
   
   
   <div class="cover-wrapper">
-    <cover class='cover  half'>
+    <cover class='cover post half'>
       
         
   <img class='logo' src='https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imagesaaa.png'/>
@@ -332,29 +332,11 @@
 
   <div class="l_body">
     <div class='body-wrapper'>
-      
-<div class='l_main'>
+      <div class='l_main'>
   
+
+  <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
     
-      
-  <section class="post-list">
-    
-      
-        
-          
-        
-          
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
-  
 
 
   <section class='meta'>
@@ -363,11 +345,13 @@
     <div class="meta" id="header-meta">
       
         
-  <h2 class="title">
-    <a href="/2019/12/12/docker%E7%9A%84redis/">
-      docker安装使用redis
-    </a>
-  </h2>
+  
+    <h1 class="title">
+      <a href="/2020/04/03/Java%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B9%9D%EF%BC%89/">
+        Java（九）：Java数据结构基础
+      </a>
+    </h1>
+  
 
 
       
@@ -379,11 +363,11 @@
             
   <div class='new-meta-item author'>
     
-      <a href="https://ahrilove.top" rel="nofollow">
+      <a href="/" rel="nofollow">
         
-          <i class="fas fa-user" aria-hidden="true"></i>
+          <img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/zhugedali3.jpg">
         
-        <p>AhriLove</p>
+        <p>曲率矩阵</p>
       </a>
     
   </div>
@@ -395,7 +379,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-12-12</p>
+    <p>2020-04-03</p>
   </a>
 </div>
 
@@ -405,9 +389,9 @@
             
   
   <div class='new-meta-item category'>
-    <a href='/categories/docker/' rel="nofollow">
+    <a href='/categories/Java/' rel="nofollow">
       <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>docker</p>
+      <p>Java</p>
     </a>
   </div>
 
@@ -416,6 +400,19 @@
         
           
             
+  
+    <div class="new-meta-item browse busuanzi">
+      <a class='notlink'>
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <p>
+          <span id="busuanzi_value_page_pv">
+            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+          </span>
+        </p>
+      </a>
+    </div>
+  
+
 
           
         
@@ -432,279 +429,242 @@
   </section>
 
 
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <p><font color=#00CD00>docker系列章节更新（三），这一章节主要学习docker安装redis以及非关系型数据库redis学习</font></p>
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <p><strong>本章内容：</strong></p>
+<blockquote>
+<p>1.数据结构简述<br>2.常见的数据结构</p>
+</blockquote>
+<a id="more"></a>
+
+<h3 id="1-数据结构有什么作用"><a href="#1-数据结构有什么作用" class="headerlink" title="1.数据结构有什么作用"></a>1.数据结构有什么作用</h3><p>当你用着java里面的容器类很爽的时候，你有没有想过，怎么ArrayList就像一个无限扩充的数组，也好像链表之类的。好用吗？好用，这就是数据结构的用处，只不过你在不知不觉中使用了。</p>
+<p>现实世界的存储，我们使用的工具和建模。每种数据结构有自己的优点和缺点，想想如果Google的数据用的是数组的存储，我们还能方便地查询到所需要的数据吗？而算法，在这么多的数据中如何做到最快的插入，查找，删除，也是在追求更快。</p>
+<p>我们java是面向对象的语言，就好似自动档轿车，C语言好似手动档吉普。数据结构呢？是变速箱的工作原理。你完全可以不知道变速箱怎样工作，就把自动档的车子从 A点 开到 B点，而且未必就比懂得的人慢。写程序这件事，和开车一样，经验可以起到很大作用，但如果你不知道底层是怎么工作的，就永远只能开车，既不会修车，也不能造车。当然了，数据结构内容比较多，细细的学起来也是相对费功夫的，不可能达到一蹴而就。我们将常见的数据结构：堆栈、队列、数组、链表和红黑树 这几种给大家介绍一下，作为数据结构的入门，了解一下它们的特点即可。</p>
+<h3 id="2-常见的数据结构"><a href="#2-常见的数据结构" class="headerlink" title="2.常见的数据结构"></a>2.常见的数据结构</h3><p>数据存储的常用结构有：<strong>栈，队列，数组，链表和红黑树</strong></p>
+<h4 id="栈-Stack"><a href="#栈-Stack" class="headerlink" title="栈 Stack"></a>栈 Stack</h4><p><strong>stack</strong>,又称堆栈，它是运算受限的线性表，其限制是仅允许在标的一端进行插入和删除操作，不允许在其他任何位置进行添加、查找、删除等操作。</p>
+<p>简单的说：采用该结构的集合，对元素的存取有如下的特点</p>
 <ul>
-<li>docker安装redis</li>
-<li>redis学习笔记</li>
+<li><p>先进后出（即，存进去的元素，要在后它后面的元素依次取出后，才能取出该元素）。例如，子弹压进弹夹，先压进去的子弹在下面，后压进去的子弹在上面，当开枪时，先弹出上面的子弹，然后才能弹出下面的子弹。</p>
+</li>
+<li><p>栈的入口、出口的都是栈的顶端位置。</p>
+</li>
 </ul>
-      
-        <div class="readmore">
-          <a href="/2019/12/12/docker%E7%9A%84redis/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/docker/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> docker</a>
-        
-          <a href="/tags/redis/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> redis</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
-  
-
-
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2019/11/19/docker%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/">
-      docker开发环境系列部署
-    </a>
-  </h2>
-
-
-      
-      <div class='new-meta-box'>
-        
-          
-        
-          
-            
-  <div class='new-meta-item author'>
-    
-      <a href="https://ahrilove.top" rel="nofollow">
-        
-          <i class="fas fa-user" aria-hidden="true"></i>
-        
-        <p>AhriLove</p>
-      </a>
-    
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-11-19</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/docker/' rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>docker</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <p><font color=#00CD00>docker系列章节更新（二），这一章节主要收集并亲测docker部署各种各样的生产，开发环境。比如Nginx+Tomcat实现负载均衡，tomcat集群</font></p>
+<p><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/%E5%A0%86%E6%A0%88.png" alt=""></fancybox><br>这里两个名词需要注意：</p>
 <ul>
-<li>搭建python3+django+mysql开发环境</li>
-<li>Docker实现Nginx和Tomcat负载均衡
-      
-        <div class="readmore">
-          <a href="/2019/11/19/docker%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/docker/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> docker</a>
-        
-          <a href="/tags/python-Django-MySQL/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> python+Django+MySQL</a>
-        
+<li><strong>压栈</strong>：就是存元素。即，把元素存储到栈的顶端位置，栈中已有元素依次向栈底方向移动一个位置。</li>
+<li><strong>弹栈</strong>：就是取元素。即，把栈的顶端位置元素取出，栈中已有元素依次向栈顶方向移动一个位置。</li>
+</ul>
+<h4 id="队列-queue"><a href="#队列-queue" class="headerlink" title="队列 queue"></a>队列 queue</h4><p><strong>queue</strong>,简称队，它同堆栈一样，也是一种运算受限的线性表，其限制是仅允许在表的一端进行插入，而在表的另一端进行删除。</p>
+<p>简单的说，采用该结构的集合，对元素的存取有如下的特点：</p>
+<ul>
+<li>先进先出（即，存进去的元素，要在后它前面的元素依次取出后，才能取出该元素）。例如，小火车过山洞，车头先进去，车尾后进去；车头先出来，车尾后出来。</li>
+<li>队列的入口、出口各占一侧。例如，下图中的左侧为入口，右侧为出口。<br><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/20200403094208.png" alt=""></fancybox></li>
+</ul>
+<h4 id="数组-Array"><a href="#数组-Array" class="headerlink" title="数组 Array"></a>数组 Array</h4><p><strong>Array</strong>,是有序的元素序列，数组是在内存中开辟一段连续的空间，并在此空间存放元素。就像是一排出租屋，有100个房间，从001到100每个房间都有固定编号，通过编号就可以快速找到租房子的人。</p>
+<p>简单的说,采用该结构的集合，对元素的存取有如下的特点：</p>
+<ul>
+<li><p>查找元素快：通过索引，可以快速访问指定位置的元素<br><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/%E6%95%B0%E7%BB%84%E6%9F%A5%E8%AF%A2%E5%BF%AB.png" alt=""></fancybox></p>
+</li>
+<li><p>增删元素慢（每一次增删都会创建一个新数组）</p>
+<ul>
+<li><strong>指定索引位置增加元素</strong>：需要创建一个新数组，将指定新元素存储在指定索引位置，再把原数组元素根据索引，复制到新数组对应索引的位置。如下图<img src="img/%E6%95%B0%E7%BB%84%E6%B7%BB%E5%8A%A0.png" alt=""><br><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/%E6%95%B0%E7%BB%84%E6%B7%BB%E5%8A%A0.png" alt=""></fancybox></li>
+<li><strong>指定索引位置删除元素：</strong>需要创建一个新数组，把原数组元素根据索引，复制到新数组对应索引的位置，原数组中指定索引位置元素不复制到新数组中。如下图<img src="img/%E6%95%B0%E7%BB%84%E5%88%A0%E9%99%A4.png" alt=""><br><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/%E6%95%B0%E7%BB%84%E5%88%A0%E9%99%A4.png" alt=""><fancybox></li>
+</ul>
+</li>
+</ul>
+<h4 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h4><p><strong>链表</strong>:<strong>linked list</strong>,由一系列结点node（链表中每一个元素称为结点）组成，结点可以在运行时i动态生成。每个结点包括两个部分：一个是存储数据元素的数据域，另一个是存储下一个结点地址的指针域。我们常说的链表结构有单向链表与双向链表，那么这里给大家介绍的是<strong>单向链表</strong>。<br><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/20200403094325.png" alt=""></fancybox></p>
+<p>简单的说，采用该结构的集合，对元素的存取有如下的特点：</p>
+<ul>
+<li><p>多个结点之间，通过地址进行连接。例如，多个人手拉手，每个人使用自己的右手拉住下个人的左手，依次类推，这样多个人就连在一起了。</p>
+<p><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/20200403094647.png" alt=""></fancybox></p>
+</li>
+<li><p>查找元素慢：想查找某个元素，需要通过连接的节点，依次向后查找指定元素</p>
+</li>
+<li><p>增删元素快：</p>
+<ul>
+<li><p>增加元素：只需要修改连接下个元素的地址即可。</p>
+<p><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/20200403094810.png" alt=""></fancybox></p>
+</li>
+<li><p>删除元素：只需要修改连接下个元素的地址即可。</p>
+<p><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/20200403094840.png" alt=""></fancybox></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h4><p><strong>二叉树</strong>：<strong>binary tree</strong> ,是每个结点不超过2的有序<strong>树（tree）</strong> 。</p>
+<p>简单的理解，就是一种类似于我们生活中树的结构，只不过每个结点上都最多只能有两个子结点。</p>
+<p>二叉树是每个节点最多有两个子树的树结构。顶上的叫根结点，两边被称作“左子树”和“右子树”。<br><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/20200403095130.png" alt=""></fancybox></p>
+<p>我们要说的是二叉树的一种比较有意思的叫做<strong>红黑树</strong>，红黑树本身就是一颗二叉查找树，将节点插入后，该树仍然是一颗二叉查找树。也就意味着，树的键值仍然是有序的。</p>
+<p>红黑树的约束:</p>
+<ol>
+<li>节点可以是红色的或者黑色的</li>
+<li>根节点是黑色的</li>
+<li>叶子节点(特指空节点)是黑色的</li>
+<li>每个红色节点的子节点都是黑色的</li>
+<li>任何一个节点到其每一个叶子节点的所有路径上黑色节点数相同</li>
+</ol>
+<p>红黑树的特点:</p>
+<p>​    速度特别快,趋近平衡树,查找叶子元素最少和最多次数不多于二倍</p>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
+<li><a href="https://www.cnblogs.com/xiohao/p/3547443.html" target="_blank" rel="noopener">Java的throw与throws关键字区别</a></li>
+</ul>
+
       </div>
-    
-  </section>
-</article>
-
-          </div>
+      
+        <br>
         
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
       
         
-          <div class='post-wrapper'>
-            <article class="post reveal ">
-  
-
-
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2019/11/10/docker%E5%AE%B9%E5%99%A8%E8%99%9A%E6%8B%9F%E6%8A%80%E6%9C%AF/">
-      docker容器虚拟化技术
-    </a>
-  </h2>
-
-
-      
-      <div class='new-meta-box'>
-        
-          
-        
-          
-            
-  <div class='new-meta-item author'>
-    
-      <a href="https://ahrilove.top" rel="nofollow">
-        
-          <i class="fas fa-user" aria-hidden="true"></i>
-        
-        <p>AhriLove</p>
-      </a>
-    
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-03T10:30:24+08:00">
   <a class='notlink'>
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-11-10</p>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>更新于 2020年4月3日</p>
   </a>
 </div>
 
-          
+        
+      
         
           
-            
   
-  <div class='new-meta-item category'>
-    <a href='/categories/docker/' rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>docker</p>
-    </a>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Java/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>Java</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/04/03/Java%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B9%9D%EF%BC%89/&title=Java（九）：Java数据结构基础 | AhriLove&summary=本章内容：
+
+1.数据结构简述2.常见的数据结构
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/04/03/Java%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B9%9D%EF%BC%89/&title=Java（九）：Java数据结构基础 | AhriLove&summary=本章内容：
+
+1.数据结构简述2.常见的数据结构
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/04/03/Java%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B9%9D%EF%BC%89/&title=Java（九）：Java数据结构基础 | AhriLove&summary=本章内容：
+
+1.数据结构简述2.常见的数据结构
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
+          
+        </a>
+      
+    
   </div>
+</div>
 
 
-          
+
         
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
       
     </div>
   </section>
 
 
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <p><font color=#00CD00>简单来说，在Windows系统下安装各种运行环境的坑简直不要太多了(●￣(ｴ)￣●)，并不仅限于docker、Nginx、PHP、Python等等</font>，我会尽详细写出实际过程中遇到的各种各样的奇葩问题<br><fancybox><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573382566146&di=7b10832832e7d3c37d3f4e2e84d45d5d&imgtype=jpg&src=http%3A%2F%2Fimg3.imgtn.bdimg.com%2Fit%2Fu%3D859959778%2C1194286727%26fm%3D214%26gp%3D0.jpg" alt=""></fancybox></p>
       
-        <div class="readmore">
-          <a href="/2019/11/10/docker%E5%AE%B9%E5%99%A8%E8%99%9A%E6%8B%9F%E6%8A%80%E6%9C%AF/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
-        </div>
       
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/docker/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> docker</a>
-        
-          <a href="/tags/VMware/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> VMware</a>
-        
-          <a href="/tags/images/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> images</a>
-        
-          <a href="/tags/container/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> container</a>
-        
-          <a href="/tags/Hyper-V/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> Hyper-V</a>
-        
-          <a href="/tags/Linux/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> Linux</a>
-        
-          <a href="/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E4%B8%8E%E5%AE%88%E6%8A%A4%E5%BC%8F%E5%88%9B%E5%BB%BA/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> 交互式与守护式创建</a>
-        
-      </div>
-    
-  </section>
-</article>
-
+          <div class="prev-next">
+              
+              
+                  <section class="next">
+                      <span class="art-item-right" aria-hidden="true">
+                          <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                          <h4>
+                              <a href="/2020/04/01/html%E4%B8%8Ecss(%E2%85%A1)/" rel="prev" title="html页面布局">
+                                  
+                                      html页面布局
+                                  
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/margin/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> margin</a> <a class="tag" href="/tags/float/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> float</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
           </div>
-        
       
-    
-  </section>
-  
-    
-    <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
-    
-    
-
-  
+    </section>
+  </article>
 
 
-    
-  
+
+  <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      
+      
+        <section id="comments">
+          <div id="lv-container" data-id="city" data-uid="MTAyMC80NzQ0NS8yMzk0NQ==">
+            <noscript><div><i class='fas fa-exclamation-triangle'>&nbsp;无法加载Livere评论系统，请确保您的网络能够正常访问。</div></noscript>
+          </div>
+        </section>
+      
+      
+      
+    </section>
+  </article>
+
+
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'Java（九）：Java数据结构基础',
+      tools: true
+    }
+  </script>
+
+
 </div>
 <aside class='l_side'>
   
@@ -810,6 +770,25 @@
           
         
           
+          
+            
+              
+  <section class='widget toc-wrapper'>
+    
+<header class='material'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目录</div>
+  
+    <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
+  
+</header>
+
+    <div class='content material'>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-数据结构有什么作用"><span class="toc-text">1.数据结构有什么作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-常见的数据结构"><span class="toc-text">2.常见的数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#栈-Stack"><span class="toc-text">栈 Stack</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#队列-queue"><span class="toc-text">队列 queue</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数组-Array"><span class="toc-text">数组 Array</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#链表"><span class="toc-text">链表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#红黑树"><span class="toc-text">红黑树</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
+    </div>
+  </section>
+
+
+            
           
         
           
@@ -1136,50 +1115,28 @@
         
           
           
-            
-              
-
-
-  <section class='widget music'>
-    
-<header class='material'>
-  <div><i class="fas fa-compact-disc fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;最近在听</div>
-  
-    <a class="rightBtn"
-    
-      rel="external nofollow noopener noreferrer"
-    
-    
-      target="_blank"
-    
-    href="https://music.163.com/#/user/home?id=1398315803"
-    title="https://music.163.com/#/user/home?id=1398315803">
-    <i class="far fa-heart fa-fw"></i></a>
-  
-</header>
-
-    <div class='content material'>
+        
       
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
-  <div class="aplayer"
-    data-theme="#1BCDFC"
-    
-    
-    data-mode="circulation"
-    data-server="netease"
-    data-type="playlist"
-    data-id="2163223807"
-    data-volume="0.3">
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
-
-
-    </div>
-  </section>
-
-
-            
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
           
         
       
@@ -1331,6 +1288,17 @@
 
 
 
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
 
 
 
