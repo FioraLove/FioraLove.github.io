@@ -475,6 +475,16 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String s = <span class="string">"hello world java!!!"</span>;</span><br><span class="line">String[] aa = s.split(<span class="string">" "</span>);</span><br><span class="line">System.out.println(aa[<span class="number">2</span>]);</span><br></pre></td></tr></table></figure>
 
 <h4 id="包装类型："><a href="#包装类型：" class="headerlink" title="包装类型："></a>包装类型：</h4><p>基本类型===&gt;    对应的引用类型<br>boolean    ===&gt; java.lang.Boolean<br>byte    ===&gt; java.lang.Byte<br>short    ===&gt; java.lang.Short<br>int        ===&gt; java.lang.Integer<br>long    ===&gt; java.lang.Long<br>float    ===&gt; java.lang.Float<br>double    ===&gt; java.lang.Double<br>char    ===&gt; java.lang.Character</p>
+<p>拓：</p>
+<ul>
+<li><code>public static byte parseByte(String s)</code>：将字符串参数转换为对应的byte基本类型。</li>
+<li><code>public static short parseShort(String s)</code>：将字符串参数转换为对应的short基本类型。</li>
+<li><code>public static int parseInt(String s)</code>：将字符串参数转换为对应的int基本类型。</li>
+<li><code>public static long parseLong(String s)</code>：将字符串参数转换为对应的long基本类型。</li>
+<li><code>public static float parseFloat(String s)</code>：将字符串参数转换为对应的float基本类型。</li>
+<li><code>public static double parseDouble(String s)</code>：将字符串参数转换为对应的double基本类型。</li>
+<li><code>public static boolean parseBoolean(String s)</code>：将字符串参数转换为对应的boolean基本类型。</li>
+</ul>
 <h3 id="2-定义常量"><a href="#2-定义常量" class="headerlink" title="2.定义常量"></a>2.定义常量</h3><p>Java 语言使用 final 关键字来定义一个常量（常量有三种类型：静态常量、成员常量和局部常量。），其语法如下所示：<br><strong>final dataType variableName = value</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 静态常量</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">double</span> PI = <span class="number">3.14</span>;</span><br><span class="line">    <span class="comment">// 声明成员常量</span></span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> y = <span class="number">10</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 声明局部常量</span></span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">double</span> x = <span class="number">3.3</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -687,21 +697,101 @@
 
 <h3 id="8-InputStream与OutputStream"><a href="#8-InputStream与OutputStream" class="headerlink" title="8.InputStream与OutputStream"></a>8.InputStream与OutputStream</h3><p>InputStream就是Java标准库提供的最基本的输入流。它位于java.io这个包里。java.io包提供了所有同步IO的功能。</p>
 <p>要特别注意的一点是，InputStream并不是一个接口，而是一个抽象类，它是所有输入流的超类。这个抽象类定义的一个最重要的方法就是int read()</p>
-<h3 id="9-日期与时间"><a href="#9-日期与时间" class="headerlink" title="9.日期与时间"></a>9.日期与时间</h3><p>我们再来看一下Java标准库提供的API。Java标准库有两套处理日期和时间的API：</p>
+<h3 id="9-日期与时间类"><a href="#9-日期与时间类" class="headerlink" title="9.日期与时间类"></a>9.日期与时间类</h3><p>我们再来看一下Java标准库提供的API。Java标准库有两套处理日期和时间的API：</p>
 <ul>
 <li>定义在java.util这个包里面，主要包括Date、Calendar和TimeZone这几个类(这里面有很多方法已经过时，废弃了，会报出warning)；</li>
 <li>新的API是在Java 8引入的，定义在java.time这个包里面，主要包括LocalDateTime、ZonedDateTime、ZoneId等（推荐使用这个API）</li>
 </ul>
-<h4 id="Date（废弃）"><a href="#Date（废弃）" class="headerlink" title="Date（废弃）"></a><del>Date（废弃）</del></h4><p><del>java.util.Date是用于表示一个日期和时间的对象，注意与java.sql.Date区分，后者用在数据库中。如果观察Date的源码，可以发现它实际上存储了一个long类型的以毫秒表示的时间戳</del><br>使用方式：<a href="https://ahrilove.top/2019/11/22/Javascript%E7%AF%87%E7%AB%A0%E4%B8%89/">【与JavaScript使用方式大同小异，作为参考】</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Date date = new Date();</span><br><span class="line">(date.getYear()+1900):获取当前的年份，不同于其它编程语言，一定要加上1900</span><br><span class="line">(date.getMonth()+1)： 获取当前月份，不同于其它编程语言，一定要+1</span><br><span class="line">(date.getDate())：获取当前天数，范围为1-31天，不能+1</span><br><span class="line">(date.getDay())：获取当前周几，范围为0-6</span><br><span class="line">(date.toString())：转换为String</span><br><span class="line">(date.toGMTString())：转换为GMT时区</span><br><span class="line">(date.toLocaleString())：转换为本地地区（2020年2月24日 下午4:07:14）</span><br></pre></td></tr></table></figure>
+<h4 id="9-1-Date类"><a href="#9-1-Date类" class="headerlink" title="9.1 Date类"></a>9.1 Date类</h4><p>Date类目前已经过时废弃了很多方法，仅推荐getTime()方法:把日期对象转换成对应的时间毫秒值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Date date = new Date();</span><br><span class="line">// 1586141801899(十三位数，毫秒级，与js的时间戳相同)</span><br><span class="line">System.out.println(date.getTime());</span><br></pre></td></tr></table></figure>
 
-<h4 id="自定义日期格式-废弃"><a href="#自定义日期格式-废弃" class="headerlink" title="自定义日期格式(废弃)"></a><del>自定义日期格式(废弃)</del></h4><p>举一个自定义日期格式</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.*;</span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 获取当前时间:</span></span><br><span class="line">        Date date = <span class="keyword">new</span> Date();</span><br><span class="line">        <span class="keyword">var</span> sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line">        System.out.println(sdf.format(date));  <span class="comment">// 2020-02-24 16:18:20</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>拓展：对于Java中的var表示声明局部变量，java在var上是有要求的。总结起来，有以下三点很重要：</p>
-<p>（1）只能用于局部变量上；</p>
-<p>（2）声明时必须初始化；</p>
-<p>（3）不能用作方法参数。</p>
-<h4 id="Calendar"><a href="#Calendar" class="headerlink" title="Calendar"></a><del>Calendar</del></h4><p><del>Calendar可以用于获取并设置年、月、日、时、分、秒，它和Date比，主要多了一个可以做简单的日期和时间运算的功能</del></p>
+<h4 id="9-2-Calendar"><a href="#9-2-Calendar" class="headerlink" title="9.2 Calendar"></a>9.2 Calendar</h4><p>Calendar可以用于获取并设置年、月、日、时、分、秒，它和Date比，主要多了一个可以做简单的日期和时间运算的功能</p>
+<h5 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h5><p>日历我们都见过,<code>java.util.Calendar</code>是日历类，在Date后出现，替换掉了许多Date的方法。该类将所有可能用到的时间信息封装为静态成员变量，方便获取。日历类就是方便获取各个时间属性的。</p>
+<h5 id="获取方式"><a href="#获取方式" class="headerlink" title="获取方式"></a>获取方式</h5><p>Calendar为抽象类，由于语言敏感性，Calendar类在创建对象时并非直接创建，而是通过静态方法创建，返回子类对象，如下：</p>
+<ol>
+<li>Calendar静态方法</li>
+</ol>
+<ul>
+<li><code>public static Calendar getInstance()</code>：使用默认时区和语言环境获得一个日历</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo06CalendarInit</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Calendar cal = Calendar.getInstance();</span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>常用方法</li>
+</ol>
+<p>根据Calendar类的API文档，常用方法有：</p>
+<ul>
+<li><code>public int get(int field)</code>：返回给定日历字段的值。</li>
+<li><code>public void set(int field, int value)</code>：将给定的日历字段设置为给定值。</li>
+<li><code>public abstract void add(int field, int amount)</code>：根据日历的规则，为给定的日历字段添加或减去指定的时间量。</li>
+<li><code>public Date getTime()</code>：返回一个表示此Calendar时间值（从历元到现在的毫秒偏移量）的Date对象。</li>
+</ul>
+<p>Calendar类中提供很多成员常量，代表给定的日历字段：</p>
+<table>
+<thead>
+<tr>
+<th>字段值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>YEAR</td>
+<td>年</td>
+</tr>
+<tr>
+<td>MONTH</td>
+<td>月（从0开始，可以+1使用）</td>
+</tr>
+<tr>
+<td>DAY_OF_MONTH</td>
+<td>月中的天（几号）</td>
+</tr>
+<tr>
+<td>HOUR</td>
+<td>时（12小时制）</td>
+</tr>
+<tr>
+<td>HOUR_OF_DAY</td>
+<td>时（24小时制）</td>
+</tr>
+<tr>
+<td>MINUTE</td>
+<td>分</td>
+</tr>
+<tr>
+<td>SECOND</td>
+<td>秒</td>
+</tr>
+<tr>
+<td>DAY_OF_WEEK</td>
+<td>周中的天（周几，周日为1，可以-1使用）</td>
+</tr>
+</tbody></table>
+<br>
+
+<ul>
+<li>get/set方法</li>
+</ul>
+<p>get方法用来获取指定字段的值，代码使用演示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalendarUtil</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 创建Calendar对象</span></span><br><span class="line">        Calendar cal = Calendar.getInstance();</span><br><span class="line">        <span class="comment">// 设置年 </span></span><br><span class="line">        <span class="keyword">int</span> year = cal.get(Calendar.YEAR);</span><br><span class="line">        <span class="comment">// 设置月</span></span><br><span class="line">        <span class="keyword">int</span> month = cal.get(Calendar.MONTH) + <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// 设置日</span></span><br><span class="line">        <span class="keyword">int</span> dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);</span><br><span class="line">        System.out.print(year + <span class="string">"年"</span> + month + <span class="string">"月"</span> + dayOfMonth + <span class="string">"日"</span>);</span><br><span class="line">        <span class="comment">// 2020年4月6日</span></span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>set方法用来设置指定字段的值，代码使用演示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo07CalendarMethod</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Calendar cal = Calendar.getInstance();</span><br><span class="line">        cal.set(Calendar.YEAR, <span class="number">2020</span>);</span><br><span class="line">        System.out.print(year + <span class="string">"年"</span> + month + <span class="string">"月"</span> + dayOfMonth + <span class="string">"日"</span>); <span class="comment">// 2020年1月17日</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>add方法</li>
+</ul>
+<p>add方法可以对指定日历字段的值进行加减操作，如果第二个参数为正数则加上偏移量，如果为负数则减去偏移量。代码如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo08CalendarMethod</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Calendar cal = Calendar.getInstance();</span><br><span class="line">        System.out.print(year + <span class="string">"年"</span> + month + <span class="string">"月"</span> + dayOfMonth + <span class="string">"日"</span>); <span class="comment">// 2018年1月17日</span></span><br><span class="line">        <span class="comment">// 使用add方法</span></span><br><span class="line">        cal.add(Calendar.DAY_OF_MONTH, <span class="number">2</span>); <span class="comment">// 加2天</span></span><br><span class="line">        cal.add(Calendar.YEAR, -<span class="number">3</span>); <span class="comment">// 减3年</span></span><br><span class="line">        System.out.print(year + <span class="string">"年"</span> + month + <span class="string">"月"</span> + dayOfMonth + <span class="string">"日"</span>); <span class="comment">// 2015年1月18日; </span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>getTime方法</li>
+</ul>
+<p>Calendar中的getTime方法并不是获取毫秒时刻，而是拿到对应的Date对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo09CalendarMethod</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Calendar cal = Calendar.getInstance();</span><br><span class="line">        Date date = cal.getTime();</span><br><span class="line">        System.out.println(date); <span class="comment">// Tue Jan 16 16:03:09 CST 2018</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>小贴士：西方星期的开始为周日，中国为周一。在Calendar类中，月份的表示是以0-11代表1-12月。日期是有大小关系的，时间靠后，时间越大。</p>
 <p>从Java 8开始，java.time包提供了新的日期和时间API，主要涉及的类型有：</p>
 <ol>
 <li>本地日期和时间：LocalDateTime，LocalDate，LocalTime；</li>
@@ -714,6 +804,72 @@
 <p>和旧的API相比，新API严格区分了时刻、本地日期、本地时间和带时区的日期时间，并且，对日期和时间进行运算更加方便。</p>
 <p><font color=#ed1941>此外，新API修正了旧API不合理的常量设计：</p>
 <p>Month的范围用1~12表示1月到12月；<br>Week的范围用1~7表示周一到周日。<br>最后，新API的类型几乎全部是不变类型（和String类似），可以放心使用不必担心被修改。</font></p>
+<h4 id="9-3-DateFormat类"><a href="#9-3-DateFormat类" class="headerlink" title="9.3 DateFormat类"></a>9.3 DateFormat类</h4><p><strong>2020-4-6 新增：DateFormat类</strong></p>
+<p><code>java.text.DateFormat</code> 是日期/时间格式化子类的抽象类，我们通过这个类可以帮我们完成日期和文本之间的转换,也就是可以在Date对象与String对象之间进行来回转换。</p>
+<ul>
+<li><strong>格式化</strong>：按照指定的格式，从Date对象转换为String对象。</li>
+<li><strong>解析</strong>：按照指定的格式，从String对象转换为Date对象。</li>
+</ul>
+<p>①. 构造方法</p>
+<p>由于DateFormat为抽象类，不能直接使用，所以需要常用的子类<code>java.text.SimpleDateFormat</code>。这个类需要一个模式（格式）来指定格式化或解析的标准。构造方法为：</p>
+<p> <code>public SimpleDateFormat(String pattern)</code>：用给定的模式和默认语言环境的日期格式符号构造SimpleDateFormat。</p>
+<p>参数pattern是一个字符串，代表日期时间的自定义格式。</p>
+<p>②. 格式规则</p>
+<p>常用的格式规则为：</p>
+<table>
+<thead>
+<tr>
+<th>标识字母（区分大小写）</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>y</td>
+<td>年</td>
+</tr>
+<tr>
+<td>M</td>
+<td>月</td>
+</tr>
+<tr>
+<td>d</td>
+<td>日</td>
+</tr>
+<tr>
+<td>H</td>
+<td>时</td>
+</tr>
+<tr>
+<td>m</td>
+<td>分</td>
+</tr>
+<tr>
+<td>s</td>
+<td>秒</td>
+</tr>
+</tbody></table>
+<p>③. 常用方法</p>
+<p>DateFormat类的常用方法有：</p>
+<ul>
+<li><code>public String format(Date date)</code>：将Date对象格式化为字符串。</li>
+<li><code>public Date parse(String source)</code>：将字符串解析为Date对象。</li>
+</ul>
+<h5 id="format方法"><a href="#format方法" class="headerlink" title="format方法"></a>format方法</h5><p>使用format方法的代码为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.DateFormat;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> 把Date对象转换成String</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo03DateFormatMethod</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 获取当前的日期对象</span></span><br><span class="line">        Date date = <span class="keyword">new</span> Date();</span><br><span class="line">        <span class="comment">// 创建日期格式化对象,在获取格式化对象时可以指定风格</span></span><br><span class="line">        DateFormat df = <span class="keyword">new</span> SimpleDateFormat(<span class="string">""</span>yyyy-MM-dd HH:mm:ss<span class="string">""</span>);</span><br><span class="line">        String str = df.format(date);</span><br><span class="line">        System.out.println(str); <span class="comment">// 2020-04-06 10:23:54</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="parse方法"><a href="#parse方法" class="headerlink" title="parse方法"></a>parse方法</h5><p>使用parse方法的代码为：把目标String转换成相应的Date对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.DateFormat;</span><br><span class="line"><span class="keyword">import</span> java.text.ParseException;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo04DateFormatMethod</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ParseException </span>&#123;</span><br><span class="line">        DateFormat df = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy年MM月dd日"</span>);</span><br><span class="line">        Date date = df.parse(<span class="string">"2018年12月11日"</span>);</span><br><span class="line">        System.out.println(date); <span class="comment">// Tue Dec 11 00:00:00 CST 2018</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="10-System类"><a href="#10-System类" class="headerlink" title="10.System类"></a>10.System类</h3><p>java.lang.System类中提供了大量的静态方法，可以获取与系统相关的信息或系统级操作，在System类的API文档中，常用的方法有：</p>
+<ul>
+<li>public static long currentTimeMillis()：返回以毫秒为单位的当前时间。</li>
+<li>public static void arraycopy(Object src, int srcPos, Object dest, int destPos, int length)：将数组中指定的数据拷贝到另一个数组中。</li>
+</ul>
+<p>案例展示：验证for循环打印数字1-9999所需要使用的时间（毫秒）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SystemTest1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> start = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++) &#123;</span><br><span class="line">            System.out.println(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">long</span> end = System.currentTimeMillis();</span><br><span class="line">        System.out.println(<span class="string">"共耗时毫秒："</span> + (end - start));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
 <h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
 <li><a href="https://blog.csdn.net/qq_36850813/article/details/90900744" target="_blank" rel="noopener">JAVA中的Random()</a></li>
 </ul>
@@ -728,10 +884,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-03T16:26:09+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-06T11:34:37+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年4月3日</p>
+    <p>更新于 2020年4月6日</p>
   </a>
 </div>
 
@@ -1011,7 +1167,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-字符串与编码"><span class="toc-text">1.字符串与编码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#包装类型："><span class="toc-text">包装类型：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-定义常量"><span class="toc-text">2.定义常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-enum枚举类"><span class="toc-text">3.enum枚举类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-常用工具类"><span class="toc-text">4.常用工具类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#MAth：进行数学计算"><span class="toc-text">MAth：进行数学计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Random：创建伪随机数"><span class="toc-text">Random：创建伪随机数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-异常处理机制"><span class="toc-text">5.异常处理机制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#多catch语句"><span class="toc-text">多catch语句</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#finally语句"><span class="toc-text">finally语句</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-集合"><span class="toc-text">6.集合</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-List接口"><span class="toc-text">6.1 List接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-Set接口"><span class="toc-text">6.2 Set接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3-Map接口"><span class="toc-text">6.3 Map接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-4-Iterator迭代器接口"><span class="toc-text">6.4 Iterator迭代器接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-5-集合的综合运用：斗地主游戏"><span class="toc-text">6.5 集合的综合运用：斗地主游戏</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-IO，【File类的操作大全】"><span class="toc-text">7.IO，【File类的操作大全】</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-File类的静态方法"><span class="toc-text">7.1 File类的静态方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2-文件和目录"><span class="toc-text">7.2 文件和目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-3-路径"><span class="toc-text">7.3 路径</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-4-遍历文件和目录"><span class="toc-text">7.4 遍历文件和目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-5-Path"><span class="toc-text">7.5 Path</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-InputStream与OutputStream"><span class="toc-text">8.InputStream与OutputStream</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-日期与时间"><span class="toc-text">9.日期与时间</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Date（废弃）"><span class="toc-text">Date（废弃）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自定义日期格式-废弃"><span class="toc-text">自定义日期格式(废弃)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Calendar"><span class="toc-text">Calendar</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-字符串与编码"><span class="toc-text">1.字符串与编码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#包装类型："><span class="toc-text">包装类型：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-定义常量"><span class="toc-text">2.定义常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-enum枚举类"><span class="toc-text">3.enum枚举类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-常用工具类"><span class="toc-text">4.常用工具类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#MAth：进行数学计算"><span class="toc-text">MAth：进行数学计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Random：创建伪随机数"><span class="toc-text">Random：创建伪随机数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-异常处理机制"><span class="toc-text">5.异常处理机制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#多catch语句"><span class="toc-text">多catch语句</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#finally语句"><span class="toc-text">finally语句</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-集合"><span class="toc-text">6.集合</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-List接口"><span class="toc-text">6.1 List接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-Set接口"><span class="toc-text">6.2 Set接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3-Map接口"><span class="toc-text">6.3 Map接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-4-Iterator迭代器接口"><span class="toc-text">6.4 Iterator迭代器接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-5-集合的综合运用：斗地主游戏"><span class="toc-text">6.5 集合的综合运用：斗地主游戏</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-IO，【File类的操作大全】"><span class="toc-text">7.IO，【File类的操作大全】</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-File类的静态方法"><span class="toc-text">7.1 File类的静态方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2-文件和目录"><span class="toc-text">7.2 文件和目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-3-路径"><span class="toc-text">7.3 路径</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-4-遍历文件和目录"><span class="toc-text">7.4 遍历文件和目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-5-Path"><span class="toc-text">7.5 Path</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-InputStream与OutputStream"><span class="toc-text">8.InputStream与OutputStream</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-日期与时间类"><span class="toc-text">9.日期与时间类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#9-1-Date类"><span class="toc-text">9.1 Date类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-2-Calendar"><span class="toc-text">9.2 Calendar</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#概念"><span class="toc-text">概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#获取方式"><span class="toc-text">获取方式</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-3-DateFormat类"><span class="toc-text">9.3 DateFormat类</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#format方法"><span class="toc-text">format方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#parse方法"><span class="toc-text">parse方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-System类"><span class="toc-text">10.System类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
     </div>
   </section>
 

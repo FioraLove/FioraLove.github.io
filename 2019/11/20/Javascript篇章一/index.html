@@ -491,7 +491,7 @@
 <p>对象名.属性名 或者<br>对象名[&quot;属性名&quot;]</p>
 <h4 id="案例：数据集构造"><a href="#案例：数据集构造" class="headerlink" title="案例：数据集构造"></a>案例：数据集构造</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">let</span> dimensions = [];  <span class="comment">//维度</span></span><br><span class="line"><span class="keyword">let</span> source = [];      <span class="comment">//数据集</span></span><br><span class="line"><span class="keyword">let</span> series = [];        <span class="comment">//图系列</span></span><br><span class="line"></span><br><span class="line">dimensions.push(<span class="string">"groupcus_name"</span>);</span><br><span class="line">dimensions.push(<span class="string">"剩余发出商品"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;response.Rows.length;i++)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> obj = &#123;&#125;;</span><br><span class="line">    obj[<span class="string">"groupcus_name"</span>] = response.Rows[i].groupcus_name;  <span class="comment">// 对象的调用方式obj["key_name"]或obj.key_name</span></span><br><span class="line">    obj[<span class="string">"剩余发出商品"</span>] = response.Rows[i].surplusp;</span><br><span class="line"></span><br><span class="line">    source.push(obj);   <span class="comment">// 记住push只适用于数组的元素添加，并返回数组元素个数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="4-j字符串"><a href="#4-j字符串" class="headerlink" title="4.j字符串"></a>4.j字符串</h3><blockquote>
+<h3 id="4-js字符串"><a href="#4-js字符串" class="headerlink" title="4.js字符串"></a>4.js字符串</h3><blockquote>
 <p>函数语法</p>
 </blockquote>
 <p>function function_name(param1,param2,…){code}<br>PS:不使用 () 访问函数将返回函数声明而不是函数结果</p>
@@ -560,10 +560,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-28T17:47:47+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-06T13:38:12+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年3月28日</p>
+    <p>更新于 2020年4月6日</p>
   </a>
 </div>
 
@@ -846,7 +846,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-变量及数据类型：JavaScript变量是数据值的容器"><span class="toc-text">1. 变量及数据类型：JavaScript变量是数据值的容器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#声明变量"><span class="toc-text">声明变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命名规范"><span class="toc-text">命名规范</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-js数据类型"><span class="toc-text">2.js数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-对象"><span class="toc-text">3.对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#案例：数据集构造"><span class="toc-text">案例：数据集构造</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-j字符串"><span class="toc-text">4.j字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-变量及数据类型：JavaScript变量是数据值的容器"><span class="toc-text">1. 变量及数据类型：JavaScript变量是数据值的容器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#声明变量"><span class="toc-text">声明变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命名规范"><span class="toc-text">命名规范</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-js数据类型"><span class="toc-text">2.js数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-对象"><span class="toc-text">3.对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#案例：数据集构造"><span class="toc-text">案例：数据集构造</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-js字符串"><span class="toc-text">4.js字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
     </div>
   </section>
 

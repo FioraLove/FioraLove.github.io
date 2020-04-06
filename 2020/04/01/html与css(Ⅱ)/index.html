@@ -472,6 +472,41 @@
 <li>a:active - 链接被点击的那一刻</li>
 </ul>
 <p>拓：ul标签，ol标签去掉前面的编码：list-style-type: none;</p>
+<h3 id="5-table标签补充"><a href="#5-table标签补充" class="headerlink" title="5.table标签补充"></a>5.table标签补充</h3><p><strong>HTML表格由table标签以及一个或多个tr、th或td标签组成</strong>：</p>
+<p>table标签用来定义表格，整个表格包含在&lt;table&gt;和&lt;/table&gt;标签中；</p>
+<p>tr标签用来定义表格中一个行，它是单元格的容器，每行可以包含有多个单元格，由&lt;tr&gt;和&lt;/tr&gt;标签表示；</p>
+<p>td标签和th标签用来定义单元格，所有单元格都在tr标签内，每个单元格由一对&lt;td&gt;和&lt;/td&gt;标签或一对&lt;th&gt;和&lt;/th&gt;标签表示，具体的表格内容放置在这一对td标签或th标签之中，其中th标签中的内容默认以粗体、居中的方式显示，以为它代表表格标题。</p>
+<ul>
+<li>rowspan属性来实现单元格的跨行操作，所有的浏览器均可支持</li>
+<li>colspan属性规定单元格可横跨的列数，所有的浏览器均可支持</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">border</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">th</span> <span class="attr">colspan</span>=<span class="string">"3"</span>&gt;</span>物资详情说明<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">colspan</span>=<span class="string">"2"</span> <span class="attr">align</span>=<span class="string">"center"</span>&gt;</span>数量(支)<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">rowspan</span>=<span class="string">"2"</span>&gt;</span>重量(吨)<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>实发数<span class="tag">&lt;/<span class="name">td</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>实收数<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>12<span class="tag">&lt;/<span class="name">td</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>10<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>100.00<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>经过渲染后的colspan，rowspan属性展示如下:</p>
+<table border="1">
+  <tr>
+    <th colspan="3">物资详情说明</th>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">数量(支)</td>
+    <td rowspan="2">重量(吨)</td>
+  </tr>
+  <tr>
+    <td>实发数</td>    
+    <td>实收数</td>
+  </tr>
+  <tr>
+    <td>12</td>    
+    <td>10</td>
+    <td>100.00</td>
+  </tr>
+</table>
+
+
+
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
+<li><a href="https://blog.csdn.net/qq_40831381/article/details/90293574?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2&utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2" target="_blank" rel="noopener">HTML的表格table属性</a></li>
+<li><a href="https://blog.csdn.net/u012724595/article/details/79401401" target="_blank" rel="noopener">HTML表格跨行、跨列操作(rowspan、colspan)</a></li>
+</ul>
 
       </div>
       
@@ -483,10 +518,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-02T15:44:48+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-06T14:27:34+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年4月2日</p>
+    <p>更新于 2020年4月6日</p>
   </a>
 </div>
 
@@ -766,7 +801,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-div的margin和padding"><span class="toc-text">1.div的margin和padding</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-float属性"><span class="toc-text">2.float属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-默认自带margin或padding的标签"><span class="toc-text">3.默认自带margin或padding的标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-a标签的链接样式"><span class="toc-text">4.a标签的链接样式</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-div的margin和padding"><span class="toc-text">1.div的margin和padding</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-float属性"><span class="toc-text">2.float属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-默认自带margin或padding的标签"><span class="toc-text">3.默认自带margin或padding的标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-a标签的链接样式"><span class="toc-text">4.a标签的链接样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-table标签补充"><span class="toc-text">5.table标签补充</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文献"><span class="toc-text">参考文献</span></a></li></ol>
     </div>
   </section>
 
