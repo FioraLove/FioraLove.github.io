@@ -433,7 +433,7 @@
       <div class="article-entry" itemprop="articleBody">
         <p>HTML 事件是发生在 HTML 元素上的事情。当在 HTML 页面中使用 JavaScript 时， JavaScript 可以触发这些事件。<br><strong>本章内容：</strong></p>
 <blockquote>
-<p>1.HTML事件响应机制<br>2.js获取表单元素和标签节点内容</p>
+<p>1.HTML事件响应机制<br>2.js获取表单元素和标签节点内容<br>3.获取 HTML 的DOM元素节点<br>4.改变HTML元素的内容(innerHTML)<br>5.html DOM-改变CSS</p>
 </blockquote>
 <a id="more"></a>
 
@@ -485,6 +485,22 @@
 <p>举例说明：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>点击这个按钮，来调用带参数的函数。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"myFunction('Harry Potter','Wizard')"</span>&gt;</span>点击这里<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">myFunction</span><span class="params">(name,job)</span></span>&#123;</span></span><br><span class="line"><span class="actionscript">    alert(<span class="string">"Welcome "</span> + name + <span class="string">", the "</span> + job);</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
+<p>案例二：获取键盘输入</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="actionscript">      <span class="comment">// document表示当前页面，而window表示全局变量</span></span></span><br><span class="line"><span class="javascript">      <span class="built_in">document</span>.onkeydown=<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">let</span> e = event || <span class="built_in">window</span>.event || <span class="built_in">arguments</span>.callee.caller.arguments[<span class="number">0</span>];</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">if</span>(e &amp;&amp; e.keyCode===<span class="number">27</span>)&#123; <span class="comment">// 按 Esc </span></span></span><br><span class="line"><span class="actionscript">                <span class="comment">//要做的事情</span></span></span><br><span class="line">              &#125;</span><br><span class="line"><span class="actionscript">            <span class="keyword">if</span>(e &amp;&amp; e.keyCode===<span class="number">113</span>)&#123; <span class="comment">// 按 F2 </span></span></span><br><span class="line"><span class="actionscript">                 <span class="comment">//要做的事情</span></span></span><br><span class="line">               &#125;            </span><br><span class="line"><span class="actionscript">             <span class="keyword">if</span>(e &amp;&amp; e.keyCode===<span class="number">13</span>)&#123; <span class="comment">// enter 键</span></span></span><br><span class="line"><span class="actionscript">                 <span class="comment">//要做的事情</span></span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;; </span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>小结：HTML DOM事件主要分为几个大类</p>
+<ul>
+<li>鼠标事件</li>
+<li>键盘事件</li>
+<li>框架/对象（Frame/Object）事件</li>
+<li>表单事件</li>
+<li>剪贴板事件</li>
+<li>打印事件</li>
+<li>拖动事件</li>
+<li>多媒体事件</li>
+<li>动画事件</li>
+<li>其它事件</li>
+</ul>
 <h3 id="2-js获取表单元素和标签节点内容"><a href="#2-js获取表单元素和标签节点内容" class="headerlink" title="2.js获取表单元素和标签节点内容"></a>2.<strong>js获取表单元素和标签节点内容</strong></h3><ul>
 <li><p>通过document.getElementById(“节点id”)获取节点的DOM：<br>对于表单元素，获取其中的内容，通过<code>.value</code>的属性<br>对于标签节点，<code>.innerHTML</code>获取标签间的内容</p>
 </li>
@@ -525,10 +541,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-02T09:17:50+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-07T15:26:40+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年4月2日</p>
+    <p>更新于 2020年4月7日</p>
   </a>
 </div>
 
@@ -552,7 +568,7 @@
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/03/11/Javascript%E7%AF%87%E7%AB%A0%E5%85%AB/&title=Javascript篇章八：js的事件响应机制 | AhriLove&summary=HTML 事件是发生在 HTML 元素上的事情。当在 HTML 页面中使用 JavaScript 时， JavaScript 可以触发这些事件。本章内容：
 
-1.HTML事件响应机制2.js获取表单元素和标签节点内容
+1.HTML事件响应机制2.js获取表单元素和标签节点内容3.获取 HTML 的DOM元素节点4.改变HTML元素的内容(innerHTML)5.html DOM-改变CSS
 "
           
           >
@@ -567,7 +583,7 @@
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/03/11/Javascript%E7%AF%87%E7%AB%A0%E5%85%AB/&title=Javascript篇章八：js的事件响应机制 | AhriLove&summary=HTML 事件是发生在 HTML 元素上的事情。当在 HTML 页面中使用 JavaScript 时， JavaScript 可以触发这些事件。本章内容：
 
-1.HTML事件响应机制2.js获取表单元素和标签节点内容
+1.HTML事件响应机制2.js获取表单元素和标签节点内容3.获取 HTML 的DOM元素节点4.改变HTML元素的内容(innerHTML)5.html DOM-改变CSS
 "
           
           >
@@ -582,7 +598,7 @@
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/03/11/Javascript%E7%AF%87%E7%AB%A0%E5%85%AB/&title=Javascript篇章八：js的事件响应机制 | AhriLove&summary=HTML 事件是发生在 HTML 元素上的事情。当在 HTML 页面中使用 JavaScript 时， JavaScript 可以触发这些事件。本章内容：
 
-1.HTML事件响应机制2.js获取表单元素和标签节点内容
+1.HTML事件响应机制2.js获取表单元素和标签节点内容3.获取 HTML 的DOM元素节点4.改变HTML元素的内容(innerHTML)5.html DOM-改变CSS
 "
           
           >
@@ -1043,11 +1059,11 @@
         
           <li><a class="flat-box" title="/categories/docker/" href="/categories/docker/"><div class='name'>docker</div><div class='badge'>(3)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/javascript/" href="/categories/javascript/"><div class='name'>javascript</div><div class='badge'>(8)</div></a></li>
+          <li><a class="flat-box" title="/categories/javascript/" href="/categories/javascript/"><div class='name'>javascript</div><div class='badge'>(9)</div></a></li>
         
           <li><a class="flat-box" title="/categories/json/" href="/categories/json/"><div class='name'>json</div><div class='badge'>(2)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/%E5%89%8D%E7%AB%AF/" href="/categories/%E5%89%8D%E7%AB%AF/"><div class='name'>前端</div><div class='badge'>(10)</div></a></li>
+          <li><a class="flat-box" title="/categories/%E5%89%8D%E7%AB%AF/" href="/categories/%E5%89%8D%E7%AB%AF/"><div class='name'>前端</div><div class='badge'>(9)</div></a></li>
         
           <li><a class="flat-box" title="/categories/%E5%8D%9A%E5%AE%A2Hexo/" href="/categories/%E5%8D%9A%E5%AE%A2Hexo/"><div class='name'>博客Hexo</div><div class='badge'>(2)</div></a></li>
         
