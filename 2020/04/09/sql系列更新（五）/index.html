@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>python文件读read()、readline()、readlines()对比 | AhriLove</title>
+  <title>sql数据库引发的生产事故案例 | AhriLove</title>
   
   
 
@@ -347,8 +347,8 @@
         
   
     <h1 class="title">
-      <a href="/2019/11/07/python%E7%9A%84read_readlines_readline/">
-        python文件读read()、readline()、readlines()对比
+      <a href="/2020/04/09/sql%E7%B3%BB%E5%88%97%E6%9B%B4%E6%96%B0%EF%BC%88%E4%BA%94%EF%BC%89/">
+        sql数据库引发的生产事故案例
       </a>
     </h1>
   
@@ -363,11 +363,11 @@
             
   <div class='new-meta-item author'>
     
-      <a href="https://ahrilove.top" rel="nofollow">
+      <a href="/" rel="nofollow">
         
-          <i class="fas fa-user" aria-hidden="true"></i>
+          <img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imagesNaruto.jpg">
         
-        <p>AhriLove</p>
+        <p>Badwoman</p>
       </a>
     
   </div>
@@ -379,7 +379,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-11-07</p>
+    <p>2020-04-09</p>
   </a>
 </div>
 
@@ -389,9 +389,9 @@
             
   
   <div class='new-meta-item category'>
-    <a href='/categories/Python/' rel="nofollow">
+    <a href='/categories/Database/' rel="nofollow">
       <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>Python</p>
+      <p>Database</p>
     </a>
   </div>
 
@@ -431,17 +431,20 @@
 
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
-        <p>&nbsp;&nbsp;&nbsp;read():读取整个文件，将文件内容放到一个字符串变量中<br><br>&nbsp;&nbsp;&nbsp;readline():每次读取一整行，包括换行符，并将其作为字符串返回<br><br>&nbsp;&nbsp;&nbsp;readlines():读取所有行然后把它们作为一个字符串型列表返回（即把每一行数据包括换行符作为一个列表元素）<br></p>
+        <p>数据库是每一个IT工程师必备的技能树，通常一些很小错误操作，尤其对生产环境带来很大的经济损失。收集网上大佬分享的数据库重大事故，警示自己，与君共勉。</p>
+<blockquote>
+<p><font color=#FF3030>本文要点：</font><br>1.Insert into select语句引发的生产事故</p>
+</blockquote>
 <a id="more"></a>
-<h2 id="1-readline-示例："><a href="#1-readline-示例：" class="headerlink" title="1.readline()示例："></a>1.readline()示例：</h2><p>假设需求是读取一个多行的all_term.txt文件，并列出每一个单词<br>all_term.txt文件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">new fallout chernobyl social impact chernobyl disast</span><br><span class="line">david r marpl st martin press cloth</span><br><span class="line">rnobyl social impact chernobyl disast</span><br><span class="line">david r marpl st martin piano</span><br></pre></td></tr></table></figure>
-<p>程序源代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    obj = []</span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'all_term.txt'</span>, <span class="string">'r'</span>, encoding=<span class="string">'utf-8'</span>,errors=<span class="string">"ignore"</span>) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            myStr = f.readline()  <span class="comment"># 表示一次读取一行</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> myStr:</span><br><span class="line">                <span class="comment"># 读到数据最后跳出，结束循环。数据的最后也就是读不到数据了，mystr为空的时候</span></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="comment"># 指定字符串来分割目标字符串，以列表形式返回</span></span><br><span class="line">            new_list = myStr.split()</span><br><span class="line">            <span class="comment"># 表示将拆分好的每一行重新拼接成一个完整的数组</span></span><br><span class="line">            obj += new_list</span><br><span class="line">        print(obj)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p>readline()表示读取一整行，那如果一个文件有多行数据，使用readline()函数是不是一直重复读取第一行？<br>其实不然，使用with open()打开文件后，第一个readline()读取第一行（也包括换行符），第二个读取第二行,…,第n个读取第n行数据，这是由系统机制判定的。<br>下面我列举一个实例：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""all_term.txt:</span></span><br><span class="line"><span class="string">new fallout chernobyl social impact chernobyl disast</span></span><br><span class="line"><span class="string">david r marpl st martin press cloth</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">new fallout chernobyl social impact chernobyl disast</span></span><br><span class="line"><span class="string">david r marpl st martin press cloth</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'all_term.txt'</span>, <span class="string">'r'</span>, encoding=<span class="string">'utf-8'</span>, errors=<span class="string">'ignore'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    a = f.readline().replace(<span class="string">"\n"</span>, <span class="string">""</span>)</span><br><span class="line">    b = f.readline().replace(<span class="string">"\n"</span>, <span class="string">""</span>)</span><br><span class="line">print(<span class="string">"a:"</span>, a)</span><br><span class="line">print(<span class="string">"b:"</span>, b)</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">结果为：</span></span><br><span class="line"><span class="string">a: new fallout chernobyl social impact chernobyl disast</span></span><br><span class="line"><span class="string">b: david r marpl st martin press cloth</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
-<p>根据结果可以得出结论：</p>
-<p>1.第一个readline()读取第一行（也包括换行符），第二个读取第二行，……</p>
-<p>2.上面是我们经常看到的按行遍历一个文件方法，你可能已经注意到我在代码中写的if not myStr:部分。当readline读取到为空的时候，意味着读到了文件的结束。这个时候，问题就在这里，很多人会想，是不是遇到一个空行，也会被认为是文件的结束呢？<br>事实上，文件的空白行并不会返回一个空行。因为在每一行的末尾还有一个或者多个分隔符，因此“空白行”至少会有一个换行符或者系统使用的其他符号。所以，即使文件中真的包含一个“空白行”，读入的行也不是空的，这就意味着在真实遍历读取到文件结束之前，程序实际上是不会停止的</p>
+<h3 id="1-Insert-into-select语句引发的生产事故"><a href="#1-Insert-into-select语句引发的生产事故" class="headerlink" title="1.Insert into select语句引发的生产事故"></a>1.Insert into select语句引发的生产事故</h3><p>复制表结构和表数据先参考文献：<a href="https://blog.csdn.net/insis_mo/article/details/84936753" target="_blank" rel="noopener">select into from 和 insert into select 的用法和区别</a></p>
+<p><strong>前言：</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Insert into select请慎用。这天xxx接到一个需求，需要将表A的数据迁移到表B中去做一个备份。本想通过程序先查询查出来然后批量插入。但xxx觉得这样有点慢，需要耗费大量的网络I/O，决定采取别的方法进行实现。通过在Baidu的海洋里遨游，他发现了可以使用insert into select实现，这样就可以避免使用网络I/O，直接使用SQL依靠数据库I/O完成，这样简直不要太棒了。然后他就被开除了。</p>
+<p><strong>事件经过：</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于数据数据库中order_today数据量过大，当时好像有700W了并且每天在以30W的速度增加。所以上司命令xxx将order_today内的部分数据迁移到order_record中，并将order_today中的数据删除。这样来降低order_today表中的数据量。<br>  由于考虑到会占用数据库I/O，为了不影响业务，计划是9:00以后开始迁移，但是xxx在8:00的时候，尝试迁移了少部分数据(1000条)，觉得没啥问题，就开始考虑大批量迁移。</p>
+<ul>
+<li>在迁移的过程中，应急群是先反应有小部分用户出现支付失败，随后反应大批用户出现支付失败的情况，以及初始化订单失败的情况，同时腾讯也开始报警。</li>
+<li>然后xxx就慌了，立即停止了迁移。本以为停止迁移就就可以恢复了，但是并没有。后面发生的你们可以脑补一下。</li>
+</ul>
+<p><strong>解决方案：</strong><br>网友 大鸡腿童鞋：走普通做法就可以了，查询完再插入。越是花里花哨越多问题。通过外部工具或代码来做归档最好。</p>
+<p>作者：不一样的科技宅<br>链接：<a href="https://juejin.im/post/5e670f0151882549274a65ef" target="_blank" rel="noopener">https://juejin.im/post/5e670f0151882549274a65ef</a><br>来源：掘金<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
 
       </div>
       
@@ -453,10 +456,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-01T17:55:04+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-09T13:30:05+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年2月1日</p>
+    <p>更新于 2020年4月9日</p>
   </a>
 </div>
 
@@ -465,7 +468,7 @@
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/read-readline-readlines/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>read() - readline() - readlines()</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/MySQL/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>MySQL</p></a></div>
 
 
         
@@ -478,7 +481,10 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/11/07/python%E7%9A%84read_readlines_readline/&title=python文件读read()、readline()、readlines()对比 | AhriLove&summary=&nbsp;&nbsp;&nbsp;read():读取整个文件，将文件内容放到一个字符串变量中&nbsp;&nbsp;&nbsp;readline():每次读取一整行，包括换行符，并将其作为字符串返回&nbsp;&nbsp;&nbsp;readlines():读取所有行然后把它们作为一个字符串型列表返回（即把每一行数据包括换行符作为一个列表元素）"
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/04/09/sql%E7%B3%BB%E5%88%97%E6%9B%B4%E6%96%B0%EF%BC%88%E4%BA%94%EF%BC%89/&title=sql数据库引发的生产事故案例 | AhriLove&summary=数据库是每一个IT工程师必备的技能树，通常一些很小错误操作，尤其对生产环境带来很大的经济损失。收集网上大佬分享的数据库重大事故，警示自己，与君共勉。
+
+本文要点：1.Insert into select语句引发的生产事故
+"
           
           >
           
@@ -490,7 +496,10 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/11/07/python%E7%9A%84read_readlines_readline/&title=python文件读read()、readline()、readlines()对比 | AhriLove&summary=&nbsp;&nbsp;&nbsp;read():读取整个文件，将文件内容放到一个字符串变量中&nbsp;&nbsp;&nbsp;readline():每次读取一整行，包括换行符，并将其作为字符串返回&nbsp;&nbsp;&nbsp;readlines():读取所有行然后把它们作为一个字符串型列表返回（即把每一行数据包括换行符作为一个列表元素）"
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/04/09/sql%E7%B3%BB%E5%88%97%E6%9B%B4%E6%96%B0%EF%BC%88%E4%BA%94%EF%BC%89/&title=sql数据库引发的生产事故案例 | AhriLove&summary=数据库是每一个IT工程师必备的技能树，通常一些很小错误操作，尤其对生产环境带来很大的经济损失。收集网上大佬分享的数据库重大事故，警示自己，与君共勉。
+
+本文要点：1.Insert into select语句引发的生产事故
+"
           
           >
           
@@ -502,7 +511,10 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/11/07/python%E7%9A%84read_readlines_readline/&title=python文件读read()、readline()、readlines()对比 | AhriLove&summary=&nbsp;&nbsp;&nbsp;read():读取整个文件，将文件内容放到一个字符串变量中&nbsp;&nbsp;&nbsp;readline():每次读取一整行，包括换行符，并将其作为字符串返回&nbsp;&nbsp;&nbsp;readlines():读取所有行然后把它们作为一个字符串型列表返回（即把每一行数据包括换行符作为一个列表元素）"
+          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/04/09/sql%E7%B3%BB%E5%88%97%E6%9B%B4%E6%96%B0%EF%BC%88%E4%BA%94%EF%BC%89/&title=sql数据库引发的生产事故案例 | AhriLove&summary=数据库是每一个IT工程师必备的技能树，通常一些很小错误操作，尤其对生产环境带来很大的经济损失。收集网上大佬分享的数据库重大事故，警示自己，与君共勉。
+
+本文要点：1.Insert into select语句引发的生产事故
+"
           
           >
           
@@ -526,40 +538,21 @@
       
           <div class="prev-next">
               
-                  <section class="prev">
-                      <span class="art-item-left">
-                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
-                          <h4>
-                              <a href="/2019/11/08/Vue/" rel="prev" title="Vue">
-                                
-                                    Vue
-                                
-                              </a>
-                          </h4>
-                          
-                              
-                              <h6 class="tags">
-                                  <a class="tag" href="/tags/Vue/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Vue</a> <a class="tag" href="/tags/Jquery/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Jquery</a> <a class="tag" href="/tags/component/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> component</a>
-                              </h6>
-                          
-                      </span>
-                  </section>
-              
               
                   <section class="next">
                       <span class="art-item-right" aria-hidden="true">
                           <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                           <h4>
-                              <a href="/2019/10/26/Hexo%E4%B8%BB%E4%BD%93%E8%AE%BE%E7%BD%AE%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="prev" title="Hexo主体设置知识点">
+                              <a href="/2020/04/03/Java%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B9%9D%EF%BC%89/" rel="prev" title="Java（九）：Java数据结构基础">
                                   
-                                      Hexo主体设置知识点
+                                      Java（九）：Java数据结构基础
                                   
                               </a>
                           </h4>
                           
                               
                               <h6 class="tags">
-                                  <a class="tag" href="/tags/front-matter/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> front-matter</a>
+                                  <a class="tag" href="/tags/Java/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Java</a>
                               </h6>
                           
                       </span>
@@ -603,7 +596,7 @@
 
   <script>
     window.subData = {
-      title: 'python文件读read()、readline()、readlines()对比',
+      title: 'sql数据库引发的生产事故案例',
       tools: true
     }
   </script>
@@ -727,7 +720,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-readline-示例："><span class="toc-text">1.readline()示例：</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Insert-into-select语句引发的生产事故"><span class="toc-text">1.Insert into select语句引发的生产事故</span></a></li></ol>
     </div>
   </section>
 
