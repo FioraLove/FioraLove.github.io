@@ -538,8 +538,8 @@
 <td align="center">将对象插入列表</td>
 </tr>
 <tr>
-<td>list.pop([index=-1])</td>
-<td align="center">移除列表中的一个元素（默认最后一个元素），并且返回该元素的值</td>
+<td>list.pop([index=n])</td>
+<td align="center">移除指定索引的元素值（默认最后一个元素），并且返回该元素的值</td>
 </tr>
 <tr>
 <td>list.remove(obj)</td>
@@ -560,6 +560,19 @@
 </font>
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将obj数组分割成每100个一组</span></span><br><span class="line">numbers=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,...,<span class="number">10000</span>]</span><br><span class="line">number =[]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(numbers), <span class="number">100</span>):</span><br><span class="line">    number.append(numbers[i:i + <span class="number">100</span>])</span><br></pre></td></tr></table></figure>
+
+<p><strong>列表的list.remove(obj)使用说明：</strong><br>移除列表的指定的某一项（PS：不是索引，是具体的值）</p>
+<pre>
+a = [1,2,3,8,10,56,110]
+c = a.remove(8) (c为None)
+    👇
+a = [1, 2, 3, 10, 56, 110]
+----------------------------
+a = [1,2,3,8,10,56,110]
+b = a.pop(3) (b为8，pop返回该元素的值) 
+    👇
+a = [1, 2, 3, 10, 56, 110]
+</pre>
 
 
 <h3 id="3-元组"><a href="#3-元组" class="headerlink" title="3.元组"></a>3.元组</h3><blockquote>
@@ -692,10 +705,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-20T14:20:49+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-13T11:42:32+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年3月20日</p>
+    <p>更新于 2020年4月13日</p>
   </a>
 </div>
 

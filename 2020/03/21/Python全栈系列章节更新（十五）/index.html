@@ -472,6 +472,8 @@
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;代理也是一个很常用的方法。通常，在我们需要多个主机进行访问或需要绕过防火墙时，可以利用代理进行访问</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 无密码</span><br><span class="line">proxies = &#123;</span><br><span class="line">    &quot;http&quot;:&quot;http://178.128.63.64:8388&quot;</span><br><span class="line">&#125;</span><br><span class="line"># 有密码</span><br><span class="line">proxies = &#123;</span><br><span class="line">    &quot;http&quot;:&quot;http://user:password@178.128.63.64:8388&quot;</span><br><span class="line">&#125;</span><br><span class="line">response = requests.get(&quot;https://www.taobao.com&quot;, proxies=proxies)</span><br><span class="line">print(response.status_code)</span><br><span class="line"># 利用 socks 进行代理设置</span><br><span class="line">proxies = &#123;</span><br><span class="line">    &quot;http&quot;:&quot;socks5://178.128.63.64:8388&quot;,</span><br><span class="line">    &quot;https&quot;:&quot;socks5://178.128.63.64:8388&quot;</span><br><span class="line">&#125;</span><br><span class="line">response = requests.get(&quot;https://www.taobao.com&quot;, proxies=proxies)</span><br><span class="line">print(response.status_code)</span><br></pre></td></tr></table></figure>
 
+<p>补充：2020-4-13 代理池的设计</p>
+<p>今天花了一段时间设计了一个代理池，参考我的GitHub<a href="https://github.com/FioraLove/Python/tree/master/Python%E4%BB%A3%E7%90%86%E6%B1%A0" target="_blank" rel="noopener">【python代理池设计】</a></p>
 <ol start="5">
 <li>cookies<br>cookies除了放置在headers请求头里之外，也可以使用requests关键字里的cookies={…}</li>
 </ol>
@@ -536,10 +538,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-08T14:07:00+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-13T15:13:40+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年4月8日</p>
+    <p>更新于 2020年4月13日</p>
   </a>
 </div>
 
