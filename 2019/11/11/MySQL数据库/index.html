@@ -629,24 +629,22 @@
 </blockquote>
 <p>列的别名 select count(id) as new_number from table_teacher;</p>
 <p>使用别名来代替表的名字(使用<code>as</code>作为表的别名时，通常情况下不要省略，方便代码的阅读性，但是<strong>在Oracle数据库中，一定要省略，不然会出现<code>ORA-00933: SQL command not properly ended</code>错误</strong>)<br>select t.name,t.age from tab_teacher t;</p>
-<p>参考StackOverflow的问题回复：<br><font color = #694d9f><br>You can use <code>AS</code> for table aliasing on many SQL servers (at least MsSQL, MySQL, PostrgreSQL) but it’s always optional and on Oracle it’s illegal. so just remove the <code>as</code></font></p>
-<br>
-
+<p>参考StackOverflow的问题回复：<br><font color = #694d9f><br>You can use <code>AS</code> for table aliasing on many SQL servers (at least MsSQL, MySQL, PostrgreSQL) but it’s always optional and on Oracle it’s illegal. so just remove the <code>as</code></font><br><br></p>
 <blockquote>
 <p>9.4 分页查询方式（limit与rownum）</p>
 </blockquote>
 <p>查询老师记录的前三条（从0位置开始找出3条）： limit后面有两个参数：第一个参数是起始位置，初始记录行的偏移量是 0(而不是 1)；第二个参数是偏移量（即数据个数）</p>
 <pre>
 select * from tab_teacher limit 0,3;
-查询第1条到第10条数据的sql是：select * from table limit 0,10; 即索引值为[0,9],不同于其它编程语言左闭右开原则
+查询第1条到第10条数据的sql是：select * from table limit 0,10; 
+即索引值为[0,9],不同于其它编程语言左闭右开原则
 查询第10条到第20条数据的sql是：select * from table limit 10,20;
 </pre>
-
-<br>
-
+<p>分页查询计算公式：limit (page-1)*size,size<br><br></p>
 <font color=#694d9f>
 oracle的sql语句中没有limit,limit是mysql中特有的,在oracle中可用rownum来表示,用于查询结果中的前N行数据。如要查询emp表中的前5行数据,可用如下语句: &nbsp;&nbsp;select * from emp where rownum<=5;
 </font>
+
 <br>
 
 <blockquote>
@@ -654,7 +652,7 @@ oracle的sql语句中没有limit,limit是mysql中特有的,在oracle中可用row
 </blockquote>
 <p>使用方法：<code>字段A || &#39;连接符&#39; || 字段B || &#39;连接符&#39; || 字段C</code> ：将多列拼接成一列</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Oracle 将多列合并成一列,字符串连接,直接上查询语句</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    STU.XH,</span><br><span class="line">    STU.XM,</span><br><span class="line">    GRA. <span class="keyword">NAME</span> || <span class="string">'-'</span> || CLA.BJ <span class="keyword">AS</span> <span class="keyword">CLASS</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    CYT_BASE_STUDENT STU,</span><br><span class="line">    CYT_BASE_GRADE GRA,</span><br><span class="line">    CYT_BASE_CLASS CLA</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    STU.GRADE_ID = GRA. <span class="keyword">ID</span></span><br><span class="line"><span class="keyword">AND</span> STU.CLASS_ID = CLA. <span class="keyword">ID</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdn.net/20181017094408908?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3podWxpdWZ1/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""><br><br></p>
+<p><img src="https://img-blog.csdn.net/20181017094408908?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3podWxpdWZ1/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""></p>
 <blockquote>
 <p>9.6 sql的select查询添加一个虚拟字段进去</p>
 </blockquote>
@@ -754,10 +752,10 @@ oracle的sql语句中没有limit,limit是mysql中特有的,在oracle中可用row
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-09T16:44:10+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-14T16:46:11+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年4月9日</p>
+    <p>更新于 2020年4月14日</p>
   </a>
 </div>
 
@@ -1253,7 +1251,7 @@ oracle的sql语句中没有limit,limit是mysql中特有的,在oracle中可用row
         
           <li><a class="flat-box" title="/categories/Database/" href="/categories/Database/"><div class='name'>Database</div><div class='badge'>(7)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Java/" href="/categories/Java/"><div class='name'>Java</div><div class='badge'>(9)</div></a></li>
+          <li><a class="flat-box" title="/categories/Java/" href="/categories/Java/"><div class='name'>Java</div><div class='badge'>(10)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Python/" href="/categories/Python/"><div class='name'>Python</div><div class='badge'>(21)</div></a></li>
         
