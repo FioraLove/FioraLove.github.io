@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>union和union all（联合查询） | AhriLove</title>
+  <title>数据分析章节（四）：jieba分词与wordcloud词云 | AhriLove</title>
   
   
 
@@ -347,8 +347,8 @@
         
   
     <h1 class="title">
-      <a href="/2020/01/14/sql%E7%B3%BB%E5%88%97%E6%9B%B4%E6%96%B0%EF%BC%88%E4%B8%89%EF%BC%89/">
-        union和union all（联合查询）
+      <a href="/2020/04/15/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AB%A0%E8%8A%82%EF%BC%88%E5%9B%9B%EF%BC%89/">
+        数据分析章节（四）：jieba分词与wordcloud词云
       </a>
     </h1>
   
@@ -363,11 +363,11 @@
             
   <div class='new-meta-item author'>
     
-      <a href="/" rel="nofollow">
+      <a href="https://ahrilove.top" rel="nofollow">
         
-          <img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imagesNaruto.jpg">
+          <i class="fas fa-user" aria-hidden="true"></i>
         
-        <p>Badwoman</p>
+        <p>AhriLove</p>
       </a>
     
   </div>
@@ -379,7 +379,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2020-01-14</p>
+    <p>2020-04-15</p>
   </a>
 </div>
 
@@ -389,9 +389,9 @@
             
   
   <div class='new-meta-item category'>
-    <a href='/categories/Database/' rel="nofollow">
+    <a href='/categories/Data-analysis/' rel="nofollow">
       <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>Database</p>
+      <p>Data analysis</p>
     </a>
   </div>
 
@@ -431,27 +431,99 @@
 
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
-        <p>如果我们需要将两个select语句的结果作为一个整体显示出来，我们就需要用到union或者union all关键字。union(或称为联合)的作用是将多个结果合并在一起显示出来。</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wordcloud是优秀的词云展示第三方库，以词语为基本单位，通过图形可视化的方式，更加直观和艺术的展示文本。而jieba库是十分优秀的分词三方库，将文本内容进行分词<br><strong>本文内容：</strong></p>
+<blockquote>
+<p>1.jieba库<br>2.wordcloud库<br>3.Windows中文字体文件名称</p>
+</blockquote>
 <a id="more"></a>
-<h3 id="1-基础概念"><a href="#1-基础概念" class="headerlink" title="1.基础概念"></a>1.基础概念</h3><p>union和union all的区别是,union会自动压缩多个结果集合中的重复结果，而union all则将所有的结果全部显示出来，不管是不是重复。</p>
+
+<h3 id="1-jieba库"><a href="#1-jieba库" class="headerlink" title="1.jieba库"></a>1.jieba库</h3><p>pip安装wordcloud，jieba的过程中可能会提示pip工具版本低,需先更新pip包管理工具<code>python -m pip install --upgrade pip</code></p>
+<p>jieba库常用函数：</p>
 <ul>
-<li>Union：对两个结果集进行并集操作，不包括重复行，同时进行默认规则的排序；</li>
-<li>Union All：对两个结果集进行并集操作，包括重复行，不进行排序；</li>
-<li>Intersect：对两个结果集进行交集操作，不包括重复行，同时进行默认规则的排序；</li>
-<li>Minus：对两个结果集进行差操作，不包括重复行，同时进行默认规则的排序。</li>
+<li>jieba.cut(strings,[cut_all])：strings需要分词的字符串；cut_all 参数用来控制是否采用全模式（cut_all=True表示全模式，为False表示精准模式）</li>
+<li>jieba.cut_for_search(strings)</li>
+<li>jieba.lcut()或者jieba.lcut_for_search()直接返回 list</li>
 </ul>
-<p><strong>注意的是</strong>：<br><font color=#f47920>UNION 、UNION ALL内部的 SELECT 语句必须拥有相同数量的列。列也必须拥有相似的数据类型。同时，每条 SELECT 语句中的列的顺序必须相同。</font></p>
-<h3 id="2-使用方法"><a href="#2-使用方法" class="headerlink" title="2.使用方法"></a>2.使用方法</h3><p>基本语法：</p>
+<p>ps:<br>jieba.cut 以及 jieba.cut_for_search 返回的结构都是一个可迭代的 generator，可以使用 for 循环来获得分词后得到的每一个词语(unicode)<br>jieba.lcut 以及 jieba.lcut_for_search 直接返回 list</p>
+<p>举例说明：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cut_word</span><span class="params">()</span>:</span></span><br><span class="line">    comment_txt = <span class="string">"壬戌之秋，七月既望，苏子与客泛舟游于赤壁之下。清风徐来，水波不兴。举酒属客，诵明月之诗，歌窈窕之章。"</span></span><br><span class="line">    split_txt = jieba.cut(comment_txt, cut_all=<span class="literal">False</span>)</span><br><span class="line">    print(split_txt)  <span class="comment"># &lt;generator object Tokenizer.cut at 0x0000028D12A477C8&gt;</span></span><br><span class="line">    wl = <span class="string">" "</span>.join(split_txt)  <span class="comment"># 拼接成一个字符串</span></span><br><span class="line">    <span class="keyword">return</span> wl</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-wordcloud库"><a href="#2-wordcloud库" class="headerlink" title="2.wordcloud库"></a>2.wordcloud库</h3><p>词云库的基本设置：</p>
+<table>
+<thead>
+<tr>
+<th align="center">设置参数</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">width</td>
+<td align="center">指定词云对象生成图片的宽度，默认400像素； WordCloud(width=600)</td>
+</tr>
+<tr>
+<td align="center">height</td>
+<td align="center">指定词云对象生成图片的高度，默认200像素； WordCloud(height=600)</td>
+</tr>
+<tr>
+<td align="center">min_font_size</td>
+<td align="center">指定词云中的最小字号，默认4号； WordCloud(min_font_size=10)</td>
+</tr>
+<tr>
+<td align="center">max_font_size</td>
+<td align="center">指定词云中的最大字号，根据高度自动调节； WordCloud(max_font_size=20)</td>
+</tr>
+<tr>
+<td align="center">font_step</td>
+<td align="center">指定词云中的字体字号的步进间隔，默认为1； WordCloud(font_step=2)</td>
+</tr>
+<tr>
+<td align="center">font_path</td>
+<td align="center">指定文件的路径，默认None； WordCloud(font_path=“msyh.ttc”)</td>
+</tr>
+<tr>
+<td align="center">max_words</td>
+<td align="center">指定词云现实的最大单词数量，默认200； WordCloud(max_words=20)</td>
+</tr>
+<tr>
+<td align="center">stop_words</td>
+<td align="center">指定词云的排除词列表，即不显示的单词列表； WordCloud(stop_words={“Python”})</td>
+</tr>
+<tr>
+<td align="center">mask</td>
+<td align="center">遮罩，指定词云形状，默认为长方形；WordCloud(mask=mk)</td>
+</tr>
+<tr>
+<td align="center">background_color</td>
+<td align="center">指定词云图片的背景颜色，默认为黑色； WordCloud(background_color=“white”)</td>
+</tr>
+</tbody></table>
+<p>词云库的基本方法：</p>
 <ul>
-<li>union：<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> employee_id,job_id <span class="keyword">from</span> employees </span><br><span class="line"><span class="keyword">union</span> </span><br><span class="line"><span class="keyword">select</span> employee_id,job_id <span class="keyword">from</span> job_history</span><br></pre></td></tr></table></figure></li>
-<li>union all：<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> employee_id,job_id <span class="keyword">from</span> employees </span><br><span class="line"><span class="keyword">union</span> <span class="keyword">all</span></span><br><span class="line"><span class="keyword">select</span> employee_id,job_id <span class="keyword">from</span> job_history</span><br></pre></td></tr></table></figure>
-<h3 id="3-FAQ"><a href="#3-FAQ" class="headerlink" title="3.FAQ"></a>3.FAQ</h3></li>
+<li>w.generate(txt)    向WordCloud对象w中加载文本txt；w.generate(“Python and WordCloud”)</li>
+<li>w.to_file(filename())    将词云输出为图像文件，.png或.jpg格式；w.tp_file(“outfile,png”)</li>
 </ul>
-<p>1.union 和 union all都可以将多个结果集合并，而不仅仅是两个，你可以将多个结果集串起来。</p>
-<p>2.使用union和union all必须保证各个select 集合的结果有相同个数的列，并且每个列的类型是一样的。但列名则不一定需要相同，<code>oracle会将第一个结果的列名作为结果集的列名</code>。例如下面是一个例子：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> empno,ename <span class="keyword">from</span> emp </span><br><span class="line"><span class="keyword">union</span> </span><br><span class="line"><span class="keyword">select</span> deptno,dname <span class="keyword">from</span> dept</span><br></pre></td></tr></table></figure>
-<p>3.没有必要在每一个select结果集中使用order by子句来进行排序，我们可以在最后使用一条order by来对整个结果进行排序。例如：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> empno,ename <span class="keyword">from</span> emp </span><br><span class="line"><span class="keyword">union</span> </span><br><span class="line"><span class="keyword">select</span> deptno,dname <span class="keyword">from</span> dept </span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> ename;</span><br></pre></td></tr></table></figure>
+<p>举例说明：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> wordcloud <span class="keyword">import</span> WordCloud</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_word_cloud</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    生成词云</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># 设置词云形状</span></span><br><span class="line">    shape = np.array(Image.open(<span class="string">r"C:\Users\CHD\Desktop\2018.png"</span>))</span><br><span class="line">    <span class="comment"># 设置词云的基本配置</span></span><br><span class="line">    wc = WordCloud(background_color=<span class="string">"white"</span>, max_words=<span class="number">1000</span>, width=<span class="number">600</span>,</span><br><span class="line">                   height=<span class="number">600</span>, mask= shape,</span><br><span class="line">                   scale=<span class="number">4</span>, max_font_size=<span class="number">40</span>, random_state=<span class="number">42</span>, </span><br><span class="line">                    font_path=<span class="string">r"C:\Windows\Fonts\simfang.ttf"</span>)</span><br><span class="line">    <span class="comment"># 生成词云</span></span><br><span class="line">    wc.generate(cut_word())</span><br><span class="line">    <span class="comment"># 生成图像窗口</span></span><br><span class="line">    plt.figure()</span><br><span class="line">    <span class="comment"># 显示图像的格式</span></span><br><span class="line">    plt.imshow(wc, interpolation=<span class="string">'bilinear'</span>)</span><br><span class="line">    plt.axis(<span class="string">"off"</span>)</span><br><span class="line">    <span class="comment"># 展示图像</span></span><br><span class="line">    plt.show()</span><br><span class="line">    <span class="comment"># 保存词云图片</span></span><br><span class="line">    wc.to_file(<span class="string">"old_word_cloud.png"</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>小结：</strong></p>
+<ol>
+<li>文本中含有中文时，必须要字体文件路径font_path，不然无法显示，会出现方框，不出现汉字</li>
+<li>设置词云形状时，有些图片会不成功，需要使用色差对比清晰的图片</li>
+<li>mask为遮罩，限定词云的形状，选择图片作为遮罩，图片中白色的部分不显示词，非白色部分显示词</li>
+<li>图片字迹不清楚的，可以在WordCloud里设置参数scale=4，数字越大图片越清楚，要求电脑配置也就越高</li>
+<li>中文需要先分词并组成空格分隔字符串（eg: wl = “ “.join(split_txt)  # 拼接成一个字符串）</li>
+<li>导入指定词云图片时读取图片的二进制（np.array(Image.open(r”C:\Users\CHD\Desktop\2018.png”))）</li>
+</ol>
+<p><fancybox><img src="https://img-blog.csdnimg.cn/20181111174011512.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzI3NjY2,size_16,color_FFFFFF,t_70" alt=""></fancybox></p>
+<h3 id="3-Windows中文字体文件名称"><a href="#3-Windows中文字体文件名称" class="headerlink" title="3.Windows中文字体文件名称"></a>3.Windows中文字体文件名称</h3><p><a href="https://blog.csdn.net/qq_29856789/article/details/80883301" target="_blank" rel="noopener">【Windows 中文字体类型对应的文件名称】</a></p>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
+<li><a href="https://blog.csdn.net/weixin_43886356/article/details/86711292" target="_blank" rel="noopener">python第三方库wordcloud绘制任意形状词云教程</a></li>
+<li><a href="https://blog.csdn.net/qq_41727666/article/details/83960317?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-10&utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-10" target="_blank" rel="noopener">【Python】Windows下用Jieba分词和WordCloud库生成中文词云</a></li>
+<li><a href="https://blog.csdn.net/AlanSmith233/article/details/100544475" target="_blank" rel="noopener">wordcloud库与可视化词云以及一些遇到的坑</a></li>
+<li><a href="https://blog.csdn.net/jinsefm/article/details/80645588" target="_blank" rel="noopener">Python之wordcloud库使用</a></li>
+<li><a href="https://blog.csdn.net/beyond9305/article/details/84396731?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3&utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3" target="_blank" rel="noopener">使用jieba+wordcloud生成微信好友个性签名词云图</a></li>
+</ul>
+
       </div>
       
         <br>
@@ -462,10 +534,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-01-15T17:12:07+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-15T15:26:36+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年1月15日</p>
+    <p>更新于 2020年4月15日</p>
   </a>
 </div>
 
@@ -474,7 +546,7 @@
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/MySQL/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>MySQL</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/union/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>union</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/python/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>python</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/matplotlib/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>matplotlib</p></a></div>
 
 
         
@@ -487,7 +559,10 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/01/14/sql%E7%B3%BB%E5%88%97%E6%9B%B4%E6%96%B0%EF%BC%88%E4%B8%89%EF%BC%89/&title=union和union all（联合查询） | AhriLove&summary=如果我们需要将两个select语句的结果作为一个整体显示出来，我们就需要用到union或者union all关键字。union(或称为联合)的作用是将多个结果合并在一起显示出来。"
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/04/15/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AB%A0%E8%8A%82%EF%BC%88%E5%9B%9B%EF%BC%89/&title=数据分析章节（四）：jieba分词与wordcloud词云 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wordcloud是优秀的词云展示第三方库，以词语为基本单位，通过图形可视化的方式，更加直观和艺术的展示文本。而jieba库是十分优秀的分词三方库，将文本内容进行分词本文内容：
+
+1.jieba库2.wordcloud库3.Windows中文字体文件名称
+"
           
           >
           
@@ -499,7 +574,10 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/01/14/sql%E7%B3%BB%E5%88%97%E6%9B%B4%E6%96%B0%EF%BC%88%E4%B8%89%EF%BC%89/&title=union和union all（联合查询） | AhriLove&summary=如果我们需要将两个select语句的结果作为一个整体显示出来，我们就需要用到union或者union all关键字。union(或称为联合)的作用是将多个结果合并在一起显示出来。"
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/04/15/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AB%A0%E8%8A%82%EF%BC%88%E5%9B%9B%EF%BC%89/&title=数据分析章节（四）：jieba分词与wordcloud词云 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wordcloud是优秀的词云展示第三方库，以词语为基本单位，通过图形可视化的方式，更加直观和艺术的展示文本。而jieba库是十分优秀的分词三方库，将文本内容进行分词本文内容：
+
+1.jieba库2.wordcloud库3.Windows中文字体文件名称
+"
           
           >
           
@@ -511,7 +589,10 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/01/14/sql%E7%B3%BB%E5%88%97%E6%9B%B4%E6%96%B0%EF%BC%88%E4%B8%89%EF%BC%89/&title=union和union all（联合查询） | AhriLove&summary=如果我们需要将两个select语句的结果作为一个整体显示出来，我们就需要用到union或者union all关键字。union(或称为联合)的作用是将多个结果合并在一起显示出来。"
+          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/04/15/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AB%A0%E8%8A%82%EF%BC%88%E5%9B%9B%EF%BC%89/&title=数据分析章节（四）：jieba分词与wordcloud词云 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wordcloud是优秀的词云展示第三方库，以词语为基本单位，通过图形可视化的方式，更加直观和艺术的展示文本。而jieba库是十分优秀的分词三方库，将文本内容进行分词本文内容：
+
+1.jieba库2.wordcloud库3.Windows中文字体文件名称
+"
           
           >
           
@@ -535,40 +616,21 @@
       
           <div class="prev-next">
               
-                  <section class="prev">
-                      <span class="art-item-left">
-                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
-                          <h4>
-                              <a href="/2020/01/15/Javascript%E7%AF%87%E7%AB%A0%E5%85%AD/" rel="prev" title="Javascript篇章六：js的数值保留指定有效位数">
-                                
-                                    Javascript篇章六：js的数值保留指定有效位数
-                                
-                              </a>
-                          </h4>
-                          
-                              
-                              <h6 class="tags">
-                                  <a class="tag" href="/tags/js/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> js</a>
-                              </h6>
-                          
-                      </span>
-                  </section>
-              
               
                   <section class="next">
                       <span class="art-item-right" aria-hidden="true">
                           <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                           <h4>
-                              <a href="/2020/01/12/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89/" rel="prev" title="GNE v0.1 正式发布： 4 行代码开发新闻网站通用爬虫">
+                              <a href="/2020/04/14/Java%E5%AD%97%E7%AC%A6%E5%AD%97%E8%8A%82%E6%B5%81%EF%BC%88%E4%B9%9D%EF%BC%89/" rel="prev" title="Java（九）：Java字符流，字节流，IO">
                                   
-                                      GNE v0.1 正式发布： 4 行代码开发新闻网站通用爬虫
+                                      Java（九）：Java字符流，字节流，IO
                                   
                               </a>
                           </h4>
                           
                               
                               <h6 class="tags">
-                                  <a class="tag" href="/tags/re/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> re</a> <a class="tag" href="/tags/GNE/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> GNE</a>
+                                  <a class="tag" href="/tags/Java/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Java</a>
                               </h6>
                           
                       </span>
@@ -612,7 +674,7 @@
 
   <script>
     window.subData = {
-      title: 'union和union all（联合查询）',
+      title: '数据分析章节（四）：jieba分词与wordcloud词云',
       tools: true
     }
   </script>
@@ -736,7 +798,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-基础概念"><span class="toc-text">1.基础概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-使用方法"><span class="toc-text">2.使用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-FAQ"><span class="toc-text">3.FAQ</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-jieba库"><span class="toc-text">1.jieba库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-wordcloud库"><span class="toc-text">2.wordcloud库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Windows中文字体文件名称"><span class="toc-text">3.Windows中文字体文件名称</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
     </div>
   </section>
 
