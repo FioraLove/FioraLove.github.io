@@ -611,11 +611,27 @@
 </blockquote>
 <p>判断条件可以使用=、&gt;、&lt;、&gt;=、&lt;=、!=等等，同时多个条件还可以使用and、or等进行连接<br><br></p>
 <blockquote>
-<p>8.3 聚合</p>
+<p>8.3 聚合（它对其应用的每个行集返回一个值）</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">select [ field1, field2,...,fieldn] fun_name from tablename [ where condition ] </span><br><span class="line"></span><br><span class="line">      [ group by field1, field2,..., fieldn  [ with rollup ] ]  [ having  condition ]</span><br><span class="line"></span><br><span class="line">参数说明：fun_name 聚合函数，表示要做的聚合操作，常用的有sum（求和）、count(*)（计数）、max、min等。</span><br><span class="line"></span><br><span class="line">        GROUP BY  表示对后面的字段进行分类聚合（也常叫分组）；</span><br><span class="line"></span><br><span class="line">        WITH ROLLUP 可选语法，在ORDER BY 语句内出现，表示是否对分类聚合后的结果进行再汇总；</span><br><span class="line"></span><br><span class="line">        HAVING 表示对分类后的结果再进行条件过滤；</span><br></pre></td></tr></table></figure>
 <p><font color=#FF3030>同样是条件过滤，having和where的区别在于，having是对聚合后的结果进行条件过滤，而where是在聚合前就对记录进行过滤。因此，为了提高聚合效率，一般先用where过滤不相干的记录后，在进行聚合，最后再用having进行二次过滤</font></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> gender，<span class="keyword">count</span>(gender) <span class="keyword">from</span> tab_teacher <span class="keyword">group</span> <span class="keyword">by</span> gender <span class="keyword">having</span> gender=<span class="string">"woman"</span>;</span><br><span class="line"><span class="comment">-- 含义为：按性别分组，查询出女老师人数的总数:先执行group by，再聚合函数，最后having筛选</span></span><br></pre></td></tr></table></figure>
+
+<p>聚合函数：补充说明</p>
+<ul>
+<li><p>AVG(表达式) 返回表达式中所有的平均值。仅用于数字列并自动忽略NULL值。</p>
+</li>
+<li><p>COUNT(表达式) 返回表达式中非NULL值的数量。可用于数字和字符列。</p>
+</li>
+<li><p>COUNT(<em>) 返回表中的行数(*</em>包括有NULL值的列**)。</p>
+</li>
+<li><p>MAX(表达式) 返回表达式中的最大值,忽略NULL值。可用于数字、字符和日期时间列。</p>
+</li>
+<li><p>MIN(表达式) 返回表达式中的最小值,忽略NULL值。可用于数字、字符和日期时间列。</p>
+</li>
+<li><p>SUM(表达式) 返回表达式中所有的总和,忽略NULL值。仅用于数字列。<br>————————————————</p>
+</li>
+</ul>
 <h3 id="9-sql知识点补充大全"><a href="#9-sql知识点补充大全" class="headerlink" title="9.sql知识点补充大全"></a>9.sql知识点补充大全</h3><blockquote>
 <p>9.1 避免使用通配符“*”</p>
 </blockquote>
@@ -740,6 +756,8 @@ oracle的sql语句中没有limit,limit是mysql中特有的,在oracle中可用row
 <li><a href="https://zhidao.baidu.com/question/1796141861415293467.html" target="_blank" rel="noopener">SQL按1月2月3月Q1 4月5月6月Q2…排序问题</a></li>
 <li><a href="https://blog.csdn.net/jia718/article/details/88253918" target="_blank" rel="noopener">sql语句的with as 用法</a></li>
 <li><a href="https://blog.csdn.net/insis_mo/article/details/84936753" target="_blank" rel="noopener">select into from 和 insert into select 的用法和区别</a></li>
+<li>MySQL函数大全： <a href="http://c.biancheng.net/mysql/function/" target="_blank" rel="noopener">http://c.biancheng.net/mysql/function/</a></li>
+<li>Oracle函数大全： <a href="https://www.cnblogs.com/min-yu/p/11137902.html" target="_blank" rel="noopener">https://www.cnblogs.com/min-yu/p/11137902.html</a></li>
 </ul>
 
       </div>
@@ -752,10 +770,10 @@ oracle的sql语句中没有limit,limit是mysql中特有的,在oracle中可用row
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-14T16:46:11+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-17T09:21:18+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年4月14日</p>
+    <p>更新于 2020年4月17日</p>
   </a>
 </div>
 
@@ -1251,7 +1269,7 @@ oracle的sql语句中没有limit,limit是mysql中特有的,在oracle中可用row
         
           <li><a class="flat-box" title="/categories/Database/" href="/categories/Database/"><div class='name'>Database</div><div class='badge'>(7)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Java/" href="/categories/Java/"><div class='name'>Java</div><div class='badge'>(10)</div></a></li>
+          <li><a class="flat-box" title="/categories/Java/" href="/categories/Java/"><div class='name'>Java</div><div class='badge'>(11)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Python/" href="/categories/Python/"><div class='name'>Python</div><div class='badge'>(21)</div></a></li>
         

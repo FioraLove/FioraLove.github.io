@@ -684,6 +684,17 @@
 </tr>
 </tbody></table>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import random</span><br><span class="line"></span><br><span class="line">random.random()</span><br><span class="line">0.5</span><br><span class="line">random.randint(10, 100)</span><br><span class="line">64</span><br><span class="line">random.randrange(10, 100, 10)</span><br><span class="line">80</span><br><span class="line">random.getrandbits(16)</span><br><span class="line">37885</span><br><span class="line">random.uniform(10, 100)</span><br><span class="line">13.096321648808136</span><br><span class="line">random.choice([1,2,3,4,5,6,7,8,9])</span><br><span class="line">8 </span><br><span class="line">s=[1,2,3,4,5,6,7,8,9];</span><br><span class="line">random.shuffle(s);</span><br><span class="line">print(s) # [3, 5, 8, 9, 6, 1, 2, 7, 4]</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-execjs库"><a href="#8-execjs库" class="headerlink" title="8.execjs库"></a>8.execjs库</h2><p>针对现在大部分的网站都是使用js加密，js加载的，并不能直接抓取出来，这时候就不得不适用一些三方类库来执行js语句。执行JS的类库：execjs，PyV8，selenium，node<br>安装： pip install PyExecJS</p>
+<p>js运行时环境：没有js环境会报错（Could not find an available JavaScript runtime），常见的js运行环境有PyV8，<strong>Node.js</strong>,PhantomJS</p>
+<p>执行js脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> execjs</span><br><span class="line"></span><br><span class="line"><span class="comment"># compile 编译执行复杂的js源代码</span></span><br><span class="line">x = execjs.compile(<span class="string">'''</span></span><br><span class="line"><span class="string">    // js 源代码</span></span><br><span class="line"><span class="string">    function get_time()&#123;</span></span><br><span class="line"><span class="string">        let d = new Date();</span></span><br><span class="line"><span class="string">        return d.getTime()</span></span><br><span class="line"><span class="string">    &#125;'''</span>)</span><br><span class="line"><span class="comment"># 执行目标函数</span></span><br><span class="line">x.call(<span class="string">"get_time"</span>)  <span class="comment"># 1587110199832</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>执行步骤：</strong></p>
+<ol>
+<li>compile(js源代码)先编译js源代码</li>
+<li>call(目标函数，实参) 开始执行目标函数，并传参</li>
+</ol>
 <h2 id="未完待续。。。"><a href="#未完待续。。。" class="headerlink" title="未完待续。。。"></a>未完待续。。。</h2>
       </div>
       
@@ -695,10 +706,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-14T08:42:15+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-17T16:15:27+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年4月14日</p>
+    <p>更新于 2020年4月17日</p>
   </a>
 </div>
 
@@ -978,7 +989,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-time模块"><span class="toc-text">1.time模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Unix时间戳转与时间的转换"><span class="toc-text">Unix时间戳转与时间的转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#按指定的格式获取当前时间"><span class="toc-text">按指定的格式获取当前时间</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-DBUtils管理数据库连接池"><span class="toc-text">2.DBUtils管理数据库连接池</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-连接池原理"><span class="toc-text">2.1 连接池原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-多线程（连接池）操作MySQL插入数据"><span class="toc-text">2.2 多线程（连接池）操作MySQL插入数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-ftplib操作ftp实现上传和下载的"><span class="toc-text">3.ftplib操作ftp实现上传和下载的</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-ftp登陆连接"><span class="toc-text">3.1 ftp登陆连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-ftp上传或下载文件-目录"><span class="toc-text">3.2 ftp上传或下载文件/目录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-os模块"><span class="toc-text">4.os模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-datetime模块"><span class="toc-text">5 datetime模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-tqdm模块（最优雅的进度条）"><span class="toc-text">5.tqdm模块（最优雅的进度条）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-控制台输出带颜色文字的方法"><span class="toc-text">6.控制台输出带颜色文字的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-random模块"><span class="toc-text">7.random模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#未完待续。。。"><span class="toc-text">未完待续。。。</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-time模块"><span class="toc-text">1.time模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Unix时间戳转与时间的转换"><span class="toc-text">Unix时间戳转与时间的转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#按指定的格式获取当前时间"><span class="toc-text">按指定的格式获取当前时间</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-DBUtils管理数据库连接池"><span class="toc-text">2.DBUtils管理数据库连接池</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-连接池原理"><span class="toc-text">2.1 连接池原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-多线程（连接池）操作MySQL插入数据"><span class="toc-text">2.2 多线程（连接池）操作MySQL插入数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-ftplib操作ftp实现上传和下载的"><span class="toc-text">3.ftplib操作ftp实现上传和下载的</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-ftp登陆连接"><span class="toc-text">3.1 ftp登陆连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-ftp上传或下载文件-目录"><span class="toc-text">3.2 ftp上传或下载文件/目录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-os模块"><span class="toc-text">4.os模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-datetime模块"><span class="toc-text">5 datetime模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-tqdm模块（最优雅的进度条）"><span class="toc-text">5.tqdm模块（最优雅的进度条）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-控制台输出带颜色文字的方法"><span class="toc-text">6.控制台输出带颜色文字的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-random模块"><span class="toc-text">7.random模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-execjs库"><span class="toc-text">8.execjs库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#未完待续。。。"><span class="toc-text">未完待续。。。</span></a></li></ol>
     </div>
   </section>
 
@@ -1203,7 +1214,7 @@
         
           <li><a class="flat-box" title="/categories/Database/" href="/categories/Database/"><div class='name'>Database</div><div class='badge'>(7)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Java/" href="/categories/Java/"><div class='name'>Java</div><div class='badge'>(10)</div></a></li>
+          <li><a class="flat-box" title="/categories/Java/" href="/categories/Java/"><div class='name'>Java</div><div class='badge'>(11)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Python/" href="/categories/Python/"><div class='name'>Python</div><div class='badge'>(21)</div></a></li>
         

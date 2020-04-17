@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>Maven的安装搭建补充点 | AhriLove</title>
+  <title>Java（十一）：Java的缓冲流，转换流，序列化流 | AhriLove</title>
   
   
 
@@ -347,8 +347,8 @@
         
   
     <h1 class="title">
-      <a href="/2019/04/11/Maven/">
-        Maven的安装搭建补充点
+      <a href="/2020/04/14/Java%E7%BC%93%E5%86%B2%E6%B5%81%E5%BA%8F%E5%88%97%E6%B5%81%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89/">
+        Java（十一）：Java的缓冲流，转换流，序列化流
       </a>
     </h1>
   
@@ -379,7 +379,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-04-11</p>
+    <p>2020-04-14</p>
   </a>
 </div>
 
@@ -389,9 +389,9 @@
             
   
   <div class='new-meta-item category'>
-    <a href='/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%B6%E6%9E%84/' rel="nofollow">
+    <a href='/categories/Java/' rel="nofollow">
       <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>服务器架构</p>
+      <p>Java</p>
     </a>
   </div>
 
@@ -431,28 +431,56 @@
 
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
-        <p><font size=5 color=#00ced1 size=5 face="黑体">与众不同的生活方式很累人呢，因为找不到借口</font></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;Maven项目对象模型(POM)，可以通过一小段描述信息来管理项目的构建，报告和文档的项目管理工具软件。</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之前已经学习了基本的一些流，作为IO流的入门，今天我们要见识一些更强大的流。比如能够高效读写的缓冲流，能够转换编码的转换流，能够持久化存储对象的序列化流等等。这些功能更为强大的流，都是在基本的流对象基础之上创建而来的，就像穿上铠甲的武士一样，相当于是对基本流对象的一种增强。<br><strong>本章内容：</strong></p>
 <blockquote>
-<p><font size=4 color=#FF0000>本文要点：</font><br>1.理清Maven概念<br>2.安装教程点</p>
+<p>1.IO概述<br>2.字节流<br>3.字符流<br>4.IO异常的处理</p>
 </blockquote>
 <a id="more"></a>
 
-<h3 id="1-理清概念"><a href="#1-理清概念" class="headerlink" title="1.理清概念"></a>1.理清概念</h3><ol>
-<li><p>Maven是Apache下的一个纯java开发的开源项目，它是一个项目管理工具，使用maven对java项目进行构建、依赖管理。</p>
-</li>
-<li><p>通俗的来说Maven就是一款帮助程序员构建项目的工具，我们只需要告诉Maven需要哪些Jar 包，它会帮助我们下载所有的Jar，极大提升开发效率</p>
-</li>
-</ol>
-<h3 id="2-安装易错点"><a href="#2-安装易错点" class="headerlink" title="2.安装易错点"></a>2.安装易错点</h3><p>最主要的步骤：</p>
+<h3 id="1-缓冲流"><a href="#1-缓冲流" class="headerlink" title="1.缓冲流"></a>1.缓冲流</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;缓冲流,也叫高效流，是对4个基本的<code>FileXxx</code> 流的增强，所以也是4个流，按照数据类型分类：</p>
+<ul>
+<li>字节缓冲流：BufferedInputStream，BufferedOutputStream</li>
+<li>字符缓冲流：BufferedReader，BufferedWrite</li>
+</ul>
+<p><font color="orange">缓冲流的基本原理，是在创建流对象时，会创建一个内置的默认大小的缓冲区数组，通过缓冲区读写，减少系统IO次数，从而提高读写的效率。</font></p>
+<h4 id="1-1-字节缓冲流"><a href="#1-1-字节缓冲流" class="headerlink" title="1.1 字节缓冲流"></a>1.1 字节缓冲流</h4><p><strong>构造方法：</strong></p>
+<ul>
+<li><code>public BufferedInputStream(InputStream in)</code> ：创建一个 新的缓冲输入流。 </li>
+<li><code>public BufferedOutputStream(OutputStream out)</code>： 创建一个新的缓冲输出流。</li>
+</ul>
+<p>构造举例，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建字节缓冲输入流</span></span><br><span class="line">BufferedInputStream bis = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">"bis.txt"</span>));</span><br><span class="line"><span class="comment">// 创建字节缓冲输出流</span></span><br><span class="line">BufferedOutputStream bos = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="string">"bos.txt"</span>));</span><br></pre></td></tr></table></figure>
+
+<p><strong>效率测试：</strong><br>查询API，缓冲流读写方法与基本的流是一致的，我们通过复制大文件（400MB），测试它的效率</p>
 <ol>
-<li>配置环境变量</li>
-<li>解压后的conf/settings.xml文件进行配置</li>
+<li>基本的io流，考虑到文件最好选择二进制的字节流来读写</li>
 </ol>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="comment">&lt;!--配置镜像文件--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>alimaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun maven<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/repositories/central/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--配置本地仓库（指定依赖下载的文件目录）--&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>D:\data\MavenRepository<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--声明jdk版本--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">profiles</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>jdk-1.8<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">activation</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">activeByDefault</span>&gt;</span>true<span class="tag">&lt;/<span class="name">activeByDefault</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">jdk</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">jdk</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">activation</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">maven.compiler.compilerVersion</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.compilerVersion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">profiles</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BufferedDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> FileNotFoundException </span>&#123;</span><br><span class="line">        <span class="comment">// 记录开始时间</span></span><br><span class="line">      	<span class="keyword">long</span> start = System.currentTimeMillis();</span><br><span class="line">		<span class="comment">// 创建流对象</span></span><br><span class="line">        <span class="keyword">try</span> (</span><br><span class="line">        	FileInputStream fis = <span class="keyword">new</span> FileInputStream(<span class="string">"jdk9.exe"</span>);</span><br><span class="line">        	FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">"copy.exe"</span>)</span><br><span class="line">        )&#123;</span><br><span class="line">        	<span class="comment">// 读写数据</span></span><br><span class="line">            <span class="keyword">int</span> b;</span><br><span class="line">            <span class="keyword">while</span> ((b = fis.read()) != -<span class="number">1</span>) &#123;</span><br><span class="line">                fos.write(b);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="comment">// 记录结束时间</span></span><br><span class="line">        <span class="keyword">long</span> end = System.currentTimeMillis();</span><br><span class="line">        System.out.println(<span class="string">"普通流复制时间:"</span>+(end - start)+<span class="string">" 毫秒"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">十几分钟过去了...</span><br></pre></td></tr></table></figure>
 
-<p><strong>将配置的settings.xml文件必须要复制一份到&lt;localRepository&gt;的本地仓库中</strong></p>
+<ol start="2">
+<li>缓冲流，代码如下：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BufferedDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> FileNotFoundException </span>&#123;</span><br><span class="line">        <span class="comment">// 记录开始时间</span></span><br><span class="line">      	<span class="keyword">long</span> start = System.currentTimeMillis();</span><br><span class="line">		<span class="comment">// 创建流对象</span></span><br><span class="line">        <span class="keyword">try</span> (</span><br><span class="line">        	BufferedInputStream bis = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">"jdk9.exe"</span>));</span><br><span class="line">	     BufferedOutputStream bos = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="string">"copy.exe"</span>));</span><br><span class="line">        )&#123;</span><br><span class="line">        <span class="comment">// 读写数据</span></span><br><span class="line">            <span class="keyword">int</span> b;</span><br><span class="line">            <span class="keyword">while</span> ((b = bis.read()) != -<span class="number">1</span>) &#123;</span><br><span class="line">                bos.write(b);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="comment">// 记录结束时间</span></span><br><span class="line">        <span class="keyword">long</span> end = System.currentTimeMillis();</span><br><span class="line">        System.out.println(<span class="string">"缓冲流复制时间:"</span>+(end - start)+<span class="string">" 毫秒"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">缓冲流复制时间:<span class="number">8016</span> 毫秒</span><br></pre></td></tr></table></figure>
 
+<ol start="3">
+<li>如何更快呢？使用数组的方式</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BufferedDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> FileNotFoundException </span>&#123;</span><br><span class="line">      	<span class="comment">// 记录开始时间</span></span><br><span class="line">        <span class="keyword">long</span> start = System.currentTimeMillis();</span><br><span class="line">		<span class="comment">// 创建流对象</span></span><br><span class="line">        <span class="keyword">try</span> (</span><br><span class="line">			BufferedInputStream bis = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">"jdk9.exe"</span>));</span><br><span class="line">		 BufferedOutputStream bos = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="string">"copy.exe"</span>));</span><br><span class="line">        )&#123;</span><br><span class="line">          	<span class="comment">// 读写数据</span></span><br><span class="line">            <span class="keyword">int</span> len;</span><br><span class="line">            <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">8</span>*<span class="number">1024</span>];</span><br><span class="line">            <span class="keyword">while</span> ((len = bis.read(bytes)) != -<span class="number">1</span>) &#123;</span><br><span class="line">                bos.write(bytes, <span class="number">0</span> , len);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="comment">// 记录结束时间</span></span><br><span class="line">        <span class="keyword">long</span> end = System.currentTimeMillis();</span><br><span class="line">        System.out.println(<span class="string">"缓冲流使用数组复制时间:"</span>+(end - start)+<span class="string">" 毫秒"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">缓冲流使用数组复制时间:<span class="number">666</span> 毫秒</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-字符缓冲流"><a href="#1-2-字符缓冲流" class="headerlink" title="1.2 字符缓冲流"></a>1.2 字符缓冲流</h4><p><strong>构造方法：</strong></p>
+<ul>
+<li><code>public BufferedReader(Reader in)</code> ：创建一个 新的缓冲输入流。 </li>
+<li><code>public BufferedWriter(Writer out)</code>： 创建一个新的缓冲输出流。</li>
+</ul>
+<p>构造举例，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建字符缓冲输入流</span></span><br><span class="line">BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(<span class="string">"br.txt"</span>));</span><br><span class="line"><span class="comment">// 创建字符缓冲输出流</span></span><br><span class="line">BufferedWriter bw = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(<span class="string">"bw.txt"</span>));</span><br></pre></td></tr></table></figure>
+
+<p><strong>特有方法：</strong><br>字符缓冲流的基本方法与普通字符流调用方式一致，不再阐述，我们来看它们具备的特有方法。</p>
+<ul>
+<li>BufferedReader：<code>public String readLine()</code>: 读一行文字。 </li>
+<li>BufferedWriter：<code>public void newLine()</code>: 写一行行分隔符,由系统属性定义符号。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BufferedReaderDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">      	 <span class="comment">// 创建流对象</span></span><br><span class="line">        BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(<span class="string">"in.txt"</span>));</span><br><span class="line">		<span class="comment">// 定义字符串,保存读取的一行文字</span></span><br><span class="line">        String line  = <span class="keyword">null</span>;</span><br><span class="line">      	<span class="comment">// 循环读取,读取到最后返回null</span></span><br><span class="line">        <span class="keyword">while</span> ((line = br.readLine())!=<span class="keyword">null</span>) &#123;</span><br><span class="line">            System.out.print(line);</span><br><span class="line">            System.out.println(<span class="string">"------"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="comment">// 释放资源</span></span><br><span class="line">        br.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       </div>
       
         <br>
@@ -463,10 +491,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-11T10:37:28+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-16T11:18:47+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年4月11日</p>
+    <p>更新于 2020年4月16日</p>
   </a>
 </div>
 
@@ -475,7 +503,7 @@
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Maven/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>Maven</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Java/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>Java</p></a></div>
 
 
         
@@ -488,10 +516,9 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/04/11/Maven/&title=Maven的安装搭建补充点 | AhriLove&summary=与众不同的生活方式很累人呢，因为找不到借口
-&nbsp;&nbsp;&nbsp;&nbsp;Maven项目对象模型(POM)，可以通过一小段描述信息来管理项目的构建，报告和文档的项目管理工具软件。
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/04/14/Java%E7%BC%93%E5%86%B2%E6%B5%81%E5%BA%8F%E5%88%97%E6%B5%81%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89/&title=Java（十一）：Java的缓冲流，转换流，序列化流 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之前已经学习了基本的一些流，作为IO流的入门，今天我们要见识一些更强大的流。比如能够高效读写的缓冲流，能够转换编码的转换流，能够持久化存储对象的序列化流等等。这些功能更为强大的流，都是在基本的流对象基础之上创建而来的，就像穿上铠甲的武士一样，相当于是对基本流对象的一种增强。本章内容：
 
-本文要点：1.理清Maven概念2.安装教程点
+1.IO概述2.字节流3.字符流4.IO异常的处理
 "
           
           >
@@ -504,10 +531,9 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/04/11/Maven/&title=Maven的安装搭建补充点 | AhriLove&summary=与众不同的生活方式很累人呢，因为找不到借口
-&nbsp;&nbsp;&nbsp;&nbsp;Maven项目对象模型(POM)，可以通过一小段描述信息来管理项目的构建，报告和文档的项目管理工具软件。
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/04/14/Java%E7%BC%93%E5%86%B2%E6%B5%81%E5%BA%8F%E5%88%97%E6%B5%81%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89/&title=Java（十一）：Java的缓冲流，转换流，序列化流 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之前已经学习了基本的一些流，作为IO流的入门，今天我们要见识一些更强大的流。比如能够高效读写的缓冲流，能够转换编码的转换流，能够持久化存储对象的序列化流等等。这些功能更为强大的流，都是在基本的流对象基础之上创建而来的，就像穿上铠甲的武士一样，相当于是对基本流对象的一种增强。本章内容：
 
-本文要点：1.理清Maven概念2.安装教程点
+1.IO概述2.字节流3.字符流4.IO异常的处理
 "
           
           >
@@ -520,10 +546,9 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/04/11/Maven/&title=Maven的安装搭建补充点 | AhriLove&summary=与众不同的生活方式很累人呢，因为找不到借口
-&nbsp;&nbsp;&nbsp;&nbsp;Maven项目对象模型(POM)，可以通过一小段描述信息来管理项目的构建，报告和文档的项目管理工具软件。
+          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/04/14/Java%E7%BC%93%E5%86%B2%E6%B5%81%E5%BA%8F%E5%88%97%E6%B5%81%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89/&title=Java（十一）：Java的缓冲流，转换流，序列化流 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之前已经学习了基本的一些流，作为IO流的入门，今天我们要见识一些更强大的流。比如能够高效读写的缓冲流，能够转换编码的转换流，能够持久化存储对象的序列化流等等。这些功能更为强大的流，都是在基本的流对象基础之上创建而来的，就像穿上铠甲的武士一样，相当于是对基本流对象的一种增强。本章内容：
 
-本文要点：1.理清Maven概念2.安装教程点
+1.IO概述2.字节流3.字符流4.IO异常的处理
 "
           
           >
@@ -552,21 +577,40 @@
                       <span class="art-item-left">
                           <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
                           <h4>
-                              <a href="/2019/10/20/%E5%88%9D%E6%AC%A1%E8%A7%81%E9%9D%A2_%E8%AF%B7%E5%A4%9A%E5%85%B3%E7%85%A7/" rel="prev" title="初次见面，请多关照">
+                              <a href="/2020/04/15/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AB%A0%E8%8A%82%EF%BC%88%E5%9B%9B%EF%BC%89/" rel="prev" title="数据分析章节（四）：jieba分词与wordcloud词云">
                                 
-                                    初次见面，请多关照
+                                    数据分析章节（四）：jieba分词与wordcloud词云
                                 
                               </a>
                           </h4>
                           
                               
                               <h6 class="tags">
-                                  <a class="tag" href="/tags/Github-Page/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Github Page</a> <a class="tag" href="/tags/Hexo/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Hexo</a>
+                                  <a class="tag" href="/tags/python/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> python</a> <a class="tag" href="/tags/matplotlib/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> matplotlib</a>
                               </h6>
                           
                       </span>
                   </section>
               
+              
+                  <section class="next">
+                      <span class="art-item-right" aria-hidden="true">
+                          <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                          <h4>
+                              <a href="/2020/04/14/Java%E5%AD%97%E7%AC%A6%E5%AD%97%E8%8A%82%E6%B5%81%EF%BC%88%E5%8D%81%EF%BC%89/" rel="prev" title="Java（十）：Java字符流，字节流，IO">
+                                  
+                                      Java（十）：Java字符流，字节流，IO
+                                  
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/Java/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Java</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
               
           </div>
       
@@ -606,7 +650,7 @@
 
   <script>
     window.subData = {
-      title: 'Maven的安装搭建补充点',
+      title: 'Java（十一）：Java的缓冲流，转换流，序列化流',
       tools: true
     }
   </script>
@@ -730,7 +774,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-理清概念"><span class="toc-text">1.理清概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-安装易错点"><span class="toc-text">2.安装易错点</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-缓冲流"><span class="toc-text">1.缓冲流</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-字节缓冲流"><span class="toc-text">1.1 字节缓冲流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-字符缓冲流"><span class="toc-text">1.2 字符缓冲流</span></a></li></ol></li></ol>
     </div>
   </section>
 
