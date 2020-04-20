@@ -458,7 +458,7 @@
 <h3 id="3-js的构造函数"><a href="#3-js的构造函数" class="headerlink" title="3.js的构造函数"></a>3.js的构造函数</h3><ol>
 <li>函数名首字母大写(不强制,味蕾和普通函数的区别)</li>
 <li>通过this来给对象添加属性和方法</li>
-<li>new关键字使用自定义的构造函数去创建对那么new不能省略</li>
+<li><strong>new关键字使用自定义的构造函数去创建，那么new不能省略</strong></li>
 </ol>
 <p>举例说明：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span>(<span class="params">name,age,grender</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 添加属性</span></span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">    <span class="keyword">this</span>.grender = grender;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 添加方法</span></span><br><span class="line">    <span class="keyword">this</span>.sayHi = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name+<span class="string">":"</span>+age+<span class="string">":"</span>+grender</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 使用构造函数来创建对象(new关键字使用自定义的构造函数去创建对那么new不能省略)</span></span><br><span class="line"><span class="keyword">var</span> student1 = <span class="keyword">new</span> Student(<span class="string">"chd"</span>,<span class="number">18</span>,<span class="string">"man"</span>);</span><br><span class="line"><span class="keyword">var</span> student2 = Student(<span class="string">"lmm"</span>,<span class="number">19</span>,<span class="string">"woman"</span>); <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用对象的属性和方法</span></span><br><span class="line"><span class="built_in">console</span>.log(student1.name); <span class="comment">// 调用属性："chd"</span></span><br><span class="line"><span class="built_in">console</span>.log(student1.sayHi()); <span class="comment">// 调用方法："chd:18:man"</span></span><br></pre></td></tr></table></figure>
@@ -494,10 +494,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-28T18:05:45+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-20T17:16:49+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年3月28日</p>
+    <p>更新于 2020年4月20日</p>
   </a>
 </div>
 

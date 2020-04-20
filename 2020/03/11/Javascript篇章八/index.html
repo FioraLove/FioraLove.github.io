@@ -544,6 +544,12 @@
 </ul>
 <h3 id="5-html-DOM-改变CSS"><a href="#5-html-DOM-改变CSS" class="headerlink" title="5.html DOM-改变CSS"></a>5.html DOM-改变CSS</h3><p>如需改变 HTML 元素的样式，请使用这个语法：</p>
 <p><code>document.getElementById(id).style.property=新样式</code></p>
+<p><strong>2020-4-20 补充：</strong><br>之前我们已经了解到了改变HTML元素的样式 document.getElementById(“id_name”).属性attribute=新的属性，但是这种方法无法获取我们自定义的style属性，且官方给出了三种方法：</p>
+<ul>
+<li>设置节点属性：节点变量.setAttribute(“class”，“box”)</li>
+<li>获取节点属性：节点变量.getAttribute(“class”)</li>
+<li>移除节点属性：节点变量.removeAttribute(“class”)</li>
+</ul>
 <h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ol>
 <li><a href="https://www.runoob.com/jsref/dom-obj-event.html" target="_blank" rel="noopener">HTML DOM事件大全</a></li>
 </ol>
@@ -558,10 +564,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-11T11:37:05+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-20T09:28:18+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年4月11日</p>
+    <p>更新于 2020年4月20日</p>
   </a>
 </div>
 

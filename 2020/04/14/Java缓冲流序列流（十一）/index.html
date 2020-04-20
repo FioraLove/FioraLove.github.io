@@ -443,7 +443,7 @@
 <li>字符缓冲流：BufferedReader，BufferedWrite</li>
 </ul>
 <p><font color="orange">缓冲流的基本原理，是在创建流对象时，会创建一个内置的默认大小的缓冲区数组，通过缓冲区读写，减少系统IO次数，从而提高读写的效率。</font></p>
-<h4 id="1-1-字节缓冲流"><a href="#1-1-字节缓冲流" class="headerlink" title="1.1 字节缓冲流"></a>1.1 字节缓冲流</h4><p><strong>构造方法：</strong></p>
+<p><strong>构造方法：</strong></p>
 <ul>
 <li><code>public BufferedInputStream(InputStream in)</code> ：创建一个 新的缓冲输入流。 </li>
 <li><code>public BufferedOutputStream(OutputStream out)</code>： 创建一个新的缓冲输出流。</li>
@@ -451,7 +451,51 @@
 <p>构造举例，代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建字节缓冲输入流</span></span><br><span class="line">BufferedInputStream bis = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">"bis.txt"</span>));</span><br><span class="line"><span class="comment">// 创建字节缓冲输出流</span></span><br><span class="line">BufferedOutputStream bos = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="string">"bos.txt"</span>));</span><br></pre></td></tr></table></figure>
 
-<p><strong>效率测试：</strong><br>查询API，缓冲流读写方法与基本的流是一致的，我们通过复制大文件（400MB），测试它的效率</p>
+<h4 id="BufferedOutputStream：字节缓冲输出流"><a href="#BufferedOutputStream：字节缓冲输出流" class="headerlink" title="BufferedOutputStream：字节缓冲输出流"></a>BufferedOutputStream：字节缓冲输出流</h4><ol>
+<li>继承自父类的共性成员方法:</li>
+</ol>
+<ul>
+<li>public void close() ：关闭此输出流并释放与此流相关联的任何系统资源。</li>
+<li>public void flush() ：刷新此输出流并强制任何缓冲的输出字节被写出。</li>
+<li>public void write(byte[] b)：将 b.length字节从指定的字节数组写入此输出流。</li>
+<li>public void write(byte[] b, int off, int len) ：从指定的字节数组写入 len字节，从偏移量 off开始输出到此输出流。</li>
+<li>public abstract void write(int b) ：将指定的字节输出流。</li>
+</ul>
+<ol start="2">
+<li><p>构造方法:</p>
+<pre>
+&nbsp;&nbsp;&nbsp;&nbsp;BufferedOutputStream(OutputStream out)  创建一个新的缓冲输出流，以将数据写入指定的底层输出流。
+&nbsp;&nbsp;&nbsp;&nbsp;BufferedOutputStream(OutputStream out, int size)  创建一个新的缓冲输出流，以将具有指定缓冲区大小的数据写入指定的底层输出流。
+
+ 参数:
+OutputStream out:字节输出流
+     我们可以传递FileOutputStream,缓冲流会给FileOutputStream增加一个缓冲区,提高FileOutputStream的写入效率
+int size:指定缓冲流内部缓冲区的大小,不指定默认
+</pre>
+</li>
+<li><p><strong>使用步骤(重点)</strong></p>
+</li>
+</ol>
+<p>1.创建FileOutputStream对象,构造方法中绑定要输出的目的地<br>2.创建BufferedOutputStream对象,构造方法中传递FileOutputStream对象对象,提高FileOutputStream对象效率<br>3.使用BufferedOutputStream对象中的方法write,把数据写入到内部缓冲区中<br>4.使用BufferedOutputStream对象中的方法flush,把内部缓冲区中的数据,刷新到文件中<br>5.释放资源(会先调用flush方法刷新数据,第4部可以省略)</p>
+<h4 id="BufferedInputStream-字节缓冲输入流"><a href="#BufferedInputStream-字节缓冲输入流" class="headerlink" title="BufferedInputStream:字节缓冲输入流"></a>BufferedInputStream:字节缓冲输入流</h4><ol>
+<li><p>继承自父类的成员方法:<br> int read()从输入流中读取数据的下一个字节。<br> int read(byte[] b) 从输入流中读取一定数量的字节，并将其存储在缓冲区数组 b 中。<br> void close() 关闭此输入流并释放与该流关联的所有系统资源。</p>
+</li>
+<li><p>构造方法:</p>
+ <pre>
+ BufferedInputStream(InputStream in) 创建一个 BufferedInputStream 并保存其参数，即输入流 in，以便将来使用。
+ BufferedInputStream(InputStream in, int size) 创建具有指定缓冲区大小的 BufferedInputStream 并保存其参数，即输入流 in，以便将来使用。
+ 参数:
+     InputStream in:字节输入流
+         我们可以传递FileInputStream,缓冲流会给FileInputStream增加一个缓冲区,提高FileInputStream的读取效率
+     int size:指定缓冲流内部缓冲区的大小,不指定默认
+ </pre></li>
+<li><p><strong>使用步骤(重点):</strong><br> 1.创建FileInputStream对象,构造方法中绑定要读取的数据源<br> 2.创建BufferedInputStream对象,构造方法中传递FileInputStream对象,提高FileInputStream对象的读取效率<br> 3.使用BufferedInputStream对象中的方法read,读取文件<br> 4.释放资源</p>
+</li>
+</ol>
+<blockquote>
+<p>普通流与缓存流效率测试：</p>
+</blockquote>
+<p>查询API，缓冲流读写方法与基本的流是一致的，我们通过复制大文件（400MB），测试它的效率</p>
 <ol>
 <li>基本的io流，考虑到文件最好选择二进制的字节流来读写</li>
 </ol>
@@ -467,20 +511,61 @@
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BufferedDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> FileNotFoundException </span>&#123;</span><br><span class="line">      	<span class="comment">// 记录开始时间</span></span><br><span class="line">        <span class="keyword">long</span> start = System.currentTimeMillis();</span><br><span class="line">		<span class="comment">// 创建流对象</span></span><br><span class="line">        <span class="keyword">try</span> (</span><br><span class="line">			BufferedInputStream bis = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">"jdk9.exe"</span>));</span><br><span class="line">		 BufferedOutputStream bos = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="string">"copy.exe"</span>));</span><br><span class="line">        )&#123;</span><br><span class="line">          	<span class="comment">// 读写数据</span></span><br><span class="line">            <span class="keyword">int</span> len;</span><br><span class="line">            <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">8</span>*<span class="number">1024</span>];</span><br><span class="line">            <span class="keyword">while</span> ((len = bis.read(bytes)) != -<span class="number">1</span>) &#123;</span><br><span class="line">                bos.write(bytes, <span class="number">0</span> , len);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="comment">// 记录结束时间</span></span><br><span class="line">        <span class="keyword">long</span> end = System.currentTimeMillis();</span><br><span class="line">        System.out.println(<span class="string">"缓冲流使用数组复制时间:"</span>+(end - start)+<span class="string">" 毫秒"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">缓冲流使用数组复制时间:<span class="number">666</span> 毫秒</span><br></pre></td></tr></table></figure>
 
-<h4 id="1-2-字符缓冲流"><a href="#1-2-字符缓冲流" class="headerlink" title="1.2 字符缓冲流"></a>1.2 字符缓冲流</h4><p><strong>构造方法：</strong></p>
-<ul>
-<li><code>public BufferedReader(Reader in)</code> ：创建一个 新的缓冲输入流。 </li>
-<li><code>public BufferedWriter(Writer out)</code>： 创建一个新的缓冲输出流。</li>
-</ul>
-<p>构造举例，代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建字符缓冲输入流</span></span><br><span class="line">BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(<span class="string">"br.txt"</span>));</span><br><span class="line"><span class="comment">// 创建字符缓冲输出流</span></span><br><span class="line">BufferedWriter bw = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(<span class="string">"bw.txt"</span>));</span><br></pre></td></tr></table></figure>
 
-<p><strong>特有方法：</strong><br>字符缓冲流的基本方法与普通字符流调用方式一致，不再阐述，我们来看它们具备的特有方法。</p>
+
+<h4 id="BufferedWriter-字符缓冲输出流"><a href="#BufferedWriter-字符缓冲输出流" class="headerlink" title="BufferedWriter:字符缓冲输出流"></a>BufferedWriter:字符缓冲输出流</h4><ol>
+<li><p>继承自父类的共性成员方法:</p>
 <ul>
-<li>BufferedReader：<code>public String readLine()</code>: 读一行文字。 </li>
-<li>BufferedWriter：<code>public void newLine()</code>: 写一行行分隔符,由系统属性定义符号。</li>
+<li>void write(int c) 写入单个字符。</li>
+<li>void write(char[] cbuf)写入字符数组。</li>
+<li>abstract void write(char[] cbuf, int off, int len)写入字符数组的某一部分,off数组的开始索引,len写的字符个数。</li>
+<li>void write(String str)写入字符串。</li>
+<li>void write(String str, int off, int len) 写入字符串的某一部分,off字符串的开始索引,len写的字符个数。</li>
+<li>void flush()刷新该流的缓冲。</li>
+<li>void close() 关闭此流，但要先刷新它。</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BufferedReaderDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">      	 <span class="comment">// 创建流对象</span></span><br><span class="line">        BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(<span class="string">"in.txt"</span>));</span><br><span class="line">		<span class="comment">// 定义字符串,保存读取的一行文字</span></span><br><span class="line">        String line  = <span class="keyword">null</span>;</span><br><span class="line">      	<span class="comment">// 循环读取,读取到最后返回null</span></span><br><span class="line">        <span class="keyword">while</span> ((line = br.readLine())!=<span class="keyword">null</span>) &#123;</span><br><span class="line">            System.out.print(line);</span><br><span class="line">            System.out.println(<span class="string">"------"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="comment">// 释放资源</span></span><br><span class="line">        br.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>构造方法:</p>
+<pre>
+ BufferedWriter(Writer out) 创建一个使用默认大小输出缓冲区的缓冲字符输出流。
+ BufferedWriter(Writer out, int sz) 创建一个使用给定大小输出缓冲区的新缓冲字符输出流。
+ 参数:
+     Writer out:字符输出流
+         我们可以传递FileWriter,缓冲流会给FileWriter增加一个缓冲区,提高FileWriter的写入效率
+     int sz:指定缓冲区的大小,不写默认大小
+</pre>
+
+
+
+</li>
+</ol>
+<ol start="3">
+<li><p>特有的成员方法:<br> void newLine() 写入一个行分隔符。会根据不同的操作系统,获取不同的行分隔符<br> 换行:换行符号<br> windows:\r\n<br> linux:/n<br> mac:/r</p>
+</li>
+<li><p>使用步骤:<br> 1.创建字符缓冲输出流对象,构造方法中传递字符输出流<br> 2.调用字符缓冲输出流中的方法write,把数据写入到内存缓冲区中<br> 3.调用字符缓冲输出流中的方法flush,把内存缓冲区中的数据,刷新到文件中<br> 4.释放资源</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo03BufferedWriter</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">//System.out.println();</span></span><br><span class="line">        <span class="comment">//1.创建字符缓冲输出流对象,构造方法中传递字符输出流</span></span><br><span class="line">        BufferedWriter bw = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(<span class="string">"10_IO\\c.txt"</span>));</span><br><span class="line">        <span class="comment">//2.调用字符缓冲输出流中的方法write,把数据写入到内存缓冲区中</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;<span class="number">10</span> ; i++) &#123;</span><br><span class="line">            bw.write(<span class="string">"传智播客"</span>);</span><br><span class="line">            <span class="comment">//bw.write("\r\n");</span></span><br><span class="line">            bw.newLine();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//3.调用字符缓冲输出流中的方法flush,把内存缓冲区中的数据,刷新到文件中</span></span><br><span class="line">        bw.flush();</span><br><span class="line">        <span class="comment">//4.释放资源</span></span><br><span class="line">        bw.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="BufferedReader-字符缓冲输入流"><a href="#BufferedReader-字符缓冲输入流" class="headerlink" title="BufferedReader:字符缓冲输入流"></a>BufferedReader:字符缓冲输入流</h4><ol>
+<li><p>继承自父类的共性成员方法:<br> int read() 读取单个字符并返回。<br> int read(char[] cbuf)一次读取多个字符,将字符读入数组。<br> void close() 关闭该流并释放与之关联的所有资源。</p>
+</li>
+<li><p>构造方法:</p>
+<pre>
+ BufferedReader(Reader in)  创建一个使用默认大小输入缓冲区的缓冲字符输入流。
+ BufferedReader(Reader in, int sz)     创建一个使用指定大小输入缓冲区的缓冲字符输入流。
+ 参数:
+     Reader in:字符输入流
+         我们可以传递FileReader,缓冲流会给FileReader增加一个缓冲区,提高FileReader的读取效率
+</pre>
+</li>
+<li><p>特有的成员方法:<br> String readLine() 读取一个文本行。读取一行数据</p>
+<pre><code>行的终止符号:通过下列字符之一即可认为某行已终止：换行 (&apos;\n&apos;)、回车 (&apos;\r&apos;) 或回车后直接跟着换行(\r\n)。</code></pre><p> 返回值:</p>
+<pre><code>**包含该行内容的字符串，不包含任何行终止符，如果已到达流末尾，则返回 null**</code></pre></li>
+<li><p>使用步骤:<br> 1.创建字符缓冲输入流对象,构造方法中传递字符输入流<br> 2.使用字符缓冲输入流对象中的方法read/readLine读取文本<br> 3.释放资源</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo04BufferedReader</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">//1.创建字符缓冲输入流对象,构造方法中传递字符输入流</span></span><br><span class="line">        BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(<span class="string">"10_IO\\c.txt"</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2.使用字符缓冲输入流对象中的方法read/readLine读取文本</span></span><br><span class="line">        <span class="comment">/*String line = br.readLine();</span></span><br><span class="line"><span class="comment">        System.out.println(line);</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        line = br.readLine();</span></span><br><span class="line"><span class="comment">        System.out.println(line);</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        line = br.readLine();</span></span><br><span class="line"><span class="comment">        System.out.println(line);</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        line = br.readLine();</span></span><br><span class="line"><span class="comment">        System.out.println(line);*/</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">            发现以上读取是一个重复的过程,所以可以使用循环优化</span></span><br><span class="line"><span class="comment">            不知道文件中有多少行数据,所以使用while循环</span></span><br><span class="line"><span class="comment">            while的结束条件,读取到null结束</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        String line;</span><br><span class="line">        <span class="keyword">while</span>((line = br.readLine())!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            System.out.println(line);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3.释放资源</span></span><br><span class="line">        br.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       </div>
       
         <br>
@@ -491,10 +576,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-16T11:18:47+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-20T21:35:11+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年4月16日</p>
+    <p>更新于 2020年4月20日</p>
   </a>
 </div>
 
@@ -774,7 +859,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-缓冲流"><span class="toc-text">1.缓冲流</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-字节缓冲流"><span class="toc-text">1.1 字节缓冲流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-字符缓冲流"><span class="toc-text">1.2 字符缓冲流</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-缓冲流"><span class="toc-text">1.缓冲流</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BufferedOutputStream：字节缓冲输出流"><span class="toc-text">BufferedOutputStream：字节缓冲输出流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BufferedInputStream-字节缓冲输入流"><span class="toc-text">BufferedInputStream:字节缓冲输入流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BufferedWriter-字符缓冲输出流"><span class="toc-text">BufferedWriter:字符缓冲输出流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BufferedReader-字符缓冲输入流"><span class="toc-text">BufferedReader:字符缓冲输入流</span></a></li></ol></li></ol>
     </div>
   </section>
 
