@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>docker容器虚拟化技术 | AhriLove</title>
+  <title>Python全栈系列章节更新（十八）：知识点补充（Ⅰ） | AhriLove</title>
   
   
 
@@ -347,8 +347,8 @@
         
   
     <h1 class="title">
-      <a href="/2019/11/10/docker%E5%AE%B9%E5%99%A8%E8%99%9A%E6%8B%9F%E6%8A%80%E6%9C%AF/">
-        docker容器虚拟化技术
+      <a href="/2020/04/21/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89/">
+        Python全栈系列章节更新（十八）：知识点补充（Ⅰ）
       </a>
     </h1>
   
@@ -363,11 +363,11 @@
             
   <div class='new-meta-item author'>
     
-      <a href="https://ahrilove.top" rel="nofollow">
+      <a href="/" rel="nofollow">
         
-          <i class="fas fa-user" aria-hidden="true"></i>
+          <img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/lovezhuge.jpg">
         
-        <p>AhriLove</p>
+        <p>曲率矩阵</p>
       </a>
     
   </div>
@@ -379,7 +379,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-11-10</p>
+    <p>2020-04-21</p>
   </a>
 </div>
 
@@ -389,9 +389,9 @@
             
   
   <div class='new-meta-item category'>
-    <a href='/categories/docker/' rel="nofollow">
+    <a href='/categories/Python/' rel="nofollow">
       <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>docker</p>
+      <p>Python</p>
     </a>
   </div>
 
@@ -431,122 +431,23 @@
 
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
-        <p><font color=#00CD00>简单来说，在Windows系统下安装各种运行环境的坑简直不要太多了(●￣(ｴ)￣●)，并不仅限于docker、Nginx、PHP、Python等等</font>，我会尽详细写出实际过程中遇到的各种各样的奇葩问题<br><fancybox><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573382566146&di=7b10832832e7d3c37d3f4e2e84d45d5d&imgtype=jpg&src=http%3A%2F%2Fimg3.imgtn.bdimg.com%2Fit%2Fu%3D859959778%2C1194286727%26fm%3D214%26gp%3D0.jpg" alt=""></fancybox></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><strong>本章内容：</strong></p>
+<blockquote>
+<p>1.python的占位符%s,%d,%r,%f<br>2.通过登录页找到验证码的url</p>
+</blockquote>
 <a id="more"></a>
-
-
-<h3 id="1-docker适用环境"><a href="#1-docker适用环境" class="headerlink" title="1.docker适用环境"></a>1.docker适用环境</h3><p>其实docker本身也没有太多在Windows下花功夫。<font color=#00CD00>目前，docker仅支持Linux与Windows企业版、专业版、教育版。ps：家庭版不支持docker</font>,并且win10下可以安装<a href="https://hub.docker.com/editions/community/docker-ce-desktop-windows?tab=description" target="_blank" rel="noopener">docker-for-windows</a>,这个安装包是<br>专门适用于win10，安装简单，而对于win7/8则可以使用<a href="https://github.com/docker/toolbox/releases" target="_blank" rel="noopener">Docker Toolbox下载地址</a></p>
-<h3 id="2-Windows下无法对docker容器进行端口访问（端口映射的问题）"><a href="#2-Windows下无法对docker容器进行端口访问（端口映射的问题）" class="headerlink" title="2.Windows下无法对docker容器进行端口访问（端口映射的问题）"></a>2.Windows下无法对docker容器进行端口访问（端口映射的问题）</h3><p>1.问题详情<br><br>&nbsp;&nbsp;&nbsp;在Windows10系统服务器中安装了docker和docker-compose<br><br>&nbsp;&nbsp;&nbsp;并尝试在其中运行Nginx服务，映射也做好<br><br>&nbsp;&nbsp;&nbsp;问题：在主机的浏览器中，打开localhost:port无法访问对应的Web服务。<br><br>2.问题解析<br><br>&nbsp;&nbsp;&nbsp;原因：docker是运行在Linux上的，在Windows中运行docker，实际上还是在Windows下先安装了一个Linux环境，然后在这个系统中运行的docker。也就是说，服务中使用的localhost指的是这个Linux环境的地址，而不是我们的宿主环境Windows10。<br><br>3.解决办法<br><br>&nbsp;&nbsp;&nbsp;启动docker命令行窗口<br><br>&nbsp;&nbsp;&nbsp;输入命令:docker-machine ip default<br><br>&nbsp;&nbsp;&nbsp;Linux的ip地址，一般情况下这个地址是192.168.99.100<br><br>&nbsp;&nbsp;&nbsp;然后在Windows的浏览器中，输入 <a href="http://IP:port" target="_blank" rel="noopener">http://IP:port</a> 即可启用（<a href="http://192.168.99.100：8069）" target="_blank" rel="noopener">http://192.168.99.100：8069）</a><br></p>
-<h3 id="3-docker与VMware不可兼容"><a href="#3-docker与VMware不可兼容" class="headerlink" title="3.docker与VMware不可兼容"></a>3.docker与VMware不可兼容</h3><p>&nbsp;&nbsp;&nbsp;在Windows下安装docker，第一步就是要打开Hyper-V(打开控制面板 - 程序和功能 - 启用或关闭Windows功能，勾选Hyper-V),开启win自带的虚拟管理技术。但是若想要使用VMware，则必须关闭Hyper-V，鱼和熊掌不可兼得呀！(′д｀ )…彡…彡</p>
-<h3 id="4-Windows：vmware与hyper-v不兼容-请移除hyper-v角色"><a href="#4-Windows：vmware与hyper-v不兼容-请移除hyper-v角色" class="headerlink" title="4.Windows：vmware与hyper-v不兼容,请移除hyper-v角色"></a>4.Windows：vmware与hyper-v不兼容,请移除hyper-v角色</h3><p>1、请移除hyper-v角色。<br>（1）以管理员身份（win + x）运行命令提示符；<br>（2）执行命令：bcdedit /set hypervisorlaunchtype off<br>（3）重启系统，运行vm即可。<br>2、如果想要恢复hyper启动：<br>&nbsp;&nbsp;&nbsp;bcdedit / set hypervisorlaunchtype auto</p>
-<h3 id="5-docker-run后接-bin-sh和接-bin-bash的区别是什么："><a href="#5-docker-run后接-bin-sh和接-bin-bash的区别是什么：" class="headerlink" title="5.docker run后接/bin/sh和接/bin/bash的区别是什么："></a>5.docker run后接/bin/sh和接/bin/bash的区别是什么：</h3><p>比如我们要获取一个nginx镜像，同一镜像存在有不同的tags<br>&nbsp;&nbsp;&nbsp;/bin/sh命令仅适用于tags带alpine标签的： nginx:1.17-alpine；<br>&nbsp;&nbsp;&nbsp;/bin/bash命令仅适用于tags不带alpine标识的：nginx：laster，nginx:1.8…</p>
-<h3 id="6-docker运行MySQL服务"><a href="#6-docker运行MySQL服务" class="headerlink" title="6.docker运行MySQL服务"></a>6.<a href="https://blog.csdn.net/siying8419/article/details/79670246" target="_blank" rel="noopener">docker运行MySQL服务</a></h3><blockquote>
-<ol>
-<li>拉取镜像<br>docker pull mysql:[tag]</li>
-<li>创建并运行容器<br>docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql：5.6</li>
-</ol>
-</blockquote>
-<p>ps: -p 表示指定访问端口<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-e 设置环境变量，或者覆盖已存在的环境变量<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-d 表示以守护式方式来运行容器<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MYSQL_ROOT_PASSWORD=123456 声明MySQL的用户名为ROOT，密码为123456</p>
-<blockquote>
-<ol start="3">
-<li>查看容器是否启动<br>docker ps </li>
-<li>启动容器<br>docker start container_id</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="5">
-<li>进入容器内部,以命令行交互<br>docker exec -it container_id /bin/bash</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="6">
-<li>登录MySQL<br>mysql -u root -p 然后在输入密码</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="7">
-<li>成功表示已经成功登陆MySQL</li>
-</ol>
-</blockquote>
-<h3 id="7-最强万能公式-数据卷挂载式创建容器"><a href="#7-最强万能公式-数据卷挂载式创建容器" class="headerlink" title="7.最强万能公式:数据卷挂载式创建容器"></a>7.最强万能公式:数据卷挂载式创建容器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">守护式：docker run -di [--privileged=true] -P(或者指定端口 -p 外部port:该容器默认端口) \--name=&quot;newNginx&quot;  -v /home/chd/Desktop/entwechatapp:/var/www/EntWeChatApp:rw  nginx:1.15.7-alpine</span><br><span class="line">交互式：docker run -it [--privileged=true] -P(或者指定端口 -p 外部port:该容器默认端口) \--name=&quot;newNginx&quot;  -v /home/chd/Desktop/entwechatapp:/var/www/EntWeChatApp:rw  nginx:1.15.7-alpine</span><br><span class="line">含义：</span><br><span class="line">   a） 以-v /home/chd/Desktop/entwechatapp:/var/www/EntWeChatApp:rw 带rw(read,write)权限来将宿主机与容器进行数据卷挂载</span><br><span class="line">   b) docker run 以新容器名和端口号以及守护式或者交互式来创建容器</span><br></pre></td></tr></table></figure>
-
-<h3 id="8-宿主机与docker容器权限纠纷"><a href="#8-宿主机与docker容器权限纠纷" class="headerlink" title="8.宿主机与docker容器权限纠纷"></a>8.宿主机与docker容器权限纠纷</h3><p>问题描述：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;它来了！问题又出现了！哭啦。数据卷挂载时，即使声明了rw权限，在宿主机中创建文件，数据共享后，容器内能够具有正常的rw权限；但在容器内新建了文件后，宿主机就只有只读权限，无法修改文件内容。</p>
-<p>解决方案：宿主机的权限不够<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在（7）式中的万能公式中添加：docker run ··· --privileged=true ···</p>
-<h3 id="9-docker配置nginx的配置文件"><a href="#9-docker配置nginx的配置文件" class="headerlink" title="9.docker配置nginx的配置文件"></a>9.<a href="https://www.cnblogs.com/zfding/p/11429695.html" target="_blank" rel="noopener">docker配置nginx的配置文件</a></h3><p><del>命令：<code>docker run --name=&quot;dnmp_nginx&quot; -p 80:80 -v /home/docker-nginx/nginx.conf:/etc/nginx/nginx.conf -v /home/docker-nginx/log:/var/log/nginx -v /home/docker-nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf -di nginx:\[tags]</code><br>&nbsp;&nbsp;&nbsp;&nbsp;第一个-v 表示将你本地的nginx.conf覆盖你要起启动的容器的nginx.conf文件，第二个表示将日志文件进行挂载，就是把nginx服务器的日志写到你docker宿主机的/home/docker-nginx/log/下面。第三个-v 表示的和第一个-v意思一样的<br>&nbsp;&nbsp;&nbsp;&nbsp;我个人更喜欢守护式映射的方式，麻烦的是需要自己准备好nginx.conf 和default.conf文件，我是直接从容器里面复制的，然后根据自己的需要改的</del></p>
-<p>我都想把它杀了，部署nginx太多坑了，不过参考了<a href="https://blog.csdn.net/qierkang/article/details/92657302" target="_blank" rel="noopener">此博文</a>，最终解决了问题，解决方法：</p>
-<blockquote>
-<p>1.创建三个根目录根据情况创建：/docker/nginx/conf www logs</p>
-</blockquote>
-<p>docker run -d -p 80:80 --name=”nginx” --net host -v /docker/nginx/www:/usr/share/nginx/html -v /docker/nginx/logs:/var/log/nginx nginx:1.17.5</p>
-<blockquote>
-<p>2.不对配置文件进行数据挂载即 </p>
-</blockquote>
-<p>-v /docker/nginx/conf/nginx.conf:/etc/nginx/nginx.conf 这个   </p>
-<blockquote>
-<p>3.进入容器 获取文件</p>
-</blockquote>
-<p>docker exec -it nginx /bin/bash </p>
-<blockquote>
-<p>4.cd /etc/nginx/ </p>
-</blockquote>
-<p>（这里主要获取配置文件路径的）,然后exit</p>
-<blockquote>
-<p>5.数据拷贝</p>
-</blockquote>
-<p>进入宿主机目录文件 cd /docker/nginx/conf/<br>将已经运行成功的容器的配置文件拷贝到宿主机的配置文件目录：docker cp 容器ID:/etc/nginx/nginx.conf .（ps：“.”表示拷贝到当前目录）</p>
-<p>ps：文件copy成功后 把nginx容器先删除掉</p>
-<blockquote>
-<p>6.创建最终的nginx容器</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run -di -p 80:80 </span><br><span class="line">--name nginx </span><br><span class="line">[--net host] :再思考一下有没有必要写，使用–net = host时,它告诉容器使用主机网络堆栈.因此无法将端口暴露给主机,因为它是主机(就网络堆栈而言).</span><br><span class="line">-v /docker/nginx/www:/usr/share/nginx/html </span><br><span class="line">-v /docker/nginx/conf/nginx.conf:/etc/nginx/nginx.conf</span><br><span class="line">-v /docker/nginx/logs:/var/log/nginx </span><br><span class="line">nginx:1.17.5</span><br><span class="line">ps:成功后就代表部署成功</span><br></pre></td></tr></table></figure>
-
-<p><font color=#ef4136>2019-11-29 新增：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里宿主机的nginx.conf其实是挂载了一个文件，docker是不推荐这样使用的，可以尝试在宿主机上创建目录为：/docker/nginx/conf/nginx.conf/nginx.conf(当前conf文件是一个具体的配置文件，不是一个目录)，这样上式就不会出现docker warning</font>，结合<a href="https://blog.csdn.net/u014106644/article/details/83152366" target="_blank" rel="noopener">此篇文章</a> 。</p>
-<p>PS：访问可能会403 因为/docker/nginx/www/ 里面没有index.html放进去就好了</p>
-<blockquote>
-<p>7.权限赋予</p>
-</blockquote>
-<p>挂载成功后，给宿主机上的www目录（或整个文件目录）增加权限，不然一直无法读写：<br>&nbsp;&nbsp;&nbsp;&nbsp;sudo chmod -R 777 目标目录 ：给目标目录赋予最大管理员权限<br>&nbsp;&nbsp;&nbsp;&nbsp;sudo chmod +/-rwx 文件名|目录  给文件或目录的赋予权限</p>
-<h3 id="10-docker配置MySQL，redis教程等，请点击此处链接"><a href="#10-docker配置MySQL，redis教程等，请点击此处链接" class="headerlink" title="10.docker配置MySQL，redis教程等，请点击此处链接"></a>10.docker配置MySQL，redis教程等，<a href="https://pan.baidu.com/s/1nUE4pfe2wThYVGMEYqADXw" target="_blank" rel="noopener">请点击此处链接</a></h3><p>命令:<code>docker run -di -p 12345:3306 \--name=&quot;mysql&quot; -v /lnmp/mysql/conf:/etc/mysql/conf.d -v /lnmp/mysql/logs:/logs -v /lnmp/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456:rw  mysql:5.6</code></p>
-<p>命令说明：<br>-p 12345:3306：将主机的12345端口映射到docker容器的3306端口。<br>--name mysql：运行服务名字<br>-v /lnmp/mysql/conf:/etc/mysql/conf.d ：将主机/lnmp/mysql录下的conf/my.cnf 挂载到容器的 /etc/mysql/conf.d<br>-v /lnmp/mysql/logs:/logs：将主机/lnmp/mysql目录下的 logs 目录挂载到容器的 /logs。<br>-v /lnmp/mysql/data:/var/lib/mysql ：将主机/lnmp/mysql目录下的data目录挂载到容器的 /var/lib/mysql<br>-e MYSQL_ROOT_PASSWORD=123456：初始化 root 用户的密码。<br>-d mysql:5.6 : 后台程序运行mysql5.6</p>
-<h3 id="11-docker-容器管理工具：portainer使用"><a href="#11-docker-容器管理工具：portainer使用" class="headerlink" title="11.docker 容器管理工具：portainer使用"></a>11.docker 容器管理工具：<a href="https://blog.csdn.net/yuanlingGeGe/article/details/100762360" target="_blank" rel="noopener">portainer使用</a></h3><ol>
-<li>这个数据卷用于持久化Portainer数据：</li>
-</ol>
-<p>docker volume create portainer_data<br>2. 创建相关portainer容器<br>docker run -di -p 9000:9000 --name=”portainer”<br>-v /var/run/docker.sock:/var/run/docker.sock<br>-v portainer_data:/data portainer/portainer</p>
-<h3 id="12-外部Windows如何访问docker内的容器"><a href="#12-外部Windows如何访问docker内的容器" class="headerlink" title="12.外部Windows如何访问docker内的容器"></a>12.外部Windows如何访问docker内的容器</h3><blockquote>
-<p>1.基本架构：Windows，Dockers，Linux三者关系<br><fancybox><img src="https://images2018.cnblogs.com/blog/1228818/201805/1228818-20180510183714998-435698473.png" alt="Windows，Dockers，Linux三者关系"></fancybox></p>
-</blockquote>
-<blockquote>
-<p>2.相关操作</p>
-</blockquote>
-<p>2.1 关闭Linux防火墙：systemctl stop firewalld.service</p>
-<p>2.2 查看Linux，Docker的IP地址:ifconfig(区别于Windows的ipconfig命令)</p>
-<p><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/CDN@1.2.2/docker.png" width="60%"></fancybox></p>
-<p>2.3 Windows访问测试:</p>
-<blockquote>
-<p>思想：docker作为一个容器虚拟技术，创建并启动相关的容器服务，并把端口映射到Linux系统中。比如MySQL：docker启动MySQL服务后，并映射了一个外部访问的某端口（比如还是3306）<br>，则此刻Linux就具有了3306这个一个端口=&gt;外界访问方式应该是：访问虚拟机Linux上与之相绑定docker容器映射出的端口。</p>
-</blockquote>
-<p><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/CDN@1.2.2/test.JPG" height="60%"></fancybox><br><font color=#FF3030>2019-11-27 新增：</font><br>Linux:<br>在 windows 系统中访问 linux 中 nginx，默认不能访问的，因为防火墙问题,即我们可以有两种解决方法<br>（1）关闭防火墙：参考上述相关操作<br>（2）开放访问的端口号，比如80端口，操作如下： </p>
-<p>查看开放的端口号 </p>
-<blockquote>
-<p>firewall-cmd --list-all </p>
-</blockquote>
-<p>设置开放的端口号 </p>
-<blockquote>
-<p>firewall-cmd --add-service=http --permanent<br>firewall-cmd --add-port=80(或其它开放端口号)/tcp --permanent </p>
-</blockquote>
-<p>重启防火墙 </p>
-<blockquote>
-<p>firewall-cmd --reload </p>
-</blockquote>
-<hr>
-
-<p>Ubuntu:<br>Ubuntu与linux对于防火墙的操作存在很大的区别：注意区分<br>1、查看端口开启状态（inactive表示已经关闭了防火墙）<br>sudo ufw status</p>
-<p>2、开启某个端口，比如我开启的是3306<br>sudo ufw allow 3306</p>
-<p>3、开启防火墙<br>sudo ufw enable</p>
-<p> 4、关闭防火墙<br>sudo ufw disable</p>
-<p> 5、重启防火墙<br>sudo ufw reload</p>
-<p>6、禁止外部某个端口比如80<br>sudo ufw delete allow 80</p>
-<p>7、查看端口ip<br>netstat -ltn<br>————————————————</p>
+<h3 id="1-python的占位符"><a href="#1-python的占位符" class="headerlink" title="1.python的占位符"></a>1.python的占位符</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<ul>
+<li>%s代表字符串占位符</li>
+<li>%d代表数字占位符，但只能是十进制整数</li>
+<li>%f默认保留6为小数位，而第7位根据四舍五入取值<h3 id="2-进制转换"><a href="#2-进制转换" class="headerlink" title="2.进制转换"></a>2.进制转换</h3></li>
+<li>bin(number) 将十进制转换为二进制</li>
+<li>oct(number) 将十进制转换为八进制</li>
+<li>hex(number) 将十进制转换为十六进制</li>
+</ul>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
+<li><a href="https://blog.csdn.net/meteor_93/article/details/103380179" target="_blank" rel="noopener">Session 和 Cookies</a></li>
+</ul>
 
       </div>
       
@@ -558,10 +459,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-01-02T17:17:34+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-21T16:59:37+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年1月2日</p>
+    <p>更新于 2020年4月21日</p>
   </a>
 </div>
 
@@ -570,7 +471,7 @@
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/docker/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>docker</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/VMware/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>VMware</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/images/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>images</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/container/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>container</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Hyper-V/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>Hyper-V</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Linux/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>Linux</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E4%B8%8E%E5%AE%88%E6%8A%A4%E5%BC%8F%E5%88%9B%E5%BB%BA/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>交互式与守护式创建</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/python/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>python</p></a></div>
 
 
         
@@ -583,7 +484,10 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/11/10/docker%E5%AE%B9%E5%99%A8%E8%99%9A%E6%8B%9F%E6%8A%80%E6%9C%AF/&title=docker容器虚拟化技术 | AhriLove&summary=简单来说，在Windows系统下安装各种运行环境的坑简直不要太多了(●￣(ｴ)￣●)，并不仅限于docker、Nginx、PHP、Python等等，我会尽详细写出实际过程中遇到的各种各样的奇葩问题"
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/04/21/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89/&title=Python全栈系列章节更新（十八）：知识点补充（Ⅰ） | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本章内容：
+
+1.python的占位符%s,%d,%r,%f2.通过登录页找到验证码的url
+"
           
           >
           
@@ -595,7 +499,10 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/11/10/docker%E5%AE%B9%E5%99%A8%E8%99%9A%E6%8B%9F%E6%8A%80%E6%9C%AF/&title=docker容器虚拟化技术 | AhriLove&summary=简单来说，在Windows系统下安装各种运行环境的坑简直不要太多了(●￣(ｴ)￣●)，并不仅限于docker、Nginx、PHP、Python等等，我会尽详细写出实际过程中遇到的各种各样的奇葩问题"
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/04/21/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89/&title=Python全栈系列章节更新（十八）：知识点补充（Ⅰ） | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本章内容：
+
+1.python的占位符%s,%d,%r,%f2.通过登录页找到验证码的url
+"
           
           >
           
@@ -607,7 +514,10 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/11/10/docker%E5%AE%B9%E5%99%A8%E8%99%9A%E6%8B%9F%E6%8A%80%E6%9C%AF/&title=docker容器虚拟化技术 | AhriLove&summary=简单来说，在Windows系统下安装各种运行环境的坑简直不要太多了(●￣(ｴ)￣●)，并不仅限于docker、Nginx、PHP、Python等等，我会尽详细写出实际过程中遇到的各种各样的奇葩问题"
+          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/04/21/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89/&title=Python全栈系列章节更新（十八）：知识点补充（Ⅰ） | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本章内容：
+
+1.python的占位符%s,%d,%r,%f2.通过登录页找到验证码的url
+"
           
           >
           
@@ -631,40 +541,21 @@
       
           <div class="prev-next">
               
-                  <section class="prev">
-                      <span class="art-item-left">
-                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
-                          <h4>
-                              <a href="/2019/11/11/python%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="prev" title="Python全栈系列章节更新（一）：基本数据类型">
-                                
-                                    Python全栈系列章节更新（一）：基本数据类型
-                                
-                              </a>
-                          </h4>
-                          
-                              
-                              <h6 class="tags">
-                                  <a class="tag" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 字符串</a> <a class="tag" href="/tags/%E5%85%83%E7%BB%84/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 元组</a> <a class="tag" href="/tags/%E5%88%97%E8%A1%A8/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 列表</a> <a class="tag" href="/tags/%E5%AD%97%E5%85%B8/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 字典</a> <a class="tag" href="/tags/%E6%95%B0%E5%80%BC/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 数值</a>
-                              </h6>
-                          
-                      </span>
-                  </section>
-              
               
                   <section class="next">
                       <span class="art-item-right" aria-hidden="true">
                           <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                           <h4>
-                              <a href="/2019/11/08/Vue/" rel="prev" title="Vue">
+                              <a href="/2020/04/15/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AB%A0%E8%8A%82%EF%BC%88%E5%9B%9B%EF%BC%89/" rel="prev" title="数据分析章节（四）：jieba分词与wordcloud词云">
                                   
-                                      Vue
+                                      数据分析章节（四）：jieba分词与wordcloud词云
                                   
                               </a>
                           </h4>
                           
                               
                               <h6 class="tags">
-                                  <a class="tag" href="/tags/Vue/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Vue</a> <a class="tag" href="/tags/Jquery/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Jquery</a> <a class="tag" href="/tags/component/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> component</a>
+                                  <a class="tag" href="/tags/python/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> python</a> <a class="tag" href="/tags/matplotlib/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> matplotlib</a>
                               </h6>
                           
                       </span>
@@ -708,7 +599,7 @@
 
   <script>
     window.subData = {
-      title: 'docker容器虚拟化技术',
+      title: 'Python全栈系列章节更新（十八）：知识点补充（Ⅰ）',
       tools: true
     }
   </script>
@@ -832,7 +723,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-docker适用环境"><span class="toc-text">1.docker适用环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Windows下无法对docker容器进行端口访问（端口映射的问题）"><span class="toc-text">2.Windows下无法对docker容器进行端口访问（端口映射的问题）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-docker与VMware不可兼容"><span class="toc-text">3.docker与VMware不可兼容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Windows：vmware与hyper-v不兼容-请移除hyper-v角色"><span class="toc-text">4.Windows：vmware与hyper-v不兼容,请移除hyper-v角色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-docker-run后接-bin-sh和接-bin-bash的区别是什么："><span class="toc-text">5.docker run后接/bin/sh和接/bin/bash的区别是什么：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-docker运行MySQL服务"><span class="toc-text">6.docker运行MySQL服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-最强万能公式-数据卷挂载式创建容器"><span class="toc-text">7.最强万能公式:数据卷挂载式创建容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-宿主机与docker容器权限纠纷"><span class="toc-text">8.宿主机与docker容器权限纠纷</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-docker配置nginx的配置文件"><span class="toc-text">9.docker配置nginx的配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-docker配置MySQL，redis教程等，请点击此处链接"><span class="toc-text">10.docker配置MySQL，redis教程等，请点击此处链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-docker-容器管理工具：portainer使用"><span class="toc-text">11.docker 容器管理工具：portainer使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-外部Windows如何访问docker内的容器"><span class="toc-text">12.外部Windows如何访问docker内的容器</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-python的占位符"><span class="toc-text">1.python的占位符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-进制转换"><span class="toc-text">2.进制转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
     </div>
   </section>
 
