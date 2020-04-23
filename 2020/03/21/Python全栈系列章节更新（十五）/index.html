@@ -451,6 +451,10 @@
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="comment"># 基本 post 请求</span></span><br><span class="line">data = &#123;</span><br><span class="line">    <span class="string">'name'</span>:<span class="string">'M.Lu'</span>, </span><br><span class="line">    <span class="string">'age'</span>:<span class="string">'22'</span></span><br><span class="line">&#125;</span><br><span class="line">response = requests.post(<span class="string">"http://httpbin.org/post"</span>, data=data)</span><br><span class="line">print(response.text)</span><br></pre></td></tr></table></figure>
 
+<p>拓：对于POST请求，请求参数是<strong>request payload</strong> 的形式,这时如何传参？<br>先将request payload格式的数据写成标准的json数据格式，最后再转换成字符串</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># request payload数据格式</span></span><br><span class="line">payloadData = &#123;</span><br><span class="line">    <span class="string">'afnPriceStr'</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">'currency'</span>:<span class="string">'USD'</span>,</span><br><span class="line">    <span class="string">'productInfoMapping'</span>: &#123;</span><br><span class="line">        <span class="string">'asin'</span>: <span class="string">'B072JW3Z6L'</span>,</span><br><span class="line">        <span class="string">'dimensionUnit'</span>: <span class="string">'inches'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">r = requests.post(postUrl, data=json.dumps(payloadData))</span><br></pre></td></tr></table></figure>
+
+
 
 <h3 id="2-传递参数"><a href="#2-传递参数" class="headerlink" title="2.传递参数"></a>2.传递参数</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;无论是post还是get请求，对url进行请求时，都可以传递参数</p>
 <ol>
@@ -538,10 +542,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-13T15:13:40+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-23T14:30:46+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年4月13日</p>
+    <p>更新于 2020年4月23日</p>
   </a>
 </div>
 
