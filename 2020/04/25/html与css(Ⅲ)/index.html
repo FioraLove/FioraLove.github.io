@@ -433,7 +433,7 @@
       <div class="article-entry" itemprop="articleBody">
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSS 规则由两个主要的部分构成：选择器，以及一条或多条声明:<br><strong>本章内容：</strong></p>
 <blockquote>
-<p>1.选择器<br>2.transition过渡属性</p>
+<p>1.选择器<br>2.transition过渡属性<br>3.outline轮廓属性</p>
 </blockquote>
 <a id="more"></a>
 
@@ -489,7 +489,14 @@ div:hover{
 }
 </pre> 
 
-
+<h3 id="3-outline轮廓属性"><a href="#3-outline轮廓属性" class="headerlink" title="3.outline轮廓属性"></a>3.outline轮廓属性</h3><p>outline（轮廓）是绘制于元素周围的一条线，位于边框边缘的外围，可起到突出元素的作用。</p>
+<ul>
+<li>outline-color    规定边框的颜色</li>
+<li>outline-style    规定边框的样式</li>
+<li>outline-width    规定边框的宽度</li>
+</ul>
+<p><a href="https://blog.csdn.net/milan_kunderla/article/details/79856279" target="_blank" rel="noopener">outline轮廓属性解决input设置圆角边框的相关问题</a></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="css">        <span class="selector-class">.box</span>&#123;</span></span><br><span class="line">            text-align: center;</span><br><span class="line">        &#125;</span><br><span class="line">        input &#123;</span><br><span class="line"><span class="css">            <span class="selector-tag">border-radius</span>: 14<span class="selector-tag">px</span>; <span class="comment">/* 圆角边框 */</span></span></span><br><span class="line">            width: 20em;</span><br><span class="line"><span class="css">            <span class="selector-tag">height</span><span class="selector-pseudo">:3em</span>;</span></span><br><span class="line">            outline: none;</span><br><span class="line">            margin: 0;</span><br><span class="line">            padding: 10px 0;</span><br><span class="line">            border: 1px solid rgb(180, 180, 180);</span><br><span class="line">            font-size: 16px;</span><br><span class="line">            text-align: center;</span><br><span class="line"><span class="css">            <span class="selector-tag">box-shadow</span>: 10<span class="selector-tag">px</span> 10<span class="selector-tag">px</span> 3<span class="selector-tag">px</span> <span class="selector-tag">rgba</span>(158,125,35,0<span class="selector-class">.3</span>);</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-tag">input</span><span class="selector-pseudo">:hover</span> &#123;</span></span><br><span class="line">            border: 1px solid rgb(255, 0, 0);</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"search"</span> <span class="attr">id</span>=<span class="string">"search"</span> <span class="attr">placeholder</span>=<span class="string">"搜索"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 
 <h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
@@ -506,10 +513,10 @@ div:hover{
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-25T17:23:59+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-29T17:06:32+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年4月25日</p>
+    <p>更新于 2020年4月29日</p>
   </a>
 </div>
 
@@ -533,7 +540,7 @@ div:hover{
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/04/25/html%E4%B8%8Ecss(%E2%85%A2)/&title=CSS补充 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSS 规则由两个主要的部分构成：选择器，以及一条或多条声明:本章内容：
 
-1.选择器2.transition过渡属性
+1.选择器2.transition过渡属性3.outline轮廓属性
 "
           
           >
@@ -548,7 +555,7 @@ div:hover{
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/04/25/html%E4%B8%8Ecss(%E2%85%A2)/&title=CSS补充 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSS 规则由两个主要的部分构成：选择器，以及一条或多条声明:本章内容：
 
-1.选择器2.transition过渡属性
+1.选择器2.transition过渡属性3.outline轮廓属性
 "
           
           >
@@ -563,7 +570,7 @@ div:hover{
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/04/25/html%E4%B8%8Ecss(%E2%85%A2)/&title=CSS补充 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSS 规则由两个主要的部分构成：选择器，以及一条或多条声明:本章内容：
 
-1.选择器2.transition过渡属性
+1.选择器2.transition过渡属性3.outline轮廓属性
 "
           
           >
@@ -770,7 +777,7 @@ div:hover{
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-选择器"><span class="toc-text">1.选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-transition过渡属性"><span class="toc-text">2.transition过渡属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文献"><span class="toc-text">参考文献</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-选择器"><span class="toc-text">1.选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-transition过渡属性"><span class="toc-text">2.transition过渡属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-outline轮廓属性"><span class="toc-text">3.outline轮廓属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文献"><span class="toc-text">参考文献</span></a></li></ol>
     </div>
   </section>
 

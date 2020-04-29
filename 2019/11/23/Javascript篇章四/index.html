@@ -527,6 +527,9 @@
 <li><strong>重要：</strong> <a href="https://www.cnblogs.com/beijingstruggle/p/5845781.html" target="_blank" rel="noopener">window.event</a>：获取事件对象</li>
 </ul>
 <p>event代表事件的状态，例如触发event对象的元素、鼠标的位置及状态、按下的键等等。event对象只在事件发生的过程中才有效。event的某些属性只对特定的事件有意义</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通常写法</span></span><br><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">window</span>.onkeydown = <span class="function"><span class="keyword">function</span>(<span class="params">el</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> e = el || <span class="built_in">window</span>.event;</span><br><span class="line">    <span class="built_in">console</span>.log(e.keyCode);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
 <h4 id="2-navigator对象表示浏览器信息"><a href="#2-navigator对象表示浏览器信息" class="headerlink" title="2.navigator对象表示浏览器信息"></a>2.navigator对象表示浏览器信息</h4><p>navigator.appName：浏览器名称；<br>navigator.appVersion：浏览器版本；<br>navigator.language：浏览器设置的语言；<br>navigator.platform：操作系统类型；<br>navigator.userAgent：浏览器设定的User-Agent字符串<br>navigator.webdriver:返回浏览器是否被WebDriver驱动的布尔值（即判断是否是selenium控制爬虫程序）</p>
 <h4 id="3-screen表示屏幕信息"><a href="#3-screen表示屏幕信息" class="headerlink" title="3.screen表示屏幕信息"></a>3.screen表示屏幕信息</h4><p>screen.width：屏幕宽度，以像素为单位；<br>screen.height：屏幕高度，以像素为单位；<br>screen.colorDepth：返回颜色位数，如8、16、24。</p>
 <h4 id="4-Location对象表示当前页面的URL"><a href="#4-Location对象表示当前页面的URL" class="headerlink" title="4.Location对象表示当前页面的URL"></a>4.Location对象表示当前页面的URL</h4><p>Location对象表示当前页面的URL信息，即地址栏</p>
@@ -631,10 +634,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-20T15:17:10+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-29T08:32:22+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年4月20日</p>
+    <p>更新于 2020年4月29日</p>
   </a>
 </div>
 

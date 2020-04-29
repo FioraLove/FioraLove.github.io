@@ -477,10 +477,26 @@
 <td align="center">onfocus事件会在对象获得焦点时发生，一般用于表单输入框</td>
 </tr>
 <tr>
+<td>oncontextmenu</td>
+<td align="center">oncontextmenu事件鼠标右击时触发，弹出右键菜单</td>
+</tr>
+<tr>
 <td>…</td>
 <td align="center">…</td>
 </tr>
 </tbody></table>
+<p>拓展说明：</p>
+<ol>
+<li>对onkeydown键盘按键事件的说明</li>
+</ol>
+<p><strong>键盘常用的键码属性为keyCode或者which（which适用于低版本IE），且均不区分键码大小写</strong>，所以对以前的键码进行改动</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 全局监听键盘按下的键码</span></span><br><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">window</span>.onkeydown = <span class="function"><span class="keyword">function</span>(<span class="params">el</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> e = el || <span class="built_in">window</span>.event;</span><br><span class="line">    <span class="keyword">let</span> code = e.keyCode || e.which;</span><br><span class="line">    <span class="built_in">console</span>.log(code);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>oncontextmenu返回值设置为false，即无法右击弹出菜单<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">document</span>.oncontextmenu = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br/>
+
+</li>
+</ol>
 <p><strong>事件绑定方法：</strong></p>
 <ol>
 <li>内联模式</li>
@@ -550,6 +566,8 @@
 <li>获取节点属性：节点变量.getAttribute(“class”)</li>
 <li>移除节点属性：节点变量.removeAttribute(“class”)</li>
 </ul>
+<h3 id="5-经典案例"><a href="#5-经典案例" class="headerlink" title="5.经典案例"></a>5.经典案例</h3><h4 id="5-1-鼠标事件（图片随鼠标移动而动）"><a href="#5-1-鼠标事件（图片随鼠标移动而动）" class="headerlink" title="5.1 鼠标事件（图片随鼠标移动而动）"></a>5.1 鼠标事件（图片随鼠标移动而动）</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">        *&#123;</span><br><span class="line">            margin: 0;</span><br><span class="line"><span class="css">            <span class="selector-tag">padding</span><span class="selector-pseudo">:0</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-id">#box</span>&#123;</span></span><br><span class="line"><span class="css">            <span class="comment">/*div宽高与gif图尺寸相差无几，是为了完全包裹gif图片*/</span></span></span><br><span class="line">            width: 146px;</span><br><span class="line">            height: 141px;</span><br><span class="line">            background-image: url("http://image.17173.com/bbs/v1/2010/12/04/1291402861408.gif");</span><br><span class="line">            background-size: auto;</span><br><span class="line">            background-repeat: no-repeat;</span><br><span class="line"><span class="css">            <span class="comment">/*定位属性：绝对定位，脱离文档流*/</span></span></span><br><span class="line">            position: absolute;</span><br><span class="line">            cursor: pointer;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-tag">body</span>&#123;<span class="attribute">background-color</span>: white&#125;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">let</span> box = <span class="built_in">document</span>.getElementById(<span class="string">"box"</span>);</span></span><br><span class="line"><span class="actionscript">            box.onmousemove = <span class="function"><span class="keyword">function</span> <span class="params">(el)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">let</span> e = el ||  <span class="built_in">window</span>.event;</span></span><br><span class="line"><span class="vbscript">                box.style.<span class="built_in">left</span> = e.clientX <span class="number">-65</span>+<span class="string">"px"</span>;</span></span><br><span class="line"><span class="actionscript">                box.style.top = e.clientY <span class="number">-65</span> +<span class="string">"px"</span>;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ol>
 <li><a href="https://www.runoob.com/jsref/dom-obj-event.html" target="_blank" rel="noopener">HTML DOM事件大全</a></li>
 </ol>
@@ -564,10 +582,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-20T09:28:18+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-29T09:14:42+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年4月20日</p>
+    <p>更新于 2020年4月29日</p>
   </a>
 </div>
 
@@ -847,7 +865,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-常见的HTML事件"><span class="toc-text">1.常见的HTML事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-js获取表单元素和标签节点内容"><span class="toc-text">2.js获取表单元素和标签节点内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-获取-HTML-的DOM元素节点"><span class="toc-text">3.获取 HTML 的DOM元素节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-改变-HTML-元素的内容-innerHTML"><span class="toc-text">4.改变 HTML 元素的内容 (innerHTML)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-html-DOM-改变CSS"><span class="toc-text">5.html DOM-改变CSS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文献"><span class="toc-text">参考文献</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-常见的HTML事件"><span class="toc-text">1.常见的HTML事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-js获取表单元素和标签节点内容"><span class="toc-text">2.js获取表单元素和标签节点内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-获取-HTML-的DOM元素节点"><span class="toc-text">3.获取 HTML 的DOM元素节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-改变-HTML-元素的内容-innerHTML"><span class="toc-text">4.改变 HTML 元素的内容 (innerHTML)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-html-DOM-改变CSS"><span class="toc-text">5.html DOM-改变CSS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-经典案例"><span class="toc-text">5.经典案例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-鼠标事件（图片随鼠标移动而动）"><span class="toc-text">5.1 鼠标事件（图片随鼠标移动而动）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文献"><span class="toc-text">参考文献</span></a></li></ol>
     </div>
   </section>
 
