@@ -455,6 +455,11 @@
 
 <h3 id="2-Vue对于当前DOM对象的选择"><a href="#2-Vue对于当前DOM对象的选择" class="headerlink" title="2.Vue对于当前DOM对象的选择"></a>2.Vue对于当前DOM对象的选择</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;button @click = “clickfun($event)”&gt;点击&lt;/button&gt;</span><br><span class="line">methods: &#123;</span><br><span class="line">    clickfun(e) &#123;</span><br><span class="line">    // e.target 是你当前点击的元素</span><br><span class="line">    // e.currentTarget 是你绑定事件的元素</span><br><span class="line">        #获得点击元素的前一个元素</span><br><span class="line">        e.currentTarget.previousElementSibling.innerHTML</span><br><span class="line">        #获得点击元素的第一个子元素</span><br><span class="line">        e.currentTarget.firstElementChild</span><br><span class="line">        # 获得点击元素的下一个元素</span><br><span class="line">        e.currentTarget.nextElementSibling</span><br><span class="line">        # 获得点击元素中id为string的元素</span><br><span class="line">        e.currentTarget.getElementById(&quot;string&quot;)</span><br><span class="line">        # 获得点击元素的string属性</span><br><span class="line">        e.currentTarget.getAttributeNode(&apos;string&apos;)</span><br><span class="line">        # 获得点击元素的父级元素</span><br><span class="line">        e.currentTarget.parentElement</span><br><span class="line">        # 获得点击元素的前一个元素的第一个子元素的HTML值</span><br><span class="line">        e.currentTarget.previousElementSibling.firstElementChild.innerHTML</span><br><span class="line">     </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h3 id="3-阻止冒泡事件"><a href="#3-阻止冒泡事件" class="headerlink" title="3.阻止冒泡事件"></a>3.阻止冒泡事件</h3><p>js冒泡和捕获是事件的两种行为，所以可以使用event.stopPropagation()起到阻止捕获和冒泡阶段中当前事件的进一步传播。使用event.preventDefault()可以取消默认事件。</p>
+<p><strong>w3c的方法是e.stopPropagation()，IE则是使用e.cancelBubble = true</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.event? <span class="built_in">window</span>.event.cancelBubble = <span class="literal">true</span> : e.stopPropagation();</span><br></pre></td></tr></table></figure>
+
+<p>所以阻止捕获冒泡事件可以使用：</p>
 <h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
 <li><a href="https://blog.csdn.net/weixin_42931825/article/details/100015613" target="_blank" rel="noopener">【vue学习笔记：事件中的$event对象作用】</a></li>
 <li><a href="https://blog.csdn.net/qq_19782019/article/details/89409794" target="_blank" rel="noopener">JavaScript之”冒泡“和“捕捉”详解（全网精品博文）</a></li>
@@ -470,10 +475,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-07T15:15:05+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-30T11:21:05+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年4月7日</p>
+    <p>更新于 2020年4月30日</p>
   </a>
 </div>
 
@@ -744,7 +749,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-jQuery（基于js）的当前DOM对象的选择"><span class="toc-text">1.jQuery（基于js）的当前DOM对象的选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Vue对于当前DOM对象的选择"><span class="toc-text">2.Vue对于当前DOM对象的选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-jQuery（基于js）的当前DOM对象的选择"><span class="toc-text">1.jQuery（基于js）的当前DOM对象的选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Vue对于当前DOM对象的选择"><span class="toc-text">2.Vue对于当前DOM对象的选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-阻止冒泡事件"><span class="toc-text">3.阻止冒泡事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
     </div>
   </section>
 
