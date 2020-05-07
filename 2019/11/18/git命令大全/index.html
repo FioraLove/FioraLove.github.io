@@ -387,6 +387,14 @@
         
           
             
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%B6%E6%9E%84/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>服务器架构</p>
+    </a>
+  </div>
+
 
           
         
@@ -423,7 +431,7 @@
 
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
-        <p>总结一下自己常用的git命令<br><fancybox><img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1192836097,3318398259&fm=26&gp=0.jpg"></fancybox></p>
+        <h3 id="1-git命令大全"><a href="#1-git命令大全" class="headerlink" title="1.git命令大全"></a>1.git命令大全</h3><p>总结一下自己常用的git命令<br><fancybox><img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1192836097,3318398259&fm=26&gp=0.jpg"></fancybox></p>
 <a id="more"></a>
 <ol>
 <li><p>安装完成后，在开始菜单里找到“Git”-&gt;“Git Bash”</p>
@@ -434,8 +442,12 @@
 </li>
 <li><p>git init (把这个目录变成Git可以管理的仓库)</p>
 </li>
-<li><p>git add <file></p>
+<li><p><strong>git add :改动文件添加到本地仓库中的暂存区</strong></p>
 </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">关于git add的一点说明：</span><br><span class="line">git add .          # 把新增的、修改的都加到缓存</span><br><span class="line">git add &lt;file&gt;     # 提交文件，可多次提交 </span><br><span class="line">git add -A         # 把新增、和修改的、和删除的都加到缓存，即提交所有的更改</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
 <li><p>git commit -m “说明”</p>
 </li>
 <li><p>git status (仓库当前的状态)</p>
@@ -460,11 +472,14 @@
 </li>
 <li><p>git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:Bruce333/other.git (关联github远程库)</p>
 </li>
-<li><p>git push -u origin master/git push origin master<br>(推送到远程库,第一次用含有 -u 的命令,推送master分支的所有内容,此后用后面的命令推送最新修改)</p>
+<li><p><strong>git push -u origin master/git push origin master</strong>：提交到远程仓库</p>
+<p>(推送到远程库,第一次用含有 -u 的命令,推送master分支的所有内容,此后用后面的命令推送最新修改)</p>
 </li>
-<li><p>git clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:Bruce333/other.git (克隆一个本地库)</p>
+<li><p><strong>git clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:Bruce333/other.git (克隆远程仓库到本地库)</strong></p>
+<p><font color="#d93a49">ps:比如GitHub，gitlab克隆仓库时就有显著性不同<br>GitHub克隆时，各个分支都可以直接clone；而gitlab克隆时，只能clone主分支的仓库，切换到目标分支后，使用git pull拉取目标分支更新到本地仓库</font></p>
 </li>
-<li><p>git checkout -b dev<br>(创建dev分支，然后切换到dev分支,相当于以下两条命令:git branch dev[创建分支]/git checkout dev[切换分支])</p>
+<li><p>git checkout -b dev: 创建并切换目标分支</p>
+<p>创建dev分支，然后切换到dev分支,相当于以下两条命令:git branch dev[创建分支]/git checkout dev[切换分支]</p>
 </li>
 <li><p>git branch (列出所有分支，当前分支前面会标一个*号)</p>
 </li>
@@ -472,11 +487,12 @@
 </li>
 <li><p>git merge dev (合并指定分支到当前分支)</p>
 </li>
-<li><p>git branch -d dev (删除dev分支)</p>
+<li><p><strong>git branch -d 分支名 ：删除本地分支</strong></p>
 </li>
-<li><p>git log –graph (查看分支合并图)</p>
+<li><p><strong>git push origin –delete 分支名：git删除远程仓库分支</strong></p>
 </li>
-<li><p>git merge –no-ff -m “merge with no-ff” dev<br>(通常，合并分支时，如果可能，Git会用Fast forward模式，但这种模式下，删除分支后，会丢掉分支信息;–no-ff表示禁用Fast forward,用普通模式合并，合并后的历史有分支，能看出来曾经做过合并;-m参数，把commit描述写进去)</p>
+<li><p>git merge –no-ff -m “merge with no-ff” dev</p>
+<p>(通常，合并分支时，如果可能，Git会用Fast forward模式，但这种模式下，删除分支后，会丢掉分支信息;–no-ff表示禁用Fast forward,用普通模式合并，合并后的历史有分支，能看出来曾经做过合并;-m参数，把commit描述写进去)</p>
 </li>
 <li><p>git stash (把当前工作现场“储藏”起来，等以后恢复现场后继续工作)</p>
 </li>
@@ -492,9 +508,11 @@
 </li>
 <li><p>从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交</p>
 </li>
-<li><p>git pull<br>(把最新的提交抓下来;如果提示“no tracking information”，则说明本地分支和远程分支的链接关系没有创建，<br>用命令git branch –set-upstream branch-name origin/branch-name)</p>
+<li><p><strong>git pull：抓取远程仓库下某个分支的更新，再与本地的指定分支合并（更新本地分支代码）</strong></p>
+<p><font color="#d93a49">把最新的提交抓下来;如果提示“no tracking information”，则说明本地分支和远程分支的链接关系没有创建.用命令git branch –set-upstream branch-name origin/branch-name)</font></p>
 </li>
-<li><p>git tag <name> &lt;commit id 可无&gt;<br>(打一个新标签,默认标签是打在最新提交的commit上的;找到历史提交的commit id,可以给历史版本打标签)</p>
+<li><p>git tag <name> &lt;commit id 可无&gt;</p>
+<p>打一个新标签,默认标签是打在最新提交的commit上的;找到历史提交的commit id,可以给历史版本打标签</p>
 </li>
 <li><p>git show <tagname> (查看标签信息)</p>
 </li>
@@ -518,12 +536,60 @@
 </li>
 <li><p>忽略某些文件时，需要编写.gitignore；.gitignore文件本身要放到版本库里，并且可以对.gitignore做版本管理</p>
 </li>
-<li><p>git config –global alias.st status<br>(告诉Git，以后st就表示status,配置别名;加上–global是针对当前用户起作用的，如果不加，那只针对当前的仓库起作用;每个仓库的Git配置文件都放在.git/config文件中,别名就在[alias]后面，要删除别名，直接把对应的行删掉即可;而当前用户的Git配置文件放在用户主目录下的一个隐藏文件.gitconfig中)</p>
+<li><p>git config –global alias.st status</p>
+<p>告诉Git，以后st就表示status,配置别名;加上–global是针对当前用户起作用的，如果不加，那只针对当前的仓库起作用;每个仓库的Git配置文件都放在.git/config文件中,别名就在[alias]后面，要删除别名，直接把对应的行删掉即可;而当前用户的Git配置文件放在用户主目录下的一个隐藏文件.gitconfig中)</p>
+</li>
+<li><p>git log –graph (查看分支合并图)</p>
 </li>
 </ol>
+<br>
+
 <p><font size=4 color=#FF0000>2019-12-16 新增：</font><br>当自己的账户有私人的GitHub和企业的gitlab时，不经意间就会将不同的用户名，邮箱搞混，幸得建彬哥真传，终于搞懂了。<br>1.在自己的项目文件下直接”git bash here”<br>2.查看当前项目所属的用户名与邮箱</p>
 <p>git remote show origin查看当前仓库基本信息<br>git remote -v 查看当前项目远程地址<br>git branch -a 查看远程项目所有分支，红颜色分支代表当前所在分支<br>git config user.name 查看当前项目的用户名<br>git config user.email 查看当前项目的邮箱</p>
 <p>3.设置用户名和邮件<br>git config [–global] user.name “用户名”<br>git config [–global] user.email “邮箱”<br><font color=#FF0000>git config命令的-- global参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和Email地址。</font></p>
+<ol start="4">
+<li>删除远程仓库目标分支</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git branch -a : 查看所有的分支</span><br><span class="line">git checkout 其它分支： 切换到其它分支才能删除目标分支</span><br><span class="line">git push origin --delete 删除的远程仓库名</span><br><span class="line">git branch -a : 再次查看所有的分支，确认是否已经删除了</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-git-clone的说明"><a href="#2-git-clone的说明" class="headerlink" title="2.git clone的说明"></a>2.git clone的说明</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;git一般有很多分支，我们clone到本地的时候一般都是master分支，那么如何切换到其他分支呢？</p>
+<ol>
+<li>查看所有远程分支：git branch -a</li>
+<li>切换分支：git checkout 目标分支</li>
+<li>同步分支：git pull</li>
+</ol>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;再思考一会：首先，你需要使用 <code>git clone</code> 这个命令克隆一个本地库。之后它会自动克隆一个master分支（这个貌似是必须的）。之后不会克隆任何一个分支下来的。<br>假定你需要一个dev（此处假定远程库中已经存在此分支，也就是你需要克隆的）分支用于开发的话，你需要在dev分支上开发，就必须创建远程origin的dev分支到本地，于是用这个命令创建本地dev分支：<br>$ git checkout -b dev origin/dev</p>
+<p>再同步下：<br>$ git pull</p>
+<p>这样就实现了克隆dev分支。</p>
+<h3 id="3-git-pull与push"><a href="#3-git-pull与push" class="headerlink" title="3.git pull与push"></a>3.git pull与push</h3><p>git 为什么要先commit，然后pull，最后再push？而不是commit然后直接push？<br>情况是这样的，现在远程有一个仓库，分支就一个，是master。然后我本地的仓库是从远程的master上clone下来的。大家都是clone下来，再在自己本地改好，再commit然后pull然后push，大家都是这么做的。那么现在问题来了：<br><font  color=#FF0000></p>
+<ol>
+<li><p>那我本地这个也算是个分支？还是就是一个本地仓库？</p>
+<p>答：本地和远程的关系相当于两个分支,你感觉一样是因为你git pull 的时候已经自动给绑定好对应关系了, set-upstream..balbala</p>
+</li>
+<li><p>如果我在远程新建了个分支，然后我pull了下来，那我本地到底有分支这个说法吗？我本地的分支是不是就是那个远程新建的分支？</p>
+<p>答：你远程新建了一个分支拉到本地的道理是一样的,属于复制了一份,但是本地分支和远程分支已经是两个东西了</p>
+</li>
+<li><p>本地仓库和本地分支有什么区别？</p>
+<p>答：本地分支属于本地仓库里,是包含关系,一个仓库里可以有很多分支</p>
+</li>
+<li><p>commit是提交到本地仓库，然后push，这个push是把所有代码推到远程仓库，还是只是把commit的地方推到远程仓库？</p>
+<p>答：肯定不会全量推送到远程的,是通过对比 commit 的记录,如果本地高于远程就直接把多出来的commit 给怼上去,如果本地分支的最新版本和远程的 commit 有冲突，就需要解决冲突。</p>
+</li>
+<li><p>那为什么要先commit，然后pull，然后再push，我pull了，岂不是把自己改的代码都给覆盖掉了嘛，因为远程没有我改的代码，我pull，岂不是覆盖了我本地的改动好的地方了？那我还怎么push？</p>
+<p>答：这个先 commit 再 pull 最后再push 的情况就是为了应对多人合并开发的情况,</p>
+<ul>
+<li><p>commit 是为了告诉 git 我这次提交改了哪些东西,不然你只是改了但是 git 不知道你改了,也就无从判断比较;</p>
+</li>
+<li><p>pull是为了本地 commit 和远程commit 的对比记录,git 是按照文件的行数操作进行对比的,如果同时操作了某文件的同一行那么就会产生冲突,git 也会把这个冲突给标记出来,这个时候就需要先把和你冲突的那个人拉过来问问保留谁的代码,然后在 git add &amp;&amp; git commit &amp;&amp; git pull 这三连,再次 pull 一次是为了防止再你们协商的时候另一个人给又提交了一版东西,如果真发生了那流程重复一遍,通常没有冲突的时候就直接给你合并了,不会把你的代码给覆盖掉</p>
+</li>
+<li><p>出现代码覆盖或者丢失的情况:比如A B两人的代码pull 时候的版本都是1,A在本地提交了2,3并且推送到远程了,B 进行修改的时候没有commit 操作,他先自己写了东西,然后 git pull 这个时候 B 本地版本已经到3了,B 在本地版本3的时候改了 A 写过的代码,再进行了git commit &amp;&amp; git push 那么在远程版本中就是4,而且 A 的代码被覆盖了,所以说所有人都要先 commit 再 pull,不然真的会覆盖代码的</p>
+</li>
+</ul>
+</li>
+<li><p>两个分支A和B，A合并B和B合并A，有区别吗？</p>
+</li>
+</ol>
+<p>答：两个互相合并的唯一区别就是 A-&gt;B 的时候 B 分支上会产生一个 merge_commit ，被改变的分支是 B ；如果现在没有发生任何改动执行 B-&gt;A ，则A和B两分支才会完全相同。</font></p>
 
       </div>
       
@@ -535,10 +601,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-16T20:59:31+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-07T17:55:09+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年12月16日</p>
+    <p>更新于 2020年5月7日</p>
   </a>
 </div>
 
@@ -560,7 +626,7 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/11/18/git%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/&title=Git命令总结 | AhriLove&summary=总结一下自己常用的git命令"
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/11/18/git%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/&title=Git命令总结 | AhriLove&summary=1.git命令大全总结一下自己常用的git命令"
           
           >
           
@@ -572,7 +638,7 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/11/18/git%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/&title=Git命令总结 | AhriLove&summary=总结一下自己常用的git命令"
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/11/18/git%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/&title=Git命令总结 | AhriLove&summary=1.git命令大全总结一下自己常用的git命令"
           
           >
           
@@ -584,7 +650,7 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/11/18/git%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/&title=Git命令总结 | AhriLove&summary=总结一下自己常用的git命令"
+          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/11/18/git%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/&title=Git命令总结 | AhriLove&summary=1.git命令大全总结一下自己常用的git命令"
           
           >
           
@@ -799,6 +865,20 @@
           
             
               
+  <section class='widget toc-wrapper'>
+    
+<header class='material'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目录</div>
+  
+    <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
+  
+</header>
+
+    <div class='content material'>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-git命令大全"><span class="toc-text">1.git命令大全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-git-clone的说明"><span class="toc-text">2.git clone的说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-git-pull与push"><span class="toc-text">3.git pull与push</span></a></li></ol>
+    </div>
+  </section>
+
 
             
           
@@ -1038,7 +1118,7 @@
         
           <li><a class="flat-box" title="/categories/%E5%8D%9A%E5%AE%A2Hexo/" href="/categories/%E5%8D%9A%E5%AE%A2Hexo/"><div class='name'>博客Hexo</div><div class='badge'>(2)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%B6%E6%9E%84/" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%B6%E6%9E%84/"><div class='name'>服务器架构</div><div class='badge'>(3)</div></a></li>
+          <li><a class="flat-box" title="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%B6%E6%9E%84/" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%B6%E6%9E%84/"><div class='name'>服务器架构</div><div class='badge'>(4)</div></a></li>
         
           <li><a class="flat-box" title="/categories/%E9%9A%8F%E7%AC%94/" href="/categories/%E9%9A%8F%E7%AC%94/"><div class='name'>随笔</div><div class='badge'>(4)</div></a></li>
         

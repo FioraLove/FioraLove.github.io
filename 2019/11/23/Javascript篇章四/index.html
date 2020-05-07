@@ -514,13 +514,19 @@
 </li>
 <li><p>windows.outerWidth和outerHeight属性，可以获取浏览器窗口的整个宽高</p>
 </li>
-<li><p>拓：<strong>window.onresize()监听浏览器窗口高宽变化，注意要使用<a href="https://www.cnblogs.com/cheyunhua/p/11124835.html" target="_blank" rel="noopener">箭头函数</a></strong>：<br>window.onresize()官方定义为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">window.onresize=function()&#123;</span><br><span class="line">    SomeJavaScriptCode</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
+<li><p>拓：<strong>window.onresize()监听浏览器窗口高宽变化，注意要使用<a href="https://www.cnblogs.com/cheyunhua/p/11124835.html" target="_blank" rel="noopener">箭头函数</a></strong>：</p>
 </li>
 </ul>
+<p>window.onresize()官方定义为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">window.onresize=function()&#123;</span><br><span class="line">    SomeJavaScriptCode</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <p>但是最近的一个项目（Vue+ThinkPHP）中，监听浏览器窗口变化时，不适用箭头函数就会报错</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">    //重设图表高宽</span><br><span class="line">    resizeChart()&#123;</span><br><span class="line">        //监听窗口高宽变化，注意要使用箭头函数</span><br><span class="line">        window.onresize = () =&gt; &#123;</span><br><span class="line">            this.formTableMain2Chart.resize();     //重设费用报销单图表的高宽</span><br><span class="line">            this.formTableMain147Chart.resize();     //重设147招待费用报销单图表的高宽</span><br><span class="line">            this.formTableMain58Chart.resize();     //重设58差旅费用报销单图表的高宽</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<br>
+
+<p>2020-5-7:关于箭头函数的补充： <strong>包含多条语句，这时候就不能省略{ … }和return</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 箭头函数最标准的写法，不要搞一些花里胡哨的</span></span><br><span class="line"><span class="keyword">let</span> funcName = <span class="function">(<span class="params">a,b</span>) =&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a&gt;b?a:b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
 <ul>
 <li>window.print():打印当前页面</li>
@@ -634,10 +640,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-29T08:32:22+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-07T08:50:59+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年4月29日</p>
+    <p>更新于 2020年5月7日</p>
   </a>
 </div>
 
@@ -1154,7 +1160,7 @@
         
           <li><a class="flat-box" title="/categories/%E5%8D%9A%E5%AE%A2Hexo/" href="/categories/%E5%8D%9A%E5%AE%A2Hexo/"><div class='name'>博客Hexo</div><div class='badge'>(2)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%B6%E6%9E%84/" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%B6%E6%9E%84/"><div class='name'>服务器架构</div><div class='badge'>(3)</div></a></li>
+          <li><a class="flat-box" title="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%B6%E6%9E%84/" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%B6%E6%9E%84/"><div class='name'>服务器架构</div><div class='badge'>(4)</div></a></li>
         
           <li><a class="flat-box" title="/categories/%E9%9A%8F%E7%AC%94/" href="/categories/%E9%9A%8F%E7%AC%94/"><div class='name'>随笔</div><div class='badge'>(4)</div></a></li>
         
