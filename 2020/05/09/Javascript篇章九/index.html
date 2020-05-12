@@ -434,14 +434,14 @@
         <p>ES6， 全称 ECMAScript 6.0 ，是 JavaScript 的下一个版本标准，2015.06 发版。</p>
 <p>ES6 主要是为了解决 ES5 的先天不足，比如 JavaScript 里并没有类的概念，但是目前浏览器的 JavaScript 是 ES5 版本，大多数高版本的浏览器也支持 ES6，不过只实现了 ES6 的部分特性和功能。<br><strong>本章内容：</strong></p>
 <blockquote>
-<p>1.块级作用域<br>2.ES6的Module语法</p>
+<p>1.块级作用域<br>2.ES6的Module语法<br>3.ES6的扩展运算符 …</p>
 </blockquote>
 <a id="more"></a>
 
 <h3 id="1-块级作用域"><a href="#1-块级作用域" class="headerlink" title="1.块级作用域"></a>1.块级作用域</h3><p>之前我们已经了解到了块级作用域的let，const语法，这里就不用在累赘描述了</p>
 <h3 id="2-ES6的Module语法"><a href="#2-ES6的Module语法" class="headerlink" title="2.ES6的Module语法"></a>2.ES6的Module语法</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;历史上，JavaScript 一直没有模块（module）体系，无法将一个大程序拆分成互相依赖的小文件，再用简单的方法拼装起来。其他语言都有这项功能，比如 Ruby 的require、Python 的import，甚至就连 CSS 都有@import，但是 JavaScript 任何这方面的支持都没有，这对开发大型的、复杂的项目形成了巨大障碍。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在 ES6 之前，社区制定了一些模块加载方案，<strong>最主要的有 CommonJS 和 AMD 两种。前者用于服务器，后者用于浏览器</strong>。ES6 在语言标准的层面上，实现了模块功能，而且实现得相当简单，完全可以取代 CommonJS 和 AMD 规范，<strong>成为浏览器和服务器通用的模块解决方案</strong>。</p>
-<h4 id="CommonJS的module规范-（即Node-js规范）"><a href="#CommonJS的module规范-（即Node-js规范）" class="headerlink" title="CommonJS的module规范 （即Node.js规范）"></a>CommonJS的module规范 （即Node.js规范）</h4><p>ps：这里说明一下，下列所有的代码演示均为CommonJS规范，直接在浏览器上运行会报错</p>
+<h4 id="CommonJS规范-（即Node-js规范）"><a href="#CommonJS规范-（即Node-js规范）" class="headerlink" title="CommonJS规范 （即Node.js规范）"></a>CommonJS规范 （即Node.js规范）</h4><p>ps：这里说明一下，下列所有的代码演示均为CommonJS规范，直接在浏览器上运行会报错</p>
 <blockquote>
 <p>1.模块暴露</p>
 </blockquote>
@@ -461,7 +461,13 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 主模块mian.js</span></span><br><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"><span class="keyword">let</span> greet = <span class="built_in">require</span>(<span class="string">'./hello'</span>);</span><br><span class="line"><span class="keyword">let</span> s = <span class="string">"chd"</span>;</span><br><span class="line">greet.conn(s);</span><br><span class="line">greet.printer(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
 
 <h4 id="ES6规范"><a href="#ES6规范" class="headerlink" title="ES6规范"></a>ES6规范</h4><p>PS：在报错中了解到，是说无法在模块外部使用import语句，因为Module 的加载实现的是es6语法，所以在浏览器加载html文件时，<strong>需要在script 标签中加入type=”module”属性</strong>。</p>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3>
+<h3 id="3-ES6的扩展运算符-…"><a href="#3-ES6的扩展运算符-…" class="headerlink" title="3.ES6的扩展运算符 …"></a>3.ES6的扩展运算符 …</h3><p><code>...</code>扩展运算符号只能是针对一维度的对象或数组进行拷贝。不能对多维进行拷贝<br>理解对象的扩展运算符其实很简单，只要记住一句话就可以：<strong>对象中的扩展运算符(…)用于取出参数对象中的所有可遍历属性，拷贝到当前对象之中(数组同理)</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> z = &#123; <span class="attr">a</span>: <span class="number">3</span>, <span class="attr">b</span>: <span class="number">4</span> &#125;;</span><br><span class="line"><span class="keyword">let</span> n = &#123; ...z &#125;;</span><br><span class="line">n; <span class="comment">// &#123; a: 3, b: 4 &#125;</span></span><br><span class="line"><span class="comment">// 深拷贝</span></span><br><span class="line">z.a = <span class="number">7</span>;</span><br><span class="line"><span class="built_in">console</span>.log(z);  <span class="comment">// &#123;a: 7, b: 4&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(n);  <span class="comment">// &#123;a: 3, b: 4&#125;</span></span><br><span class="line"><span class="keyword">let</span> arr_plugin = [<span class="number">6</span>,<span class="number">6</span>,<span class="number">6</span>];</span><br><span class="line"><span class="built_in">console</span>.log([...arr_plugin]);    <span class="comment">// [6,6,6]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
+<li><a href="https://blog.csdn.net/astonishqft/article/details/82899965" target="_blank" rel="noopener">es6之扩展运算符 三个点（…）</a></li>
+</ul>
+
       </div>
       
         <br>
@@ -472,10 +478,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-09T16:07:53+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-12T17:41:51+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年5月9日</p>
+    <p>更新于 2020年5月12日</p>
   </a>
 </div>
 
@@ -500,7 +506,7 @@
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/05/09/Javascript%E7%AF%87%E7%AB%A0%E4%B9%9D/&title=Javascript篇章九：ES6特性了解 | AhriLove&summary=ES6， 全称 ECMAScript 6.0 ，是 JavaScript 的下一个版本标准，2015.06 发版。
 ES6 主要是为了解决 ES5 的先天不足，比如 JavaScript 里并没有类的概念，但是目前浏览器的 JavaScript 是 ES5 版本，大多数高版本的浏览器也支持 ES6，不过只实现了 ES6 的部分特性和功能。本章内容：
 
-1.块级作用域2.ES6的Module语法
+1.块级作用域2.ES6的Module语法3.ES6的扩展运算符 …
 "
           
           >
@@ -516,7 +522,7 @@ ES6 主要是为了解决 ES5 的先天不足，比如 JavaScript 里并没有�
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/05/09/Javascript%E7%AF%87%E7%AB%A0%E4%B9%9D/&title=Javascript篇章九：ES6特性了解 | AhriLove&summary=ES6， 全称 ECMAScript 6.0 ，是 JavaScript 的下一个版本标准，2015.06 发版。
 ES6 主要是为了解决 ES5 的先天不足，比如 JavaScript 里并没有类的概念，但是目前浏览器的 JavaScript 是 ES5 版本，大多数高版本的浏览器也支持 ES6，不过只实现了 ES6 的部分特性和功能。本章内容：
 
-1.块级作用域2.ES6的Module语法
+1.块级作用域2.ES6的Module语法3.ES6的扩展运算符 …
 "
           
           >
@@ -532,7 +538,7 @@ ES6 主要是为了解决 ES5 的先天不足，比如 JavaScript 里并没有�
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/05/09/Javascript%E7%AF%87%E7%AB%A0%E4%B9%9D/&title=Javascript篇章九：ES6特性了解 | AhriLove&summary=ES6， 全称 ECMAScript 6.0 ，是 JavaScript 的下一个版本标准，2015.06 发版。
 ES6 主要是为了解决 ES5 的先天不足，比如 JavaScript 里并没有类的概念，但是目前浏览器的 JavaScript 是 ES5 版本，大多数高版本的浏览器也支持 ES6，不过只实现了 ES6 的部分特性和功能。本章内容：
 
-1.块级作用域2.ES6的Module语法
+1.块级作用域2.ES6的Module语法3.ES6的扩展运算符 …
 "
           
           >
@@ -739,7 +745,7 @@ ES6 主要是为了解决 ES5 的先天不足，比如 JavaScript 里并没有�
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-块级作用域"><span class="toc-text">1.块级作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-ES6的Module语法"><span class="toc-text">2.ES6的Module语法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CommonJS的module规范-（即Node-js规范）"><span class="toc-text">CommonJS的module规范 （即Node.js规范）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ES6规范"><span class="toc-text">ES6规范</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文献"><span class="toc-text">参考文献</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-块级作用域"><span class="toc-text">1.块级作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-ES6的Module语法"><span class="toc-text">2.ES6的Module语法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CommonJS规范-（即Node-js规范）"><span class="toc-text">CommonJS规范 （即Node.js规范）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ES6规范"><span class="toc-text">ES6规范</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-ES6的扩展运算符-…"><span class="toc-text">3.ES6的扩展运算符 …</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文献"><span class="toc-text">参考文献</span></a></li></ol>
     </div>
   </section>
 

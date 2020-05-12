@@ -433,7 +433,7 @@
       <div class="article-entry" itemprop="articleBody">
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们做网页布局时，一般都是用div标签来做页面划分，这时就要考虑到块级元素，内联元素（span）。块级元素在浏览器显示时，通常会以新行来开始（和结束）<br><strong>本章内容：</strong></p>
 <blockquote>
-<p>1.div的margin和padding<br>2.float属性<br>3.默认自带margin或padding的标签<br>4.a标签的链接样式</p>
+<p>1.div的margin和padding<br>2.float属性<br>3.默认自带margin或padding的标签<br>4.a标签的链接样式<br>5.table标签的补充<br>6.HTML文本格式化标签</p>
 </blockquote>
 <a id="more"></a>
 
@@ -471,7 +471,20 @@
 <li>a:hover - 当用户鼠标放在链接上时</li>
 <li>a:active - 链接被点击的那一刻</li>
 </ul>
-<p>拓：ul标签，ol标签去掉前面的编码：list-style-type: none;</p>
+<p>拓：<strong>ul标签，ol标签去掉前面的编码：list-style-type: none;</strong></p>
+<p>a标签的最重要功能是实现超链接和锚点。而且，大多数人认为a标签最重要的作用是实现超链接，今天我刚好碰到a标签的一种写法&lt;a href=”javascript:;”&gt;</a>，所以就来整理下a标签中href的几种用法:</p>
+<ol>
+<li><p>&lt;a href=”javascript:void(0);” οnclick=”js_method()”&gt;</p>
+<p>这种方法是很多网站最常用的方法，也是最周全的方法，onclick方法负责执行js函数，而void是一个操作符，void(0)返回undefined，地址不发生跳转。而且这种方法不会像第一种方法一样直接将js方法暴露在浏览器的状态栏。</p>
+</li>
+<li><p>&lt;a href=”javascript:;” οnclick=”js_method()”&gt;</p>
+<p>这种方法跟方法一类似，区别只是执行了一条空的js代码。</p>
+</li>
+<li><p>&lt;a href=”#” οnclick=”js_method()”&gt;</p>
+<p>这种方法也是网上很常见的代码，#是标签内置的一个方法，代表top的作用。所以用这种方法点击后网页后返回到页面的最顶端。</p>
+</li>
+</ol>
+<p>a标签的target属性：_black，_self，_top，_parent</p>
 <h3 id="5-table标签补充"><a href="#5-table标签补充" class="headerlink" title="5.table标签补充"></a>5.table标签补充</h3><p><strong>HTML表格由table标签以及一个或多个tr、th或td标签组成</strong>：</p>
 <p>table标签用来定义表格，整个表格包含在&lt;table&gt;和&lt;/table&gt;标签中；</p>
 <p>tr标签用来定义表格中一个行，它是单元格的容器，每行可以包含有多个单元格，由&lt;tr&gt;和&lt;/tr&gt;标签表示；</p>
@@ -501,8 +514,18 @@
   </tr>
 </table>
 
-
-
+<h3 id="6-HTML文本格式化标签"><a href="#6-HTML文本格式化标签" class="headerlink" title="6.HTML文本格式化标签"></a>6.HTML文本格式化标签</h3><ul>
+<li>&lt;b&gt;：加粗</li>
+<li>&lt;br&gt;：换行</li>
+<li>&lt;ins&gt;：插入字</li>
+<li>&lt;i&gt;：斜体</li>
+<li>&lt;del&gt;：删除字</li>
+<li>&lt;em&gt;：着重字</li>
+<li>&lt;small&gt;：小写字</li>
+<li>&lt;code&gt;：计算机代码</li>
+<li>&lt;kbd&gt;：键盘码</li>
+<li>&lt;kbd&gt;：预格式文本，显示内容与预设的文本格式一致</li>
+</ul>
 <h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
 <li><a href="https://blog.csdn.net/qq_40831381/article/details/90293574?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2&utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2" target="_blank" rel="noopener">HTML的表格table属性</a></li>
 <li><a href="https://blog.csdn.net/u012724595/article/details/79401401" target="_blank" rel="noopener">HTML表格跨行、跨列操作(rowspan、colspan)</a></li>
@@ -518,10 +541,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-06T14:27:34+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-12T10:14:16+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年4月6日</p>
+    <p>更新于 2020年5月12日</p>
   </a>
 </div>
 
@@ -545,7 +568,7 @@
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/04/01/html%E4%B8%8Ecss(%E2%85%A1)/&title=html页面布局 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们做网页布局时，一般都是用div标签来做页面划分，这时就要考虑到块级元素，内联元素（span）。块级元素在浏览器显示时，通常会以新行来开始（和结束）本章内容：
 
-1.div的margin和padding2.float属性3.默认自带margin或padding的标签4.a标签的链接样式
+1.div的margin和padding2.float属性3.默认自带margin或padding的标签4.a标签的链接样式5.table标签的补充6.HTML文本格式化标签
 "
           
           >
@@ -560,7 +583,7 @@
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/04/01/html%E4%B8%8Ecss(%E2%85%A1)/&title=html页面布局 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们做网页布局时，一般都是用div标签来做页面划分，这时就要考虑到块级元素，内联元素（span）。块级元素在浏览器显示时，通常会以新行来开始（和结束）本章内容：
 
-1.div的margin和padding2.float属性3.默认自带margin或padding的标签4.a标签的链接样式
+1.div的margin和padding2.float属性3.默认自带margin或padding的标签4.a标签的链接样式5.table标签的补充6.HTML文本格式化标签
 "
           
           >
@@ -575,7 +598,7 @@
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/04/01/html%E4%B8%8Ecss(%E2%85%A1)/&title=html页面布局 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们做网页布局时，一般都是用div标签来做页面划分，这时就要考虑到块级元素，内联元素（span）。块级元素在浏览器显示时，通常会以新行来开始（和结束）本章内容：
 
-1.div的margin和padding2.float属性3.默认自带margin或padding的标签4.a标签的链接样式
+1.div的margin和padding2.float属性3.默认自带margin或padding的标签4.a标签的链接样式5.table标签的补充6.HTML文本格式化标签
 "
           
           >
@@ -801,7 +824,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-div的margin和padding"><span class="toc-text">1.div的margin和padding</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-float属性"><span class="toc-text">2.float属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-默认自带margin或padding的标签"><span class="toc-text">3.默认自带margin或padding的标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-a标签的链接样式"><span class="toc-text">4.a标签的链接样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-table标签补充"><span class="toc-text">5.table标签补充</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文献"><span class="toc-text">参考文献</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-div的margin和padding"><span class="toc-text">1.div的margin和padding</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-float属性"><span class="toc-text">2.float属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-默认自带margin或padding的标签"><span class="toc-text">3.默认自带margin或padding的标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-a标签的链接样式"><span class="toc-text">4.a标签的链接样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-table标签补充"><span class="toc-text">5.table标签补充</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-HTML文本格式化标签"><span class="toc-text">6.HTML文本格式化标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文献"><span class="toc-text">参考文献</span></a></li></ol>
     </div>
   </section>
 
