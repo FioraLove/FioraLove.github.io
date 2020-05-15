@@ -590,6 +590,31 @@
 </li>
 </ol>
 <p>答：两个互相合并的唯一区别就是 A-&gt;B 的时候 B 分支上会产生一个 merge_commit ，被改变的分支是 B ；如果现在没有发生任何改动执行 B-&gt;A ，则A和B两分支才会完全相同。</font></p>
+<h3 id="4-git的整个执行流程★★★"><a href="#4-git的整个执行流程★★★" class="headerlink" title="4.git的整个执行流程★★★"></a>4.git的整个执行流程★★★</h3><ol>
+<li><p>有时候我们开发需要开一个分支,这样可以有效的并行开发，开分支有两种方式:</p>
+<ul>
+<li>一种是在远程开好分支,本地直接拉下来（推荐：根据具体issue，创建相应的分支）</li>
+<li>一种是本地开好分支,推送到远程</li>
+</ul>
+</li>
+<li><p>git clone目标仓库</p>
+</li>
+<li><p>git checkout -b feature-branch origin/feature-branch    </p>
+<p>检出远程的feature-branch分支到本地，创建与远程仓库同名的本地仓库</p>
+</li>
+<li><p>git branch </p>
+<p>检查当前分支是否切换的目标分支</p>
+</li>
+<li><p>轻微修改代码提交测试一下</p>
+<p>看是否能够提交成功，以免白做了</p>
+</li>
+<li><p>提交测试通过后，正式开始写代码</p>
+</li>
+<li><p>git status 检查当前仓库状态</p>
+</li>
+<li><p>先commit，然后pull，最后再push</p>
+</li>
+</ol>
 
       </div>
       
@@ -601,10 +626,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-08T15:59:59+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-15T19:31:30+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年5月8日</p>
+    <p>更新于 2020年5月15日</p>
   </a>
 </div>
 
@@ -875,7 +900,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-git命令大全"><span class="toc-text">1.git命令大全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-git-clone的说明"><span class="toc-text">2.git clone的说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-git-pull与push"><span class="toc-text">3.git pull与push</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-git命令大全"><span class="toc-text">1.git命令大全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-git-clone的说明"><span class="toc-text">2.git clone的说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-git-pull与push"><span class="toc-text">3.git pull与push</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-git的整个执行流程★★★"><span class="toc-text">4.git的整个执行流程★★★</span></a></li></ol>
     </div>
   </section>
 

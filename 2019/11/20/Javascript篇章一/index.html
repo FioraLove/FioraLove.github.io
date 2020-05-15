@@ -546,6 +546,13 @@
 <li>Numbers.toString():将数值型转换为字符串型</li>
 <li>String(Number):将数值型转换为字符串类型</li>
 </ul>
+<blockquote>
+<p>3.9 目标字符串索引</p>
+</blockquote>
+<p>indexOf() 方法可以检索<strong>指定子字符串在源字符串中首次出现的位置</strong>。如果没有在源字符串中检索到指定字符或者子字符串，则返回 -1 。</p>
+<p>字符串与数组类似，字符位置是从 0 开始计算。特别说明：此方法对大小写敏感。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="string">"hello world"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a.indexOf(<span class="string">"h"</span>)); <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">console</span>.log(a.indexOf(<span class="string">"cg"</span>)); <span class="comment">// -1</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
 <li><a href="https://www.runoob.com/js/js-type-conversion.html" target="_blank" rel="noopener">JavaScript基本数据类型以及详细使用</a></li>
 </ul>
@@ -560,10 +567,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-06T13:38:12+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-15T15:14:46+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年4月6日</p>
+    <p>更新于 2020年5月15日</p>
   </a>
 </div>
 
