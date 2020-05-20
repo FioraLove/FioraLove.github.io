@@ -467,11 +467,16 @@
 </ol>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;超时是请求能够容忍的最大时间，如果在这个时间内，还没有响应返回过来，那么这次请求就算失败了，不再继续等待请求的结果。浏览器发送请求后，服务器接受数据处理后，再返回目标数据，这过程中可能因为各种原因导致响应很慢，设置timeout，超时后停止访问<br>response = requests.post(“<a href="http://httpbin.org/post&quot;" target="_blank" rel="noopener">http://httpbin.org/post&quot;</a>, data=data，<strong>timeout = 10</strong>)</p>
 <ol start="3">
-<li><p>证书验证<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;证书验证也是我们经常会遇到的问题，通常情况下，访问一些网站的时候，都会验证访问者的证书是否合法，如果不合法，就不允许访问。<font color=#65c294>大部分情况，我们之间设置证书验证为 False 即可</font></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 有验证</span><br><span class="line">response = requests.get(&quot;https://cms.hit.edu.cn/&quot;) # 程序会中断</span><br><span class="line">print(response.status_code)</span><br><span class="line"># 没有验证</span><br><span class="line">response = requests.get(&quot;https://cms.hit.edu.cn/&quot;, verify=False)</span><br><span class="line">print(response.status_code)</span><br><span class="line">去除 warning 方法</span><br><span class="line">from requests.packages import urllib3</span><br><span class="line">urllib3.disable_warnings()</span><br><span class="line">response = requests.get(&quot;https://cms.hit.edu.cn/&quot;, verify=False)</span><br><span class="line">print(response.status_code)</span><br><span class="line">cert 手动指定证书</span><br><span class="line">response = requests.get(&quot;https://cms.hit.edu.cn/&quot;,cert=&#123;&apos;path/server.crt&apos;, &apos;/path/key&apos;&#125;)</span><br><span class="line">print(response.status_code)</span><br></pre></td></tr></table></figure>
+<li>证书验证<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;证书验证也是我们经常会遇到的问题，通常情况下，访问一些网站的时候，都会验证访问者的证书是否合法，如果不合法，就不允许访问。<font color=#65c294>大部分情况，我们之间设置证书验证为 False 即可</font><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 有验证</span><br><span class="line">response = requests.get(&quot;https://cms.hit.edu.cn/&quot;) # 程序会中断</span><br><span class="line">print(response.status_code)</span><br><span class="line"># 没有验证</span><br><span class="line">response = requests.get(&quot;https://cms.hit.edu.cn/&quot;, verify=False)</span><br><span class="line">print(response.status_code)</span><br><span class="line">去除 warning 方法</span><br><span class="line">from requests.packages import urllib3</span><br><span class="line">urllib3.disable_warnings()</span><br><span class="line">response = requests.get(&quot;https://cms.hit.edu.cn/&quot;, verify=False)</span><br><span class="line">print(response.status_code)</span><br><span class="line">cert 手动指定证书</span><br><span class="line">response = requests.get(&quot;https://cms.hit.edu.cn/&quot;,cert=&#123;&apos;path/server.crt&apos;, &apos;/path/key&apos;&#125;)</span><br><span class="line">print(response.status_code)</span><br></pre></td></tr></table></figure>
+
 </li>
-<li><p>代理设置</p>
-</li>
+</ol>
+<p>当我们设置SSL验证为False时，会弹出很多警告，这时我们就需要新增两行代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> urllib3.exceptions <span class="keyword">import</span> InsecureRequestWarning</span><br><span class="line"><span class="comment"># 禁用安全请求警告</span></span><br><span class="line">requests.packages.urllib3.disable_warnings(InsecureRequestWarning)</span><br></pre></td></tr></table></figure>
+
+
+<ol start="4">
+<li>代理设置</li>
 </ol>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;代理也是一个很常用的方法。通常，在我们需要多个主机进行访问或需要绕过防火墙时，可以利用代理进行访问</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 无密码</span><br><span class="line">proxies = &#123;</span><br><span class="line">    &quot;http&quot;:&quot;http://178.128.63.64:8388&quot;</span><br><span class="line">&#125;</span><br><span class="line"># 有密码</span><br><span class="line">proxies = &#123;</span><br><span class="line">    &quot;http&quot;:&quot;http://user:password@178.128.63.64:8388&quot;</span><br><span class="line">&#125;</span><br><span class="line">response = requests.get(&quot;https://www.taobao.com&quot;, proxies=proxies)</span><br><span class="line">print(response.status_code)</span><br><span class="line"># 利用 socks 进行代理设置</span><br><span class="line">proxies = &#123;</span><br><span class="line">    &quot;http&quot;:&quot;socks5://178.128.63.64:8388&quot;,</span><br><span class="line">    &quot;https&quot;:&quot;socks5://178.128.63.64:8388&quot;</span><br><span class="line">&#125;</span><br><span class="line">response = requests.get(&quot;https://www.taobao.com&quot;, proxies=proxies)</span><br><span class="line">print(response.status_code)</span><br></pre></td></tr></table></figure>
@@ -483,6 +488,16 @@
 </ol>
 <p><strong>cookie放在请求头里发请求和使用requests关键字cookies={…}没有任何区别</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response = requests.post(url=url, headers=headers, data=data, cookies=cookies)</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>stream=True下载流式文件</li>
+</ol>
+<p>Bit、 Byte、KB、MB、GB之间的换算:</p>
+<p>1 Byte = 8 Bits（即 1B=8b，字节是内存的基本单位）<br>1 KB = 1024 Bytes<br>1 MB = 1024 KB<br>1 GB = 1024 MB</p>
+<p>Bit意为“位”或“比特”，是计算机运算的基础，属于二进制的范畴；<br>Byte意为“字节”，是计算机文件大小的基本计算单位；</p>
+<p>这两者应用的场合不同。通常用bit来作数据传输的单位，因为物理层，数据链路层的传输对于用户是透明的，而这种通信传输是基于二进制的传输。在应用层通常是用byte来作单位，表示文件的大小，在用户看来就是可见的数据大小。比如一个字符就是1byte,如果是汉字，则是2byte</p>
+<p>比如常见的音视频，放置某些文件过大，内存溢出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response = requests.post(url=url, headers=headers, data=data, cookies=cookies,stream=True)</span><br></pre></td></tr></table></figure>
 
 <h3 id="3-响应response"><a href="#3-响应response" class="headerlink" title="3.响应response"></a>3.响应response</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;响应是浏览器返回过来的信息，它有不同的属性</p>
 <ul>
@@ -530,6 +545,7 @@
 <h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
 <li><a href="https://blog.csdn.net/meteor_93/article/details/103380179" target="_blank" rel="noopener">Session 和 Cookies</a></li>
 <li><a href="https://blog.csdn.net/williamgavin/article/details/81390014?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3&utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3" target="_blank" rel="noopener">小白学爬虫（三）– requests库之Cookie</a></li>
+<li><a href="https://blog.csdn.net/supercooly/article/details/51046561" target="_blank" rel="noopener">Python3使用requests模块显示二进制文件下载进度</a></li>
 </ul>
 
       </div>
@@ -542,10 +558,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-23T14:30:46+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-20T14:58:20+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年4月23日</p>
+    <p>更新于 2020年5月20日</p>
   </a>
 </div>
 
