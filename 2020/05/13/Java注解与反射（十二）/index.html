@@ -433,7 +433,7 @@
       <div class="article-entry" itemprop="articleBody">
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>反射：框架的灵魂</strong><br><strong>本章内容：</strong></p>
 <blockquote>
-<p>1.IO概述<br>2.字节流<br>3.字符流<br>4.IO异常的处理</p>
+<p>1.Junit测试<br>2.注解<br>3.反射</p>
 </blockquote>
 <a id="more"></a>
 
@@ -456,7 +456,77 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.junit.After;</span><br><span class="line"><span class="keyword">import</span> org.junit.Assert;</span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalculatorTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"初始化资源。。。"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@After</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"释放资源。。。"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAdd</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">8</span>;</span><br><span class="line">        <span class="keyword">int</span> b = <span class="number">7</span>;</span><br><span class="line">        <span class="keyword">int</span> c = a+b;</span><br><span class="line">        <span class="comment">// 断言操作</span></span><br><span class="line">        Assert.assertEquals(<span class="number">15</span>,c);</span><br><span class="line">        System.out.println(a+<span class="string">"+"</span>+b+<span class="string">"="</span>+c);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>运行结果：<br>初始化资源。。。<br>8+7=15<br>释放资源。。。</p>
-<h3 id="2-反射"><a href="#2-反射" class="headerlink" title="2.反射"></a>2.反射</h3><ul>
+<h3 id="2-注解"><a href="#2-注解" class="headerlink" title="2.注解"></a>2.注解</h3><h4 id="使用注解"><a href="#使用注解" class="headerlink" title="使用注解"></a>使用注解</h4><p>注解：<strong>放在Java源码的类、方法、字段、参数前的一种特殊的“注释”</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// this is a component:</span></span><br><span class="line"><span class="meta">@Resource</span>(<span class="string">"hello"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostConstruct</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hello</span><span class="params">(@Param String name)</span> </span>&#123;</span><br><span class="line">        System.out.println(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hello"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注释会被编译器直接忽略，注解则可以被编译器打包进入class文件，因此，注解是一种用作标注的“元数据”。</p>
+<ol start="2">
+<li>注解的作用</li>
+</ol>
+<p>从JVM的角度开看，注解本身对代码逻辑没有任何影响，如何使用注解完全由工具决定</p>
+<p>Java的注解可以分为三类：</p>
+<ul>
+<li>第一类是由编译器使用的注解，例如：</li>
+</ul>
+<p><code>@Override</code>：让编译器检查该方法是否正确地实现了覆写；<br><code>@SuppressWarnings</code>：告诉编译器忽略此处代码产生的警告。<br>这类注解不会被编译进入.class文件，它们在编译后就被编译器扔掉了。</p>
+<ul>
+<li>第二类是由工具处理.class文件使用的注解</li>
+</ul>
+<p>比如有些工具会在加载class的时候，对class做动态修改，实现一些特殊的功能。这类注解会被编译进入.class文件，但加载结束后并不会存在于内存中。这类注解只被一些底层库使用，一般我们不必自己处理。</p>
+<ul>
+<li>第三类是在程序运行期能够读取的注解</li>
+</ul>
+<p>它们在加载后一直存在于JVM中，这也是最常用的注解。例如，一个配置了@PostConstruct的方法会在调用构造方法后自动被调用（这是Java代码读取该注解实现的功能，JVM并不会识别该注解）。</p>
+<p><strong>定义一个注解时，还可以定义配置参数</strong>，配置参数可以包括：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">所有的基本类型</span><br><span class="line">String</span><br><span class="line">枚举类型</span><br><span class="line">基本类型，String以及枚举的数组</span><br></pre></td></tr></table></figure>
+
+<p>因为<i>配置参数必须是常量</i>，所以，上述限制保证了注解在定义时就已经确定了每个参数的值。</p>
+<p>注解的配置参数可以有默认值，缺少某个配置参数时将使用默认值。</p>
+<p>此外，大部分注解会有一个名为value的配置参数，对此参数赋值，可以只写常量，相当于省略了value参数。如果只写注解，相当于全部使用默认值。</p>
+<p>举例说明:<br>@Check就是一个注解。第一个@Check(min=0, max=100, value=55)明确定义了三个参数，第二个@Check(value=99)只定义了一个value参数，它实际上和@Check(99)是完全一样的。最后一个@Check表示所有参数都使用默认值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class Hello &#123;</span><br><span class="line">    @Check(min=0, max=100, value=55)</span><br><span class="line">    public int n;</span><br><span class="line"></span><br><span class="line">    @Check(value=99)</span><br><span class="line">    public int p;</span><br><span class="line"></span><br><span class="line">    @Check(99) // @Check(value=99)</span><br><span class="line">    public int x;</span><br><span class="line"></span><br><span class="line">    @Check</span><br><span class="line">    public int y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="定义注解"><a href="#定义注解" class="headerlink" title="定义注解"></a>定义注解</h4><p>Java语言使用@interface语法来定义注解（Annotation），它的格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public @interface Report &#123;</span><br><span class="line">    int type() default 0;</span><br><span class="line">    String level() default &quot;info&quot;;</span><br><span class="line">    String value() default &quot;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注解的参数类似无参数方法，<strong>可以用default设定一个默认值（强烈推荐）</strong>。最常用的参数应当命名为value。</p>
+<p><strong>元注解</strong></p>
+<p>有一些注解可以修饰其他注解，这些注解就称为元注解（meta annotation）。Java标准库已经定义了一些元注解，我们只需要使用元注解，通常不需要自己去编写元注解。</p>
+<blockquote>
+<p>@Target</p>
+</blockquote>
+<p>最常用的元注解是@Target，使用@Target可以定义Annotation能够被应用与源码的那些位置：</p>
+<ul>
+<li>类或接口： ElementType.TYPE</li>
+<li>字段： ElementType.FIELD</li>
+<li>方法：ElementType.METHOD</li>
+<li>构造方法：ElementType.CONSTRUCTOR</li>
+<li>方法参数：ElementType.PARAMETER</li>
+</ul>
+<p>例如，定义注解@Report可用在方法上，我们必须添加一个@Target(ElementType.METHOD)：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.METHOD)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Report &#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">type</span><span class="params">()</span> <span class="keyword">default</span> 0</span>;</span><br><span class="line">    <span class="function">String <span class="title">level</span><span class="params">()</span> <span class="keyword">default</span> "info"</span>;</span><br><span class="line">    <span class="function">String <span class="title">value</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>定义注解@Report可用在方法或字段上，可以把@Target注解参数变为数组{ ElementType.METHOD, ElementType.FIELD }：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Target(&#123;</span><br><span class="line">    ElementType.METHOD,</span><br><span class="line">    ElementType.FIELD</span><br><span class="line">&#125;)</span><br><span class="line">public @interface Report &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实际上@Target定义的value是ElementType[]数组，只有一个元素时，可以省略数组的写法。</p>
+<blockquote>
+<p>@Retention</p>
+</blockquote>
+<p>元注解@Retention定义了Annotation的生命周期：</p>
+<ul>
+<li>仅编译期：RetentionPolicy.SOURCE；</li>
+<li>仅class文件：RetentionPolicy.CLASS；</li>
+<li>运行期：RetentionPolicy.RUNTIME。</li>
+</ul>
+<p>如果@Retention不存在，则该Annotation默认为CLASS。因为<strong>通常我们自定义的Annotation都是RUNTIME</strong>，所以，务必要加上@Retention(RetentionPolicy.RUNTIME)这个元注解：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Report &#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">type</span><span class="params">()</span> <span class="keyword">default</span> 0</span>;</span><br><span class="line">    <span class="function">String <span class="title">level</span><span class="params">()</span> <span class="keyword">default</span> "info"</span>;</span><br><span class="line">    <span class="function">String <span class="title">value</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Repeatable</p>
+</blockquote>
+<p>使用@Repeatable这个元注解可以定义Annotation是否可重复。这个注解应用不是特别广泛</p>
+<h3 id="3-反射"><a href="#3-反射" class="headerlink" title="3.反射"></a>3.反射</h3><ul>
 <li>框架：半成品软件，可以在框架的基础上进行软件开发，简化编码</li>
 <li>反射：将类的各个组成部分封装为其它对象，这就是反射机制（可以在程序运行过程在，操作这些对象；可以解耦，提高程序的可扩展性）</li>
 </ul>
@@ -576,10 +646,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-18T18:26:26+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-22T17:28:03+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年5月18日</p>
+    <p>更新于 2020年5月22日</p>
   </a>
 </div>
 
@@ -603,7 +673,7 @@
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/05/13/Java%E6%B3%A8%E8%A7%A3%E4%B8%8E%E5%8F%8D%E5%B0%84%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89/&title=Java（十二）：Junit测试与反射 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;反射：框架的灵魂本章内容：
 
-1.IO概述2.字节流3.字符流4.IO异常的处理
+1.Junit测试2.注解3.反射
 "
           
           >
@@ -618,7 +688,7 @@
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/05/13/Java%E6%B3%A8%E8%A7%A3%E4%B8%8E%E5%8F%8D%E5%B0%84%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89/&title=Java（十二）：Junit测试与反射 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;反射：框架的灵魂本章内容：
 
-1.IO概述2.字节流3.字符流4.IO异常的处理
+1.Junit测试2.注解3.反射
 "
           
           >
@@ -633,7 +703,7 @@
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/05/13/Java%E6%B3%A8%E8%A7%A3%E4%B8%8E%E5%8F%8D%E5%B0%84%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89/&title=Java（十二）：Junit测试与反射 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;反射：框架的灵魂本章内容：
 
-1.IO概述2.字节流3.字符流4.IO异常的处理
+1.Junit测试2.注解3.反射
 "
           
           >
@@ -840,7 +910,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Junit测试"><span class="toc-text">1.Junit测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-反射"><span class="toc-text">2.反射</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Junit测试"><span class="toc-text">1.Junit测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-注解"><span class="toc-text">2.注解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用注解"><span class="toc-text">使用注解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#定义注解"><span class="toc-text">定义注解</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-反射"><span class="toc-text">3.反射</span></a></li></ol>
     </div>
   </section>
 
