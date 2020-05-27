@@ -433,9 +433,8 @@
       <div class="article-entry" itemprop="articleBody">
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JavaScript是一种属于网络的脚本语言,已经被广泛用于Web应用开发,常用来为网页添加各式各样的动态功能,为用户提供更流畅美观的浏览效果。通常JavaScript脚本是通过嵌入在HTML中来实现自身的功能的，一个前端项目必离不开HTML+CSS+JavaScript。</p>
 <blockquote>
-<p><font size=4 color=#FF0000>本文要点：</font><br>1.声明变量以及变量规范<br>2. js基本数据类型<br>3.对象<br>4.javascript的字符串</p>
+<p><font size=4 color=#FF0000>本文要点：</font><br>1.声明变量以及变量规范<br>2. js基本数据类型<br>3.对象<br>4.javascript的字符串<br>5.js对url进行编码和解码<br><fancybox><img src="http://hd.wallpaperswide.com/thumbs/pin_up_001-t2.jpg" alt="一日不读书，我浑身难受"></fancybox></p>
 </blockquote>
-<p><fancybox><img src="http://hd.wallpaperswide.com/thumbs/pin_up_001-t2.jpg" alt="一日不读书，我浑身难受"></fancybox></p>
 <a id="more"></a>
 
 <h3 id="1-变量及数据类型：JavaScript变量是数据值的容器"><a href="#1-变量及数据类型：JavaScript变量是数据值的容器" class="headerlink" title="1. 变量及数据类型：JavaScript变量是数据值的容器"></a>1. 变量及数据类型：JavaScript变量是数据值的容器</h3><h4 id="声明变量"><a href="#声明变量" class="headerlink" title="声明变量"></a>声明变量</h4><p><strong>js在创建变量或对象时，一定要声明其数据类型，否者会默认设置为全局变量，这是我们导入其它js等文件时就会造成污染数据</strong></p>
@@ -553,8 +552,26 @@
 <p>字符串与数组类似，字符位置是从 0 开始计算。特别说明：此方法对大小写敏感。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="string">"hello world"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a.indexOf(<span class="string">"h"</span>)); <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">console</span>.log(a.indexOf(<span class="string">"cg"</span>)); <span class="comment">// -1</span></span><br></pre></td></tr></table></figure>
 
+<h3 id="5-js对url进行编码和解码"><a href="#5-js对url进行编码和解码" class="headerlink" title="5.js对url进行编码和解码"></a>5.js对url进行编码和解码</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在的信息网络都是数字的，很多东西要保存传输就得编码，比如你要保存一篇文章，里面的字就是一些二进制编码。编码就是如何把信息转换成数字序列，解码则是把数字序列转换成信息。<br>简单理解为：1. 编码（encode）是将人能够认识的信息转换为看不懂的。 2. 解码（code）是将经过加密的对象转换为我们能够认识的信息</p>
+<blockquote>
+<p>1.encodeURI 和 decodeURI</p>
+</blockquote>
+<p>原理：返回编码为有效的统一资源标识符 (URI) 的字符串，不会被编码的字符：! @ # $ &amp; * ( ) = : / ; ? + ‘</p>
+<p>　　   encodeURI()是Javascript中真正用来对URL编码的函数。</p>
+<p>编码：encodeURI(‘<a href="http://www.baidu.com?name=zhang@xiao@jie&amp;order=1&#39;" target="_blank" rel="noopener">http://www.baidu.com?name=zhang@xiao@jie&amp;order=1&#39;</a>)</p>
+<p>　　　结果：”<a href="http://www.baidu.com?name=zhang@xiao@jie&amp;order=1&quot;" target="_blank" rel="noopener">http://www.baidu.com?name=zhang@xiao@jie&amp;order=1&quot;</a></p>
+<p>解码：decodeURI(“http%3A//<a href="http://www.baidu.com%3Fname%3Dzhang@xiao@jie%26order%3D1&quot;" target="_blank" rel="noopener">www.baidu.com%3Fname%3Dzhang@xiao@jie%26order%3D1&quot;</a>)</p>
+<p>　　　结果：”http%3A//<a href="http://www.baidu.com%3Fname%3Dzhang@xiao@jie%26order%3D1&quot;" target="_blank" rel="noopener">www.baidu.com%3Fname%3Dzhang@xiao@jie%26order%3D1&quot;</a></p>
+<blockquote>
+<p>2.encodeURIComponent 和 decodeURIComponent（推荐）</p>
+</blockquote>
+<p>原理：对URL的组成部分进行个别编码，而不用于对整个URL进行编码</p>
+<p>编码：encodeURIComponent(‘<a href="http://www.baidu.com?name=zhang@xiao@jie&amp;order=1&#39;" target="_blank" rel="noopener">http://www.baidu.com?name=zhang@xiao@jie&amp;order=1&#39;</a>)<br>　　　结果：”http%3A%2F%2F<a href="http://www.baidu.com%3Fname%3Dzhang%40xiao%40jie%26order%3D1&quot;" target="_blank" rel="noopener">www.baidu.com%3Fname%3Dzhang%40xiao%40jie%26order%3D1&quot;</a></p>
+<p>解码：decodeURIComponent(“http%3A%2F%2F<a href="http://www.baidu.com%3Fname%3Dzhang%40xiao%40jie%26order%3D1&quot;" target="_blank" rel="noopener">www.baidu.com%3Fname%3Dzhang%40xiao%40jie%26order%3D1&quot;</a>)</p>
+<p>　　　结果：”<a href="http://www.baidu.com?name=zhang@xiao@jie&amp;order=1&quot;" target="_blank" rel="noopener">http://www.baidu.com?name=zhang@xiao@jie&amp;order=1&quot;</a></p>
 <h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
 <li><a href="https://www.runoob.com/js/js-type-conversion.html" target="_blank" rel="noopener">JavaScript基本数据类型以及详细使用</a></li>
+<li><a href="https://blog.csdn.net/xiongzaiabc/article/details/105012903" target="_blank" rel="noopener">python中demjson的详细使用教程，专治json解码、json编码</a></li>
 </ul>
 
       </div>
@@ -567,10 +584,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-19T10:44:39+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-25T10:29:44+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年5月19日</p>
+    <p>更新于 2020年5月25日</p>
   </a>
 </div>
 
@@ -594,8 +611,7 @@
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/11/20/Javascript%E7%AF%87%E7%AB%A0%E4%B8%80/&title=Javascript篇章一：JavaScript基本知识 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JavaScript是一种属于网络的脚本语言,已经被广泛用于Web应用开发,常用来为网页添加各式各样的动态功能,为用户提供更流畅美观的浏览效果。通常JavaScript脚本是通过嵌入在HTML中来实现自身的功能的，一个前端项目必离不开HTML+CSS+JavaScript。
 
-本文要点：1.声明变量以及变量规范2. js基本数据类型3.对象4.javascript的字符串
-
+本文要点：1.声明变量以及变量规范2. js基本数据类型3.对象4.javascript的字符串5.js对url进行编码和解码
 "
           
           >
@@ -610,8 +626,7 @@
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/11/20/Javascript%E7%AF%87%E7%AB%A0%E4%B8%80/&title=Javascript篇章一：JavaScript基本知识 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JavaScript是一种属于网络的脚本语言,已经被广泛用于Web应用开发,常用来为网页添加各式各样的动态功能,为用户提供更流畅美观的浏览效果。通常JavaScript脚本是通过嵌入在HTML中来实现自身的功能的，一个前端项目必离不开HTML+CSS+JavaScript。
 
-本文要点：1.声明变量以及变量规范2. js基本数据类型3.对象4.javascript的字符串
-
+本文要点：1.声明变量以及变量规范2. js基本数据类型3.对象4.javascript的字符串5.js对url进行编码和解码
 "
           
           >
@@ -626,8 +641,7 @@
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/11/20/Javascript%E7%AF%87%E7%AB%A0%E4%B8%80/&title=Javascript篇章一：JavaScript基本知识 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JavaScript是一种属于网络的脚本语言,已经被广泛用于Web应用开发,常用来为网页添加各式各样的动态功能,为用户提供更流畅美观的浏览效果。通常JavaScript脚本是通过嵌入在HTML中来实现自身的功能的，一个前端项目必离不开HTML+CSS+JavaScript。
 
-本文要点：1.声明变量以及变量规范2. js基本数据类型3.对象4.javascript的字符串
-
+本文要点：1.声明变量以及变量规范2. js基本数据类型3.对象4.javascript的字符串5.js对url进行编码和解码
 "
           
           >
@@ -853,7 +867,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-变量及数据类型：JavaScript变量是数据值的容器"><span class="toc-text">1. 变量及数据类型：JavaScript变量是数据值的容器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#声明变量"><span class="toc-text">声明变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命名规范"><span class="toc-text">命名规范</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-js数据类型"><span class="toc-text">2.js数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-对象"><span class="toc-text">3.对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#案例：数据集构造"><span class="toc-text">案例：数据集构造</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-js字符串"><span class="toc-text">4.js字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-变量及数据类型：JavaScript变量是数据值的容器"><span class="toc-text">1. 变量及数据类型：JavaScript变量是数据值的容器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#声明变量"><span class="toc-text">声明变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命名规范"><span class="toc-text">命名规范</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-js数据类型"><span class="toc-text">2.js数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-对象"><span class="toc-text">3.对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#案例：数据集构造"><span class="toc-text">案例：数据集构造</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-js字符串"><span class="toc-text">4.js字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-js对url进行编码和解码"><span class="toc-text">5.js对url进行编码和解码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
     </div>
   </section>
 
