@@ -455,7 +455,14 @@
 <p>overflow解决方案:为父元素添加overflow不为visible 的属性</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.box1</span>&#123;</span></span><br><span class="line">            width: 120px;</span><br><span class="line">            height: 120px;</span><br><span class="line"><span class="css">            <span class="selector-tag">background-color</span>: <span class="selector-id">#48b685</span>;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">overflow</span>: <span class="selector-tag">hidden</span>;   <span class="comment">/*父元素添加overflow*/</span></span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-class">.box2</span>&#123;</span></span><br><span class="line">            margin-top: 20px;</span><br><span class="line">            width: 60px;</span><br><span class="line">            height: 60px;</span><br><span class="line"><span class="css">            <span class="selector-tag">background-color</span>: <span class="selector-id">#00b0e8</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box1"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-
+<p>小结：</p>
+<ol>
+<li>使用 margin:0 auto;的盒子，必须要有width，有明确的width；</li>
+<li>只有标准流中的盒子，才能使用 margin:0 auto; 居中，即当一个盒子浮动了，绝对定位了，固定定位了，都不能使用 margin:0 auto;</li>
+<li>margin:0 auto;是在居中盒子，不是居中文本，文本的居中，用 text-align:center;</li>
+<li>margin的属性本质上描述的是兄弟标签之间的距离，最好不要用这个属性描述父子之间的距离，描述父子之间距离时要善于使用父亲的padding；</li>
+<li>IE6兼容性问题解决方案：使浮动方向与margin方向相反；</li>
+</ol>
 <h3 id="2-float属性"><a href="#2-float属性" class="headerlink" title="2.float属性"></a>2.float属性</h3><p>关于浮动的使用一定要注意三个事情：<br>①. 要浮动，所有的兄弟都要浮动<br>两个盒子并排，则两个盒子必须都要设置浮动。不能老大浮动，老二不浮动；老二不浮动，老大也不浮动</p>
 <p>②. 一定要把浮动的元素放在一个div中<br>你看，因为box1与box2要并排，所以它们必须要放到一个div中</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"up"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"down"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -529,6 +536,7 @@
 <h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
 <li><a href="https://blog.csdn.net/qq_40831381/article/details/90293574?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2&utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2" target="_blank" rel="noopener">HTML的表格table属性</a></li>
 <li><a href="https://blog.csdn.net/u012724595/article/details/79401401" target="_blank" rel="noopener">HTML表格跨行、跨列操作(rowspan、colspan)</a></li>
+<li><a href="https://blog.csdn.net/u014042372/article/details/86688515" target="_blank" rel="noopener">margin属性总结</a></li>
 </ul>
 
       </div>
@@ -541,10 +549,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-12T10:14:16+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-12T11:33:52+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年5月12日</p>
+    <p>更新于 2020年6月12日</p>
   </a>
 </div>
 

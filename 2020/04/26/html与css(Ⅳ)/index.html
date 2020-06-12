@@ -501,6 +501,19 @@
 </ol>
 <p>随着页面的滑动，元素仍然固定，始终保持在距离right，bottom为2em位置处，展示效果如下：</p>
 <p><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/20200611164520.png" alt=""></fancybox></p>
+<p>position定位属性小结：</p>
+<ol>
+<li><p>偏移量（top，bottom，left，right）当元素开启定位（即position属性设置不为static时）以后，通过使用偏移量来设置元素位置，如果开启定位时使用margin或者padding属性的话，则会出错，会带动其它div联动。<strong>偏移量top，bottom，left，right，仅在开启定位后才会生效</strong></p>
+</li>
+<li><p>relative相对定位不会脱离文档流，<strong>是相对于元素自身在文档中的原来位置进行偏移</strong></p>
+</li>
+<li><p>absolute绝对定位会脱离文档流，<strong>绝对定位的原点是父元素中最近的一个开启了相对定位的左上角</strong>，若父元素都没有开启相对定位，则以根元素（即html标签元素）为参照点</p>
+</li>
+<li><p>fixed固定定位是一种特殊的绝对定位，也会脱离文档流。唯一不同的是，<strong>固定定位永远参照于浏览器的视口进行定位，固定定位不会随着网页的滚动条而滚动</strong></p>
+</li>
+<li><p>一旦开始position定位元素后，必须使用偏移量（top，bottom，left，right）元素来调整div的位置，绝对不能使用margin，padding</p>
+</li>
+</ol>
 <h3 id="4-CSS-spirit-css精灵"><a href="#4-CSS-spirit-css精灵" class="headerlink" title="4.CSS spirit css精灵"></a>4.CSS spirit css精灵</h3><p>CSS Image Sprites. ❮ Previous Next ❯:<br> An image sprite is a collection of images put into a single image.<br> A web page with many images can take a long time to load and generates multiple server requests.<br> Using image sprites will reduce the number of server requests and save bandwidth       </p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*Code sample:*/</span></span><br><span class="line">    <span class="selector-class">.box</span>&#123;</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">46px</span>;</span><br><span class="line">      <span class="attribute">height</span>: <span class="number">44px</span>;</span><br><span class="line">      <span class="attribute">background</span>: <span class="built_in">url</span>(img_navsprites.gif) -x <span class="built_in">-y</span>(这两个参数分别表示：向左，向上平移，均用负数表示); &#125;</span><br></pre></td></tr></table></figure>
 <br>
@@ -560,10 +573,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-11T17:08:27+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-12T09:13:36+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年6月11日</p>
+    <p>更新于 2020年6月12日</p>
   </a>
 </div>
 
