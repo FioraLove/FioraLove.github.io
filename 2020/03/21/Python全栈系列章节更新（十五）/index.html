@@ -444,17 +444,37 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">response = requests.get(<span class="string">"http://www.baidu.com"</span>)</span><br><span class="line">print(type(response))  <span class="comment"># &lt;class ‘requests.models.Response’&gt;</span></span><br><span class="line">print(response.status_code)     <span class="comment"># 200</span></span><br></pre></td></tr></table></figure>
 
 <p>将参数写成字典的形式，利用get()方法的参数进行请求，可以动态更改请求参数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">params = &#123;</span><br><span class="line">    <span class="string">'name'</span>:<span class="string">"M.lu"</span>,</span><br><span class="line">    <span class="string">'age'</span>:<span class="number">22</span></span><br><span class="line">&#125;</span><br><span class="line">response = requests.get(<span class="string">"http://httpbin.org/get"</span>, params=params)</span><br><span class="line">print(response.text)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="comment"># 普通请求</span></span><br><span class="line">r = requests.get(<span class="string">'https://anoyi.com/'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 带 Query 参数，等价于 https://anoyi.com/?key1=value1&amp;key2=value2</span></span><br><span class="line">payload = &#123;<span class="string">'key1'</span>: <span class="string">'value1'</span>, <span class="string">'key2'</span>: <span class="string">'value2'</span>&#125;</span><br><span class="line">r = requests.get(<span class="string">'https://anoyi.com/'</span>, params=payload)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 带 Headers</span></span><br><span class="line">headers = &#123;<span class="string">'user-agent'</span>: <span class="string">'anoyi-app/0.0.1'</span>&#125;</span><br><span class="line">r = requests.get(<span class="string">'https://anoyi.com/'</span>, headers=headers)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 带 Basic Authentication</span></span><br><span class="line">r = requests.get(<span class="string">'https://anoyi.com/'</span>, auth=(<span class="string">'user'</span>, <span class="string">'pass'</span>))</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>POST请求</p>
 </blockquote>
+<p>POST请求可以携带多种形式的参数：</p>
+<ul>
+<li>form-data</li>
+</ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="comment"># 基本 post 请求</span></span><br><span class="line">data = &#123;</span><br><span class="line">    <span class="string">'name'</span>:<span class="string">'M.Lu'</span>, </span><br><span class="line">    <span class="string">'age'</span>:<span class="string">'22'</span></span><br><span class="line">&#125;</span><br><span class="line">response = requests.post(<span class="string">"http://httpbin.org/post"</span>, data=data)</span><br><span class="line">print(response.text)</span><br></pre></td></tr></table></figure>
 
-<p>拓：对于POST请求，请求参数是<strong>request payload</strong> 的形式,这时如何传参？<br>先将request payload格式的数据写成标准的json数据格式，最后再转换成字符串</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># request payload数据格式</span></span><br><span class="line">payloadData = &#123;</span><br><span class="line">    <span class="string">'afnPriceStr'</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">'currency'</span>:<span class="string">'USD'</span>,</span><br><span class="line">    <span class="string">'productInfoMapping'</span>: &#123;</span><br><span class="line">        <span class="string">'asin'</span>: <span class="string">'B072JW3Z6L'</span>,</span><br><span class="line">        <span class="string">'dimensionUnit'</span>: <span class="string">'inches'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">r = requests.post(postUrl, data=json.dumps(payloadData))</span><br></pre></td></tr></table></figure>
+<ul>
+<li>request payload</li>
+</ul>
+<p>先将request payload格式的数据写成标准的json数据格式，最后再转换成字符串(json.dumps将数据字符串化，json.loads是将字符串还原成原本的数据格式)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># request payload数据格式</span></span><br><span class="line">payloadData = &#123;</span><br><span class="line">    <span class="string">'afnPriceStr'</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">'currency'</span>:<span class="string">'USD'</span>,</span><br><span class="line">    <span class="string">'productInfoMapping'</span>: &#123;</span><br><span class="line">        <span class="string">'asin'</span>: <span class="string">'B072JW3Z6L'</span>,</span><br><span class="line">        <span class="string">'dimensionUnit'</span>: <span class="string">'inches'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">r = requests.post(url, data=json.dumps(payloadData))</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li>x-www-form-urlencoded</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">headers = &#123;<span class="string">'content-type'</span>: <span class="string">'application/x-www-form-urlencoded; charset=UTF-8'</span>&#125;</span><br><span class="line">r = requests.post(<span class="string">'https://anoyi.com/'</span>, headers=headers, data=<span class="string">'key=value'</span>)</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li>application/json (与form-data同理)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">payload = &#123;<span class="string">'some'</span>: <span class="string">'data'</span>&#125;</span><br><span class="line">r = requests.post(<span class="string">'https://anoyi.com/'</span>, json=payload)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>其它请求</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="comment"># PUT</span></span><br><span class="line">r = requests.put(<span class="string">'https://anoyi.com/'</span>, data=&#123;<span class="string">'key'</span>:<span class="string">'value'</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># DELETE</span></span><br><span class="line">r = requests.delete(<span class="string">'https://anoyi.com/'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># HEAD</span></span><br><span class="line">r = requests.head(<span class="string">'https://anoyi.com/'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># OPTIONS</span></span><br><span class="line">r = requests.options(<span class="string">'https://anoyi.com/'</span>)</span><br></pre></td></tr></table></figure>
 
 <h3 id="2-传递参数"><a href="#2-传递参数" class="headerlink" title="2.传递参数"></a>2.传递参数</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;无论是post还是get请求，对url进行请求时，都可以传递参数</p>
 <ol>
@@ -497,7 +517,22 @@
 <p>Bit意为“位”或“比特”，是计算机运算的基础，属于二进制的范畴；<br>Byte意为“字节”，是计算机文件大小的基本计算单位；</p>
 <p>这两者应用的场合不同。通常用bit来作数据传输的单位，因为物理层，数据链路层的传输对于用户是透明的，而这种通信传输是基于二进制的传输。在应用层通常是用byte来作单位，表示文件的大小，在用户看来就是可见的数据大小。比如一个字符就是1byte,如果是汉字，则是2byte</p>
 <p>比如常见的音视频，放置某些文件过大，内存溢出</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response = requests.post(url=url, headers=headers, data=data, cookies=cookies,stream=True)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">response = requests.post(url=url, </span><br><span class="line">                        headers=headers, </span><br><span class="line">                        data=data, </span><br><span class="line">                        cookies=cookies,</span><br><span class="line">                        stream=True)</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>allow_redirects重定向操作</li>
+</ol>
+<ul>
+<li>Redirect重定向就是通过各种方法将各种网络请求重新定个方向转到其它位置,从地址A跳转到地址 B 了：</li>
+<li>重定向状态码:<ul>
+<li>301 redirect: 301 代表永久性转移(Permanently Moved)</li>
+<li>302 redirect: 302 代表暂时性转移(Temporarily Moved )</li>
+</ul>
+</li>
+<li>实际场景：<br> 举个简单的场景案例，先登录博客园打开我的博客首页，进我的随笔编辑界面，记住这地址：<a href="https://i.cnblogs.com/EditPosts.aspx?opt=1" target="_blank" rel="noopener">https://i.cnblogs.com/EditPosts.aspx?opt=1</a> ，退出博客园登录，把刚才我的随笔这个地址输入浏览器回车，抓包会看到这个请求状态码是 302，浏览器地址栏瞬间刷新跳到登录首页去了</li>
+</ul>
+<p>自动处理重定向地址后，我们就获取不到重定向后的 url 了，就无法走下一步，这里我们可以设置一个参数禁止重定向：allow_redirects=False（allow_redirects=True 是启动重定向），然后就可以看到 status_code 是 302 了,<strong>重定向的跳转地址是在返回的请求头中</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="comment">#禁用安全请求警告</span></span><br><span class="line"><span class="keyword">from</span> requests.packages.urllib3.exceptions <span class="keyword">import</span> InsecureRequestWarning</span><br><span class="line">requests.packages.urllib3.disable_warnings(InsecureRequestWarning)</span><br><span class="line"></span><br><span class="line">url = <span class="string">"https://i.cnblogs.com/EditPosts.aspx?opt=1"</span></span><br><span class="line">headers = &#123;</span><br><span class="line"><span class="string">"User-Agent"</span>: <span class="string">"Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36"</span></span><br><span class="line">&#125;</span><br><span class="line">s = requests.Session()</span><br><span class="line"><span class="comment">#打开我的随笔</span></span><br><span class="line">r = s.get(url,headers=headers,verify=<span class="literal">False</span>,allow_redirects=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># print(r.content.decode("utf-8"))</span></span><br><span class="line"><span class="comment">#打印状态码，自动处理重定向请求</span></span><br><span class="line">print(r.status_code)</span><br><span class="line"><span class="comment">#获取重定向后的地址</span></span><br><span class="line">print(r.headers[<span class="string">"Location"</span>])</span><br></pre></td></tr></table></figure>
 
 <h3 id="3-响应response"><a href="#3-响应response" class="headerlink" title="3.响应response"></a>3.响应response</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;响应是浏览器返回过来的信息，它有不同的属性</p>
 <ul>
@@ -546,6 +581,7 @@
 <li><a href="https://blog.csdn.net/meteor_93/article/details/103380179" target="_blank" rel="noopener">Session 和 Cookies</a></li>
 <li><a href="https://blog.csdn.net/williamgavin/article/details/81390014?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3&utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3" target="_blank" rel="noopener">小白学爬虫（三）– requests库之Cookie</a></li>
 <li><a href="https://blog.csdn.net/supercooly/article/details/51046561" target="_blank" rel="noopener">Python3使用requests模块显示二进制文件下载进度</a></li>
+<li><a href="https://www.cnblogs.com/Teachertao/p/11146631.html" target="_blank" rel="noopener">Requests方法 – 重定向操作</a></li>
 </ul>
 
       </div>
@@ -558,10 +594,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-20T14:58:20+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-22T21:28:49+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年5月20日</p>
+    <p>更新于 2020年6月22日</p>
   </a>
 </div>
 
