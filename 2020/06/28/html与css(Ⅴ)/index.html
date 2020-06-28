@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>Tag: Hexo | AhriLove</title>
+  <title>CSS属性补充(Ⅲ) | AhriLove</title>
   
   
 
@@ -65,7 +65,7 @@
   
   
   <div class="cover-wrapper">
-    <cover class='cover  half'>
+    <cover class='cover post half'>
       
         
   <img class='logo' src='https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imagesaaa.png'/>
@@ -332,25 +332,11 @@
 
   <div class="l_body">
     <div class='body-wrapper'>
-      
-<div class='l_main'>
+      <div class='l_main'>
   
+
+  <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
     
-      
-  <section class="post-list">
-    
-      
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
-  
 
 
   <section class='meta'>
@@ -359,11 +345,13 @@
     <div class="meta" id="header-meta">
       
         
-  <h2 class="title">
-    <a href="/2019/10/20/%E5%88%9D%E6%AC%A1%E8%A7%81%E9%9D%A2_%E8%AF%B7%E5%A4%9A%E5%85%B3%E7%85%A7/">
-      初次见面，请多关照
-    </a>
-  </h2>
+  
+    <h1 class="title">
+      <a href="/2020/06/28/html%E4%B8%8Ecss(%E2%85%A4)/">
+        CSS属性补充(Ⅲ)
+      </a>
+    </h1>
+  
 
 
       
@@ -375,11 +363,11 @@
             
   <div class='new-meta-item author'>
     
-      <a href="https://ahrilove.top" rel="nofollow">
+      <a href="/" rel="nofollow">
         
-          <i class="fas fa-user" aria-hidden="true"></i>
+          <img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/lovezhuge.jpg">
         
-        <p>AhriLove</p>
+        <p>曲率矩阵</p>
       </a>
     
   </div>
@@ -391,7 +379,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-10-20</p>
+    <p>2020-06-28</p>
   </a>
 </div>
 
@@ -401,11 +389,29 @@
             
   
   <div class='new-meta-item category'>
-    <a href='/categories/%E5%8D%9A%E5%AE%A2Hexo/' rel="nofollow">
+    <a href='/categories/%E5%89%8D%E7%AB%AF/' rel="nofollow">
       <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>博客Hexo</p>
+      <p>前端</p>
     </a>
   </div>
+
+
+          
+        
+          
+            
+  
+    <div class="new-meta-item browse busuanzi">
+      <a class='notlink'>
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <p>
+          <span id="busuanzi_value_page_pv">
+            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+          </span>
+        </p>
+      </a>
+    </div>
+  
 
 
           
@@ -423,46 +429,204 @@
   </section>
 
 
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <p>&nbsp;&nbsp;&nbsp;这是一篇有关我如何使用 Github Pages 和 Hexo 搭建属于自己独立博客的功能展示</p>
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <p><strong>本章内容：</strong></p>
+<blockquote>
+<p>1.移动端div左右滑动展示<br>2.跨域问题</p>
+</blockquote>
+<a id="more"></a>
+
+<h3 id="1-移动端div左右滑动展示"><a href="#1-移动端div左右滑动展示" class="headerlink" title="1.移动端div左右滑动展示"></a>1.移动端div左右滑动展示</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于手机屏幕的宽度有限，内容太多移动设备一行装不下的，所以很多移动端网站的导航栏都有左右滑动效果，下面我就用CSS+HTML实现移动端div左右滑动展示。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"tabBar"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>三层嵌套模型：</p>
+<ul>
+<li>box层： 各个div模块</li>
+<li>tabBar： 滚动条隐藏层</li>
+<li>app层： .box::-webkit-scrollbar的兼用性较差，有些浏览器无效(如：IE等)，容器外面再嵌套一层 overflow:hidden 内部内容再限制尺寸和外部嵌套层一样，就变相隐藏了</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.app</span>&#123;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">118px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.tabBar</span>&#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#eee</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">10px</span> <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">white-space</span>: nowrap;<span class="comment">/*文本不会换行，文本会在在同一行上继续*/</span></span><br><span class="line">    <span class="attribute">overflow-y</span>: auto;<span class="comment">/*可滑动*/</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">8em</span>;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">3%</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">background</span>:<span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">display</span>: inline-block; <span class="comment">/*行内块级元素*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-跨域问题"><a href="#2-跨域问题" class="headerlink" title="2.跨域问题"></a>2.跨域问题</h3><ol>
+<li><p>ajax只能下载同源的数据，跨源的数据是禁止下载的。同源策略：同协议，同域名（ip），同端口号</p>
+</li>
+<li><p>html的<strong>src属性是可以跨域的，没有同源策略约束</strong>，比如可以任意访问其它数据源的图片url，script标签的src属性</p>
+</li>
+<li><p>对于计算机来说，文件的后缀是没有任何用处的，后缀名的作用是快速识别应该用什么软件打开</p>
+</li>
+<li><p>jsonp跨域的使用流程</p>
+</li>
+</ol>
+<p><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/kuayu.jpg" alt=""></fancybox></p>
+<p>跨域参考文章：</p>
+<ul>
+<li><a href="https://www.cnblogs.com/PheonixHkbxoic/p/5760838.html" target="_blank" rel="noopener">浏览器拦截跨域请求处理方法</a></li>
+<li><a href="https://segmentfault.com/a/1190000015597029" target="_blank" rel="noopener">不要再问我跨域的问题了</a></li>
+</ul>
+<p>举例说明：目录结构</p>
+<pre>
+nmsl
+    |___nmsl.txt
+    |___nmsl.json
+    |___跨域问题.html
+</pre>
+
+<p>   先导入Ajax的cdn文件<br>      &lt;script src=”<a href="https://unpkg.com/axios/dist/axios.min.js&quot;&gt;\" target="_blank" rel="noopener">https://unpkg.com/axios/dist/axios.min.js&quot;&gt;\</a>&lt;/script&gt;</p>
+<p>   接下来axios的简单举例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"xon"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span>&gt;</span>Click me<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">        <span class="function"><span class="keyword">function</span> <span class="title">getInfo</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">return</span> axios(&#123;</span></span><br><span class="line"><span class="actionscript">                url:<span class="string">"./nmsl.json"</span>,</span></span><br><span class="line"><span class="actionscript">                method:<span class="string">"get"</span>,</span></span><br><span class="line">                headers:&#123;</span><br><span class="line"><span class="actionscript">                    <span class="string">'x-requested-with'</span>:<span class="string">"XMLHttpRequest"</span>,</span></span><br><span class="line"><span class="actionscript">                    <span class="string">"x-csrf-token"</span>: <span class="string">"SJoNf6r3hhcqe0TYsMArfcH6lth6L2htr14ZiruL"</span>,</span></span><br><span class="line"><span class="actionscript">                    <span class="string">"Access-Control-Allow-Origin"</span>:<span class="string">"*"</span></span></span><br><span class="line">                &#125;,</span><br><span class="line">                timeout:5000</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        axios.all([getInfo()])</span><br><span class="line"><span class="actionscript">        .then(axios.spread(<span class="function"><span class="keyword">function</span> <span class="params">(response)</span> </span>&#123;</span></span><br><span class="line"><span class="vbscript">            console.<span class="built_in">log</span>(<span class="built_in">response</span>);</span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.getElementById(<span class="string">"xon"</span>).innerHTML = (response.data)[<span class="string">"page40"</span>][<span class="number">6</span>];</span></span><br><span class="line"></span><br><span class="line">        &#125;))</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+      </div>
       
-        <div class="readmore">
-          <a href="/2019/10/20/%E5%88%9D%E6%AC%A1%E8%A7%81%E9%9D%A2_%E8%AF%B7%E5%A4%9A%E5%85%B3%E7%85%A7/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
-        </div>
+        <br>
+        
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-28T20:38:22+08:00">
+  <a class='notlink'>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>更新于 2020年6月28日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/css/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>css</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/06/28/html%E4%B8%8Ecss(%E2%85%A4)/&title=CSS属性补充(Ⅲ) | AhriLove&summary=本章内容：
+
+1.移动端div左右滑动展示2.跨域问题
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/06/28/html%E4%B8%8Ecss(%E2%85%A4)/&title=CSS属性补充(Ⅲ) | AhriLove&summary=本章内容：
+
+1.移动端div左右滑动展示2.跨域问题
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/06/28/html%E4%B8%8Ecss(%E2%85%A4)/&title=CSS属性补充(Ⅲ) | AhriLove&summary=本章内容：
+
+1.移动端div左右滑动展示2.跨域问题
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
       
     </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/Github-Page/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> Github Page</a>
-        
-          <a href="/tags/Hexo/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> Hexo</a>
-        
-      </div>
-    
   </section>
-</article>
 
-          </div>
-        
+
       
-    
-  </section>
-  
-    
-    <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
-    
-    
+      
+          <div class="prev-next">
+              
+              
+                  <section class="next">
+                      <span class="art-item-right" aria-hidden="true">
+                          <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                          <h4>
+                              <a href="/2020/06/24/%E9%9D%92%E6%98%A5%E7%8C%AA%E5%A4%B4%E5%B0%91%E5%B9%B4%E4%B8%8D%E4%BC%9A%E9%81%87%E5%88%B0Ajax%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82/" rel="prev" title="青春猪头少年不会遇到Ajax异步请求">
+                                  
+                                      青春猪头少年不会遇到Ajax异步请求
+                                  
+                              </a>
+                          </h4>
+                          
+                      </span>
+                  </section>
+              
+          </div>
+      
+    </section>
+  </article>
 
-  
 
 
-    
-  
+  <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      
+      
+        <section id="comments">
+          <div id="lv-container" data-id="city" data-uid="MTAyMC80NzQ0NS8yMzk0NQ==">
+            <noscript><div><i class='fas fa-exclamation-triangle'>&nbsp;无法加载Livere评论系统，请确保您的网络能够正常访问。</div></noscript>
+          </div>
+        </section>
+      
+      
+      
+    </section>
+  </article>
+
+
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'CSS属性补充(Ⅲ)',
+      tools: true
+    }
+  </script>
+
+
 </div>
 <aside class='l_side'>
   
@@ -524,6 +688,25 @@
           
         
           
+          
+            
+              
+  <section class='widget toc-wrapper'>
+    
+<header class='material'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目录</div>
+  
+    <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
+  
+</header>
+
+    <div class='content material'>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-移动端div左右滑动展示"><span class="toc-text">1.移动端div左右滑动展示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-跨域问题"><span class="toc-text">2.跨域问题</span></a></li></ol>
+    </div>
+  </section>
+
+
+            
           
         
           
@@ -850,50 +1033,28 @@
         
           
           
-            
-              
-
-
-  <section class='widget music'>
-    
-<header class='material'>
-  <div><i class="fas fa-compact-disc fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;最近在听</div>
-  
-    <a class="rightBtn"
-    
-      rel="external nofollow noopener noreferrer"
-    
-    
-      target="_blank"
-    
-    href="https://music.163.com/#/user/home?id=1398315803"
-    title="https://music.163.com/#/user/home?id=1398315803">
-    <i class="far fa-heart fa-fw"></i></a>
-  
-</header>
-
-    <div class='content material'>
+        
       
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
-  <div class="aplayer"
-    data-theme="#1BCDFC"
-    
-    
-    data-mode="circulation"
-    data-server="netease"
-    data-type="playlist"
-    data-id="2163223807"
-    data-volume="0.3">
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
-
-
-    </div>
-  </section>
-
-
-            
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
           
         
       
@@ -902,20 +1063,6 @@
   
 </aside>
 
-<footer id="footer" class="clearfix">
-  
-    <div class="footer">
-      <p>Copyright © 2019-2020 谁知你知我，我知你知深。此恨经年深，比情度日久。</p>
-
-    </div>
-    <br>
-  
-  
-  <br>
-  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
-</div>
-</footer>
-<script>setLoadingBarProgress(80);</script>
 
 
       <script>setLoadingBarProgress(60);</script>
@@ -1001,6 +1148,17 @@
 
 
 
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
 
 
 
