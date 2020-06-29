@@ -433,7 +433,7 @@
       <div class="article-entry" itemprop="articleBody">
         <p><strong>本章内容：</strong></p>
 <blockquote>
-<p>1.移动端div左右滑动展示<br>2.跨域问题</p>
+<p>1.移动端div左右滑动展示<br>2.跨域问题<br>3.css头像制作</p>
 </blockquote>
 <a id="more"></a>
 
@@ -476,6 +476,18 @@ nmsl
 <p>   接下来axios的简单举例：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"xon"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span>&gt;</span>Click me<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">        <span class="function"><span class="keyword">function</span> <span class="title">getInfo</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">return</span> axios(&#123;</span></span><br><span class="line"><span class="actionscript">                url:<span class="string">"./nmsl.json"</span>,</span></span><br><span class="line"><span class="actionscript">                method:<span class="string">"get"</span>,</span></span><br><span class="line">                headers:&#123;</span><br><span class="line"><span class="actionscript">                    <span class="string">'x-requested-with'</span>:<span class="string">"XMLHttpRequest"</span>,</span></span><br><span class="line"><span class="actionscript">                    <span class="string">"x-csrf-token"</span>: <span class="string">"SJoNf6r3hhcqe0TYsMArfcH6lth6L2htr14ZiruL"</span>,</span></span><br><span class="line"><span class="actionscript">                    <span class="string">"Access-Control-Allow-Origin"</span>:<span class="string">"*"</span></span></span><br><span class="line">                &#125;,</span><br><span class="line">                timeout:5000</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        axios.all([getInfo()])</span><br><span class="line"><span class="actionscript">        .then(axios.spread(<span class="function"><span class="keyword">function</span> <span class="params">(response)</span> </span>&#123;</span></span><br><span class="line"><span class="vbscript">            console.<span class="built_in">log</span>(<span class="built_in">response</span>);</span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.getElementById(<span class="string">"xon"</span>).innerHTML = (response.data)[<span class="string">"page40"</span>][<span class="number">6</span>];</span></span><br><span class="line"></span><br><span class="line">        &#125;))</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
+<h3 id="3-css头像制作"><a href="#3-css头像制作" class="headerlink" title="3.css头像制作"></a>3.css头像制作</h3><h4 id="3-1-div里面设置背景图片"><a href="#3-1-div里面设置背景图片" class="headerlink" title="3.1 div里面设置背景图片"></a>3.1 div里面设置背景图片</h4><p>avatar层来包裹头像</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"./demo.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"avatar"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"./2.jpg"</span> <span class="attr">alt</span>=<span class="string">"touxiang"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>css样式：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.app</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">    <span class="attribute">position</span>: fixed;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">1em</span>;</span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">1em</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.avatar</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">url</span>(./2.jpg);</span><br><span class="line">    <span class="attribute">background-size</span>: cover;</span><br><span class="line">    <span class="comment">/*设置边角*/</span></span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">20%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-object-fit属性"><a href="#3-2-object-fit属性" class="headerlink" title="3.2 object-fit属性"></a>3.2 <a href="https://www.runoob.com/cssref/pr-object-fit.html" target="_blank" rel="noopener">object-fit属性</a></h4><p>object-fit 属性指定元素的内容应该如何去适应指定容器的高度与宽度。</p>
+<p>object-fit 一般用于 img 和 video 标签，一般可以对这些原素进行保留原始比例的剪切、缩放或者直接进行拉伸等<br>object-position 属性一般与 object-fit一起使用，用来设置元素的位置。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.app</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">    <span class="attribute">position</span>: fixed;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">1em</span>;</span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">1em</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.inner</span> <span class="selector-tag">img</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">object-fit</span>: cover; </span><br><span class="line">    <span class="attribute">object-position</span>: left;<span class="comment">/*可能有时候图片不是从头部开始截图的 所以需要定位一下*/</span></span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">20%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最终成果：<br><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/object.jpg" alt=""></fancybox></p>
+
       </div>
       
         <br>
@@ -486,10 +498,10 @@ nmsl
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-28T20:38:22+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-29T17:21:17+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年6月28日</p>
+    <p>更新于 2020年6月29日</p>
   </a>
 </div>
 
@@ -513,7 +525,7 @@ nmsl
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/06/28/html%E4%B8%8Ecss(%E2%85%A4)/&title=CSS属性补充(Ⅲ) | AhriLove&summary=本章内容：
 
-1.移动端div左右滑动展示2.跨域问题
+1.移动端div左右滑动展示2.跨域问题3.css头像制作
 "
           
           >
@@ -528,7 +540,7 @@ nmsl
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/06/28/html%E4%B8%8Ecss(%E2%85%A4)/&title=CSS属性补充(Ⅲ) | AhriLove&summary=本章内容：
 
-1.移动端div左右滑动展示2.跨域问题
+1.移动端div左右滑动展示2.跨域问题3.css头像制作
 "
           
           >
@@ -543,7 +555,7 @@ nmsl
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/06/28/html%E4%B8%8Ecss(%E2%85%A4)/&title=CSS属性补充(Ⅲ) | AhriLove&summary=本章内容：
 
-1.移动端div左右滑动展示2.跨域问题
+1.移动端div左右滑动展示2.跨域问题3.css头像制作
 "
           
           >
@@ -701,7 +713,7 @@ nmsl
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-移动端div左右滑动展示"><span class="toc-text">1.移动端div左右滑动展示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-跨域问题"><span class="toc-text">2.跨域问题</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-移动端div左右滑动展示"><span class="toc-text">1.移动端div左右滑动展示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-跨域问题"><span class="toc-text">2.跨域问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-css头像制作"><span class="toc-text">3.css头像制作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-div里面设置背景图片"><span class="toc-text">3.1 div里面设置背景图片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-object-fit属性"><span class="toc-text">3.2 object-fit属性</span></a></li></ol></li></ol>
     </div>
   </section>
 
