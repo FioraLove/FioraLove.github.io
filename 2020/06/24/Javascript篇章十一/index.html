@@ -433,7 +433,7 @@
       <div class="article-entry" itemprop="articleBody">
         <p>js的三方库的功能非常强大，总结一些屠龙宝经<br><strong>本章内容：</strong></p>
 <blockquote>
-<p>1.clipboard.js剪切复制<br>2.layui-UI库</p>
+<p>1.clipboard.js剪切复制<br>2.layui-UI库<br>3.DPlayer视频播放</p>
 </blockquote>
 <a id="more"></a>
 
@@ -463,6 +463,11 @@ data-clipboard-target复制功能：从另一个元素上进行复制
 <li>data-clipboard-target会从目标节点的文本内容进行复制，有一个目标文本被选中的效果</li>
 </ol>
 <h3 id="2-弹窗layui"><a href="#2-弹窗layui" class="headerlink" title="2. 弹窗layui"></a>2. 弹窗layui</h3><p>layui官方UI文档:<a href="https://www.layui.com/doc/" target="_blank" rel="noopener">https://www.layui.com/doc/</a></p>
+<h3 id="3-DPlayer视频播放"><a href="#3-DPlayer视频播放" class="headerlink" title="3.DPlayer视频播放"></a>3.DPlayer视频播放</h3><p>DPlayer官方文档：<a href="http://dplayer.js.org/" target="_blank" rel="noopener">http://dplayer.js.org/</a></p>
+<p>举例说明</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> dp = <span class="keyword">new</span> DPlayer(&#123;</span><br><span class="line">    container: <span class="built_in">document</span>.getElementById(<span class="string">'dplayer'</span>),</span><br><span class="line">    autoplay: <span class="literal">false</span>,</span><br><span class="line">    theme: <span class="string">'#FADFA3'</span>,</span><br><span class="line">    loop: <span class="literal">true</span>,</span><br><span class="line">    lang: <span class="string">'zh-cn'</span>,</span><br><span class="line">    screenshot: <span class="literal">true</span>,</span><br><span class="line">    hotkey: <span class="literal">true</span>,</span><br><span class="line">    preload: <span class="string">'metadata'</span>,</span><br><span class="line">    <span class="comment">// 左上角展示的logo</span></span><br><span class="line">    logo: <span class="string">'https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imagesaaa.png'</span>,</span><br><span class="line">    volume: <span class="number">0.5</span>,</span><br><span class="line">    mutex: <span class="literal">true</span>,</span><br><span class="line">    video: &#123;</span><br><span class="line">         url:<span class="string">"https://api.dogecloud.com/player/get.mp4?vcode=5ac682e6f8231991&amp;userId=17&amp;ext=.mp4"</span>,</span><br><span class="line">        defaultQuality: <span class="number">0</span>,</span><br><span class="line"></span><br><span class="line">        pic: <span class="string">'https://cdn.jsdelivr.net/gh/FioraLove/Images/531-bigskin-1.jpg'</span>,</span><br><span class="line">        thumbnails: <span class="string">'https://cdn.jsdelivr.net/gh/FioraLove/Images/531-bigskin-1.jpg'</span>,</span><br><span class="line">        type: <span class="string">'auto'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 字幕</span></span><br><span class="line">    subtitle: &#123;</span><br><span class="line">        url: <span class="string">'https://s-sh-17-dplayercdn.oss.dogecdn.com/hikarunara.vtt'</span>,</span><br><span class="line">        type: <span class="string">'webvtt'</span>,</span><br><span class="line">        fontSize: <span class="string">'20px'</span>,</span><br><span class="line">        bottom: <span class="string">'8%'</span>,</span><br><span class="line">        color: <span class="string">'#b7daff'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 弹幕</span></span><br><span class="line">    danmaku: &#123;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        * 这是另一个博主搭建的弹幕池</span></span><br><span class="line"><span class="comment">        * api: 'https://dplayer.moerats.com</span></span><br><span class="line"><span class="comment">        * id: '9E2E3368B56CDBB45</span></span><br><span class="line"><span class="comment">        * */</span></span><br><span class="line">        id: <span class="string">'9E2E3368B56CDBB4'</span>,</span><br><span class="line">        api: <span class="string">'https://api.prprpr.me/dplayer/'</span>,</span><br><span class="line">        token: <span class="string">'tokendemo'</span>,</span><br><span class="line">        maximum: <span class="number">1000</span>,</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        * addition:其实可以直接读取一个由弹幕组成的json</span></span><br><span class="line"><span class="comment">        * */</span></span><br><span class="line">        addition: [<span class="string">'https://s-sh-17-dplayercdn.oss.dogecdn.com/1678963.json'</span>],</span><br><span class="line">        user: <span class="string">'AhriLove'</span>,</span><br><span class="line">        bottom: <span class="string">'15%'</span>,</span><br><span class="line">        unlimited: <span class="literal">true</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    contextmenu: [</span><br><span class="line">        &#123;</span><br><span class="line">            text: <span class="string">'二次作者'</span>,</span><br><span class="line">            link: <span class="string">'https://ahriLove.top'</span></span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    highlight: [</span><br><span class="line">        &#123;</span><br><span class="line">            time: <span class="number">20</span>,</span><br><span class="line">            text: <span class="string">'这是第 20 秒'</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            time: <span class="number">120</span>,</span><br><span class="line">            text: <span class="string">'这是 2 分钟'</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">    ]&#125;);</span><br><span class="line"><span class="comment">// 快进秒数</span></span><br><span class="line"><span class="comment">// dp.seek(100);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 提交一个新弹幕</span></span><br><span class="line">dp.danmaku.send(</span><br><span class="line">    &#123;</span><br><span class="line">        text: <span class="string">'dplayer is amazing'</span>,</span><br><span class="line">        color: <span class="string">'#b7daff'</span>,</span><br><span class="line">        type: <span class="string">'right'</span>, <span class="comment">// should be `top` `bottom` or `right`</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'success'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">);</span><br><span class="line"><span class="comment">// 实时绘制一个新弹幕</span></span><br><span class="line">dp.danmaku.draw(&#123;</span><br><span class="line">    text: <span class="string">'我是five，兄弟萌！！555555'</span>,</span><br><span class="line">    color: <span class="string">'#fff'</span>,</span><br><span class="line">    type: <span class="string">'bottom'</span>,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 弹幕透明度</span></span><br><span class="line">dp.danmaku.opacity(<span class="number">0.5</span>);</span><br></pre></td></tr></table></figure>
+
+<p>实际展示效果：<a href="https://ahrilove.top/about/">参考我的相册</a></p>
 
       </div>
       
@@ -474,10 +479,10 @@ data-clipboard-target复制功能：从另一个元素上进行复制
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-24T17:50:08+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-07-07T21:18:03+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年6月24日</p>
+    <p>更新于 2020年7月7日</p>
   </a>
 </div>
 
@@ -501,7 +506,7 @@ data-clipboard-target复制功能：从另一个元素上进行复制
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/06/24/Javascript%E7%AF%87%E7%AB%A0%E5%8D%81%E4%B8%80/&title=屠龙者的我学会了新的js第三方库 | AhriLove&summary=js的三方库的功能非常强大，总结一些屠龙宝经本章内容：
 
-1.clipboard.js剪切复制2.layui-UI库
+1.clipboard.js剪切复制2.layui-UI库3.DPlayer视频播放
 "
           
           >
@@ -516,7 +521,7 @@ data-clipboard-target复制功能：从另一个元素上进行复制
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/06/24/Javascript%E7%AF%87%E7%AB%A0%E5%8D%81%E4%B8%80/&title=屠龙者的我学会了新的js第三方库 | AhriLove&summary=js的三方库的功能非常强大，总结一些屠龙宝经本章内容：
 
-1.clipboard.js剪切复制2.layui-UI库
+1.clipboard.js剪切复制2.layui-UI库3.DPlayer视频播放
 "
           
           >
@@ -531,7 +536,7 @@ data-clipboard-target复制功能：从另一个元素上进行复制
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/06/24/Javascript%E7%AF%87%E7%AB%A0%E5%8D%81%E4%B8%80/&title=屠龙者的我学会了新的js第三方库 | AhriLove&summary=js的三方库的功能非常强大，总结一些屠龙宝经本章内容：
 
-1.clipboard.js剪切复制2.layui-UI库
+1.clipboard.js剪切复制2.layui-UI库3.DPlayer视频播放
 "
           
           >
@@ -708,7 +713,7 @@ data-clipboard-target复制功能：从另一个元素上进行复制
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-js剪切，复制"><span class="toc-text">1.js剪切，复制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#官方文档"><span class="toc-text">官方文档</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用教程"><span class="toc-text">使用教程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-弹窗layui"><span class="toc-text">2. 弹窗layui</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-js剪切，复制"><span class="toc-text">1.js剪切，复制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#官方文档"><span class="toc-text">官方文档</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用教程"><span class="toc-text">使用教程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-弹窗layui"><span class="toc-text">2. 弹窗layui</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-DPlayer视频播放"><span class="toc-text">3.DPlayer视频播放</span></a></li></ol>
     </div>
   </section>
 

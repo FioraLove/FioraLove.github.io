@@ -433,7 +433,7 @@
       <div class="article-entry" itemprop="articleBody">
         <p>Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等</p>
 <blockquote>
-<p>1.time模块<br>2.DBUtils管理数据库连接池<br>3.ftplib模块<br>4.os模块<br>5.datetime模块<br>6.tqdm模块<br>7.控制台输出带颜色文字的方法<br>8.random模块</p>
+<p>1.time模块<br>2.DBUtils管理数据库连接池<br>3.ftplib模块<br>4.os模块<br>5.datetime模块<br>6.tqdm模块<br>7.控制台输出带颜色文字的方法<br>8.random模块<br>9.Logger模块</p>
 </blockquote>
 <a id="more"></a>
 <h2 id="1-time模块"><a href="#1-time模块" class="headerlink" title="1.time模块"></a>1.time模块</h2><h3 id="Unix时间戳转与时间的转换"><a href="#Unix时间戳转与时间的转换" class="headerlink" title="Unix时间戳转与时间的转换"></a>Unix时间戳转与时间的转换</h3><blockquote>
@@ -712,6 +712,16 @@
 <li>string.ascii_uppercase: 大写字母字符串集</li>
 <li>string.ascii_punctuation: 特殊字符集（!”#$%&amp;&#39;()*+,-./:;&lt;=&gt;?@[\]^_`{|}~）</li>
 </ul>
+<h2 id="10-Logger模块"><a href="#10-Logger模块" class="headerlink" title="10. Logger模块"></a>10. Logger模块</h2><p>新建一个Logger.py文件，内容如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"><span class="keyword">from</span> logging <span class="keyword">import</span> handlers</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Logger</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="comment"># 日志级别关系映射</span></span><br><span class="line">    level_relations = &#123;</span><br><span class="line">        <span class="string">'debug'</span>:logging.DEBUG,</span><br><span class="line">        <span class="string">'info'</span>:logging.INFO,</span><br><span class="line">        <span class="string">'warning'</span>:logging.WARNING,</span><br><span class="line">        <span class="string">'error'</span>:logging.ERROR,</span><br><span class="line">        <span class="string">'crit'</span>:logging.CRITICAL</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,filename,level=<span class="string">'info'</span>,when=<span class="string">'D'</span>,backCount=<span class="number">3</span>,fmt=<span class="string">'%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s'</span>)</span>:</span></span><br><span class="line">        self.logger = logging.getLogger(filename)</span><br><span class="line">        <span class="comment"># 设置日志格式</span></span><br><span class="line">        format_str = logging.Formatter(fmt)</span><br><span class="line">        <span class="comment"># 设置日志级别</span></span><br><span class="line">        self.logger.setLevel(self.level_relations.get(level))</span><br><span class="line">        <span class="comment"># 往屏幕上输出</span></span><br><span class="line">        sh = logging.StreamHandler()</span><br><span class="line">        <span class="comment"># 设置屏幕上显示的格式</span></span><br><span class="line">        sh.setFormatter(format_str) </span><br><span class="line">        <span class="comment"># 往文件里写入</span></span><br><span class="line">        <span class="comment"># 指定间隔时间自动生成文件的处理器</span></span><br><span class="line">        th = handlers.TimedRotatingFileHandler(filename=filename,when=when,backupCount=backCount,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">        <span class="comment"># 实例化TimedRotatingFileHandler</span></span><br><span class="line">        <span class="comment"># interval是时间间隔，backupCount是备份文件的个数，如果超过这个个数，就会自动删除，when是间隔的时间单位，单位有以下几种：</span></span><br><span class="line">        <span class="comment"># S 秒</span></span><br><span class="line">        <span class="comment"># M 分</span></span><br><span class="line">        <span class="comment"># H 小时、</span></span><br><span class="line">        <span class="comment"># D 天、</span></span><br><span class="line">        <span class="comment"># W 每星期（interval==0时代表星期一）</span></span><br><span class="line">        <span class="comment"># midnight 每天凌晨</span></span><br><span class="line">        <span class="comment"># 设置文件里写入的格式</span></span><br><span class="line">        th.setFormatter(format_str)</span><br><span class="line">        <span class="comment"># 把对象加到logger里</span></span><br><span class="line">        self.logger.addHandler(sh) </span><br><span class="line">        self.logger.addHandler(th)</span><br></pre></td></tr></table></figure>
+
+<p>那我们如何调用这个Logger.py文件呢？</p>
+<p>导入模块：from Logger import Logger<br>开启日志设置：<br>   log = Logger(‘log/OA_F25ToPaymentBill.log’,level=’debug’)<br>日志等级：</p>
+<ul>
+<li>log.log.info(string)</li>
+<li>log.log.warn(String)</li>
+<li>log.log.error(String)</li>
+</ul>
 <h2 id="未完待续。。。"><a href="#未完待续。。。" class="headerlink" title="未完待续。。。"></a>未完待续。。。</h2>
       </div>
       
@@ -723,10 +733,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-18T14:42:32+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-30T14:34:52+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年5月18日</p>
+    <p>更新于 2020年6月30日</p>
   </a>
 </div>
 
@@ -750,7 +760,7 @@
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/11/29/python(%E4%BA%8C)%E5%B8%B8%E8%A7%81%E5%BA%93%E5%87%BD%E6%95%B0/&title=Python全栈系列章节更新（二）：常见库模块 | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等
 
-1.time模块2.DBUtils管理数据库连接池3.ftplib模块4.os模块5.datetime模块6.tqdm模块7.控制台输出带颜色文字的方法8.random模块
+1.time模块2.DBUtils管理数据库连接池3.ftplib模块4.os模块5.datetime模块6.tqdm模块7.控制台输出带颜色文字的方法8.random模块9.Logger模块
 "
           
           >
@@ -765,7 +775,7 @@
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/11/29/python(%E4%BA%8C)%E5%B8%B8%E8%A7%81%E5%BA%93%E5%87%BD%E6%95%B0/&title=Python全栈系列章节更新（二）：常见库模块 | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等
 
-1.time模块2.DBUtils管理数据库连接池3.ftplib模块4.os模块5.datetime模块6.tqdm模块7.控制台输出带颜色文字的方法8.random模块
+1.time模块2.DBUtils管理数据库连接池3.ftplib模块4.os模块5.datetime模块6.tqdm模块7.控制台输出带颜色文字的方法8.random模块9.Logger模块
 "
           
           >
@@ -780,7 +790,7 @@
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/11/29/python(%E4%BA%8C)%E5%B8%B8%E8%A7%81%E5%BA%93%E5%87%BD%E6%95%B0/&title=Python全栈系列章节更新（二）：常见库模块 | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等
 
-1.time模块2.DBUtils管理数据库连接池3.ftplib模块4.os模块5.datetime模块6.tqdm模块7.控制台输出带颜色文字的方法8.random模块
+1.time模块2.DBUtils管理数据库连接池3.ftplib模块4.os模块5.datetime模块6.tqdm模块7.控制台输出带颜色文字的方法8.random模块9.Logger模块
 "
           
           >
@@ -962,7 +972,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-time模块"><span class="toc-text">1.time模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Unix时间戳转与时间的转换"><span class="toc-text">Unix时间戳转与时间的转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#按指定的格式获取当前时间"><span class="toc-text">按指定的格式获取当前时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#time模块的毫秒级"><span class="toc-text">time模块的毫秒级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-DBUtils管理数据库连接池"><span class="toc-text">2.DBUtils管理数据库连接池</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-连接池原理"><span class="toc-text">2.1 连接池原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-多线程（连接池）操作MySQL插入数据"><span class="toc-text">2.2 多线程（连接池）操作MySQL插入数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-ftplib操作ftp实现上传和下载的"><span class="toc-text">3.ftplib操作ftp实现上传和下载的</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-ftp登陆连接"><span class="toc-text">3.1 ftp登陆连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-ftp上传或下载文件-目录"><span class="toc-text">3.2 ftp上传或下载文件/目录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-os模块"><span class="toc-text">4.os模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-datetime模块"><span class="toc-text">5 datetime模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-tqdm模块（最优雅的进度条）"><span class="toc-text">5.tqdm模块（最优雅的进度条）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-控制台输出带颜色文字的方法"><span class="toc-text">6.控制台输出带颜色文字的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-random模块"><span class="toc-text">7.random模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-execjs库"><span class="toc-text">8.execjs库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-string模块"><span class="toc-text">9.string模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#未完待续。。。"><span class="toc-text">未完待续。。。</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-time模块"><span class="toc-text">1.time模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Unix时间戳转与时间的转换"><span class="toc-text">Unix时间戳转与时间的转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#按指定的格式获取当前时间"><span class="toc-text">按指定的格式获取当前时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#time模块的毫秒级"><span class="toc-text">time模块的毫秒级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-DBUtils管理数据库连接池"><span class="toc-text">2.DBUtils管理数据库连接池</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-连接池原理"><span class="toc-text">2.1 连接池原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-多线程（连接池）操作MySQL插入数据"><span class="toc-text">2.2 多线程（连接池）操作MySQL插入数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-ftplib操作ftp实现上传和下载的"><span class="toc-text">3.ftplib操作ftp实现上传和下载的</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-ftp登陆连接"><span class="toc-text">3.1 ftp登陆连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-ftp上传或下载文件-目录"><span class="toc-text">3.2 ftp上传或下载文件/目录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-os模块"><span class="toc-text">4.os模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-datetime模块"><span class="toc-text">5 datetime模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-tqdm模块（最优雅的进度条）"><span class="toc-text">5.tqdm模块（最优雅的进度条）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-控制台输出带颜色文字的方法"><span class="toc-text">6.控制台输出带颜色文字的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-random模块"><span class="toc-text">7.random模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-execjs库"><span class="toc-text">8.execjs库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-string模块"><span class="toc-text">9.string模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-Logger模块"><span class="toc-text">10. Logger模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#未完待续。。。"><span class="toc-text">未完待续。。。</span></a></li></ol>
     </div>
   </section>
 
