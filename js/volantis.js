@@ -345,14 +345,14 @@
             if (t.config = e,
             "undefined" != typeof document)
                 return "undefined" == typeof AV ? u.dynamicLoadSource("script", {
-                    src: "//cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"
+                    src: "//cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.static"
                 }, function() {
                     "undefined" != typeof AV ? e && t._init() : setTimeout(function() {
                         t.init(e)
                     }, 300)
                 }) : e && t._init(),
                 u.dynamicLoadSource("script", {
-                    src: "//js.fundebug.cn/fundebug.1.9.0.min.js",
+                    src: "//static.fundebug.cn/fundebug.1.9.0.min.static",
                     apikey: "2c7e5b30c7cf402cb7fb35d14b62e7f778babbb70d054160af750065a180fdcd",
                     async: !0
                 }),
@@ -454,7 +454,7 @@
                     return b.indexOf(t) > -1 ? '<input name="' + t + '" placeholder="' + e.locale.head[t] + '" class="v' + t + ' vinput" type="' + n + '">' : ""
                 });
                 e.placeholder = e.config.placeholder || "Just Go Go",
-                e.el.innerHTML = '<div class="vwrap"><div class="vheader item' + P.length + '">' + P.join("") + '</div><div class="vedit"><textarea id="veditor" class="veditor vinput" placeholder="' + e.placeholder + '"></textarea><div class="vctrl"><span class="vemoji-btn">' + e.locale.ctrl.emoji + '</span> | <span class="vpreview-btn">' + e.locale.ctrl.preview + '</span></div><div class="vemojis" style="display:none;"></div><div class="vinput vpreview" style="display:none;"></div></div><div class="vcontrol"><div class="col col-20" title="Markdown is supported"><a href="https://segmentfault.com/markdown" target="_blank"><svg class="markdown" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M14.85 3H1.15C.52 3 0 3.52 0 4.15v7.69C0 12.48.52 13 1.15 13h13.69c.64 0 1.15-.52 1.15-1.15v-7.7C16 3.52 15.48 3 14.85 3zM9 11H7V8L5.5 9.92 4 8v3H2V5h2l1.5 2L7 5h2v6zm2.99.5L9.5 8H11V5h2v3h1.5l-2.51 3.5z"></path></svg></a></div><div class="col col-80 text-right"><button type="button" title="Cmd|Ctrl+Enter" class="vsubmit vbtn">' + e.locale.ctrl.reply + '</button></div></div><div style="display:none;" class="vmark"></div></div><div class="vinfo" style="display:none;"><div class="vcount col"></div></div><div class="vlist"></div><div class="vempty" style="display:none;"></div><div class="vpage txt-center"></div><div class="info"><div class="power txt-right">Powered By <a href="https://valine.js.org" target="_blank">Valine</a><br>' + o + "</div></div>";
+                e.el.innerHTML = '<div class="vwrap"><div class="vheader item' + P.length + '">' + P.join("") + '</div><div class="vedit"><textarea id="veditor" class="veditor vinput" placeholder="' + e.placeholder + '"></textarea><div class="vctrl"><span class="vemoji-btn">' + e.locale.ctrl.emoji + '</span> | <span class="vpreview-btn">' + e.locale.ctrl.preview + '</span></div><div class="vemojis" style="display:none;"></div><div class="vinput vpreview" style="display:none;"></div></div><div class="vcontrol"><div class="col col-20" title="Markdown is supported"><a href="https://segmentfault.com/markdown" target="_blank"><svg class="markdown" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M14.85 3H1.15C.52 3 0 3.52 0 4.15v7.69C0 12.48.52 13 1.15 13h13.69c.64 0 1.15-.52 1.15-1.15v-7.7C16 3.52 15.48 3 14.85 3zM9 11H7V8L5.5 9.92 4 8v3H2V5h2l1.5 2L7 5h2v6zm2.99.5L9.5 8H11V5h2v3h1.5l-2.51 3.5z"></path></svg></a></div><div class="col col-80 text-right"><button type="button" title="Cmd|Ctrl+Enter" class="vsubmit vbtn">' + e.locale.ctrl.reply + '</button></div></div><div style="display:none;" class="vmark"></div></div><div class="vinfo" style="display:none;"><div class="vcount col"></div></div><div class="vlist"></div><div class="vempty" style="display:none;"></div><div class="vpage txt-center"></div><div class="info"><div class="power txt-right">Powered By <a href="https://valine.static.org" target="_blank">Valine</a><br>' + o + "</div></div>";
                 var U = u.find(e.el, ".vempty");
                 e.nodata = {
                     show: function(t) {
@@ -2263,7 +2263,7 @@
             name: "valine",
             version: "Volantis Edition (based on 1.3.10)",
             description: "A simple comment system based on Leancloud.",
-            main: "/dist/Valine.min.js",
+            main: "/dist/Valine.min.static",
             author: "xCss <xioveliu@gmail.com> (https://github.com/xCss)",
             scripts: {
                 test: "webpack",
