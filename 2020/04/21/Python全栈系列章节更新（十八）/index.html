@@ -433,20 +433,60 @@
       <div class="article-entry" itemprop="articleBody">
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之前我们已经系统的了解过了requests库了，但是愈发觉得这个三方库真是太完美了，利用python可以http请求发送soap报文（xml数据格式）进行webservice接口调用。<br><strong>本章内容：</strong></p>
 <blockquote>
-<p>1.python的占位符%s,%d,%r,%f<br>2.进制转换<br>3.python通过http请求发送soap报文进行webservice接口调用</p>
+<p>1.python的占位符%s,%d,%r,%f<br>2.进制转换<br>3.bytes与str之间的转换<br>4.<a href="https://www.runoob.com/python/python-operators.html" target="_blank" rel="noopener">python的运算符</a><br>5.python通过http请求发送soap报文进行webservice接口调用</p>
 </blockquote>
 <a id="more"></a>
 <h3 id="1-python的占位符"><a href="#1-python的占位符" class="headerlink" title="1.python的占位符"></a>1.python的占位符</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
 <ul>
 <li>%s代表字符串占位符</li>
 <li>%d代表数字占位符，但只能是十进制整数</li>
-<li>%f默认保留6为小数位，而第7位根据四舍五入取值<h3 id="2-进制转换"><a href="#2-进制转换" class="headerlink" title="2.进制转换"></a>2.进制转换</h3></li>
+<li>%f默认保留6为小数位，而第7位根据四舍五入取值</li>
+</ul>
+<h3 id="2-进制转换"><a href="#2-进制转换" class="headerlink" title="2.进制转换"></a>2.进制转换</h3><ul>
 <li>bin(number) 将十进制转换为二进制</li>
 <li>oct(number) 将十进制转换为八进制</li>
 <li>hex(number) 将十进制转换为十六进制</li>
 <li>bytes(string) 将字符串字节化</li>
 </ul>
-<h3 id="3-python通过http请求发送soap报文进行webservice接口调用"><a href="#3-python通过http请求发送soap报文进行webservice接口调用" class="headerlink" title="3.python通过http请求发送soap报文进行webservice接口调用"></a>3.python通过http请求发送soap报文进行webservice接口调用</h3><blockquote>
+<h3 id="3-bytes与str之间的转换"><a href="#3-bytes与str之间的转换" class="headerlink" title="3.bytes与str之间的转换"></a>3.bytes与str之间的转换</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># bytes object</span><br><span class="line">b = b&quot;example&quot;</span><br><span class="line"></span><br><span class="line"># str object</span><br><span class="line">s = &quot;example&quot;</span><br><span class="line"></span><br><span class="line"># str to bytes</span><br><span class="line">bytes(s, encoding = &quot;utf8&quot;)</span><br><span class="line"></span><br><span class="line"># bytes to str</span><br><span class="line">str(b, encoding = &quot;utf-8&quot;)</span><br><span class="line"></span><br><span class="line"># an alternative method</span><br><span class="line"># str to bytes</span><br><span class="line">str.encode(s)</span><br><span class="line"></span><br><span class="line"># bytes to str</span><br><span class="line">bytes.decode(b)</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-python的运算符"><a href="#4-python的运算符" class="headerlink" title="4.python的运算符"></a>4.<a href="https://www.runoob.com/python/python-operators.html" target="_blank" rel="noopener">python的运算符</a></h3><p><strong>位运算符：</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">运算符</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">&amp;</td>
+<td align="center">按位与运算符：参与运算的两个值,如果两个相应位都为1,则该位的结果为1,否则为0</td>
+</tr>
+<tr>
+<td align="center">竖线</td>
+<td align="center">按位或运算符：只要对应的二个二进位有一个为1时，结果位就为1</td>
+</tr>
+<tr>
+<td align="center">^</td>
+<td align="center">按位异或运算符：当两对应的二进位相异时，结果为1</td>
+</tr>
+<tr>
+<td align="center">~</td>
+<td align="center">按位取反运算符：对数据的每个二进制位取反,即把1变为0,把0变为1</td>
+</tr>
+<tr>
+<td align="center">&lt;&lt;</td>
+<td align="center">左移动运算符：运算数的各二进位全部左移若干位，由 &lt;&lt; 右边的数字指定了移动的位数，高位丢弃，低位补0</td>
+</tr>
+<tr>
+<td align="center">&gt;&gt;</td>
+<td align="center">右移动运算符：把”&gt;&gt;”左边的运算数的各二进位全部右移若干位，&gt;&gt; 右边的数字指定了移动的位数</td>
+</tr>
+</tbody></table>
+<p>举例说明：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">a = 60            # 60 = 0011 1100 </span><br><span class="line">b = 13            # 13 = 0000 1101 </span><br><span class="line">c = 0</span><br><span class="line"> </span><br><span class="line">c = a &amp; b;        # 12 = 0000 1100</span><br><span class="line">print &quot;1 - c 的值为：&quot;, c</span><br><span class="line"> </span><br><span class="line">c = a | b;        # 61 = 0011 1101 </span><br><span class="line">print &quot;2 - c 的值为：&quot;, c</span><br><span class="line"> </span><br><span class="line">c = a ^ b;        # 49 = 0011 0001</span><br><span class="line">print &quot;3 - c 的值为：&quot;, c</span><br><span class="line"> </span><br><span class="line">c = ~a;           # -61 = 1100 0011</span><br><span class="line">print &quot;4 - c 的值为：&quot;, c</span><br><span class="line"> </span><br><span class="line">c = a &lt;&lt; 2;       # 240 = 1111 0000</span><br><span class="line">print &quot;5 - c 的值为：&quot;, c</span><br><span class="line"> </span><br><span class="line">c = a &gt;&gt; 2;       # 15 = 0000 1111</span><br><span class="line">print &quot;6 - c 的值为：&quot;, c</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-python通过http请求发送soap报文进行webservice接口调用"><a href="#5-python通过http请求发送soap报文进行webservice接口调用" class="headerlink" title="5.python通过http请求发送soap报文进行webservice接口调用"></a>5.python通过http请求发送soap报文进行webservice接口调用</h3><blockquote>
 <p>什么是xml？</p>
 </blockquote>
 <p><i>摘自百度百科</i>：扩展标记语言 (Extensible Markup Language, XML) ，用于标记电子文件使其具有结构性的标记语言，可以用来标记数据、定义数据类型，是一种允许用户对自己的标记语言进行定义的源语言。 XML使用DTD(document type definition)文档类型定义来组织数据;格式统一，跨平台和语言，早已成为业界公认的标准。<br>XML是非常适合 Web 传输。XML 提供统一的方法来描述和交换独立于应用程序或供应商的结构化数据。</p>
@@ -500,10 +540,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-28T20:48:37+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-07-12T16:51:37+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年6月28日</p>
+    <p>更新于 2020年7月12日</p>
   </a>
 </div>
 
@@ -527,7 +567,7 @@
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/04/21/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89/&title=Python全栈系列章节更新（十八）：知识点补充（Ⅰ） | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之前我们已经系统的了解过了requests库了，但是愈发觉得这个三方库真是太完美了，利用python可以http请求发送soap报文（xml数据格式）进行webservice接口调用。本章内容：
 
-1.python的占位符%s,%d,%r,%f2.进制转换3.python通过http请求发送soap报文进行webservice接口调用
+1.python的占位符%s,%d,%r,%f2.进制转换3.bytes与str之间的转换4.python的运算符5.python通过http请求发送soap报文进行webservice接口调用
 "
           
           >
@@ -542,7 +582,7 @@
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/04/21/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89/&title=Python全栈系列章节更新（十八）：知识点补充（Ⅰ） | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之前我们已经系统的了解过了requests库了，但是愈发觉得这个三方库真是太完美了，利用python可以http请求发送soap报文（xml数据格式）进行webservice接口调用。本章内容：
 
-1.python的占位符%s,%d,%r,%f2.进制转换3.python通过http请求发送soap报文进行webservice接口调用
+1.python的占位符%s,%d,%r,%f2.进制转换3.bytes与str之间的转换4.python的运算符5.python通过http请求发送soap报文进行webservice接口调用
 "
           
           >
@@ -557,7 +597,7 @@
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/04/21/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89/&title=Python全栈系列章节更新（十八）：知识点补充（Ⅰ） | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之前我们已经系统的了解过了requests库了，但是愈发觉得这个三方库真是太完美了，利用python可以http请求发送soap报文（xml数据格式）进行webservice接口调用。本章内容：
 
-1.python的占位符%s,%d,%r,%f2.进制转换3.python通过http请求发送soap报文进行webservice接口调用
+1.python的占位符%s,%d,%r,%f2.进制转换3.bytes与str之间的转换4.python的运算符5.python通过http请求发送soap报文进行webservice接口调用
 "
           
           >
@@ -739,7 +779,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-python的占位符"><span class="toc-text">1.python的占位符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-进制转换"><span class="toc-text">2.进制转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-python通过http请求发送soap报文进行webservice接口调用"><span class="toc-text">3.python通过http请求发送soap报文进行webservice接口调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-python的占位符"><span class="toc-text">1.python的占位符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-进制转换"><span class="toc-text">2.进制转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-bytes与str之间的转换"><span class="toc-text">3.bytes与str之间的转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-python的运算符"><span class="toc-text">4.python的运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-python通过http请求发送soap报文进行webservice接口调用"><span class="toc-text">5.python通过http请求发送soap报文进行webservice接口调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
     </div>
   </section>
 
