@@ -507,14 +507,14 @@
 </blockquote>
 <p>&quot;==&quot;:表示值相等<br>&quot;===&quot;:表示值相等基础上，数据类型也相同<br>&amp;&amp; :表示与运算<br>|| :表示或运算<br>! : 表示非运算 </p>
 <blockquote>
-<p>3.4字符串的截取</p>
+<p>3.4 字符串的截取和替换</p>
 </blockquote>
 <ul>
 <li><p>str.slice(start，end)方法：提取字符串的某个部分并在新字符串中返回被提取的部分(起始索引值为0，且满足左闭右开)。该方法设置两个参数：起始索引（开始位置），终止索引（结束位置）。</p>
 </li>
-<li><p>substring()方法：类似于 slice()，不同之处在于 substring() 无法接受负的索引</p>
+<li><p>str.substring()方法：类似于 slice()，不同之处在于 substring() 无法接受负的索引</p>
 </li>
-<li><p>substr(start,length)：start表示起始的索引值，默认为0。第二个参数规定被提取部分的长度，如果省略第二个参数，则该 substr() 将裁剪字符串的剩余部分。</p>
+<li><p>str.substr(start,length)：start表示起始的索引值，默认为0。第二个参数规定被提取部分的长度，如果省略第二个参数，则该 substr() 将裁剪字符串的剩余部分。</p>
 </li>
 <li><p>str.replace(a,b) 在字符串str中用b替换a</p>
 </li>
@@ -552,6 +552,15 @@
 <p>字符串与数组类似，字符位置是从 0 开始计算。特别说明：此方法对大小写敏感。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="string">"hello world"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a.indexOf(<span class="string">"h"</span>)); <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">console</span>.log(a.indexOf(<span class="string">"cg"</span>)); <span class="comment">// -1</span></span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p>3.10 字符串判断开头或结尾是否是指定的字符</p>
+</blockquote>
+<ul>
+<li>str.startsWith(“”):判定一个字符串是否以另一个字符串开头</li>
+<li>str.endsWith(“”):判定一个字符串是否以另一个字符串结尾</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">"hello world"</span>;</span><br><span class="line"><span class="keyword">let</span> result = str.startsWith(<span class="string">"he"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(result); <span class="comment">//true</span></span><br><span class="line"><span class="comment">//当为两个参数时，第二个表示开始位数。</span></span><br><span class="line">result = str.startsWith(<span class="string">"he"</span>,<span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log(result);<span class="comment">//flase</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="5-js对url进行编码和解码"><a href="#5-js对url进行编码和解码" class="headerlink" title="5.js对url进行编码和解码"></a>5.js对url进行编码和解码</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在的信息网络都是数字的，很多东西要保存传输就得编码，比如你要保存一篇文章，里面的字就是一些二进制编码。编码就是如何把信息转换成数字序列，解码则是把数字序列转换成信息。<br>简单理解为：1. 编码（encode）是将人能够认识的信息转换为看不懂的。 2. 解码（code）是将经过加密的对象转换为我们能够认识的信息</p>
 <blockquote>
 <p>1.encodeURI 和 decodeURI</p>
@@ -584,10 +593,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-25T10:29:44+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-07-14T18:30:14+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年5月25日</p>
+    <p>更新于 2020年7月14日</p>
   </a>
 </div>
 
