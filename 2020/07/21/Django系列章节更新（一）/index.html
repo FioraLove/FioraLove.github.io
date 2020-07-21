@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>关于如何养成Django女皇的那件事（Ⅰ） | AhriLove</title>
+  
+  
+
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/all.min.css">
+  
+
+  
+  <link rel="shortcut icon" type='image/x-icon' href="https://cdn.jsdelivr.net/gh/FioraLove/CDN@1.0/万圣节鬼魂.ico">
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.10.22/css/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+  <script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+    </script>
+</head>
+
+<!-- 样式二（飘动的彩带） -->
+<meta name="baidu-site-verification" content="iMtC1b2Kmy" />
+<script src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.0.2/js/instantclick-1.2.2.js" type="module"></script>
+
+<body>
+
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post half'>
+      
+        
+  <img class='logo' src='https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imagesaaa.png'/>
+
+
+  <div class="m_search">
+    <form name="searchform" class="form u-search-form">
+      <input type="text" class="input u-search-input" placeholder="搜索" />
+      <i class="icon fas fa-search fa-fw"></i>
+    </form>
+  </div>
+
+<div class='menu navgation'>
+  <ul class='h-list'>
+    
+      
+        <li>
+          <a class="nav home" href="/"
+            
+            
+            id="home">
+            <i class='fas fa-home fa-fw'></i>&nbsp;主页
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/friends/"
+            
+              rel="nofollow"
+            
+            
+            id="friends">
+            <i class='fas fa-users fa-fw'></i>&nbsp;朋友
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/about/"
+            
+              rel="nofollow"
+            
+            
+            id="about">
+            <i class='fas fa-info-circle fa-fw'></i>&nbsp;关于
+          </a>
+        </li>
+      
+    
+  </ul>
+</div>
+
+      
+    </cover>
+    <header class="l_header material">
+  <div id="loading-bar-wrapper">
+    <div id="loading-bar" class="material"></div>
+  </div>
+
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          AhriLove
+        
+      </a>
+			<div class='menu navgation'>
+				<ul class='h-list'>
+          
+  					
+  						<li>
+								<a class="nav flat-box" href="/"
+                  
+                  
+                  id="home">
+									<i class='fas fa-grin fa-fw'></i>&nbsp;博文
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/categories/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="categories">
+									<i class='fas fa-folder-open fa-fw'></i>&nbsp;分类
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/tags/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="tags">
+									<i class='fas fa-ribbon fa-fw'></i>&nbsp;标签
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/friends/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="friends">
+									<i class='fab fa-suse fa-fw'></i>&nbsp;友链
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/plan/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="plan">
+									<i class='fas fa-paper-plane fa-fw'></i>&nbsp;每日计划
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/mylist/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="mylist">
+									<i class='fas fa-archive fa-fw'></i>&nbsp;资料文档
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/feiyan2020/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="feiyan2020">
+									<i class='far fa-heart fa-fw'></i>&nbsp;肺炎疫情图
+								</a>
+							</li>
+      			
+      		
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<i class="icon fas fa-search fa-fw"></i>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+        
+          <li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+        
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu navgation">
+      <ul>
+        
+          
+            <li>
+							<a class="nav flat-box" href="/"
+                
+                
+                id="home">
+								<i class='fas fa-clock fa-fw'></i>&nbsp;近期文章
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/archives/"
+                
+                  rel="nofollow"
+                
+                
+                id="archives">
+								<i class='fas fa-archive fa-fw'></i>&nbsp;文章归档
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="https://github.com/FioraLove?tab=repositories"
+                
+                
+                id="https:github.comFioraLove?tab=repositories">
+								<i class='fas fa-code-branch fa-fw'></i>&nbsp;开源项目
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/friends/"
+                
+                  rel="nofollow"
+                
+                
+                id="friends">
+								<i class='fas fa-link fa-fw'></i>&nbsp;我的友链
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="https://xaoxuu.com/wiki/material-x/"
+                
+                  rel="nofollow"
+                
+                
+                id="https:xaoxuu.comwikimaterial-x">
+								<i class='fas fa-book fa-fw'></i>&nbsp;主题文档
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/feiyan2020/"
+                
+                  rel="nofollow"
+                
+                
+                id="feiyan2020">
+								<i class='far fa-heart fa-fw'></i>&nbsp;肺炎疫情图
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/about/"
+                
+                  rel="nofollow"
+                
+                
+                id="about">
+								<i class='fas fa-info-circle fa-fw'></i>&nbsp;关于小站
+							</a>
+            </li>
+          
+       
+      </ul>
+		</nav>
+    </header>
+	</aside>
+<script>setLoadingBarProgress(40);</script>
+
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      <div class='l_main'>
+  
+
+  <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+    
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  
+    <h1 class="title">
+      <a href="/2020/07/21/Django%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%B8%80%EF%BC%89/">
+        关于如何养成Django女皇的那件事（Ⅰ）
+      </a>
+    </h1>
+  
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="/" rel="nofollow">
+        
+          <img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imagesNaruto.jpg">
+        
+        <p>Badwoman</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2020-07-21</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Django/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Django</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  
+    <div class="new-meta-item browse busuanzi">
+      <a class='notlink'>
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <p>
+          <span id="busuanzi_value_page_pv">
+            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+          </span>
+        </p>
+      </a>
+    </div>
+  
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Django是一个优秀的Python web框架，被众多python开发者所喜爱。新开这个Django专栏，<strong>并不是从零开始详细使用Django框架来开发web网页，而是用来开发api。前后分离是当前的技术栈潮流</strong>。</p>
+<blockquote>
+<p>1.Django基础知识<br>2.初识drf<br>3.创建程序并初始化模型<br>4.model.py模块<br>5.urls.py模块</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="1-Django基础知识"><a href="#1-Django基础知识" class="headerlink" title="1.Django基础知识"></a>1.Django基础知识</h3><p>Django搭建web页面的知识，我在GitHub上已经写过了，若想了解搭建网站，请移步👉👉👉<a href="https://github.com/FioraLove/Tips/tree/Dev-1/Django" target="_blank" rel="noopener">Django搭建网站知识基础</a></p>
+<p>首先，我们需要了解三种开发模式：</p>
+<ul>
+<li>MVT(model,view,templates)模式：Django</li>
+<li>MVC(model,view,controller)模式：php</li>
+<li>MVVM(model,view,view—model)模式：vue</li>
+</ul>
+<p>django是典行的mvt模式，前后分离，后端给前段返回json数据，所以我们编写API时仅需要考虑model层，view层，抛弃template层。</p>
+<h3 id="2-初识drf"><a href="#2-初识drf" class="headerlink" title="2. 初识drf"></a>2. 初识drf</h3><ol>
+<li>安装restful框架</li>
+</ol>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install djangorestframework</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>使用</li>
+</ol>
+<ul>
+<li>注册app（rest_framework本质上也是一个APP，也需要注册）</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">  <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">  <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">  <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">  <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">  <span class="string">'django.contrib.messages'</span>,</span><br><span class="line">  <span class="string">'django.contrib.staticfiles'</span>,</span><br><span class="line">  <span class="string">'rest_framework'</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>写路由</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">  url(<span class="string">r'^drf/info/'</span>, views.DrfInfoView.as_view()),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>写视图</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework.views <span class="keyword">import</span> APIView</span><br><span class="line"><span class="keyword">from</span> rest_framework.response <span class="keyword">import</span> Response</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DrfInfoView</span><span class="params">(APIView)</span>:</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self,request,*args,**kwargs)</span>:</span></span><br><span class="line">      data = [</span><br><span class="line">          &#123;<span class="string">'id'</span>: <span class="number">1</span>, <span class="string">'title'</span>: <span class="string">'震惊了...王阳居然...'</span>, <span class="string">'content'</span>: <span class="string">'...'</span>&#125;,</span><br><span class="line">          &#123;<span class="string">'id'</span>: <span class="number">2</span>, <span class="string">'title'</span>: <span class="string">'震惊了...王阳居然...'</span>, <span class="string">'content'</span>: <span class="string">'...'</span>&#125;,</span><br><span class="line">          &#123;<span class="string">'id'</span>: <span class="number">3</span>, <span class="string">'title'</span>: <span class="string">'震惊了...王阳居然...'</span>, <span class="string">'content'</span>: <span class="string">'...'</span>&#125;,</span><br><span class="line">          &#123;<span class="string">'id'</span>: <span class="number">4</span>, <span class="string">'title'</span>: <span class="string">'震惊了...王阳居然...'</span>, <span class="string">'content'</span>: <span class="string">'...'</span>&#125;,</span><br><span class="line">      ]</span><br><span class="line">      <span class="keyword">return</span> Response(data)</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>DRF的应用场景</li>
+</ol>
+<p>以后在公司参与前后端分离项目、参与为app写接口时，用drf会比较方便。</p>
+<ul>
+<li>restful规范</li>
+</ul>
+<p>1.给别人提供一个URL，根据URL请求方式的不同，做不同操作。</p>
+<ul>
+<li>get,获取</li>
+<li>post,增加</li>
+<li>put，全部更新</li>
+<li>patch,局部更新</li>
+<li>delete,删除</li>
+</ul>
+<p>2.数据传输基于json格式。</p>
+<ul>
+<li>drf框架</li>
+</ul>
+<p>不基于drf也可以实现restful规范来开发接口程序。<br>使用了drf之后，可以快速帮我们开发restful规范来开发接口。</p>
+<h3 id="3-创建程序并初始化模型"><a href="#3-创建程序并初始化模型" class="headerlink" title="3. 创建程序并初始化模型"></a>3. 创建程序并初始化模型</h3><p>DRF引入了一个扩展Django常规 HttpRequest 对象的 Request 对象，并提供了更灵活的请求 解析能力。 Request 对象的核心功能是 request.data 属性，它与 request.POST 类似，但 对于使用Web API更为有用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">request.POST  # 只处理表单数据  只适用于&apos;POST&apos;方法</span><br><span class="line">request.data  # 处理任意数据  适用于&apos;POST&apos;，&apos;PUT&apos;和&apos;PATCH&apos;等方法,是字典型</span><br></pre></td></tr></table></figure>
+
+<p>rest_framework框架默认传输数据格式为x-www-urlencoded，并不是通常的json<br><strong>在DRF中，请始终使用 request.data ，不要使用 request.POST</strong></p>
+<h3 id="4-model-py模块"><a href="#4-model-py模块" class="headerlink" title="4. model.py模块"></a>4. model.py模块</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create your models here.</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Category</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    文章分类表</span></span><br><span class="line"><span class="string">    verbose_name 代表别名</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    name = models.CharField(verbose_name=<span class="string">"分类"</span>, max_length=<span class="number">32</span>)</span><br><span class="line">    objects = models.Manager()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Article</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    文章明细表</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    title = models.CharField(verbose_name=<span class="string">"标题"</span>, max_length=<span class="number">32</span>)</span><br><span class="line">    summary = models.CharField(verbose_name=<span class="string">"简介"</span>, max_length=<span class="number">255</span>)</span><br><span class="line">    content = models.TextField(verbose_name=<span class="string">"内容"</span>)</span><br><span class="line">    category = models.ForeignKey(verbose_name=<span class="string">"分类"</span>, to=<span class="string">"Category"</span>, on_delete=models.CASCADE)</span><br><span class="line">    objects = models.Manager()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>关于objects的说明：</p>
+</blockquote>
+<p>objects : 管理器对象，Manager类型的对象，定义在from django.db import models中，用于模型对象和数据库交互，是默认自动生成的属性，但是可以自定义管理器对象</p>
+<p>自定义管理器对象：例如 books= models.Manager()，一旦自定义管理器对象，默认的objects 就不再自动生成</p>
+<blockquote>
+<p>表字段类型及说明</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">表字段</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">models.AutoField</td>
+<td align="center">默认会生成一个名为id的字段并未int类型</td>
+</tr>
+<tr>
+<td align="center">models.CharField</td>
+<td align="center">字符串类型</td>
+</tr>
+<tr>
+<td align="center">models.BooleanField</td>
+<td align="center">布尔类型</td>
+</tr>
+<tr>
+<td align="center">models.ComaSeparatedIntegerField</td>
+<td align="center">用逗号分隔的整数类型</td>
+</tr>
+<tr>
+<td align="center">models.DateField</td>
+<td align="center">日期（Date）类型</td>
+</tr>
+<tr>
+<td align="center">models.DateTimeField</td>
+<td align="center">日期（datetime）类型</td>
+</tr>
+<tr>
+<td align="center">models.DecimalField</td>
+<td align="center">十进制小数类型</td>
+</tr>
+<tr>
+<td align="center">models.EmailField</td>
+<td align="center">字符串类型（正则表达式邮箱）</td>
+</tr>
+<tr>
+<td align="center">models.FloatField</td>
+<td align="center">浮点类型</td>
+</tr>
+<tr>
+<td align="center">models.IntegerField</td>
+<td align="center">整数类型</td>
+</tr>
+<tr>
+<td align="center">models.BigIntegerField</td>
+<td align="center">长整数类型</td>
+</tr>
+<tr>
+<td align="center">models.IPAddressField</td>
+<td align="center">字符串类型（IPV4正则表达式）</td>
+</tr>
+<tr>
+<td align="center">models.GenericIPAddressField</td>
+<td align="center">字符串类型，参数protocol可以是: both，IPv4 和ipv6，验证IP地址</td>
+</tr>
+<tr>
+<td align="center">models.NullBooleanField</td>
+<td align="center">允许为空的布尔类型</td>
+</tr>
+<tr>
+<td align="center">models.PositivelntegerField</td>
+<td align="center">正整数的整数类型</td>
+</tr>
+<tr>
+<td align="center">models.PositiveSmallIntegerField</td>
+<td align="center">小正整数类型</td>
+</tr>
+<tr>
+<td align="center">models.SlugField</td>
+<td align="center">包含字母、数字、下曲线和连字符的字符串， 常用于URL</td>
+</tr>
+<tr>
+<td align="center">models.SmaIlIntegerField</td>
+<td align="center">小整数类型， 取值范围C -32,768—+32,767 )</td>
+</tr>
+<tr>
+<td align="center">models.TextField</td>
+<td align="center">长文本类型</td>
+</tr>
+<tr>
+<td align="center">models. TimeField</td>
+<td align="center">时间类型， 显东时分秒HH:MM[:ss[ .uuuuuu]]</td>
+</tr>
+<tr>
+<td align="center">models. URLField</td>
+<td align="center">字符串， 地址为正则表达式</td>
+</tr>
+<tr>
+<td align="center">models.Binary Field</td>
+<td align="center">二进制数据类型</td>
+</tr>
+<tr>
+<td align="center">-</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="center"><strong>表字段参数及说明</strong></td>
+<td align="center"><em>*参数说明</em></td>
+</tr>
+<tr>
+<td align="center">Null</td>
+<td align="center">如为True，字段是否可以为空</td>
+</tr>
+<tr>
+<td align="center">Blank</td>
+<td align="center">如为True，设置添加数据时可以允许空值</td>
+</tr>
+<tr>
+<td align="center">Default</td>
+<td align="center">设置默认值</td>
+</tr>
+<tr>
+<td align="center">primary_key</td>
+<td align="center">如为True，将字段设置成主键</td>
+</tr>
+<tr>
+<td align="center">db_column</td>
+<td align="center">设置数据库中的字段名称</td>
+</tr>
+<tr>
+<td align="center">Unique</td>
+<td align="center">如为True，将字段设置成唯一属性，默认为False</td>
+</tr>
+<tr>
+<td align="center">db_index</td>
+<td align="center">如为True，为字段添加数据库索引</td>
+</tr>
+<tr>
+<td align="center">verbose_name</td>
+<td align="center">设置字段的显示名称,别名</td>
+</tr>
+<tr>
+<td align="center">related_name</td>
+<td align="center">关联对象反向引用描述符，用于多表查询，可解决一个数据表有两个外键同时指向另一个数据表而出现重名的问题</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>关系模型</p>
+</blockquote>
+<p><a href="https://www.jianshu.com/p/f5200ad4df90" target="_blank" rel="noopener">关系型数据库的关系包括三种类型</a>：</p>
+<ul>
+<li>ForeignKey：一对多，将字段定义在多的一端中。</li>
+<li>ManyToManyField：多对多，将字段定义在任意一端中。</li>
+<li>OneToOneField：一对一，将字段定义在任意一端中</li>
+</ul>
+<p>举例：一对多关系</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ServerInfo</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    server_hostname = models.CharField(max_length=<span class="number">20</span>, default=<span class="literal">None</span>)</span><br><span class="line">    server_intranet_ip = models.CharField(max_length=<span class="number">20</span>, default=<span class="literal">None</span>)</span><br><span class="line">    server_internet_ip = models.CharField(max_length=<span class="number">20</span>, default=<span class="literal">None</span>)</span><br><span class="line">    server_shelves_date = models.DateField(auto_now_add=<span class="literal">True</span>) <span class="comment"># 数据加入时间</span></span><br><span class="line">    update_time = models.DateTimeField(auto_now=<span class="literal">True</span>) <span class="comment"># 数据更新时间</span></span><br><span class="line">    is_delete = models.BooleanField(default=<span class="literal">False</span>) <span class="comment"># 逻辑删除</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MiddlewareInfo</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    name = models.CharField(max_length=<span class="number">20</span>)</span><br><span class="line">    port = models.IntegerField()</span><br><span class="line">    server = models.ForeignKey(<span class="string">'ServerInfo'</span>,on_delete=models.CASCADE, default=<span class="literal">None</span>)</span><br><span class="line">    shelves_date = models.DateTimeField(auto_now_add=<span class="literal">True</span>) <span class="comment"># 数据加入时间</span></span><br><span class="line">    update_time = models.DateTimeField(auto_now=<span class="literal">True</span>)  <span class="comment"># 数据更新时间</span></span><br><span class="line">    is_delete = models.BooleanField(default=<span class="literal">False</span>) <span class="comment"># 逻辑删除</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-urls-py模块"><a href="#5-urls-py模块" class="headerlink" title="5. urls.py模块"></a>5. urls.py模块</h3><p><a href="https://www.cnblogs.com/cpl9412290130/p/9611293.html" target="_blank" rel="noopener">关于路由url，path，re_path的说明</a></p>
+<p>在新版本Django2.x中，url的路由表示用path和re_path代替，<br>模块的导入由django1.x版本的 <code>from django.conf.urls import url,include</code><br>变成现在的Django2.x中的 <code>from django.urls import path, re_path, include</code>。</p>
+<p><strong>path中不能有正则表达式，不然会找不到页面，此时可以使用re_path</strong></p>
+<p>path(‘delete/(\d+)’, views.delete), # 删除点击的图书,path中有正则，找不到页面<br>使用re_path可以解决这个情况<br>re_path(‘delete/(\d+)’, views.delete), # 删除点击的图书</p>
+<h3 id="举例说明"><a href="#举例说明" class="headerlink" title="举例说明"></a>举例说明</h3><p>urls.py模块 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</span><br><span class="line">urlpatterns = [</span><br><span class="line">    <span class="comment"># 管理员后台</span></span><br><span class="line">    url(<span class="string">r'^admin/'</span>, admin.site.urls),</span><br><span class="line">    <span class="comment"># as_view()是将类作为view</span></span><br><span class="line">    url(<span class="string">r'^info/'</span>, views.InfoView.as_view()),</span><br><span class="line">    url(<span class="string">r'^drf/info/'</span>, views.DrfInfoView.as_view()),</span><br><span class="line">    url(<span class="string">r'^drf/category/'</span>, views.DrfCategoryView.as_view()),</span><br><span class="line">    <span class="comment"># 获取一条数据</span></span><br><span class="line">    url(<span class="string">r'^drf/category/$'</span>, views.DrfCategoryView.as_view()),</span><br><span class="line">    url(<span class="string">r'^drf/category/(?P&lt;pk&gt;\d+)/$'</span>, views.DrfCategoryView.as_view()),</span><br><span class="line"></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>接口：实现访问接口时，创建一个文章类型</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework.views <span class="keyword">import</span> APIView</span><br><span class="line"><span class="keyword">from</span> rest_framework.response <span class="keyword">import</span> Response</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> Category, Article</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DrfCategoryView</span><span class="params">(APIView)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span><span class="params">(self,request,*args,**kwargs)</span>:</span></span><br><span class="line">        <span class="string">"""增加一条分类信息"""</span></span><br><span class="line">        Category.objects.create(**request.data)</span><br><span class="line">        <span class="keyword">return</span> Response(<span class="string">'成功'</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>接口：获取所有文章类型</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DrfCategoryView</span><span class="params">(APIView)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self,request,*args,**kwargs)</span>:</span></span><br><span class="line">        <span class="string">"""获取所有文章分类"""</span></span><br><span class="line">        queryset = Category.objects.all().values(<span class="string">'id'</span>,<span class="string">'name'</span>)</span><br><span class="line">        data_list = list(queryset)</span><br><span class="line">        <span class="keyword">return</span> Response(data_list)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span><span class="params">(self,request,*args,**kwargs)</span>:</span></span><br><span class="line">        <span class="string">"""增加一条分类信息"""</span></span><br><span class="line">        Category.objects.create(**request.data)</span><br><span class="line">        <span class="keyword">return</span> Response(<span class="string">'成功'</span>)</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>接口：获取一条文章类型的详细信息</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> api <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">from</span> django.forms.models <span class="keyword">import</span> model_to_dict</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DrfCategoryView</span><span class="params">(APIView)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self,request,*args,**kwargs)</span>:</span></span><br><span class="line">        <span class="string">"""获取所有文章分类/单个文章分类"""</span></span><br><span class="line">        pk = kwargs.get(<span class="string">'pk'</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> pk:</span><br><span class="line">            queryset = models.Category.objects.all().values(<span class="string">'id'</span>,<span class="string">'name'</span>)</span><br><span class="line">            data_list = list(queryset)</span><br><span class="line">            <span class="keyword">return</span> Response(data_list)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            category_object = models.Category.objects.filter(id=pk).first()</span><br><span class="line">            data = model_to_dict(category_object)</span><br><span class="line">            <span class="keyword">return</span> Response(data)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span><span class="params">(self,request,*args,**kwargs)</span>:</span></span><br><span class="line">        <span class="string">"""增加一条分类信息"""</span></span><br><span class="line">        models.Category.objects.create(**request.data)</span><br><span class="line">        <span class="keyword">return</span> Response(<span class="string">'成功'</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>接口：文章分类的更新和删除</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> api <span class="keyword">import</span> views</span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'^drf/category/$'</span>, views.DrfCategoryView.as_view()),</span><br><span class="line">    url(<span class="string">r'^drf/category/(?P&lt;pk&gt;\d+)/$'</span>, views.DrfCategoryView.as_view()),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>views.py模块</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> api <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">from</span> django.forms.models <span class="keyword">import</span> model_to_dict</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DrfCategoryView</span><span class="params">(APIView)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self,request,*args,**kwargs)</span>:</span></span><br><span class="line">        <span class="string">"""获取所有文章分类/单个文章分类"""</span></span><br><span class="line">        pk = kwargs.get(<span class="string">'pk'</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> pk:</span><br><span class="line">            queryset = models.Category.objects.all().values(<span class="string">'id'</span>,<span class="string">'name'</span>)</span><br><span class="line">            data_list = list(queryset)</span><br><span class="line">            <span class="keyword">return</span> Response(data_list)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            category_object = models.Category.objects.filter(id=pk).first()</span><br><span class="line">            data = model_to_dict(category_object)</span><br><span class="line">            <span class="keyword">return</span> Response(data)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span><span class="params">(self,request,*args,**kwargs)</span>:</span></span><br><span class="line">        <span class="string">"""增加一条分类信息"""</span></span><br><span class="line">        models.Category.objects.create(**request.data)</span><br><span class="line">        <span class="keyword">return</span> Response(<span class="string">'成功'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">delete</span><span class="params">(self,request,*args,**kwargs)</span>:</span></span><br><span class="line">        <span class="string">"""删除"""</span></span><br><span class="line">        pk = kwargs.get(<span class="string">'pk'</span>)</span><br><span class="line">        models.Category.objects.filter(id=pk).delete()</span><br><span class="line">        <span class="keyword">return</span> Response(<span class="string">'删除成功'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">put</span><span class="params">(self,request,*args,**kwargs)</span>:</span></span><br><span class="line">        <span class="string">"""更新"""</span></span><br><span class="line">        pk = kwargs.get(<span class="string">'pk'</span>)</span><br><span class="line">        models.Category.objects.filter(id=pk).update(**request.data)</span><br><span class="line">        <span class="keyword">return</span> Response(<span class="string">'更新成功'</span>)</span><br></pre></td></tr></table></figure>
+
+      </div>
+      
+        <br>
+        
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-07-21T17:47:21+08:00">
+  <a class='notlink'>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>更新于 2020年7月21日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Django/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>Django</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/07/21/Django%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%B8%80%EF%BC%89/&title=关于如何养成Django女皇的那件事（Ⅰ） | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Django是一个优秀的Python web框架，被众多python开发者所喜爱。新开这个Django专栏，并不是从零开始详细使用Django框架来开发web网页，而是用来开发api。前后分离是当前的技术栈潮流。
+
+1.Django基础知识2.初识drf3.创建程序并初始化模型4.model.py模块5.urls.py模块
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/07/21/Django%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%B8%80%EF%BC%89/&title=关于如何养成Django女皇的那件事（Ⅰ） | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Django是一个优秀的Python web框架，被众多python开发者所喜爱。新开这个Django专栏，并不是从零开始详细使用Django框架来开发web网页，而是用来开发api。前后分离是当前的技术栈潮流。
+
+1.Django基础知识2.初识drf3.创建程序并初始化模型4.model.py模块5.urls.py模块
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/07/21/Django%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%B8%80%EF%BC%89/&title=关于如何养成Django女皇的那件事（Ⅰ） | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Django是一个优秀的Python web框架，被众多python开发者所喜爱。新开这个Django专栏，并不是从零开始详细使用Django框架来开发web网页，而是用来开发api。前后分离是当前的技术栈潮流。
+
+1.Django基础知识2.初识drf3.创建程序并初始化模型4.model.py模块5.urls.py模块
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+      
+      
+          <div class="prev-next">
+              
+              
+                  <section class="next">
+                      <span class="art-item-right" aria-hidden="true">
+                          <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                          <h4>
+                              <a href="/2020/07/18/Javascript%E7%AF%87%E7%AB%A0%E5%8D%81%E4%BA%8C/" rel="prev" title="总是招惹病态RSA、AES、MD5、Eval的我该何去何从">
+                                  
+                                      总是招惹病态RSA、AES、MD5、Eval的我该何去何从
+                                  
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/RSA/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> RSA</a> <a class="tag" href="/tags/Eval/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Eval</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+          </div>
+      
+    </section>
+  </article>
+
+
+
+  <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      
+      
+        <section id="comments">
+          <div id="lv-container" data-id="city" data-uid="MTAyMC80NzQ0NS8yMzk0NQ==">
+            <noscript><div><i class='fas fa-exclamation-triangle'>&nbsp;无法加载Livere评论系统，请确保您的网络能够正常访问。</div></noscript>
+          </div>
+        </section>
+      
+      
+      
+    </section>
+  </article>
+
+
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: '关于如何养成Django女皇的那件事（Ⅰ）',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+    
+    
+      
+      
+        
+          
+          
+            
+              <section class='widget author'>
+  <div class='content material'>
+    
+      <div class='avatar'>
+        <img class='avatar' src='https://cdn.jsdelivr.net/gh/FioraLove/CDN@1.0/Avatar.png'/>
+      </div>
+    
+    
+      <div class='text'>
+        
+          <h2>AHRILOVE' BLOG</h2>
+        
+        
+          <p>只有被明日的我们铭记 今天才有意义</p>
+
+        
+        
+      </div>
+    
+    
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget toc-wrapper'>
+    
+<header class='material'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目录</div>
+  
+    <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
+  
+</header>
+
+    <div class='content material'>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Django基础知识"><span class="toc-text">1.Django基础知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-初识drf"><span class="toc-text">2. 初识drf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-创建程序并初始化模型"><span class="toc-text">3. 创建程序并初始化模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-model-py模块"><span class="toc-text">4. model.py模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-urls-py模块"><span class="toc-text">5. urls.py模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#举例说明"><span class="toc-text">举例说明</span></a></li></ol>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              <section class='widget grid'>
+  
+<header class='material'>
+  <div><i class="fas fa-address-card fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;关于博主</div>
+  
+</header>
+
+  <div class='content material'>
+    <ul class="grid navgation">
+      
+        <li><a class="flat-box" title="/game/" href="/game/"
+          
+            rel="nofollow"
+          
+          
+          id="game">
+          
+            <i class="fas fa-gamepad fa-fw" aria-hidden="true"></i>
+          
+          轻松一刻
+        </a></li>
+      
+        <li><a class="flat-box" title="/about/" href="/about/"
+          
+            rel="nofollow"
+          
+          
+          id="about">
+          
+            <i class="fas fa-paper-plane fa-fw" aria-hidden="true"></i>
+          
+          相册
+        </a></li>
+      
+        <li><a class="flat-box" title="/cv/" href="/cv/"
+          
+            rel="nofollow"
+          
+          
+          id="cv">
+          
+            <i class="fas fa-globe-asia fa-fw" aria-hidden="true"></i>
+          
+          个人简历
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+            
+              <section class='widget grid'>
+  
+<header class='material'>
+  <div><i class="fas fa-map-signs fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;站内导航</div>
+  
+</header>
+
+  <div class='content material'>
+    <ul class="grid navgation">
+      
+        <li><a class="flat-box" title="/" href="/"
+          
+          
+          id="home">
+          
+            <i class="fas fa-clock fa-fw" aria-hidden="true"></i>
+          
+          近期文章
+        </a></li>
+      
+        <li><a class="flat-box" title="/archives/" href="/archives/"
+          
+            rel="nofollow"
+          
+          
+          id="archives">
+          
+            <i class="fas fa-archive fa-fw" aria-hidden="true"></i>
+          
+          文章归档
+        </a></li>
+      
+        <li><a class="flat-box" title="https://github.com/FioraLove?tab=repositories" href="https://github.com/FioraLove?tab=repositories"
+          
+          
+          id="https:github.comFioraLove?tab=repositories">
+          
+            <i class="fas fa-code-branch fa-fw" aria-hidden="true"></i>
+          
+          开源项目
+        </a></li>
+      
+        <li><a class="flat-box" title="/friends/" href="/friends/"
+          
+            rel="nofollow"
+          
+          
+          id="friends">
+          
+            <i class="fas fa-link fa-fw" aria-hidden="true"></i>
+          
+          我的友链
+        </a></li>
+      
+        <li><a class="flat-box" title="https://xaoxuu.com/wiki/material-x/" href="https://xaoxuu.com/wiki/material-x/"
+          
+            rel="nofollow"
+          
+          
+          id="https:xaoxuu.comwikimaterial-x">
+          
+            <i class="fas fa-book fa-fw" aria-hidden="true"></i>
+          
+          主题文档
+        </a></li>
+      
+        <li><a class="flat-box" title="/plan/" href="/plan/"
+          
+            rel="nofollow"
+          
+          
+          id="plan">
+          
+            <i class="fas fa-info-circle fa-fw" aria-hidden="true"></i>
+          
+          每日计划
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget category'>
+    
+<header class='material'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分类</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/categories/"
+    title="categories/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content material'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Data-analysis/" href="/categories/Data-analysis/"><div class='name'>Data analysis</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Database/" href="/categories/Database/"><div class='name'>Database</div><div class='badge'>(10)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Django/" href="/categories/Django/"><div class='name'>Django</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Java/" href="/categories/Java/"><div class='name'>Java</div><div class='badge'>(13)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Python/" href="/categories/Python/"><div class='name'>Python</div><div class='badge'>(22)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/ThinkPHP/" href="/categories/ThinkPHP/"><div class='name'>ThinkPHP</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/TypeScript/" href="/categories/TypeScript/"><div class='name'>TypeScript</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Vue/" href="/categories/Vue/"><div class='name'>Vue</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/docker/" href="/categories/docker/"><div class='name'>docker</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/javascript/" href="/categories/javascript/"><div class='name'>javascript</div><div class='badge'>(12)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/json/" href="/categories/json/"><div class='name'>json</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E5%89%8D%E7%AB%AF/" href="/categories/%E5%89%8D%E7%AB%AF/"><div class='name'>前端</div><div class='badge'>(9)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E5%8D%9A%E5%AE%A2Hexo/" href="/categories/%E5%8D%9A%E5%AE%A2Hexo/"><div class='name'>博客Hexo</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%B6%E6%9E%84/" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%B6%E6%9E%84/"><div class='name'>服务器架构</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E9%9A%8F%E7%AC%94/" href="/categories/%E9%9A%8F%E7%AC%94/"><div class='name'>随笔</div><div class='badge'>(5)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget tagcloud'>
+    
+<header class='material'>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/tags/"
+    title="tags/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content material'>
+      <a href="/tags/post/" style="font-size: 14px; color: #999">$.post()</a> <a href="/tags/API/" style="font-size: 15.67px; color: #8e8e8e">API</a> <a href="/tags/Ajax/" style="font-size: 15.67px; color: #8e8e8e">Ajax</a> <a href="/tags/CSS/" style="font-size: 15.67px; color: #8e8e8e">CSS</a> <a href="/tags/CommonJS/" style="font-size: 14px; color: #999">CommonJS</a> <a href="/tags/DDL/" style="font-size: 14px; color: #999">DDL</a> <a href="/tags/DML/" style="font-size: 14px; color: #999">DML</a> <a href="/tags/Django/" style="font-size: 14px; color: #999">Django</a> <a href="/tags/Eval/" style="font-size: 14px; color: #999">Eval</a> <a href="/tags/GNE/" style="font-size: 14px; color: #999">GNE</a> <a href="/tags/Github-Page/" style="font-size: 14px; color: #999">Github Page</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/Hyper-V/" style="font-size: 14px; color: #999">Hyper-V</a> <a href="/tags/InnoDB/" style="font-size: 14px; color: #999">InnoDB</a> <a href="/tags/Java/" style="font-size: 24px; color: #555">Java</a> <a href="/tags/Jquery/" style="font-size: 14px; color: #999">Jquery</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Maven/" style="font-size: 14px; color: #999">Maven</a> <a href="/tags/Memcached/" style="font-size: 14px; color: #999">Memcached</a> <a href="/tags/MyISAM/" style="font-size: 14px; color: #999">MyISAM</a> <a href="/tags/MySQL/" style="font-size: 22.33px; color: #606060">MySQL</a> <a href="/tags/Oracle/" style="font-size: 15.67px; color: #8e8e8e">Oracle</a> <a href="/tags/PHP/" style="font-size: 14px; color: #999">PHP</a> <a href="/tags/POST%E8%AF%B7%E6%B1%82/" style="font-size: 14px; color: #999">POST请求</a> <a href="/tags/RSA/" style="font-size: 14px; color: #999">RSA</a> <a href="/tags/Requests/" style="font-size: 19px; color: #777">Requests</a> <a href="/tags/VMware/" style="font-size: 14px; color: #999">VMware</a> <a href="/tags/Vue/" style="font-size: 17.33px; color: #828282">Vue</a> <a href="/tags/apache/" style="font-size: 14px; color: #999">apache</a> <a href="/tags/blog%E6%94%B9%E7%89%88/" style="font-size: 14px; color: #999">blog改版</a> <a href="/tags/clone/" style="font-size: 14px; color: #999">clone</a> <a href="/tags/component/" style="font-size: 14px; color: #999">component</a> <a href="/tags/container/" style="font-size: 14px; color: #999">container</a> <a href="/tags/css/" style="font-size: 20.67px; color: #6c6c6c">css</a> <a href="/tags/database/" style="font-size: 14px; color: #999">database</a> <a href="/tags/docker/" style="font-size: 17.33px; color: #828282">docker</a> <a href="/tags/echarts/" style="font-size: 14px; color: #999">echarts</a> <a href="/tags/fetchall/" style="font-size: 14px; color: #999">fetchall()</a> <a href="/tags/fetchone/" style="font-size: 14px; color: #999">fetchone()</a> <a href="/tags/float/" style="font-size: 14px; color: #999">float</a> <a href="/tags/front-matter/" style="font-size: 14px; color: #999">front-matter</a> <a href="/tags/git/" style="font-size: 14px; color: #999">git</a> <a href="/tags/git-pull-push/" style="font-size: 14px; color: #999">git pull/push</a> <a href="/tags/html/" style="font-size: 17.33px; color: #828282">html</a> <a href="/tags/images/" style="font-size: 14px; color: #999">images</a> <a href="/tags/jQuery/" style="font-size: 15.67px; color: #8e8e8e">jQuery</a> <a href="/tags/js/" style="font-size: 20.67px; color: #6c6c6c">js</a> <a href="/tags/json/" style="font-size: 15.67px; color: #8e8e8e">json</a> <a href="/tags/js%E7%B2%BE%E7%A1%AE%E5%BA%A6%E4%B8%A2%E5%A4%B1/" style="font-size: 14px; color: #999">js精确度丢失</a> <a href="/tags/js%E9%80%86%E5%90%91/" style="font-size: 14px; color: #999">js逆向</a> <a href="/tags/lambda/" style="font-size: 14px; color: #999">lambda</a> <a href="/tags/margin/" style="font-size: 14px; color: #999">margin</a> <a href="/tags/matplotlib/" style="font-size: 15.67px; color: #8e8e8e">matplotlib</a> <a href="/tags/mysql/" style="font-size: 15.67px; color: #8e8e8e">mysql</a> <a href="/tags/nginx/" style="font-size: 15.67px; color: #8e8e8e">nginx</a> <a href="/tags/numpy/" style="font-size: 15.67px; color: #8e8e8e">numpy</a> <a href="/tags/pandas/" style="font-size: 14px; color: #999">pandas</a> <a href="/tags/push/" style="font-size: 14px; color: #999">push</a> <a href="/tags/python/" style="font-size: 20.67px; color: #6c6c6c">python</a> <a href="/tags/python-Django-MySQL/" style="font-size: 14px; color: #999">python+Django+MySQL</a> <a href="/tags/re/" style="font-size: 17.33px; color: #828282">re</a> <a href="/tags/read/" style="font-size: 14px; color: #999">read</a> <a href="/tags/readline/" style="font-size: 14px; color: #999">readline</a> <a href="/tags/readlines/" style="font-size: 14px; color: #999">readlines</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/requirement-txt/" style="font-size: 14px; color: #999">requirement.txt</a> <a href="/tags/salt/" style="font-size: 14px; color: #999">salt</a> <a href="/tags/thinkPHP/" style="font-size: 15.67px; color: #8e8e8e">thinkPHP</a> <a href="/tags/token/" style="font-size: 14px; color: #999">token</a> <a href="/tags/union/" style="font-size: 14px; color: #999">union</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E4%B8%8E%E5%AE%88%E6%8A%A4%E5%BC%8F%E5%88%9B%E5%BB%BA/" style="font-size: 14px; color: #999">交互式与守护式创建</a> <a href="/tags/%E5%85%83%E7%BB%84/" style="font-size: 14px; color: #999">元组</a> <a href="/tags/%E5%88%97%E8%A1%A8/" style="font-size: 14px; color: #999">列表</a> <a href="/tags/%E5%89%8D%E5%90%8E%E5%88%86%E7%A6%BB/" style="font-size: 14px; color: #999">前后分离</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 14px; color: #999">多线程</a> <a href="/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8B/" style="font-size: 14px; color: #999">多进程</a> <a href="/tags/%E5%AD%97%E5%85%B8/" style="font-size: 14px; color: #999">字典</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 14px; color: #999">字符串</a> <a href="/tags/%E5%AE%9A%E4%BD%8D%E7%85%A7%E7%89%87%E6%8B%8D%E6%91%84%E4%BD%8D%E7%BD%AE/" style="font-size: 14px; color: #999">定位照片拍摄位置</a> <a href="/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" style="font-size: 14px; color: #999">定时任务</a> <a href="/tags/%E5%AF%B9%E8%B1%A1/" style="font-size: 14px; color: #999">对象</a> <a href="/tags/%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">属性与方法</a> <a href="/tags/%E5%B8%B8%E8%A7%81%E5%BA%93/" style="font-size: 14px; color: #999">常见库</a> <a href="/tags/%E6%95%B0%E5%80%BC/" style="font-size: 14px; color: #999">数值</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%86%E6%89%B9%E6%AC%A1%E5%A4%84%E7%90%86/" style="font-size: 14px; color: #999">数据库分批次处理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%80%9A%E7%94%A8%E8%BF%9E%E6%8E%A5%E5%87%BD%E6%95%B0/" style="font-size: 14px; color: #999">数据库通用连接函数</a> <a href="/tags/%E6%9E%81%E9%AA%8C%E6%BB%91%E5%8A%A8/" style="font-size: 14px; color: #999">极验滑动</a> <a href="/tags/%E8%A3%85%E9%A5%B0%E5%99%A8/" style="font-size: 14px; color: #999">装饰器</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%BA%93/" style="font-size: 14px; color: #999">解析库</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 14px; color: #999">负载均衡</a> <a href="/tags/%E9%80%86%E5%90%91%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">逆向爬虫</a> <a href="/tags/%E9%80%89%E6%8B%A9%E5%99%A8/" style="font-size: 14px; color: #999">选择器</a>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+    
+
+  
+</aside>
+
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+<script src="//instant.page/1.2.2" type="module" integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU"></script>
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+  
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        if ('.cover') {
+          $('.cover').backstretch(
+          ["https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.2.1/images/background/021.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(1).jpg.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(8).jpg.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(6).jpg.webp", "https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imageskda.jpg.webp", "https://cdn.jsdelivr.net/gh/FioraLove/Images/531-bigskin-1.jpg"],
+          {
+            duration: "5000",
+            fade: "3000"
+          });
+        } else {
+          $.backstretch(
+          ["https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.2.1/images/background/021.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(1).jpg.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(8).jpg.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(6).jpg.webp", "https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imageskda.jpg.webp", "https://cdn.jsdelivr.net/gh/FioraLove/Images/531-bigskin-1.jpg"],
+          {
+            duration: "5000",
+            fade: "3000"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9/static/app.static.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9/static/search.static.js"></script>
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>复制</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+    <script  src="https://cdn.jsdelivr.net/gh/FioraLove/CDN@v1.2.7/ribbon_v1.js"></script>
+  <script>setLoadingBarProgress(100);</script>
+<div class="showarea-4" style="text-align: center;margin: 0 auto;">
+        <img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/footercopy.png">
+    </div>
+    <div style="text-align: center;background-color:rgb(12, 1, 3);">
+
+        <p style="font-size: 1.2em;margin: 0 auto;color:rgb(202, 197, 191);">联系我 | Contact with me</p>
+        <p style="font-size: 1em;margin: 0 auto;color:rgb(202, 197, 191);">Copyright © 2019-2020 谁知你知我，我知你知深。此恨经年深，比情度日久</p>
+        <p style="font-size: 1em;margin: 0 auto;color:rgb(202, 197, 191);">博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" style="text-decoration: none;color:rgb(202, 197, 191)">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+        <br>
+        <a href="http://AhriLove.top/" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/FioraLove/Images/hexo.png"
+                title="个人博客" style="width: 3.5em;color:rgb(202, 197, 191);"></a>&nbsp;&nbsp;
+        <a href="https://github.com/FioraLove?tab=repositories" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/FioraLove/Images/git.png"
+                title="GitHub" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="https://www.cnblogs.com/AhriLove-chen/" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/cnblogs.png"
+                title="博客园" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="https://www.zhihu.com/people/hui-li-yi-xiao-jie/activities" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/zhihu.png"
+                title="知乎" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="https://music.163.com/#/user/home?id=1398315803" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/netease.png"
+                title="网易云音乐" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="https://space.bilibili.com/215893581" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/bilibili.png"
+                title="哔哩哔哩" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="http://wpa.qq.com/msgrd?v=3&uin=980710425&site=qq&menu=yes" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/qq.png"
+                title="QQ" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="mailto:980710425@qq.com" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/mail.png"
+                title="邮件" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="javascript:;"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/telegram.png"
+                title="Telegram" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="javascript:;"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/twitter.png"
+                title="Twitter" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <!--<a href="https://www.facebook.com/profile.php?id=100039716302318" target="_blank"><img
+            src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/facebook.png" class="icon" title="Facebook" style="width: 3.5em"></a>&nbsp;&nbsp;-->
+        <script  src="https://cdn.jsdelivr.net/gh/FioraLove/CDN@v1.2.7/ribbon_v1.js"></script>
+    </div>
+</body>
+</html>
