@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>Tag: 负载均衡 | AhriLove</title>
+  <title>关于如何养成Django女皇的那件事（Ⅱ） | AhriLove</title>
   
   
 
@@ -65,7 +65,7 @@
   
   
   <div class="cover-wrapper">
-    <cover class='cover  half'>
+    <cover class='cover post half'>
       
         
   <img class='logo' src='https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imagesaaa.png'/>
@@ -332,25 +332,11 @@
 
   <div class="l_body">
     <div class='body-wrapper'>
-      
-<div class='l_main'>
+      <div class='l_main'>
   
+
+  <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
     
-      
-  <section class="post-list">
-    
-      
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
-  
 
 
   <section class='meta'>
@@ -359,11 +345,13 @@
     <div class="meta" id="header-meta">
       
         
-  <h2 class="title">
-    <a href="/2019/11/25/Nginx/">
-      Nginx（一）：基本概念
-    </a>
-  </h2>
+  
+    <h1 class="title">
+      <a href="/2020/07/23/Django%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">
+        关于如何养成Django女皇的那件事（Ⅱ）
+      </a>
+    </h1>
+  
 
 
       
@@ -375,11 +363,11 @@
             
   <div class='new-meta-item author'>
     
-      <a href="https://ahrilove.top" rel="nofollow">
+      <a href="/" rel="nofollow">
         
-          <i class="fas fa-user" aria-hidden="true"></i>
+          <img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imagesNaruto.jpg">
         
-        <p>AhriLove</p>
+        <p>Badwoman</p>
       </a>
     
   </div>
@@ -391,7 +379,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-11-25</p>
+    <p>2020-07-23</p>
   </a>
 </div>
 
@@ -401,9 +389,9 @@
             
   
   <div class='new-meta-item category'>
-    <a href='/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%B6%E6%9E%84/' rel="nofollow">
+    <a href='/categories/Django/' rel="nofollow">
       <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>服务器架构</p>
+      <p>Django</p>
     </a>
   </div>
 
@@ -412,6 +400,19 @@
         
           
             
+  
+    <div class="new-meta-item browse busuanzi">
+      <a class='notlink'>
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <p>
+          <span id="busuanzi_value_page_pv">
+            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+          </span>
+        </p>
+      </a>
+    </div>
+  
+
 
           
         
@@ -428,52 +429,218 @@
   </section>
 
 
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <p><font size=5 color=#00ced1 size=5 face="黑体">守住一方平安，尽力而为，问心无愧就好。</font></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;Nginx同Apache一样都是一种WEB服务器，Nginx是一款自由的、开源的、高性能的HTTP服务器和反向代理服务器；同时也是一个IMAP、POP3、SMTP代理服务器；Nginx可以作为一个HTTP服务器进行网站的发布处理，另外Nginx可以作为反向代理进行负载均衡的实现。</p>
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Django是一个优秀的Python web框架，被众多python开发者所喜爱。新开这个Django专栏，<strong>并不是从零开始详细使用Django框架来开发web网页，而是用来开发api。前后分离是当前的技术栈潮流</strong>。</p>
 <blockquote>
-<p><font size=4 color=#FF0000>本文要点：</font><br>正向代理<br>反向代理<br>负载均衡<br>动静分离<br>Nginx安装教程</p>
+<p>1.serializers序列化<br>2.分页查询</p>
 </blockquote>
+<a id="more"></a>
+<h3 id="1-serializers序列化"><a href="#1-serializers序列化" class="headerlink" title="1.serializers序列化"></a>1.serializers序列化</h3><p>序列化帮助我们提供了</p>
+<ul>
+<li>数据校验</li>
+<li>序列化（即字符串化，网络传输都是以字符串形式传输）</li>
+</ul>
+<ol>
+<li>创建一个serializers.py文件</li>
+</ol>
+<p>在APP目录下创建一个名为serializers.py文件，用于描述序列化逻辑<br>PS：<strong>序列化时一定要继承<code>serializers.ModelSerializer</code> 序列化类</strong>，不然会出很多问题，e.g. post请求时，缺少的create方法；put请求时，缺少update方法。</p>
+<ul>
+<li><p>最简单的一个序列化案例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> serializers</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NewCategorySerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = models.Category <span class="comment"># 声明模型名</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        fields表示要展示的字段，有两种写法：</span></span><br><span class="line"><span class="string">        写法一：</span></span><br><span class="line"><span class="string">            fields = "__all__"：表示全部展示Category模型里的所有字段</span></span><br><span class="line"><span class="string">        写法二：</span></span><br><span class="line"><span class="string">            fields = ['id','name',...]：将想要展示的Category模型里的特定字段添加到数组中</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        fields = [<span class="string">'id'</span>,<span class="string">'name'</span>]</span><br><span class="line">        depth = <span class="number">1</span>  <span class="comment"># 此字段表示查看嵌套几层的数据【推荐0-3】，不建议太大，性能损耗</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>序列化深入:source用法</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> serializers</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> models</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ArticleSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></span><br><span class="line">    category_txt = serializers.CharField(source=<span class="string">'category.name'</span>,required=<span class="literal">False</span>)</span><br><span class="line">    x1 = serializers.SerializerMethodField()</span><br><span class="line"></span><br><span class="line">    status_txt = serializers.CharField(source=<span class="string">'get_status_display'</span>,required=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">    x2 = serializers.SerializerMethodField()</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = models.Article</span><br><span class="line">        <span class="comment"># fields = "__all__"</span></span><br><span class="line">        fields = [<span class="string">'id'</span>,<span class="string">'title'</span>,<span class="string">'summary'</span>,<span class="string">'content'</span>,<span class="string">'category'</span>,<span class="string">'category_txt'</span>,<span class="string">'x1'</span>,<span class="string">'status'</span>,<span class="string">'status_txt'</span>,<span class="string">'x2'</span>]</span><br><span class="line">        <span class="comment"># depth = 1</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_x1</span><span class="params">(self,obj)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> obj.category.name</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_x2</span><span class="params">(self,obj)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> obj.get_status_display()</span><br></pre></td></tr></table></figure>
+
+<p>对序列化深入的详细说明</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># fields添加展示字段方式一：直接使用定义的models的字段</span></span><br><span class="line">fields = [<span class="string">'title'</span>,<span class="string">'summary'</span>,<span class="string">'content'</span>,<span class="string">'category'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># fields添加展示字段方式二：使用source，引用category模型的name字段</span></span><br><span class="line">category_txt = serializers.CharField(source=<span class="string">'category.name'</span>,required=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># fields添加展示字段方式三：自定义函数</span></span><br><span class="line">x1 = serializers.SerializerMethodField() <span class="comment"># 先定义x1，并声明为序列化方法字段</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_x1</span><span class="params">(self,obj)</span>:</span>   <span class="comment"># 函数命名方式：get_自定义的字段名</span></span><br><span class="line">        <span class="keyword">return</span> obj.category.name</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>创建一个views.py实例</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> .serializers <span class="keyword">import</span> ArticleSerializer</span><br><span class="line"><span class="keyword">from</span> rest_framework.response <span class="keyword">import</span> Response</span><br><span class="line"><span class="keyword">from</span> rest_framework.views <span class="keyword">import</span> APIView</span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Category, Article</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ArticleView</span><span class="params">(APIView)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">        pk = kwargs.get(<span class="string">'pk'</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> pk:</span><br><span class="line">            queryset = Article.objects.all()</span><br><span class="line">            ser = ArticleSerializer(instance=queryset, many=<span class="literal">True</span>)</span><br><span class="line">            <span class="keyword">return</span> Response(ser.data)</span><br><span class="line">        article_object = Article.objects.filter(id=pk).first()</span><br><span class="line">        ser = ArticleSerializer(instance=article_object, many=<span class="literal">False</span>)</span><br><span class="line">        <span class="keyword">return</span> Response(ser.data)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">        ser = ArticleSerializer(data=request.data)</span><br><span class="line">        <span class="keyword">if</span> ser.is_valid():</span><br><span class="line">            ser.save()</span><br><span class="line">            <span class="keyword">return</span> Response(ser.data)</span><br><span class="line">        <span class="keyword">return</span> Response(ser.errors)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">put</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">        pk = kwargs.get(<span class="string">'pk'</span>)</span><br><span class="line">        article_object = Article.objects.filter(id=pk).first()</span><br><span class="line">        ser = ArticleSerializer(instance=article_object, data=request.data)</span><br><span class="line">        <span class="keyword">if</span> ser.is_valid():</span><br><span class="line">            ser.save()</span><br><span class="line">            <span class="keyword">return</span> Response(ser.data)</span><br><span class="line">        <span class="keyword">return</span> Response(ser.errors)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">patch</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">        <span class="string">"""局部"""</span></span><br><span class="line">        pk = kwargs.get(<span class="string">'pk'</span>)</span><br><span class="line">        article_object = Article.objects.filter(id=pk).first()</span><br><span class="line">        ser = ArticleSerializer(instance=article_object, data=request.data, partial=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">if</span> ser.is_valid():</span><br><span class="line">            ser.save()</span><br><span class="line">            <span class="keyword">return</span> Response(ser.data)</span><br><span class="line">        <span class="keyword">return</span> Response(ser.errors)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">delete</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">        pk = kwargs.get(<span class="string">'pk'</span>)</span><br><span class="line">        Article.objects.filter(id=pk).delete()</span><br><span class="line">        <span class="keyword">return</span> Response(<span class="string">'删除成功'</span>)</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>urls.py进行映射</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path, re_path</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views  <span class="comment"># 导入views文件中的视图函数(标准写法)</span></span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    <span class="comment"># get获取列表；post增加数据</span></span><br><span class="line">    re_path(<span class="string">r'^drf/article/$'</span>, views.ArticleView.as_view()),</span><br><span class="line">    re_path(<span class="string">r'^drf/article/(?P&lt;pk&gt;\d+)/$'</span>, views.ArticleView.as_view()),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-分页查询"><a href="#2-分页查询" class="headerlink" title="2.分页查询"></a>2.分页查询</h3><p>drf中的分页查询有两种：</p>
+<ul>
+<li>PageNumberPagination类：访问url形如page/view/article/?page=2</li>
+<li>LimitOffsetPagination类：访问url形如page/article/?offset=0&amp;limit=3</li>
+</ul>
+<blockquote>
+<p>PageNumberPagination类</p>
+</blockquote>
+<p>views.py文件：<strong>必须重写父类PageNumberPagination，重设每页展示数据量，不设置，则默认不分页</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> .serializers <span class="keyword">import</span> PageArticleSerializer</span><br><span class="line"><span class="keyword">from</span> rest_framework.pagination <span class="keyword">import</span> PageNumberPagination</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 类似于Java中的接口interface，必须重写父类方法</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NewPageNumberPagination</span><span class="params">(PageNumberPagination)</span>:</span></span><br><span class="line">    page_size = <span class="number">3</span>   <span class="comment"># 重写，每页展示数据数</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PageViewArticleView</span><span class="params">(APIView)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">        queryset = Article.objects.all()</span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        # 方式一：仅数据</span></span><br><span class="line"><span class="string">        # 分页对象</span></span><br><span class="line"><span class="string">        page_object = NewPageNumberPagination()</span></span><br><span class="line"><span class="string">        # 调用 分页对象.paginate_queryset方法进行分页，得到的结果是分页之后的数据</span></span><br><span class="line"><span class="string">        # result就是分完页的一部分数据</span></span><br><span class="line"><span class="string">        result = page_object.paginate_queryset(queryset, request, self)</span></span><br><span class="line"><span class="string">        # 序列化分页之后的数据</span></span><br><span class="line"><span class="string">        ser = PageArticleSerializer(instance=result, many=True)</span></span><br><span class="line"><span class="string">        return Response(ser.data)</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 方式二：数据 + 分页信息</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        page_object = NewPageNumberPagination()</span></span><br><span class="line"><span class="string">        result = page_object.paginate_queryset(queryset, request, self)</span></span><br><span class="line"><span class="string">        ser = PageArticleSerializer(instance=result, many=True)</span></span><br><span class="line"><span class="string">        return page_object.get_paginated_response(ser.data)</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="comment"># 方式三：数据 + 部分分页信息</span></span><br><span class="line"></span><br><span class="line">        page_object = NewPageNumberPagination()</span><br><span class="line">        result = page_object.paginate_queryset(queryset, request, self)</span><br><span class="line">        ser = PageArticleSerializer(instance=result, many=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">return</span> Response(&#123;<span class="string">'count'</span>: page_object.page.paginator.count, <span class="string">'result'</span>: ser.data&#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>LimitOffsetPagination分页</p>
+</blockquote>
+<p>views.py文件：<strong>必须重写父类LimitOffsetPagination，限制每页最大偏移量。不设置，有可能会被黑客攻击</strong><br>比如：有一个黑衣人调用api后，修改请求url：offset=0&amp;limit=200000000…，如此庞大的数据量一下子加载到内存中，服务器直接宕机</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 分页方式二：</span></span><br><span class="line"><span class="keyword">from</span> rest_framework.pagination <span class="keyword">import</span> LimitOffsetPagination</span><br><span class="line"><span class="keyword">from</span> .serializers <span class="keyword">import</span> PageArticleSerializer</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HulaLimitOffsetPagination</span><span class="params">(LimitOffsetPagination)</span>:</span></span><br><span class="line">    <span class="comment"># 覆盖重写父类max_limit属性,设置最大数据量</span></span><br><span class="line">    max_limit = <span class="number">2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PageArticleView</span><span class="params">(APIView)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">        queryset = Article.objects.all()</span><br><span class="line">        <span class="comment"># 声明分页类</span></span><br><span class="line">        page_object = HulaLimitOffsetPagination()</span><br><span class="line">        result = page_object.paginate_queryset(queryset, request, self)</span><br><span class="line">        ser = PageArticleSerializer(instance=result, many=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">return</span> Response(ser.data)</span><br></pre></td></tr></table></figure>
+
+
+      </div>
       
-        <div class="readmore">
-          <a href="/2019/11/25/Nginx/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
-        </div>
+        <br>
+        
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-07-23T16:03:21+08:00">
+  <a class='notlink'>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>更新于 2020年7月23日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Django/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>Django</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/07/23/Django%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%BA%8C%EF%BC%89/&title=关于如何养成Django女皇的那件事（Ⅱ） | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Django是一个优秀的Python web框架，被众多python开发者所喜爱。新开这个Django专栏，并不是从零开始详细使用Django框架来开发web网页，而是用来开发api。前后分离是当前的技术栈潮流。
+
+1.serializers序列化2.分页查询
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/07/23/Django%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%BA%8C%EF%BC%89/&title=关于如何养成Django女皇的那件事（Ⅱ） | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Django是一个优秀的Python web框架，被众多python开发者所喜爱。新开这个Django专栏，并不是从零开始详细使用Django框架来开发web网页，而是用来开发api。前后分离是当前的技术栈潮流。
+
+1.serializers序列化2.分页查询
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/07/23/Django%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%BA%8C%EF%BC%89/&title=关于如何养成Django女皇的那件事（Ⅱ） | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Django是一个优秀的Python web框架，被众多python开发者所喜爱。新开这个Django专栏，并不是从零开始详细使用Django框架来开发web网页，而是用来开发api。前后分离是当前的技术栈潮流。
+
+1.serializers序列化2.分页查询
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
       
     </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/apache/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> apache</a>
-        
-          <a href="/tags/nginx/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> nginx</a>
-        
-          <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> 负载均衡</a>
-        
-      </div>
-    
   </section>
-</article>
 
-          </div>
-        
+
       
-    
-  </section>
-  
-    
-    <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
-    
-    
+      
+          <div class="prev-next">
+              
+              
+                  <section class="next">
+                      <span class="art-item-right" aria-hidden="true">
+                          <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                          <h4>
+                              <a href="/2020/07/21/Django%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%B8%80%EF%BC%89/" rel="prev" title="关于如何养成Django女皇的那件事（Ⅰ）">
+                                  
+                                      关于如何养成Django女皇的那件事（Ⅰ）
+                                  
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/Django/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Django</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+          </div>
+      
+    </section>
+  </article>
 
-  
 
 
-    
-  
+  <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      
+      
+        <section id="comments">
+          <div id="lv-container" data-id="city" data-uid="MTAyMC80NzQ0NS8yMzk0NQ==">
+            <noscript><div><i class='fas fa-exclamation-triangle'>&nbsp;无法加载Livere评论系统，请确保您的网络能够正常访问。</div></noscript>
+          </div>
+        </section>
+      
+      
+      
+    </section>
+  </article>
+
+
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: '关于如何养成Django女皇的那件事（Ⅱ）',
+      tools: true
+    }
+  </script>
+
+
 </div>
 <aside class='l_side'>
   
@@ -535,6 +702,25 @@
           
         
           
+          
+            
+              
+  <section class='widget toc-wrapper'>
+    
+<header class='material'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目录</div>
+  
+    <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
+  
+</header>
+
+    <div class='content material'>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-serializers序列化"><span class="toc-text">1.serializers序列化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-分页查询"><span class="toc-text">2.分页查询</span></a></li></ol>
+    </div>
+  </section>
+
+
+            
           
         
           
@@ -865,50 +1051,28 @@
         
           
           
-            
-              
-
-
-  <section class='widget music'>
-    
-<header class='material'>
-  <div><i class="fas fa-compact-disc fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;最近在听</div>
-  
-    <a class="rightBtn"
-    
-      rel="external nofollow noopener noreferrer"
-    
-    
-      target="_blank"
-    
-    href="https://music.163.com/#/user/home?id=1398315803"
-    title="https://music.163.com/#/user/home?id=1398315803">
-    <i class="far fa-heart fa-fw"></i></a>
-  
-</header>
-
-    <div class='content material'>
+        
       
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
-  <div class="aplayer"
-    data-theme="#1BCDFC"
-    
-    
-    data-mode="circulation"
-    data-server="netease"
-    data-type="playlist"
-    data-id="2163223807"
-    data-volume="0.3">
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
-
-
-    </div>
-  </section>
-
-
-            
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
           
         
       
@@ -917,20 +1081,6 @@
   
 </aside>
 
-<footer id="footer" class="clearfix">
-  
-    <div class="footer">
-      <p>Copyright © 2019-2020 谁知你知我，我知你知深。此恨经年深，比情度日久。</p>
-
-    </div>
-    <br>
-  
-  
-  <br>
-  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
-</div>
-</footer>
-<script>setLoadingBarProgress(80);</script>
 
 
       <script>setLoadingBarProgress(60);</script>
@@ -1016,6 +1166,17 @@
 
 
 
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
 
 
 
