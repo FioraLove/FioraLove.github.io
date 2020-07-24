@@ -433,7 +433,7 @@
       <div class="article-entry" itemprop="articleBody">
         <p>&nbsp;&nbsp;&nbsp;&nbsp;每到深夜，打开音乐，带上耳机，周围很安静，只有到这个时候我才感觉到自己是一个学者，而此刻头脑中只有两件事罢了：1.记下今天所用到的知识 2.安安静静听歌<br>最近做一个python获取考勤数据的小脚本，一直没有怎么用到数据库，今天就来探讨一下获取数据库的返回值</p>
 <blockquote>
-<p>1.关于数据库返回值的讨论<br>2.python文件打开方式详解<br>3.fetchall(),fetchone()<br>4.python连接各类数据库教程</p>
+<p>1.关于数据库返回值的讨论<br>2.fetchall(),fetchone()<br>3.python连接各类数据库教程</p>
 </blockquote>
 <a id="more"></a>
 <h2 id="1-关于数据库返回值的讨论"><a href="#1-关于数据库返回值的讨论" class="headerlink" title="1.关于数据库返回值的讨论"></a>1.关于数据库返回值的讨论</h2><h3 id="1-1-构造简单sql语句"><a href="#1-1-构造简单sql语句" class="headerlink" title="1.1.构造简单sql语句"></a>1.1.构造简单sql语句</h3><p>假设存在这样一个简单的数据库,获取每一行的数据，并保存为txt格式<br><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imagesdatabase_resp.JPG" alt=""></fancybox></p>
@@ -459,67 +459,8 @@
 <p>想返回字典格式，只需要在建立游标的时候加个参数，cursor=pymysql.cursors.DictCursor。这样<strong>每行返回的值放在字典里面，然后整体放在一个list里面</strong>。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">export</span><span class="params">(table_name)</span>:</span></span><br><span class="line">    conn =pymysql.connect(host = <span class="string">'118.24.3.40'</span>,</span><br><span class="line">                          user = <span class="string">'jxz'</span>,password=<span class="string">'123456'</span>,</span><br><span class="line">                          db=<span class="string">'jxz'</span>,port=<span class="number">3306</span>,charset = <span class="string">'utf8'</span>)</span><br><span class="line">    cur = conn.cursor(cursor=pymysql.cursors.DictCursor)</span><br><span class="line">    cur.execute(<span class="string">'select * from %s'</span>%table_name)</span><br><span class="line">    print(cur.fetchall())</span><br><span class="line">export(<span class="string">'app_student'</span>)</span><br></pre></td></tr></table></figure>
 
-<h2 id="2-python文件打开方式详解"><a href="#2-python文件打开方式详解" class="headerlink" title="2.python文件打开方式详解"></a>2.python文件打开方式详解</h2><table>
-<thead>
-<tr>
-<th>打开方式</th>
-<th align="center">详解</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>b</td>
-<td align="center">二进制模式。</td>
-</tr>
-<tr>
-<td>+</td>
-<td align="center">打开一个文件进行更新(可读可写)。</td>
-</tr>
-<tr>
-<td>r</td>
-<td align="center">以只读方式打开文件。文件的指针将会放在文件的开头。这是默认模式。</td>
-</tr>
-<tr>
-<td>rb</td>
-<td align="center">以二进制格式打开一个文件用于只读。文件指针将会放在文件的开头。这是默认模式。一般用于非文本文件如图片等。</td>
-</tr>
-<tr>
-<td>r+</td>
-<td align="center">打开一个文件用于读写。文件指针将会放在文件的开头。</td>
-</tr>
-<tr>
-<td>rb+</td>
-<td align="center">以二进制格式打开一个文件用于读写。文件指针将会放在文件的开头。一般用于非文本文件如图片等。</td>
-</tr>
-<tr>
-<td>w</td>
-<td align="center">打开一个文件只用于写入。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。</td>
-</tr>
-<tr>
-<td>wb</td>
-<td align="center">以二进制格式打开一个文件只用于写入。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。一般用于非文本文件如图片等。</td>
-</tr>
-<tr>
-<td>w+</td>
-<td align="center">打开一个文件用于读写。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。</td>
-</tr>
-<tr>
-<td>wb+</td>
-<td align="center">以二进制格式打开一个文件用于读写。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。一般用于非文本文件如图片等。</td>
-</tr>
-<tr>
-<td>a</td>
-<td align="center">打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。也就是说，新的内容将会被写入到已有内容之后。如果该文件不存在，创建新文件进行写入。</td>
-</tr>
-<tr>
-<td>a+</td>
-<td align="center">打开一个文件用于读写。如果该文件已存在，文件指针将会放在文件的结尾。文件打开时会是追加模式。如果该文件不存在，创建新文件用于读写。</td>
-</tr>
-<tr>
-<td>ab+</td>
-<td align="center">以二进制格式打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。如果该文件不存在，创建新文件用于读写。</td>
-</tr>
-</tbody></table>
-<h2 id="3-python连接各类数据库教程"><a href="#3-python连接各类数据库教程" class="headerlink" title="3.python连接各类数据库教程"></a>3.python连接各类数据库教程</h2><p><a href="https://www.cnblogs.com/tester-l/p/8198939.html" target="_blank" rel="noopener">【python连接各类数据库教程】</a><br><a href="https://www.cnblogs.com/dhanchor/p/11111247.html" target="_blank" rel="noopener">【Python连接Oracle数据库，以字典形式返回结果】</a><br><a href="https://www.cnblogs.com/once-again/p/9824381.html" target="_blank" rel="noopener">【python操作mysql数据-执行语句返回值直接返回字典类型】</a></p>
+
+<h2 id="2-python连接各类数据库教程"><a href="#2-python连接各类数据库教程" class="headerlink" title="2.python连接各类数据库教程"></a>2.python连接各类数据库教程</h2><p><a href="https://www.cnblogs.com/tester-l/p/8198939.html" target="_blank" rel="noopener">【python连接各类数据库教程】</a><br><a href="https://www.cnblogs.com/dhanchor/p/11111247.html" target="_blank" rel="noopener">【Python连接Oracle数据库，以字典形式返回结果】</a><br><a href="https://www.cnblogs.com/once-again/p/9824381.html" target="_blank" rel="noopener">【python操作mysql数据-执行语句返回值直接返回字典类型】</a></p>
 
       </div>
       
@@ -531,10 +472,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-20T20:44:39+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-07-24T18:42:29+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年6月20日</p>
+    <p>更新于 2020年7月24日</p>
   </a>
 </div>
 
@@ -558,7 +499,7 @@
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/12/02/%E5%85%B3%E4%BA%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%94%E5%9B%9E%E5%80%BC%E7%9A%84%E8%AE%A8%E8%AE%BA/&title=关于Python数据库返回值的讨论 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;每到深夜，打开音乐，带上耳机，周围很安静，只有到这个时候我才感觉到自己是一个学者，而此刻头脑中只有两件事罢了：1.记下今天所用到的知识 2.安安静静听歌最近做一个python获取考勤数据的小脚本，一直没有怎么用到数据库，今天就来探讨一下获取数据库的返回值
 
-1.关于数据库返回值的讨论2.python文件打开方式详解3.fetchall(),fetchone()4.python连接各类数据库教程
+1.关于数据库返回值的讨论2.fetchall(),fetchone()3.python连接各类数据库教程
 "
           
           >
@@ -573,7 +514,7 @@
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/12/02/%E5%85%B3%E4%BA%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%94%E5%9B%9E%E5%80%BC%E7%9A%84%E8%AE%A8%E8%AE%BA/&title=关于Python数据库返回值的讨论 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;每到深夜，打开音乐，带上耳机，周围很安静，只有到这个时候我才感觉到自己是一个学者，而此刻头脑中只有两件事罢了：1.记下今天所用到的知识 2.安安静静听歌最近做一个python获取考勤数据的小脚本，一直没有怎么用到数据库，今天就来探讨一下获取数据库的返回值
 
-1.关于数据库返回值的讨论2.python文件打开方式详解3.fetchall(),fetchone()4.python连接各类数据库教程
+1.关于数据库返回值的讨论2.fetchall(),fetchone()3.python连接各类数据库教程
 "
           
           >
@@ -588,7 +529,7 @@
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/12/02/%E5%85%B3%E4%BA%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%94%E5%9B%9E%E5%80%BC%E7%9A%84%E8%AE%A8%E8%AE%BA/&title=关于Python数据库返回值的讨论 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;每到深夜，打开音乐，带上耳机，周围很安静，只有到这个时候我才感觉到自己是一个学者，而此刻头脑中只有两件事罢了：1.记下今天所用到的知识 2.安安静静听歌最近做一个python获取考勤数据的小脚本，一直没有怎么用到数据库，今天就来探讨一下获取数据库的返回值
 
-1.关于数据库返回值的讨论2.python文件打开方式详解3.fetchall(),fetchone()4.python连接各类数据库教程
+1.关于数据库返回值的讨论2.fetchall(),fetchone()3.python连接各类数据库教程
 "
           
           >
@@ -770,7 +711,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-关于数据库返回值的讨论"><span class="toc-text">1.关于数据库返回值的讨论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-构造简单sql语句"><span class="toc-text">1.1.构造简单sql语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-python连接数据库（SQL-server）"><span class="toc-text">1.2.python连接数据库（SQL server）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-字典型的数据库返回值"><span class="toc-text">1.3 字典型的数据库返回值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-python文件打开方式详解"><span class="toc-text">2.python文件打开方式详解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-python连接各类数据库教程"><span class="toc-text">3.python连接各类数据库教程</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-关于数据库返回值的讨论"><span class="toc-text">1.关于数据库返回值的讨论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-构造简单sql语句"><span class="toc-text">1.1.构造简单sql语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-python连接数据库（SQL-server）"><span class="toc-text">1.2.python连接数据库（SQL server）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-字典型的数据库返回值"><span class="toc-text">1.3 字典型的数据库返回值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-python连接各类数据库教程"><span class="toc-text">2.python连接各类数据库教程</span></a></li></ol>
     </div>
   </section>
 

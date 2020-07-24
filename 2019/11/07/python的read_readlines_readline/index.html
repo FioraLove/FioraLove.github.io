@@ -431,7 +431,10 @@
 
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
-        <p>&nbsp;&nbsp;&nbsp;read():读取整个文件，将文件内容放到一个字符串变量中<br><br>&nbsp;&nbsp;&nbsp;readline():每次读取一整行，包括换行符，并将其作为字符串返回<br><br>&nbsp;&nbsp;&nbsp;readlines():读取所有行然后把它们作为一个字符串型列表返回（即把每一行数据包括换行符作为一个列表元素）<br></p>
+        <p>&nbsp;&nbsp;&nbsp;read():读取整个文件，将文件内容放到一个字符串变量中<br>&nbsp;&nbsp;&nbsp;readline():每次读取一整行，包括换行符，并将其作为字符串返回<br>&nbsp;&nbsp;&nbsp;readlines():读取所有行然后把它们作为一个字符串型列表返回（即把每一行数据包括换行符作为一个列表元素）<br></p>
+<blockquote>
+<p>2.python文件打开方式详解</p>
+</blockquote>
 <a id="more"></a>
 <h2 id="1-readline-示例："><a href="#1-readline-示例：" class="headerlink" title="1.readline()示例："></a>1.readline()示例：</h2><p>假设需求是读取一个多行的all_term.txt文件，并列出每一个单词<br>all_term.txt文件：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">new fallout chernobyl social impact chernobyl disast</span><br><span class="line">david r marpl st martin press cloth</span><br><span class="line">rnobyl social impact chernobyl disast</span><br><span class="line">david r marpl st martin piano</span><br></pre></td></tr></table></figure>
@@ -442,6 +445,66 @@
 <p>根据结果可以得出结论：</p>
 <p>1.第一个readline()读取第一行（也包括换行符），第二个读取第二行，……</p>
 <p>2.上面是我们经常看到的按行遍历一个文件方法，你可能已经注意到我在代码中写的if not myStr:部分。当readline读取到为空的时候，意味着读到了文件的结束。这个时候，问题就在这里，很多人会想，是不是遇到一个空行，也会被认为是文件的结束呢？<br>事实上，文件的空白行并不会返回一个空行。因为在每一行的末尾还有一个或者多个分隔符，因此“空白行”至少会有一个换行符或者系统使用的其他符号。所以，即使文件中真的包含一个“空白行”，读入的行也不是空的，这就意味着在真实遍历读取到文件结束之前，程序实际上是不会停止的</p>
+<h2 id="2-python文件打开方式详解-w-a-r"><a href="#2-python文件打开方式详解-w-a-r" class="headerlink" title="2.python文件打开方式详解~~w,a,r"></a>2.python文件打开方式详解~~w,a,r</h2><table>
+<thead>
+<tr>
+<th>打开方式</th>
+<th align="center">详解</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>b</td>
+<td align="center">二进制模式。</td>
+</tr>
+<tr>
+<td>+</td>
+<td align="center">打开一个文件进行更新(可读可写)。</td>
+</tr>
+<tr>
+<td>r</td>
+<td align="center">以只读方式打开文件。文件的指针将会放在文件的开头。这是默认模式。</td>
+</tr>
+<tr>
+<td>rb</td>
+<td align="center">以二进制格式打开一个文件用于只读。文件指针将会放在文件的开头。这是默认模式。一般用于非文本文件如图片等。</td>
+</tr>
+<tr>
+<td>r+</td>
+<td align="center">打开一个文件用于读写。文件指针将会放在文件的开头。</td>
+</tr>
+<tr>
+<td>rb+</td>
+<td align="center">以二进制格式打开一个文件用于读写。文件指针将会放在文件的开头。一般用于非文本文件如图片等。</td>
+</tr>
+<tr>
+<td>w</td>
+<td align="center">打开一个文件只用于写入。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。</td>
+</tr>
+<tr>
+<td>wb</td>
+<td align="center">以二进制格式打开一个文件只用于写入。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。一般用于非文本文件如图片等。</td>
+</tr>
+<tr>
+<td>w+</td>
+<td align="center">打开一个文件用于读写。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。</td>
+</tr>
+<tr>
+<td>wb+</td>
+<td align="center">以二进制格式打开一个文件用于读写。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。一般用于非文本文件如图片等。</td>
+</tr>
+<tr>
+<td>a</td>
+<td align="center">打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。也就是说，新的内容将会被写入到已有内容之后。如果该文件不存在，创建新文件进行写入。</td>
+</tr>
+<tr>
+<td>a+</td>
+<td align="center">打开一个文件用于读写。如果该文件已存在，文件指针将会放在文件的结尾。文件打开时会是追加模式。如果该文件不存在，创建新文件用于读写。</td>
+</tr>
+<tr>
+<td>ab+</td>
+<td align="center">以二进制格式打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。如果该文件不存在，创建新文件用于读写。</td>
+</tr>
+</tbody></table>
 
       </div>
       
@@ -453,10 +516,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-07-21T17:50:26+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-07-24T18:42:52+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年7月21日</p>
+    <p>更新于 2020年7月24日</p>
   </a>
 </div>
 
@@ -478,7 +541,10 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/11/07/python%E7%9A%84read_readlines_readline/&title=python文件读read()、readline()、readlines()对比 | AhriLove&summary=&nbsp;&nbsp;&nbsp;read():读取整个文件，将文件内容放到一个字符串变量中&nbsp;&nbsp;&nbsp;readline():每次读取一整行，包括换行符，并将其作为字符串返回&nbsp;&nbsp;&nbsp;readlines():读取所有行然后把它们作为一个字符串型列表返回（即把每一行数据包括换行符作为一个列表元素）"
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/11/07/python%E7%9A%84read_readlines_readline/&title=python文件读read()、readline()、readlines()对比 | AhriLove&summary=&nbsp;&nbsp;&nbsp;read():读取整个文件，将文件内容放到一个字符串变量中&nbsp;&nbsp;&nbsp;readline():每次读取一整行，包括换行符，并将其作为字符串返回&nbsp;&nbsp;&nbsp;readlines():读取所有行然后把它们作为一个字符串型列表返回（即把每一行数据包括换行符作为一个列表元素）
+
+2.python文件打开方式详解
+"
           
           >
           
@@ -490,7 +556,10 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/11/07/python%E7%9A%84read_readlines_readline/&title=python文件读read()、readline()、readlines()对比 | AhriLove&summary=&nbsp;&nbsp;&nbsp;read():读取整个文件，将文件内容放到一个字符串变量中&nbsp;&nbsp;&nbsp;readline():每次读取一整行，包括换行符，并将其作为字符串返回&nbsp;&nbsp;&nbsp;readlines():读取所有行然后把它们作为一个字符串型列表返回（即把每一行数据包括换行符作为一个列表元素）"
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/11/07/python%E7%9A%84read_readlines_readline/&title=python文件读read()、readline()、readlines()对比 | AhriLove&summary=&nbsp;&nbsp;&nbsp;read():读取整个文件，将文件内容放到一个字符串变量中&nbsp;&nbsp;&nbsp;readline():每次读取一整行，包括换行符，并将其作为字符串返回&nbsp;&nbsp;&nbsp;readlines():读取所有行然后把它们作为一个字符串型列表返回（即把每一行数据包括换行符作为一个列表元素）
+
+2.python文件打开方式详解
+"
           
           >
           
@@ -502,7 +571,10 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/11/07/python%E7%9A%84read_readlines_readline/&title=python文件读read()、readline()、readlines()对比 | AhriLove&summary=&nbsp;&nbsp;&nbsp;read():读取整个文件，将文件内容放到一个字符串变量中&nbsp;&nbsp;&nbsp;readline():每次读取一整行，包括换行符，并将其作为字符串返回&nbsp;&nbsp;&nbsp;readlines():读取所有行然后把它们作为一个字符串型列表返回（即把每一行数据包括换行符作为一个列表元素）"
+          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/11/07/python%E7%9A%84read_readlines_readline/&title=python文件读read()、readline()、readlines()对比 | AhriLove&summary=&nbsp;&nbsp;&nbsp;read():读取整个文件，将文件内容放到一个字符串变量中&nbsp;&nbsp;&nbsp;readline():每次读取一整行，包括换行符，并将其作为字符串返回&nbsp;&nbsp;&nbsp;readlines():读取所有行然后把它们作为一个字符串型列表返回（即把每一行数据包括换行符作为一个列表元素）
+
+2.python文件打开方式详解
+"
           
           >
           
@@ -683,7 +755,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-readline-示例："><span class="toc-text">1.readline()示例：</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-readline-示例："><span class="toc-text">1.readline()示例：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-python文件打开方式详解-w-a-r"><span class="toc-text">2.python文件打开方式详解~~w,a,r</span></a></li></ol>
     </div>
   </section>
 
