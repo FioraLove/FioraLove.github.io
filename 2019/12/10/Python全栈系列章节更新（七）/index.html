@@ -890,6 +890,22 @@
 <li>每次打开新的链接以后，需要再次执行这两行语句。</li>
 </ul>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个方法可以与本文开始提到的那篇文章中的方法结合起来使用。首先通过<code>Page.addScriptToEvaluateOnNewDocument</code>让当前标签页的window.navigator.webdriver属性消失，等页面完全加载完成以后，再通过driver.execute_script()运行本文讲到的两行 JavaScript 代码，强迫网页在当前标签页打开新的链接。</p>
+<h3 id="5-HTTP状态码的理解"><a href="#5-HTTP状态码的理解" class="headerlink" title="5.HTTP状态码的理解"></a>5.HTTP状态码的理解</h3><blockquote>
+<p>状态码304 Not Modified</p>
+</blockquote>
+<p>当我们爬取某些网站时<a href="http://www.pufei8.com/" target="_blank" rel="noopener">扑飞漫画</a>中会遇到对浏览器缓存下请求资源返回304的情况流量的计费的情况，这里就需要了解HTTP 304的响应状态的资源更新机制。</p>
+<p>这是因为该网站采取了强缓存验证， 服务器将要爬取的内容在本地做了缓存，再次请求的时候，会首先检查本地缓存中是否已存在，如果有就返回304</p>
+<p>首先看一个关于304请求的响应头的信息，这里面有两个比较重要的请求头字段：<code>If-Modified-Since</code> 和 <code>If-None-Match</code>，这两个字段表示发送的是一个条件请求。</p>
+<p><fancybox><img src="http://7xkn2v.dl1.z0.glb.clouddn.com/QQ20160215-0.png" alt=""></fancybox></p>
+<p>当客户端缓存了目标资源但不确定该缓存资源是否是最新版本的时候, 就会发送一个条件请求，这样就可以辨别出一个请求是否是条件请求，在进行条件请求时,客户端会提供给服务器一个If-Modified-Since请求头,其值为服务器上次返回的Last-Modified响应头中的Date日期值,还会提供一个If-None-Match请求头,值为服务器上次返回的ETag响应头的值。</p>
+<p>服务器会读取到这两个请求头中的值,判断出客户端缓存的资源是否是最新的,如果是的话,服务器就会返回HTTP/304 Not Modified响应头, 但没有响应体.客户端收到304响应后,就会从本地缓存中读取对应的资源.</p>
+<p><strong>解决方案：</strong></p>
+<ul>
+<li>方案一：请求头里的 <strong><em>If-Modified-Since、If-None-Match和Cache-control</em></strong>，都必须禁用</li>
+<li>方案二：请求头里User-Agent为动态的</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">"Host"</span>: <span class="string">"www.pufei8.com"</span>,</span><br><span class="line">    <span class="string">"Referer"</span>: <span class="string">"http://www.pufei8.com/"</span>,</span><br><span class="line">    <span class="string">'Accept'</span>: <span class="string">'text/html'</span>,</span><br><span class="line">    <span class="string">'Accept-Encoding'</span>: <span class="string">'gzip, deflate'</span>,</span><br><span class="line">    <span class="string">'Accept-Language'</span>: <span class="string">'zh-CN,zh;q=0.9'</span>,</span><br><span class="line">    <span class="string">'Connection'</span>: <span class="string">'keep-alive'</span>,</span><br><span class="line">    <span class="string">'Upgrade-Insecure-Requests'</span>: <span class="string">"1"</span>,</span><br><span class="line">    <span class="string">"User-Agent"</span>: <span class="string">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3945.88 Safari/537.36"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
 <li><a href="https://mp.weixin.qq.com/s/TqL3OawPe9zW_nneyXvefQ" target="_blank" rel="noopener">一日一技：如何正确移除Selenium中window.navigator.webdriver的值</a></li>
 <li><a href="https://mp.weixin.qq.com/s/U2aAC6K6RuQDRqfb8m35_w" target="_blank" rel="noopener">（最新版）如何正确移除Selenium中的 window.navigator.webdriver</a></li>
@@ -905,10 +921,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-09T08:59:32+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-07-27T17:00:59+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年6月9日</p>
+    <p>更新于 2020年7月27日</p>
   </a>
 </div>
 
@@ -1134,7 +1150,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-正则表达式"><span class="toc-text">1.正则表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-xpath"><span class="toc-text">2.xpath</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-pyquery"><span class="toc-text">3.pyquery</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Selenium库学习"><span class="toc-text">4.Selenium库学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-正则表达式"><span class="toc-text">1.正则表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-xpath"><span class="toc-text">2.xpath</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-pyquery"><span class="toc-text">3.pyquery</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Selenium库学习"><span class="toc-text">4.Selenium库学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-HTTP状态码的理解"><span class="toc-text">5.HTTP状态码的理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol></li></ol>
     </div>
   </section>
 
