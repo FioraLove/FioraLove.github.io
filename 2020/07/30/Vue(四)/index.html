@@ -421,7 +421,7 @@
         <p>本章主要探究vue-cli脚手架的动态路由匹配， 所谓动态路由匹配：就是将不确定的参数进行路由映射到同一个组件上去。</p>
 <p><font size=4 color=#FF0000>本文要点：</font></p>
 <blockquote>
-<p>1.参数匹配模式params，query<br>2.两种路由mode：history，hash<br>3.对照关系</p>
+<p>1.参数匹配模式params，query<br>2.两种路由mode：history，hash<br>3.对照关系<br>4.vue-cli补充点</p>
 </blockquote>
 <a id="more"></a>
 
@@ -452,16 +452,16 @@ PS: 这里的id，name先随意取值<br>单级path: ‘/list/:id’ :会被渲�
 </ol>
 <p>如果要使用动态路由，先需要在 路由index.js 文件里配置相关路由规则，然后再获取； </p>
 <ul>
-<li>注册动态路由,<strong>一定要注意路由写法,此刻没有后缀</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    path: &apos;/list,</span><br><span class="line">    name: &apos;List&apos;,</span><br><span class="line">    component: () =&gt; import(&apos;../views/List.vue&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-</li>
+<li>注册动态路由,<strong>一定要注意路由写法,此刻没有后缀</strong></li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    path: &apos;/list,</span><br><span class="line">    name: &apos;List&apos;,</span><br><span class="line">    component: () =&gt; import(&apos;../views/List.vue&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
 <ul>
-<li>传参动态路由：脚手架会把router-link便签解析成a标签<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;router-link :to=&quot;&#123;path : &apos;/list&apos;, query : &#123;id : 8, name:&apos;chd&apos;&#125;&#125;&quot;&gt;query动态路由&lt;/router-link&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
+<li>传参动态路由：脚手架会把router-link便签解析成a标签</li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;router-link :to=&quot;&#123;path : &apos;/list&apos;, query : &#123;id : 8, name:&apos;chd&apos;&#125;&#125;&quot;&gt;query动态路由&lt;/router-link&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
 <p>这里的query : {id : 8, name:’chd’}，query对象的键值对组成查询字符串</p>
 <ul>
 <li>$route.query.XXXX 获取query路由参数值</li>
@@ -480,7 +480,50 @@ PS: 这里的id，name先随意取值<br>单级path: ‘/list/:id’ :会被渲�
 <p><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/1596106091(1).jpg" alt=""></fancybox></p>
 <p><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/585123.jpg" alt=""></fancybox></p>
 <h3 id="3-对照关系"><a href="#3-对照关系" class="headerlink" title="3.对照关系"></a>3.对照关系</h3><p>path–query<br>name–params</p>
-<h3 id="未完待续。。。"><a href="#未完待续。。。" class="headerlink" title="未完待续。。。"></a>未完待续。。。</h3>
+<h3 id="4-vue-cli补充点"><a href="#4-vue-cli补充点" class="headerlink" title="4.vue-cli补充点"></a>4.vue-cli补充点</h3><blockquote>
+<p>1.关于VUE.JS 使用axios数据请求时数据绑定时 报错 TypeError: Cannot set property ‘xxxx’ of undefined 的解决办法</p>
+</blockquote>
+<p>data在里面做了定义</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">    data()&#123; </span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">            info:&#123;name:<span class="string">""</span>&#125;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在方法里面进行赋值<br><fancybox><img src="https://img2018.cnblogs.com/blog/1323968/201902/1323968-20190227100911044-1970351078.png" alt=""></fancybox></p>
+<p>用 this.info = repos.data 数据可以请求到，但是会报错 TypeError: Cannot set property ‘listgroup’ of undefined</p>
+<ul>
+<li><p>主要原因是：在 then的内部不能使用Vue的实例化的this, 因为在内部 this 没有被绑定在then的内部，console.log(this)，输出undefined</p>
+</li>
+<li><p>解决办法:</p>
+</li>
+</ul>
+<p>在请求axios外面定义一下 let that = this<br>内部用：that.info = repos.data</p>
+<blockquote>
+<p>2.Vue中使用v-for给img中的src属性赋值</p>
+</blockquote>
+<p>在学习Vue的时候，使用v-for获取Vue data中的数据</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--img标签中src属性使用&#123;&#123;&#125;&#125;获取，报错。--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"book in list"</span>&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"&#123;&#123;book.bookImg&#125;&#125;"</span>&gt;</span>  //并不会读取到</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>错误之处在于：<br><strong>属性值数据绑定应该用v-bind，应该写成v-bind:src=””或者:src=””</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"book in list"</span>&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">v-bind:src</span>=<span class="string">"book.bookImg"</span>&gt;</span>   //ok</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>3.vue-cli引入assets下图片路径找不到问题:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;img :src=&quot;imgsrc2&quot;&gt;</span><br><span class="line">export default&#123;</span><br><span class="line">     data()&#123;  </span><br><span class="line">        imgsrc2: require(&apos;../assets/logo4.png&apos;)</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>4.vue如何获取并操作DOM元素</p>
+</blockquote>
+<p>在之前，我们使用js操作DOM元素：直接给相应的元素加id,然后再document.getElementById(“id”);获取，然后设置相应属性或样式</p>
+<p><strong>但在vue中，要在mounted中使用，因为只有在执行mounted的时候，vue已经渲染了dom节点，这个时候是可以获取dom节点的，vue中尽量不去操作dom元素，选用ref操作属性获取</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;button ref=&quot;btn&quot;&gt;获取ref&lt;/button&gt;</span><br><span class="line"> </span><br><span class="line">this.$refs.btn.style.backgroundColor=&quot;#ff0000&quot;</span><br></pre></td></tr></table></figure>
+
+<p>此时再去调试时，又会出现大致意思是说不能设置属性背景颜色，因为它没有定义错误</p>
+<p><fancybox><img src="https://www.freesion.com/images/147/1ab4d1d88a6535d60c746e6fa5c45bdb.png" alt=""></fancybox></p>
+<p><strong>分析</strong>：根据this.$refs.list.style.bottom = bottom可以知道本意是想获取子组件的DOM根元素，然后对这个元素的css属性bottom设置一个值，但是由于this.$refs.list只是获取到组件，并不能获取到子组件里面的DOM，这就是出错的原因</p>
+<p><strong>解决方法</strong>：通过$el选项获取到子组件的DOM，也就是改写成：<strong>this.$refs.list.$el.style.bottom</strong> = bottom，即this.$refs.list.$el可以获取到子组件的DOM</p>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
+<li><a href="https://www.freesion.com/article/2166206835/" target="_blank" rel="noopener">vue如何获取并操作DOM元素</a></li>
+<li><a href="https://blog.csdn.net/qq_35775675/article/details/80850553" target="_blank" rel="noopener">vue中获取并操作dom元素</a></li>
+</ul>
+
       </div>
       
         <br>
@@ -491,10 +534,10 @@ PS: 这里的id，name先随意取值<br>单级path: ‘/list/:id’ :会被渲�
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-07-30T19:39:05+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-08-10T19:21:39+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年7月30日</p>
+    <p>更新于 2020年8月10日</p>
   </a>
 </div>
 
@@ -511,7 +554,7 @@ PS: 这里的id，name先随意取值<br>单级path: ‘/list/:id’ :会被渲�
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/07/30/Vue(%E5%9B%9B)/&title=vue-cli之router路由的花样年华 | AhriLove&summary=本章主要探究vue-cli脚手架的动态路由匹配， 所谓动态路由匹配：就是将不确定的参数进行路由映射到同一个组件上去。
 本文要点：
 
-1.参数匹配模式params，query2.两种路由mode：history，hash3.对照关系
+1.参数匹配模式params，query2.两种路由mode：history，hash3.对照关系4.vue-cli补充点
 "
           
           >
@@ -527,7 +570,7 @@ PS: 这里的id，name先随意取值<br>单级path: ‘/list/:id’ :会被渲�
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/07/30/Vue(%E5%9B%9B)/&title=vue-cli之router路由的花样年华 | AhriLove&summary=本章主要探究vue-cli脚手架的动态路由匹配， 所谓动态路由匹配：就是将不确定的参数进行路由映射到同一个组件上去。
 本文要点：
 
-1.参数匹配模式params，query2.两种路由mode：history，hash3.对照关系
+1.参数匹配模式params，query2.两种路由mode：history，hash3.对照关系4.vue-cli补充点
 "
           
           >
@@ -543,7 +586,7 @@ PS: 这里的id，name先随意取值<br>单级path: ‘/list/:id’ :会被渲�
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/07/30/Vue(%E5%9B%9B)/&title=vue-cli之router路由的花样年华 | AhriLove&summary=本章主要探究vue-cli脚手架的动态路由匹配， 所谓动态路由匹配：就是将不确定的参数进行路由映射到同一个组件上去。
 本文要点：
 
-1.参数匹配模式params，query2.两种路由mode：history，hash3.对照关系
+1.参数匹配模式params，query2.两种路由mode：history，hash3.对照关系4.vue-cli补充点
 "
           
           >
@@ -567,6 +610,25 @@ PS: 这里的id，name先随意取值<br>单级path: ‘/list/:id’ :会被渲�
       
       
           <div class="prev-next">
+              
+                  <section class="prev">
+                      <span class="art-item-left">
+                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                          <h4>
+                              <a href="/2020/08/01/Django%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%B8%89%EF%BC%89/" rel="prev" title="关于如何养成Django女皇的那件事（Ⅲ）">
+                                
+                                    关于如何养成Django女皇的那件事（Ⅲ）
+                                
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/Django/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Django</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
               
               
                   <section class="next">
@@ -706,7 +768,7 @@ PS: 这里的id，name先随意取值<br>单级path: ‘/list/:id’ :会被渲�
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-参数匹配模式params，query"><span class="toc-text">1.参数匹配模式params，query</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-两种路由mode：history，hash"><span class="toc-text">2.两种路由mode：history，hash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-对照关系"><span class="toc-text">3.对照关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#未完待续。。。"><span class="toc-text">未完待续。。。</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-参数匹配模式params，query"><span class="toc-text">1.参数匹配模式params，query</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-两种路由mode：history，hash"><span class="toc-text">2.两种路由mode：history，hash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-对照关系"><span class="toc-text">3.对照关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-vue-cli补充点"><span class="toc-text">4.vue-cli补充点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
     </div>
   </section>
 
@@ -931,7 +993,7 @@ PS: 这里的id，name先随意取值<br>单级path: ‘/list/:id’ :会被渲�
         
           <li><a class="flat-box" title="/categories/Database/" href="/categories/Database/"><div class='name'>Database</div><div class='badge'>(10)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Django/" href="/categories/Django/"><div class='name'>Django</div><div class='badge'>(2)</div></a></li>
+          <li><a class="flat-box" title="/categories/Django/" href="/categories/Django/"><div class='name'>Django</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Java/" href="/categories/Java/"><div class='name'>Java</div><div class='badge'>(13)</div></a></li>
         
@@ -1009,7 +1071,7 @@ PS: 这里的id，name先随意取值<br>单级path: ‘/list/:id’ :会被渲�
 </header>
 
     <div class='content material'>
-      <a href="/tags/post/" style="font-size: 14px; color: #999">$.post()</a> <a href="/tags/API/" style="font-size: 15.67px; color: #8e8e8e">API</a> <a href="/tags/Ajax/" style="font-size: 15.67px; color: #8e8e8e">Ajax</a> <a href="/tags/CSS/" style="font-size: 15.67px; color: #8e8e8e">CSS</a> <a href="/tags/DDL/" style="font-size: 14px; color: #999">DDL</a> <a href="/tags/DML/" style="font-size: 14px; color: #999">DML</a> <a href="/tags/Django/" style="font-size: 15.67px; color: #8e8e8e">Django</a> <a href="/tags/Eval/" style="font-size: 14px; color: #999">Eval</a> <a href="/tags/GNE/" style="font-size: 14px; color: #999">GNE</a> <a href="/tags/Github-Page/" style="font-size: 14px; color: #999">Github Page</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/Hyper-V/" style="font-size: 14px; color: #999">Hyper-V</a> <a href="/tags/InnoDB/" style="font-size: 14px; color: #999">InnoDB</a> <a href="/tags/Java/" style="font-size: 24px; color: #555">Java</a> <a href="/tags/Jquery/" style="font-size: 14px; color: #999">Jquery</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Maven/" style="font-size: 14px; color: #999">Maven</a> <a href="/tags/Memcached/" style="font-size: 14px; color: #999">Memcached</a> <a href="/tags/MyISAM/" style="font-size: 14px; color: #999">MyISAM</a> <a href="/tags/MySQL/" style="font-size: 22.33px; color: #606060">MySQL</a> <a href="/tags/Oracle/" style="font-size: 15.67px; color: #8e8e8e">Oracle</a> <a href="/tags/PHP/" style="font-size: 14px; color: #999">PHP</a> <a href="/tags/POST%E8%AF%B7%E6%B1%82/" style="font-size: 14px; color: #999">POST请求</a> <a href="/tags/RSA/" style="font-size: 14px; color: #999">RSA</a> <a href="/tags/Requests/" style="font-size: 19px; color: #777">Requests</a> <a href="/tags/VMware/" style="font-size: 14px; color: #999">VMware</a> <a href="/tags/Vue/" style="font-size: 17.33px; color: #828282">Vue</a> <a href="/tags/apache/" style="font-size: 14px; color: #999">apache</a> <a href="/tags/blog%E6%94%B9%E7%89%88/" style="font-size: 14px; color: #999">blog改版</a> <a href="/tags/clone/" style="font-size: 14px; color: #999">clone</a> <a href="/tags/component/" style="font-size: 14px; color: #999">component</a> <a href="/tags/container/" style="font-size: 14px; color: #999">container</a> <a href="/tags/css/" style="font-size: 20.67px; color: #6c6c6c">css</a> <a href="/tags/database/" style="font-size: 14px; color: #999">database</a> <a href="/tags/docker/" style="font-size: 17.33px; color: #828282">docker</a> <a href="/tags/echarts/" style="font-size: 14px; color: #999">echarts</a> <a href="/tags/fetchall/" style="font-size: 14px; color: #999">fetchall()</a> <a href="/tags/fetchone/" style="font-size: 14px; color: #999">fetchone()</a> <a href="/tags/float/" style="font-size: 14px; color: #999">float</a> <a href="/tags/front-matter/" style="font-size: 14px; color: #999">front-matter</a> <a href="/tags/git/" style="font-size: 14px; color: #999">git</a> <a href="/tags/git-pull-push/" style="font-size: 14px; color: #999">git pull/push</a> <a href="/tags/html/" style="font-size: 17.33px; color: #828282">html</a> <a href="/tags/images/" style="font-size: 14px; color: #999">images</a> <a href="/tags/jQuery/" style="font-size: 15.67px; color: #8e8e8e">jQuery</a> <a href="/tags/js/" style="font-size: 20.67px; color: #6c6c6c">js</a> <a href="/tags/json/" style="font-size: 15.67px; color: #8e8e8e">json</a> <a href="/tags/js%E7%B2%BE%E7%A1%AE%E5%BA%A6%E4%B8%A2%E5%A4%B1/" style="font-size: 14px; color: #999">js精确度丢失</a> <a href="/tags/js%E9%80%86%E5%90%91/" style="font-size: 14px; color: #999">js逆向</a> <a href="/tags/lambda/" style="font-size: 14px; color: #999">lambda</a> <a href="/tags/margin/" style="font-size: 14px; color: #999">margin</a> <a href="/tags/matplotlib/" style="font-size: 15.67px; color: #8e8e8e">matplotlib</a> <a href="/tags/mysql/" style="font-size: 15.67px; color: #8e8e8e">mysql</a> <a href="/tags/nginx/" style="font-size: 15.67px; color: #8e8e8e">nginx</a> <a href="/tags/numpy/" style="font-size: 15.67px; color: #8e8e8e">numpy</a> <a href="/tags/pandas/" style="font-size: 14px; color: #999">pandas</a> <a href="/tags/push/" style="font-size: 14px; color: #999">push</a> <a href="/tags/python/" style="font-size: 22.33px; color: #606060">python</a> <a href="/tags/python-Django-MySQL/" style="font-size: 14px; color: #999">python+Django+MySQL</a> <a href="/tags/re/" style="font-size: 17.33px; color: #828282">re</a> <a href="/tags/read/" style="font-size: 14px; color: #999">read</a> <a href="/tags/readline/" style="font-size: 14px; color: #999">readline</a> <a href="/tags/readlines/" style="font-size: 14px; color: #999">readlines</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/requirement-txt/" style="font-size: 14px; color: #999">requirement.txt</a> <a href="/tags/salt/" style="font-size: 14px; color: #999">salt</a> <a href="/tags/thinkPHP/" style="font-size: 15.67px; color: #8e8e8e">thinkPHP</a> <a href="/tags/token/" style="font-size: 14px; color: #999">token</a> <a href="/tags/union/" style="font-size: 14px; color: #999">union</a> <a href="/tags/vue-cli/" style="font-size: 14px; color: #999">vue-cli</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E4%B8%8E%E5%AE%88%E6%8A%A4%E5%BC%8F%E5%88%9B%E5%BB%BA/" style="font-size: 14px; color: #999">交互式与守护式创建</a> <a href="/tags/%E5%85%83%E7%BB%84/" style="font-size: 14px; color: #999">元组</a> <a href="/tags/%E5%88%97%E8%A1%A8/" style="font-size: 14px; color: #999">列表</a> <a href="/tags/%E5%89%8D%E5%90%8E%E5%88%86%E7%A6%BB/" style="font-size: 14px; color: #999">前后分离</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 14px; color: #999">多线程</a> <a href="/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8B/" style="font-size: 14px; color: #999">多进程</a> <a href="/tags/%E5%AD%97%E5%85%B8/" style="font-size: 14px; color: #999">字典</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 14px; color: #999">字符串</a> <a href="/tags/%E5%AE%9A%E4%BD%8D%E7%85%A7%E7%89%87%E6%8B%8D%E6%91%84%E4%BD%8D%E7%BD%AE/" style="font-size: 14px; color: #999">定位照片拍摄位置</a> <a href="/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" style="font-size: 14px; color: #999">定时任务</a> <a href="/tags/%E5%AF%B9%E8%B1%A1/" style="font-size: 14px; color: #999">对象</a> <a href="/tags/%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">属性与方法</a> <a href="/tags/%E5%B8%B8%E8%A7%81%E5%BA%93/" style="font-size: 14px; color: #999">常见库</a> <a href="/tags/%E6%95%B0%E5%80%BC/" style="font-size: 14px; color: #999">数值</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%86%E6%89%B9%E6%AC%A1%E5%A4%84%E7%90%86/" style="font-size: 14px; color: #999">数据库分批次处理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%80%9A%E7%94%A8%E8%BF%9E%E6%8E%A5%E5%87%BD%E6%95%B0/" style="font-size: 14px; color: #999">数据库通用连接函数</a> <a href="/tags/%E6%9E%81%E9%AA%8C%E6%BB%91%E5%8A%A8/" style="font-size: 14px; color: #999">极验滑动</a> <a href="/tags/%E8%A3%85%E9%A5%B0%E5%99%A8/" style="font-size: 14px; color: #999">装饰器</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%BA%93/" style="font-size: 14px; color: #999">解析库</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 14px; color: #999">负载均衡</a> <a href="/tags/%E9%80%86%E5%90%91%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">逆向爬虫</a> <a href="/tags/%E9%80%89%E6%8B%A9%E5%99%A8/" style="font-size: 14px; color: #999">选择器</a>
+      <a href="/tags/post/" style="font-size: 14px; color: #999">$.post()</a> <a href="/tags/API/" style="font-size: 15.67px; color: #8e8e8e">API</a> <a href="/tags/Ajax/" style="font-size: 15.67px; color: #8e8e8e">Ajax</a> <a href="/tags/CSS/" style="font-size: 15.67px; color: #8e8e8e">CSS</a> <a href="/tags/DDL/" style="font-size: 14px; color: #999">DDL</a> <a href="/tags/DML/" style="font-size: 14px; color: #999">DML</a> <a href="/tags/Django/" style="font-size: 17.33px; color: #828282">Django</a> <a href="/tags/Eval/" style="font-size: 14px; color: #999">Eval</a> <a href="/tags/GNE/" style="font-size: 14px; color: #999">GNE</a> <a href="/tags/Github-Page/" style="font-size: 14px; color: #999">Github Page</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/Hyper-V/" style="font-size: 14px; color: #999">Hyper-V</a> <a href="/tags/InnoDB/" style="font-size: 14px; color: #999">InnoDB</a> <a href="/tags/Java/" style="font-size: 24px; color: #555">Java</a> <a href="/tags/Jquery/" style="font-size: 14px; color: #999">Jquery</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Maven/" style="font-size: 14px; color: #999">Maven</a> <a href="/tags/Memcached/" style="font-size: 14px; color: #999">Memcached</a> <a href="/tags/MyISAM/" style="font-size: 14px; color: #999">MyISAM</a> <a href="/tags/MySQL/" style="font-size: 22.33px; color: #606060">MySQL</a> <a href="/tags/Oracle/" style="font-size: 15.67px; color: #8e8e8e">Oracle</a> <a href="/tags/PHP/" style="font-size: 14px; color: #999">PHP</a> <a href="/tags/POST%E8%AF%B7%E6%B1%82/" style="font-size: 14px; color: #999">POST请求</a> <a href="/tags/RSA/" style="font-size: 14px; color: #999">RSA</a> <a href="/tags/Requests/" style="font-size: 19px; color: #777">Requests</a> <a href="/tags/VMware/" style="font-size: 14px; color: #999">VMware</a> <a href="/tags/Vue/" style="font-size: 17.33px; color: #828282">Vue</a> <a href="/tags/apache/" style="font-size: 14px; color: #999">apache</a> <a href="/tags/blog%E6%94%B9%E7%89%88/" style="font-size: 14px; color: #999">blog改版</a> <a href="/tags/clone/" style="font-size: 14px; color: #999">clone</a> <a href="/tags/component/" style="font-size: 14px; color: #999">component</a> <a href="/tags/container/" style="font-size: 14px; color: #999">container</a> <a href="/tags/css/" style="font-size: 20.67px; color: #6c6c6c">css</a> <a href="/tags/database/" style="font-size: 14px; color: #999">database</a> <a href="/tags/docker/" style="font-size: 17.33px; color: #828282">docker</a> <a href="/tags/echarts/" style="font-size: 14px; color: #999">echarts</a> <a href="/tags/fetchall/" style="font-size: 14px; color: #999">fetchall()</a> <a href="/tags/fetchone/" style="font-size: 14px; color: #999">fetchone()</a> <a href="/tags/float/" style="font-size: 14px; color: #999">float</a> <a href="/tags/front-matter/" style="font-size: 14px; color: #999">front-matter</a> <a href="/tags/git/" style="font-size: 14px; color: #999">git</a> <a href="/tags/git-pull-push/" style="font-size: 14px; color: #999">git pull/push</a> <a href="/tags/html/" style="font-size: 17.33px; color: #828282">html</a> <a href="/tags/images/" style="font-size: 14px; color: #999">images</a> <a href="/tags/jQuery/" style="font-size: 15.67px; color: #8e8e8e">jQuery</a> <a href="/tags/js/" style="font-size: 20.67px; color: #6c6c6c">js</a> <a href="/tags/json/" style="font-size: 15.67px; color: #8e8e8e">json</a> <a href="/tags/js%E7%B2%BE%E7%A1%AE%E5%BA%A6%E4%B8%A2%E5%A4%B1/" style="font-size: 14px; color: #999">js精确度丢失</a> <a href="/tags/js%E9%80%86%E5%90%91/" style="font-size: 14px; color: #999">js逆向</a> <a href="/tags/lambda/" style="font-size: 14px; color: #999">lambda</a> <a href="/tags/margin/" style="font-size: 14px; color: #999">margin</a> <a href="/tags/matplotlib/" style="font-size: 15.67px; color: #8e8e8e">matplotlib</a> <a href="/tags/mysql/" style="font-size: 15.67px; color: #8e8e8e">mysql</a> <a href="/tags/nginx/" style="font-size: 15.67px; color: #8e8e8e">nginx</a> <a href="/tags/numpy/" style="font-size: 15.67px; color: #8e8e8e">numpy</a> <a href="/tags/pandas/" style="font-size: 14px; color: #999">pandas</a> <a href="/tags/push/" style="font-size: 14px; color: #999">push</a> <a href="/tags/python/" style="font-size: 22.33px; color: #606060">python</a> <a href="/tags/python-Django-MySQL/" style="font-size: 14px; color: #999">python+Django+MySQL</a> <a href="/tags/re/" style="font-size: 17.33px; color: #828282">re</a> <a href="/tags/read/" style="font-size: 14px; color: #999">read</a> <a href="/tags/readline/" style="font-size: 14px; color: #999">readline</a> <a href="/tags/readlines/" style="font-size: 14px; color: #999">readlines</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/requirement-txt/" style="font-size: 14px; color: #999">requirement.txt</a> <a href="/tags/salt/" style="font-size: 14px; color: #999">salt</a> <a href="/tags/thinkPHP/" style="font-size: 15.67px; color: #8e8e8e">thinkPHP</a> <a href="/tags/token/" style="font-size: 14px; color: #999">token</a> <a href="/tags/union/" style="font-size: 14px; color: #999">union</a> <a href="/tags/vue-cli/" style="font-size: 14px; color: #999">vue-cli</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E4%B8%8E%E5%AE%88%E6%8A%A4%E5%BC%8F%E5%88%9B%E5%BB%BA/" style="font-size: 14px; color: #999">交互式与守护式创建</a> <a href="/tags/%E5%85%83%E7%BB%84/" style="font-size: 14px; color: #999">元组</a> <a href="/tags/%E5%88%97%E8%A1%A8/" style="font-size: 14px; color: #999">列表</a> <a href="/tags/%E5%89%8D%E5%90%8E%E5%88%86%E7%A6%BB/" style="font-size: 14px; color: #999">前后分离</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 14px; color: #999">多线程</a> <a href="/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8B/" style="font-size: 14px; color: #999">多进程</a> <a href="/tags/%E5%AD%97%E5%85%B8/" style="font-size: 14px; color: #999">字典</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 14px; color: #999">字符串</a> <a href="/tags/%E5%AE%9A%E4%BD%8D%E7%85%A7%E7%89%87%E6%8B%8D%E6%91%84%E4%BD%8D%E7%BD%AE/" style="font-size: 14px; color: #999">定位照片拍摄位置</a> <a href="/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" style="font-size: 14px; color: #999">定时任务</a> <a href="/tags/%E5%AF%B9%E8%B1%A1/" style="font-size: 14px; color: #999">对象</a> <a href="/tags/%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">属性与方法</a> <a href="/tags/%E5%B8%B8%E8%A7%81%E5%BA%93/" style="font-size: 14px; color: #999">常见库</a> <a href="/tags/%E6%95%B0%E5%80%BC/" style="font-size: 14px; color: #999">数值</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%86%E6%89%B9%E6%AC%A1%E5%A4%84%E7%90%86/" style="font-size: 14px; color: #999">数据库分批次处理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%80%9A%E7%94%A8%E8%BF%9E%E6%8E%A5%E5%87%BD%E6%95%B0/" style="font-size: 14px; color: #999">数据库通用连接函数</a> <a href="/tags/%E6%9E%81%E9%AA%8C%E6%BB%91%E5%8A%A8/" style="font-size: 14px; color: #999">极验滑动</a> <a href="/tags/%E8%A3%85%E9%A5%B0%E5%99%A8/" style="font-size: 14px; color: #999">装饰器</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%BA%93/" style="font-size: 14px; color: #999">解析库</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 14px; color: #999">负载均衡</a> <a href="/tags/%E9%80%86%E5%90%91%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">逆向爬虫</a> <a href="/tags/%E9%80%89%E6%8B%A9%E5%99%A8/" style="font-size: 14px; color: #999">选择器</a>
     </div>
   </section>
 
