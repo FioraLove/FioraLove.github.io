@@ -421,7 +421,7 @@
         <p>本章主要探究vue-cli脚手架的动态路由匹配， 所谓动态路由匹配：就是将不确定的参数进行路由映射到同一个组件上去。</p>
 <p><font size=4 color=#FF0000>本文要点：</font></p>
 <blockquote>
-<p>1.推荐vue-cli博主:阿清そ<br>2.引入第三方js，css文件<br>3.项目开发前的准备☆☆☆<br>4.vue-cli监听窗口变化事件</p>
+<p>1.推荐vue-cli博主:阿清そ<br>2.引入第三方js，css文件<br>3.项目开发前的准备☆☆☆<br>4.vue-cli监听窗口变化事件<br>5.vue-cli项目打包</p>
 </blockquote>
 <a id="more"></a>
 
@@ -475,6 +475,15 @@
 <p><a href="https://aqingya.cn/articl/245923b2.html" target="_blank" rel="noopener">https://aqingya.cn/articl/245923b2.html</a></p>
 <h3 id="4-vue监听浏览器窗口大小变化"><a href="#4-vue监听浏览器窗口大小变化" class="headerlink" title="4.vue监听浏览器窗口大小变化"></a>4.vue监听浏览器窗口大小变化</h3><p>页面初始化mounted的时候，通过 document.body.clientWidth 和 document.body.clientHeight 来获取到浏览器的宽和高，然后通过 window.onresize 来监听浏览器窗口的变化，在这里来改变我们的变量宽和高即可。（created()的时候不行，因为此时document还没有生成） </p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"p-10"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span> &#123;&#123; screenWidth &#125;&#125; × &#123;&#123; screenHeight &#125;&#125; <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">    data() &#123;</span><br><span class="line"><span class="actionscript">      <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">        screenWidth: <span class="string">''</span>,</span></span><br><span class="line"><span class="actionscript">        screenHeight: <span class="string">''</span></span></span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    mounted() &#123;</span><br><span class="line"><span class="javascript">      <span class="keyword">this</span>.screenWidth = <span class="built_in">document</span>.body.clientWidth;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">this</span>.screenHeight = <span class="built_in">document</span>.body.clientHeight;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">window</span>.onresize = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> <span class="function">(<span class="params">(</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">          <span class="keyword">this</span>.screenWidth = <span class="built_in">document</span>.body.clientWidth;</span></span><br><span class="line"><span class="javascript">          <span class="keyword">this</span>.screenHeight = <span class="built_in">document</span>.body.clientHeight;</span></span><br><span class="line">        &#125;)();</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">"scss"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-vue-cli项目打包部署"><a href="#5-vue-cli项目打包部署" class="headerlink" title="5.vue-cli项目打包部署"></a>5.<a href="https://cli.vuejs.org/zh/guide/deployment.html" target="_blank" rel="noopener">vue-cli项目打包部署</a></h3><p>vue-cli3.X 使用的是vue.config.js文件中的配置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="comment">//publicPath: './',   // 编译打包时使用</span></span><br><span class="line">    publicPath: <span class="string">'/'</span>,       <span class="comment">// 这个是在测试路由为‘history’时，动态参数匹配params模式时才会使用</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 <strong>/</strong> ：</p>
+<ul>
+<li>一方面的使用history模式时，用于本地开发环境的开发</li>
+<li>另一方面打包时，若想再本地预览，可以使用,在本地预览生产环境构建最简单的方式就是使用一个 Node.js 静态文件服务器</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install -g serve</span><br><span class="line"># -s 参数的意思是将其架设在 Single-Page Application 模式下</span><br><span class="line"># 这个模式会处理即将提到的路由问题</span><br><span class="line">serve -s dist</span><br></pre></td></tr></table></figure>
       </div>
       
         <br>
@@ -485,10 +494,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-08-13T11:06:34+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-04T15:02:47+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年8月13日</p>
+    <p>更新于 2020年9月4日</p>
   </a>
 </div>
 
@@ -505,7 +514,7 @@
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/07/30/Vue(%E4%BA%94)/&title=vue-cli之引入项目开发前的准备 | AhriLove&summary=本章主要探究vue-cli脚手架的动态路由匹配， 所谓动态路由匹配：就是将不确定的参数进行路由映射到同一个组件上去。
 本文要点：
 
-1.推荐vue-cli博主:阿清そ2.引入第三方js，css文件3.项目开发前的准备☆☆☆4.vue-cli监听窗口变化事件
+1.推荐vue-cli博主:阿清そ2.引入第三方js，css文件3.项目开发前的准备☆☆☆4.vue-cli监听窗口变化事件5.vue-cli项目打包
 "
           
           >
@@ -521,7 +530,7 @@
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/07/30/Vue(%E4%BA%94)/&title=vue-cli之引入项目开发前的准备 | AhriLove&summary=本章主要探究vue-cli脚手架的动态路由匹配， 所谓动态路由匹配：就是将不确定的参数进行路由映射到同一个组件上去。
 本文要点：
 
-1.推荐vue-cli博主:阿清そ2.引入第三方js，css文件3.项目开发前的准备☆☆☆4.vue-cli监听窗口变化事件
+1.推荐vue-cli博主:阿清そ2.引入第三方js，css文件3.项目开发前的准备☆☆☆4.vue-cli监听窗口变化事件5.vue-cli项目打包
 "
           
           >
@@ -537,7 +546,7 @@
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/07/30/Vue(%E4%BA%94)/&title=vue-cli之引入项目开发前的准备 | AhriLove&summary=本章主要探究vue-cli脚手架的动态路由匹配， 所谓动态路由匹配：就是将不确定的参数进行路由映射到同一个组件上去。
 本文要点：
 
-1.推荐vue-cli博主:阿清そ2.引入第三方js，css文件3.项目开发前的准备☆☆☆4.vue-cli监听窗口变化事件
+1.推荐vue-cli博主:阿清そ2.引入第三方js，css文件3.项目开发前的准备☆☆☆4.vue-cli监听窗口变化事件5.vue-cli项目打包
 "
           
           >
@@ -719,7 +728,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-推荐vue-cli博主-阿清そ"><span class="toc-text">1.推荐vue-cli博主:阿清そ</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-引入第三方js，css文件"><span class="toc-text">2.引入第三方js，css文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-项目开发前的准备☆☆☆"><span class="toc-text">3.项目开发前的准备☆☆☆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-vue监听浏览器窗口大小变化"><span class="toc-text">4.vue监听浏览器窗口大小变化</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-推荐vue-cli博主-阿清そ"><span class="toc-text">1.推荐vue-cli博主:阿清そ</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-引入第三方js，css文件"><span class="toc-text">2.引入第三方js，css文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-项目开发前的准备☆☆☆"><span class="toc-text">3.项目开发前的准备☆☆☆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-vue监听浏览器窗口大小变化"><span class="toc-text">4.vue监听浏览器窗口大小变化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-vue-cli项目打包部署"><span class="toc-text">5.vue-cli项目打包部署</span></a></li></ol>
     </div>
   </section>
 

@@ -516,9 +516,21 @@ PS: 这里的id，name先随意取值<br>单级path: ‘/list/:id’ :会被渲�
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;button ref=&quot;btn&quot;&gt;获取ref&lt;/button&gt;</span><br><span class="line"> </span><br><span class="line">this.$refs.btn.style.backgroundColor=&quot;#ff0000&quot;</span><br></pre></td></tr></table></figure>
 
 <p>此时再去调试时，又会出现大致意思是说不能设置属性背景颜色，因为它没有定义错误</p>
+<ul>
+<li>$refs获取当前点击元素</li>
+</ul>
 <p><fancybox><img src="https://www.freesion.com/images/147/1ab4d1d88a6535d60c746e6fa5c45bdb.png" alt=""></fancybox></p>
 <p><strong>分析</strong>：根据this.$refs.list.style.bottom = bottom可以知道本意是想获取子组件的DOM根元素，然后对这个元素的css属性bottom设置一个值，但是由于this.$refs.list只是获取到组件，并不能获取到子组件里面的DOM，这就是出错的原因</p>
 <p><strong>解决方法</strong>：通过$el选项获取到子组件的DOM，也就是改写成：<strong>this.$refs.list.$el.style.bottom</strong> = bottom，即this.$refs.list.$el可以获取到子组件的DOM</p>
+<ul>
+<li>$event.target</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">1. 先设置函数&lt;button @click=&quot;getInfo($event)&quot;&gt;测试&lt;/button&gt;</span><br><span class="line"></span><br><span class="line">get_info:function(el)&#123;</span><br><span class="line">    this.loading = true;</span><br><span class="line">    // 获取当前点击元素的属性值</span><br><span class="line">    // let a = parseInt(el.target.dataset.item);</span><br><span class="line">    let a = parseInt(el.target.getAttribute(&quot;data-item&quot;));</span><br><span class="line"></span><br><span class="line">    let b = (this.chapter_arr[a][&quot;images_url&quot;]).split(&quot;&apos;&quot;);</span><br><span class="line">    if(b.length&lt;=1)&#123;</span><br><span class="line">        this.rows = JSON.parse(this.chapter_arr[a][&quot;images_url&quot;]);</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        let arr = [];</span><br><span class="line">        for (let index = 1; index &lt; b.length; index+=2)&#123;</span><br><span class="line">            // 由于数据库数据结构设置错误，导致无法使用json</span><br><span class="line">            arr.push(b[index]);</span><br><span class="line">        &#125;</span><br><span class="line">        this.rows = arr;</span><br><span class="line">    &#125;</span><br><span class="line">    this.loading = false;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>el.target.dataset</li>
+</ul>
+<p>这种el.target.dataset获取自定义的属性值，比如设置的data-url值，而且设置自定义的属性值的规范写法必须是 <strong>data-XXXX</strong>， 获取自定义的属性值的规范写法必须是 <strong>el.target.dataset.XXXX</strong></p>
 <blockquote>
 <p>5.vue-cli的axios解决跨域问题</p>
 </blockquote>
@@ -540,10 +552,10 @@ PS: 这里的id，name先随意取值<br>单级path: ‘/list/:id’ :会被渲�
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-08-14T09:49:58+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-07T09:10:44+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年8月14日</p>
+    <p>更新于 2020年9月7日</p>
   </a>
 </div>
 

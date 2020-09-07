@@ -433,7 +433,7 @@
       <div class="article-entry" itemprop="articleBody">
         <p><font size=5 color=#00ced1 size=5 face="黑体">关关雎鸠，在河之洲。窈窕淑女，君子好逑</font></p>
 <blockquote>
-<p><font size=4 color=#FF0000>本文要点：</font><br>1.数值方法<br>2.数组以及数组属性和方法<br>3.日期<br>4.js数据类型转换大全<br>5.js的休眠函数<br>6.js正则表达式（RegExp）<br>7.js进制转换<br><fancybox><img src="http://hd.wallpaperswide.com/thumbs/shhh_woman-t2.jpg" alt="一日不读书，我浑身难受"></fancybox></p>
+<p><font size=4 color=#FF0000>本文要点：</font><br>1.数值方法<br>2.数组以及数组属性和方法<br>3.日期<br>4.js数据类型转换大全<br>5.js的休眠函数<br>6.js正则表达式（RegExp）<br>7.js进制转换以及位运算符<br><fancybox><img src="http://hd.wallpaperswide.com/thumbs/shhh_woman-t2.jpg" alt="一日不读书，我浑身难受"></fancybox></p>
 </blockquote>
 <a id="more"></a>
 
@@ -556,7 +556,21 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params">n</span>) </span>&#123; <span class="comment">//n表示的毫秒数</span></span><br><span class="line">     <span class="keyword">var</span> start = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line">     <span class="keyword">while</span> (<span class="literal">true</span>) <span class="keyword">if</span> (<span class="keyword">new</span> <span class="built_in">Date</span>().getTime() - start &gt; n) <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="6-js的正则表达式"><a href="#6-js的正则表达式" class="headerlink" title="6.js的正则表达式"></a>6.js的正则表达式</h2><p>【转载】<a href="https://blog.csdn.net/Bombas/article/details/80790274" target="_blank" rel="noopener">js正则表达式（RegExp）</a></p>
-<h2 id="7-js进制转换"><a href="#7-js进制转换" class="headerlink" title="7.js进制转换"></a>7.js进制转换</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//十进制转其他  </span></span><br><span class="line"><span class="keyword">let</span> x=<span class="number">110</span>;  </span><br><span class="line">alert(x.toString()); <span class="comment">// 转换为字符串</span></span><br><span class="line">alert(x.toString(<span class="number">2</span>));</span><br><span class="line">alert(x.toString(<span class="number">8</span>));  </span><br><span class="line">alert(x.toString(<span class="number">32</span>));  </span><br><span class="line">alert(x.toString(<span class="number">16</span>));  </span><br><span class="line"><span class="comment">//其他转十进制  </span></span><br><span class="line">x=<span class="string">'110'</span>;  </span><br><span class="line">alert(<span class="built_in">parseInt</span>(x,<span class="number">2</span>));  </span><br><span class="line">alert(<span class="built_in">parseInt</span>(x,<span class="number">8</span>));  </span><br><span class="line">alert(<span class="built_in">parseInt</span>(x,<span class="number">16</span>));  </span><br><span class="line"><span class="comment">//其他转其他  </span></span><br><span class="line"><span class="comment">//先用parseInt转成十进制再用toString转到目标进制  </span></span><br><span class="line">alert(<span class="built_in">String</span>.fromCharCode(<span class="built_in">parseInt</span>(<span class="number">141</span>,<span class="number">8</span>)))  </span><br><span class="line">alert(<span class="built_in">parseInt</span>(<span class="string">'ff'</span>,<span class="number">16</span>).toString(<span class="number">2</span>));</span><br></pre></td></tr></table></figure>
+<h2 id="7-js进制转换以及位运算符"><a href="#7-js进制转换以及位运算符" class="headerlink" title="7.js进制转换以及位运算符"></a>7.js进制转换以及位运算符</h2><p>二进制前缀0b</p>
+<p>var a=0b11;//a=3</p>
+<p>八进制前缀0</p>
+<p>var a=011;//a=9</p>
+<p>十进制不用前缀</p>
+<p>十六进制前缀0x</p>
+<p>var a=0x11;//a=17</p>
+<p>数字转各进制字符串用num.toString(n),n为2-36的数字，表示2-36进制</p>
+<p>字符串转数字用parseInt(numstring,n),n为2-36的数字，表示用2-36进制方式解析字符串得到数字，有0x前缀时可不用指定n=16,</p>
+<p>Javascript 完全套用了 Java 的位运算符，包括按位与 &amp; 、按位或 | 、按位异或 ^ 、按位非 ~ 、左移 &lt;&lt; 、带符号的右移 &gt;&gt; 和用0补足的右移 &gt;&gt;&gt; 。</p>
+<p>按位非~的操作实际上是</p>
+<p>1.把运算数转换成 32 位二进制数<br>2.把二进制数转换成它的二进制反码</p>
+<p>而负数是反码+1。所以~运算结果就是改变符号再-1。</p>
+<p>即a=-2,<del>a即1。a=2,</del>a即-3</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//十进制转其他  </span></span><br><span class="line"><span class="keyword">let</span> x=<span class="number">110</span>;  </span><br><span class="line">alert(x.toString()); <span class="comment">// 转换为字符串</span></span><br><span class="line">alert(x.toString(<span class="number">2</span>));</span><br><span class="line">alert(x.toString(<span class="number">8</span>));  </span><br><span class="line">alert(x.toString(<span class="number">32</span>));  </span><br><span class="line">alert(x.toString(<span class="number">16</span>));  </span><br><span class="line"><span class="comment">//其他转十进制  </span></span><br><span class="line">x=<span class="string">'110'</span>;  </span><br><span class="line">alert(<span class="built_in">parseInt</span>(x,<span class="number">2</span>));  </span><br><span class="line">alert(<span class="built_in">parseInt</span>(x,<span class="number">8</span>));  </span><br><span class="line">alert(<span class="built_in">parseInt</span>(x,<span class="number">16</span>));  </span><br><span class="line"><span class="comment">//其他转其他  </span></span><br><span class="line"><span class="comment">//先用parseInt转成十进制再用toString转到目标进制  </span></span><br><span class="line">alert(<span class="built_in">String</span>.fromCharCode(<span class="built_in">parseInt</span>(<span class="number">141</span>,<span class="number">8</span>)));</span><br><span class="line">alert(<span class="built_in">parseInt</span>(<span class="string">'ff'</span>,<span class="number">16</span>).toString(<span class="number">2</span>));</span><br></pre></td></tr></table></figure>
 <h2 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h2>
       </div>
       
@@ -568,10 +582,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-08-10T18:45:51+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-01T10:32:52+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年8月10日</p>
+    <p>更新于 2020年9月1日</p>
   </a>
 </div>
 
@@ -595,7 +609,7 @@
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/11/22/Javascript%E7%AF%87%E7%AB%A0%E4%B8%89/&title=Javascript篇章三：js数字，数组与日期 | AhriLove&summary=关关雎鸠，在河之洲。窈窕淑女，君子好逑
 
-本文要点：1.数值方法2.数组以及数组属性和方法3.日期4.js数据类型转换大全5.js的休眠函数6.js正则表达式（RegExp）7.js进制转换
+本文要点：1.数值方法2.数组以及数组属性和方法3.日期4.js数据类型转换大全5.js的休眠函数6.js正则表达式（RegExp）7.js进制转换以及位运算符
 "
           
           >
@@ -610,7 +624,7 @@
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/11/22/Javascript%E7%AF%87%E7%AB%A0%E4%B8%89/&title=Javascript篇章三：js数字，数组与日期 | AhriLove&summary=关关雎鸠，在河之洲。窈窕淑女，君子好逑
 
-本文要点：1.数值方法2.数组以及数组属性和方法3.日期4.js数据类型转换大全5.js的休眠函数6.js正则表达式（RegExp）7.js进制转换
+本文要点：1.数值方法2.数组以及数组属性和方法3.日期4.js数据类型转换大全5.js的休眠函数6.js正则表达式（RegExp）7.js进制转换以及位运算符
 "
           
           >
@@ -625,7 +639,7 @@
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/11/22/Javascript%E7%AF%87%E7%AB%A0%E4%B8%89/&title=Javascript篇章三：js数字，数组与日期 | AhriLove&summary=关关雎鸠，在河之洲。窈窕淑女，君子好逑
 
-本文要点：1.数值方法2.数组以及数组属性和方法3.日期4.js数据类型转换大全5.js的休眠函数6.js正则表达式（RegExp）7.js进制转换
+本文要点：1.数值方法2.数组以及数组属性和方法3.日期4.js数据类型转换大全5.js的休眠函数6.js正则表达式（RegExp）7.js进制转换以及位运算符
 "
           
           >
@@ -802,7 +816,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-数值方法"><span class="toc-text">1.数值方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-数组"><span class="toc-text">2.数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数组属性和方法"><span class="toc-text">数组属性和方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-日期"><span class="toc-text">3.日期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-js数据类型转换大全"><span class="toc-text">4.js数据类型转换大全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-js的休眠函数"><span class="toc-text">5.js的休眠函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-js的正则表达式"><span class="toc-text">6.js的正则表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-js进制转换"><span class="toc-text">7.js进制转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#未完待续…"><span class="toc-text">未完待续…</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-数值方法"><span class="toc-text">1.数值方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-数组"><span class="toc-text">2.数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数组属性和方法"><span class="toc-text">数组属性和方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-日期"><span class="toc-text">3.日期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-js数据类型转换大全"><span class="toc-text">4.js数据类型转换大全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-js的休眠函数"><span class="toc-text">5.js的休眠函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-js的正则表达式"><span class="toc-text">6.js的正则表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-js进制转换以及位运算符"><span class="toc-text">7.js进制转换以及位运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#未完待续…"><span class="toc-text">未完待续…</span></a></li></ol>
     </div>
   </section>
 
