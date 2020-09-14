@@ -433,7 +433,7 @@
       <div class="article-entry" itemprop="articleBody">
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之前我们已经系统的了解过了requests库了，但是愈发觉得这个三方库真是太完美了，利用python可以http请求发送soap报文（xml数据格式）进行webservice接口调用。<br><strong>本章内容：</strong></p>
 <blockquote>
-<p>1.python的占位符%s,%d,%r,%f<br>2.进制转换<br>3.bytes与str之间的转换<br>4.<a href="https://www.runoob.com/python/python-operators.html" target="_blank" rel="noopener">python的运算符</a><br>5.python通过http请求发送soap报文进行webservice接口调用<br>6.python的编码与解码</p>
+<p>1.python的占位符%s,%d,%r,%f<br>2.进制转换<br>3.bytes与str之间的转换<br>4.<a href="https://www.runoob.com/python/python-operators.html" target="_blank" rel="noopener">python的运算符</a><br>5.python通过http请求发送soap报文进行webservice接口调用<br>6.python的编码与解码<br>7.python的各种加密：base64加密，md5…</p>
 </blockquote>
 <a id="more"></a>
 <h3 id="1-python的占位符"><a href="#1-python的占位符" class="headerlink" title="1.python的占位符"></a>1.python的占位符</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
@@ -448,6 +448,9 @@
 <li>hex(number) 将十进制转换为十六进制</li>
 <li>bytes(string) 将字符串字节化</li>
 </ul>
+<p>二，八，十六进制转换为十进制：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; int(&apos;0b1101&apos;,2)  </span><br><span class="line">13</span><br><span class="line">&gt;&gt;&gt; int(&apos;0o226&apos;,8)   #00226 0：阿拉伯数字零   o：小写英文字母 o  226：八进制数</span><br><span class="line">150</span><br><span class="line">&gt;&gt;&gt; int(&apos;0x96&apos;,16)</span><br><span class="line">150</span><br></pre></td></tr></table></figure>
+
 <h3 id="3-bytes与str之间的转换"><a href="#3-bytes与str之间的转换" class="headerlink" title="3.bytes与str之间的转换"></a>3.bytes与str之间的转换</h3><p>bytes 和 str 的区别:<br>bytes 存储字节( 通常值在 range(0, 256))<br>str 存储unicode字符( 通常值在0~65535)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># bytes object</span><br><span class="line">b = b&quot;example&quot;</span><br><span class="line"></span><br><span class="line"># str object</span><br><span class="line">s = &quot;example&quot;</span><br><span class="line"></span><br><span class="line">解码(decode)</span><br><span class="line">bytes ----------&gt; str: 存在两种方式</span><br><span class="line">1. str(b, encoding = &quot;utf-8&quot;)</span><br><span class="line">2. bytes.decode(b)</span><br><span class="line"></span><br><span class="line">编码(encode)</span><br><span class="line">str ----------&gt; bytes：存在两种方式</span><br><span class="line">1. bytes(s, encoding = &quot;utf8&quot;)</span><br><span class="line">2. str.encode(s)</span><br></pre></td></tr></table></figure>
 
@@ -531,6 +534,46 @@
 <p>encode和decode分别指编码和解码。在python中，Unicode类型是作为编码的基础类型，即：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">        decode                 encode</span><br><span class="line">bytes ---------&gt; str(Unicode) ---------&gt; bytes</span><br><span class="line"></span><br><span class="line">u = &apos;中文&apos; #指定字符串类型对象u</span><br><span class="line">str = u.encode(&apos;gb2312&apos;)    #以gb2312编码对u进行编码，获得bytes类型对象str</span><br><span class="line">u1 = str.decode(&apos;gb2312&apos;)   #以gb2312编码对字符串str进行解码，获得字符串类型对象u1</span><br><span class="line">u2 = str.decode(&apos;utf-8&apos;)    #如果以utf-8的编码对str进行解码得到的结果，将无法还原原来的字符串内容</span><br><span class="line"></span><br><span class="line">with open(&apos;text.text&apos;,&apos;r+&apos;,encoding=&apos;utf-8&apos;) as f: #必须事先知道文件的编码格式，这里文件编码是使用的utf-8</span><br><span class="line">    content = f.read()#如果open时使用的encoding和文件本身的encoding不一致的话，那么这里将将会产生错误</span><br><span class="line">    f.write(&apos;你想要写入的信息&apos;)</span><br></pre></td></tr></table></figure>
 
+<h3 id="7-python的各种加密"><a href="#7-python的各种加密" class="headerlink" title="7.python的各种加密"></a>7.python的各种加密</h3><h4 id="7-1-背景"><a href="#7-1-背景" class="headerlink" title="7.1 背景"></a>7.1 背景</h4><p>关于对称加密与非对称加密，参考文章：<a href="https://blog.csdn.net/yangxiaodong88/article/details/80801278" target="_blank" rel="noopener">https://blog.csdn.net/yangxiaodong88/article/details/80801278</a></p>
+<h4 id="7-2-base64加密"><a href="#7-2-base64加密" class="headerlink" title="7.2 base64加密"></a>7.2 base64加密</h4><ul>
+<li>python3 输入的都是 <code>二进制 / byte类型</code>，注意：用于base64编码的，要么是ASCII包含的字符，要么是二进制数据</li>
+<li>base64 是对称加密,即这种加密方式是可以被破解的</li>
+</ul>
+<p>base64 是 一种用64 个字符来表示任意的二进制数据的方法。base64 可以成为密码学的基石。可以将任意二进制数据进行Base64 编码。 所有的数据都能被编码为并只有64个字符就能表示的文本文件。（ 64字符：A<del>Z a</del>z 0<del>9 + / ）编码后的数据</del>=编码前数据的4/3，会大1/3左右。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line">s = <span class="string">'hello, world'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 加密</span></span><br><span class="line">bs = base64.b64encode(s.encode(<span class="string">"utf-8"</span>)) <span class="comment"># base64加密参数要求是字节型的</span></span><br><span class="line">print(bs.decode(<span class="string">"utf-8"</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解密</span></span><br><span class="line">decode = base64.b64decode(bs)   <span class="comment"># 解密后为byte类型</span></span><br><span class="line">print(decode)</span><br><span class="line">print(decode.decode(<span class="string">"utf-8"</span>))</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-3-md5加密"><a href="#7-3-md5加密" class="headerlink" title="7.3 md5加密"></a>7.3 md5加密</h4><p>在python3中使用hashlib模块进行md5操作(md5不可逆向破解)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line">strs = <span class="string">"我真帅"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个md5 对象</span></span><br><span class="line">h1 = hashlib.md5()</span><br><span class="line"><span class="comment"># 此处必须声明encode</span></span><br><span class="line"><span class="comment"># 若写法为hl.update(str)  报错为： Unicode-objects must be encoded before hashing</span></span><br><span class="line">h1.update(strs.encode(<span class="string">"utf-8"</span>))</span><br><span class="line">print(<span class="string">"加密前"</span>, strs)</span><br><span class="line">print(<span class="string">"加密后"</span>, h1.hexdigest())</span><br></pre></td></tr></table></figure>
+
+<p>拓展：<br>message-digest algorithm 5（信息-摘要算法）。经常说的“MD5加密”，就是它→信息-摘要算法。</p>
+<p>md5，其实就是一种算法。可以将一个字符串，或文件，或压缩包，执行md5后，就可以生成一个固定长度为128bit的串。这个串，基本上是唯一的。</p>
+<p>md5特点：</p>
+<ul>
+<li>压缩性：任意长度的数据，算出的MD5值长度都是固定的。</li>
+<li>容易计算：从原数据计算出MD5值很容易。</li>
+<li>抗修改性：对原数据进行任何改动，哪怕只修改1个字节，所得到的MD5值都有很大区别。</li>
+<li>强抗碰撞：已知原数据和其MD5值，想找到一个具有相同MD5值的数据（即伪造数据）是非常困难的</li>
+</ul>
+<p>md5的长度：md5的长度，默认为128bit，也就是128个0和1的二进制串。这样表达是很不友好的。所以将二进制转成了16进制，每4个bit表示一个16进制，所以128/4 = 32 换成16进制表示后，为32位了。</p>
+<p>为什么网上还有md5是16位的呢？其实16位的长度，是从32位md5值来的。是将32位md5去掉前八位，去掉后八位得到的</p>
+<h4 id="7-4-sha系列加密"><a href="#7-4-sha系列加密" class="headerlink" title="7.4 sha系列加密"></a>7.4 sha系列加密</h4><p>常见的sha系列加密有：sha1,sha224,sha256,sha512</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">str_encrypt</span><span class="params">(str)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    使用sha1加密算法，返回str加密后的字符串</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    sha = hashlib.sha1(str.encode(<span class="string">"utf-8"</span>))</span><br><span class="line">    encrypts = sha.hexdigest()</span><br><span class="line">    <span class="keyword">return</span> encrypts</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-5-RSA加密☆☆"><a href="#7-5-RSA加密☆☆" class="headerlink" title="7.5 RSA加密☆☆"></a>7.5 RSA加密☆☆</h4><p>典型的非对称加密，如RSA等，常见方法，使用openssl ,keytools等工具生成一对公私钥对，使用被公钥加密的数据可以使用私钥来解密，反之亦然（被私钥加密的数据也可以被公钥解密) 。</p>
+<p>在实际使用中私钥一般保存在发布者手中，是私有的不对外公开的，只将公钥对外公布，就能实现只有私钥的持有者才能将数据解密的方法。 这种加密方式安全系数很高，因为它不用将解密的密钥进行传递，从而没有密钥在传递过程中被截获的风险，而破解密文几乎又是不可能的。</p>
+<p>但是算法的效率低，所以常用于很重要数据的加密，常和对称配合使用，使用非对称加密的密钥去加密对称加密的密钥。</p>
+<p><strong>前端RSA加密，后端RSA解密</strong>： <strong>使用 PKCS1_v1_5，不要用 PKCS1_OAEP,使用 PKCS1_OAEP 的话，前端 jsencrypt.js 加密的数据解密不了</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">from</span> Crypto <span class="keyword">import</span> Random</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> PKCS1_v1_5 <span class="keyword">as</span> Cipher_pkcs1_v1_5</span><br><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br><span class="line"></span><br><span class="line">message = <span class="string">b"this is test"</span>   <span class="comment"># 必须为byte型</span></span><br><span class="line"></span><br><span class="line">rsa_private_key = <span class="string">b'-----BEGIN RSA PRIVATE KEY-----\n私钥内容\n-----END RSA PRIVATE KEY-----\n'</span></span><br><span class="line"></span><br><span class="line">rsa_public_key = <span class="string">b'-----BEGIN PUBLIC KEY-----\n公钥内容\n-----END PUBLIC KEY-----\n'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 加密</span></span><br><span class="line">rsakey = RSA.importKey(rsa_public_key)</span><br><span class="line">cipher = Cipher_pkcs1_v1_5.new(rsakey)</span><br><span class="line">cipher_text = base64.b64encode(cipher.encrypt(message))</span><br><span class="line">print(cipher_text)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解密</span></span><br><span class="line">rsakey = RSA.importKey(rsa_private_key)</span><br><span class="line">cipher = Cipher_pkcs1_v1_5.new(rsakey)</span><br><span class="line">random_generator = Random.new().read</span><br><span class="line">text = cipher.decrypt(base64.b64decode(cipher_text), <span class="literal">None</span>)</span><br><span class="line">print(text.decode(<span class="string">'utf-8'</span>))</span><br></pre></td></tr></table></figure>
+
+
+<p>简介<br>RSA加密算法是一种非对称加密算法。在公开密钥加密和电子商业中RSA被广泛使用。</p>
+<p>该算法基于一个十分简单的数论事实：将两个大素数相乘十分容易，但那时想要对其乘积进行因式分解却极其困难，因此可以将乘积公开作为加密密钥，即公钥，而两个大素数组合成私钥。公钥是可发布的供任何人使用，私钥则为自己所有，供解密之用</p>
+<p>由于找了很多文章，没用太满意关于RSA解密的，推荐使用pycryptodemo库：</p>
+<ul>
+<li><a href="https://blog.csdn.net/wqdege/article/details/80303186" target="_blank" rel="noopener">python3 使用Pycrypto进行RSA加解密</a></li>
+<li><a href="https://blog.csdn.net/smallfox233/article/details/108250174" target="_blank" rel="noopener">Python笔记-解决安装Crypto后No module named ‘Crypto‘问题</a></li>
+<li><a href="https://www.cnblogs.com/sea-stream/p/11486870.html" target="_blank" rel="noopener">python pycryptodome 加密解密</a></li>
+</ul>
 <h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
 <li><a href="https://blog.csdn.net/meteor_93/article/details/103380179" target="_blank" rel="noopener">Session 和 Cookies</a></li>
 <li><a href="https://www.cnblogs.com/Shanghai-vame/p/9832989.html" target="_blank" rel="noopener">数据格式XML、JSON详解</a></li>
@@ -548,10 +591,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-08-31T16:31:39+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-14T17:41:34+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年8月31日</p>
+    <p>更新于 2020年9月14日</p>
   </a>
 </div>
 
@@ -575,7 +618,7 @@
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/04/21/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89/&title=Python全栈系列章节更新（十八）：知识点补充（Ⅰ） | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之前我们已经系统的了解过了requests库了，但是愈发觉得这个三方库真是太完美了，利用python可以http请求发送soap报文（xml数据格式）进行webservice接口调用。本章内容：
 
-1.python的占位符%s,%d,%r,%f2.进制转换3.bytes与str之间的转换4.python的运算符5.python通过http请求发送soap报文进行webservice接口调用6.python的编码与解码
+1.python的占位符%s,%d,%r,%f2.进制转换3.bytes与str之间的转换4.python的运算符5.python通过http请求发送soap报文进行webservice接口调用6.python的编码与解码7.python的各种加密：base64加密，md5…
 "
           
           >
@@ -590,7 +633,7 @@
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/04/21/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89/&title=Python全栈系列章节更新（十八）：知识点补充（Ⅰ） | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之前我们已经系统的了解过了requests库了，但是愈发觉得这个三方库真是太完美了，利用python可以http请求发送soap报文（xml数据格式）进行webservice接口调用。本章内容：
 
-1.python的占位符%s,%d,%r,%f2.进制转换3.bytes与str之间的转换4.python的运算符5.python通过http请求发送soap报文进行webservice接口调用6.python的编码与解码
+1.python的占位符%s,%d,%r,%f2.进制转换3.bytes与str之间的转换4.python的运算符5.python通过http请求发送soap报文进行webservice接口调用6.python的编码与解码7.python的各种加密：base64加密，md5…
 "
           
           >
@@ -605,7 +648,7 @@
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/04/21/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89/&title=Python全栈系列章节更新（十八）：知识点补充（Ⅰ） | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之前我们已经系统的了解过了requests库了，但是愈发觉得这个三方库真是太完美了，利用python可以http请求发送soap报文（xml数据格式）进行webservice接口调用。本章内容：
 
-1.python的占位符%s,%d,%r,%f2.进制转换3.bytes与str之间的转换4.python的运算符5.python通过http请求发送soap报文进行webservice接口调用6.python的编码与解码
+1.python的占位符%s,%d,%r,%f2.进制转换3.bytes与str之间的转换4.python的运算符5.python通过http请求发送soap报文进行webservice接口调用6.python的编码与解码7.python的各种加密：base64加密，md5…
 "
           
           >
@@ -787,7 +830,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-python的占位符"><span class="toc-text">1.python的占位符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-进制转换"><span class="toc-text">2.进制转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-bytes与str之间的转换"><span class="toc-text">3.bytes与str之间的转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-python的运算符"><span class="toc-text">4.python的运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-python通过http请求发送soap报文进行webservice接口调用"><span class="toc-text">5.python通过http请求发送soap报文进行webservice接口调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-python的编码与解码"><span class="toc-text">6.python的编码与解码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-python的占位符"><span class="toc-text">1.python的占位符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-进制转换"><span class="toc-text">2.进制转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-bytes与str之间的转换"><span class="toc-text">3.bytes与str之间的转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-python的运算符"><span class="toc-text">4.python的运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-python通过http请求发送soap报文进行webservice接口调用"><span class="toc-text">5.python通过http请求发送soap报文进行webservice接口调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-python的编码与解码"><span class="toc-text">6.python的编码与解码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-python的各种加密"><span class="toc-text">7.python的各种加密</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-背景"><span class="toc-text">7.1 背景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2-base64加密"><span class="toc-text">7.2 base64加密</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-3-md5加密"><span class="toc-text">7.3 md5加密</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-4-sha系列加密"><span class="toc-text">7.4 sha系列加密</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-5-RSA加密☆☆"><span class="toc-text">7.5 RSA加密☆☆</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
     </div>
   </section>
 
