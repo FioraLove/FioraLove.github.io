@@ -433,7 +433,7 @@
       <div class="article-entry" itemprop="articleBody">
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之前我们已经系统的了解过了requests库了，但是愈发觉得这个三方库真是太完美了，利用python可以http请求发送soap报文（xml数据格式）进行webservice接口调用。<br><strong>本章内容：</strong></p>
 <blockquote>
-<p>1.python的占位符%s,%d,%r,%f<br>2.进制转换<br>3.bytes与str之间的转换<br>4.<a href="https://www.runoob.com/python/python-operators.html" target="_blank" rel="noopener">python的运算符</a><br>5.python通过http请求发送soap报文进行webservice接口调用<br>6.python的编码与解码<br>7.python的各种加密：base64加密，md5…</p>
+<p>1.python的占位符%s,%d,%r,%f<br>2.进制转换<br>3.bytes与str之间的转换<br>4.<a href="https://www.runoob.com/python/python-operators.html" target="_blank" rel="noopener">python的运算符</a><br>5.python通过http请求发送soap报文进行webservice接口调用<br>6.python的编码与解码<br>7.python的各种加密：base64加密，md5…<br>8.python压缩打包文件为zip</p>
 </blockquote>
 <a id="more"></a>
 <h3 id="1-python的占位符"><a href="#1-python的占位符" class="headerlink" title="1.python的占位符"></a>1.python的占位符</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
@@ -534,6 +534,13 @@
 <p>encode和decode分别指编码和解码。在python中，Unicode类型是作为编码的基础类型，即：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">        decode                 encode</span><br><span class="line">bytes ---------&gt; str(Unicode) ---------&gt; bytes</span><br><span class="line"></span><br><span class="line">u = &apos;中文&apos; #指定字符串类型对象u</span><br><span class="line">str = u.encode(&apos;gb2312&apos;)    #以gb2312编码对u进行编码，获得bytes类型对象str</span><br><span class="line">u1 = str.decode(&apos;gb2312&apos;)   #以gb2312编码对字符串str进行解码，获得字符串类型对象u1</span><br><span class="line">u2 = str.decode(&apos;utf-8&apos;)    #如果以utf-8的编码对str进行解码得到的结果，将无法还原原来的字符串内容</span><br><span class="line"></span><br><span class="line">with open(&apos;text.text&apos;,&apos;r+&apos;,encoding=&apos;utf-8&apos;) as f: #必须事先知道文件的编码格式，这里文件编码是使用的utf-8</span><br><span class="line">    content = f.read()#如果open时使用的encoding和文件本身的encoding不一致的话，那么这里将将会产生错误</span><br><span class="line">    f.write(&apos;你想要写入的信息&apos;)</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li>python3怎么把\u002F这种Unicode类型的字符进行对应的替换</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">slashUStr = <span class="string">"https:\u002F\u002Fm.dhgate.com\u002Fproduct\u002F427954156.html"</span></span><br><span class="line">decodedUniChars = slashUStr.encode(<span class="string">'utf-8'</span>).decode(<span class="string">"unicode_escape"</span>)</span><br><span class="line">print(<span class="string">"decodedUniChars="</span>, decodedUniChars)</span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="7-python的各种加密"><a href="#7-python的各种加密" class="headerlink" title="7.python的各种加密"></a>7.python的各种加密</h3><h4 id="7-1-背景"><a href="#7-1-背景" class="headerlink" title="7.1 背景"></a>7.1 背景</h4><p>关于对称加密与非对称加密，参考文章：<a href="https://blog.csdn.net/yangxiaodong88/article/details/80801278" target="_blank" rel="noopener">https://blog.csdn.net/yangxiaodong88/article/details/80801278</a></p>
 <h4 id="7-2-base64加密"><a href="#7-2-base64加密" class="headerlink" title="7.2 base64加密"></a>7.2 base64加密</h4><ul>
 <li>python3 输入的都是 <code>二进制 / byte类型</code>，注意：用于base64编码的，要么是ASCII包含的字符，要么是二进制数据</li>
@@ -574,6 +581,8 @@
 <li><a href="https://blog.csdn.net/smallfox233/article/details/108250174" target="_blank" rel="noopener">Python笔记-解决安装Crypto后No module named ‘Crypto‘问题</a></li>
 <li><a href="https://www.cnblogs.com/sea-stream/p/11486870.html" target="_blank" rel="noopener">python pycryptodome 加密解密</a></li>
 </ul>
+<h3 id="8-python压缩打包文件为zip"><a href="#8-python压缩打包文件为zip" class="headerlink" title="8.python压缩打包文件为zip"></a>8.python压缩打包文件为zip</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># 使用zipfile做目录压缩，解压缩功能</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> os.path</span><br><span class="line"><span class="keyword">import</span> zipfile</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Zip</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, dirname, zipfilename)</span>:</span></span><br><span class="line">        self.dirname = dirname</span><br><span class="line">        self.zipfilename = zipfilename</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 压缩功能</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">zip_dir</span><span class="params">(self)</span>:</span></span><br><span class="line">        filelist = []</span><br><span class="line">        <span class="keyword">if</span> os.path.isfile(self.dirname):</span><br><span class="line">            filelist.append(self.dirname)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">for</span> root, dirs, files <span class="keyword">in</span> os.walk(self.dirname):</span><br><span class="line">                <span class="keyword">for</span> name <span class="keyword">in</span> files:</span><br><span class="line">                    filelist.append(os.path.join(root, name))</span><br><span class="line"></span><br><span class="line">        zf = zipfile.ZipFile(self.zipfilename, <span class="string">"w"</span>, zipfile.zlib.DEFLATED)</span><br><span class="line">        <span class="keyword">for</span> tar <span class="keyword">in</span> filelist:</span><br><span class="line">            arc_name = tar[len(self.dirname):]</span><br><span class="line">            zf.write(tar, arc_name)</span><br><span class="line">        zf.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    zip = Zip(dirname=<span class="string">r'D:\data\demo\weavercapture\static\images\workflow'</span>, zipfilename=<span class="string">"./workflow.zip"</span>)</span><br><span class="line">    zip.zip_dir()</span><br></pre></td></tr></table></figure>
+
 <h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
 <li><a href="https://blog.csdn.net/meteor_93/article/details/103380179" target="_blank" rel="noopener">Session 和 Cookies</a></li>
 <li><a href="https://www.cnblogs.com/Shanghai-vame/p/9832989.html" target="_blank" rel="noopener">数据格式XML、JSON详解</a></li>
@@ -591,10 +600,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-14T17:41:34+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-22T16:04:47+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年9月14日</p>
+    <p>更新于 2020年9月22日</p>
   </a>
 </div>
 
@@ -618,7 +627,7 @@
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/04/21/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89/&title=Python全栈系列章节更新（十八）：知识点补充（Ⅰ） | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之前我们已经系统的了解过了requests库了，但是愈发觉得这个三方库真是太完美了，利用python可以http请求发送soap报文（xml数据格式）进行webservice接口调用。本章内容：
 
-1.python的占位符%s,%d,%r,%f2.进制转换3.bytes与str之间的转换4.python的运算符5.python通过http请求发送soap报文进行webservice接口调用6.python的编码与解码7.python的各种加密：base64加密，md5…
+1.python的占位符%s,%d,%r,%f2.进制转换3.bytes与str之间的转换4.python的运算符5.python通过http请求发送soap报文进行webservice接口调用6.python的编码与解码7.python的各种加密：base64加密，md5…8.python压缩打包文件为zip
 "
           
           >
@@ -633,7 +642,7 @@
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/04/21/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89/&title=Python全栈系列章节更新（十八）：知识点补充（Ⅰ） | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之前我们已经系统的了解过了requests库了，但是愈发觉得这个三方库真是太完美了，利用python可以http请求发送soap报文（xml数据格式）进行webservice接口调用。本章内容：
 
-1.python的占位符%s,%d,%r,%f2.进制转换3.bytes与str之间的转换4.python的运算符5.python通过http请求发送soap报文进行webservice接口调用6.python的编码与解码7.python的各种加密：base64加密，md5…
+1.python的占位符%s,%d,%r,%f2.进制转换3.bytes与str之间的转换4.python的运算符5.python通过http请求发送soap报文进行webservice接口调用6.python的编码与解码7.python的各种加密：base64加密，md5…8.python压缩打包文件为zip
 "
           
           >
@@ -648,7 +657,7 @@
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/04/21/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89/&title=Python全栈系列章节更新（十八）：知识点补充（Ⅰ） | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之前我们已经系统的了解过了requests库了，但是愈发觉得这个三方库真是太完美了，利用python可以http请求发送soap报文（xml数据格式）进行webservice接口调用。本章内容：
 
-1.python的占位符%s,%d,%r,%f2.进制转换3.bytes与str之间的转换4.python的运算符5.python通过http请求发送soap报文进行webservice接口调用6.python的编码与解码7.python的各种加密：base64加密，md5…
+1.python的占位符%s,%d,%r,%f2.进制转换3.bytes与str之间的转换4.python的运算符5.python通过http请求发送soap报文进行webservice接口调用6.python的编码与解码7.python的各种加密：base64加密，md5…8.python压缩打包文件为zip
 "
           
           >
@@ -830,7 +839,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-python的占位符"><span class="toc-text">1.python的占位符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-进制转换"><span class="toc-text">2.进制转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-bytes与str之间的转换"><span class="toc-text">3.bytes与str之间的转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-python的运算符"><span class="toc-text">4.python的运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-python通过http请求发送soap报文进行webservice接口调用"><span class="toc-text">5.python通过http请求发送soap报文进行webservice接口调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-python的编码与解码"><span class="toc-text">6.python的编码与解码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-python的各种加密"><span class="toc-text">7.python的各种加密</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-背景"><span class="toc-text">7.1 背景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2-base64加密"><span class="toc-text">7.2 base64加密</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-3-md5加密"><span class="toc-text">7.3 md5加密</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-4-sha系列加密"><span class="toc-text">7.4 sha系列加密</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-5-RSA加密☆☆"><span class="toc-text">7.5 RSA加密☆☆</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-python的占位符"><span class="toc-text">1.python的占位符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-进制转换"><span class="toc-text">2.进制转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-bytes与str之间的转换"><span class="toc-text">3.bytes与str之间的转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-python的运算符"><span class="toc-text">4.python的运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-python通过http请求发送soap报文进行webservice接口调用"><span class="toc-text">5.python通过http请求发送soap报文进行webservice接口调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-python的编码与解码"><span class="toc-text">6.python的编码与解码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-python的各种加密"><span class="toc-text">7.python的各种加密</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-背景"><span class="toc-text">7.1 背景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2-base64加密"><span class="toc-text">7.2 base64加密</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-3-md5加密"><span class="toc-text">7.3 md5加密</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-4-sha系列加密"><span class="toc-text">7.4 sha系列加密</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-5-RSA加密☆☆"><span class="toc-text">7.5 RSA加密☆☆</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-python压缩打包文件为zip"><span class="toc-text">8.python压缩打包文件为zip</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
     </div>
   </section>
 

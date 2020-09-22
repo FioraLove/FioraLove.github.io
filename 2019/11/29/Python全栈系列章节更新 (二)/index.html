@@ -347,7 +347,7 @@
         
   
     <h1 class="title">
-      <a href="/2019/11/29/python(%E4%BA%8C)%E5%B8%B8%E8%A7%81%E5%BA%93%E5%87%BD%E6%95%B0/">
+      <a href="/2019/11/29/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%20(%E4%BA%8C)/">
         Python全栈系列章节更新（二）：常见库模块
       </a>
     </h1>
@@ -440,7 +440,7 @@
 <p>将时间戳转换成时间，首先需要将时间戳转换成localtime，再转换成时间的具体格式：</p>
 </blockquote>
 <p>利用localtime()函数将时间戳转化成localtime的格式<br>利用strftime()函数重新格式化时间</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment"># 将时间戳转化为目标时间格式</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">timestamp_datatime</span><span class="params">(value)</span>:</span></span><br><span class="line">    format = <span class="string">'%Y-%m-%d %H:%M'</span></span><br><span class="line">    <span class="comment"># format = '%Y-%m-%d %H:%M:%S'</span></span><br><span class="line">    <span class="comment"># value 为时间戳值,如:1460073600.0</span></span><br><span class="line">    value = time.localtime(value)</span><br><span class="line">    dt = time.strftime(format, value)</span><br><span class="line">    <span class="keyword">return</span> dt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将目标时间格式转化为时间戳</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">datetime_timestamp</span><span class="params">(dt)</span>:</span></span><br><span class="line">    newTime = time.strptime(dt, <span class="string">'%Y-%m-%d %H:%M'</span>)</span><br><span class="line">    s = time.mktime(newTime)</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    s = timestamp_datatime(<span class="number">1460073600.0</span>)</span><br><span class="line">    print(s)  <span class="comment"># 2016-04-08 08:00</span></span><br><span class="line">    d = datetime_timestamp(<span class="string">'2019-06-05 08:00'</span>)</span><br><span class="line">    print(d)  <span class="comment"># 1559692800.0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment"># 将时间戳转化为目标时间格式</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">timestamp_datatime</span><span class="params">(value)</span>:</span></span><br><span class="line">    format = <span class="string">'%Y-%m-%d %H:%M'</span></span><br><span class="line">    <span class="comment"># format = '%Y-%m-%d %H:%M:%S'</span></span><br><span class="line">    <span class="comment"># value 为时间戳值,如:1460073600.0</span></span><br><span class="line">    value = time.localtime(value)</span><br><span class="line">    dt = time.strftime(format, value)</span><br><span class="line">    <span class="keyword">return</span> dt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将目标时间格式转化为时间戳</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">datetime_timestamp</span><span class="params">(dt)</span>:</span></span><br><span class="line">    newTime = time.strptime(dt, <span class="string">'%Y-%m-%d %H:%M'</span>)</span><br><span class="line">    s = time.mktime(newTime)</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    s = timestamp_datatime(<span class="number">1460073600.0</span>)</span><br><span class="line">    print(s)  <span class="comment"># 2016-04-08 08:00</span></span><br><span class="line">    d = datetime_timestamp(<span class="string">'2019-06-05 08:00'</span>)</span><br><span class="line">    print(d)  <span class="comment"># 1559692800.0</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="按指定的格式获取当前时间"><a href="#按指定的格式获取当前时间" class="headerlink" title="按指定的格式获取当前时间"></a>按指定的格式获取当前时间</h3><p>利用time()获取当前时间，再利用localtime()函数转换为localtime，最后利用strftime()函数重新格式化时间。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding:UTF-8</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment">#获取当前时间</span></span><br><span class="line">time_now = int(time.time())</span><br><span class="line"><span class="comment">#转换成localtime</span></span><br><span class="line">time_local = time.localtime(time_now)</span><br><span class="line"><span class="comment">#转换成新的时间格式(2016-05-09 18:59:20),时间连接符号可改变</span></span><br><span class="line">dt = time.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>,time_local)</span><br><span class="line"></span><br><span class="line">print(dt)</span><br></pre></td></tr></table></figure>
@@ -575,8 +575,8 @@
 <td align="center">列出指定目录下的所有文件和子目录，包括隐藏文件，并以列表方式打印</td>
 </tr>
 <tr>
-<td>os.remove()</td>
-<td align="center">删除一个文件</td>
+<td>os.remove(path)</td>
+<td align="center">删除path指定的文件</td>
 </tr>
 <tr>
 <td>os.rename(“oldname”,”newname”)</td>
@@ -640,6 +640,15 @@
 <p>python路径拼接os.path.join()函数的用法</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">os.path.join()函数：连接两个或更多的路径名组件</span><br><span class="line"></span><br><span class="line"> 1.如果各组件名首字母不包含’/’，则函数会自动加上</span><br><span class="line"></span><br><span class="line"> 2.如果有一个组件是一个绝对路径，则在它之前的所有组件均会被舍弃</span><br><span class="line"></span><br><span class="line"> 3.如果最后一个组件为空，则生成的路径以一个’/’分隔符结尾</span><br><span class="line"></span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line">Path1 = &apos;home&apos;</span><br><span class="line">Path2 = &apos;develop&apos;</span><br><span class="line">Path3 = &apos;code&apos;</span><br><span class="line"></span><br><span class="line">Path10 = Path1 + Path2 + Path3</span><br><span class="line">Path20 = os.path.join(Path1,Path2,Path3)</span><br><span class="line">print (&apos;Path10 = &apos;,Path10)</span><br><span class="line">print (&apos;Path20 = &apos;,Path20)</span><br><span class="line"></span><br><span class="line">输出</span><br><span class="line"></span><br><span class="line">Path10 = homedevelopcode</span><br><span class="line">Path20 = home\develop\code</span><br></pre></td></tr></table></figure>
 
+<p>python遍历指定目录下的所有文件和目录</p>
+<ul>
+<li><p><a href="https://blog.csdn.net/sinat_29957455/article/details/82778306" target="_blank" rel="noopener">python遍历目录下的所有文件和目录详细介绍</a></p>
+</li>
+<li><p><a href="https://www.jianshu.com/p/32e3364b22ee" target="_blank" rel="noopener">glob模块</a> :用通配符来获取文件或目录</p>
+</li>
+</ul>
+<p>举例说明：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">for fname in glob.glob(&quot;**/*.py&quot;,recursive=True):</span><br><span class="line">    print(fname)</span><br><span class="line"></span><br><span class="line">for fname in glob.glob(&quot;./file?.py&quot;):</span><br><span class="line">    print(fname)</span><br><span class="line"></span><br><span class="line"># 删除指定目录下的文件</span><br><span class="line">for pic in glob.glob(&quot;static/images/workflow/*.png&quot;):</span><br><span class="line">    os.remove(pic)</span><br></pre></td></tr></table></figure>
 
 
 
@@ -733,10 +742,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-07-21T17:53:04+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-22T14:35:08+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年7月21日</p>
+    <p>更新于 2020年9月22日</p>
   </a>
 </div>
 
@@ -758,7 +767,7 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/11/29/python(%E4%BA%8C)%E5%B8%B8%E8%A7%81%E5%BA%93%E5%87%BD%E6%95%B0/&title=Python全栈系列章节更新（二）：常见库模块 | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/11/29/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%20(%E4%BA%8C)/&title=Python全栈系列章节更新（二）：常见库模块 | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等
 
 1.time模块2.DBUtils管理数据库连接池3.ftplib模块4.os模块5.datetime模块6.tqdm模块7.控制台输出带颜色文字的方法8.random模块9.Logger模块
 "
@@ -773,7 +782,7 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/11/29/python(%E4%BA%8C)%E5%B8%B8%E8%A7%81%E5%BA%93%E5%87%BD%E6%95%B0/&title=Python全栈系列章节更新（二）：常见库模块 | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/11/29/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%20(%E4%BA%8C)/&title=Python全栈系列章节更新（二）：常见库模块 | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等
 
 1.time模块2.DBUtils管理数据库连接池3.ftplib模块4.os模块5.datetime模块6.tqdm模块7.控制台输出带颜色文字的方法8.random模块9.Logger模块
 "
@@ -788,7 +797,7 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/11/29/python(%E4%BA%8C)%E5%B8%B8%E8%A7%81%E5%BA%93%E5%87%BD%E6%95%B0/&title=Python全栈系列章节更新（二）：常见库模块 | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等
+          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/11/29/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%20(%E4%BA%8C)/&title=Python全栈系列章节更新（二）：常见库模块 | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等
 
 1.time模块2.DBUtils管理数据库连接池3.ftplib模块4.os模块5.datetime模块6.tqdm模块7.控制台输出带颜色文字的方法8.random模块9.Logger模块
 "

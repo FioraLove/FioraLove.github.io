@@ -890,7 +890,34 @@
 <li>每次打开新的链接以后，需要再次执行这两行语句。</li>
 </ul>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个方法可以与本文开始提到的那篇文章中的方法结合起来使用。首先通过<code>Page.addScriptToEvaluateOnNewDocument</code>让当前标签页的window.navigator.webdriver属性消失，等页面完全加载完成以后，再通过driver.execute_script()运行本文讲到的两行 JavaScript 代码，强迫网页在当前标签页打开新的链接。</p>
-<h3 id="5-HTTP状态码的理解"><a href="#5-HTTP状态码的理解" class="headerlink" title="5.HTTP状态码的理解"></a>5.HTTP状态码的理解</h3><blockquote>
+<blockquote>
+<p>4.12 selenium全屏截图</p>
+</blockquote>
+<p>   当我们对一些页面进行截图时，发现网页的宽高超出了我们的想象，那这个时候我们应该如何全截屏呢？通过<strong>set_window_size</strong>属性设置宽高</p>
+<ul>
+<li>js获取可视区域高度：<a href="https://www.cnblogs.com/yonina/p/6019087.html" target="_blank" rel="noopener">https://www.cnblogs.com/yonina/p/6019087.html</a></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">width = browser.execute_script(&quot;return Math.max(document.body.scrollWidth, document.body.offsetWidth, &quot;</span><br><span class="line">                               &quot;document.documentElement.clientWidth, document.documentElement.scrollWidth, &quot;</span><br><span class="line">                               &quot;document.documentElement.offsetWidth);&quot;)</span><br><span class="line"></span><br><span class="line">height = browser.execute_script(&quot;return Math.max(document.body.scrollHeight, document.body.offsetHeight, &quot;</span><br><span class="line">                                &quot;document.documentElement.clientHeight, document.documentElement.scrollHeight, &quot;</span><br><span class="line">                                &quot;document.documentElement.offsetHeight);&quot;)</span><br><span class="line"></span><br><span class="line">browser.set_window_size(int(width), int(height))</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>4.13 selenium添加cookies</p>
+</blockquote>
+<p>selenium的cookie不同于requests的cookie格式，我们可以使用requests库模拟登录后，将cookie存储为json文件，然后通过json.loads读取出来（严格按照这样做）</p>
+<ul>
+<li>selenium先访问一次想要携带cookie的网址，然后在删除所有由于当前登录所产生的cookies</li>
+<li>selenium的cookie添加是循环遍历添加的，每一组cookie都有name和value</li>
+<li>添加完cookie后再一次访问目标网址</li>
+<li>严格按照这样做，否则会报错（经过多次体验）</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 载入cookie时效性文件</span></span><br><span class="line"><span class="keyword">with</span> open(path, <span class="string">"r"</span>, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    cookies = json.load(f)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 尝试请求泛微OA主页，检测当前cookie是否有效</span></span><br><span class="line"></span><br><span class="line">url = <span class="string">"http://IP/WorkflowRequestPictureInner.jsp?workflowid=&#123;&#125;"</span>.format(workId)</span><br><span class="line">browser = webdriver.Chrome()</span><br><span class="line"><span class="comment"># 第一次访问url</span></span><br><span class="line">browser.get(url)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 往browser里添加cookies前，先删除所有cookies</span></span><br><span class="line">browser.delete_all_cookies()</span><br><span class="line"><span class="keyword">for</span> k, v <span class="keyword">in</span> dict(cookies).items():</span><br><span class="line">    browser.add_cookie(&#123;<span class="string">"name"</span>: k, <span class="string">"value"</span>: v&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 再一次访问url</span></span><br><span class="line">browser.get(url)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>4.14 selenium的无头模式</p>
+</blockquote>
+<p>无头模式，顾名思义，就是不会新开浏览器界面，而是调用其内核来执行，那如何设置呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 声明谷歌浏览器对象</span><br><span class="line">driver = webdriver.Chrome()</span><br><span class="line"></span><br><span class="line">#设置浏览器无头模式</span><br><span class="line">option = webdriver.ChromeOptions()</span><br><span class="line">option.add_argument(&apos;--headless&apos;)   # 启用无头模式</span><br><span class="line">option.add_argument(&apos;--disable-gpu&apos;)    # 禁止使用GPU</span><br><span class="line">driver = webdriver.Chrome(chrome_options=option)</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-HTTP状态码的理解"><a href="#5-HTTP状态码的理解" class="headerlink" title="5.HTTP状态码的理解"></a>5.HTTP状态码的理解</h2><blockquote>
 <p>状态码304 Not Modified</p>
 </blockquote>
 <p>当我们爬取某些网站时<a href="http://www.pufei8.com/" target="_blank" rel="noopener">扑飞漫画</a>中会遇到对浏览器缓存下请求资源返回304的情况流量的计费的情况，这里就需要了解HTTP 304的响应状态的资源更新机制。</p>
@@ -921,10 +948,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-07-27T17:00:59+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-18T16:28:00+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年7月27日</p>
+    <p>更新于 2020年9月18日</p>
   </a>
 </div>
 
@@ -1150,7 +1177,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-正则表达式"><span class="toc-text">1.正则表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-xpath"><span class="toc-text">2.xpath</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-pyquery"><span class="toc-text">3.pyquery</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Selenium库学习"><span class="toc-text">4.Selenium库学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-HTTP状态码的理解"><span class="toc-text">5.HTTP状态码的理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-正则表达式"><span class="toc-text">1.正则表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-xpath"><span class="toc-text">2.xpath</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-pyquery"><span class="toc-text">3.pyquery</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Selenium库学习"><span class="toc-text">4.Selenium库学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-HTTP状态码的理解"><span class="toc-text">5.HTTP状态码的理解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol></li></ol>
     </div>
   </section>
 

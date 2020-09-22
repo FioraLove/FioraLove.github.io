@@ -574,10 +574,24 @@
 <blockquote>
 <p>2.encodeURIComponent 和 decodeURIComponent（推荐）</p>
 </blockquote>
-<p>原理：对URL的组成部分进行个别编码，而不用于对整个URL进行编码</p>
-<p>编码：encodeURIComponent(‘<a href="http://www.baidu.com?name=zhang@xiao@jie&amp;order=1&#39;" target="_blank" rel="noopener">http://www.baidu.com?name=zhang@xiao@jie&amp;order=1&#39;</a>)<br>　　　结果：”http%3A%2F%2F<a href="http://www.baidu.com%3Fname%3Dzhang%40xiao%40jie%26order%3D1&quot;" target="_blank" rel="noopener">www.baidu.com%3Fname%3Dzhang%40xiao%40jie%26order%3D1&quot;</a></p>
-<p>解码：decodeURIComponent(“http%3A%2F%2F<a href="http://www.baidu.com%3Fname%3Dzhang%40xiao%40jie%26order%3D1&quot;" target="_blank" rel="noopener">www.baidu.com%3Fname%3Dzhang%40xiao%40jie%26order%3D1&quot;</a>)</p>
-<p>　　　结果：”<a href="http://www.baidu.com?name=zhang@xiao@jie&amp;order=1&quot;" target="_blank" rel="noopener">http://www.baidu.com?name=zhang@xiao@jie&amp;order=1&quot;</a></p>
+<ul>
+<li><p>原理：对URL的组成部分进行个别编码，而不用于对整个URL进行编码</p>
+</li>
+<li><p>编码：encodeURIComponent(‘<a href="http://www.baidu.com?name=zhang@xiao@jie&amp;order=1&#39;" target="_blank" rel="noopener">http://www.baidu.com?name=zhang@xiao@jie&amp;order=1&#39;</a>)<br>　　　<br> 结果：http%3A%2F%2F<a href="http://www.baidu.com%3Fname%3Dzhang%40xiao%40jie%26order%3D1" target="_blank" rel="noopener">www.baidu.com%3Fname%3Dzhang%40xiao%40jie%26order%3D1</a></p>
+</li>
+<li><p>解码：decodeURIComponent(“http%3A%2F%2F/<a href="http://www.baidu.com%3Fname%3Dzhang%40xiao%40jie%26order%3D1&quot;" target="_blank" rel="noopener">www.baidu.com%3Fname%3Dzhang%40xiao%40jie%26order%3D1&quot;</a>)</p>
+<p> 结果：<a href="http://www.baidu.com?name=zhang@xiao@jie&amp;order=1" target="_blank" rel="noopener">http://www.baidu.com?name=zhang@xiao@jie&amp;order=1</a></p>
+</li>
+</ul>
+<blockquote>
+<p>3.<a href="https://blog.csdn.net/chenlycly/article/details/51820727" target="_blank" rel="noopener">escape 编码URL特殊字符</a></p>
+</blockquote>
+<p>当url地址中包含&amp;、+、%等特殊字符（主要是传递参数时，参数的内容中包含这些字符）时，地址无效。比如<a href="http://10.190.0.0:108/doc/test+desc2.bmp，若文件名中出现+/&amp;等特殊字符，后台会报404的错误，即web服务器找不到页面或者资源。" target="_blank" rel="noopener">http://10.190.0.0:108/doc/test+desc2.bmp，若文件名中出现+/&amp;等特殊字符，后台会报404的错误，即web服务器找不到页面或者资源。</a></p>
+<p>Javascript语言用于编码的函数，一共有三个，最古老的一个就是escape()。<strong>虽然这个函数现在已经不提倡使用了，但是由于历史原因，很多地方还在使用它</strong></p>
+<p>url的Unicode编码：出现这种 <em>\uXXXX</em> 就有可能是Unicode编码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">escape</span>(<span class="string">"\u002F"</span>);  <span class="comment">// 结果为 /</span></span><br></pre></td></tr></table></figure>
+
+
 <h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
 <li><a href="https://www.runoob.com/js/js-type-conversion.html" target="_blank" rel="noopener">JavaScript基本数据类型以及详细使用</a></li>
 <li><a href="https://blog.csdn.net/xiongzaiabc/article/details/105012903" target="_blank" rel="noopener">python中demjson的详细使用教程，专治json解码、json编码</a></li>
@@ -593,10 +607,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-07-27T16:04:56+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-21T14:10:07+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年7月27日</p>
+    <p>更新于 2020年9月21日</p>
   </a>
 </div>
 
