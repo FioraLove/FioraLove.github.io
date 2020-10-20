@@ -497,6 +497,10 @@
 </tbody></table>
 <br>
 
+<p>PS：<em>关于对.values()的说明：</em><br>values()并不是像sql里的select field1,field2,…一样可以自由选择目标字段。它受制于序列化函数中的<strong>fields属性</strong>，values()中的目标字段必须是跟序列化中的fields字段完全相同，不能多，但也不能少。<br>若values()的字段选择有多种，同理的serializers也要定义多种情况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">serializers序列化中的fields表示要展示的字段，有两种写法：</span><br><span class="line">写法一：</span><br><span class="line">    fields = &quot;__all__&quot;：表示全部展示Category模型里的所有字段</span><br><span class="line">写法二：</span><br><span class="line">    fields = [&apos;id&apos;,&apos;name&apos;,...]：将想要展示的Category模型里的特定字段添加到数组中</span><br></pre></td></tr></table></figure>
+
+
 <blockquote>
 <p>返回单行数据的过滤器</p>
 </blockquote>
@@ -603,10 +607,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-08-26T11:27:42+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-10-20T09:48:57+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年8月26日</p>
+    <p>更新于 2020年10月20日</p>
   </a>
 </div>
 

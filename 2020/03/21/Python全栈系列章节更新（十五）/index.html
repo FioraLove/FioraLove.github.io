@@ -526,14 +526,20 @@
 <li>Redirect重定向就是通过各种方法将各种网络请求重新定个方向转到其它位置,从地址A跳转到地址 B 了：</li>
 <li>重定向状态码:<ul>
 <li>301 redirect: 301 代表永久性转移(Permanently Moved)</li>
-<li>302 redirect: 302 代表暂时性转移(Temporarily Moved )</li>
+<li>302 redirect: 302 代表暂时性转移(Temporarily Moved) (PS:<strong>有时是307 Temporarily</strong>)</li>
 </ul>
 </li>
 <li>实际场景：<br> 举个简单的场景案例，先登录博客园打开我的博客首页，进我的随笔编辑界面，记住这地址：<a href="https://i.cnblogs.com/EditPosts.aspx?opt=1" target="_blank" rel="noopener">https://i.cnblogs.com/EditPosts.aspx?opt=1</a> ，退出博客园登录，把刚才我的随笔这个地址输入浏览器回车，抓包会看到这个请求状态码是 302，浏览器地址栏瞬间刷新跳到登录首页去了</li>
 </ul>
 <p>自动处理重定向地址后，我们就获取不到重定向后的 url 了，就无法走下一步，这里我们可以设置一个参数禁止重定向：allow_redirects=False（allow_redirects=True 是启动重定向），然后就可以看到 status_code 是 302 了,<strong>重定向的跳转地址是在返回的请求头中</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="comment">#禁用安全请求警告</span></span><br><span class="line"><span class="keyword">from</span> requests.packages.urllib3.exceptions <span class="keyword">import</span> InsecureRequestWarning</span><br><span class="line">requests.packages.urllib3.disable_warnings(InsecureRequestWarning)</span><br><span class="line"></span><br><span class="line">url = <span class="string">"https://i.cnblogs.com/EditPosts.aspx?opt=1"</span></span><br><span class="line">headers = &#123;</span><br><span class="line"><span class="string">"User-Agent"</span>: <span class="string">"Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36"</span></span><br><span class="line">&#125;</span><br><span class="line">s = requests.Session()</span><br><span class="line"><span class="comment">#打开我的随笔</span></span><br><span class="line">r = s.get(url,headers=headers,verify=<span class="literal">False</span>,allow_redirects=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># print(r.content.decode("utf-8"))</span></span><br><span class="line"><span class="comment">#打印状态码，自动处理重定向请求</span></span><br><span class="line">print(r.status_code)</span><br><span class="line"><span class="comment">#获取重定向后的地址</span></span><br><span class="line">print(r.headers[<span class="string">"Location"</span>])</span><br></pre></td></tr></table></figure>
+<p>-301 永久性重定向处理方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">response = requests.session.get(url=deal_url, headers=headers, timeout=10)</span><br><span class="line"># 获取重定向后的简化url</span><br><span class="line">print(response.url)</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li>302/307 临时重定向处理方法<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="comment">#禁用安全请求警告</span></span><br><span class="line"><span class="keyword">from</span> requests.packages.urllib3.exceptions <span class="keyword">import</span> InsecureRequestWarning</span><br><span class="line">requests.packages.urllib3.disable_warnings(InsecureRequestWarning)</span><br><span class="line"></span><br><span class="line">url = <span class="string">"https://i.cnblogs.com/EditPosts.aspx?opt=1"</span></span><br><span class="line">headers = &#123;</span><br><span class="line"><span class="string">"User-Agent"</span>: <span class="string">"Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36"</span></span><br><span class="line">&#125;</span><br><span class="line">s = requests.Session()</span><br><span class="line"><span class="comment">#打开我的随笔</span></span><br><span class="line">r = s.get(url,headers=headers,verify=<span class="literal">False</span>,allow_redirects=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># print(r.content.decode("utf-8"))</span></span><br><span class="line"><span class="comment">#打印状态码，自动处理重定向请求</span></span><br><span class="line">print(r.status_code)</span><br><span class="line"><span class="comment">#获取重定向后的地址</span></span><br><span class="line">print(r.headers[<span class="string">"Location"</span>])</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
 <h3 id="3-响应response"><a href="#3-响应response" class="headerlink" title="3.响应response"></a>3.响应response</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;响应是浏览器返回过来的信息，它有不同的属性</p>
 <ul>
 <li>response.status_code: 状态码，不同的状态码代表了不同的请求状态</li>
@@ -594,10 +600,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-23T09:36:29+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-10-12T10:47:54+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年9月23日</p>
+    <p>更新于 2020年10月12日</p>
   </a>
 </div>
 

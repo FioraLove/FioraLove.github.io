@@ -534,9 +534,19 @@
 <p>encode和decode分别指编码和解码。在python中，Unicode类型是作为编码的基础类型，即：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">        decode                 encode</span><br><span class="line">bytes ---------&gt; str(Unicode) ---------&gt; bytes</span><br><span class="line"></span><br><span class="line">u = &apos;中文&apos; #指定字符串类型对象u</span><br><span class="line">str = u.encode(&apos;gb2312&apos;)    #以gb2312编码对u进行编码，获得bytes类型对象str</span><br><span class="line">u1 = str.decode(&apos;gb2312&apos;)   #以gb2312编码对字符串str进行解码，获得字符串类型对象u1</span><br><span class="line">u2 = str.decode(&apos;utf-8&apos;)    #如果以utf-8的编码对str进行解码得到的结果，将无法还原原来的字符串内容</span><br><span class="line"></span><br><span class="line">with open(&apos;text.text&apos;,&apos;r+&apos;,encoding=&apos;utf-8&apos;) as f: #必须事先知道文件的编码格式，这里文件编码是使用的utf-8</span><br><span class="line">    content = f.read()#如果open时使用的encoding和文件本身的encoding不一致的话，那么这里将将会产生错误</span><br><span class="line">    f.write(&apos;你想要写入的信息&apos;)</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>python3怎么把\u002F这种Unicode类型的字符进行对应的替换</li>
-</ul>
+
+
+<blockquote>
+<p>关于一些奇奇怪怪的字符编码处理😓😓😓</p>
+</blockquote>
+<ol>
+<li>strings.encode(‘raw_unicode_escape’).decode()</li>
+</ol>
+<p>用来处理形如这种反人类字符：éç»äººè¡¨ç®çé¿å å­åè¶(æå­</p>
+<ol start="2">
+<li>strings.encode(“utf-8”).decode(“unicode_escape”)</li>
+</ol>
+<p>用来处理形如这种的Unicode字符：\u002F</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">slashUStr = <span class="string">"https:\u002F\u002Fm.dhgate.com\u002Fproduct\u002F427954156.html"</span></span><br><span class="line">decodedUniChars = slashUStr.encode(<span class="string">'utf-8'</span>).decode(<span class="string">"unicode_escape"</span>)</span><br><span class="line">print(<span class="string">"decodedUniChars="</span>, decodedUniChars)</span><br></pre></td></tr></table></figure>
 
 
@@ -546,8 +556,11 @@
 <li>python3 输入的都是 <code>二进制 / byte类型</code>，注意：用于base64编码的，要么是ASCII包含的字符，要么是二进制数据</li>
 <li>base64 是对称加密,即这种加密方式是可以被破解的</li>
 </ul>
-<p>base64 是 一种用64 个字符来表示任意的二进制数据的方法。base64 可以成为密码学的基石。可以将任意二进制数据进行Base64 编码。 所有的数据都能被编码为并只有64个字符就能表示的文本文件。（ 64字符：A<del>Z a</del>z 0<del>9 + / ）编码后的数据</del>=编码前数据的4/3，会大1/3左右。</p>
+<p>base64 是 一种用64 个字符来表示任意的二进制数据的方法。base64 可以成为密码学的基石。可以将任意二进制数据进行Base64 编码。 所有的数据都能被编码为并只有64个字符就能表示的文本文件。（ 64字符：A~Z a~z 0~9 + / ）编码后的数据~=编码前数据的4/3，会大1/3左右。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line">s = <span class="string">'hello, world'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 加密</span></span><br><span class="line">bs = base64.b64encode(s.encode(<span class="string">"utf-8"</span>)) <span class="comment"># base64加密参数要求是字节型的</span></span><br><span class="line">print(bs.decode(<span class="string">"utf-8"</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解密</span></span><br><span class="line">decode = base64.b64decode(bs)   <span class="comment"># 解密后为byte类型</span></span><br><span class="line">print(decode)</span><br><span class="line">print(decode.decode(<span class="string">"utf-8"</span>))</span><br></pre></td></tr></table></figure>
+
+<p>说明：像出现这样的字段“aHR0cXXXXX…” 这类的字符串就是<strong>url进行base64编码</strong>后的样式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">aHR0cHM6Ly94aWFwaS54aWFwaWJ1eS5jb20vc2VhcmNoP2tleXdvcmQ9JUU3JTk0JUI3JUU3JUFCJUE1JUU0JUI4JThBJUU4JUExJUEz</span><br><span class="line">        ⬇ base64解密</span><br><span class="line">https://xiapi.xiapibuy.com/search?keyword=男童上衣</span><br><span class="line"></span><br><span class="line">https://AhriLove.top</span><br><span class="line">        ⬇ base64加密</span><br><span class="line">aHR0cHM6Ly9BaHJpTG92ZS50b3A=</span><br></pre></td></tr></table></figure>
 
 <h4 id="7-3-md5加密"><a href="#7-3-md5加密" class="headerlink" title="7.3 md5加密"></a>7.3 md5加密</h4><p>在python3中使用hashlib模块进行md5操作(md5不可逆向破解)</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line">strs = <span class="string">"我真帅"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个md5 对象</span></span><br><span class="line">h1 = hashlib.md5()</span><br><span class="line"><span class="comment"># 此处必须声明encode</span></span><br><span class="line"><span class="comment"># 若写法为hl.update(str)  报错为： Unicode-objects must be encoded before hashing</span></span><br><span class="line">h1.update(strs.encode(<span class="string">"utf-8"</span>))</span><br><span class="line">print(<span class="string">"加密前"</span>, strs)</span><br><span class="line">print(<span class="string">"加密后"</span>, h1.hexdigest())</span><br></pre></td></tr></table></figure>
@@ -563,6 +576,7 @@
 </ul>
 <p>md5的长度：md5的长度，默认为128bit，也就是128个0和1的二进制串。这样表达是很不友好的。所以将二进制转成了16进制，每4个bit表示一个16进制，所以128/4 = 32 换成16进制表示后，为32位了。</p>
 <p>为什么网上还有md5是16位的呢？其实16位的长度，是从32位md5值来的。是将32位md5去掉前八位，去掉后八位得到的</p>
+<p><fancybox><img src="https://img-blog.csdn.net/20180306113943230?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZGVuaXJvX2xp/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""></fancybox></p>
 <h4 id="7-4-sha系列加密"><a href="#7-4-sha系列加密" class="headerlink" title="7.4 sha系列加密"></a>7.4 sha系列加密</h4><p>常见的sha系列加密有：sha1,sha224,sha256,sha512</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">str_encrypt</span><span class="params">(str)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    使用sha1加密算法，返回str加密后的字符串</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    sha = hashlib.sha1(str.encode(<span class="string">"utf-8"</span>))</span><br><span class="line">    encrypts = sha.hexdigest()</span><br><span class="line">    <span class="keyword">return</span> encrypts</span><br></pre></td></tr></table></figure>
 
@@ -600,10 +614,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-22T16:04:47+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-10-15T16:04:20+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年9月22日</p>
+    <p>更新于 2020年10月15日</p>
   </a>
 </div>
 

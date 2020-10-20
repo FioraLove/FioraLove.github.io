@@ -579,15 +579,15 @@
 <td align="center">长文本类型</td>
 </tr>
 <tr>
-<td align="center">models. TimeField</td>
+<td align="center">models.TimeField</td>
 <td align="center">时间类型， 显东时分秒HH:MM[:ss[ .uuuuuu]]</td>
 </tr>
 <tr>
-<td align="center">models. URLField</td>
+<td align="center">models.URLField</td>
 <td align="center">字符串， 地址为正则表达式</td>
 </tr>
 <tr>
-<td align="center">models.Binary Field</td>
+<td align="center">models.BinaryField</td>
 <td align="center">二进制数据类型</td>
 </tr>
 <tr>
@@ -624,7 +624,7 @@
 </tr>
 <tr>
 <td align="center">db_index</td>
-<td align="center">如为True，为字段添加数据库索引</td>
+<td align="center">如为True，为字段添加数据库索引，<a href="https://ahrilove.top/2019/11/12/sql系列更新（二）/">索引知识点</a></td>
 </tr>
 <tr>
 <td align="center">verbose_name</td>
@@ -647,9 +647,15 @@
 <li>auto_now_add，默认值为false，设置为true时，会在model对象第一次被创建时，将字段的值设置为创建时的时间，以后修改对象时，字段的值不会再更新。一旦被设置为True，就无法在程序中手动为字段赋值，在admin中字段也会成为只读的。</li>
 </ul>
 <ol start="2">
-<li></li>
-<li><p>表结构设计</p>
-</li>
+<li>null与blank的区别</li>
+</ol>
+<ul>
+<li>null：如果为True，表示允许为空，默认值是False</li>
+<li>blank：如果为True，则该字段允许为空白，默认值是False</li>
+<li>对比：null是数据库范畴的概念，blank是表单验证证范畴的</li>
+</ul>
+<ol start="3">
+<li>表结构设计</li>
 </ol>
 <ul>
 <li><em>不会经常变化的值放在内存：choices形式</em>，避免跨表性能低</li>
@@ -728,10 +734,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-07-31T16:54:27+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-10-20T09:33:57+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年7月31日</p>
+    <p>更新于 2020年10月20日</p>
   </a>
 </div>
 
