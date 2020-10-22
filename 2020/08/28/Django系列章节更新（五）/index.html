@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>Javascript篇章二：js计算精度丢失 | AhriLove</title>
+  <title>关于如何养成Django女皇的那件事（Ⅴ） | AhriLove</title>
   
   
 
@@ -347,8 +347,8 @@
         
   
     <h1 class="title">
-      <a href="/2019/11/21/Javascript%E7%AF%87%E7%AB%A0%E4%BA%8C/">
-        Javascript篇章二：js计算精度丢失
+      <a href="/2020/08/28/Django%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%BA%94%EF%BC%89/">
+        关于如何养成Django女皇的那件事（Ⅴ）
       </a>
     </h1>
   
@@ -363,11 +363,11 @@
             
   <div class='new-meta-item author'>
     
-      <a href="https://ahrilove.top" rel="nofollow">
+      <a href="/" rel="nofollow">
         
-          <i class="fas fa-user" aria-hidden="true"></i>
+          <img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imagesNaruto.jpg">
         
-        <p>AhriLove</p>
+        <p>Badwoman</p>
       </a>
     
   </div>
@@ -379,7 +379,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-11-21</p>
+    <p>2020-08-28</p>
   </a>
 </div>
 
@@ -389,9 +389,9 @@
             
   
   <div class='new-meta-item category'>
-    <a href='/categories/javascript/' rel="nofollow">
+    <a href='/categories/Django/' rel="nofollow">
       <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>javascript</p>
+      <p>Django</p>
     </a>
   </div>
 
@@ -431,33 +431,61 @@
 
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
-        <p><font color=#00ced1 size=5 face="黑体">若教眼底无离恨，不信人间有白头</font></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于计算机是用二进制来存储和处理数字，不能精确表示浮点数，而JavaScript中没有相应的封装类来处理浮点数运算，直接计算会导致运算精度丢失。</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Django是一个优秀的Python web框架，被众多python开发者所喜爱。新开这个Django专栏，<strong>并不是从零开始详细使用Django框架来开发web网页，而是用来开发api。前后分离是当前的技术栈潮流</strong>。</p>
 <blockquote>
-<p><font size=4 color=#FF0000>本文要点：</font><br>1.js精确度丢失缘由<br>2.精确度丢失解决方案<br><fancybox><img src="http://hd.wallpaperswide.com/thumbs/tifa_lockhart_ff7-t2.jpg" alt="一日不读书，我浑身难受！！"></fancybox></p>
+<p>1.Django的缓存机制</p>
 </blockquote>
 <a id="more"></a>
+<h3 id="1-Django的缓存机制☆☆☆"><a href="#1-Django的缓存机制☆☆☆" class="headerlink" title="1.Django的缓存机制☆☆☆"></a>1.Django的缓存机制☆☆☆</h3><blockquote>
+<p>为什么我们需要缓存？</p>
+</blockquote>
+<p>对于现在的动态网站来讲，所有的界面展示都是通过客户端请求服务端，服务端再去请求数据库，然后将请求到的数据渲染后返回给客户端。用户每次访问页面都需要去请求数据库，如果同时有多个人访问的话，对于我们的数据库的压力是相当大的。</p>
+<p>所以我们会想，对于不是经常变更的数据，或者不需要实时更新展示的数据，我们可以将数据存放在缓存中，用户下次需要数据的时候，服务端直接从缓存中拿到数据返回给用户即可，不需要每次都去数据库查询，这样会大大降低数据库的压力，提升用户访问速度。</p>
+<blockquote>
+<p>Django的drf提供的缓存机制有两种解决方案：</p>
+</blockquote>
+<ol>
+<li>drf-extensions缓存</li>
+</ol>
+<p>安装：pip install drf-extensions(目前不支持Django&gt;=3.1)</p>
+<p>drf-extensions组件内部提供了DRF的本地内存方式的缓存方式，<strong>本地内存方式缓存在项目重启后则会消失</strong></p>
+<ul>
+<li><p>使用装饰器方式@cache_response</p>
+<ul>
+<li>要求：它适用于继承了rest_framework.views.APIView的类，且需要返回一个rest_framework.response.Response的实例</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from rest_framework.views import APIView</span><br><span class="line">from rest_framework.response import Response</span><br><span class="line">from rest_framwork_extensions.cache.decorator import cache_response</span><br><span class="line">class GoodListView(APIView):</span><br><span class="line">    @cache_response()</span><br><span class="line">    def get(self, request, format=None):</span><br><span class="line">        goods = Goods.objects.all()[:10]</span><br><span class="line">        goods_serializer = GoodListSerializer1(goods, many=True)</span><br><span class="line">        return Response(goods_serializer.data)</span><br></pre></td></tr></table></figure>
 
-<h2 id="js精确度丢失出现缘由"><a href="#js精确度丢失出现缘由" class="headerlink" title="js精确度丢失出现缘由"></a>js精确度丢失出现缘由</h2><blockquote>
-<p>1.我们先看几个四舍五入的实例</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="built_in">Number</span>(<span class="number">0.009</span>).toFixed(<span class="number">2</span>));  </span><br><span class="line">alert(<span class="built_in">Number</span>(<span class="number">162.295</span>).toFixed(<span class="number">2</span>));</span><br></pre></td></tr></table></figure>
-<p>按正常结果，应该分别弹出0.01和162.30。但实际测试结果却是在不同浏览器中得到的是不同的结果：<br>在ie6、7、8下得到0.00和162.30，第一个数截取不正确；<br>在firefox中得到0.01和162.29，第二个数截取不正确；<br>在opera下得到0.01和162.29，第二个数截取不正确</p>
-<blockquote>
-<p>2.再看有关于四则运算的实例</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="number">1</span>/<span class="number">3</span>);<span class="comment">//弹出: 0.3333333333333333  </span></span><br><span class="line">alert(<span class="number">0.1</span> + <span class="number">0.2</span>);<span class="comment">//弹出: 0.30000000000000004   </span></span><br><span class="line">alert(<span class="number">-0.09</span> - <span class="number">0.01</span>);<span class="comment">//弹出: -0.09999999999999999  </span></span><br><span class="line">alert(<span class="number">0.012345</span> * <span class="number">0.000001</span>);<span class="comment">//弹出: 1.2344999999999999e-8  </span></span><br><span class="line">alert(<span class="number">0.000001</span> / <span class="number">0.0001</span>);<span class="comment">//弹出: 0.009999999999999998</span></span><br></pre></td></tr></table></figure>
-<p>按正常结果，除第一行外(因为其本身就不能除尽)，其他都应该要得到精确的结果，从弹出的结果我们却发现不是我们想要的正确结果。是因为没有转换成Number类型吗？我们转换成Number后再计算看看：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="built_in">Number</span>(<span class="number">1</span>)/<span class="built_in">Number</span>(<span class="number">3</span>));<span class="comment">//弹出: 0.3333333333333333       </span></span><br><span class="line">alert(<span class="built_in">Number</span>(<span class="number">0.1</span>) + <span class="built_in">Number</span>(<span class="number">0.2</span>));<span class="comment">//弹出: 0.30000000000000004      </span></span><br><span class="line">alert(<span class="built_in">Number</span>(<span class="number">-0.09</span>) - <span class="built_in">Number</span>(<span class="number">0.01</span>));<span class="comment">//弹出: -0.09999999999999999     </span></span><br><span class="line">alert(<span class="built_in">Number</span>(<span class="number">0.012345</span>) * <span class="built_in">Number</span>(<span class="number">0.000001</span>));<span class="comment">//弹出: 1.2344999999999999e-8     </span></span><br><span class="line">alert(<span class="built_in">Number</span>(<span class="number">0.000001</span>) / <span class="built_in">Number</span>(<span class="number">0.0001</span>));<span class="comment">//弹出: 0.009999999999999998</span></span><br></pre></td></tr></table></figure>
-<p>还是一样的结果，看来javascript默认把数字识别为number类型。为了验证这一点，我们用typeof弹出类型看看：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="keyword">typeof</span>(<span class="number">1</span>));<span class="comment">//弹出: number  </span></span><br><span class="line">alert(<span class="keyword">typeof</span>(<span class="number">1</span>/<span class="number">3</span>));<span class="comment">//弹出: number  </span></span><br><span class="line">alert(<span class="keyword">typeof</span>(<span class="number">-0.09999999</span>));<span class="comment">//弹出: number</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>3.计算机原理</p>
-</blockquote>
-<p>回忆一下大学时学过的计算机原理，计算机执行的是二进制算术，当十进制数不能准确转换为二进制数时，这种精度误差就在所难免。从上述的推演过程我们知道，这种误差是难免的，c#的decimal和Java的BigDecimal之所以没有出现精度差异，只是因为在其内部作了相应处理，把这种精度差异给屏蔽掉了，而javascript是一种弱类型的脚本语言，本身并没有对计算精度做相应的处理，这就需要我们另外想办法处理了</p>
-<h2 id="解决JS计算精确度丢失"><a href="#解决JS计算精确度丢失" class="headerlink" title="解决JS计算精确度丢失"></a>解决JS计算精确度丢失</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;创建calc.js文件，其调用方法参考&nbsp;&nbsp;<i class="far fa-hand-point-right"></i><a href="https://fioralove.github.io/2019/11/15/ThinkPHP/" target="_blank" rel="noopener">thinkphp项目调用Vue扩展函数方式</a></p>
-<p><a href="https://www.cnblogs.com/wzl-learn/p/9790443.html" target="_blank" rel="noopener">参考文章</a></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br></pre></td><td class="code"><pre><span class="line">Vue.prototype.calc = &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 千分位格式化函数</span></span><br><span class="line"><span class="comment">     * @param &#123;*&#125; number         要格式化的数字</span></span><br><span class="line"><span class="comment">     * @param &#123;*&#125; decimals       保留几位小数</span></span><br><span class="line"><span class="comment">     * @param &#123;*&#125; dec_point      小数点符号</span></span><br><span class="line"><span class="comment">     * @param &#123;*&#125; thousands_sep  千分位符号</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    number_format(number, decimals, dec_point, thousands_sep) &#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">parseFloat</span>(number) == <span class="number">0</span>) <span class="keyword">return</span> <span class="string">" - "</span>;</span><br><span class="line">        number = (number + <span class="string">''</span>).replace(<span class="regexp">/[^0-9+-Ee.]/g</span>, <span class="string">''</span>);</span><br><span class="line">        <span class="keyword">var</span> n = !<span class="built_in">isFinite</span>(+number) ? <span class="number">0</span> : +number,</span><br><span class="line">            decimals = (<span class="keyword">typeof</span> decimals === <span class="string">'undefined'</span>) ? <span class="number">2</span> : decimals,</span><br><span class="line">            prec = !<span class="built_in">isFinite</span>(+decimals) ? <span class="number">0</span> : <span class="built_in">Math</span>.abs(decimals),</span><br><span class="line">            sep = (<span class="keyword">typeof</span> thousands_sep === <span class="string">'undefined'</span>) ? <span class="string">','</span> : thousands_sep,</span><br><span class="line">            dec = (<span class="keyword">typeof</span> dec_point === <span class="string">'undefined'</span>) ? <span class="string">'.'</span> : dec_point,</span><br><span class="line">            s = <span class="string">''</span>,</span><br><span class="line">            toFixedFix = <span class="function"><span class="keyword">function</span> (<span class="params">n, prec</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">var</span> k = <span class="built_in">Math</span>.pow(<span class="number">10</span>, prec);</span><br><span class="line">                <span class="keyword">return</span> <span class="string">''</span> + <span class="built_in">Math</span>.ceil(n * k) / k;</span><br><span class="line">            &#125;;</span><br><span class="line">     </span><br><span class="line">        s = (prec ? toFixedFix(n, prec) : <span class="string">''</span> + <span class="built_in">Math</span>.round(n)).split(<span class="string">'.'</span>);</span><br><span class="line">        <span class="keyword">var</span> re = <span class="regexp">/(-?\d+)(\d&#123;3&#125;)/</span>;</span><br><span class="line">        <span class="keyword">while</span> (re.test(s[<span class="number">0</span>])) &#123;</span><br><span class="line">            s[<span class="number">0</span>] = s[<span class="number">0</span>].replace(re, <span class="string">"$1"</span> + sep + <span class="string">"$2"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">     </span><br><span class="line">        <span class="keyword">if</span> ((s[<span class="number">1</span>] || <span class="string">''</span>).length &lt; prec) &#123;</span><br><span class="line">            s[<span class="number">1</span>] = s[<span class="number">1</span>] || <span class="string">''</span>;</span><br><span class="line">            s[<span class="number">1</span>] += <span class="keyword">new</span> <span class="built_in">Array</span>(prec - s[<span class="number">1</span>].length + <span class="number">1</span>).join(<span class="string">'0'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s.join(dec);</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 加法函数，用来得到精确的加法结果</span></span><br><span class="line"><span class="comment">     * 说明：javascript的加法结果会有误差，在两个浮点数相加的时候会比较明显。这个函数返回较为精确的加法结果。</span></span><br><span class="line"><span class="comment">     * 调用：accAdd(arg1,arg2)</span></span><br><span class="line"><span class="comment">     * 返回值：arg1加上arg2的精确结果</span></span><br><span class="line"><span class="comment">     **/</span></span><br><span class="line">    accAdd: <span class="function"><span class="keyword">function</span>(<span class="params">arg1, arg2</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> r1, r2, m, c;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            r1 = arg1.toString().split(<span class="string">"."</span>)[<span class="number">1</span>].length;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">            r1 = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            r2 = arg2.toString().split(<span class="string">"."</span>)[<span class="number">1</span>].length;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">            r2 = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        c = <span class="built_in">Math</span>.abs(r1 - r2);</span><br><span class="line">        m = <span class="built_in">Math</span>.pow(<span class="number">10</span>, <span class="built_in">Math</span>.max(r1, r2));</span><br><span class="line">        <span class="keyword">if</span> (c &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">var</span> cm = <span class="built_in">Math</span>.pow(<span class="number">10</span>, c);</span><br><span class="line">            <span class="keyword">if</span> (r1 &gt; r2) &#123;</span><br><span class="line">                arg1 = <span class="built_in">Number</span>(arg1.toString().replace(<span class="string">"."</span>, <span class="string">""</span>));</span><br><span class="line">                arg2 = <span class="built_in">Number</span>(arg2.toString().replace(<span class="string">"."</span>, <span class="string">""</span>)) * cm;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                arg1 = <span class="built_in">Number</span>(arg1.toString().replace(<span class="string">"."</span>, <span class="string">""</span>)) * cm;</span><br><span class="line">                arg2 = <span class="built_in">Number</span>(arg2.toString().replace(<span class="string">"."</span>, <span class="string">""</span>));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            arg1 = <span class="built_in">Number</span>(arg1.toString().replace(<span class="string">"."</span>, <span class="string">""</span>));</span><br><span class="line">            arg2 = <span class="built_in">Number</span>(arg2.toString().replace(<span class="string">"."</span>, <span class="string">""</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (arg1 + arg2) / m;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 减法函数，用来得到精确的减法结果</span></span><br><span class="line"><span class="comment">     * 说明：javascript的减法结果会有误差，在两个浮点数相减的时候会比较明显。这个函数返回较为精确的减法结果。</span></span><br><span class="line"><span class="comment">     * 调用：accSub(arg1,arg2)</span></span><br><span class="line"><span class="comment">     * 返回值：arg1加上arg2的精确结果</span></span><br><span class="line"><span class="comment">     **/</span></span><br><span class="line">    accSub: <span class="function"><span class="keyword">function</span>(<span class="params">arg1, arg2</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> r1, r2, m, n;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            r1 = arg1.toString().split(<span class="string">"."</span>)[<span class="number">1</span>].length;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">            r1 = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            r2 = arg2.toString().split(<span class="string">"."</span>)[<span class="number">1</span>].length;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">            r2 = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        m = <span class="built_in">Math</span>.pow(<span class="number">10</span>, <span class="built_in">Math</span>.max(r1, r2)); <span class="comment">//last modify by deeka //动态控制精度长度</span></span><br><span class="line">        n = (r1 &gt;= r2) ? r1 : r2;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">parseFloat</span>(((arg1 * m - arg2 * m) / m).toFixed(n));</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">//乘法函数，用来得到精确的乘法结果 </span></span><br><span class="line">    <span class="comment">//说明：javascript的乘法结果会有误差，在两个浮点数相乘的时候会比较明显。这个函数返回较为精确的乘法结果。 </span></span><br><span class="line">    <span class="comment">//调用：accMul(arg1,arg2) </span></span><br><span class="line">    <span class="comment">//返回值：arg1乘以arg2的精确结果 </span></span><br><span class="line">    accMul: <span class="function"><span class="keyword">function</span>(<span class="params">arg1,arg2</span>) </span>&#123; </span><br><span class="line">        <span class="keyword">var</span> m = <span class="number">0</span>,</span><br><span class="line">            s1 = arg1.toString(),</span><br><span class="line">            s2 = arg2.toString();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            m += s1.split(<span class="string">"."</span>)[<span class="number">1</span>].length</span><br><span class="line">        &#125; <span class="keyword">catch</span> (e) &#123;&#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            m += s2.split(<span class="string">"."</span>)[<span class="number">1</span>].length</span><br><span class="line">        &#125; <span class="keyword">catch</span> (e) &#123;&#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Number</span>(s1.replace(<span class="string">"."</span>, <span class="string">""</span>)) * <span class="built_in">Number</span>(s2.replace(<span class="string">"."</span>, <span class="string">""</span>)) / <span class="built_in">Math</span>.pow(<span class="number">10</span>, m);</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">//除法函数，用来得到精确的除法结果 </span></span><br><span class="line">    <span class="comment">//说明：javascript的除法结果会有误差，在两个浮点数相除的时候会比较明显。这个函数返回较为精确的除法结果。 </span></span><br><span class="line">    <span class="comment">//调用：accDiv(arg1,arg2) </span></span><br><span class="line">    <span class="comment">//返回值：arg1除以arg2的精确结果 </span></span><br><span class="line">    accDiv: <span class="function"><span class="keyword">function</span>(<span class="params">arg1, arg2</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> t1 = <span class="number">0</span>,</span><br><span class="line">            t2 = <span class="number">0</span>,</span><br><span class="line">            r1, r2;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            t1 = arg1.toString().split(<span class="string">"."</span>)[<span class="number">1</span>].length</span><br><span class="line">        &#125; <span class="keyword">catch</span> (e) &#123;&#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            t2 = arg2.toString().split(<span class="string">"."</span>)[<span class="number">1</span>].length</span><br><span class="line">        &#125; <span class="keyword">catch</span> (e) &#123;&#125;</span><br><span class="line">        <span class="keyword">with</span>(<span class="built_in">Math</span>) &#123;</span><br><span class="line">            r1 = <span class="built_in">Number</span>(arg1.toString().replace(<span class="string">"."</span>, <span class="string">""</span>));</span><br><span class="line">            r2 = <span class="built_in">Number</span>(arg2.toString().replace(<span class="string">"."</span>, <span class="string">""</span>));</span><br><span class="line">            <span class="keyword">return</span> (r1 / r2) * pow(<span class="number">10</span>, t2 - t1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用CacheResponseMixin</li>
+</ul>
+<ol start="2">
+<li>使用redis缓存（Django-redis）</li>
+</ol>
+<ul>
+<li>安装redis</li>
+</ul>
+<p>在配置缓存前要先安装好 Redis ,安装成功后，确定启动了 Redis 服务，在 cmd 命令行中输入 redis-cli 就能进入到 Redis 命令行。（<strong>前提要把 Redis 的安装目录配置到环境变量</strong>，在安装过程有添加环境变量的选项，勾上即可）</p>
+<ul>
+<li><p>安装：pip install django-redis</p>
+</li>
+<li><p>settings.py 文件中配置redis</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">CACHES = &#123;</span><br><span class="line">    <span class="string">"default"</span>: &#123;</span><br><span class="line">        <span class="string">"BACKEND"</span>: <span class="string">"django_redis.cache.RedisCache"</span>,</span><br><span class="line">        <span class="string">"LOCATION"</span>: <span class="string">"redis://127.0.0.1:6379"</span>,</span><br><span class="line">        <span class="string">"OPTIONS"</span>: &#123;</span><br><span class="line">            <span class="string">"CLIENT_CLASS"</span>: <span class="string">"django_redis.client.DefaultClient"</span>,</span><br><span class="line">            <span class="comment"># "PASSWORD": "password"    # 如果存在密码，需要设置密码</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>依赖说明</li>
+</ol>
+<p><strong>drf-extensions的缓存方法是基于本地的, 如果在配置中配置了基于redis，则缓存方案自动切换为redis方案</strong> </p>
+<h3 id="参考网站"><a href="#参考网站" class="headerlink" title="参考网站"></a>参考网站</h3><ul>
+<li><a href="https://www.jianshu.com/p/7c8606da1d66" target="_blank" rel="noopener">DRF 配置 Redis 缓存</a></li>
+<li><a href="https://blog.csdn.net/aimiandai4698/article/details/101133133" target="_blank" rel="noopener">DRF缓存</a></li>
+<li><a href="https://www.cnblogs.com/shijieli/p/10363784.html#_label0_1" target="_blank" rel="noopener">Python操作Redis</a></li>
+</ul>
+
       </div>
       
         <br>
@@ -468,10 +496,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-26T16:57:12+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-10-21T13:34:03+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年11月26日</p>
+    <p>更新于 2020年10月21日</p>
   </a>
 </div>
 
@@ -480,7 +508,7 @@
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/js%E7%B2%BE%E7%A1%AE%E5%BA%A6%E4%B8%A2%E5%A4%B1/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>js精确度丢失</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Django/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>Django</p></a></div>
 
 
         
@@ -493,10 +521,9 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/11/21/Javascript%E7%AF%87%E7%AB%A0%E4%BA%8C/&title=Javascript篇章二：js计算精度丢失 | AhriLove&summary=若教眼底无离恨，不信人间有白头
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于计算机是用二进制来存储和处理数字，不能精确表示浮点数，而JavaScript中没有相应的封装类来处理浮点数运算，直接计算会导致运算精度丢失。
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/08/28/Django%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%BA%94%EF%BC%89/&title=关于如何养成Django女皇的那件事（Ⅴ） | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Django是一个优秀的Python web框架，被众多python开发者所喜爱。新开这个Django专栏，并不是从零开始详细使用Django框架来开发web网页，而是用来开发api。前后分离是当前的技术栈潮流。
 
-本文要点：1.js精确度丢失缘由2.精确度丢失解决方案
+1.Django的缓存机制
 "
           
           >
@@ -509,10 +536,9 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/11/21/Javascript%E7%AF%87%E7%AB%A0%E4%BA%8C/&title=Javascript篇章二：js计算精度丢失 | AhriLove&summary=若教眼底无离恨，不信人间有白头
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于计算机是用二进制来存储和处理数字，不能精确表示浮点数，而JavaScript中没有相应的封装类来处理浮点数运算，直接计算会导致运算精度丢失。
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/08/28/Django%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%BA%94%EF%BC%89/&title=关于如何养成Django女皇的那件事（Ⅴ） | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Django是一个优秀的Python web框架，被众多python开发者所喜爱。新开这个Django专栏，并不是从零开始详细使用Django框架来开发web网页，而是用来开发api。前后分离是当前的技术栈潮流。
 
-本文要点：1.js精确度丢失缘由2.精确度丢失解决方案
+1.Django的缓存机制
 "
           
           >
@@ -525,10 +551,9 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/11/21/Javascript%E7%AF%87%E7%AB%A0%E4%BA%8C/&title=Javascript篇章二：js计算精度丢失 | AhriLove&summary=若教眼底无离恨，不信人间有白头
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于计算机是用二进制来存储和处理数字，不能精确表示浮点数，而JavaScript中没有相应的封装类来处理浮点数运算，直接计算会导致运算精度丢失。
+          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/08/28/Django%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%BA%94%EF%BC%89/&title=关于如何养成Django女皇的那件事（Ⅴ） | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Django是一个优秀的Python web框架，被众多python开发者所喜爱。新开这个Django专栏，并不是从零开始详细使用Django框架来开发web网页，而是用来开发api。前后分离是当前的技术栈潮流。
 
-本文要点：1.js精确度丢失缘由2.精确度丢失解决方案
+1.Django的缓存机制
 "
           
           >
@@ -557,16 +582,16 @@
                       <span class="art-item-left">
                           <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
                           <h4>
-                              <a href="/2019/11/22/Javascript%E7%AF%87%E7%AB%A0%E4%B8%89/" rel="prev" title="Javascript篇章三：js数字，数组与日期">
+                              <a href="/2020/08/28/Django%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%9B%9B%EF%BC%89/" rel="prev" title="关于如何养成Django女皇的那件事（Ⅳ）">
                                 
-                                    Javascript篇章三：js数字，数组与日期
+                                    关于如何养成Django女皇的那件事（Ⅳ）
                                 
                               </a>
                           </h4>
                           
                               
                               <h6 class="tags">
-                                  <a class="tag" href="/tags/%E5%AF%B9%E8%B1%A1/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 对象</a> <a class="tag" href="/tags/%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 属性与方法</a>
+                                  <a class="tag" href="/tags/Django/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Django</a>
                               </h6>
                           
                       </span>
@@ -577,16 +602,16 @@
                       <span class="art-item-right" aria-hidden="true">
                           <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                           <h4>
-                              <a href="/2019/11/20/Javascript%E7%AF%87%E7%AB%A0%E4%B8%80/" rel="prev" title="Javascript篇章一：JavaScript基本知识">
+                              <a href="/2020/08/01/Django%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%B8%89%EF%BC%89/" rel="prev" title="关于如何养成Django女皇的那件事（Ⅲ）">
                                   
-                                      Javascript篇章一：JavaScript基本知识
+                                      关于如何养成Django女皇的那件事（Ⅲ）
                                   
                               </a>
                           </h4>
                           
                               
                               <h6 class="tags">
-                                  <a class="tag" href="/tags/clone/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> clone</a> <a class="tag" href="/tags/push/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> push</a>
+                                  <a class="tag" href="/tags/Django/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Django</a>
                               </h6>
                           
                       </span>
@@ -630,7 +655,7 @@
 
   <script>
     window.subData = {
-      title: 'Javascript篇章二：js计算精度丢失',
+      title: '关于如何养成Django女皇的那件事（Ⅴ）',
       tools: true
     }
   </script>
@@ -710,7 +735,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#js精确度丢失出现缘由"><span class="toc-text">js精确度丢失出现缘由</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决JS计算精确度丢失"><span class="toc-text">解决JS计算精确度丢失</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Django的缓存机制☆☆☆"><span class="toc-text">1.Django的缓存机制☆☆☆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考网站"><span class="toc-text">参考网站</span></a></li></ol>
     </div>
   </section>
 

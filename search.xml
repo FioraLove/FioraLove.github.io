@@ -29,6 +29,31 @@
     
     
     <entry>
+      <title>关于如何养成Django女皇的那件事（Ⅴ）</title>
+      <link href="/2020/08/28/Django%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%BA%94%EF%BC%89/"/>
+      <url>/2020/08/28/Django%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%BA%94%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Django是一个优秀的Python web框架，被众多python开发者所喜爱。新开这个Django专栏，<strong>并不是从零开始详细使用Django框架来开发web网页，而是用来开发api。前后分离是当前的技术栈潮流</strong>。</p><blockquote><p>1.Django的缓存机制</p></blockquote><a id="more"></a><h3 id="1-Django的缓存机制☆☆☆"><a href="#1-Django的缓存机制☆☆☆" class="headerlink" title="1.Django的缓存机制☆☆☆"></a>1.Django的缓存机制☆☆☆</h3><blockquote><p>为什么我们需要缓存？</p></blockquote><p>对于现在的动态网站来讲，所有的界面展示都是通过客户端请求服务端，服务端再去请求数据库，然后将请求到的数据渲染后返回给客户端。用户每次访问页面都需要去请求数据库，如果同时有多个人访问的话，对于我们的数据库的压力是相当大的。</p><p>所以我们会想，对于不是经常变更的数据，或者不需要实时更新展示的数据，我们可以将数据存放在缓存中，用户下次需要数据的时候，服务端直接从缓存中拿到数据返回给用户即可，不需要每次都去数据库查询，这样会大大降低数据库的压力，提升用户访问速度。</p><blockquote><p>Django的drf提供的缓存机制有两种解决方案：</p></blockquote><ol><li>drf-extensions缓存</li></ol><p>安装：pip install drf-extensions(目前不支持Django&gt;=3.1)</p><p>drf-extensions组件内部提供了DRF的本地内存方式的缓存方式，<strong>本地内存方式缓存在项目重启后则会消失</strong></p><ul><li><p>使用装饰器方式@cache_response</p><ul><li>要求：它适用于继承了rest_framework.views.APIView的类，且需要返回一个rest_framework.response.Response的实例</li></ul></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from rest_framework.views import APIView</span><br><span class="line">from rest_framework.response import Response</span><br><span class="line">from rest_framwork_extensions.cache.decorator import cache_response</span><br><span class="line">class GoodListView(APIView):</span><br><span class="line">    @cache_response()</span><br><span class="line">    def get(self, request, format=None):</span><br><span class="line">        goods = Goods.objects.all()[:10]</span><br><span class="line">        goods_serializer = GoodListSerializer1(goods, many=True)</span><br><span class="line">        return Response(goods_serializer.data)</span><br></pre></td></tr></table></figure><ul><li>使用CacheResponseMixin</li></ul><ol start="2"><li>使用redis缓存（Django-redis）</li></ol><ul><li>安装redis</li></ul><p>在配置缓存前要先安装好 Redis ,安装成功后，确定启动了 Redis 服务，在 cmd 命令行中输入 redis-cli 就能进入到 Redis 命令行。（<strong>前提要把 Redis 的安装目录配置到环境变量</strong>，在安装过程有添加环境变量的选项，勾上即可）</p><ul><li><p>安装：pip install django-redis</p></li><li><p>settings.py 文件中配置redis</p></li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">CACHES = &#123;</span><br><span class="line">    <span class="string">"default"</span>: &#123;</span><br><span class="line">        <span class="string">"BACKEND"</span>: <span class="string">"django_redis.cache.RedisCache"</span>,</span><br><span class="line">        <span class="string">"LOCATION"</span>: <span class="string">"redis://127.0.0.1:6379"</span>,</span><br><span class="line">        <span class="string">"OPTIONS"</span>: &#123;</span><br><span class="line">            <span class="string">"CLIENT_CLASS"</span>: <span class="string">"django_redis.client.DefaultClient"</span>,</span><br><span class="line">            <span class="comment"># "PASSWORD": "password"    # 如果存在密码，需要设置密码</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ol start="3"><li>依赖说明</li></ol><p><strong>drf-extensions的缓存方法是基于本地的, 如果在配置中配置了基于redis，则缓存方案自动切换为redis方案</strong> </p><h3 id="参考网站"><a href="#参考网站" class="headerlink" title="参考网站"></a>参考网站</h3><ul><li><a href="https://www.jianshu.com/p/7c8606da1d66" target="_blank" rel="noopener">DRF 配置 Redis 缓存</a></li><li><a href="https://blog.csdn.net/aimiandai4698/article/details/101133133" target="_blank" rel="noopener">DRF缓存</a></li><li><a href="https://www.cnblogs.com/shijieli/p/10363784.html#_label0_1" target="_blank" rel="noopener">Python操作Redis</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Django </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Django </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>关于如何养成Django女皇的那件事（Ⅲ）</title>
       <link href="/2020/08/01/Django%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%B8%89%EF%BC%89/"/>
       <url>/2020/08/01/Django%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%B8%89%EF%BC%89/</url>
