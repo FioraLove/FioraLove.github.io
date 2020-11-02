@@ -451,6 +451,9 @@
 <p>二，八，十六进制转换为十进制：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; int(&apos;0b1101&apos;,2)  </span><br><span class="line">13</span><br><span class="line">&gt;&gt;&gt; int(&apos;0o226&apos;,8)   #00226 0：阿拉伯数字零   o：小写英文字母 o  226：八进制数</span><br><span class="line">150</span><br><span class="line">&gt;&gt;&gt; int(&apos;0x96&apos;,16)</span><br><span class="line">150</span><br></pre></td></tr></table></figure>
 
+<p>2020-10-29 新增：传入数值，转换为目标进制（2、8、10、16、32…）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">BaseCovert</span><span class="params">(num, b)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> ((num == <span class="number">0</span>) <span class="keyword">and</span> <span class="string">"0"</span>) <span class="keyword">or</span> (BaseCovert(num // b, b).lstrip(<span class="string">"0"</span>) + <span class="string">"0123456789abcdefghijklmnopqrstuvwxyz"</span>[num % b])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    print(BaseCovert(<span class="number">1603940678816</span>, <span class="number">32</span>))    <span class="comment"># 1elp50v50</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="3-bytes与str之间的转换"><a href="#3-bytes与str之间的转换" class="headerlink" title="3.bytes与str之间的转换"></a>3.bytes与str之间的转换</h3><p>bytes 和 str 的区别:<br>bytes 存储字节( 通常值在 range(0, 256))<br>str 存储unicode字符( 通常值在0~65535)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># bytes object</span><br><span class="line">b = b&quot;example&quot;</span><br><span class="line"></span><br><span class="line"># str object</span><br><span class="line">s = &quot;example&quot;</span><br><span class="line"></span><br><span class="line">解码(decode)</span><br><span class="line">bytes ----------&gt; str: 存在两种方式</span><br><span class="line">1. str(b, encoding = &quot;utf-8&quot;)</span><br><span class="line">2. bytes.decode(b)</span><br><span class="line"></span><br><span class="line">编码(encode)</span><br><span class="line">str ----------&gt; bytes：存在两种方式</span><br><span class="line">1. bytes(s, encoding = &quot;utf8&quot;)</span><br><span class="line">2. str.encode(s)</span><br></pre></td></tr></table></figure>
 
@@ -549,7 +552,11 @@
 <p>用来处理形如这种的Unicode字符：\u002F</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">slashUStr = <span class="string">"https:\u002F\u002Fm.dhgate.com\u002Fproduct\u002F427954156.html"</span></span><br><span class="line">decodedUniChars = slashUStr.encode(<span class="string">'utf-8'</span>).decode(<span class="string">"unicode_escape"</span>)</span><br><span class="line">print(<span class="string">"decodedUniChars="</span>, decodedUniChars)</span><br></pre></td></tr></table></figure>
 
-
+<ol start="3">
+<li>urllib包中parse模块的quote和unquote</li>
+</ol>
+<p>用来处理url编码/解码，功能类似于js的encodeURIComponent/decodeURIComponent</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> parse</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这个是js的结果</span></span><br><span class="line"><span class="comment"># encodeURIComponent('中国')</span></span><br><span class="line"><span class="comment"># "%E4%B8%AD%E5%9B%BD"</span></span><br><span class="line">jsRet=<span class="string">'%E4%B8%AD%E5%9B%BD'</span></span><br><span class="line">print(parse.unquote(jsRet))       <span class="comment">#输出：中国</span></span><br><span class="line">print(jsRet==parse.quote(<span class="string">'中国'</span>))  <span class="comment">#输出：True</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="7-python的各种加密"><a href="#7-python的各种加密" class="headerlink" title="7.python的各种加密"></a>7.python的各种加密</h3><h4 id="7-1-背景"><a href="#7-1-背景" class="headerlink" title="7.1 背景"></a>7.1 背景</h4><p>关于对称加密与非对称加密，参考文章：<a href="https://blog.csdn.net/yangxiaodong88/article/details/80801278" target="_blank" rel="noopener">https://blog.csdn.net/yangxiaodong88/article/details/80801278</a></p>
 <h4 id="7-2-base64加密"><a href="#7-2-base64加密" class="headerlink" title="7.2 base64加密"></a>7.2 base64加密</h4><ul>
@@ -614,10 +621,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-10-15T16:04:20+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-10-30T09:41:30+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年10月15日</p>
+    <p>更新于 2020年10月30日</p>
   </a>
 </div>
 
