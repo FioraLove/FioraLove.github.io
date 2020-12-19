@@ -437,7 +437,7 @@
 </blockquote>
 <a id="more"></a>
 
-<h3 id="1-变量及数据类型"><a href="#1-变量及数据类型" class="headerlink" title="1. 变量及数据类型"></a>1. 变量及数据类型</h3><ul>
+<h3 id="1-js的变量及数据类型"><a href="#1-js的变量及数据类型" class="headerlink" title="1. js的变量及数据类型"></a>1. js的变量及数据类型</h3><ul>
 <li>声明变量</li>
 </ul>
 <p><strong>js在创建变量或对象时，一定要声明其数据类型，否者会默认设置为全局变量，这是我们导入其它js等文件时就会造成污染数据</strong></p>
@@ -507,7 +507,8 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> obj) &#123;</span><br><span class="line">    <span class="keyword">if</span> (obj.hasOwnProperty(key)) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(obj[key]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.keys(obj).forEach(<span class="function">(<span class="params">key</span>) =&gt;</span> &#123;</span><br><span class="line"> <span class="built_in">console</span>.log(obj[key]) <span class="comment">// foo</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 
-<h4 id="案例：数据集构造"><a href="#案例：数据集构造" class="headerlink" title="案例：数据集构造"></a>案例：数据集构造</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">let</span> dimensions = [];  <span class="comment">//维度</span></span><br><span class="line"><span class="keyword">let</span> source = [];      <span class="comment">//数据集</span></span><br><span class="line"><span class="keyword">let</span> series = [];        <span class="comment">//图系列</span></span><br><span class="line"></span><br><span class="line">dimensions.push(<span class="string">"groupcus_name"</span>);</span><br><span class="line">dimensions.push(<span class="string">"剩余发出商品"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;response.Rows.length;i++)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> obj = &#123;&#125;;</span><br><span class="line">    obj[<span class="string">"groupcus_name"</span>] = response.Rows[i].groupcus_name;  <span class="comment">// 对象的调用方式obj["key_name"]或obj.key_name</span></span><br><span class="line">    obj[<span class="string">"剩余发出商品"</span>] = response.Rows[i].surplusp;</span><br><span class="line"></span><br><span class="line">    source.push(obj);   <span class="comment">// 记住push只适用于数组的元素添加，并返回数组元素个数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>案例：数据集构造</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">let</span> dimensions = [];  <span class="comment">//维度</span></span><br><span class="line"><span class="keyword">let</span> source = [];      <span class="comment">//数据集</span></span><br><span class="line"><span class="keyword">let</span> series = [];        <span class="comment">//图系列</span></span><br><span class="line"></span><br><span class="line">dimensions.push(<span class="string">"groupcus_name"</span>);</span><br><span class="line">dimensions.push(<span class="string">"剩余发出商品"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;response.Rows.length;i++)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> obj = &#123;&#125;;</span><br><span class="line">    obj[<span class="string">"groupcus_name"</span>] = response.Rows[i].groupcus_name;  <span class="comment">// 对象的调用方式obj["key_name"]或obj.key_name</span></span><br><span class="line">    obj[<span class="string">"剩余发出商品"</span>] = response.Rows[i].surplusp;</span><br><span class="line"></span><br><span class="line">    source.push(obj);   <span class="comment">// 记住push只适用于数组的元素添加，并返回数组元素个数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="4-js字符串"><a href="#4-js字符串" class="headerlink" title="4. js字符串"></a>4. js字符串</h3><blockquote>
 <p>4.1 js字符串长度</p>
@@ -606,13 +607,11 @@
 <blockquote>
 <p>4.7 str.split()：切割字符串，返回数组的形式</p>
 </blockquote>
-<p>这里有一个小知识点，<br><font color=#FF0000></p>
+<p>这里有一个小知识点，</p>
 <ul>
 <li>当split()里面什么都不加时，会把整个字符串当作一个数组</li>
-<li>当写法为split(“”)时，表示将原字符串的每一个字符进行切割</li>
-<li>当写法为split(“指定字符串”)时，将原字符串按照指定字符串进行切割</font>
-
-</li>
+<li>当写法为split(&quot;&quot;)时，表示将原字符串的每一个字符进行切割</li>
+<li>当写法为split(&quot;指定字符串&quot;)时，将原字符串按照指定字符串进行切割</li>
 </ul>
 <p>举例说明：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> quote = <span class="string">"i love you because of you"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(quote.split());   <span class="comment">// ["i love you because of you"]</span></span><br><span class="line"><span class="built_in">console</span>.log(quote.split(<span class="string">""</span>));   </span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">["i", " ", "l", "o", "v", "e", " ", "y", "o", "u", " ", "b", "e", </span></span><br><span class="line"><span class="comment">"c", "a", "u", "s", "e", " ", "o", "f", " ", "y", "o", "u"]</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="built_in">console</span>.log(quote.split(<span class="string">"you"</span>));    <span class="comment">//["i love ", " because of ", ""]</span></span><br></pre></td></tr></table></figure>
@@ -636,8 +635,8 @@
 <p>4.10 字符串判断开头或结尾是否是指定的字符</p>
 </blockquote>
 <ul>
-<li>str.startsWith(“”):判定一个字符串是否以另一个字符串开头</li>
-<li>str.endsWith(“”):判定一个字符串是否以另一个字符串结尾</li>
+<li>str.startsWith(&quot;&quot;):判定一个字符串是否以另一个字符串开头</li>
+<li>str.endsWith(&quot;&quot;):判定一个字符串是否以另一个字符串结尾</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">"hello world"</span>;</span><br><span class="line"><span class="keyword">let</span> result = str.startsWith(<span class="string">"he"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(result); <span class="comment">//true</span></span><br><span class="line"><span class="comment">//当为两个参数时，第二个表示开始位数。</span></span><br><span class="line">result = str.startsWith(<span class="string">"he"</span>,<span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log(result);<span class="comment">//flase</span></span><br></pre></td></tr></table></figure>
 
@@ -659,7 +658,7 @@
 <p>4.13     复制字符串指定次数，并将它们连接在一起返回</p>
 </blockquote>
 <p>string.repeat(count) =&gt; “woman”.repeat(2);</p>
-<h3 id="5-js对url进行编码和解码"><a href="#5-js对url进行编码和解码" class="headerlink" title="5.js对url进行编码和解码"></a>5.js对url进行编码和解码</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在的信息网络都是数字的，很多东西要保存传输就得编码，比如你要保存一篇文章，里面的字就是一些二进制编码。编码就是如何把信息转换成数字序列，解码则是把数字序列转换成信息。<br>简单理解为：1. 编码（encode）是将人能够认识的信息转换为看不懂的。 2. 解码（decode）是将经过加密的对象转换为我们能够认识的信息</p>
+<h3 id="5-js对url进行编码和解码"><a href="#5-js对url进行编码和解码" class="headerlink" title="5. js对url进行编码和解码"></a>5. js对url进行编码和解码</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在的信息网络都是数字的，很多东西要保存传输就得编码，比如你要保存一篇文章，里面的字就是一些二进制编码。编码就是如何把信息转换成数字序列，解码则是把数字序列转换成信息。<br>简单理解为：1. 编码（encode）是将人能够认识的信息转换为看不懂的。 2. 解码（decode）是将经过加密的对象转换为我们能够认识的信息</p>
 <blockquote>
 <p>1.encodeURI 和 decodeURI</p>
 </blockquote>
@@ -705,7 +704,7 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-19T18:14:40+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-19T18:28:03+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
     <p>更新于 2020年12月19日</p>
@@ -944,7 +943,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-变量及数据类型"><span class="toc-text">1. 变量及数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-js数据类型"><span class="toc-text">2. js数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-js的对象"><span class="toc-text">3. js的对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#案例：数据集构造"><span class="toc-text">案例：数据集构造</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-js字符串"><span class="toc-text">4. js字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-js对url进行编码和解码"><span class="toc-text">5.js对url进行编码和解码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-js的变量及数据类型"><span class="toc-text">1. js的变量及数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-js数据类型"><span class="toc-text">2. js数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-js的对象"><span class="toc-text">3. js的对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-js字符串"><span class="toc-text">4. js字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-js对url进行编码和解码"><span class="toc-text">5. js对url进行编码和解码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
     </div>
   </section>
 

@@ -433,9 +433,10 @@
       <div class="article-entry" itemprop="articleBody">
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Memcached是一个高性能的分布式的内存对象缓存系统，全世界有不少公司采用这个缓存项目来构建大负载的网站，来分担数据库的压力。<font color=#FF4500>适合使用Memcached：存储验证码（图形验证码、短信验证码）、登录session</font>等所有不是至关重要的数据(保存于内存中，关机后数据就会消失)</p>
 <blockquote>
-<p><font size=4 color=#FF0000>本文要点：</font><br>1.win，Linux安装memcached<br>2.docker创建memcached<br>3.测试并进入容器<br>4.telnet操作memcached<br>……<br><fancybox><img src="http://hd.wallpaperswide.com/thumbs/japanese_woman-t2.jpg" alt="浙江大学，冲！"></fancybox></p>
+<p><font size=4 color=#FF0000>本文要点：</font><br>1.win，Linux安装memcached<br>2.docker创建memcached<br>3.测试并进入容器<br>4.telnet操作memcached</p>
 </blockquote>
 <a id="more"></a>
+
 <h2 id="1-安装memcached"><a href="#1-安装memcached" class="headerlink" title="1.安装memcached"></a>1.安装memcached</h2><p>&nbsp;&nbsp;&nbsp;Memcached是通过在内存里维护一个统一的巨大的hash表，memcached能存储各种各样的数据，包括图像、视频<font color=#FF4500>(但是极不推荐来保存二进制文件)</font>、文件、以及数据库检索的结果等。简单的说就是将数据调用到内存中，然后从内存中读取，从而大大提高读取速度。<br><a href="https://blog.csdn.net/qq_41717874/article/details/89472198" target="_blank" rel="noopener">参考docker创建memecached容器</a><br><a href="https://www.cnblogs.com/b-ruce/p/5639223.html" target="_blank" rel="noopener">windows下ThinkPHP3.2.3使用memcache缓存</a></p>
 <h2 id="2-创建memcached镜像"><a href="#2-创建memcached镜像" class="headerlink" title="2.创建memcached镜像"></a>2.创建memcached镜像</h2><p>docker run -di –name=”memcached” -m 256m -p 11211:11211 memcached:[tag]</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-d是启动一个守护进程；</span><br><span class="line">-m是分配给Memcache使用的内存数量，单位是MB；</span><br><span class="line">-u是运行Memcache的用户；</span><br><span class="line">-l是监听的服务器IP地址，可以有多个地址；</span><br><span class="line">-p是设置Memcache监听的端口，，最好是1024以上的端口；</span><br><span class="line">-c是最大运行的并发连接数，默认是1024；</span><br></pre></td></tr></table></figure>
@@ -486,10 +487,10 @@ add key flas(0) timeout value_length<br>value<br>示例：<br>add username 0 60 
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-03T08:19:21+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-19T18:34:30+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年12月3日</p>
+    <p>更新于 2020年12月19日</p>
   </a>
 </div>
 
@@ -513,7 +514,7 @@ add key flas(0) timeout value_length<br>value<br>示例：<br>add username 0 60 
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/11/20/Memcache/&title=Memcached | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Memcached是一个高性能的分布式的内存对象缓存系统，全世界有不少公司采用这个缓存项目来构建大负载的网站，来分担数据库的压力。适合使用Memcached：存储验证码（图形验证码、短信验证码）、登录session等所有不是至关重要的数据(保存于内存中，关机后数据就会消失)
 
-本文要点：1.win，Linux安装memcached2.docker创建memcached3.测试并进入容器4.telnet操作memcached……
+本文要点：1.win，Linux安装memcached2.docker创建memcached3.测试并进入容器4.telnet操作memcached
 "
           
           >
@@ -528,7 +529,7 @@ add key flas(0) timeout value_length<br>value<br>示例：<br>add username 0 60 
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/11/20/Memcache/&title=Memcached | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Memcached是一个高性能的分布式的内存对象缓存系统，全世界有不少公司采用这个缓存项目来构建大负载的网站，来分担数据库的压力。适合使用Memcached：存储验证码（图形验证码、短信验证码）、登录session等所有不是至关重要的数据(保存于内存中，关机后数据就会消失)
 
-本文要点：1.win，Linux安装memcached2.docker创建memcached3.测试并进入容器4.telnet操作memcached……
+本文要点：1.win，Linux安装memcached2.docker创建memcached3.测试并进入容器4.telnet操作memcached
 "
           
           >
@@ -543,7 +544,7 @@ add key flas(0) timeout value_length<br>value<br>示例：<br>add username 0 60 
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/11/20/Memcache/&title=Memcached | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Memcached是一个高性能的分布式的内存对象缓存系统，全世界有不少公司采用这个缓存项目来构建大负载的网站，来分担数据库的压力。适合使用Memcached：存储验证码（图形验证码、短信验证码）、登录session等所有不是至关重要的数据(保存于内存中，关机后数据就会消失)
 
-本文要点：1.win，Linux安装memcached2.docker创建memcached3.测试并进入容器4.telnet操作memcached……
+本文要点：1.win，Linux安装memcached2.docker创建memcached3.测试并进入容器4.telnet操作memcached
 "
           
           >
