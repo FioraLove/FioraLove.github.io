@@ -433,7 +433,7 @@
       <div class="article-entry" itemprop="articleBody">
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之前我们已经系统的了解过了requests库了，但是愈发觉得这个三方库真是太完美了，利用python可以http请求发送soap报文（xml数据格式）进行webservice接口调用。<br><strong>本章内容：</strong></p>
 <blockquote>
-<p>1.python的占位符%s,%d,%r,%f<br>2.进制转换<br>3.bytes与str之间的转换<br>4.<a href="https://www.runoob.com/python/python-operators.html" target="_blank" rel="noopener">python的运算符</a><br>5.python通过http请求发送soap报文进行webservice接口调用<br>6.python的编码与解码<br>7.python的各种加密：base64加密，md5…<br>8.python压缩打包文件为zip</p>
+<p>1.python的占位符%s,%d,%r,%f<br>2.进制转换<br>3.bytes与str之间的转换<br>4.<a href="https://www.runoob.com/python/python-operators.html" target="_blank" rel="noopener">python的运算符</a><br>5.python通过http请求发送soap报文进行webservice接口调用<br>6.python的编码与解码<br>7.python的各种加密：base64加密，md5，RSA…<br>8.python压缩打包文件为zip</p>
 </blockquote>
 <a id="more"></a>
 <h3 id="1-python的占位符"><a href="#1-python的占位符" class="headerlink" title="1.python的占位符"></a>1.python的占位符</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
@@ -596,6 +596,49 @@
 
 <p>简介<br>RSA加密算法是一种非对称加密算法。在公开密钥加密和电子商业中RSA被广泛使用。</p>
 <p>该算法基于一个十分简单的数论事实：将两个大素数相乘十分容易，但那时想要对其乘积进行因式分解却极其困难，因此可以将乘积公开作为加密密钥，即公钥，而两个大素数组合成私钥。公钥是可发布的供任何人使用，私钥则为自己所有，供解密之用</p>
+<p>几个知识点：</p>
+<ol>
+<li>密匙格式：其实就是报文格式不同的区别</li>
+</ol>
+<ul>
+<li>PKCS#8 格式公钥</li>
+<li>PKCS#1 格式私钥</li>
+</ul>
+<p>PEM格式包含几种报文头:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;-----BEGIN PUBLIC KEY-----&quot;: PKCS#8 格式公钥</span><br><span class="line">&quot;-----BEGIN PRIVATE KEY-----&quot;: PKCS#8 格式私钥</span><br><span class="line"></span><br><span class="line">&quot;-----BEGIN RSA PUBLIC KEY-----&quot;: PKCS#1 格式公钥</span><br><span class="line">&quot;-----BEGIN RSA PRIVATE KEY-----&quot;: PKCS#1 格式私钥</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>公钥加密、私钥解密、私钥签名、公钥验签 :<a href="https://www.cnblogs.com/pcheng/p/9629621.html" target="_blank" rel="noopener">https://www.cnblogs.com/pcheng/p/9629621.html</a></p>
+</li>
+<li><p>私钥密码</p>
+</li>
+<li><p>密匙长度</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- 512bit</span><br><span class="line">- 1024bit</span><br><span class="line">- 2048bit</span><br><span class="line">- 4096bit</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li><a href="https://opendocs.alipay.com/open/291/106115" target="_blank" rel="noopener">RSA1，RSA2</a></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">开放平台签名算法名称</th>
+<th align="center">标准签名算法名称</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">RSA2</td>
+<td align="center">SHA256WithRSA</td>
+<td align="center">强制要求 RSA 密钥的长度至少为 2048</td>
+</tr>
+<tr>
+<td align="center">RSA</td>
+<td align="center">SHA1WithRSA</td>
+<td align="center">对 RSA 密钥的长度不限制，推荐使用 2048 位以上</td>
+</tr>
+</tbody></table>
 <p>由于找了很多文章，没用太满意关于RSA解密的，推荐使用pycryptodemo库：</p>
 <ul>
 <li><a href="https://blog.csdn.net/wqdege/article/details/80303186" target="_blank" rel="noopener">python3 使用Pycrypto进行RSA加解密</a></li>
@@ -621,10 +664,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-10-30T09:41:30+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-11T14:43:35+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年10月30日</p>
+    <p>更新于 2021年1月11日</p>
   </a>
 </div>
 
@@ -648,7 +691,7 @@
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/04/21/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89/&title=Python全栈系列章节更新（十八）：知识点补充（Ⅰ） | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之前我们已经系统的了解过了requests库了，但是愈发觉得这个三方库真是太完美了，利用python可以http请求发送soap报文（xml数据格式）进行webservice接口调用。本章内容：
 
-1.python的占位符%s,%d,%r,%f2.进制转换3.bytes与str之间的转换4.python的运算符5.python通过http请求发送soap报文进行webservice接口调用6.python的编码与解码7.python的各种加密：base64加密，md5…8.python压缩打包文件为zip
+1.python的占位符%s,%d,%r,%f2.进制转换3.bytes与str之间的转换4.python的运算符5.python通过http请求发送soap报文进行webservice接口调用6.python的编码与解码7.python的各种加密：base64加密，md5，RSA…8.python压缩打包文件为zip
 "
           
           >
@@ -663,7 +706,7 @@
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/04/21/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89/&title=Python全栈系列章节更新（十八）：知识点补充（Ⅰ） | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之前我们已经系统的了解过了requests库了，但是愈发觉得这个三方库真是太完美了，利用python可以http请求发送soap报文（xml数据格式）进行webservice接口调用。本章内容：
 
-1.python的占位符%s,%d,%r,%f2.进制转换3.bytes与str之间的转换4.python的运算符5.python通过http请求发送soap报文进行webservice接口调用6.python的编码与解码7.python的各种加密：base64加密，md5…8.python压缩打包文件为zip
+1.python的占位符%s,%d,%r,%f2.进制转换3.bytes与str之间的转换4.python的运算符5.python通过http请求发送soap报文进行webservice接口调用6.python的编码与解码7.python的各种加密：base64加密，md5，RSA…8.python压缩打包文件为zip
 "
           
           >
@@ -678,7 +721,7 @@
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/04/21/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89/&title=Python全栈系列章节更新（十八）：知识点补充（Ⅰ） | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之前我们已经系统的了解过了requests库了，但是愈发觉得这个三方库真是太完美了，利用python可以http请求发送soap报文（xml数据格式）进行webservice接口调用。本章内容：
 
-1.python的占位符%s,%d,%r,%f2.进制转换3.bytes与str之间的转换4.python的运算符5.python通过http请求发送soap报文进行webservice接口调用6.python的编码与解码7.python的各种加密：base64加密，md5…8.python压缩打包文件为zip
+1.python的占位符%s,%d,%r,%f2.进制转换3.bytes与str之间的转换4.python的运算符5.python通过http请求发送soap报文进行webservice接口调用6.python的编码与解码7.python的各种加密：base64加密，md5，RSA…8.python压缩打包文件为zip
 "
           
           >

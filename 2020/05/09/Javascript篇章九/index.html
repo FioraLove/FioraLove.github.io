@@ -461,6 +461,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 主模块mian.static</span></span><br><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"><span class="keyword">let</span> greet = <span class="built_in">require</span>(<span class="string">'./hello'</span>);</span><br><span class="line"><span class="keyword">let</span> s = <span class="string">"chd"</span>;</span><br><span class="line">greet.conn(s);</span><br><span class="line">greet.printer(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
 
 <h4 id="ES6规范"><a href="#ES6规范" class="headerlink" title="ES6规范"></a>ES6规范</h4><p>PS：在报错中了解到，是说无法在模块外部使用import语句，因为Module 的加载实现的是es6语法，所以在浏览器加载html文件时，<strong>需要在script 标签中加入type=”module”属性</strong>。</p>
+<p>更全的 ➡ <a href="https://www.cnblogs.com/WindrunnerMax/p/12674943.html" target="_blank" rel="noopener">Js模块化导入导出</a></p>
 <h3 id="3-ES6的扩展运算符-…"><a href="#3-ES6的扩展运算符-…" class="headerlink" title="3.ES6的扩展运算符 …"></a>3.ES6的扩展运算符 …</h3><p><code>...</code>扩展运算符号只能是针对一维度的对象或数组进行拷贝。不能对多维进行拷贝<br>理解对象的扩展运算符其实很简单，只要记住一句话就可以：<strong>对象中的扩展运算符(…)用于取出参数对象中的所有可遍历属性，拷贝到当前对象之中(数组同理)</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> z = &#123; <span class="attr">a</span>: <span class="number">3</span>, <span class="attr">b</span>: <span class="number">4</span> &#125;;</span><br><span class="line"><span class="keyword">let</span> n = &#123; ...z &#125;;</span><br><span class="line">n; <span class="comment">// &#123; a: 3, b: 4 &#125;</span></span><br><span class="line"><span class="comment">// 深拷贝</span></span><br><span class="line">z.a = <span class="number">7</span>;</span><br><span class="line"><span class="built_in">console</span>.log(z);  <span class="comment">// &#123;a: 7, b: 4&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(n);  <span class="comment">// &#123;a: 3, b: 4&#125;</span></span><br><span class="line"><span class="keyword">let</span> arr_plugin = [<span class="number">6</span>,<span class="number">6</span>,<span class="number">6</span>];</span><br><span class="line"><span class="built_in">console</span>.log([...arr_plugin]);    <span class="comment">// [6,6,6]</span></span><br></pre></td></tr></table></figure>
 
@@ -482,10 +483,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-07-08T17:09:57+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-23T15:05:50+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年7月8日</p>
+    <p>更新于 2020年12月23日</p>
   </a>
 </div>
 
