@@ -477,52 +477,46 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="comment"># PUT</span></span><br><span class="line">r = requests.put(<span class="string">'https://anoyi.com/'</span>, data=&#123;<span class="string">'key'</span>:<span class="string">'value'</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># DELETE</span></span><br><span class="line">r = requests.delete(<span class="string">'https://anoyi.com/'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># HEAD</span></span><br><span class="line">r = requests.head(<span class="string">'https://anoyi.com/'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># OPTIONS</span></span><br><span class="line">r = requests.options(<span class="string">'https://anoyi.com/'</span>)</span><br></pre></td></tr></table></figure>
 
 <h3 id="2-传递参数"><a href="#2-传递参数" class="headerlink" title="2.传递参数"></a>2.传递参数</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;无论是post还是get请求，对url进行请求时，都可以传递参数</p>
-<ol>
-<li>headers：反爬虫措施的基本操作，将爬虫伪装成正常的浏览器，躲过服务器的验证</li>
-</ol>
+<h4 id="headers"><a href="#headers" class="headerlink" title="headers"></a>headers</h4><p>反爬虫措施的基本操作，将爬虫伪装成正常的浏览器，躲过服务器的验证</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">headers = &#123;</span><br><span class="line">    &quot;User-Agent&quot;: &quot;&quot;,   浏览器对象</span><br><span class="line">    &quot;Cookie&quot;:&quot;&quot;,    cookie能够存储浏览器上次访问的信息</span><br><span class="line">    &quot;host&quot;:&quot;&quot;,      计算机ip</span><br><span class="line">    &quot;referer&quot;:&quot;&quot;    引用</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<ol start="2">
-<li>timeout超时设置</li>
-</ol>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;超时是请求能够容忍的最大时间，如果在这个时间内，还没有响应返回过来，那么这次请求就算失败了，不再继续等待请求的结果。浏览器发送请求后，服务器接受数据处理后，再返回目标数据，这过程中可能因为各种原因导致响应很慢，设置timeout，超时后停止访问<br>response = requests.post(“<a href="http://httpbin.org/post&quot;" target="_blank" rel="noopener">http://httpbin.org/post&quot;</a>, data=data，<strong>timeout = 10</strong>)</p>
-<ol start="3">
-<li>证书验证<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;证书验证也是我们经常会遇到的问题，通常情况下，访问一些网站的时候，都会验证访问者的证书是否合法，如果不合法，就不允许访问。<font color=#65c294>大部分情况，我们之间设置证书验证为 False 即可</font><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 有验证</span><br><span class="line">response = requests.get(&quot;https://cms.hit.edu.cn/&quot;) # 程序会中断</span><br><span class="line">print(response.status_code)</span><br><span class="line"># 没有验证</span><br><span class="line">response = requests.get(&quot;https://cms.hit.edu.cn/&quot;, verify=False)</span><br><span class="line">print(response.status_code)</span><br><span class="line">去除 warning 方法</span><br><span class="line">from requests.packages import urllib3</span><br><span class="line">urllib3.disable_warnings()</span><br><span class="line">response = requests.get(&quot;https://cms.hit.edu.cn/&quot;, verify=False)</span><br><span class="line">print(response.status_code)</span><br><span class="line">cert 手动指定证书</span><br><span class="line">response = requests.get(&quot;https://cms.hit.edu.cn/&quot;,cert=&#123;&apos;path/server.crt&apos;, &apos;/path/key&apos;&#125;)</span><br><span class="line">print(response.status_code)</span><br></pre></td></tr></table></figure>
+<h4 id="timeout超时"><a href="#timeout超时" class="headerlink" title="timeout超时"></a>timeout超时</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;超时是请求能够容忍的最大时间，如果在这个时间内，还没有响应返回过来，那么这次请求就算失败了，不再继续等待请求的结果。浏览器发送请求后，服务器接受数据处理后，再返回目标数据，这过程中可能因为各种原因导致响应很慢，设置timeout，超时后停止访问<br>response = requests.post(“<a href="http://httpbin.org/post&quot;" target="_blank" rel="noopener">http://httpbin.org/post&quot;</a>, data=data，<strong>timeout = 10</strong>)</p>
+<h4 id="verify证书"><a href="#verify证书" class="headerlink" title="verify证书"></a>verify证书</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;证书验证也是我们经常会遇到的问题，通常情况下，访问一些网站的时候，都会验证访问者的证书是否合法，如果不合法，就不允许访问。<font color=#65c294>大部分情况，我们之间设置证书验证为 False 即可</font></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 有验证</span><br><span class="line">response = requests.get(&quot;https://cms.hit.edu.cn/&quot;) # 程序会中断</span><br><span class="line">print(response.status_code)</span><br><span class="line"># 没有验证</span><br><span class="line">response = requests.get(&quot;https://cms.hit.edu.cn/&quot;, verify=False)</span><br><span class="line">print(response.status_code)</span><br><span class="line">去除 warning 方法</span><br><span class="line">from requests.packages import urllib3</span><br><span class="line">urllib3.disable_warnings()</span><br><span class="line">response = requests.get(&quot;https://cms.hit.edu.cn/&quot;, verify=False)</span><br><span class="line">print(response.status_code)</span><br><span class="line">cert 手动指定证书</span><br><span class="line">response = requests.get(&quot;https://cms.hit.edu.cn/&quot;,cert=&#123;&apos;path/server.crt&apos;, &apos;/path/key&apos;&#125;)</span><br><span class="line">print(response.status_code)</span><br></pre></td></tr></table></figure>
 
-</li>
-</ol>
 <p>当我们设置SSL验证为False时，会弹出很多警告，这时我们就需要新增两行代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> urllib3.exceptions <span class="keyword">import</span> InsecureRequestWarning</span><br><span class="line"><span class="comment"># 禁用安全请求警告</span></span><br><span class="line">requests.packages.urllib3.disable_warnings(InsecureRequestWarning)</span><br></pre></td></tr></table></figure>
 
 
-<ol start="4">
-<li>代理设置</li>
-</ol>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;代理也是一个很常用的方法。通常，在我们需要多个主机进行访问或需要绕过防火墙时，可以利用代理进行访问</p>
+<h4 id="proxies代理"><a href="#proxies代理" class="headerlink" title="proxies代理"></a>proxies代理</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;代理也是一个很常用的方法。通常，在我们需要多个主机进行访问或需要绕过防火墙时，可以利用代理进行访问</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 无密码</span><br><span class="line">proxies = &#123;</span><br><span class="line">    &quot;http&quot;:&quot;http://178.128.63.64:8388&quot;</span><br><span class="line">&#125;</span><br><span class="line"># 有密码</span><br><span class="line">proxies = &#123;</span><br><span class="line">    &quot;http&quot;:&quot;http://user:password@178.128.63.64:8388&quot;</span><br><span class="line">&#125;</span><br><span class="line">response = requests.get(&quot;https://www.taobao.com&quot;, proxies=proxies)</span><br><span class="line">print(response.status_code)</span><br><span class="line"># 利用 socks 进行代理设置</span><br><span class="line">proxies = &#123;</span><br><span class="line">    &quot;http&quot;:&quot;socks5://178.128.63.64:8388&quot;,</span><br><span class="line">    &quot;https&quot;:&quot;socks5://178.128.63.64:8388&quot;</span><br><span class="line">&#125;</span><br><span class="line">response = requests.get(&quot;https://www.taobao.com&quot;, proxies=proxies)</span><br><span class="line">print(response.status_code)</span><br></pre></td></tr></table></figure>
 
 <p>补充：2020-4-13 代理池的设计</p>
 <p>今天花了一段时间设计了一个代理池，参考我的GitHub<a href="https://github.com/FioraLove/Python/tree/master/Python%E4%BB%A3%E7%90%86%E6%B1%A0" target="_blank" rel="noopener">【python代理池设计】</a></p>
-<ol start="5">
-<li>cookies<br>cookies除了放置在headers请求头里之外，也可以使用requests关键字里的cookies={…}</li>
-</ol>
+<h4 id="cookies"><a href="#cookies" class="headerlink" title="cookies"></a>cookies</h4><p>cookies除了放置在headers请求头里之外，也可以使用requests关键字里的cookies={…}</p>
 <p><strong>cookie放在请求头里发请求和使用requests关键字cookies={…}没有任何区别</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response = requests.post(url=url, headers=headers, data=data, cookies=cookies)</span><br></pre></td></tr></table></figure>
 
-<ol start="6">
-<li>stream=True下载流式文件</li>
-</ol>
-<p>Bit、 Byte、KB、MB、GB之间的换算:</p>
+<p>区别cookie放置位置：</p>
+<ul>
+<li>cookie放在headers中:格式类似于（&quot;key1:value1; key2:value2; key3:value3&quot;）</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">"Cookie"</span>: <span class="string">"_octo=GH1.1.162052.1572277627; _ga=GA1.2.579499272.1572277630; tz=Asia%2FShanghai"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>cookie放在requests关键词中的<strong>cookies</strong>：可以为CookieJar类或者字典格式的cookie</li>
+</ul>
+<h4 id="stream流文件"><a href="#stream流文件" class="headerlink" title="stream流文件"></a>stream流文件</h4><p>Bit、 Byte、KB、MB、GB之间的换算:</p>
 <p>1 Byte = 8 Bits（即 1B=8b，字节是内存的基本单位）<br>1 KB = 1024 Bytes<br>1 MB = 1024 KB<br>1 GB = 1024 MB</p>
 <p>Bit意为“位”或“比特”，是计算机运算的基础，属于二进制的范畴；<br>Byte意为“字节”，是计算机文件大小的基本计算单位；</p>
 <p>这两者应用的场合不同。通常用bit来作数据传输的单位，因为物理层，数据链路层的传输对于用户是透明的，而这种通信传输是基于二进制的传输。在应用层通常是用byte来作单位，表示文件的大小，在用户看来就是可见的数据大小。比如一个字符就是1byte,如果是汉字，则是2byte</p>
 <p>比如常见的音视频，放置某些文件过大，内存溢出</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">response = requests.post(url=url, </span><br><span class="line">                        headers=headers, </span><br><span class="line">                        data=data, </span><br><span class="line">                        cookies=cookies,</span><br><span class="line">                        stream=True)</span><br></pre></td></tr></table></figure>
 
-<ol start="7">
-<li>allow_redirects重定向操作</li>
-</ol>
-<ul>
+<p>拓：<em>进度条下载二进制文件</em></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">"https://w.wallha.com/ws/12/uOaBe9fY.MP4"</span></span><br><span class="line">rsp = requests.head(url)</span><br><span class="line"><span class="comment"># 获取返回文件的大小</span></span><br><span class="line">size = rsp.headers[<span class="string">'Content-Length'</span>]</span><br><span class="line"><span class="comment"># 将字节Byte转换为MB</span></span><br><span class="line">print(<span class="string">"文件大小: %.2f MB"</span> % (int(size) / <span class="number">1024</span> / <span class="number">1024</span>))</span><br><span class="line">p = <span class="number">0</span></span><br><span class="line">rp = requests.get(url, stream=<span class="literal">True</span>)</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'./video.mp4'</span>, <span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="comment"># 开始下载每次请求1024字节</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> rp.iter_content(chunk_size=<span class="number">1024</span>):</span><br><span class="line">        p += len(i)</span><br><span class="line">        f.write(i)</span><br><span class="line">        done = <span class="number">50</span> * p / int(size)</span><br><span class="line">        sys.stdout.write(<span class="string">"\r[%s%s] %.2f%%"</span> % (<span class="string">'█'</span> * int(done), <span class="string">''</span> * int(<span class="number">50</span> - done), done + done))</span><br><span class="line">    sys.stdout.flush()</span><br></pre></td></tr></table></figure>
+
+<h4 id="allow-redirects重定向"><a href="#allow-redirects重定向" class="headerlink" title="allow_redirects重定向"></a>allow_redirects重定向</h4><ul>
 <li>Redirect重定向就是通过各种方法将各种网络请求重新定个方向转到其它位置,从地址A跳转到地址 B 了：</li>
 <li>重定向状态码:<ul>
 <li>301 redirect: 301 代表永久性转移(Permanently Moved)</li>
@@ -557,7 +551,7 @@
 
 <h3 id="5-Cookie基础详细"><a href="#5-Cookie基础详细" class="headerlink" title="5.Cookie基础详细"></a>5.Cookie基础详细</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由前面我们已经知道了使用requests库的响应中可以获取cookie值，但却存在多种cookie写法</p>
 <ol>
-<li>response.cookie获取的是如下这种形式的cookieJar（<strong>此种形式的cookie必须放置在response = requests.post(url=url, headers=headers, data=data, cookies=cookies)里面，而不是像以前一样放置在headers里面</strong>）</li>
+<li>response.cookie获取的是如下这种形式的cookieJar类（<strong>此种形式的cookie必须放置在response = requests.post(url=url, headers=headers, data=data, cookies=cookies)里面，而不是像以前一样放置在headers里面</strong>）</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;RequestsCookieJar[</span><br><span class="line">    &lt;Cookie X_HTTP_TOKEN=42daf4b72327b2813774136851bf5e71415983ed09 for .lagou.com/&gt;, </span><br><span class="line">    &lt;Cookie user_trace_token=20200408105933-6470e1a5-1be3-4b1a-85c4-2cf2ced07646 for .lagou.com/&gt;, </span><br><span class="line">    &lt;Cookie JSESSIONID=ABAAAECABBJAAGIEB8B11EEB347561D234F0B9E026FE063 for www.lagou.com/&gt;, </span><br><span class="line">    &lt;Cookie SEARCH_ID=aff2447a4a0543a8bed59c906e97ba8a for www.lagou.com/&gt;</span><br><span class="line">]&gt;</span><br></pre></td></tr></table></figure>
 <br>
@@ -600,10 +594,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-10-12T10:47:54+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-13T10:52:23+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年10月12日</p>
+    <p>更新于 2021年1月13日</p>
   </a>
 </div>
 
@@ -839,7 +833,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-requests请求方式"><span class="toc-text">1.requests请求方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-传递参数"><span class="toc-text">2.传递参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-响应response"><span class="toc-text">3.响应response</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Cookie和Session"><span class="toc-text">4.Cookie和Session</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Cookie基础详细"><span class="toc-text">5.Cookie基础详细</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-requests请求方式"><span class="toc-text">1.requests请求方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-传递参数"><span class="toc-text">2.传递参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#headers"><span class="toc-text">headers</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#timeout超时"><span class="toc-text">timeout超时</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#verify证书"><span class="toc-text">verify证书</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#proxies代理"><span class="toc-text">proxies代理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cookies"><span class="toc-text">cookies</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#stream流文件"><span class="toc-text">stream流文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#allow-redirects重定向"><span class="toc-text">allow_redirects重定向</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-响应response"><span class="toc-text">3.响应response</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Cookie和Session"><span class="toc-text">4.Cookie和Session</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Cookie基础详细"><span class="toc-text">5.Cookie基础详细</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
     </div>
   </section>
 

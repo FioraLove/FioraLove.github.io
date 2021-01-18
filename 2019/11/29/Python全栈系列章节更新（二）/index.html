@@ -433,7 +433,7 @@
       <div class="article-entry" itemprop="articleBody">
         <p>Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等</p>
 <blockquote>
-<p>1.time模块<br>2.DBUtils管理数据库连接池<br>3.ftplib模块<br>4.os模块<br>5.datetime模块<br>6.tqdm模块<br>7.控制台输出带颜色文字的方法<br>8.random模块<br>9.Logger模块</p>
+<p>1.time模块<br>2.DBUtils管理数据库连接池<br>3.ftplib模块<br>4.os模块<br>5.datetime模块<br>6.tqdm模块<br>7.控制台输出带颜色文字的方法<br>8.random模块<br>9.Logger模块<br>10.文件存储</p>
 </blockquote>
 <a id="more"></a>
 <h2 id="1-time模块"><a href="#1-time模块" class="headerlink" title="1.time模块"></a>1.time模块</h2><h3 id="Unix时间戳转与时间的转换"><a href="#Unix时间戳转与时间的转换" class="headerlink" title="Unix时间戳转与时间的转换"></a>Unix时间戳转与时间的转换</h3><blockquote>
@@ -655,6 +655,19 @@
 <h2 id="5-datetime模块"><a href="#5-datetime模块" class="headerlink" title="5 datetime模块"></a>5 <a href="https://blog.csdn.net/qq_24753293/article/details/80954840" target="_blank" rel="noopener">datetime模块</a></h2><p>1.datetime.date：表示日期的类<br>2.datetime.datetime：表示日期时间的类<br>3.datetime.time：表示时间的类<br>4.datetime.timedelta：表示时间间隔，即两个时间点的间隔<br>5.datetime.tzinfo：时区的相关信息</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;datetime.datetime.now()</span><br><span class="line">当前系统时间：datetime.datetime(2019, 12, 3, 20, 31, 10, 740869)</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;datetime.datetime.now().year/month/day</span><br><span class="line">分别为：2019，12，3</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;datetime.datetime.now().weekday()</span><br><span class="line">1 表示在第几周</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;time1 = datetime.datetime(2016, 10, 20)</span><br><span class="line">&gt;&gt;&gt;time2 = datetime.datetime(2015, 11, 2)</span><br><span class="line"> </span><br><span class="line">&quot;&quot;&quot;计算天数差值&quot;&quot;&quot;</span><br><span class="line">print(time1-time2).days</span><br><span class="line"> </span><br><span class="line">&quot;&quot;&quot;计算两个日期之间相隔的秒数&quot;&quot;&quot;</span><br><span class="line">print (time1-time2).total_seconds()</span><br><span class="line"></span><br><span class="line"># 获取当前时间,并转化为字符串型</span><br><span class="line">&gt;&gt;&gt;time_new = str(datetime.datetime.now().date())  # &apos;2019-12-4&apos;</span><br><span class="line"></span><br><span class="line"># 以当天的09：00为开始时间（时间戳格式）</span><br><span class="line">&gt;&gt;&gt;time_on = time.mktime(time.strptime(time_new+ &apos; 09:00&apos;, &apos;%Y-%m-%d %H:%M&apos;))</span><br><span class="line"></span><br><span class="line"># 以当天的18：00为结束时间（时间戳格式）</span><br><span class="line">&gt;&gt;&gt;time_off = time.mktime(time.strptime(time_new+ &apos; 18:00&apos;, &apos;%Y-%m-%d %H:%M&apos;))</span><br><span class="line"></span><br><span class="line"># 当前星期几</span><br><span class="line">&gt;&gt;&gt;week_now = datetime.datetime.now().weekday()</span><br><span class="line"></span><br><span class="line"># 当前时间</span><br><span class="line">&gt;&gt;&gt;time_now = datetime.datetime.now()  # datetime.datetime(2019, 12, 4, 14, 57, 48, 988520)</span><br><span class="line"></span><br><span class="line"># 当前第几小时（24小时制）</span><br><span class="line">&gt;&gt;&gt;hour_now = datetime.datetime.now().hour  # 14</span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p>时间转换</p>
+</blockquote>
+<ul>
+<li>datetime转str格式：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; datetime.datetime.now().strftime(&quot;%Y-%m-%d %H:%M:%S&quot;)</span><br><span class="line">&apos;2018-06-18 16:58:46&apos;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>str格式转datetime格式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; print datetime.datetime.strptime(&quot;2018-06-18 16:58:46&quot;,&quot;%Y-%m-%d %H:%M:%S&quot;)</span><br><span class="line">2018-06-18 16:58:46</span><br><span class="line">&gt;&gt;&gt; print type(datetime.datetime.strptime(&quot;2018-06-18 16:58:46&quot;,&quot;%Y-%m-%d %H:%M:%S&quot;))</span><br><span class="line">&lt;type &apos;datetime.datetime&apos;&gt;</span><br></pre></td></tr></table></figure>
+
 <h2 id="5-tqdm模块（最优雅的进度条）"><a href="#5-tqdm模块（最优雅的进度条）" class="headerlink" title="5.tqdm模块（最优雅的进度条）"></a>5.tqdm模块（最优雅的进度条）</h2><p>from tqdm import tqdm<br>使用方法：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> tqdm(range(<span class="number">1000</span>)):</span><br><span class="line">        time.sleep(<span class="number">0.5</span>)</span><br></pre></td></tr></table></figure>
 
@@ -749,6 +762,28 @@
 <li>log.log.warn(String)</li>
 <li>log.log.error(String)</li>
 </ul>
+<h3 id="12-文件存储"><a href="#12-文件存储" class="headerlink" title="12. 文件存储"></a>12. 文件存储</h3><h4 id="CSV文件存储"><a href="#CSV文件存储" class="headerlink" title="CSV文件存储"></a>CSV文件存储</h4><p><strong>CSV</strong>文件以<strong>纯文本形式</strong>存储表格数据，它比Excel更加简洁，XLS文本是电子表格，它包含了文本、数值、公式和格式等内容，而CSV中不包含这些内容，就是<strong>特定字符分隔的纯文本</strong>。</p>
+<ul>
+<li>单行写入：<strong>writerow</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"./data.csv"</span>, <span class="string">'a+'</span>, encoding=<span class="string">"utf-8"</span>) <span class="keyword">as</span> csvfile:</span><br><span class="line">    writer = csv.writer(csvfile, delimiter=<span class="string">" "</span>) <span class="comment"># 初始化写入对象，delimiter表示分隔符，默认为逗号</span></span><br><span class="line">    writer.writerow([<span class="string">"id"</span>, <span class="string">"name"</span>, <span class="string">"age"</span>])</span><br><span class="line">    writer.writerow([<span class="string">"9527"</span>, <span class="string">"chd"</span>, <span class="string">"18"</span>])      <span class="comment"># 调用一次writerow，即可写入一行</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>多行写入：<strong>writerows</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"./data.csv"</span>, <span class="string">'a+'</span>, encoding=<span class="string">"utf-8"</span>) <span class="keyword">as</span> csvfile:</span><br><span class="line">    writer = csv.writer(csvfile, delimiter=<span class="string">" "</span>)</span><br><span class="line">    writer.writerow([<span class="string">"id"</span>, <span class="string">"name"</span>, <span class="string">"age"</span>])</span><br><span class="line">    writer.writerows([<span class="string">"9527"</span>, <span class="string">"chd"</span>, <span class="string">"18"</span>],[<span class="string">"4396"</span>, <span class="string">"lmm"</span>, <span class="string">"16"</span>], [<span class="string">"0001"</span>, <span class="string">"sxc"</span>, <span class="string">"20"</span>])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>以结构化数据（字典）写入: <strong>DictWriter</strong></li>
+</ul>
+<p>一般情况下，爬取的数据都是结构化的数据，在csv中仍支持字典的写入方式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"./data.csv"</span>, <span class="string">'a+'</span>, encoding=<span class="string">"utf-8"</span>) <span class="keyword">as</span> csvfile:</span><br><span class="line">    field_names = [<span class="string">"id"</span>, <span class="string">"name"</span>, <span class="string">"age"</span>]</span><br><span class="line">    writer = csv.DictWriter(csvfile, fieldnames = field_names)</span><br><span class="line">    writer.writeheader()</span><br><span class="line">    writer.writerow(&#123;<span class="string">"id"</span>:<span class="string">"chd"</span>, <span class="string">"age"</span>: <span class="number">18</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>CSV读取</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"./data.csv"</span>, <span class="string">'r'</span>, encoding=<span class="string">"utf-8"</span>) <span class="keyword">as</span> csvfile:</span><br><span class="line">    reader = csv.writer(csvfile)</span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> reader:</span><br><span class="line">        print(row)</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Result:</span></span><br><span class="line"><span class="string">["id", "name", "age"]</span></span><br><span class="line"><span class="string">["9527", "chd", "18"]</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="未完待续。。。"><a href="#未完待续。。。" class="headerlink" title="未完待续。。。"></a>未完待续。。。</h2>
       </div>
       
@@ -760,10 +795,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-05T16:50:39+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-18T10:01:05+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年12月5日</p>
+    <p>更新于 2021年1月18日</p>
   </a>
 </div>
 
@@ -787,7 +822,7 @@
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/11/29/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%BA%8C%EF%BC%89/&title=Python全栈系列章节更新（二）：常见库模块 | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等
 
-1.time模块2.DBUtils管理数据库连接池3.ftplib模块4.os模块5.datetime模块6.tqdm模块7.控制台输出带颜色文字的方法8.random模块9.Logger模块
+1.time模块2.DBUtils管理数据库连接池3.ftplib模块4.os模块5.datetime模块6.tqdm模块7.控制台输出带颜色文字的方法8.random模块9.Logger模块10.文件存储
 "
           
           >
@@ -802,7 +837,7 @@
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/11/29/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%BA%8C%EF%BC%89/&title=Python全栈系列章节更新（二）：常见库模块 | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等
 
-1.time模块2.DBUtils管理数据库连接池3.ftplib模块4.os模块5.datetime模块6.tqdm模块7.控制台输出带颜色文字的方法8.random模块9.Logger模块
+1.time模块2.DBUtils管理数据库连接池3.ftplib模块4.os模块5.datetime模块6.tqdm模块7.控制台输出带颜色文字的方法8.random模块9.Logger模块10.文件存储
 "
           
           >
@@ -817,7 +852,7 @@
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/11/29/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%BA%8C%EF%BC%89/&title=Python全栈系列章节更新（二）：常见库模块 | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等
 
-1.time模块2.DBUtils管理数据库连接池3.ftplib模块4.os模块5.datetime模块6.tqdm模块7.控制台输出带颜色文字的方法8.random模块9.Logger模块
+1.time模块2.DBUtils管理数据库连接池3.ftplib模块4.os模块5.datetime模块6.tqdm模块7.控制台输出带颜色文字的方法8.random模块9.Logger模块10.文件存储
 "
           
           >
@@ -999,7 +1034,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-time模块"><span class="toc-text">1.time模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Unix时间戳转与时间的转换"><span class="toc-text">Unix时间戳转与时间的转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#按指定的格式获取当前时间"><span class="toc-text">按指定的格式获取当前时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#time模块的毫秒级"><span class="toc-text">time模块的毫秒级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-DBUtils管理数据库连接池"><span class="toc-text">2.DBUtils管理数据库连接池</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-连接池原理"><span class="toc-text">2.1 连接池原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-多线程（连接池）操作MySQL插入数据"><span class="toc-text">2.2 多线程（连接池）操作MySQL插入数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-ftplib操作ftp实现上传和下载的"><span class="toc-text">3.ftplib操作ftp实现上传和下载的</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-ftp登陆连接"><span class="toc-text">3.1 ftp登陆连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-ftp上传或下载文件-目录"><span class="toc-text">3.2 ftp上传或下载文件/目录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-os模块"><span class="toc-text">4.os模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-datetime模块"><span class="toc-text">5 datetime模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-tqdm模块（最优雅的进度条）"><span class="toc-text">5.tqdm模块（最优雅的进度条）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-控制台输出带颜色文字的方法"><span class="toc-text">6.控制台输出带颜色文字的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-random模块"><span class="toc-text">7.random模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-execjs库"><span class="toc-text">8.execjs库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-js2py模块"><span class="toc-text">9. js2py模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-string模块"><span class="toc-text">10.string模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-Logger模块"><span class="toc-text">11. Logger模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#未完待续。。。"><span class="toc-text">未完待续。。。</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-time模块"><span class="toc-text">1.time模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Unix时间戳转与时间的转换"><span class="toc-text">Unix时间戳转与时间的转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#按指定的格式获取当前时间"><span class="toc-text">按指定的格式获取当前时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#time模块的毫秒级"><span class="toc-text">time模块的毫秒级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-DBUtils管理数据库连接池"><span class="toc-text">2.DBUtils管理数据库连接池</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-连接池原理"><span class="toc-text">2.1 连接池原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-多线程（连接池）操作MySQL插入数据"><span class="toc-text">2.2 多线程（连接池）操作MySQL插入数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-ftplib操作ftp实现上传和下载的"><span class="toc-text">3.ftplib操作ftp实现上传和下载的</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-ftp登陆连接"><span class="toc-text">3.1 ftp登陆连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-ftp上传或下载文件-目录"><span class="toc-text">3.2 ftp上传或下载文件/目录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-os模块"><span class="toc-text">4.os模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-datetime模块"><span class="toc-text">5 datetime模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-tqdm模块（最优雅的进度条）"><span class="toc-text">5.tqdm模块（最优雅的进度条）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-控制台输出带颜色文字的方法"><span class="toc-text">6.控制台输出带颜色文字的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-random模块"><span class="toc-text">7.random模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-execjs库"><span class="toc-text">8.execjs库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-js2py模块"><span class="toc-text">9. js2py模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-string模块"><span class="toc-text">10.string模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-Logger模块"><span class="toc-text">11. Logger模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#12-文件存储"><span class="toc-text">12. 文件存储</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CSV文件存储"><span class="toc-text">CSV文件存储</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#未完待续。。。"><span class="toc-text">未完待续。。。</span></a></li></ol>
     </div>
   </section>
 
