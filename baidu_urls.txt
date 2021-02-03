@@ -1,3 +1,4 @@
+https://ahrilove.top/2021/02/03/Vue(%E4%BA%94)/
 https://ahrilove.top/2020/12/07/php(%E4%BA%8C)/
 https://ahrilove.top/2020/12/04/php(%E4%B8%80)/
 https://ahrilove.top/2020/11/23/Linux(%E2%85%A0)/
@@ -5,6 +6,5 @@ https://ahrilove.top/2020/08/28/Django%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B
 https://ahrilove.top/2020/08/28/Django%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%BA%94%EF%BC%89/
 https://ahrilove.top/2020/08/01/Django%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%B8%89%EF%BC%89/
 https://ahrilove.top/2020/07/30/Vue(%E5%9B%9B)/
-https://ahrilove.top/2020/07/30/Vue(%E4%BA%94)/
+https://ahrilove.top/2020/07/30/Vue(%E5%85%AD)/
 https://ahrilove.top/2020/07/28/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89/
-https://ahrilove.top/2020/07/23/Django%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%BA%8C%EF%BC%89/
