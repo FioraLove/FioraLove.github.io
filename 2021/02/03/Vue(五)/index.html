@@ -429,13 +429,19 @@
 <p><b><u>CLI</u></b>：@vue/cli 全局安装的 npm 包，提供了终端里的vue命令（如：vue create 、vue serve 、vue ui 等命令）</p>
 <p><b><u>CLI服务</u></b>：@vue/cli-service是一个开发环境依赖。构建于 webpack 和 webpack-dev-server 之上（提供 如：serve、build 和 inspect 命令）</p>
 <p><b><u>CLI 插件</u></b>：给Vue 项目提供可选功能的 npm 包 （如： Babel/TypeScript 转译、ESLint 集成、unit和 e2e测试 等）</p>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>1、全局安装过旧版本的 vue-cli(1.x 或 2.x)要先卸载它，否则跳过此步：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall vue-cli -g //或者 yarn global remove vue-cli</span><br><span class="line">``` </span><br><span class="line">　　</span><br><span class="line"></span><br><span class="line">2、Vue CLI 3或4 的安装需要 nodeJs (推荐使用较新的版本)</span><br><span class="line"></span><br><span class="line">```text</span><br><span class="line">命令行查看版本号】</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br><span class="line"></span><br><span class="line">【升级npm（可选操作）】</span><br><span class="line">npm install -g npm</span><br><span class="line"></span><br><span class="line">【修改为淘宝镜像（可选操作）】</span><br><span class="line">npm config set registry &quot;https://registry.npm.taobao.org&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><ol>
+<li>全局安装过旧版本的 vue-cli(1.x 或 2.x)要先卸载它，否则跳过此步：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall vue-cli -g //或者 yarn global remove vue-cli</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2. Vue CLI 3或4 的安装需要 nodeJs (推荐使用较新的版本)</span><br><span class="line"></span><br><span class="line">```text</span><br><span class="line">命令行查看版本号】</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br><span class="line"></span><br><span class="line">【升级npm（可选操作）】</span><br><span class="line">npm install -g npm</span><br><span class="line"></span><br><span class="line">【修改为淘宝镜像（可选操作）】</span><br><span class="line">npm config set registry &quot;https://registry.npm.taobao.org&quot;</span><br></pre></td></tr></table></figure>
 
-<p>3、安装@vue/cli（Vue CLI 3的包名称由 vue-cli 改成了 @vue/cli）</p>
+<ol start="3">
+<li>安装@vue/cli（Vue CLI 3的包名称由 vue-cli 改成了 @vue/cli）</li>
+</ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @vue/cli </span><br><span class="line">yarn global add @vue/cli</span><br></pre></td></tr></table></figure>
 
-<p>4、检查vue版本</p>
+<ol start="4">
+<li>检查vue版本</li>
+</ol>
 <p><strong>vue -V</strong></p>
 <h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><blockquote>
 <p>vue create 搭建新项目</p>
@@ -458,10 +464,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-02-03T18:03:06+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-02-04T08:26:23+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2021年2月3日</p>
+    <p>更新于 2021年2月4日</p>
   </a>
 </div>
 

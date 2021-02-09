@@ -470,6 +470,18 @@
 <p><strong>GROUP BY X意思是将所有具有相同X字段值的记录放到一个分组里，<br>GROUP BY X, Y意思是将所有具有相同X字段值进行分组后，再把Y字段值进行分组处理。</strong></p>
 <h3 id="7-SQL中IS-NOT-NULL与-NULL的区别"><a href="#7-SQL中IS-NOT-NULL与-NULL的区别" class="headerlink" title="7. SQL中IS NOT NULL与 !=NULL的区别"></a>7. SQL中IS NOT NULL与 !=NULL的区别</h3><p>平时经常会遇到这两种写法：IS NOT NULL与!=NULL。也经常会遇到数据库有符合条件!=NULL的数据，但是返回为空集合。实际上，是由于对二者使用区别理解不透彻。</p>
 <p><font color="#f58220">默认情况下，推荐使用 IS NOT NULL去做条件判断，因为SQL默认情况下对WHERE XX！= Null的判断会永远返回0行，却不会提示语法错误</font><br>最后，我们再次声明：数据库默认情况下，做SQL条件查询比较时使用关键字“is null”和“is not null”</p>
+<p>拓：对于字段非空判断，若为空则用某个值替换，不为空则不做变更</p>
+<blockquote>
+<p>数据库 isnull()、nvl()、ifnull() 使用原理</p>
+</blockquote>
+<ul>
+<li><p>SqlServer 插入字段值 为空 设置默认值：isnull(val_1,val_2) 当val_1为 null 的时候 返回 val_2的值</p>
+</li>
+<li><p>Oracle：nvl(val_1,val_2) 当val_1为 null 的时候 返回 val_2的值</p>
+</li>
+<li><p>MySql：ifnull(val_1,val_2) 当val_1为 null 的时候 返回 val_2的值</p>
+</li>
+</ul>
 <h3 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h3><ul>
 <li><a href="https://www.cnblogs.com/87060524test/p/10402784.html" target="_blank" rel="noopener">SQL GROUP BY对多个字段进行分组</a></li>
 <li><a href="https://stackoverflow.com/questions/2421388/using-group-by-on-multiple-columns" target="_blank" rel="noopener">Using group by on multiple columns</a></li>
@@ -485,10 +497,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-02T16:35:57+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-02-09T16:28:45+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年9月2日</p>
+    <p>更新于 2021年2月9日</p>
   </a>
 </div>
 
