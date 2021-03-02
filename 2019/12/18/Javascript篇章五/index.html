@@ -432,7 +432,15 @@
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
         <blockquote>
-<p>1.isFinite()函数<br>2.jQuery中的$.inArray()<br>3.Math(算术对象)<br>4.数据类型判断<br>5.arguments参数属性<br>6.map，reduce与filter函数</p>
+<ol>
+<li>isFinite()函数</li>
+<li>jQuery中的$.inArray()</li>
+<li>Math(算术对象)</li>
+<li>数据类型判断</li>
+<li>arguments参数属性</li>
+<li>map，reduce与filter函数</li>
+<li>原生JS实现树状结构列表★★★</li>
+</ol>
 </blockquote>
 <a id="more"></a>
 
@@ -442,7 +450,8 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">$(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; </span><br><span class="line">    <span class="keyword">var</span> arr = [ <span class="number">4</span>, <span class="string">"Pete"</span>, <span class="number">8</span>, <span class="string">"John"</span> ];</span><br><span class="line">    <span class="keyword">var</span> $spans = $( <span class="string">"span"</span> );</span><br><span class="line">    $spans.eq( <span class="number">0</span> ).text( jQuery.inArray( <span class="string">"John"</span>, arr ) );</span><br><span class="line">    $spans.eq( <span class="number">1</span> ).text( jQuery.inArray( <span class="number">4</span>, arr ) );</span><br><span class="line">    $spans.eq( <span class="number">2</span> ).text( jQuery.inArray( <span class="string">"Karl"</span>, arr ) );</span><br><span class="line">    $spans.eq( <span class="number">3</span> ).text( jQuery.inArray( <span class="string">"Pete"</span>, arr, <span class="number">2</span> ) );</span><br><span class="line">&#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="3-Math-算术对象"><a href="#3-Math-算术对象" class="headerlink" title="3.Math(算术对象)"></a>3.Math(算术对象)</h3><p>Math对象，提供科学数学计算，也同样具有属性与方法，案例如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">let</span> mypi = <span class="built_in">Math</span>.PI;</span><br><span class="line">    <span class="keyword">let</span> myabs = <span class="built_in">Math</span>.abs(<span class="number">-15.88963</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(mypi);</span><br><span class="line">    <span class="built_in">console</span>.log(myabs);    </span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"kajima"</span>).innerHTML=mypi;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"bady"</span>).innerHTML=myabs;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mypi = <span class="built_in">Math</span>.PI;</span><br><span class="line"><span class="keyword">let</span> myabs = <span class="built_in">Math</span>.abs(<span class="number">-15.88963</span>);</span><br><span class="line"><span class="built_in">console</span>.log(mypi);</span><br><span class="line"><span class="built_in">console</span>.log(myabs);    </span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"kajima"</span>).innerHTML=mypi;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"bady"</span>).innerHTML=myabs;</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>Math对象属性</p>
 </blockquote>
@@ -501,6 +510,25 @@
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</span><br><span class="line"><span class="keyword">let</span> newArr=arr.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> a+b;</span><br><span class="line">		&#125;,<span class="number">0</span>); </span><br><span class="line"><span class="built_in">console</span>.log(newArr)  ;  <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
 
+<h3 id="7-原生JS实现树状结构列表"><a href="#7-原生JS实现树状结构列表" class="headerlink" title="7.原生JS实现树状结构列表"></a>7.原生JS实现树状结构列表</h3><p><strong>此方法的数据结构层次没有限制，均为动态层数，若节点的上级节点不存在，便会将其作为一级节点</strong></p>
+<ol>
+<li>确定原始数据结构</li>
+</ol>
+<p>原始数据是需要按照下面这种结构来定义的，如果原始数据已经是被后端处理成树状结构，就可以省略这一步骤</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> data = [&#123;</span><br><span class="line">        <span class="string">"id"</span>: <span class="string">"1"</span>,</span><br><span class="line">        <span class="string">"name"</span>: <span class="string">"1"</span>,</span><br><span class="line">        <span class="string">"fatherId"</span>: <span class="string">"0"</span>,</span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        <span class="string">"id"</span>: <span class="string">"2"</span>,</span><br><span class="line">        <span class="string">"name"</span>: <span class="string">"1-1"</span>,</span><br><span class="line">        <span class="string">"fatherId"</span>: <span class="string">"1"</span></span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        <span class="string">"id"</span>: <span class="string">"3"</span>,</span><br><span class="line">        <span class="string">"name"</span>: <span class="string">"1-2"</span>,</span><br><span class="line">        <span class="string">"fatherId"</span>: <span class="string">"1"</span></span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        <span class="string">"id"</span>: <span class="string">"4"</span>,</span><br><span class="line">        <span class="string">"name"</span>: <span class="string">"1-1-1"</span>,</span><br><span class="line">        <span class="string">"fatherId"</span>: <span class="string">"2"</span></span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        <span class="string">"id"</span>: <span class="string">"5"</span>,</span><br><span class="line">        <span class="string">"name"</span>: <span class="string">"1-1-2"</span>,</span><br><span class="line">        <span class="string">"fatherId"</span>: <span class="string">"2"</span></span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        <span class="string">"id"</span>: <span class="string">"6"</span>,</span><br><span class="line">        <span class="string">"name"</span>: <span class="string">"2"</span>,</span><br><span class="line">        <span class="string">"fatherId"</span>: <span class="string">"0"</span></span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        <span class="string">"id"</span>: <span class="string">"7"</span>,</span><br><span class="line">        <span class="string">"name"</span>: <span class="string">"1-2-1"</span>,</span><br><span class="line">        <span class="string">"fatherId"</span>: <span class="string">"3"</span></span><br><span class="line">    &#125;];</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>使用map处理数据</li>
+</ol>
+<p><strong>其中的id表示节点id，fatherId表示当前节点的父类id，children表示子集列表</strong>，这几个变量名都是可自定义的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = &#123;&#125;; <span class="comment">// 将数据存储为以id为 KEY的 map索引数据列</span></span><br><span class="line"><span class="keyword">const</span> val = []; <span class="comment">// 返回的最终树状结构json</span></span><br><span class="line">data.forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">    map[item.id] = item;</span><br><span class="line">&#125;);</span><br><span class="line">data.forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> parent = map[item.fatherId];  <span class="comment">// 以当前遍历项的parentId去map对象中找到索引的id</span></span><br><span class="line">    <span class="keyword">if</span> (parent) &#123;   <span class="comment">// 如果找到索引，说明此项不在顶级当中,那么需要把此项添加到，他对应的父级中</span></span><br><span class="line">        (parent.children || (parent.children = [])).push(item);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        val.push(item); <span class="comment">// 如果没有在map中找到对应的索引ID,那么直接把当前的item添加到val结果集中，作为顶级</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>参考网址： </p>
+<ul>
+<li><a href="http://www.fly63.com/article/detial/1509" target="_blank" rel="noopener">element-ui中table树形表格的实现</a></li>
+<li><a href="https://www.cnblogs.com/zuoWendong/p/13265549.html" target="_blank" rel="noopener">原生JS实现树状结构列表</a></li>
+</ul>
+
       </div>
       
         <br>
@@ -511,10 +539,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-07-07T17:16:44+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-02T16:42:37+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年7月7日</p>
+    <p>更新于 2021年3月2日</p>
   </a>
 </div>
 
@@ -534,7 +562,15 @@
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/12/18/Javascript%E7%AF%87%E7%AB%A0%E4%BA%94/&title=Javascript篇章五：常见函数和属性 | AhriLove&summary=
-1.isFinite()函数2.jQuery中的$.inArray()3.Math(算术对象)4.数据类型判断5.arguments参数属性6.map，reduce与filter函数
+
+isFinite()函数
+jQuery中的$.inArray()
+Math(算术对象)
+数据类型判断
+arguments参数属性
+map，reduce与filter函数
+原生JS实现树状结构列表★★★
+
 "
           
           >
@@ -548,7 +584,15 @@
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/12/18/Javascript%E7%AF%87%E7%AB%A0%E4%BA%94/&title=Javascript篇章五：常见函数和属性 | AhriLove&summary=
-1.isFinite()函数2.jQuery中的$.inArray()3.Math(算术对象)4.数据类型判断5.arguments参数属性6.map，reduce与filter函数
+
+isFinite()函数
+jQuery中的$.inArray()
+Math(算术对象)
+数据类型判断
+arguments参数属性
+map，reduce与filter函数
+原生JS实现树状结构列表★★★
+
 "
           
           >
@@ -562,7 +606,15 @@
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/12/18/Javascript%E7%AF%87%E7%AB%A0%E4%BA%94/&title=Javascript篇章五：常见函数和属性 | AhriLove&summary=
-1.isFinite()函数2.jQuery中的$.inArray()3.Math(算术对象)4.数据类型判断5.arguments参数属性6.map，reduce与filter函数
+
+isFinite()函数
+jQuery中的$.inArray()
+Math(算术对象)
+数据类型判断
+arguments参数属性
+map，reduce与filter函数
+原生JS实现树状结构列表★★★
+
 "
           
           >
@@ -744,7 +796,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-isFinite-函数"><span class="toc-text">1.isFinite()函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-jQuery中的-inArray（）"><span class="toc-text">2.jQuery中的$.inArray（）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Math-算术对象"><span class="toc-text">3.Math(算术对象)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-数据类型判断"><span class="toc-text">4.数据类型判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-arguments参数属性"><span class="toc-text">5.arguments参数属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-map，reduce与filter方法"><span class="toc-text">6.map，reduce与filter方法</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-isFinite-函数"><span class="toc-text">1.isFinite()函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-jQuery中的-inArray（）"><span class="toc-text">2.jQuery中的$.inArray（）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Math-算术对象"><span class="toc-text">3.Math(算术对象)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-数据类型判断"><span class="toc-text">4.数据类型判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-arguments参数属性"><span class="toc-text">5.arguments参数属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-map，reduce与filter方法"><span class="toc-text">6.map，reduce与filter方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-原生JS实现树状结构列表"><span class="toc-text">7.原生JS实现树状结构列表</span></a></li></ol>
     </div>
   </section>
 

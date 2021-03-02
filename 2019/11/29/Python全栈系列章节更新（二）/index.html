@@ -743,7 +743,10 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> js2py</span><br><span class="line"></span><br><span class="line">js_eval = <span class="string">"""</span></span><br><span class="line"><span class="string">eval(function(p,a,c,k,e,r)&#123;e=String;if('0'.replace(0,e)==0)&#123;while(c--)r[e(c)]=k[c];k=[function(e)&#123;return r[e]||e&#125;];e=function()&#123;return'[02-4]'&#125;;c=1&#125;;</span></span><br><span class="line"><span class="string">while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);</span></span><br><span class="line"><span class="string">return p&#125;('var newImgs=["0://p.2.3/4/1388c000067768f7a5d44","0://p.2.3/4/138230001d1016dce93b9","0://p.2.3/4/138720000b6221ac47f3c",</span></span><br><span class="line"><span class="string">"0://p.2.3/4/138420004939fe476ea69"]',[],5,'https||pstatp|com|origin'.split('|'),0,&#123;&#125;))</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line">images = js2py.eval_js(js_eval)</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>注意：js2py的返回值是 <strong>object类型</strong></li>
+<li><p>注意：js2py的返回值是 <strong>JSobjectWrapper类型</strong>，并不是我们通常认知的Dict类型，那么如何转换成我们熟知的Dict字典类型呢？</p>
+<p><code>js2py.eval_js(new_js_code).to_dict()</code> 利用to_dict方法得到就是一个字典了。</p>
+<p>参考： <a href="https://www.jianshu.com/p/d9c815a9fe16" target="_blank" rel="noopener">使用js2py.eval_js()获得<script></script>中的某一个变量的值，并转换为python中的字典</a></p>
+</li>
 </ul>
 <h2 id="10-string模块"><a href="#10-string模块" class="headerlink" title="10.string模块"></a>10.string模块</h2><ul>
 <li>string.digits: 数字字符串集</li>
@@ -804,10 +807,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-02-04T09:58:11+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-02-22T18:35:28+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2021年2月4日</p>
+    <p>更新于 2021年2月22日</p>
   </a>
 </div>
 

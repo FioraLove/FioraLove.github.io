@@ -480,6 +480,15 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>下载地址：<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/api/deal_zip"</span>&gt;</span><span class="tag">&lt;<span class="name">button</span>&gt;</span>下载<span class="tag">&lt;/<span class="name">button</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="3-django非前后分离实现从html页面表单获取输入的数据"><a href="#3-django非前后分离实现从html页面表单获取输入的数据" class="headerlink" title="3.django非前后分离实现从html页面表单获取输入的数据"></a>3.django非前后分离实现从html页面表单获取输入的数据</h3><p>参考网址： <a href="https://blog.csdn.net/weixin_43424969/article/details/84377955" target="_blank" rel="noopener">https://blog.csdn.net/weixin_43424969/article/details/84377955</a></p>
+<h3 id="4-django-rest-framework解析请求参数过程详解"><a href="#4-django-rest-framework解析请求参数过程详解" class="headerlink" title="4.django-rest-framework解析请求参数过程详解"></a>4.django-rest-framework解析请求参数过程详解</h3><ul>
+<li>request.POST</li>
+<li>request.GET</li>
+<li>request.data</li>
+<li>request.method</li>
+<li>request.path(表示提交请求页面完整地址的字符串， 不包括域名，如 “/api/music”)</li>
+<li>request.body（是byte类型，需要使用decode解码成字符串）</li>
+<li>request.META(包含了所有本次HTTP请求的Header信息)</li>
+</ul>
 
       </div>
       
@@ -491,10 +500,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-22T16:03:25+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-02-18T10:34:47+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年9月22日</p>
+    <p>更新于 2021年2月18日</p>
   </a>
 </div>
 
@@ -730,7 +739,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-为什么Django中无法像平常一样使用with-open-读取静态文件☆☆☆"><span class="toc-text">1.为什么Django中无法像平常一样使用with open 读取静态文件☆☆☆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Django实现下载文件功能"><span class="toc-text">2.Django实现下载文件功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-django非前后分离实现从html页面表单获取输入的数据"><span class="toc-text">3.django非前后分离实现从html页面表单获取输入的数据</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-为什么Django中无法像平常一样使用with-open-读取静态文件☆☆☆"><span class="toc-text">1.为什么Django中无法像平常一样使用with open 读取静态文件☆☆☆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Django实现下载文件功能"><span class="toc-text">2.Django实现下载文件功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-django非前后分离实现从html页面表单获取输入的数据"><span class="toc-text">3.django非前后分离实现从html页面表单获取输入的数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-django-rest-framework解析请求参数过程详解"><span class="toc-text">4.django-rest-framework解析请求参数过程详解</span></a></li></ol>
     </div>
   </section>
 
