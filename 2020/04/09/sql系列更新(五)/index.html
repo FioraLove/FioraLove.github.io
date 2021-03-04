@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>sql临时表 | AhriLove</title>
+  <title>sql数据库引发的生产事故案例 | AhriLove</title>
   
   
 
@@ -347,8 +347,8 @@
         
   
     <h1 class="title">
-      <a href="/2020/06/08/sql%E7%B3%BB%E5%88%97%E6%9B%B4%E6%96%B0%EF%BC%88%E5%85%AD%EF%BC%89/">
-        sql临时表
+      <a href="/2020/04/09/sql%E7%B3%BB%E5%88%97%E6%9B%B4%E6%96%B0(%E4%BA%94)/">
+        sql数据库引发的生产事故案例
       </a>
     </h1>
   
@@ -379,7 +379,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2020-06-08</p>
+    <p>2020-04-09</p>
   </a>
 </div>
 
@@ -431,47 +431,20 @@
 
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;临时表顾名思义，<strong>是一个临时的表</strong>，数据库不会将其序列化到磁盘上(有些也会序列化到磁盘上)而是存在于数据库服务器的内存中(因此会增加数据库服务器内存的消耗)，在使用完之后就会销毁。<br>临时表分为两种：<strong>会话临时表和全局临时表</strong>，区别在于可用的作用域和销毁的时机不同。</p>
+        <p>数据库是每一个IT工程师必备的技能树，通常一些很小错误操作，尤其对生产环境带来很大的经济损失。收集网上大佬分享的数据库重大事故，警示自己，与君共勉。</p>
+<blockquote>
+<p><font color=#FF3030>本文要点：</font><br>1.Insert into select语句引发的生产事故</p>
+</blockquote>
 <a id="more"></a>
-<h3 id="1-SQL-server临时表"><a href="#1-SQL-server临时表" class="headerlink" title="1.SQL server临时表"></a>1.SQL server临时表</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;临时表分为两种：<strong>会话临时表和全局临时表</strong>，区别在于可用的作用域和销毁的时机不同。</p>
+<h3 id="1-Insert-into-select语句引发的生产事故"><a href="#1-Insert-into-select语句引发的生产事故" class="headerlink" title="1.Insert into select语句引发的生产事故"></a>1.Insert into select语句引发的生产事故</h3><p>复制表结构和表数据先参考文献：<a href="https://blog.csdn.net/insis_mo/article/details/84936753" target="_blank" rel="noopener">select into from 和 insert into select 的用法和区别</a></p>
+<p><strong>前言：</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Insert into select请慎用。这天xxx接到一个需求，需要将表A的数据迁移到表B中去做一个备份。本想通过程序先查询查出来然后批量插入。但xxx觉得这样有点慢，需要耗费大量的网络I/O，决定采取别的方法进行实现。通过在Baidu的海洋里遨游，他发现了可以使用insert into select实现，这样就可以避免使用网络I/O，直接使用SQL依靠数据库I/O完成，这样简直不要太棒了。然后他就被开除了。</p>
+<p><strong>事件经过：</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于数据数据库中order_today数据量过大，当时好像有700W了并且每天在以30W的速度增加。所以上司命令xxx将order_today内的部分数据迁移到order_record中，并将order_today中的数据删除。这样来降低order_today表中的数据量。<br>  由于考虑到会占用数据库I/O，为了不影响业务，计划是9:00以后开始迁移，但是xxx在8:00的时候，尝试迁移了少部分数据(1000条)，觉得没啥问题，就开始考虑大批量迁移。</p>
 <ul>
-<li>会话临时表只在当前会话(连接)内可用，且在当前会话结束(断开数据库连接)后就会销毁；</li>
-<li>全局临时表创建后在销毁之前所有用户都可以访问，销毁的时机是在创建该临时表的连接断开且没有其他会话访问时才销毁，<font color=#FF3030>实际上在创建全局临时表的会话断开后，其他用户就已经不能在访问该临时表了，但此时该临时表并不会立即销毁，而是等所有正在使用该全局临时表的会话(或者说连接)断开之后才会销毁</font>。当然有时考虑到内存占用的问题，我们也可以手动销毁(DROP)临时表。</li>
+<li>在迁移的过程中，应急群是先反应有小部分用户出现支付失败，随后反应大批用户出现支付失败的情况，以及初始化订单失败的情况，同时腾讯也开始报警。</li>
+<li>然后xxx就慌了，立即停止了迁移。本以为停止迁移就就可以恢复了，但是并没有。后面发生的你们可以脑补一下。</li>
 </ul>
-<p><strong>sql server临时表的创建</strong></p>
-<ul>
-<li>会话临时表：以 “#”作为前缀，后面加上表名</li>
-<li>全局临时表：以 “##”作为前缀，后面加上表名</li>
-</ul>
-<p>创建方式一：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#会话临时表</span><br><span class="line">CREATE TABLE #临时表名(</span><br><span class="line">	字段1 约束条件1,</span><br><span class="line">	字段2 约束条件2,</span><br><span class="line">	...</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">#全局临时表</span><br><span class="line">CREATE TABLE ##临时表名(</span><br><span class="line">	字段1 约束条件,</span><br><span class="line">	字段2 约束条件,</span><br><span class="line">	...</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>创建方式二：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#会话临时表</span><br><span class="line">SELECT 字段列表 INTO #临时表名 </span><br><span class="line">FROM 业务表;</span><br><span class="line"></span><br><span class="line">#全局临时表</span><br><span class="line">SELECT 字段列表 INTO ##临时表名 </span><br><span class="line">FROM 业务表;</span><br></pre></td></tr></table></figure>
-
-<p><strong>临时表的使用：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#查询临时表</span><br><span class="line">SELECT * FROM #临时表名;</span><br><span class="line">SELECT * FROM ##临时表名;</span><br></pre></td></tr></table></figure>
-
-<p><strong>临时表的删除：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#删除临时表</span><br><span class="line">DROP TABLE #临时表名;</span><br><span class="line">DROP TABLE ##临时表名;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-mysql临时表"><a href="#2-mysql临时表" class="headerlink" title="2.mysql临时表"></a>2.mysql临时表</h3><p><strong>MySQL临时表的创建：</strong> MySQL中没有全局临时表，创建时候没有“#”</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">CREATE TEMPORARY TABLE [IF NOT EXISTS] 临时表名(</span><br><span class="line">	字段1 约束条件,</span><br><span class="line">	字段2 约束条件,</span><br><span class="line">	...</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">#根据现有表创建临时表</span><br><span class="line">CREATE TEMPORARY TABLE [IF NOT EXISTS] 临时表名</span><br><span class="line">[AS] SELECT 查询字段</span><br><span class="line">FROM 业务表</span><br><span class="line">[WHERE 条件];</span><br></pre></td></tr></table></figure>
-
-<p><strong>MySQL临时表的使用：</strong> 创建的临时表可以和业务表同名，若临时表和业务表同名则在该会话中会使用临时表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from 临时表名</span><br></pre></td></tr></table></figure>
-
-<p><strong>MySQL临时表的删除</strong>：为避免临时表名和业务表名相同时导致误删除，<em>可以加上TEMPORARY关键字</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP [TEMPORARY] TABLE 临时表名;</span><br></pre></td></tr></table></figure>
-<h3 id="3-Oracle临时表"><a href="#3-Oracle临时表" class="headerlink" title="3.Oracle临时表"></a>3.Oracle临时表</h3><p>Oracle的临时表也只有会话级的，但同时又细化出了一个事务级别的临时表，事务级别的临时表只在当前事务中有效。</p>
-<p><strong>Oracle临时表的创建：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#会话级别：当COMMIT的时候保留数据，当会话结束删除数据</span><br><span class="line">CREATE GLOBAL TEMPORARY TABLE 临时表名(</span><br><span class="line">	字段1 约束条件,</span><br><span class="line">	字段2 约束条件,</span><br><span class="line">	...</span><br><span class="line">) ON COMMIT PRESERVE ROWS;</span><br><span class="line"></span><br><span class="line">#事务级别：当COMMIT的时候删除数据（默认情况）</span><br><span class="line">CREATE GLOBAL TEMPORARY TABLE 临时表名(</span><br><span class="line">	字段1 约束条件,</span><br><span class="line">	字段2 约束条件,</span><br><span class="line">	...</span><br><span class="line">) ON COMMIT DELETE ROWS;</span><br></pre></td></tr></table></figure>
-
-
-<p><strong>oracle临时表的删除</strong>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE 临时表名;</span><br></pre></td></tr></table></figure>
-
-<p>注意：一个SQL中不能同时出现两次临时表</p>
+<p><strong>解决方案：</strong><br>网友 大鸡腿童鞋：走普通做法就可以了，查询完再插入。越是花里花哨越多问题。通过外部工具或代码来做归档最好。</p>
+<p>作者：不一样的科技宅<br>链接：<a href="https://juejin.im/post/5e670f0151882549274a65ef" target="_blank" rel="noopener">https://juejin.im/post/5e670f0151882549274a65ef</a><br>来源：掘金<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
 
       </div>
       
@@ -483,10 +456,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-11T11:01:24+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-09T13:30:05+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年6月11日</p>
+    <p>更新于 2020年4月9日</p>
   </a>
 </div>
 
@@ -508,7 +481,10 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/06/08/sql%E7%B3%BB%E5%88%97%E6%9B%B4%E6%96%B0%EF%BC%88%E5%85%AD%EF%BC%89/&title=sql临时表 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;临时表顾名思义，是一个临时的表，数据库不会将其序列化到磁盘上(有些也会序列化到磁盘上)而是存在于数据库服务器的内存中(因此会增加数据库服务器内存的消耗)，在使用完之后就会销毁。临时表分为两种：会话临时表和全局临时表，区别在于可用的作用域和销毁的时机不同。"
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/04/09/sql%E7%B3%BB%E5%88%97%E6%9B%B4%E6%96%B0(%E4%BA%94)/&title=sql数据库引发的生产事故案例 | AhriLove&summary=数据库是每一个IT工程师必备的技能树，通常一些很小错误操作，尤其对生产环境带来很大的经济损失。收集网上大佬分享的数据库重大事故，警示自己，与君共勉。
+
+本文要点：1.Insert into select语句引发的生产事故
+"
           
           >
           
@@ -520,7 +496,10 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/06/08/sql%E7%B3%BB%E5%88%97%E6%9B%B4%E6%96%B0%EF%BC%88%E5%85%AD%EF%BC%89/&title=sql临时表 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;临时表顾名思义，是一个临时的表，数据库不会将其序列化到磁盘上(有些也会序列化到磁盘上)而是存在于数据库服务器的内存中(因此会增加数据库服务器内存的消耗)，在使用完之后就会销毁。临时表分为两种：会话临时表和全局临时表，区别在于可用的作用域和销毁的时机不同。"
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/04/09/sql%E7%B3%BB%E5%88%97%E6%9B%B4%E6%96%B0(%E4%BA%94)/&title=sql数据库引发的生产事故案例 | AhriLove&summary=数据库是每一个IT工程师必备的技能树，通常一些很小错误操作，尤其对生产环境带来很大的经济损失。收集网上大佬分享的数据库重大事故，警示自己，与君共勉。
+
+本文要点：1.Insert into select语句引发的生产事故
+"
           
           >
           
@@ -532,7 +511,10 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/06/08/sql%E7%B3%BB%E5%88%97%E6%9B%B4%E6%96%B0%EF%BC%88%E5%85%AD%EF%BC%89/&title=sql临时表 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;临时表顾名思义，是一个临时的表，数据库不会将其序列化到磁盘上(有些也会序列化到磁盘上)而是存在于数据库服务器的内存中(因此会增加数据库服务器内存的消耗)，在使用完之后就会销毁。临时表分为两种：会话临时表和全局临时表，区别在于可用的作用域和销毁的时机不同。"
+          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/04/09/sql%E7%B3%BB%E5%88%97%E6%9B%B4%E6%96%B0(%E4%BA%94)/&title=sql数据库引发的生产事故案例 | AhriLove&summary=数据库是每一个IT工程师必备的技能树，通常一些很小错误操作，尤其对生产环境带来很大的经济损失。收集网上大佬分享的数据库重大事故，警示自己，与君共勉。
+
+本文要点：1.Insert into select语句引发的生产事故
+"
           
           >
           
@@ -560,16 +542,16 @@
                       <span class="art-item-left">
                           <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
                           <h4>
-                              <a href="/2020/06/09/sql%E7%B3%BB%E5%88%97%E6%9B%B4%E6%96%B0%EF%BC%88%E4%B8%83%EF%BC%89/" rel="prev" title="数据库存储过程(一)：sql server">
+                              <a href="/2020/04/14/Java%E5%AD%97%E7%AC%A6%E5%AD%97%E8%8A%82%E6%B5%81%EF%BC%88%E5%8D%81%EF%BC%89/" rel="prev" title="Java（十）：Java字符流，字节流，IO">
                                 
-                                    数据库存储过程(一)：sql server
+                                    Java（十）：Java字符流，字节流，IO
                                 
                               </a>
                           </h4>
                           
                               
                               <h6 class="tags">
-                                  <a class="tag" href="/tags/MySQL/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> MySQL</a>
+                                  <a class="tag" href="/tags/Java/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Java</a>
                               </h6>
                           
                       </span>
@@ -580,9 +562,9 @@
                       <span class="art-item-right" aria-hidden="true">
                           <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                           <h4>
-                              <a href="/2020/05/13/Java%E6%B3%A8%E8%A7%A3%E4%B8%8E%E5%8F%8D%E5%B0%84%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89/" rel="prev" title="Java（十二）：Junit测试与反射">
+                              <a href="/2020/04/03/Java%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B9%9D%EF%BC%89/" rel="prev" title="Java（九）：Java数据结构基础">
                                   
-                                      Java（十二）：Junit测试与反射
+                                      Java（九）：Java数据结构基础
                                   
                               </a>
                           </h4>
@@ -633,7 +615,7 @@
 
   <script>
     window.subData = {
-      title: 'sql临时表',
+      title: 'sql数据库引发的生产事故案例',
       tools: true
     }
   </script>
@@ -713,7 +695,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-SQL-server临时表"><span class="toc-text">1.SQL server临时表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-mysql临时表"><span class="toc-text">2.mysql临时表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Oracle临时表"><span class="toc-text">3.Oracle临时表</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Insert-into-select语句引发的生产事故"><span class="toc-text">1.Insert into select语句引发的生产事故</span></a></li></ol>
     </div>
   </section>
 
@@ -946,6 +928,8 @@
         
           <li><a class="flat-box" title="/categories/Python/" href="/categories/Python/"><div class='name'>Python</div><div class='badge'>(23)</div></a></li>
         
+          <li><a class="flat-box" title="/categories/Redis/" href="/categories/Redis/"><div class='name'>Redis</div><div class='badge'>(1)</div></a></li>
+        
           <li><a class="flat-box" title="/categories/ThinkPHP/" href="/categories/ThinkPHP/"><div class='name'>ThinkPHP</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box" title="/categories/TypeScript/" href="/categories/TypeScript/"><div class='name'>TypeScript</div><div class='badge'>(1)</div></a></li>
@@ -1020,7 +1004,7 @@
 </header>
 
     <div class='content material'>
-      <a href="/tags/post/" style="font-size: 14px; color: #999">$.post()</a> <a href="/tags/API/" style="font-size: 14px; color: #999">API</a> <a href="/tags/Ajax/" style="font-size: 15.67px; color: #8e8e8e">Ajax</a> <a href="/tags/CSS/" style="font-size: 14px; color: #999">CSS</a> <a href="/tags/DDL/" style="font-size: 14px; color: #999">DDL</a> <a href="/tags/DML/" style="font-size: 14px; color: #999">DML</a> <a href="/tags/Django/" style="font-size: 20.67px; color: #6c6c6c">Django</a> <a href="/tags/Eval/" style="font-size: 14px; color: #999">Eval</a> <a href="/tags/GNE/" style="font-size: 14px; color: #999">GNE</a> <a href="/tags/Github-Page/" style="font-size: 14px; color: #999">Github Page</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/Hyper-V/" style="font-size: 14px; color: #999">Hyper-V</a> <a href="/tags/InnoDB/" style="font-size: 14px; color: #999">InnoDB</a> <a href="/tags/Java/" style="font-size: 24px; color: #555">Java</a> <a href="/tags/Jquery/" style="font-size: 14px; color: #999">Jquery</a> <a href="/tags/Linux/" style="font-size: 15.67px; color: #8e8e8e">Linux</a> <a href="/tags/Maven/" style="font-size: 14px; color: #999">Maven</a> <a href="/tags/Memcached/" style="font-size: 14px; color: #999">Memcached</a> <a href="/tags/MyISAM/" style="font-size: 14px; color: #999">MyISAM</a> <a href="/tags/MySQL/" style="font-size: 22.33px; color: #606060">MySQL</a> <a href="/tags/Oracle/" style="font-size: 15.67px; color: #8e8e8e">Oracle</a> <a href="/tags/PHP/" style="font-size: 14px; color: #999">PHP</a> <a href="/tags/POST%E8%AF%B7%E6%B1%82/" style="font-size: 14px; color: #999">POST请求</a> <a href="/tags/RSA/" style="font-size: 14px; color: #999">RSA</a> <a href="/tags/Requests/" style="font-size: 19px; color: #777">Requests</a> <a href="/tags/VMware/" style="font-size: 14px; color: #999">VMware</a> <a href="/tags/Vue/" style="font-size: 17.33px; color: #828282">Vue</a> <a href="/tags/apache/" style="font-size: 14px; color: #999">apache</a> <a href="/tags/blog%E6%94%B9%E7%89%88/" style="font-size: 14px; color: #999">blog改版</a> <a href="/tags/clone/" style="font-size: 14px; color: #999">clone</a> <a href="/tags/component/" style="font-size: 14px; color: #999">component</a> <a href="/tags/container/" style="font-size: 14px; color: #999">container</a> <a href="/tags/css/" style="font-size: 20.67px; color: #6c6c6c">css</a> <a href="/tags/database/" style="font-size: 14px; color: #999">database</a> <a href="/tags/docker/" style="font-size: 17.33px; color: #828282">docker</a> <a href="/tags/echarts/" style="font-size: 14px; color: #999">echarts</a> <a href="/tags/fetchall/" style="font-size: 14px; color: #999">fetchall()</a> <a href="/tags/fetchone/" style="font-size: 14px; color: #999">fetchone()</a> <a href="/tags/float/" style="font-size: 14px; color: #999">float</a> <a href="/tags/front-matter/" style="font-size: 14px; color: #999">front-matter</a> <a href="/tags/git/" style="font-size: 14px; color: #999">git</a> <a href="/tags/git-pull-push/" style="font-size: 14px; color: #999">git pull/push</a> <a href="/tags/html/" style="font-size: 17.33px; color: #828282">html</a> <a href="/tags/images/" style="font-size: 14px; color: #999">images</a> <a href="/tags/jQuery/" style="font-size: 15.67px; color: #8e8e8e">jQuery</a> <a href="/tags/js/" style="font-size: 20.67px; color: #6c6c6c">js</a> <a href="/tags/json/" style="font-size: 15.67px; color: #8e8e8e">json</a> <a href="/tags/js%E7%B2%BE%E7%A1%AE%E5%BA%A6%E4%B8%A2%E5%A4%B1/" style="font-size: 14px; color: #999">js精确度丢失</a> <a href="/tags/js%E9%80%86%E5%90%91/" style="font-size: 14px; color: #999">js逆向</a> <a href="/tags/lambda/" style="font-size: 14px; color: #999">lambda</a> <a href="/tags/margin/" style="font-size: 14px; color: #999">margin</a> <a href="/tags/matplotlib/" style="font-size: 15.67px; color: #8e8e8e">matplotlib</a> <a href="/tags/mysql/" style="font-size: 15.67px; color: #8e8e8e">mysql</a> <a href="/tags/nginx/" style="font-size: 15.67px; color: #8e8e8e">nginx</a> <a href="/tags/numpy/" style="font-size: 15.67px; color: #8e8e8e">numpy</a> <a href="/tags/pandas/" style="font-size: 14px; color: #999">pandas</a> <a href="/tags/php/" style="font-size: 15.67px; color: #8e8e8e">php</a> <a href="/tags/push/" style="font-size: 14px; color: #999">push</a> <a href="/tags/python/" style="font-size: 22.33px; color: #606060">python</a> <a href="/tags/python-Django-MySQL/" style="font-size: 14px; color: #999">python+Django+MySQL</a> <a href="/tags/re/" style="font-size: 17.33px; color: #828282">re</a> <a href="/tags/read/" style="font-size: 14px; color: #999">read</a> <a href="/tags/readline/" style="font-size: 14px; color: #999">readline</a> <a href="/tags/readlines/" style="font-size: 14px; color: #999">readlines</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/requirement-txt/" style="font-size: 14px; color: #999">requirement.txt</a> <a href="/tags/salt/" style="font-size: 14px; color: #999">salt</a> <a href="/tags/thinkPHP/" style="font-size: 15.67px; color: #8e8e8e">thinkPHP</a> <a href="/tags/token/" style="font-size: 14px; color: #999">token</a> <a href="/tags/union/" style="font-size: 14px; color: #999">union</a> <a href="/tags/vue-cli/" style="font-size: 17.33px; color: #828282">vue-cli</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E4%B8%8E%E5%AE%88%E6%8A%A4%E5%BC%8F%E5%88%9B%E5%BB%BA/" style="font-size: 14px; color: #999">交互式与守护式创建</a> <a href="/tags/%E5%85%83%E7%BB%84/" style="font-size: 14px; color: #999">元组</a> <a href="/tags/%E5%88%97%E8%A1%A8/" style="font-size: 14px; color: #999">列表</a> <a href="/tags/%E5%89%8D%E5%90%8E%E5%88%86%E7%A6%BB/" style="font-size: 14px; color: #999">前后分离</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 14px; color: #999">多线程</a> <a href="/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8B/" style="font-size: 14px; color: #999">多进程</a> <a href="/tags/%E5%AD%97%E5%85%B8/" style="font-size: 14px; color: #999">字典</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 14px; color: #999">字符串</a> <a href="/tags/%E5%AE%9A%E4%BD%8D%E7%85%A7%E7%89%87%E6%8B%8D%E6%91%84%E4%BD%8D%E7%BD%AE/" style="font-size: 14px; color: #999">定位照片拍摄位置</a> <a href="/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" style="font-size: 14px; color: #999">定时任务</a> <a href="/tags/%E5%AF%B9%E8%B1%A1/" style="font-size: 14px; color: #999">对象</a> <a href="/tags/%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">属性与方法</a> <a href="/tags/%E5%B8%B8%E8%A7%81%E5%BA%93/" style="font-size: 14px; color: #999">常见库</a> <a href="/tags/%E6%95%B0%E5%80%BC/" style="font-size: 14px; color: #999">数值</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%86%E6%89%B9%E6%AC%A1%E5%A4%84%E7%90%86/" style="font-size: 14px; color: #999">数据库分批次处理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%80%9A%E7%94%A8%E8%BF%9E%E6%8E%A5%E5%87%BD%E6%95%B0/" style="font-size: 14px; color: #999">数据库通用连接函数</a> <a href="/tags/%E6%9E%81%E9%AA%8C%E6%BB%91%E5%8A%A8/" style="font-size: 14px; color: #999">极验滑动</a> <a href="/tags/%E8%A3%85%E9%A5%B0%E5%99%A8/" style="font-size: 14px; color: #999">装饰器</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%BA%93/" style="font-size: 14px; color: #999">解析库</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 14px; color: #999">负载均衡</a> <a href="/tags/%E9%80%86%E5%90%91%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">逆向爬虫</a> <a href="/tags/%E9%80%89%E6%8B%A9%E5%99%A8/" style="font-size: 14px; color: #999">选择器</a>
+      <a href="/tags/post/" style="font-size: 14px; color: #999">$.post()</a> <a href="/tags/API/" style="font-size: 14px; color: #999">API</a> <a href="/tags/Ajax/" style="font-size: 15.67px; color: #8e8e8e">Ajax</a> <a href="/tags/CSS/" style="font-size: 14px; color: #999">CSS</a> <a href="/tags/DDL/" style="font-size: 14px; color: #999">DDL</a> <a href="/tags/DML/" style="font-size: 14px; color: #999">DML</a> <a href="/tags/Django/" style="font-size: 20.67px; color: #6c6c6c">Django</a> <a href="/tags/Eval/" style="font-size: 14px; color: #999">Eval</a> <a href="/tags/GNE/" style="font-size: 14px; color: #999">GNE</a> <a href="/tags/Github-Page/" style="font-size: 14px; color: #999">Github Page</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/Hyper-V/" style="font-size: 14px; color: #999">Hyper-V</a> <a href="/tags/InnoDB/" style="font-size: 14px; color: #999">InnoDB</a> <a href="/tags/Java/" style="font-size: 24px; color: #555">Java</a> <a href="/tags/Jquery/" style="font-size: 14px; color: #999">Jquery</a> <a href="/tags/Linux/" style="font-size: 15.67px; color: #8e8e8e">Linux</a> <a href="/tags/Maven/" style="font-size: 14px; color: #999">Maven</a> <a href="/tags/Memcached/" style="font-size: 14px; color: #999">Memcached</a> <a href="/tags/MySQL/" style="font-size: 22.33px; color: #606060">MySQL</a> <a href="/tags/Oracle/" style="font-size: 15.67px; color: #8e8e8e">Oracle</a> <a href="/tags/PHP/" style="font-size: 14px; color: #999">PHP</a> <a href="/tags/POST%E8%AF%B7%E6%B1%82/" style="font-size: 14px; color: #999">POST请求</a> <a href="/tags/RSA/" style="font-size: 14px; color: #999">RSA</a> <a href="/tags/Redis/" style="font-size: 14px; color: #999">Redis</a> <a href="/tags/Requests/" style="font-size: 19px; color: #777">Requests</a> <a href="/tags/VMware/" style="font-size: 14px; color: #999">VMware</a> <a href="/tags/Vue/" style="font-size: 17.33px; color: #828282">Vue</a> <a href="/tags/apache/" style="font-size: 14px; color: #999">apache</a> <a href="/tags/blog%E6%94%B9%E7%89%88/" style="font-size: 14px; color: #999">blog改版</a> <a href="/tags/clone/" style="font-size: 14px; color: #999">clone</a> <a href="/tags/component/" style="font-size: 14px; color: #999">component</a> <a href="/tags/container/" style="font-size: 14px; color: #999">container</a> <a href="/tags/css/" style="font-size: 20.67px; color: #6c6c6c">css</a> <a href="/tags/database/" style="font-size: 14px; color: #999">database</a> <a href="/tags/docker/" style="font-size: 17.33px; color: #828282">docker</a> <a href="/tags/echarts/" style="font-size: 14px; color: #999">echarts</a> <a href="/tags/fetchall/" style="font-size: 14px; color: #999">fetchall()</a> <a href="/tags/fetchone/" style="font-size: 14px; color: #999">fetchone()</a> <a href="/tags/float/" style="font-size: 14px; color: #999">float</a> <a href="/tags/front-matter/" style="font-size: 14px; color: #999">front-matter</a> <a href="/tags/git/" style="font-size: 14px; color: #999">git</a> <a href="/tags/git-pull-push/" style="font-size: 14px; color: #999">git pull/push</a> <a href="/tags/html/" style="font-size: 17.33px; color: #828282">html</a> <a href="/tags/images/" style="font-size: 14px; color: #999">images</a> <a href="/tags/index/" style="font-size: 14px; color: #999">index</a> <a href="/tags/jQuery/" style="font-size: 15.67px; color: #8e8e8e">jQuery</a> <a href="/tags/js/" style="font-size: 20.67px; color: #6c6c6c">js</a> <a href="/tags/json/" style="font-size: 15.67px; color: #8e8e8e">json</a> <a href="/tags/js%E7%B2%BE%E7%A1%AE%E5%BA%A6%E4%B8%A2%E5%A4%B1/" style="font-size: 14px; color: #999">js精确度丢失</a> <a href="/tags/js%E9%80%86%E5%90%91/" style="font-size: 14px; color: #999">js逆向</a> <a href="/tags/lambda/" style="font-size: 14px; color: #999">lambda</a> <a href="/tags/margin/" style="font-size: 14px; color: #999">margin</a> <a href="/tags/matplotlib/" style="font-size: 15.67px; color: #8e8e8e">matplotlib</a> <a href="/tags/mysql/" style="font-size: 15.67px; color: #8e8e8e">mysql</a> <a href="/tags/nginx/" style="font-size: 15.67px; color: #8e8e8e">nginx</a> <a href="/tags/numpy/" style="font-size: 15.67px; color: #8e8e8e">numpy</a> <a href="/tags/pandas/" style="font-size: 14px; color: #999">pandas</a> <a href="/tags/php/" style="font-size: 15.67px; color: #8e8e8e">php</a> <a href="/tags/push/" style="font-size: 14px; color: #999">push</a> <a href="/tags/python/" style="font-size: 22.33px; color: #606060">python</a> <a href="/tags/python-Django-MySQL/" style="font-size: 14px; color: #999">python+Django+MySQL</a> <a href="/tags/re/" style="font-size: 17.33px; color: #828282">re</a> <a href="/tags/read/" style="font-size: 14px; color: #999">read</a> <a href="/tags/readline/" style="font-size: 14px; color: #999">readline</a> <a href="/tags/readlines/" style="font-size: 14px; color: #999">readlines</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/requirement-txt/" style="font-size: 14px; color: #999">requirement.txt</a> <a href="/tags/salt/" style="font-size: 14px; color: #999">salt</a> <a href="/tags/thinkPHP/" style="font-size: 15.67px; color: #8e8e8e">thinkPHP</a> <a href="/tags/token/" style="font-size: 14px; color: #999">token</a> <a href="/tags/union/" style="font-size: 14px; color: #999">union</a> <a href="/tags/vue-cli/" style="font-size: 17.33px; color: #828282">vue-cli</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E4%B8%8E%E5%AE%88%E6%8A%A4%E5%BC%8F%E5%88%9B%E5%BB%BA/" style="font-size: 14px; color: #999">交互式与守护式创建</a> <a href="/tags/%E5%85%83%E7%BB%84/" style="font-size: 14px; color: #999">元组</a> <a href="/tags/%E5%88%97%E8%A1%A8/" style="font-size: 14px; color: #999">列表</a> <a href="/tags/%E5%89%8D%E5%90%8E%E5%88%86%E7%A6%BB/" style="font-size: 14px; color: #999">前后分离</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 14px; color: #999">多线程</a> <a href="/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8B/" style="font-size: 14px; color: #999">多进程</a> <a href="/tags/%E5%AD%97%E5%85%B8/" style="font-size: 14px; color: #999">字典</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 14px; color: #999">字符串</a> <a href="/tags/%E5%AE%9A%E4%BD%8D%E7%85%A7%E7%89%87%E6%8B%8D%E6%91%84%E4%BD%8D%E7%BD%AE/" style="font-size: 14px; color: #999">定位照片拍摄位置</a> <a href="/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" style="font-size: 14px; color: #999">定时任务</a> <a href="/tags/%E5%AF%B9%E8%B1%A1/" style="font-size: 14px; color: #999">对象</a> <a href="/tags/%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">属性与方法</a> <a href="/tags/%E5%B8%B8%E8%A7%81%E5%BA%93/" style="font-size: 14px; color: #999">常见库</a> <a href="/tags/%E6%95%B0%E5%80%BC/" style="font-size: 14px; color: #999">数值</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%86%E6%89%B9%E6%AC%A1%E5%A4%84%E7%90%86/" style="font-size: 14px; color: #999">数据库分批次处理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%80%9A%E7%94%A8%E8%BF%9E%E6%8E%A5%E5%87%BD%E6%95%B0/" style="font-size: 14px; color: #999">数据库通用连接函数</a> <a href="/tags/%E6%9E%81%E9%AA%8C%E6%BB%91%E5%8A%A8/" style="font-size: 14px; color: #999">极验滑动</a> <a href="/tags/%E8%A3%85%E9%A5%B0%E5%99%A8/" style="font-size: 14px; color: #999">装饰器</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%BA%93/" style="font-size: 14px; color: #999">解析库</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 14px; color: #999">负载均衡</a> <a href="/tags/%E9%80%86%E5%90%91%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">逆向爬虫</a> <a href="/tags/%E9%80%89%E6%8B%A9%E5%99%A8/" style="font-size: 14px; color: #999">选择器</a>
     </div>
   </section>
 
