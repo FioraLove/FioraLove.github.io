@@ -488,10 +488,36 @@
 <li><p>pop()从数组中删除最后一个元素,并返回该值（shift()从数组中删除第一个元素,并返回该值）<br>var fruits = [“Banana”, “Orange”, “Apple”, “Mango”];<br>var x = fruits.pop();       // x 的值是 “Mango”</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">拓：</span><br><span class="line">push()+pop():可以构成栈方法，先进后出</span><br><span class="line">push()+shift()：可以构成队列方法，先进先出</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>sort()方法以字母或数值对数组进行排序</p>
+<li><p>sort(fun)方法以字母或数值对数组进行排序</p>
 </li>
 </ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fruits = [<span class="string">"Banana"</span>, <span class="string">"Orange"</span>, <span class="string">"Apple"</span>, <span class="string">"Mango"</span>];</span><br><span class="line">fruits.sort();  <span class="comment">// 字母默认升序排序</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> points = [<span class="number">40</span>,<span class="number">100</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">25</span>,<span class="number">10</span>];</span><br><span class="line">points.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a-b;</span><br><span class="line">&#125;);  <span class="comment">// 按数值升序排列</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> grades = [<span class="number">40</span>,<span class="number">100</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">25</span>,<span class="number">10</span>];</span><br><span class="line">grades.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> b-a;</span><br><span class="line">&#125;);     <span class="comment">// 按数值降序排列</span></span><br></pre></td></tr></table></figure>
+<p>语法：array.sort(fun)；参数fun可选，规定排序顺序，必须是函数。</p>
+<ul>
+<li>如果调用该方法时没有使用参数，将按字母顺序对数组中的元素进行排序，说得更精确点，是<strong>按照ascii编码顺序进行排序</strong>。</li>
+<li>如果想按照其他规则进行排序，就需要提供比较函数，该函数要比较两个值，然后返回一个用于说明这两个值的相对顺序的数字。<strong>比较函数应该具有两个参数 a 和 b，比较函数两个参数a和b，返回a-b 升序，返回b-a 降序</strong></li>
+<li>数组中的对象也可按照某个属性值进行排列</li>
+<li><strong>原数组会发生改变</strong></li>
+</ul>
+<ol>
+<li>不传参数，将不会按照数值大小排序，按照字符编码的顺序进行排序；</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">'General'</span>,<span class="string">'Tom'</span>,<span class="string">'Bob'</span>,<span class="string">'John'</span>,<span class="string">'Army'</span>];</span><br><span class="line"><span class="keyword">let</span> resArr = arr.sort();</span><br><span class="line"><span class="built_in">console</span>.log(resArr);    <span class="comment">//输出   ["Army", "Bob", "General", "John", "Tom"]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr2 = [<span class="number">30</span>,<span class="number">10</span>,<span class="number">111</span>,<span class="number">35</span>,<span class="number">1899</span>,<span class="number">50</span>,<span class="number">45</span>];</span><br><span class="line"><span class="keyword">let</span> resArr2 = arr2.sort();</span><br><span class="line"><span class="built_in">console</span>.log(resArr2);   <span class="comment">//输出   [10, 111, 1899, 30, 35, 45, 50]</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>传入参数，实现升序，降序</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实现升序</span></span><br><span class="line"><span class="keyword">let</span> arr3 = [<span class="number">30</span>,<span class="number">10</span>,<span class="number">111</span>,<span class="number">35</span>,<span class="number">1899</span>,<span class="number">50</span>,<span class="number">45</span>];</span><br><span class="line">arr3.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a - b;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(arr3);<span class="comment">//输出  [10, 30, 35, 45, 50, 111, 1899]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 实现降序</span></span><br><span class="line"><span class="keyword">let</span> arr4 = [<span class="number">30</span>,<span class="number">10</span>,<span class="number">111</span>,<span class="number">35</span>,<span class="number">1899</span>,<span class="number">50</span>,<span class="number">45</span>];</span><br><span class="line">arr4.sort(<span class="function">(<span class="params">a,b</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> b - a;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(arr4);<span class="comment">//输出 [1899, 111, 50, 45, 35, 30, 10]</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>根据数组中的对象的某个属性值排序(<strong>为数值类型时</strong>)</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr5 = [&#123;<span class="attr">id</span>:<span class="number">10</span>&#125;,&#123;<span class="attr">id</span>:<span class="number">5</span>&#125;,&#123;<span class="attr">id</span>:<span class="number">6</span>&#125;,&#123;<span class="attr">id</span>:<span class="number">9</span>&#125;,&#123;<span class="attr">id</span>:<span class="number">2</span>&#125;,&#123;<span class="attr">id</span>:<span class="number">3</span>&#125;];</span><br><span class="line">arr5.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.id - b.id</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(arr5);</span><br><span class="line"><span class="comment">// 输出新的排序 [&#123;id: 2&#125;,&#123;id: 3&#125;,...,&#123;id: 10&#125;]</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>根据数组中的对象的某个属性值排序(<strong>为字符串类型时</strong>):localeCompare</li>
+</ol>
+<p>场景：<a href="https://www.cnblogs.com/goloving/p/7662676.html" target="_blank" rel="noopener">localeCompare()方法实现中文排序、sort方法实现数字英文混合排序</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr6 = [&#123;<span class="attr">id</span>: <span class="string">"General"</span>&#125;,&#123;<span class="attr">id</span>:<span class="string">"Tom"</span>&#125;,&#123;<span class="attr">id</span>:<span class="string">"Alice"</span>&#125;,&#123;<span class="attr">id</span>:<span class="string">"Bob"</span>&#125;,&#123;<span class="attr">id</span>:<span class="string">"Ahri"</span>&#125;,&#123;<span class="attr">id</span>:<span class="string">"Kiko"</span>&#125;];</span><br><span class="line">arr6.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.id.localeCompare(b.id);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(arr6);</span><br></pre></td></tr></table></figure>
 
 <ol start="7">
 <li><p>reverse()反转数组中的元素</p>
@@ -582,10 +608,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-10-29T11:26:30+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-08T17:32:36+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年10月29日</p>
+    <p>更新于 2021年3月8日</p>
   </a>
 </div>
 

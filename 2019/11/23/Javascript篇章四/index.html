@@ -437,27 +437,34 @@
 <a id="more"></a>
 <h3 id="1-条件判断以及prompt-方法"><a href="#1-条件判断以及prompt-方法" class="headerlink" title="1.条件判断以及prompt() 方法"></a>1.条件判断以及prompt() 方法</h3><p>多条件判断：if…else if…else if…else<br>prompt(text,defaultText)方法用于显示可提示用户进行输入的对话框（即输入数据）,参数一表示提示文本，参数二表示默认值<br>let name=prompt(“Please enter your name”,”ritian zhao”)</p>
 <h3 id="2-循环，比较运算以及逻辑运算"><a href="#2-循环，比较运算以及逻辑运算" class="headerlink" title="2.循环，比较运算以及逻辑运算"></a>2.循环，比较运算以及逻辑运算</h3><p>循环语句：</p>
-<ol>
-<li>for(let i=1;i&lt;=1000;i++){}</li>
-<li>for (item in items){ item是items对象的键名key } (<font color="#FF6347">for-in循环是为遍历对象而设计的，并不适用于遍历数组</font>)</li>
-</ol>
+<blockquote>
+<p>普通for循环</p>
+</blockquote>
+<p>for(let i=1;i&lt;=1000;i++){}</p>
+<blockquote>
+<p>for-in循环</p>
+</blockquote>
+<p>for (item in items){ item是items对象的键名key } (<font color="#FF6347">for-in循环是为遍历对象而设计的，并不适用于遍历数组</font>)</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个js对象</span></span><br><span class="line"><span class="keyword">let</span> b = &#123;<span class="attr">name</span>: <span class="string">"chd"</span>, <span class="attr">age</span>: <span class="number">18</span>, <span class="attr">sex</span>: <span class="string">"man"</span>&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> index <span class="keyword">in</span> b)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(index+<span class="string">":"</span>+b[index])</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 运行结果</span></span><br><span class="line"><span class="comment">name:chd</span></span><br><span class="line"><span class="comment">age:18</span></span><br><span class="line"><span class="comment">sex:man</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 
-<ol start="4">
-<li>forEach：JavaScript5开始启用,回调函数中的value,index分别为值，索引</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myArray = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="string">"hello world"</span>];</span><br><span class="line">myArray.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">value, index</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"索引："</span>+index+<span class="string">" =&gt; "</span>+value);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 回调函数改为箭头函数（仅适用于ES6语法及以上）</span></span><br><span class="line">myArray.forEach(<span class="function">(<span class="params">value, index</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"索引："</span>+index+<span class="string">" =&gt; "</span>+value);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>forEach循环</p>
+</blockquote>
+<p>JavaScript5开始启用,回调函数中的value,index,array分别为值，索引，数组本身</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myArray = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="string">"hello world"</span>];</span><br><span class="line">myArray.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">value, index, array</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"索引："</span>+index+<span class="string">" =&gt; "</span>+value);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"数组本身："</span>+array);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 回调函数改为箭头函数（仅适用于ES6语法及以上）</span></span><br><span class="line">myArray.forEach(<span class="function">(<span class="params">value, index</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"索引："</span>+index+<span class="string">" =&gt; "</span>+value);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <p><strong>forEach缺陷</strong>：不能中断循环(<em>即不能使用break语句,continue语句或使用return语句</em>)</p>
-<ol start="5">
-<li>for-of循环：ES6新语法，适用于遍历可序列化数据结构，<strong>字符串、数组、Map、Set</strong></li>
-</ol>
+<blockquote>
+<p>for-of循环</p>
+</blockquote>
+<p>ES6新语法，适用于遍历可序列化数据结构，<strong>字符串、数组、Map、Set</strong></p>
 <p>for–of循环并不能直接使用在普通的对象上，但如果我们按对象所拥有的属性进行循环，可使用内置的Object.keys()方法</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> someObject = &#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">2</span>, <span class="attr">c</span>:<span class="number">3</span>&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">of</span> <span class="built_in">Object</span>.keys(someObject)) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(key + <span class="string">": "</span> + someObject[key]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<ol start="6">
-<li>while(true){} </li>
-</ol>
+<blockquote>
+<p>while循环</p>
+</blockquote>
+<p>while(true){} </p>
 <p>比较运算符：</p>
 <ul>
 <li>= ：表示赋值运算</li>
@@ -657,10 +664,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-02T16:04:09+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-08T13:56:44+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2021年3月2日</p>
+    <p>更新于 2021年3月8日</p>
   </a>
 </div>
 
