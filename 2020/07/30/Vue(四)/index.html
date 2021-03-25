@@ -421,7 +421,7 @@
         <p>本章主要探究vue-cli脚手架的动态路由匹配， 所谓动态路由匹配：就是将不确定的参数进行路由映射到同一个组件上去。</p>
 <p><font size=4 color=#FF0000>本文要点：</font></p>
 <blockquote>
-<p>1.参数匹配模式params，query<br>2.两种路由mode：history，hash<br>3.对照关系<br>4.vue-cli补充点</p>
+<p>1.参数匹配模式params，query<br>2.两种路由mode：history，hash<br>3.对照关系<br>4.路由的跳转☆☆<br>5.keep-alive页面缓存☆☆</p>
 </blockquote>
 <a id="more"></a>
 
@@ -480,66 +480,67 @@ PS: 这里的id，name先随意取值<br>单级path: ‘/list/:id’ :会被渲�
 <p><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/1596106091(1).jpg" alt=""></fancybox></p>
 <p><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/585123.jpg" alt=""></fancybox></p>
 <h3 id="3-对照关系"><a href="#3-对照关系" class="headerlink" title="3.对照关系"></a>3.对照关系</h3><p>path–query<br>name–params</p>
-<h3 id="4-vue-cli补充点"><a href="#4-vue-cli补充点" class="headerlink" title="4.vue-cli补充点"></a>4.vue-cli补充点</h3><blockquote>
-<p>1.关于VUE.JS 使用axios数据请求时数据绑定时 报错 TypeError: Cannot set property ‘xxxx’ of undefined 的解决办法</p>
-</blockquote>
-<p>data在里面做了定义</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">    data()&#123; </span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">            info:&#123;name:<span class="string">""</span>&#125;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>在方法里面进行赋值<br><fancybox><img src="https://img2018.cnblogs.com/blog/1323968/201902/1323968-20190227100911044-1970351078.png" alt=""></fancybox></p>
-<p>用 this.info = repos.data 数据可以请求到，但是会报错 TypeError: Cannot set property ‘listgroup’ of undefined</p>
+<h3 id="4-路由的跳转"><a href="#4-路由的跳转" class="headerlink" title="4.路由的跳转"></a>4.路由的跳转</h3><p><strong>index.js文件中的route设置</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> VueRouter <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'../plugins/axios'</span></span><br><span class="line"></span><br><span class="line">Vue.use(VueRouter,axios);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> routes = [</span><br><span class="line">    &#123;</span><br><span class="line">        path: <span class="string">'/'</span>,</span><br><span class="line">        name: <span class="string">'APP'</span>,</span><br><span class="line">        redirect: <span class="string">'/home'</span>,</span><br><span class="line">        component: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="comment">/* webpackChunkName: "about" */</span> <span class="string">'../App.vue'</span>),</span><br><span class="line">        meta: &#123;</span><br><span class="line">            keepAlive: <span class="literal">true</span>, <span class="comment">//此组件需要被缓存   </span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        path: <span class="string">'/home'</span>,</span><br><span class="line">        name: <span class="string">'Home'</span>,</span><br><span class="line">        component: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'../views/Home.vue'</span>),</span><br><span class="line">        meta: &#123;</span><br><span class="line">            keepAlive: <span class="literal">true</span>, <span class="comment">//此组件需要被缓存   </span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//将 path 设置为*号，将会捕获任何没有得到匹配的路由； </span></span><br><span class="line">        path: <span class="string">'*'</span>,</span><br><span class="line">        name: <span class="string">'Error'</span>,</span><br><span class="line">        component: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'../views/Error.vue'</span>)</span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        path: <span class="string">'/comic'</span>,</span><br><span class="line">        name: <span class="string">'Comic'</span>,</span><br><span class="line">        component: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'../views/Comic.vue'</span>),</span><br><span class="line">        meta: &#123;</span><br><span class="line">            keepAlive: <span class="literal">true</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        children:[&#123;</span><br><span class="line">                <span class="comment">// 漫画章节目录模块</span></span><br><span class="line">                path: <span class="string">'category'</span>,</span><br><span class="line">                name: <span class="string">'Category'</span>,</span><br><span class="line">                component: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'../views/Tools/catalog.vue'</span>),</span><br><span class="line">                meta: &#123;</span><br><span class="line">                    keepAlive: <span class="literal">true</span></span><br><span class="line">                &#125;</span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        <span class="comment">// 管理员主页，仅自己可见</span></span><br><span class="line">        path: <span class="string">'/admin'</span>,</span><br><span class="line">        name: <span class="string">'Admin'</span>,</span><br><span class="line">        component: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="comment">/* webpackChunkName: "about" */</span> <span class="string">'../views/Admin.vue'</span>),</span><br><span class="line">        meta: &#123;</span><br><span class="line">            keepAlive: <span class="literal">true</span>, <span class="comment">//此组件需要被缓存   </span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> VueRouter(&#123;</span><br><span class="line">    routes,</span><br><span class="line">    mode: <span class="string">'history'</span>, <span class="comment">// history表示去掉锚点，默认mode : 'hash'</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router;</span><br></pre></td></tr></table></figure>
+
+<p><strong>重点或者易错点</strong>：</p>
 <ul>
-<li><p>主要原因是：在 then的内部不能使用Vue的实例化的this, 因为在内部 this 没有被绑定在then的内部，console.log(this)，输出undefined</p>
+<li>引入vue和vue-router，切记要加上Vue.use(VueRouter)</li>
+<li>export default router这句话要记得加上，不然会报警告</li>
+<li>在children 中，<strong>子路由的路径不要加 /</strong></li>
+</ul>
+<p>上面的路由配置，展示了：<strong>同级路由，父子路由</strong></p>
+<blockquote>
+<p>route-link与route-view</p>
+</blockquote>
+<ul>
+<li>router-link类似于a标签，区别在于router-link跳转不需要刷新页面</li>
+<li>router-view标签给vue组件的跳转提供一个容器</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/about"</span>&gt;</span>about<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/user"</span>&gt;</span>user<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/home"</span>&gt;</span>导航<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>当link会被渲染成a标签，而view则用来展示当前执行的link标签的内容</strong>：<br>案例中存在三个路由about、user和home，当随便选中那个时，route-view标签都会加载其选中的那个路由的内容</p>
+<ol>
+<li><p>同级路由的跳转，跳转至新页面:<br>当任意选择about、user和home中一个路由，不写上view标签时，就会跳转至相应页面，而不是在本页面渲染</p>
 </li>
-<li><p>解决办法:</p>
+<li><p>子路由跳转:<br>子路由是无法实现跳转至新的页面的，只会在父页面上展示，因此需要在父页面写上<strong>router-view</strong>，不写的话，会导致跳转无响应的。子路由是嵌套必须在上级留下router-view坑位，不然无法显示</p>
 </li>
-</ul>
-<p>在请求axios外面定义一下 let that = this<br>内部用：that.info = repos.data</p>
-<blockquote>
-<p>2.Vue中使用v-for给img中的src属性赋值</p>
-</blockquote>
-<p>在学习Vue的时候，使用v-for获取Vue data中的数据</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--img标签中src属性使用&#123;&#123;&#125;&#125;获取，报错。--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"book in list"</span>&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"&#123;&#123;book.bookImg&#125;&#125;"</span>&gt;</span>  //并不会读取到</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>错误之处在于：<br><strong>属性值数据绑定应该用v-bind，应该写成v-bind:src=””或者:src=””</strong></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"book in list"</span>&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">v-bind:src</span>=<span class="string">"book.bookImg"</span>&gt;</span>   //ok</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>3.vue-cli引入assets下图片路径找不到问题:</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;img :src=&quot;imgsrc2&quot;&gt;</span><br><span class="line">export default&#123;</span><br><span class="line">     data()&#123;  </span><br><span class="line">        imgsrc2: require(&apos;../assets/logo4.png&apos;)</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>4.vue如何获取并操作DOM元素</p>
-</blockquote>
-<p>在之前，我们使用js操作DOM元素：直接给相应的元素加id,然后再document.getElementById(“id”);获取，然后设置相应属性或样式</p>
-<p><strong>但在vue中，要在mounted中使用，因为只有在执行mounted的时候，vue已经渲染了dom节点，这个时候是可以获取dom节点的，vue中尽量不去操作dom元素，选用ref操作属性获取</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;button ref=&quot;btn&quot;&gt;获取ref&lt;/button&gt;</span><br><span class="line"> </span><br><span class="line">this.$refs.btn.style.backgroundColor=&quot;#ff0000&quot;</span><br></pre></td></tr></table></figure>
-
-<p>此时再去调试时，又会出现大致意思是说不能设置属性背景颜色，因为它没有定义错误</p>
+</ol>
+<p>案例：<strong>当我们有很多图片时，点击每一张图片会跳转至相应的页面，若此时我们使用子路由的话，会将众多的图片和图片对应的页面内容都加载至一个页面，此时就会看起来很杂乱，因此推荐使用同级路由，进入一个新的页面。父子路由推荐作为菜单栏使用</strong></p>
+<h3 id="5-keep-alive页面缓存"><a href="#5-keep-alive页面缓存" class="headerlink" title="5.keep-alive页面缓存"></a>5.keep-alive页面缓存</h3><ol>
+<li>为什么需要页面缓存？</li>
+</ol>
+<p><strong>keep-alive是vue2.0以上内置的组件</strong>，为了让组件数据缓存，避免每次资源重复加载（例如每次切换导航时数据会重新加载一次，体验真的差），因此使用了keep-alive，解决了以上产生的问题</p>
+<ol start="2">
+<li>keep-alive原理？</li>
+</ol>
+<p>参考文章： <a href="https://blog.csdn.net/weixin_41819098/article/details/89379734" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41819098/article/details/89379734</a></p>
+<ol start="3">
+<li>keep-alive如何实现页面缓存？</li>
+</ol>
+<p>使用 keep-alive 实现缓存目前主流的有两种方法：</p>
 <ul>
-<li>$refs获取当前点击元素</li>
+<li>在路由元信息中添加缓存标识（最基本，但不推荐）</li>
 </ul>
-<p><fancybox><img src="https://www.freesion.com/images/147/1ab4d1d88a6535d60c746e6fa5c45bdb.png" alt=""></fancybox></p>
-<p><strong>分析</strong>：根据this.$refs.list.style.bottom = bottom可以知道本意是想获取子组件的DOM根元素，然后对这个元素的css属性bottom设置一个值，但是由于this.$refs.list只是获取到组件，并不能获取到子组件里面的DOM，这就是出错的原因</p>
-<p><strong>解决方法</strong>：通过$el选项获取到子组件的DOM，也就是改写成：<strong>this.$refs.list.$el.style.bottom</strong> = bottom，即this.$refs.list.$el可以获取到子组件的DOM</p>
-<ul>
-<li>$event.target</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">1. 先设置函数&lt;button @click=&quot;getInfo($event)&quot;&gt;测试&lt;/button&gt;</span><br><span class="line"></span><br><span class="line">get_info:function(el)&#123;</span><br><span class="line">    this.loading = true;</span><br><span class="line">    // 获取当前点击元素的属性值</span><br><span class="line">    // let a = parseInt(el.target.dataset.item);</span><br><span class="line">    let a = parseInt(el.target.getAttribute(&quot;data-item&quot;));</span><br><span class="line"></span><br><span class="line">    let b = (this.chapter_arr[a][&quot;images_url&quot;]).split(&quot;&apos;&quot;);</span><br><span class="line">    if(b.length&lt;=1)&#123;</span><br><span class="line">        this.rows = JSON.parse(this.chapter_arr[a][&quot;images_url&quot;]);</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        let arr = [];</span><br><span class="line">        for (let index = 1; index &lt; b.length; index+=2)&#123;</span><br><span class="line">            // 由于数据库数据结构设置错误，导致无法使用json</span><br><span class="line">            arr.push(b[index]);</span><br><span class="line">        &#125;</span><br><span class="line">        this.rows = arr;</span><br><span class="line">    &#125;</span><br><span class="line">    this.loading = false;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在router的index.js文件下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> routes = &#123;</span><br><span class="line">    path: <span class="string">'json'</span>,</span><br><span class="line">    name: <span class="string">'json'</span>,</span><br><span class="line">    meta: &#123;</span><br><span class="line">    keepAlive: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    component: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'../views/components/json'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>在需要使用的缓存页面，v-if 判断是否缓存</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;keep-alive&gt;</span><br><span class="line">   &lt;router-view v-if=&quot;$route.meta.keepAlive&quot;/&gt;</span><br><span class="line">&lt;/keep-alive&gt;</span><br><span class="line">&lt;router-view v-if=&quot;!$route.meta.keepAlive&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p>这种方法是比较早版本时使用的方法，当时&lt;keep-alive&gt;还没有include属性。这个方法虽然方便，但是会带来很多bug，比如无法使用&lt;transition&gt;、<strong>缓存了不必要的，用来实现嵌套路由操作</strong>的&lt;router-view&gt;布局组件等,<br>亲身体会：会导致页面很冗余，复杂，因为浏览器之前的已渲染好页面不会注销，会越堆积越多</p>
 <ul>
-<li>el.target.dataset</li>
+<li>keep-alive的include与exclude（★★★）</li>
 </ul>
-<p>这种el.target.dataset获取自定义的属性值，比如设置的data-url值，而且设置自定义的属性值的规范写法必须是 <strong>data-XXXX</strong>， 获取自定义的属性值的规范写法必须是 <strong>el.target.dataset.XXXX</strong></p>
-<blockquote>
-<p>5.vue-cli的axios解决跨域问题</p>
-</blockquote>
-<p>在主目录的vue.config.js文件中，写入如下内容：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="comment">// publicPath: './'   // 编译时使用</span></span><br><span class="line">    publicPath: <span class="string">'/'</span>,       <span class="comment">// 这个是在测试路由为‘history’时，动态参数匹配params模式时才会使用</span></span><br><span class="line">    devServer: &#123;</span><br><span class="line">        <span class="comment">// port: 8000,      // 配置开发环境运行端口号,不配置时，系统自动使用默认端口号       </span></span><br><span class="line">        <span class="comment">// proxy配置代理，解决跨域请求后台数据的问题</span></span><br><span class="line">        proxy: &#123;</span><br><span class="line">            <span class="string">'/migu'</span>:&#123;</span><br><span class="line">                target: <span class="string">'https://m.music.migu.cn/'</span>,  <span class="comment">// target host</span></span><br><span class="line">                ws: <span class="literal">true</span>,  <span class="comment">// proxy websockets </span></span><br><span class="line">                changeOrigin: <span class="literal">true</span>,  <span class="comment">// needed for virtual hosted sites</span></span><br><span class="line">                pathRewrite: &#123;</span><br><span class="line">                    <span class="string">'^/migu'</span>: <span class="string">''</span>  <span class="comment">// rewrite path</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">'QQmusic'</span>:&#123;</span><br><span class="line">                target: <span class="string">'https://baidu.com/'</span>,</span><br><span class="line">                ws: <span class="literal">true</span>,</span><br><span class="line">                changeOrigin: <span class="literal">true</span>, </span><br><span class="line">                pathRewrite: &#123;</span><br><span class="line">                    <span class="string">'^/migu'</span>: <span class="string">''</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<p>强烈文章：<a href="https://blog.csdn.net/qq_41912398/article/details/109576635" target="_blank" rel="noopener">Vue 使用 ＜keep-alive include＞ 实现多级 ＜router-view＞ 缓存，无限层次缓存</a></p>
 <h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
+<li><a href="https://blog.csdn.net/mr_javascript/article/details/80744268" target="_blank" rel="noopener">vue-router中children使用方法</a></li>
+<li><a href="https://blog.csdn.net/weixin_45122120/article/details/109177240" target="_blank" rel="noopener">vue实现路由跳转和嵌套（快速入门）</a></li>
 <li><a href="https://www.freesion.com/article/2166206835/" target="_blank" rel="noopener">vue如何获取并操作DOM元素</a></li>
 <li><a href="https://blog.csdn.net/qq_35775675/article/details/80850553" target="_blank" rel="noopener">vue中获取并操作dom元素</a></li>
+</ul>
+<p>爬坑点：</p>
+<ul>
+<li><a href="https://blog.csdn.net/yixiaotian1993/article/details/97013798" target="_blank" rel="noopener">关于Vue-router子路由不显示的一个坑</a></li>
+<li><a href="https://blog.csdn.net/weixin_39880301/article/details/110469680" target="_blank" rel="noopener">vue-router 路由嵌套显示不出来_（八）vue-router子路由、参数</a></li>
 </ul>
 
       </div>
@@ -552,10 +553,10 @@ PS: 这里的id，name先随意取值<br>单级path: ‘/list/:id’ :会被渲�
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-07T09:10:44+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-24T19:51:59+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年9月7日</p>
+    <p>更新于 2021年3月24日</p>
   </a>
 </div>
 
@@ -572,7 +573,7 @@ PS: 这里的id，name先随意取值<br>单级path: ‘/list/:id’ :会被渲�
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/07/30/Vue(%E5%9B%9B)/&title=vue-cli之router路由的花样年华 | AhriLove&summary=本章主要探究vue-cli脚手架的动态路由匹配， 所谓动态路由匹配：就是将不确定的参数进行路由映射到同一个组件上去。
 本文要点：
 
-1.参数匹配模式params，query2.两种路由mode：history，hash3.对照关系4.vue-cli补充点
+1.参数匹配模式params，query2.两种路由mode：history，hash3.对照关系4.路由的跳转☆☆5.keep-alive页面缓存☆☆
 "
           
           >
@@ -588,7 +589,7 @@ PS: 这里的id，name先随意取值<br>单级path: ‘/list/:id’ :会被渲�
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/07/30/Vue(%E5%9B%9B)/&title=vue-cli之router路由的花样年华 | AhriLove&summary=本章主要探究vue-cli脚手架的动态路由匹配， 所谓动态路由匹配：就是将不确定的参数进行路由映射到同一个组件上去。
 本文要点：
 
-1.参数匹配模式params，query2.两种路由mode：history，hash3.对照关系4.vue-cli补充点
+1.参数匹配模式params，query2.两种路由mode：history，hash3.对照关系4.路由的跳转☆☆5.keep-alive页面缓存☆☆
 "
           
           >
@@ -604,7 +605,7 @@ PS: 这里的id，name先随意取值<br>单级path: ‘/list/:id’ :会被渲�
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/07/30/Vue(%E5%9B%9B)/&title=vue-cli之router路由的花样年华 | AhriLove&summary=本章主要探究vue-cli脚手架的动态路由匹配， 所谓动态路由匹配：就是将不确定的参数进行路由映射到同一个组件上去。
 本文要点：
 
-1.参数匹配模式params，query2.两种路由mode：history，hash3.对照关系4.vue-cli补充点
+1.参数匹配模式params，query2.两种路由mode：history，hash3.对照关系4.路由的跳转☆☆5.keep-alive页面缓存☆☆
 "
           
           >
@@ -653,16 +654,16 @@ PS: 这里的id，name先随意取值<br>单级path: ‘/list/:id’ :会被渲�
                       <span class="art-item-right" aria-hidden="true">
                           <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                           <h4>
-                              <a href="/2020/07/30/Vue(%E5%85%AD)/" rel="prev" title="vue-cli的开发生产打包部署">
+                              <a href="/2020/07/28/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89/" rel="prev" title="Python全栈系列章节更新（十九）：font字体反爬">
                                   
-                                      vue-cli的开发生产打包部署
+                                      Python全栈系列章节更新（十九）：font字体反爬
                                   
                               </a>
                           </h4>
                           
                               
                               <h6 class="tags">
-                                  <a class="tag" href="/tags/vue-cli/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> vue-cli</a>
+                                  <a class="tag" href="/tags/python/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> python</a>
                               </h6>
                           
                       </span>
@@ -786,7 +787,7 @@ PS: 这里的id，name先随意取值<br>单级path: ‘/list/:id’ :会被渲�
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-参数匹配模式params，query"><span class="toc-text">1.参数匹配模式params，query</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-两种路由mode：history，hash"><span class="toc-text">2.两种路由mode：history，hash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-对照关系"><span class="toc-text">3.对照关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-vue-cli补充点"><span class="toc-text">4.vue-cli补充点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-参数匹配模式params，query"><span class="toc-text">1.参数匹配模式params，query</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-两种路由mode：history，hash"><span class="toc-text">2.两种路由mode：history，hash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-对照关系"><span class="toc-text">3.对照关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-路由的跳转"><span class="toc-text">4.路由的跳转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-keep-alive页面缓存"><span class="toc-text">5.keep-alive页面缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
     </div>
   </section>
 

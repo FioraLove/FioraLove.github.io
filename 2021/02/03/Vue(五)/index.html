@@ -421,7 +421,7 @@
         <p>本章主要探究vue-cli的基础概念，vue-cli是vue官方提供的脚手架工具。脚手架工具简单讲就是自动将项目需要的环境、依赖等信息都配置好。</p>
 <p><font size=4 color=#FF0000>本文要点：</font></p>
 <blockquote>
-<p>1.vue-cli的安装部署</p>
+<p>1.vue-cli的安装部署<br>2.vue-cli补充点</p>
 </blockquote>
 <a id="more"></a>
 
@@ -432,7 +432,12 @@
 <h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><ol>
 <li>全局安装过旧版本的 vue-cli(1.x 或 2.x)要先卸载它，否则跳过此步：</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall vue-cli -g //或者 yarn global remove vue-cli</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2. Vue CLI 3或4 的安装需要 nodeJs (推荐使用较新的版本)</span><br><span class="line"></span><br><span class="line">```text</span><br><span class="line">命令行查看版本号】</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br><span class="line"></span><br><span class="line">【升级npm（可选操作）】</span><br><span class="line">npm install -g npm</span><br><span class="line"></span><br><span class="line">【修改为淘宝镜像（可选操作）】</span><br><span class="line">npm config set registry &quot;https://registry.npm.taobao.org&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall vue-cli -g //或者 yarn global remove vue-cli</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Vue CLI 3或4 的安装需要 nodeJs (推荐使用较新的版本)</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">【命令行查看版本号】</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br><span class="line"></span><br><span class="line">【升级npm（可选操作）】</span><br><span class="line">npm install -g npm</span><br><span class="line"></span><br><span class="line">【修改为淘宝镜像（可选操作）】</span><br><span class="line">npm config set registry &quot;https://registry.npm.taobao.org&quot;</span><br></pre></td></tr></table></figure>
 
 <ol start="3">
 <li>安装@vue/cli（Vue CLI 3的包名称由 vue-cli 改成了 @vue/cli）</li>
@@ -450,6 +455,63 @@
 <blockquote>
 <p>vue ui 图形化界面操作</p>
 </blockquote>
+<h3 id="2-vue-cli补充点"><a href="#2-vue-cli补充点" class="headerlink" title="2.vue-cli补充点"></a>2.vue-cli补充点</h3><blockquote>
+<p>1.关于VUE.JS 使用axios数据请求时数据绑定时 报错 TypeError: Cannot set property ‘xxxx’ of undefined 的解决办法</p>
+</blockquote>
+<p>data在里面做了定义</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">    data()&#123; </span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">            info:&#123;name:<span class="string">""</span>&#125;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在方法里面进行赋值<br><fancybox><img src="https://img2018.cnblogs.com/blog/1323968/201902/1323968-20190227100911044-1970351078.png" alt=""></fancybox></p>
+<p>用 this.info = repos.data 数据可以请求到，但是会报错 TypeError: Cannot set property ‘listgroup’ of undefined</p>
+<ul>
+<li><p>主要原因是：在 then的内部不能使用Vue的实例化的this, 因为在内部 this 没有被绑定在then的内部，console.log(this)，输出undefined</p>
+</li>
+<li><p>解决办法:</p>
+</li>
+</ul>
+<p><strong>在请求axios外面定义一下 let vm = this</strong><br>内部用：vm.info = response.data</p>
+<blockquote>
+<p>2.Vue中使用v-for给img中的src属性赋值</p>
+</blockquote>
+<p>在学习Vue的时候，使用v-for获取Vue data中的数据</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--img标签中src属性使用&#123;&#123;&#125;&#125;获取，报错。--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"book in list"</span>&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"&#123;&#123;book.bookImg&#125;&#125;"</span>&gt;</span>  //并不会读取到</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>错误之处在于：<br><strong>属性值数据绑定应该用v-bind，应该写成v-bind:src=””或者:src=””</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"book in list"</span>&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">v-bind:src</span>=<span class="string">"book.bookImg"</span>&gt;</span>   //ok</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>3.vue-cli引入assets下图片路径找不到问题:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;img :src=&quot;imgsrc2&quot;&gt;</span><br><span class="line">export default&#123;</span><br><span class="line">     data()&#123;  </span><br><span class="line">        imgsrc2: require(&apos;../assets/logo4.png&apos;)</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>4.vue如何获取并操作DOM元素</p>
+</blockquote>
+<p>在之前，我们使用js操作DOM元素：直接给相应的元素加id,然后再document.getElementById(“id”);获取，然后设置相应属性或样式</p>
+<p><strong>但在vue中，要在mounted中使用，因为只有在执行mounted的时候，vue已经渲染了dom节点，这个时候是可以获取dom节点的，vue中尽量不去操作dom元素，选用ref操作属性获取</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;button ref=&quot;btn&quot;&gt;获取ref&lt;/button&gt;</span><br><span class="line"> </span><br><span class="line">this.$refs.btn.style.backgroundColor=&quot;#ff0000&quot;</span><br></pre></td></tr></table></figure>
+
+<p>此时再去调试时，又会出现大致意思是说不能设置属性背景颜色，因为它没有定义错误</p>
+<ul>
+<li>$refs获取当前点击元素</li>
+</ul>
+<p><fancybox><img src="https://www.freesion.com/images/147/1ab4d1d88a6535d60c746e6fa5c45bdb.png" alt=""></fancybox></p>
+<p><strong>分析</strong>：根据this.$refs.list.style.bottom = bottom可以知道本意是想获取子组件的DOM根元素，然后对这个元素的css属性bottom设置一个值，但是由于this.$refs.list只是获取到组件，并不能获取到子组件里面的DOM，这就是出错的原因</p>
+<p><strong>解决方法</strong>：通过$el选项获取到子组件的DOM，也就是改写成：<strong>this.$refs.list.$el.style.bottom</strong> = bottom，即this.$refs.list.$el可以获取到子组件的DOM</p>
+<ul>
+<li>$event.target</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">1. 先设置函数&lt;button @click=&quot;getInfo($event)&quot;&gt;测试&lt;/button&gt;</span><br><span class="line"></span><br><span class="line">get_info:function(el)&#123;</span><br><span class="line">    // 获取当前点击元素的属性值</span><br><span class="line">    // let a = parseInt(el.target.dataset.item);</span><br><span class="line">    let a = parseInt(el.target.getAttribute(&quot;data-item&quot;));</span><br><span class="line"></span><br><span class="line">    let b = (this.chapter_arr[a][&quot;images_url&quot;]).split(&quot;&apos;&quot;);</span><br><span class="line">    if(b.length&lt;=1)&#123;</span><br><span class="line">        this.rows = JSON.parse(this.chapter_arr[a][&quot;images_url&quot;]);</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        let arr = [];</span><br><span class="line">        for (let index = 1; index &lt; b.length; index+=2)&#123;</span><br><span class="line">            // 由于数据库数据结构设置错误，导致无法使用json</span><br><span class="line">            arr.push(b[index]);</span><br><span class="line">        &#125;</span><br><span class="line">        this.rows = arr;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>el.target.dataset</li>
+</ul>
+<p>这种el.target.dataset获取自定义的属性值，比如设置的data-url值，而且设置自定义的属性值的规范写法必须是 <strong>data-XXXX</strong>， 获取自定义的属性值的规范写法必须是 <strong>el.target.dataset.XXXX</strong></p>
+<blockquote>
+<p>5.vue-cli的axios解决跨域问题</p>
+</blockquote>
+<p>在主目录的vue.config.js文件中，写入如下内容：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="comment">// publicPath: './'   // 编译时使用</span></span><br><span class="line">    publicPath: <span class="string">'/'</span>,       <span class="comment">// 这个是在测试路由为‘history’时，动态参数匹配params模式时才会使用</span></span><br><span class="line">    devServer: &#123;</span><br><span class="line">        <span class="comment">// port: 8000,      // 配置开发环境运行端口号,不配置时，系统自动使用默认端口号       </span></span><br><span class="line">        <span class="comment">// proxy配置代理，解决跨域请求后台数据的问题</span></span><br><span class="line">        proxy: &#123;</span><br><span class="line">            <span class="string">'/migu'</span>:&#123;</span><br><span class="line">                target: <span class="string">'https://m.music.migu.cn/'</span>,  <span class="comment">// target host</span></span><br><span class="line">                ws: <span class="literal">true</span>,  <span class="comment">// proxy websockets </span></span><br><span class="line">                changeOrigin: <span class="literal">true</span>,  <span class="comment">// needed for virtual hosted sites</span></span><br><span class="line">                pathRewrite: &#123;</span><br><span class="line">                    <span class="string">'^/migu'</span>: <span class="string">''</span>  <span class="comment">// rewrite path</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">'QQmusic'</span>:&#123;</span><br><span class="line">                target: <span class="string">'https://baidu.com/'</span>,</span><br><span class="line">                ws: <span class="literal">true</span>,</span><br><span class="line">                changeOrigin: <span class="literal">true</span>, </span><br><span class="line">                pathRewrite: &#123;</span><br><span class="line">                    <span class="string">'^/migu'</span>: <span class="string">''</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
 <li><a href="https://www.cnblogs.com/coober/p/10875647.html" target="_blank" rel="noopener">vue cli3.0快速搭建项目详解（强烈推荐）</a></li>
 </ul>
@@ -464,10 +526,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-02-04T08:26:23+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-25T08:56:03+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2021年2月4日</p>
+    <p>更新于 2021年3月25日</p>
   </a>
 </div>
 
@@ -484,7 +546,7 @@
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2021/02/03/Vue(%E4%BA%94)/&title=vue-cli基础 | AhriLove&summary=本章主要探究vue-cli的基础概念，vue-cli是vue官方提供的脚手架工具。脚手架工具简单讲就是自动将项目需要的环境、依赖等信息都配置好。
 本文要点：
 
-1.vue-cli的安装部署
+1.vue-cli的安装部署2.vue-cli补充点
 "
           
           >
@@ -500,7 +562,7 @@
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2021/02/03/Vue(%E4%BA%94)/&title=vue-cli基础 | AhriLove&summary=本章主要探究vue-cli的基础概念，vue-cli是vue官方提供的脚手架工具。脚手架工具简单讲就是自动将项目需要的环境、依赖等信息都配置好。
 本文要点：
 
-1.vue-cli的安装部署
+1.vue-cli的安装部署2.vue-cli补充点
 "
           
           >
@@ -516,7 +578,7 @@
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2021/02/03/Vue(%E4%BA%94)/&title=vue-cli基础 | AhriLove&summary=本章主要探究vue-cli的基础概念，vue-cli是vue官方提供的脚手架工具。脚手架工具简单讲就是自动将项目需要的环境、依赖等信息都配置好。
 本文要点：
 
-1.vue-cli的安装部署
+1.vue-cli的安装部署2.vue-cli补充点
 "
           
           >
@@ -698,7 +760,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-vue-cli安装教程"><span class="toc-text">1.vue-cli安装教程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#介绍"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用"><span class="toc-text">使用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-vue-cli安装教程"><span class="toc-text">1.vue-cli安装教程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#介绍"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用"><span class="toc-text">使用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-vue-cli补充点"><span class="toc-text">2.vue-cli补充点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
     </div>
   </section>
 
