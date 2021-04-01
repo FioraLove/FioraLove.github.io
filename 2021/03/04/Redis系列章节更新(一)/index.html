@@ -455,7 +455,81 @@
 </ol>
 <figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli --raw</span><br></pre></td></tr></table></figure>
 
-<h3 id="2-基本数据类型"><a href="#2-基本数据类型" class="headerlink" title="2.基本数据类型"></a>2.基本数据类型</h3><table>
+<ol start="4">
+<li>Redis认证</li>
+</ol>
+<p>当我们的redis设置密码后，再次登陆后我们需要输入密码</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">auth &lt;password&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>获取信息</li>
+</ol>
+<p>获取信息的指令为<code>info</code>,可在后面接多种关键词</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 获取所有信息</span></span><br><span class="line">info</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 获取服务端信息</span></span><br><span class="line">info server</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 获取内存信息</span></span><br><span class="line">info memory</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 获取主从信息</span></span><br><span class="line">info Replication</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 获取当前连接数</span></span><br><span class="line">info clients</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看redis最大连接数</span></span><br><span class="line">config get maxclients</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>数据库的切换</li>
+</ol>
+<p>Select 命令用于切换到指定的数据库，数据库索引号 index 用数字值指定，以 0 作为起始索引值,不能超过15，因为总共只有16个数据库</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 选择目标实例</span></span><br><span class="line">select index</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 清空当前连接的数据库(慎用)</span></span><br><span class="line">flushdb</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 清空所有数据库（慎用）</span></span><br><span class="line">flushall</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>查询当前连接数据库键总数</li>
+</ol>
+<p>dbsize</p>
+<h3 id="2-基本全局指令"><a href="#2-基本全局指令" class="headerlink" title="2.基本全局指令"></a>2.基本全局指令</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">del key</td>
+<td align="left">删除目标key（被删除成功，命令执行后输出(int)1，否则0）</td>
+</tr>
+<tr>
+<td align="left">exists key</td>
+<td align="left">判断key是否存在</td>
+</tr>
+<tr>
+<td align="left">expire key seconds</td>
+<td align="left">为key设置过期时间，以秒计</td>
+</tr>
+<tr>
+<td align="left">keys pattern</td>
+<td align="left">查找所有符合给定模式( pattern)的key，(keys * 表示所有key)</td>
+</tr>
+<tr>
+<td align="left">move key db</td>
+<td align="left">将当前数据库的 key 移动到给定的数据库 db 当中</td>
+</tr>
+<tr>
+<td align="left">persist key</td>
+<td align="left">移除key的过期时间，key将持久保持</td>
+</tr>
+<tr>
+<td align="left">pttl key</td>
+<td align="left">以<strong>毫秒</strong>为单位返回 key 的剩余的过期时间</td>
+</tr>
+<tr>
+<td align="left">ttl key</td>
+<td align="left">以<strong>秒</strong>为单位返回 key 的剩余的过期时间</td>
+</tr>
+<tr>
+<td align="left">randomkey</td>
+<td align="left">从当前数据库中随机返回一个 key</td>
+</tr>
+<tr>
+<td align="left">rename key newkey</td>
+<td align="left">修改 key 的名称</td>
+</tr>
+<tr>
+<td align="left">type key</td>
+<td align="left">返回 key 所储存的值的类型</td>
+</tr>
+</tbody></table>
+<h3 id="3-基本数据类型"><a href="#3-基本数据类型" class="headerlink" title="3.基本数据类型"></a>3.基本数据类型</h3><table>
 <thead>
 <tr>
 <th align="left">类型</th>
@@ -465,42 +539,37 @@
 </tr>
 </thead>
 <tbody><tr>
-<td align="left">String(字符串)</td>
+<td align="left">String</td>
 <td align="left">二进制安全</td>
 <td align="left">可以包含任何数据,比如jpg图片或者序列化的对象,一个键最大能存储512M</td>
 <td align="left">—</td>
 </tr>
 <tr>
-<td align="left">Hash(字典)</td>
+<td align="left">Hash</td>
 <td align="left">键值对集合,即编程语言中的Map类型    适合存储对象,并且可以像数据库中update一个属性一样只修改某一项属性值(Memcached中需要取出整个字符串反序列化成对象修改完再序列化存回去)</td>
 <td align="left">存储、读取、修改用户属性</td>
 <td align="left"></td>
 </tr>
 <tr>
-<td align="left">List(列表)</td>
+<td align="left">List</td>
 <td align="left">链表(双向链表)</td>
 <td align="left">增删快,提供了操作某一段元素的API</td>
 <td align="left">1,最新消息排行等功能(比如朋友圈的时间线) 2,消息队列</td>
 </tr>
 <tr>
-<td align="left">Set(集合)</td>
+<td align="left">Set</td>
 <td align="left">哈希表实现,元素不重复</td>
 <td align="left">1、添加、删除,查找的复杂度都是O(1) 2、为集合提供了求交集、并集、差集等操作</td>
 <td align="left">1、共同好友 2、利用唯一性,统计访问网站的所有独立ip 3、好友推荐时,根据tag求交集,大于某个阈值就可以推荐</td>
 </tr>
 <tr>
-<td align="left">Sorted Set(有序集合)</td>
+<td align="left">Sorted Set</td>
 <td align="left">将Set中的元素增加一个权重参数score,元素按score有序排列</td>
 <td align="left">数据插入集合时,已经进行天然排序</td>
 <td align="left">1、排行榜 2、带权重的消息队列</td>
 </tr>
 </tbody></table>
-<blockquote>
-<ol>
-<li>String字符串</li>
-</ol>
-</blockquote>
-<p>下表列出常用的Redis字符串命令</p>
+<h4 id="String字符串"><a href="#String字符串" class="headerlink" title="String字符串"></a>String字符串</h4><p>下表列出常用的Redis字符串命令</p>
 <table>
 <thead>
 <tr>
@@ -517,58 +586,56 @@
 <td align="left">获取指定 key 的值</td>
 </tr>
 <tr>
-<td align="left">GETRANGE key start end</td>
-<td align="left">返回 key 中字符串值的子字符，<strong>索引默认从0开始，满足闭区间</strong></td>
+<td align="left">getrange key start end</td>
+<td align="left">字符串的截取，<strong>索引默认从0开始，满足闭区间</strong></td>
 </tr>
 <tr>
-<td align="left">MGET key1 [key2..]</td>
+<td align="left">mget key1 [keyN]</td>
 <td align="left">获取所有(一个或多个)给定 key 的值</td>
 </tr>
 <tr>
-<td align="left">SETEX key seconds value</td>
-<td align="left">将值value关联到key，并将key的过期时间设为 seconds (以秒为单位)</td>
+<td align="left">strlen key</td>
+<td align="left">返回字符串值的长度(不存在时返回0)</td>
 </tr>
 <tr>
-<td align="left">STRLEN key</td>
-<td align="left">返回 key 所储存的字符串值的长度(中文一个占三个字符，英文一个占一个字符)</td>
-</tr>
-<tr>
-<td align="left">MSET key value [key value …]</td>
+<td align="left">mset key value [key value …]</td>
 <td align="left">同时设置一个或多个 key-value 对</td>
 </tr>
 <tr>
-<td align="left">PSETEX key milliseconds value</td>
-<td align="left">这个命令和 SETEX 命令相似，但它以毫秒为单位设置 key 的生存时间，而不是像 SETEX 命令那样，以秒为单位</td>
+<td align="left">Setex key seconds value</td>
+<td align="left">为指定的key设置值及其过期时间。若key存在，将会替换旧的值</td>
 </tr>
 <tr>
-<td align="left">INCR key</td>
+<td align="left">Psetex key milliseconds value</td>
+<td align="left">这个命令和 SETEX 命令相似，但它以<strong>毫秒为单位</strong>设置 key 的生存时间</td>
+</tr>
+<tr>
+<td align="left">incr key</td>
 <td align="left">将 key 中储存的数字值增一</td>
 </tr>
 <tr>
-<td align="left">INCRBY key increment</td>
+<td align="left">incrby key increment</td>
 <td align="left">将 key 所储存的值加上自定义的增量值(increment)</td>
 </tr>
 <tr>
-<td align="left">INCRBYFLOAT key increment</td>
-<td align="left">将 key 所储存的值加上给定的浮点增量值(increment)</td>
+<td align="left">incrbyfloat key increment</td>
+<td align="left">将 key 所储存的值加上给定的<strong>浮点增量值</strong></td>
 </tr>
 <tr>
-<td align="left">DECR key</td>
+<td align="left">decr key</td>
 <td align="left">将key中储存的数字值减一</td>
 </tr>
 <tr>
-<td align="left">DECRBY key decrement</td>
+<td align="left">decrby key decrement</td>
 <td align="left">key 所储存的值减去给定的减量值(decrement)</td>
 </tr>
 <tr>
-<td align="left">APPEND key value</td>
+<td align="left">append key value</td>
 <td align="left">如果key已经存在并且是一个字符串，将指定的value追加到该key原来值（value）的末尾,相当于字符串的拼接</td>
 </tr>
 </tbody></table>
-<blockquote>
-<p>2.Redis 哈希(Hash)</p>
-</blockquote>
-<p>Redis hash是一个string类型的field（字段）和value（值）的映射表，hash 特别适合用于存储对象。Redis 中每个 hash 可以存储 23^2 - 1 键值对（40多亿）</p>
+<p><strong>——————————————————————————————————————–</strong></p>
+<h4 id="Hash哈希"><a href="#Hash哈希" class="headerlink" title="Hash哈希"></a>Hash哈希</h4><p>Redis hash是一个string类型的field（字段）和value（值）的映射表，hash 特别适合用于存储对象。Redis 中每个 hash 可以存储 23^2 - 1 键值对（40多亿）</p>
 <table>
 <thead>
 <tr>
@@ -577,8 +644,147 @@
 </tr>
 </thead>
 <tbody><tr>
-<td align="left">HMset key_name fieldN valueN</td>
+<td align="left">hdel key field1 [valueN]</td>
+<td align="left">删除一个或多个哈希表字段</td>
+</tr>
+<tr>
+<td align="left">hexists key field</td>
+<td align="left">查看哈希表key中，指定的字段是否存在</td>
+</tr>
+<tr>
+<td align="left">hget key field</td>
+<td align="left">获取存储在hash中指定字段的值</td>
+</tr>
+<tr>
+<td align="left">hgetall key</td>
+<td align="left">获取在哈希表中指定key的所有字段和值</td>
+</tr>
+<tr>
+<td align="left">hkeys key</td>
+<td align="left">获取存储在hash中指定字段的值</td>
+</tr>
+<tr>
+<td align="left">hincrby key filed increment</td>
+<td align="left">哈希表 key 中的<strong>指定字段的整数值</strong>加上增量 increment</td>
+</tr>
+<tr>
+<td align="left">hincrbyfloat key filed increment</td>
+<td align="left">哈希表 key 中的<strong>指定字段的浮点值</strong>加上增量 increment</td>
+</tr>
+<tr>
+<td align="left">hset key field</td>
+<td align="left">将哈希表key中的字段field的值设为value</td>
+</tr>
+<tr>
+<td align="left">hmset key fieldN valueN</td>
 <td align="left">同时将多个 field-value (域-值)对设置到哈希表 key 中</td>
+</tr>
+<tr>
+<td align="left">hkeys key</td>
+<td align="left"><strong>获取所有哈希表中的字段</strong></td>
+</tr>
+<tr>
+<td align="left">hlen key</td>
+<td align="left">获取哈希表中字段的数量</td>
+</tr>
+<tr>
+<td align="left">hmget key filed [fieldN]</td>
+<td align="left">获取所有给定字段的值</td>
+</tr>
+<tr>
+<td align="left">hvals key</td>
+<td align="left">获取hash所有的值</td>
+</tr>
+</tbody></table>
+<h4 id="List列表"><a href="#List列表" class="headerlink" title="List列表"></a>List列表</h4><p>Redis列表是简单的字符串列表，按照插入顺序排序，元素可以重复，可以从列表的头部或尾部插入数据</p>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">llen key</td>
+<td align="left">获取列表长度</td>
+</tr>
+<tr>
+<td align="left">lindex key index</td>
+<td align="left">通过索引获取列表元素，<strong>起始索引为0，也支持负索引</strong>，形如python</td>
+</tr>
+<tr>
+<td align="left">rpush key val1，val2</td>
+<td align="left">将一个或多个值插入到列表的<em>尾部</em>，如果列表不存在，自动创建空列表</td>
+</tr>
+<tr>
+<td align="left">lpush key val1，val2</td>
+<td align="left">将一个或多个值插入到列表的<em>头部</em>，如果列表不存在，自动创建空列表</td>
+</tr>
+<tr>
+<td align="left">rpop key</td>
+<td align="left">移除列表的<strong>最后一个元素</strong>，并返回该元素</td>
+</tr>
+<tr>
+<td align="left">lpop key</td>
+<td align="left">移除列表的<strong>第一个元素</strong>，并返回该元素</td>
+</tr>
+<tr>
+<td align="left">Lrange key start end</td>
+<td align="left">列表截取，起始索引为0，为<strong>闭区间</strong></td>
+</tr>
+<tr>
+<td align="left">blpop key timeout</td>
+<td align="left">移出并获取列表的第一个元素，如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止</td>
+</tr>
+<tr>
+<td align="left">brpop key timeout</td>
+<td align="left">移出并获取列表的最后一个元素，如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止</td>
+</tr>
+</tbody></table>
+<h4 id="Set集合"><a href="#Set集合" class="headerlink" title="Set集合"></a>Set集合</h4><p>Set 是 String 类型的无序集合。集合成员是唯一的，这就意味着集合中不能出现重复的数据。</p>
+<p>Redis 中集合是通过哈希表实现的，所以添加，删除，查找的复杂度都是 O(1)。</p>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Scard key</td>
+<td align="left">获取集合中元素数量</td>
+</tr>
+<tr>
+<td align="left">Smembers key</td>
+<td align="left">获取集合中所有成员</td>
+</tr>
+<tr>
+<td align="left">Sadd key memberN</td>
+<td align="left">向集合中添加一个或多个元素</td>
+</tr>
+<tr>
+<td align="left">Sdiff key1 keyN</td>
+<td align="left">返回第一个集合中独有的元素，不存在则视为空集</td>
+</tr>
+<tr>
+<td align="left">Sinter key1 keyN</td>
+<td align="left">返回给定集合的<strong>交集</strong></td>
+</tr>
+<tr>
+<td align="left">Sunion key1 keyN</td>
+<td align="left">返回给定集合的<strong>并集</strong></td>
+</tr>
+<tr>
+<td align="left">Sdiffstore newKey key1 keyN</td>
+<td align="left">将<strong>给定集合之间的差集存储在指定的newKey集合中</strong>。如果指定的集合key已存在，则会被覆盖</td>
+</tr>
+<tr>
+<td align="left">Sinterstore newKey key1 keyN</td>
+<td align="left">将<strong>给定集合之间的交集存储在指定的newKey集合中</strong>。如果指定的集合key已存在，则会被覆盖</td>
+</tr>
+<tr>
+<td align="left">Sunionstore newKey key1 keyN</td>
+<td align="left">将<strong>给定集合之间的并集存储在指定的newKey集合中</strong>。如果指定的集合key已存在，则会被覆盖</td>
 </tr>
 </tbody></table>
 
@@ -592,10 +798,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-24T10:21:08+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-01T17:05:03+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2021年3月24日</p>
+    <p>更新于 2021年4月1日</p>
   </a>
 </div>
 
@@ -837,7 +1043,7 @@ Redis 通常被称为数据结构服务器，因为值（value）可以是字符
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Redis命令"><span class="toc-text">1.Redis命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-基本数据类型"><span class="toc-text">2.基本数据类型</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Redis命令"><span class="toc-text">1.Redis命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-基本全局指令"><span class="toc-text">2.基本全局指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-基本数据类型"><span class="toc-text">3.基本数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#String字符串"><span class="toc-text">String字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hash哈希"><span class="toc-text">Hash哈希</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#List列表"><span class="toc-text">List列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Set集合"><span class="toc-text">Set集合</span></a></li></ol></li></ol>
     </div>
   </section>
 
