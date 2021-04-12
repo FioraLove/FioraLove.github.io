@@ -439,7 +439,13 @@
 </blockquote>
 <a id="more"></a>
 
-<h3 id="1-Redis命令"><a href="#1-Redis命令" class="headerlink" title="1.Redis命令"></a>1.Redis命令</h3><ol>
+<h3 id="1-Redis命令"><a href="#1-Redis命令" class="headerlink" title="1.Redis命令"></a>1.Redis命令</h3><p>Redis服务（Redis服务端-Linux端）启动：</p>
+<ul>
+<li>redis-server 前台启动，即以命令行模式启动</li>
+<li><strong>redis-server &amp;</strong> 后台启动，即以守护进程模式启动</li>
+<li><strong>redis-server redis.conf &amp;</strong> :根据配置文件启动,<em>如果修改了redis的配置文件redis.conf，必须在启动时指定配置文件，否则修改无效！</em></li>
+</ul>
+<ol>
 <li>客户端启动基本命令</li>
 </ol>
 <p>终端并输入命令 redis-cli，该命令会连接本地的 redis 服务。执行 PING 命令，该命令用于检测 redis 服务是否启动</p>
@@ -477,6 +483,30 @@
 <li>查询当前连接数据库键总数</li>
 </ol>
 <p>dbsize</p>
+<ol start="8">
+<li>Client List </li>
+</ol>
+<p>用于返回所有连接到服务器的客户端信息和统计数据</p>
+<ol start="9">
+<li>Config</li>
+</ol>
+<p>config实现对redis服务器的配置文件相关操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">config [GET, SET, RESETSTAT, REWRITE] parameter</span><br><span class="line"></span><br><span class="line"># 查看所有的配置参数</span><br><span class="line">config get *</span><br></pre></td></tr></table></figure>
+
+<ol start="10">
+<li>Time</li>
+</ol>
+<p>一个包含两个字符串的列表： 第一个字符串是当前时间(秒级)，而第二个字符串是当前这一秒钟已经逝去的微秒数。</p>
+<ol start="11">
+<li>redis查看版本号</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 查看服务端版本</span><br><span class="line">redis-server -v </span><br><span class="line">redis-server --version</span><br><span class="line"></span><br><span class="line"># 查看客户端版本</span><br><span class="line">redis-cli -v </span><br><span class="line">redis-cli --version</span><br></pre></td></tr></table></figure>
+
+<ol start="12">
+<li>关闭redis服务</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 关闭redis默认配置下的服务</span><br><span class="line">redis-cli shutdown</span><br><span class="line"></span><br><span class="line"># 经由redis-cli客户端来关闭redis服务端</span><br><span class="line">redis-cli -h ip -p port -a password shutdown</span><br></pre></td></tr></table></figure>
+
 <h3 id="2-基本全局指令"><a href="#2-基本全局指令" class="headerlink" title="2.基本全局指令"></a>2.基本全局指令</h3><table>
 <thead>
 <tr>
@@ -787,6 +817,72 @@
 <td align="left">将<strong>给定集合之间的并集存储在指定的newKey集合中</strong>。如果指定的集合key已存在，则会被覆盖</td>
 </tr>
 </tbody></table>
+<h4 id="Sorted-Set有序集合"><a href="#Sorted-Set有序集合" class="headerlink" title="Sorted-Set有序集合"></a>Sorted-Set有序集合</h4><p>Redis 有序集合和集合一样也是 string 类型元素的集合,且不允许重复的成员。</p>
+<p>不同的是<strong>每个元素都会关联一个 double 类型的分数</strong>。redis 正是通过分数来为集合中的成员进行<strong>从小到大的排序</strong>。</p>
+<p>有序集合的成员是唯一的,但分数(score)却可以重复。集合是通过哈希表实现的，所以添加，删除，查找的复杂度都是 O(1)</p>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Zcard key</td>
+<td align="left">获取有序集合中成员数</td>
+</tr>
+<tr>
+<td align="left">Zscore key member</td>
+<td align="left">获取指定成员的分数</td>
+</tr>
+<tr>
+<td align="left">Zadd key scoreN valueN</td>
+<td align="left">将一个或多个成员元素及其分数值加入到有序集合(<strong>分数值可以是整数值或双精度浮点数</strong>)</td>
+</tr>
+<tr>
+<td align="left">Zcount key min max</td>
+<td align="left">计算有序集合中指定分数区间的<strong>成员数量</strong></td>
+</tr>
+<tr>
+<td align="left">Zincrby key increment member</td>
+<td align="left">对有序集合中指定成员的分数加上增量increment</td>
+</tr>
+<tr>
+<td align="left">Zrange key start stop [WITHSCORES]</td>
+<td align="left">返回有序集中，指定区间内的成员或与分数,<strong>起始索引为0，接受负索引，满足闭区间，升序</strong></td>
+</tr>
+<tr>
+<td align="left">Zrevrange key start stop [WITHSCORES]</td>
+<td align="left">返回有序集中，指定区间内的成员或与分数,<strong>起始索引为0，接受负索引，满足闭区间，降序</strong></td>
+</tr>
+<tr>
+<td align="left">Zrevrangebyscore key max min [WITHSCORES]</td>
+<td align="left">返回有序集中指定分数区间内的所有的成员，倒序</td>
+</tr>
+<tr>
+<td align="left">Zrangebyscore key min max [WITHSCORES]</td>
+<td align="left">返回有序集中指定分数区间内的所有的成员，升序</td>
+</tr>
+<tr>
+<td align="left">Zunionstore</td>
+<td align="left">计算给定的一个或多个有序集的并集，并存储在新的 key 中</td>
+</tr>
+</tbody></table>
+<p><strong>拓展：</strong></p>
+<ol>
+<li>Zunionstore详细使用说明</li>
+</ol>
+<p>语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Zunionstore destination numkeys key [keyN] </span><br><span class="line">[WEIGHTS weight [weight ...]] [AGGREGATE SUM|MIN|MAX]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>destination:新有序集合</li>
+<li>numkeys：表示参与计算的有序集合数目</li>
+<li>key [keyN]：表示参与计算的有序集合</li>
+<li>WEIGHTS：权重。要一一对应，一个权重对应一个有序集合，要<strong>使用权重乘以对应集合的分数score</strong></li>
+<li>AGGREGATE：指定并集的结果集的聚合方式，默认为sum</li>
+</ul>
+<p>简要描述：用权重乘以对应有序集合的分数，然后根据成员分类，同一类新的分数进行聚合函数处理</p>
 
       </div>
       
@@ -798,10 +894,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-01T17:05:03+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-12T18:51:43+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2021年4月1日</p>
+    <p>更新于 2021年4月12日</p>
   </a>
 </div>
 
@@ -1043,7 +1139,7 @@ Redis 通常被称为数据结构服务器，因为值（value）可以是字符
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Redis命令"><span class="toc-text">1.Redis命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-基本全局指令"><span class="toc-text">2.基本全局指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-基本数据类型"><span class="toc-text">3.基本数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#String字符串"><span class="toc-text">String字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hash哈希"><span class="toc-text">Hash哈希</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#List列表"><span class="toc-text">List列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Set集合"><span class="toc-text">Set集合</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Redis命令"><span class="toc-text">1.Redis命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-基本全局指令"><span class="toc-text">2.基本全局指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-基本数据类型"><span class="toc-text">3.基本数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#String字符串"><span class="toc-text">String字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hash哈希"><span class="toc-text">Hash哈希</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#List列表"><span class="toc-text">List列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Set集合"><span class="toc-text">Set集合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sorted-Set有序集合"><span class="toc-text">Sorted-Set有序集合</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -1276,7 +1372,7 @@ Redis 通常被称为数据结构服务器，因为值（value）可以是字符
         
           <li><a class="flat-box" title="/categories/Python/" href="/categories/Python/"><div class='name'>Python</div><div class='badge'>(23)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Redis/" href="/categories/Redis/"><div class='name'>Redis</div><div class='badge'>(1)</div></a></li>
+          <li><a class="flat-box" title="/categories/Redis/" href="/categories/Redis/"><div class='name'>Redis</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box" title="/categories/ThinkPHP/" href="/categories/ThinkPHP/"><div class='name'>ThinkPHP</div><div class='badge'>(2)</div></a></li>
         
@@ -1352,7 +1448,7 @@ Redis 通常被称为数据结构服务器，因为值（value）可以是字符
 </header>
 
     <div class='content material'>
-      <a href="/tags/post/" style="font-size: 14px; color: #999">$.post()</a> <a href="/tags/API/" style="font-size: 14px; color: #999">API</a> <a href="/tags/Ajax/" style="font-size: 15.67px; color: #8e8e8e">Ajax</a> <a href="/tags/CSS/" style="font-size: 14px; color: #999">CSS</a> <a href="/tags/DDL/" style="font-size: 14px; color: #999">DDL</a> <a href="/tags/DML/" style="font-size: 14px; color: #999">DML</a> <a href="/tags/Django/" style="font-size: 20.67px; color: #6c6c6c">Django</a> <a href="/tags/Eval/" style="font-size: 14px; color: #999">Eval</a> <a href="/tags/GNE/" style="font-size: 14px; color: #999">GNE</a> <a href="/tags/Github-Page/" style="font-size: 14px; color: #999">Github Page</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/Hyper-V/" style="font-size: 14px; color: #999">Hyper-V</a> <a href="/tags/InnoDB/" style="font-size: 14px; color: #999">InnoDB</a> <a href="/tags/Java/" style="font-size: 24px; color: #555">Java</a> <a href="/tags/Jquery/" style="font-size: 14px; color: #999">Jquery</a> <a href="/tags/Linux/" style="font-size: 15.67px; color: #8e8e8e">Linux</a> <a href="/tags/Maven/" style="font-size: 14px; color: #999">Maven</a> <a href="/tags/Memcached/" style="font-size: 14px; color: #999">Memcached</a> <a href="/tags/MySQL/" style="font-size: 22.33px; color: #606060">MySQL</a> <a href="/tags/Oracle/" style="font-size: 15.67px; color: #8e8e8e">Oracle</a> <a href="/tags/PHP/" style="font-size: 14px; color: #999">PHP</a> <a href="/tags/POST%E8%AF%B7%E6%B1%82/" style="font-size: 14px; color: #999">POST请求</a> <a href="/tags/RSA/" style="font-size: 14px; color: #999">RSA</a> <a href="/tags/Redis/" style="font-size: 14px; color: #999">Redis</a> <a href="/tags/Requests/" style="font-size: 19px; color: #777">Requests</a> <a href="/tags/VMware/" style="font-size: 14px; color: #999">VMware</a> <a href="/tags/Vue/" style="font-size: 17.33px; color: #828282">Vue</a> <a href="/tags/apache/" style="font-size: 14px; color: #999">apache</a> <a href="/tags/blog%E6%94%B9%E7%89%88/" style="font-size: 14px; color: #999">blog改版</a> <a href="/tags/clone/" style="font-size: 14px; color: #999">clone</a> <a href="/tags/component/" style="font-size: 14px; color: #999">component</a> <a href="/tags/container/" style="font-size: 14px; color: #999">container</a> <a href="/tags/css/" style="font-size: 20.67px; color: #6c6c6c">css</a> <a href="/tags/database/" style="font-size: 14px; color: #999">database</a> <a href="/tags/docker/" style="font-size: 17.33px; color: #828282">docker</a> <a href="/tags/echarts/" style="font-size: 14px; color: #999">echarts</a> <a href="/tags/fetchall/" style="font-size: 14px; color: #999">fetchall()</a> <a href="/tags/fetchone/" style="font-size: 14px; color: #999">fetchone()</a> <a href="/tags/float/" style="font-size: 14px; color: #999">float</a> <a href="/tags/front-matter/" style="font-size: 14px; color: #999">front-matter</a> <a href="/tags/git/" style="font-size: 14px; color: #999">git</a> <a href="/tags/git-pull-push/" style="font-size: 14px; color: #999">git pull/push</a> <a href="/tags/html/" style="font-size: 17.33px; color: #828282">html</a> <a href="/tags/images/" style="font-size: 14px; color: #999">images</a> <a href="/tags/index/" style="font-size: 14px; color: #999">index</a> <a href="/tags/jQuery/" style="font-size: 15.67px; color: #8e8e8e">jQuery</a> <a href="/tags/js/" style="font-size: 20.67px; color: #6c6c6c">js</a> <a href="/tags/json/" style="font-size: 15.67px; color: #8e8e8e">json</a> <a href="/tags/js%E7%B2%BE%E7%A1%AE%E5%BA%A6%E4%B8%A2%E5%A4%B1/" style="font-size: 14px; color: #999">js精确度丢失</a> <a href="/tags/js%E9%80%86%E5%90%91/" style="font-size: 14px; color: #999">js逆向</a> <a href="/tags/lambda/" style="font-size: 14px; color: #999">lambda</a> <a href="/tags/margin/" style="font-size: 14px; color: #999">margin</a> <a href="/tags/matplotlib/" style="font-size: 15.67px; color: #8e8e8e">matplotlib</a> <a href="/tags/mysql/" style="font-size: 15.67px; color: #8e8e8e">mysql</a> <a href="/tags/nginx/" style="font-size: 15.67px; color: #8e8e8e">nginx</a> <a href="/tags/numpy/" style="font-size: 15.67px; color: #8e8e8e">numpy</a> <a href="/tags/pandas/" style="font-size: 14px; color: #999">pandas</a> <a href="/tags/php/" style="font-size: 15.67px; color: #8e8e8e">php</a> <a href="/tags/push/" style="font-size: 14px; color: #999">push</a> <a href="/tags/python/" style="font-size: 22.33px; color: #606060">python</a> <a href="/tags/python-Django-MySQL/" style="font-size: 14px; color: #999">python+Django+MySQL</a> <a href="/tags/re/" style="font-size: 17.33px; color: #828282">re</a> <a href="/tags/read/" style="font-size: 14px; color: #999">read</a> <a href="/tags/readline/" style="font-size: 14px; color: #999">readline</a> <a href="/tags/readlines/" style="font-size: 14px; color: #999">readlines</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/requirement-txt/" style="font-size: 14px; color: #999">requirement.txt</a> <a href="/tags/salt/" style="font-size: 14px; color: #999">salt</a> <a href="/tags/thinkPHP/" style="font-size: 15.67px; color: #8e8e8e">thinkPHP</a> <a href="/tags/token/" style="font-size: 14px; color: #999">token</a> <a href="/tags/union/" style="font-size: 14px; color: #999">union</a> <a href="/tags/vue-cli/" style="font-size: 17.33px; color: #828282">vue-cli</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E4%B8%8E%E5%AE%88%E6%8A%A4%E5%BC%8F%E5%88%9B%E5%BB%BA/" style="font-size: 14px; color: #999">交互式与守护式创建</a> <a href="/tags/%E5%85%83%E7%BB%84/" style="font-size: 14px; color: #999">元组</a> <a href="/tags/%E5%88%97%E8%A1%A8/" style="font-size: 14px; color: #999">列表</a> <a href="/tags/%E5%89%8D%E5%90%8E%E5%88%86%E7%A6%BB/" style="font-size: 14px; color: #999">前后分离</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 14px; color: #999">多线程</a> <a href="/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8B/" style="font-size: 14px; color: #999">多进程</a> <a href="/tags/%E5%AD%97%E5%85%B8/" style="font-size: 14px; color: #999">字典</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 14px; color: #999">字符串</a> <a href="/tags/%E5%AE%9A%E4%BD%8D%E7%85%A7%E7%89%87%E6%8B%8D%E6%91%84%E4%BD%8D%E7%BD%AE/" style="font-size: 14px; color: #999">定位照片拍摄位置</a> <a href="/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" style="font-size: 14px; color: #999">定时任务</a> <a href="/tags/%E5%AF%B9%E8%B1%A1/" style="font-size: 14px; color: #999">对象</a> <a href="/tags/%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">属性与方法</a> <a href="/tags/%E5%B8%B8%E8%A7%81%E5%BA%93/" style="font-size: 14px; color: #999">常见库</a> <a href="/tags/%E6%95%B0%E5%80%BC/" style="font-size: 14px; color: #999">数值</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%86%E6%89%B9%E6%AC%A1%E5%A4%84%E7%90%86/" style="font-size: 14px; color: #999">数据库分批次处理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%80%9A%E7%94%A8%E8%BF%9E%E6%8E%A5%E5%87%BD%E6%95%B0/" style="font-size: 14px; color: #999">数据库通用连接函数</a> <a href="/tags/%E6%9E%81%E9%AA%8C%E6%BB%91%E5%8A%A8/" style="font-size: 14px; color: #999">极验滑动</a> <a href="/tags/%E8%A3%85%E9%A5%B0%E5%99%A8/" style="font-size: 14px; color: #999">装饰器</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%BA%93/" style="font-size: 14px; color: #999">解析库</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 14px; color: #999">负载均衡</a> <a href="/tags/%E9%80%86%E5%90%91%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">逆向爬虫</a> <a href="/tags/%E9%80%89%E6%8B%A9%E5%99%A8/" style="font-size: 14px; color: #999">选择器</a>
+      <a href="/tags/post/" style="font-size: 14px; color: #999">$.post()</a> <a href="/tags/API/" style="font-size: 14px; color: #999">API</a> <a href="/tags/Ajax/" style="font-size: 15.67px; color: #8e8e8e">Ajax</a> <a href="/tags/CSS/" style="font-size: 14px; color: #999">CSS</a> <a href="/tags/DDL/" style="font-size: 14px; color: #999">DDL</a> <a href="/tags/DML/" style="font-size: 14px; color: #999">DML</a> <a href="/tags/Django/" style="font-size: 20.67px; color: #6c6c6c">Django</a> <a href="/tags/Eval/" style="font-size: 14px; color: #999">Eval</a> <a href="/tags/GNE/" style="font-size: 14px; color: #999">GNE</a> <a href="/tags/Github-Page/" style="font-size: 14px; color: #999">Github Page</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/Hyper-V/" style="font-size: 14px; color: #999">Hyper-V</a> <a href="/tags/InnoDB/" style="font-size: 14px; color: #999">InnoDB</a> <a href="/tags/Java/" style="font-size: 24px; color: #555">Java</a> <a href="/tags/Jquery/" style="font-size: 14px; color: #999">Jquery</a> <a href="/tags/Linux/" style="font-size: 15.67px; color: #8e8e8e">Linux</a> <a href="/tags/Maven/" style="font-size: 14px; color: #999">Maven</a> <a href="/tags/Memcached/" style="font-size: 14px; color: #999">Memcached</a> <a href="/tags/MySQL/" style="font-size: 22.33px; color: #606060">MySQL</a> <a href="/tags/Oracle/" style="font-size: 15.67px; color: #8e8e8e">Oracle</a> <a href="/tags/PHP/" style="font-size: 14px; color: #999">PHP</a> <a href="/tags/POST%E8%AF%B7%E6%B1%82/" style="font-size: 14px; color: #999">POST请求</a> <a href="/tags/RSA/" style="font-size: 14px; color: #999">RSA</a> <a href="/tags/Redis/" style="font-size: 15.67px; color: #8e8e8e">Redis</a> <a href="/tags/Requests/" style="font-size: 19px; color: #777">Requests</a> <a href="/tags/VMware/" style="font-size: 14px; color: #999">VMware</a> <a href="/tags/Vue/" style="font-size: 17.33px; color: #828282">Vue</a> <a href="/tags/apache/" style="font-size: 14px; color: #999">apache</a> <a href="/tags/blog%E6%94%B9%E7%89%88/" style="font-size: 14px; color: #999">blog改版</a> <a href="/tags/clone/" style="font-size: 14px; color: #999">clone</a> <a href="/tags/component/" style="font-size: 14px; color: #999">component</a> <a href="/tags/container/" style="font-size: 14px; color: #999">container</a> <a href="/tags/css/" style="font-size: 20.67px; color: #6c6c6c">css</a> <a href="/tags/database/" style="font-size: 14px; color: #999">database</a> <a href="/tags/docker/" style="font-size: 17.33px; color: #828282">docker</a> <a href="/tags/echarts/" style="font-size: 14px; color: #999">echarts</a> <a href="/tags/fetchall/" style="font-size: 14px; color: #999">fetchall()</a> <a href="/tags/fetchone/" style="font-size: 14px; color: #999">fetchone()</a> <a href="/tags/float/" style="font-size: 14px; color: #999">float</a> <a href="/tags/front-matter/" style="font-size: 14px; color: #999">front-matter</a> <a href="/tags/git/" style="font-size: 14px; color: #999">git</a> <a href="/tags/git-pull-push/" style="font-size: 14px; color: #999">git pull/push</a> <a href="/tags/html/" style="font-size: 17.33px; color: #828282">html</a> <a href="/tags/images/" style="font-size: 14px; color: #999">images</a> <a href="/tags/index/" style="font-size: 14px; color: #999">index</a> <a href="/tags/jQuery/" style="font-size: 15.67px; color: #8e8e8e">jQuery</a> <a href="/tags/js/" style="font-size: 20.67px; color: #6c6c6c">js</a> <a href="/tags/json/" style="font-size: 15.67px; color: #8e8e8e">json</a> <a href="/tags/js%E7%B2%BE%E7%A1%AE%E5%BA%A6%E4%B8%A2%E5%A4%B1/" style="font-size: 14px; color: #999">js精确度丢失</a> <a href="/tags/js%E9%80%86%E5%90%91/" style="font-size: 14px; color: #999">js逆向</a> <a href="/tags/lambda/" style="font-size: 14px; color: #999">lambda</a> <a href="/tags/margin/" style="font-size: 14px; color: #999">margin</a> <a href="/tags/matplotlib/" style="font-size: 15.67px; color: #8e8e8e">matplotlib</a> <a href="/tags/mysql/" style="font-size: 15.67px; color: #8e8e8e">mysql</a> <a href="/tags/nginx/" style="font-size: 15.67px; color: #8e8e8e">nginx</a> <a href="/tags/numpy/" style="font-size: 15.67px; color: #8e8e8e">numpy</a> <a href="/tags/pandas/" style="font-size: 14px; color: #999">pandas</a> <a href="/tags/php/" style="font-size: 15.67px; color: #8e8e8e">php</a> <a href="/tags/push/" style="font-size: 14px; color: #999">push</a> <a href="/tags/python/" style="font-size: 22.33px; color: #606060">python</a> <a href="/tags/python-Django-MySQL/" style="font-size: 14px; color: #999">python+Django+MySQL</a> <a href="/tags/re/" style="font-size: 17.33px; color: #828282">re</a> <a href="/tags/read/" style="font-size: 14px; color: #999">read</a> <a href="/tags/readline/" style="font-size: 14px; color: #999">readline</a> <a href="/tags/readlines/" style="font-size: 14px; color: #999">readlines</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/requirement-txt/" style="font-size: 14px; color: #999">requirement.txt</a> <a href="/tags/salt/" style="font-size: 14px; color: #999">salt</a> <a href="/tags/thinkPHP/" style="font-size: 15.67px; color: #8e8e8e">thinkPHP</a> <a href="/tags/token/" style="font-size: 14px; color: #999">token</a> <a href="/tags/union/" style="font-size: 14px; color: #999">union</a> <a href="/tags/vue-cli/" style="font-size: 17.33px; color: #828282">vue-cli</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E4%B8%8E%E5%AE%88%E6%8A%A4%E5%BC%8F%E5%88%9B%E5%BB%BA/" style="font-size: 14px; color: #999">交互式与守护式创建</a> <a href="/tags/%E5%85%83%E7%BB%84/" style="font-size: 14px; color: #999">元组</a> <a href="/tags/%E5%88%97%E8%A1%A8/" style="font-size: 14px; color: #999">列表</a> <a href="/tags/%E5%89%8D%E5%90%8E%E5%88%86%E7%A6%BB/" style="font-size: 14px; color: #999">前后分离</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 14px; color: #999">多线程</a> <a href="/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8B/" style="font-size: 14px; color: #999">多进程</a> <a href="/tags/%E5%AD%97%E5%85%B8/" style="font-size: 14px; color: #999">字典</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 14px; color: #999">字符串</a> <a href="/tags/%E5%AE%9A%E4%BD%8D%E7%85%A7%E7%89%87%E6%8B%8D%E6%91%84%E4%BD%8D%E7%BD%AE/" style="font-size: 14px; color: #999">定位照片拍摄位置</a> <a href="/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" style="font-size: 14px; color: #999">定时任务</a> <a href="/tags/%E5%AF%B9%E8%B1%A1/" style="font-size: 14px; color: #999">对象</a> <a href="/tags/%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">属性与方法</a> <a href="/tags/%E5%B8%B8%E8%A7%81%E5%BA%93/" style="font-size: 14px; color: #999">常见库</a> <a href="/tags/%E6%95%B0%E5%80%BC/" style="font-size: 14px; color: #999">数值</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%86%E6%89%B9%E6%AC%A1%E5%A4%84%E7%90%86/" style="font-size: 14px; color: #999">数据库分批次处理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%80%9A%E7%94%A8%E8%BF%9E%E6%8E%A5%E5%87%BD%E6%95%B0/" style="font-size: 14px; color: #999">数据库通用连接函数</a> <a href="/tags/%E6%9E%81%E9%AA%8C%E6%BB%91%E5%8A%A8/" style="font-size: 14px; color: #999">极验滑动</a> <a href="/tags/%E8%A3%85%E9%A5%B0%E5%99%A8/" style="font-size: 14px; color: #999">装饰器</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%BA%93/" style="font-size: 14px; color: #999">解析库</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 14px; color: #999">负载均衡</a> <a href="/tags/%E9%80%86%E5%90%91%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">逆向爬虫</a> <a href="/tags/%E9%80%89%E6%8B%A9%E5%99%A8/" style="font-size: 14px; color: #999">选择器</a>
     </div>
   </section>
 
