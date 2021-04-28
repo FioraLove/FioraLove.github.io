@@ -433,13 +433,13 @@
       <div class="article-entry" itemprop="articleBody">
         <p>算法（Algorithm）是指用来操作数据、解决程序问题的一组方法。对于同一个问题，使用不同的算法，也许最终得到的结果是一样的，但在过程中消耗的资源和时间却会有很大的区别</p>
 <blockquote>
-<p>1.Redis主从复制原理</p>
+<p>1.基本初等函数<br>2.时间复杂度<br>3.空间复杂度</p>
 </blockquote>
 <a id="more"></a>
 
 <h3 id="1-基本初等函数"><a href="#1-基本初等函数" class="headerlink" title="1.基本初等函数"></a>1.基本初等函数</h3><p>学习算法前，我们也必须回顾之前的数学知识，算法会涉及到<strong>基本初等函数的增量对比</strong></p>
 <p><strong>幂函数、指数函数、对数函数、三角函数、反三角函数</strong>。初等函数指由基本初等函数经过有限次的四则运算与有限次的函数复合步骤所构成，并可用一个数学式子表示的函数。</p>
-<p><fancybox><img src="!%5B%5D(https://cdn.jsdelivr.net/gh/FioraLove/Images/20210423095907.png)" alt=""></fancybox></p>
+<p><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/20210423095907.png" alt=""></fancybox></p>
 <p>衡量不同算法之间的优劣呢？主要还是从算法所占用的「时间」和「空间」两个维度去考量。</p>
 <ul>
 <li>时间维度：是指执行当前算法所消耗的时间，我们通常用「时间复杂度」来描述。</li>
@@ -492,6 +492,9 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> m = <span class="number">6</span>, n=<span class="number">6</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> x=<span class="number">1</span>; x&lt;=m; x++)</span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">"当前的行列式为：["</span>+x+<span class="string">","</span>+i+<span class="string">"]"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>那它的时间复杂度就变成了 O(m*n)</p>
+<h3 id="3-空间复杂度"><a href="#3-空间复杂度" class="headerlink" title="3.空间复杂度"></a>3.空间复杂度</h3><p>既然时间复杂度不是用来计算程序具体耗时的，那么我也应该明白，空间复杂度也不是用来计算程序实际占用的空间的</p>
+<p>空间复杂度是对一个算法在运行过程中临时占用存储空间大小的一个量度，同样反映的是一个趋势，我们用 S(n) 来定义。</p>
+<p>空间复杂度比较常用的有：O(1)、O(n)、O(n²)</p>
 
       </div>
       
@@ -503,10 +506,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-27T17:57:39+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-28T09:34:58+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2021年4月27日</p>
+    <p>更新于 2021年4月28日</p>
   </a>
 </div>
 
@@ -530,7 +533,7 @@
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2021/04/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E4%B8%8E%E7%AE%97%E6%B3%95(%E4%B8%80)/&title=时间与空间复杂度 | AhriLove&summary=算法（Algorithm）是指用来操作数据、解决程序问题的一组方法。对于同一个问题，使用不同的算法，也许最终得到的结果是一样的，但在过程中消耗的资源和时间却会有很大的区别
 
-1.Redis主从复制原理
+1.基本初等函数2.时间复杂度3.空间复杂度
 "
           
           >
@@ -545,7 +548,7 @@
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2021/04/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E4%B8%8E%E7%AE%97%E6%B3%95(%E4%B8%80)/&title=时间与空间复杂度 | AhriLove&summary=算法（Algorithm）是指用来操作数据、解决程序问题的一组方法。对于同一个问题，使用不同的算法，也许最终得到的结果是一样的，但在过程中消耗的资源和时间却会有很大的区别
 
-1.Redis主从复制原理
+1.基本初等函数2.时间复杂度3.空间复杂度
 "
           
           >
@@ -560,7 +563,7 @@
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2021/04/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E4%B8%8E%E7%AE%97%E6%B3%95(%E4%B8%80)/&title=时间与空间复杂度 | AhriLove&summary=算法（Algorithm）是指用来操作数据、解决程序问题的一组方法。对于同一个问题，使用不同的算法，也许最终得到的结果是一样的，但在过程中消耗的资源和时间却会有很大的区别
 
-1.Redis主从复制原理
+1.基本初等函数2.时间复杂度3.空间复杂度
 "
           
           >
@@ -723,7 +726,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-基本初等函数"><span class="toc-text">1.基本初等函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-时间复杂度"><span class="toc-text">2.时间复杂度</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-基本初等函数"><span class="toc-text">1.基本初等函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-时间复杂度"><span class="toc-text">2.时间复杂度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-空间复杂度"><span class="toc-text">3.空间复杂度</span></a></li></ol>
     </div>
   </section>
 
@@ -959,8 +962,6 @@
           <li><a class="flat-box" title="/categories/Redis/" href="/categories/Redis/"><div class='name'>Redis</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box" title="/categories/ThinkPHP/" href="/categories/ThinkPHP/"><div class='name'>ThinkPHP</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box" title="/categories/TypeScript/" href="/categories/TypeScript/"><div class='name'>TypeScript</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Vue/" href="/categories/Vue/"><div class='name'>Vue</div><div class='badge'>(6)</div></a></li>
         
