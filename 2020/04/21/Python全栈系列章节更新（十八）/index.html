@@ -401,17 +401,6 @@
           
             
   
-    <div class="new-meta-item browse busuanzi">
-      <a class='notlink'>
-        <i class="fas fa-eye" aria-hidden="true"></i>
-        <p>
-          <span id="busuanzi_value_page_pv">
-            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
-          </span>
-        </p>
-      </a>
-    </div>
-  
 
 
           
@@ -682,15 +671,19 @@
 <li>base64 是对称加密,即这种加密方式是可以被破解的</li>
 </ul>
 <p>base64 是 一种用64 个字符来表示任意的二进制数据的方法。base64 可以成为密码学的基石。可以将任意二进制数据进行Base64 编码。 所有的数据都能被编码为并只有64个字符就能表示的文本文件。（ 64字符：A~Z a~z 0~9 + / ）编码后的数据~=编码前数据的4/3，会大1/3左右。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line">s = <span class="string">'hello, world'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 加密</span></span><br><span class="line">bs = base64.b64encode(s.encode(<span class="string">"utf-8"</span>)) <span class="comment"># base64加密参数要求是字节型的</span></span><br><span class="line">print(bs.decode(<span class="string">"utf-8"</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解密</span></span><br><span class="line">decode = base64.b64decode(bs)   <span class="comment"># 解密后为byte类型</span></span><br><span class="line">print(decode)</span><br><span class="line">print(decode.decode(<span class="string">"utf-8"</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line">s = <span class="string">'hello, world'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 加密</span></span><br><span class="line">bs = base64.b64encode(s.encode(<span class="string">"utf-8"</span>)) <span class="comment"># base64加密参数要求是字节型的</span></span><br><span class="line">print(bs.decode(<span class="string">"utf-8"</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解密</span></span><br><span class="line">decode = base64.b64decode(<span class="string">"target_string"</span>)   <span class="comment"># 解密后为byte类型</span></span><br><span class="line">print(decode)</span><br><span class="line"><span class="comment"># 解码：由byte转化为string</span></span><br><span class="line">print(decode.decode(<span class="string">"utf-8"</span>))</span><br></pre></td></tr></table></figure>
 
 <p>说明：像出现这样的字段“aHR0cXXXXX…” 这类的字符串就是<strong>url进行base64编码</strong>后的样式</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">aHR0cHM6Ly94aWFwaS54aWFwaWJ1eS5jb20vc2VhcmNoP2tleXdvcmQ9JUU3JTk0JUI3JUU3JUFCJUE1JUU0JUI4JThBJUU4JUExJUEz</span><br><span class="line">        ⬇ base64解密</span><br><span class="line">https://xiapi.xiapibuy.com/search?keyword=男童上衣</span><br><span class="line"></span><br><span class="line">https://AhriLove.top</span><br><span class="line">        ⬇ base64加密</span><br><span class="line">aHR0cHM6Ly9BaHJpTG92ZS50b3A=</span><br></pre></td></tr></table></figure>
 
 <h4 id="7-3-md5加密"><a href="#7-3-md5加密" class="headerlink" title="7.3 md5加密"></a>7.3 md5加密</h4><p>在python3中使用hashlib模块进行md5操作(md5不可逆向破解)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line">strs = <span class="string">"我真帅"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个md5 对象</span></span><br><span class="line">h1 = hashlib.md5()</span><br><span class="line"><span class="comment"># 此处必须声明encode</span></span><br><span class="line"><span class="comment"># 若写法为hl.update(str)  报错为： Unicode-objects must be encoded before hashing</span></span><br><span class="line">h1.update(strs.encode(<span class="string">"utf-8"</span>))</span><br><span class="line">print(<span class="string">"加密前"</span>, strs)</span><br><span class="line">print(<span class="string">"加密后"</span>, h1.hexdigest())</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line">strs = <span class="string">"我真帅"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个md5 对象，初始化字符串</span></span><br><span class="line">h1 = hashlib.md5()</span><br><span class="line"><span class="comment"># 此处必须声明encode</span></span><br><span class="line"><span class="comment"># 若写法为hl.update(str)  报错为： Unicode-objects must be encoded before hashing</span></span><br><span class="line">h1.update(strs.encode(<span class="string">"utf-8"</span>))     <span class="comment"># 用提供的字节串更新此哈希对象(hash object)的状态</span></span><br><span class="line">print(<span class="string">"加密前"</span>, strs)</span><br><span class="line">print(<span class="string">"加密后"</span>, h1.hexdigest())    <span class="comment"># 返回摘要值,以十六进制数字字符串的形式</span></span><br><span class="line">print(<span class="string">"加密后"</span>, h1.digest())   <span class="comment"># 返回摘要值,以二进制字节串的形式</span></span><br></pre></td></tr></table></figure>
 
-<p>拓展：<br>message-digest algorithm 5（信息-摘要算法）。经常说的“MD5加密”，就是它→信息-摘要算法。</p>
+<p>拓展：</p>
+<ol>
+<li>信息摘要算法</li>
+</ol>
+<p>message-digest algorithm 5（信息-摘要算法）。经常说的“MD5加密”，就是它→信息-摘要算法。</p>
 <p>md5，其实就是一种算法。可以将一个字符串，或文件，或压缩包，执行md5后，就可以生成一个固定长度为128bit的串。这个串，基本上是唯一的。</p>
 <p>md5特点：</p>
 <ul>
@@ -700,8 +693,15 @@
 <li>强抗碰撞：已知原数据和其MD5值，想找到一个具有相同MD5值的数据（即伪造数据）是非常困难的</li>
 </ul>
 <p>md5的长度：md5的长度，默认为128bit，也就是128个0和1的二进制串。这样表达是很不友好的。所以将二进制转成了16进制，每4个bit表示一个16进制，所以128/4 = 32 换成16进制表示后，为32位了。</p>
-<p>为什么网上还有md5是16位的呢？其实16位的长度，是从32位md5值来的。是将32位md5去掉前八位，去掉后八位得到的</p>
-<p><fancybox><img src="https://img-blog.csdn.net/20180306113943230?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZGVuaXJvX2xp/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""></fancybox></p>
+<p>为什么网上还有md5是16位的呢？<strong>其实16位的长度，是从32位md5值来的。是将32位md5去掉前八位，去掉后八位得到的</strong></p>
+<p><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/20210513091930.png" alt=""></fancybox></p>
+<ol start="2">
+<li>关于hexdigest与digest说明</li>
+</ol>
+<p>之前我们已经提到过了，hexdigest返回是16进制的字符串，而digest返回二进制byte类型（注意！有一种加密方式是：digest加密的md5结果，然后在经过base64编码）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">b = <span class="string">"hello,world"</span></span><br><span class="line">md5 = hashlib.md5()</span><br><span class="line">md5.update(b.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">b = md5.digest()</span><br><span class="line">print(<span class="string">u"digest的md5加密结果：%s"</span> % b)</span><br><span class="line">print(<span class="string">u"hexdigest的md5加密结果：%s"</span> % md5.hexdigest())</span><br><span class="line">print(<span class="string">u"digest的md5加密结果再进行base64编码：%s"</span> % base64.b64encode(b).decode(<span class="string">'utf-8'</span>))</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">digest的md5加密结果：b'&lt;\xb9\\\xfb\xe1\x03[\xce\x8cD\x8f\xca\xf8\x0f\xe7\xd9'</span></span><br><span class="line"><span class="string">hexdigest的md5加密结果：3cb95cfbe1035bce8c448fcaf80fe7d9</span></span><br><span class="line"><span class="string">digest的md5加密结果再进行base64编码：PLlc++EDW86MRI/K+A/n2Q==</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+
+
 <h4 id="7-4-sha系列加密"><a href="#7-4-sha系列加密" class="headerlink" title="7.4 sha系列加密"></a>7.4 sha系列加密</h4><p>常见的sha系列加密有：sha1,sha224,sha256,sha512</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">str_encrypt</span><span class="params">(str)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    使用sha1加密算法，返回str加密后的字符串</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    sha = hashlib.sha1(str.encode(<span class="string">"utf-8"</span>))</span><br><span class="line">    encrypts = sha.hexdigest()</span><br><span class="line">    <span class="keyword">return</span> encrypts</span><br></pre></td></tr></table></figure>
 
@@ -784,10 +784,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-14T13:37:28+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-13T09:36:48+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2021年4月14日</p>
+    <p>更新于 2021年5月13日</p>
   </a>
 </div>
 
@@ -1441,8 +1441,6 @@
     });
   </script>
 
-
-  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
 
 
 

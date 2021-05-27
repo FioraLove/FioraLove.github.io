@@ -401,17 +401,6 @@
           
             
   
-    <div class="new-meta-item browse busuanzi">
-      <a class='notlink'>
-        <i class="fas fa-eye" aria-hidden="true"></i>
-        <p>
-          <span id="busuanzi_value_page_pv">
-            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
-          </span>
-        </p>
-      </a>
-    </div>
-  
 
 
           
@@ -433,11 +422,11 @@
       <div class="article-entry" itemprop="articleBody">
         <p>&nbsp;&nbsp;&nbsp;&nbsp;最近严重记忆力下降加上一直没有怎么用到数据库，好多命令都回忆不起来了，做个小笔记，mark。<br>今天建彬师傅（他不是厉不厉害的问题，他真的就是那种，很少见，很牛逼的存在…）给我讲了一个非常有用的小知识点，使我茅塞顿开，放在摘要页，很有用：<a href="https://blog.csdn.net/gaoshuying/article/details/53410137" target="_blank" rel="noopener">跨用户访问数据表的方式</a><br><font size=4 color=#FF0000>本文要点：</font></p>
 <blockquote>
-<p>1.MySQL基础<br>2.DDL&amp;&amp;DML<br>3.DCL语句<br>4.多数据库实际业务解决方案★★★</p>
+<p>1.数据库基础<br>2.DDL&amp;&amp;DML<br>3.DCL语句<br>4.多数据库实际业务解决方案★★★</p>
 </blockquote>
 <a id="more"></a>
 
-<h3 id="1-MySQL基础"><a href="#1-MySQL基础" class="headerlink" title="1.MySQL基础"></a>1.MySQL基础</h3><blockquote>
+<h3 id="1-数据库基础"><a href="#1-数据库基础" class="headerlink" title="1.数据库基础"></a>1.数据库基础</h3><h4 id="MySQL基础"><a href="#MySQL基础" class="headerlink" title="MySQL基础"></a>MySQL基础</h4><blockquote>
 <p>服务启动</p>
 </blockquote>
 <p>net start 服务器名（Windows）<br>service start 服务器名（linux）</p>
@@ -496,6 +485,71 @@
 </tr>
 </tbody></table>
 <p>创建数据库并指定编码格式:create database if not exists 数据库名 character set utf8;<br>删除数据库：drop database [if exists] 数据库名;</p>
+<h4 id="Oracle基础"><a href="#Oracle基础" class="headerlink" title="Oracle基础"></a>Oracle基础</h4><blockquote>
+<p>Oracle数据库、实例、用户、表空间、表之间的关系★★★</p>
+</blockquote>
+<ol>
+<li><p>数据库：Oracle数据库是数据的物理存储。这就包括（数据文件ORA或者DBF、控制文件、联机日志、参数文件）。<strong>其实Oracle数据库的概念和其它数据库不一样，这里的数据库是一个操作系统只有一个库。可以看作是Oracle就只有一个大数据库</strong>。</p>
+</li>
+<li><p>实例： 一个Oracle实例（Oracle Instance）有一系列的后台进程和内存结构组成。一个数据库可以有n个实例。<strong>实例名同时也叫SID</strong></p>
+</li>
+<li><p>用户：用户是在实例下建立的，不同实例可以建相同名字的用户。</p>
+</li>
+<li><p>表空间：是一个用来管理数据存储逻辑概念，表空间只是和数据文件（ORA或者DBF文件）发生关系，数据文件是物理的，一个表空间可以包含多个数据文件，而一个数据文件只能隶属一个表空间。</p>
+</li>
+<li><p>数据文件（dbf、ora）：是数据库的物理存储单位。数据库的数据是存储在表空间中的，真 正是在某一个或者多个数据文件中。而一个表空间可以由一个或多个数据文件组成，一个数据文件只能属于一个表空间。一旦数据文件被加入到某个表空间后，就不能删除这个文件，如果要删除某个数据文件，只能删除其所属于的表空间才行</p>
+</li>
+</ol>
+<p>理解：Oracle数据库可以创建多个实例（但我们一般使用默认的orcl实例），每个实例可以创建多个表空间，每个表空间下可以创建多个用户（同时用户也属于表空间对应的实例）和数据库文件，用户可以创建多个表（每个表随机存储在一个或多个数据库文件中）。<br>由于Oracle就只有一个大的数据库，我们平时说的dw，bi等都是指代的<strong>用户</strong>。而MySQL是存在数据库的概念的，而我们平时常说的“entchat”，“mdm”都是指代的数据库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">查询当前数据库实例名：</span><br><span class="line"><span class="keyword">select</span> instance_name <span class="keyword">from</span> v$<span class="keyword">instance</span>;</span><br><span class="line"></span><br><span class="line">数据库实例名(instance_name)用于对外部连接。**在操作系统中要取得与数据库的联系，必须使用数据库实例名**。比如我们作开发，要连接数据库，就得连接数据库实例名：</span><br><span class="line">jdbc:oracle:thin:@localhost:1521:orcl（orcl就为数据库实例名）</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>sqlplus基础命令</p>
+</blockquote>
+<p>使用前提：先安装Oracle，安装完成之后在dos窗口中，输入 <code>sqlplus</code> 再输入用户名和密码即可登录</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sqlplus 用户名/密码</td>
+<td>启动sqlplus</td>
+</tr>
+<tr>
+<td>show user</td>
+<td>查看当前连接用户</td>
+</tr>
+<tr>
+<td>conn 用户名/密码</td>
+<td>切换(连接)用户</td>
+</tr>
+<tr>
+<td>exit或quit</td>
+<td>退出sqlplus</td>
+</tr>
+<tr>
+<td>password [用户名]</td>
+<td>更改用户口令</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>创建表空间</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">create tablespace waterboss</span><br><span class="line">datafile &apos;c:\waterboss.dbf&apos;</span><br><span class="line">size 100m</span><br><span class="line">autoextend on</span><br><span class="line">next 10m</span><br><span class="line"></span><br><span class="line">waterboss 为表空间名称</span><br><span class="line">datafile 用于设置物理文件名称</span><br><span class="line">size 用于设置表空间的初始大小</span><br><span class="line">autoextend on 用于设置自动增长，如果存储量超过初始大小，则开始自动扩容</span><br><span class="line">next 用于设置扩容的空间大小</span><br><span class="line"></span><br><span class="line">-- 查看当前用户的每个表所占空间大小</span><br><span class="line">select segment_name,sum(bytes)/1024/1024 size_M </span><br><span class="line">from user_extents </span><br><span class="line">group by segment_name </span><br><span class="line">order by size_M desc;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>创建用户</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">create user wateruser</span><br><span class="line">identified by itcast</span><br><span class="line">default tablespace waterboss</span><br><span class="line"></span><br><span class="line">wateruser 为创建的用户名</span><br><span class="line">identified by 用于设置用户的密码</span><br><span class="line">default tablesapce 用于指定默认表空间名称</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Oracle版本说明</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Oracle 8i</span><br><span class="line">Oracle 9i</span><br><span class="line"></span><br><span class="line">Oracle 10g</span><br><span class="line">Oracle 11g</span><br><span class="line"></span><br><span class="line">Oracle 12c</span><br><span class="line">I：i 代表 Internet。8i 版本开启对 Internet 的支持。所以，在版本号之后，添加了标识 i。</span><br><span class="line">G：g 代表 Grid 网格。10g 加入了网格计算的功能，因此版本号之后的标识使用了字母g。</span><br><span class="line">C：c 代表云(cloud)计算设计。12c 版本表示对云计算的支持。</span><br></pre></td></tr></table></figure>
+
 <h3 id="2-DDL-amp-DML"><a href="#2-DDL-amp-DML" class="headerlink" title="2.DDL&amp;DML"></a>2.DDL&amp;DML</h3><p>DDL:数据定义语言仅对数据库，表，列，索引起作用（create、drop、alter）<br>DML:数据操纵语言仅对table中的具体数据起作用（select、insert、delete、update）</p>
 <h4 id="DDL数据定义语言"><a href="#DDL数据定义语言" class="headerlink" title="DDL数据定义语言"></a>DDL数据定义语言</h4><blockquote>
 <p>1.创建表</p>
@@ -653,8 +707,7 @@
 <blockquote>
 <p>别名<code>as</code>的用法</p>
 </blockquote>
-<p>列的别名 select count(id) as new_number from table_teacher;</p>
-<p>使用别名来代替表的名字(使用<code>as</code>作为表的别名时，通常情况下不要省略，方便代码的阅读性，但是<strong>在Oracle数据库中，一定要省略，不然会出现<code>ORA-00933: SQL command not properly ended</code>错误</strong>)<br>select t.name,t.age from tab_teacher t;</p>
+<p><strong>MySQL的列，表别名都可以使用as，但Oracle的表别名禁止使用as</strong></p>
 <p>参考StackOverflow的问题回复：<br><font color = #694d9f><br>You can use <code>AS</code> for table aliasing on many SQL servers (at least MsSQL, MySQL, PostrgreSQL) but it’s always optional and on Oracle it’s illegal. so just remove the <code>as</code></font><br><br></p>
 <blockquote>
 <p>分页查询方式（limit与rownum）</p>
@@ -744,8 +797,22 @@ oracle的sql语句中没有limit,limit是mysql中特有的,在oracle中可用row
 <blockquote>
 <p>Oracle的行列转换-行转列</p>
 </blockquote>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建一个虚拟表t</span></span><br><span class="line"><span class="keyword">with</span> t</span><br><span class="line"><span class="keyword">as</span> (</span><br><span class="line"><span class="keyword">select</span> <span class="string">'201912'</span> <span class="keyword">as</span> m , <span class="string">'单价'</span> <span class="keyword">as</span> t, <span class="string">'1'</span> <span class="keyword">as</span> d <span class="keyword">from</span> dual</span><br><span class="line"><span class="keyword">union</span> <span class="keyword">all</span></span><br><span class="line"><span class="keyword">select</span> <span class="string">'201912'</span> <span class="keyword">as</span> m , <span class="string">'数量'</span> <span class="keyword">as</span> t, <span class="string">'100'</span> <span class="keyword">as</span> d <span class="keyword">from</span> dual</span><br><span class="line"><span class="keyword">union</span> <span class="keyword">all</span></span><br><span class="line"><span class="keyword">select</span> <span class="string">'201912'</span> <span class="keyword">as</span> m , <span class="string">'金额'</span> <span class="keyword">as</span> t, <span class="string">'100'</span> <span class="keyword">as</span> d <span class="keyword">from</span> dual</span><br><span class="line"><span class="keyword">union</span> <span class="keyword">all</span></span><br><span class="line"><span class="keyword">select</span> <span class="string">'201912'</span> <span class="keyword">as</span> m , <span class="string">'收货日期'</span> <span class="keyword">as</span> t, <span class="string">'2019-12-25'</span> <span class="keyword">as</span> d <span class="keyword">from</span> dual</span><br><span class="line">) </span><br><span class="line"><span class="comment">-- Oracle的行转列</span></span><br><span class="line"><span class="keyword">select</span> </span><br><span class="line">  t.m,</span><br><span class="line">  <span class="keyword">max</span>(<span class="keyword">case</span> <span class="keyword">when</span> t.t = <span class="string">'收货日期'</span> <span class="keyword">then</span> t.d <span class="keyword">else</span> <span class="string">''</span> <span class="keyword">end</span>) <span class="keyword">as</span> d,</span><br><span class="line">  <span class="keyword">sum</span>( <span class="keyword">case</span> <span class="keyword">when</span> t.t = <span class="string">'单价'</span> <span class="keyword">then</span> to_number(t.d) <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">end</span>) <span class="keyword">as</span> p,</span><br><span class="line">  <span class="keyword">sum</span>( <span class="keyword">case</span> <span class="keyword">when</span> t.t = <span class="string">'数量'</span> <span class="keyword">then</span> to_number(t.d) <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">end</span>) <span class="keyword">as</span> q,</span><br><span class="line">  <span class="keyword">sum</span>( <span class="keyword">case</span> <span class="keyword">when</span> t.t = <span class="string">'金额'</span> <span class="keyword">then</span> to_number(t.d) <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">end</span>) <span class="keyword">as</span> m</span><br><span class="line"><span class="keyword">from</span> t</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> t.m;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建一个虚拟表t</span></span><br><span class="line"><span class="keyword">with</span> t</span><br><span class="line"><span class="keyword">as</span> (</span><br><span class="line">    <span class="keyword">select</span> <span class="string">'201912'</span> <span class="keyword">as</span> m , <span class="string">'单价'</span> <span class="keyword">as</span> t, <span class="string">'1'</span> <span class="keyword">as</span> d <span class="keyword">from</span> dual</span><br><span class="line">    <span class="keyword">union</span> <span class="keyword">all</span></span><br><span class="line">    <span class="keyword">select</span> <span class="string">'201912'</span> <span class="keyword">as</span> m , <span class="string">'数量'</span> <span class="keyword">as</span> t, <span class="string">'100'</span> <span class="keyword">as</span> d <span class="keyword">from</span> dual</span><br><span class="line">    <span class="keyword">union</span> <span class="keyword">all</span></span><br><span class="line">    <span class="keyword">select</span> <span class="string">'201912'</span> <span class="keyword">as</span> m , <span class="string">'金额'</span> <span class="keyword">as</span> t, <span class="string">'100'</span> <span class="keyword">as</span> d <span class="keyword">from</span> dual</span><br><span class="line">    <span class="keyword">union</span> <span class="keyword">all</span></span><br><span class="line">    <span class="keyword">select</span> <span class="string">'201912'</span> <span class="keyword">as</span> m , <span class="string">'收货日期'</span> <span class="keyword">as</span> t, <span class="string">'2019-12-25'</span> <span class="keyword">as</span> d <span class="keyword">from</span> dual</span><br><span class="line">)</span><br><span class="line"><span class="comment">-- Oracle的行转列</span></span><br><span class="line"><span class="keyword">select</span> </span><br><span class="line">  t.m,</span><br><span class="line">  <span class="keyword">max</span>(<span class="keyword">case</span> <span class="keyword">when</span> t.t = <span class="string">'收货日期'</span> <span class="keyword">then</span> t.d <span class="keyword">else</span> <span class="string">''</span> <span class="keyword">end</span>) <span class="keyword">as</span> d,</span><br><span class="line">  <span class="keyword">sum</span>( <span class="keyword">case</span> <span class="keyword">when</span> t.t = <span class="string">'单价'</span> <span class="keyword">then</span> to_number(t.d) <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">end</span>) <span class="keyword">as</span> p,</span><br><span class="line">  <span class="keyword">sum</span>( <span class="keyword">case</span> <span class="keyword">when</span> t.t = <span class="string">'数量'</span> <span class="keyword">then</span> to_number(t.d) <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">end</span>) <span class="keyword">as</span> q,</span><br><span class="line">  <span class="keyword">sum</span>( <span class="keyword">case</span> <span class="keyword">when</span> t.t = <span class="string">'金额'</span> <span class="keyword">then</span> to_number(t.d) <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">end</span>) <span class="keyword">as</span> m</span><br><span class="line"><span class="keyword">from</span> t</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> t.m;</span><br></pre></td></tr></table></figure>
 <p>涉及文章：<a href="https://blog.csdn.net/luthreestone/article/details/86236367?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task" target="_blank" rel="noopener">oracle 列转行</a><br><br></p>
+<blockquote>
+<p>处理多级部门目录</p>
+</blockquote>
+<p>某张表是包含当前部门节点id，上级部门节点id，怎么找到其完整的组织目录？</p>
+<p>字段释意：</p>
+<ul>
+<li>code:当前部门节点id</li>
+<li>name:当前部门节点name</li>
+<li>p_code:上级部门节点code</li>
+<li>p_name:上级部门节点name</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--  MySQL：concat(str1, str2,...) 返回结果为连接参数产生的字符串，如果有任何一个参数为null，则返回值为null</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	t1.code <span class="keyword">AS</span> code,</span><br><span class="line">	t1.name <span class="keyword">AS</span> dept_name1,</span><br><span class="line">	t2.name <span class="keyword">AS</span> dept_name2,</span><br><span class="line">	t3.name <span class="keyword">AS</span> dept_name3,</span><br><span class="line">	t4.name <span class="keyword">AS</span> dept_name4,</span><br><span class="line">	t5.name <span class="keyword">AS</span> dept_name5,</span><br><span class="line">	t6.name <span class="keyword">AS</span> dept_name6,</span><br><span class="line">	t7.name <span class="keyword">AS</span> dept_name7,</span><br><span class="line">	<span class="keyword">concat</span>(</span><br><span class="line">        (<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="keyword">isnull</span>( t7.name ) <span class="keyword">THEN</span> <span class="string">''</span> <span class="keyword">ELSE</span> <span class="keyword">concat</span>( t7.name, <span class="string">'/'</span> ) <span class="keyword">END</span> ),</span><br><span class="line">        (<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="keyword">isnull</span>( t6.name ) <span class="keyword">THEN</span> <span class="string">''</span> <span class="keyword">ELSE</span> <span class="keyword">concat</span>( t6.name, <span class="string">'/'</span> ) <span class="keyword">END</span> ),</span><br><span class="line">        (<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="keyword">isnull</span>( t5.name ) <span class="keyword">THEN</span> <span class="string">''</span> <span class="keyword">ELSE</span> <span class="keyword">concat</span>( t5.name, <span class="string">'/'</span> ) <span class="keyword">END</span> ),</span><br><span class="line">        (<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="keyword">isnull</span>( t4.name ) <span class="keyword">THEN</span> <span class="string">''</span> <span class="keyword">ELSE</span> <span class="keyword">concat</span>( t4.name, <span class="string">'/'</span> ) <span class="keyword">END</span> ),</span><br><span class="line">        (<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="keyword">isnull</span>( t3.name ) <span class="keyword">THEN</span> <span class="string">''</span> <span class="keyword">ELSE</span> <span class="keyword">concat</span>( t3.name, <span class="string">'/'</span> ) <span class="keyword">END</span> ),</span><br><span class="line">        (<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="keyword">isnull</span>( t2.name ) <span class="keyword">THEN</span> <span class="string">''</span> <span class="keyword">ELSE</span> <span class="keyword">concat</span>( t2.name, <span class="string">'/'</span> ) <span class="keyword">END</span> ),</span><br><span class="line">        (<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="keyword">isnull</span>( t1.name ) <span class="keyword">THEN</span> <span class="string">''</span> <span class="keyword">ELSE</span> <span class="keyword">concat</span>( t1.name, <span class="string">'/'</span> ) <span class="keyword">END</span> )</span><br><span class="line">	) <span class="keyword">AS</span> dept_name_tree</span><br><span class="line"></span><br><span class="line"><span class="keyword">FROM</span> ew_sf t1</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> ew_sf t2 <span class="keyword">ON</span> t1.p_code = t2.code</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> ew_sf t3 <span class="keyword">ON</span> t2.p_code = t3.code</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> ew_sf t4 <span class="keyword">ON</span> t3.p_code = t4.code</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> ew_sf t5 <span class="keyword">ON</span> t4.p_code = t5.code</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> ew_sf t6 <span class="keyword">ON</span> t5.p_code = t6.code</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> ew_sf t7 <span class="keyword">ON</span> t6.p_code = t7.code</span><br></pre></td></tr></table></figure>
+
+<p>效果展示： <code>双环传动-双环本部/总经理办公室/运营中心/工艺装备精密制造分公司/工装制造部/沙门班/</code></p>
 <blockquote>
 <p>复制表结构和表中数据（慎用）</p>
 </blockquote>
@@ -786,24 +853,39 @@ oracle的sql语句中没有limit,limit是mysql中特有的,在oracle中可用row
 </ul>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 表示查找表c1_dim_info中，dim_id拼接dim_type后，找出拼接后的重复行</span></span><br><span class="line"><span class="keyword">select</span> * </span><br><span class="line"><span class="keyword">from</span> c1_dim_info</span><br><span class="line"><span class="keyword">where</span> dim_id || dim_type <span class="keyword">in</span> (</span><br><span class="line">    <span class="keyword">select</span> dim_id || dim_type                </span><br><span class="line">    <span class="keyword">from</span> c1_dim_info</span><br><span class="line">    <span class="keyword">group</span> <span class="keyword">by</span> dim_id || dim_type</span><br><span class="line">    <span class="keyword">having</span> <span class="keyword">count</span>(dim_id || dim_type) &gt; <span class="number">1</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
-
-
-
-
+<blockquote>
+<p>truncate,delete,drop区别</p>
+</blockquote>
+<p>一：用法和区别</p>
+<ol>
+<li><p><strong>*drop table 表名</strong>：删除内容和定义，并释放空间。执行drop语句，将使此表的结构一起删除</p>
+</li>
+<li><p><strong>truncate table 表名</strong>：删除内容、释放空间但不删除定义(也就是保留表的数据结构，自增id也会被删除)。与drop不同的是,truncate只是清空表数据而已</p>
+</li>
+<li><p><strong>delete from 表名（where 列名 = 值）</strong>：delete也只删除内容、不删除定义；可以对行数据或整表数据进行删除</p>
+</li>
+</ol>
+<p>二：注意</p>
+<ol>
+<li>delete语句执行删除的过程是每次从表中删除一行，并且同时将该行的删除操作作为事务记录在日志中保存，以便进行进行回滚操作；truncate和drop是数据库定义语言，操作立即生效，不能回滚</li>
+<li>执行速度一般来说：drop&gt;truncate&gt;delete</li>
+<li>truncate语句执行以后，id标识列还是按顺序排列（即从1开始排列），保持连续；而delete语句执行后，ID标识列不连续</li>
+<li>如果想删除部分数据用delete，注意带上where子句，回滚段要足够大；如果想删除表，当然用drop；如果想保留表而将所有数据删除，如果和事务无关，用truncate即可</li>
+</ol>
 <h3 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h3><ul>
-<li>Oracle中case when的用法：<a href="https://blog.csdn.net/weixin_40417658/article/details/82633834" target="_blank" rel="noopener">https://blog.csdn.net/weixin_40417658/article/details/82633834</a></li>
-<li><a href="https://blog.csdn.net/qq_33866778/article/details/75258200" target="_blank" rel="noopener">https://blog.csdn.net/qq_33866778/article/details/75258200</a></li>
-<li><a href="https://zhidao.baidu.com/question/464433814.html" target="_blank" rel="noopener">https://zhidao.baidu.com/question/464433814.html</a></li>
-<li>sql的replace函数 <a href="https://www.cnblogs.com/1906859953Lucas/p/9244495.html" target="_blank" rel="noopener">https://www.cnblogs.com/1906859953Lucas/p/9244495.html</a></li>
-<li>Oracle实现判断的三种方法： <a href="https://blog.csdn.net/yangzjchn/article/details/81019449" target="_blank" rel="noopener">https://blog.csdn.net/yangzjchn/article/details/81019449</a></li>
-<li>Oracle中字符串截取常用方法总结： <a href="https://blog.csdn.net/rongtaoup/article/details/82217740" target="_blank" rel="noopener">https://blog.csdn.net/rongtaoup/article/details/82217740</a></li>
+<li><a href="https://blog.csdn.net/weixin_40417658/article/details/82633834" target="_blank" rel="noopener">Oracle中case when的用法</a></li>
+<li><a href="https://blog.csdn.net/qq_33866778/article/details/75258200" target="_blank" rel="noopener">sql的select查询添加一个虚拟字段进去</a></li>
+<li><a href="https://www.cnblogs.com/1906859953Lucas/p/9244495.html" target="_blank" rel="noopener">sql的replace函数</a></li>
+<li><a href="https://blog.csdn.net/yangzjchn/article/details/81019449" target="_blank" rel="noopener">Oracle实现判断的三种方法</a></li>
+<li><a href="https://blog.csdn.net/rongtaoup/article/details/82217740" target="_blank" rel="noopener">Oracle中字符串截取常用方法总结</a></li>
 <li><a href="https://stackoverflow.com/questions/21145028/how-to-use-the-as-keyword-to-alias-a-table-in-oracle" target="_blank" rel="noopener">How to use the ‘as’ keyword to alias a table in Oracle?</a></li>
 <li><a href="https://blog.csdn.net/qinsijun123/article/details/88824735" target="_blank" rel="noopener">多个字段关联同一张字典表-查询SQL</a></li>
 <li><a href="https://zhidao.baidu.com/question/1796141861415293467.html" target="_blank" rel="noopener">SQL按1月2月3月Q1 4月5月6月Q2…排序问题</a></li>
 <li><a href="https://blog.csdn.net/jia718/article/details/88253918" target="_blank" rel="noopener">sql语句的with as 用法</a></li>
 <li><a href="https://blog.csdn.net/insis_mo/article/details/84936753" target="_blank" rel="noopener">select into from 和 insert into select 的用法和区别</a></li>
-<li>MySQL函数大全： <a href="http://c.biancheng.net/mysql/function/" target="_blank" rel="noopener">http://c.biancheng.net/mysql/function/</a></li>
-<li>Oracle函数大全： <a href="https://www.cnblogs.com/min-yu/p/11137902.html" target="_blank" rel="noopener">https://www.cnblogs.com/min-yu/p/11137902.html</a></li>
+<li><a href="http://c.biancheng.net/mysql/function/" target="_blank" rel="noopener">MySQL函数大全</a></li>
+<li><a href="https://www.cnblogs.com/min-yu/p/11137902.html" target="_blank" rel="noopener">Oracle函数大全</a></li>
+<li><a href="https://blog.csdn.net/ws0513/article/details/49980547/" target="_blank" rel="noopener">drop、truncate和delete的区别</a></li>
 </ul>
 
       </div>
@@ -816,10 +898,10 @@ oracle的sql语句中没有limit,limit是mysql中特有的,在oracle中可用row
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-08T13:48:15+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-27T17:22:16+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2021年3月8日</p>
+    <p>更新于 2021年5月27日</p>
   </a>
 </div>
 
@@ -843,7 +925,7 @@ oracle的sql语句中没有limit,limit是mysql中特有的,在oracle中可用row
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/11/11/sql%E7%B3%BB%E5%88%97%E6%9B%B4%E6%96%B0(%E4%B8%80)/&title=数据库：DDL，DML，DCL | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;最近严重记忆力下降加上一直没有怎么用到数据库，好多命令都回忆不起来了，做个小笔记，mark。今天建彬师傅（他不是厉不厉害的问题，他真的就是那种，很少见，很牛逼的存在…）给我讲了一个非常有用的小知识点，使我茅塞顿开，放在摘要页，很有用：跨用户访问数据表的方式本文要点：
 
-1.MySQL基础2.DDL&amp;&amp;DML3.DCL语句4.多数据库实际业务解决方案★★★
+1.数据库基础2.DDL&amp;&amp;DML3.DCL语句4.多数据库实际业务解决方案★★★
 "
           
           >
@@ -858,7 +940,7 @@ oracle的sql语句中没有limit,limit是mysql中特有的,在oracle中可用row
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/11/11/sql%E7%B3%BB%E5%88%97%E6%9B%B4%E6%96%B0(%E4%B8%80)/&title=数据库：DDL，DML，DCL | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;最近严重记忆力下降加上一直没有怎么用到数据库，好多命令都回忆不起来了，做个小笔记，mark。今天建彬师傅（他不是厉不厉害的问题，他真的就是那种，很少见，很牛逼的存在…）给我讲了一个非常有用的小知识点，使我茅塞顿开，放在摘要页，很有用：跨用户访问数据表的方式本文要点：
 
-1.MySQL基础2.DDL&amp;&amp;DML3.DCL语句4.多数据库实际业务解决方案★★★
+1.数据库基础2.DDL&amp;&amp;DML3.DCL语句4.多数据库实际业务解决方案★★★
 "
           
           >
@@ -873,7 +955,7 @@ oracle的sql语句中没有limit,limit是mysql中特有的,在oracle中可用row
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/11/11/sql%E7%B3%BB%E5%88%97%E6%9B%B4%E6%96%B0(%E4%B8%80)/&title=数据库：DDL，DML，DCL | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;最近严重记忆力下降加上一直没有怎么用到数据库，好多命令都回忆不起来了，做个小笔记，mark。今天建彬师傅（他不是厉不厉害的问题，他真的就是那种，很少见，很牛逼的存在…）给我讲了一个非常有用的小知识点，使我茅塞顿开，放在摘要页，很有用：跨用户访问数据表的方式本文要点：
 
-1.MySQL基础2.DDL&amp;&amp;DML3.DCL语句4.多数据库实际业务解决方案★★★
+1.数据库基础2.DDL&amp;&amp;DML3.DCL语句4.多数据库实际业务解决方案★★★
 "
           
           >
@@ -1055,7 +1137,7 @@ oracle的sql语句中没有limit,limit是mysql中特有的,在oracle中可用row
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-MySQL基础"><span class="toc-text">1.MySQL基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-DDL-amp-DML"><span class="toc-text">2.DDL&amp;DML</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DDL数据定义语言"><span class="toc-text">DDL数据定义语言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DML数据操纵语句"><span class="toc-text">DML数据操纵语句</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-DCL语句"><span class="toc-text">3.DCL语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-实际业务解决方案★★★"><span class="toc-text">4.实际业务解决方案★★★</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章："><span class="toc-text">参考文章：</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-数据库基础"><span class="toc-text">1.数据库基础</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#MySQL基础"><span class="toc-text">MySQL基础</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Oracle基础"><span class="toc-text">Oracle基础</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-DDL-amp-DML"><span class="toc-text">2.DDL&amp;DML</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DDL数据定义语言"><span class="toc-text">DDL数据定义语言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DML数据操纵语句"><span class="toc-text">DML数据操纵语句</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-DCL语句"><span class="toc-text">3.DCL语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-实际业务解决方案★★★"><span class="toc-text">4.实际业务解决方案★★★</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章："><span class="toc-text">参考文章：</span></a></li></ol>
     </div>
   </section>
 
@@ -1473,8 +1555,6 @@ oracle的sql语句中没有limit,limit是mysql中特有的,在oracle中可用row
     });
   </script>
 
-
-  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
 
 
 
