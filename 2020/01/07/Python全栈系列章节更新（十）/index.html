@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>Python全栈系列章节更新（十）：headers处理小脚本 | AhriLove</title>
+  <title>Python全栈系列章节更新（十）：个性化脚本 | AhriLove</title>
   
   
 
@@ -348,7 +348,7 @@
   
     <h1 class="title">
       <a href="/2020/01/07/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%EF%BC%89/">
-        Python全栈系列章节更新（十）：headers处理小脚本
+        Python全栈系列章节更新（十）：个性化脚本
       </a>
     </h1>
   
@@ -420,17 +420,43 @@
 
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在写python爬虫脚本时，常常需要处理请求头headers，将其转换为字典格式，如果一个个的加单双引号，往往很费劲，所以我们可以借用正则表达式，直接将其替换掉。</p>
+        <blockquote>
+<p>1.headers字符串处理<br>2.控制台输出带颜色<br>3.包管理requirement.txt</p>
+</blockquote>
 <a id="more"></a>
-<h3 id="1-python字典与js的对象"><a href="#1-python字典与js的对象" class="headerlink" title="1.python字典与js的对象"></a>1.python字典与js的对象</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;兄弟萌，我懵了，最近有点迷糊，刚刚说起字典（值可以取任何数据类型，但键必须是不可变的，如字符串，数字或元组。），这就可以联想到js的对象写法</p>
+
+<p>知识点回顾：python字典与js的对象<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;兄弟萌，我懵了，最近有点迷糊，刚刚说起字典（值可以取任何数据类型，但键必须是不可变的，如字符串，数字或元组。），这就可以联想到js的对象写法</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 字典</span></span><br><span class="line">dicts = &#123;<span class="string">'Alice'</span>: <span class="string">'2341'</span>, <span class="number">9527</span>: <span class="string">'9102'</span>, (<span class="number">2</span>,<span class="number">3</span>): <span class="string">'3258'</span>&#125;</span><br></pre></td></tr></table></figure>
 <p>js的对象提供多个内建对象，比如 Object、String、Date、Array,Number,Function 等等</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">    name : <span class="string">"xiaoming"</span>,</span><br><span class="line">    age : <span class="number">18</span>,</span><br><span class="line">    show : <span class="function"><span class="keyword">function</span> (<span class="params">girlfriend</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">"的女朋友是"</span> + girlfriend);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<h3 id="headers字符串处理"><a href="#headers字符串处理" class="headerlink" title="headers字符串处理"></a>headers字符串处理</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们从chrome里面的截取到的headers往往是需要我们二次处理的，而我一般喜欢加双引号，构造成json格式，一劳永逸。<br><font color=#ed1941>源代码：</font></p>
+<h3 id="1-headers字符串处理"><a href="#1-headers字符串处理" class="headerlink" title="1. headers字符串处理"></a>1. headers字符串处理</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们从chrome里面的截取到的headers往往是需要我们二次处理的，而我一般喜欢加双引号，构造成json格式，一劳永逸。<br><font color=#ed1941>源代码：</font></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">headers_str = <span class="string">"""</span></span><br><span class="line"><span class="string">sec-fetch-mode: navigate</span></span><br><span class="line"><span class="string">sec-fetch-site: same-origin</span></span><br><span class="line"><span class="string">sec-fetch-user: ?1</span></span><br><span class="line"><span class="string">upgrade-insecure-requests: 1</span></span><br><span class="line"><span class="string">user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">pattern = re.compile(<span class="string">"^(.*?): (.*)$"</span>)</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> headers_str.splitlines():</span><br><span class="line">    print(re.sub(pattern, <span class="string">"\"\\1\": \"\\2\","</span>, line))</span><br></pre></td></tr></table></figure>
 <p>这里的headers_str存放我们的目标headers字符串，运行结果为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;sec-fetch-mode&quot;: &quot;navigate&quot;,</span><br><span class="line">&quot;sec-fetch-site&quot;: &quot;same-origin&quot;,</span><br><span class="line">&quot;sec-fetch-user&quot;: &quot;?1&quot;,</span><br><span class="line">&quot;upgrade-insecure-requests&quot;: &quot;1&quot;,</span><br><span class="line">&quot;user-agent&quot;: &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-控制台输出带颜色"><a href="#2-控制台输出带颜色" class="headerlink" title="2.控制台输出带颜色"></a>2.控制台输出带颜色</h3><p>设置颜色开始 ：\033[显示方式;前景色;背景色m 文本内容 \033[0m（此处为结束语）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'\033[1;31m我以我血荐轩辕\033[0m'</span>)</span><br><span class="line">print(<span class="string">'\033[4;35m我以我血荐轩辕\033[0m'</span>)</span><br><span class="line">print(<span class="string">'\033[5;37;40m我以我血荐轩辕\033[0m'</span>)</span><br><span class="line">print(<span class="string">'\033[0;32m我以我血荐轩辕\033[0m'</span>)</span><br><span class="line">print(<span class="string">'\033[1;32m我以我血荐轩辕\033[0m'</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-包管理requirement-txt"><a href="#3-包管理requirement-txt" class="headerlink" title="3.包管理requirement.txt"></a>3.包管理requirement.txt</h3><p>正如 PHP 中使用 Composer 维护依赖一样，Python 也需要维护项目相关的依赖包。通常我们会在项目的根目录下放置一个 requirement.txt 文件，用于记录所有依赖包和它的确切版本号。</p>
+<p><strong>1.Python的依赖</strong><br>requirement.txt 的内容长这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">alembic==1.0.10</span><br><span class="line">appnope==0.1.0</span><br><span class="line">astroid==2.2.5</span><br><span class="line">attrs==19.1.0</span><br><span class="line">backcall==0.1.0</span><br><span class="line">bcrypt==3.1.6</span><br><span class="line">bleach==3.1.0</span><br><span class="line">cffi==1.12.3</span><br><span class="line">Click==7.0</span><br><span class="line">decorator==4.4.0</span><br><span class="line">defusedxml==0.6.0</span><br><span class="line">entrypoints==0.3</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.如何使用：</strong><br>那么 requirement.txt 究竟如何使用呢？<br>当我们拿到一个项目时，首先要在项目运行环境安装 requirement.txt 所包含的依赖：</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -r requirement.txt</span><br></pre></td></tr></table></figure>
+<p>当我们要把环境中的依赖写入 requirement.txt 中时，可以借助 freeze 命令：</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip freeze &gt;requirements.txt</span><br></pre></td></tr></table></figure>
+<p><strong>3.环境混用怎么办？</strong><br>在导出依赖到 requirement.txt 文件时会有一种尴尬的情况。<br>你的本地环境不仅包含项目 A 所需要的依赖，也包含着项目 B 所需要的依赖。此时我们要如何做到只把项目 A 的依赖导出呢？</p>
+<p>pipreqs 可以通过扫描项目目录，帮助我们仅生成当前项目的依赖清单。</p>
+<p>通过以下命令安装：</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pipreqs</span><br></pre></td></tr></table></figure>
+<p>运行：</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pipreqs ./</span><br></pre></td></tr></table></figure>
+
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
+<li><a href="https://www.jianshu.com/p/6610b0abb2ea" target="_blank" rel="noopener">控制台输出带颜色文字的方法</a></li>
+</ul>
+
       </div>
       
         <br>
@@ -441,10 +467,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-01-07T11:17:48+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-06-09T14:06:42+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2020年1月7日</p>
+    <p>更新于 2021年6月9日</p>
   </a>
 </div>
 
@@ -452,9 +478,6 @@
       
         
           
-  
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/re/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>re</p></a></div>
-
 
         
       
@@ -466,7 +489,9 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/01/07/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%EF%BC%89/&title=Python全栈系列章节更新（十）：headers处理小脚本 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在写python爬虫脚本时，常常需要处理请求头headers，将其转换为字典格式，如果一个个的加单双引号，往往很费劲，所以我们可以借用正则表达式，直接将其替换掉。"
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/01/07/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%EF%BC%89/&title=Python全栈系列章节更新（十）：个性化脚本 | AhriLove&summary=
+1.headers字符串处理2.控制台输出带颜色3.包管理requirement.txt
+"
           
           >
           
@@ -478,7 +503,9 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/01/07/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%EF%BC%89/&title=Python全栈系列章节更新（十）：headers处理小脚本 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在写python爬虫脚本时，常常需要处理请求头headers，将其转换为字典格式，如果一个个的加单双引号，往往很费劲，所以我们可以借用正则表达式，直接将其替换掉。"
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/01/07/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%EF%BC%89/&title=Python全栈系列章节更新（十）：个性化脚本 | AhriLove&summary=
+1.headers字符串处理2.控制台输出带颜色3.包管理requirement.txt
+"
           
           >
           
@@ -490,7 +517,9 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/01/07/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%EF%BC%89/&title=Python全栈系列章节更新（十）：headers处理小脚本 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在写python爬虫脚本时，常常需要处理请求头headers，将其转换为字典格式，如果一个个的加单双引号，往往很费劲，所以我们可以借用正则表达式，直接将其替换掉。"
+          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/01/07/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%8D%81%EF%BC%89/&title=Python全栈系列章节更新（十）：个性化脚本 | AhriLove&summary=
+1.headers字符串处理2.控制台输出带颜色3.包管理requirement.txt
+"
           
           >
           
@@ -591,7 +620,7 @@
 
   <script>
     window.subData = {
-      title: 'Python全栈系列章节更新（十）：headers处理小脚本',
+      title: 'Python全栈系列章节更新（十）：个性化脚本',
       tools: true
     }
   </script>
@@ -671,7 +700,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-python字典与js的对象"><span class="toc-text">1.python字典与js的对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#headers字符串处理"><span class="toc-text">headers字符串处理</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-headers字符串处理"><span class="toc-text">1. headers字符串处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-控制台输出带颜色"><span class="toc-text">2.控制台输出带颜色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-包管理requirement-txt"><span class="toc-text">3.包管理requirement.txt</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
     </div>
   </section>
 
@@ -902,7 +931,7 @@
         
           <li><a class="flat-box" title="/categories/PHP/" href="/categories/PHP/"><div class='name'>PHP</div><div class='badge'>(4)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Python/" href="/categories/Python/"><div class='name'>Python</div><div class='badge'>(23)</div></a></li>
+          <li><a class="flat-box" title="/categories/Python/" href="/categories/Python/"><div class='name'>Python</div><div class='badge'>(18)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Redis/" href="/categories/Redis/"><div class='name'>Redis</div><div class='badge'>(3)</div></a></li>
         
@@ -976,7 +1005,7 @@
 </header>
 
     <div class='content material'>
-      <a href="/tags/DDL/" style="font-size: 14px; color: #999">DDL</a> <a href="/tags/DML/" style="font-size: 14px; color: #999">DML</a> <a href="/tags/Django/" style="font-size: 20.67px; color: #6c6c6c">Django</a> <a href="/tags/Eval/" style="font-size: 14px; color: #999">Eval</a> <a href="/tags/GNE/" style="font-size: 14px; color: #999">GNE</a> <a href="/tags/Github-Page/" style="font-size: 14px; color: #999">Github Page</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/Hyper-V/" style="font-size: 14px; color: #999">Hyper-V</a> <a href="/tags/InnoDB/" style="font-size: 14px; color: #999">InnoDB</a> <a href="/tags/Java/" style="font-size: 24px; color: #555">Java</a> <a href="/tags/Jquery/" style="font-size: 14px; color: #999">Jquery</a> <a href="/tags/Linux/" style="font-size: 15.67px; color: #8e8e8e">Linux</a> <a href="/tags/Maven/" style="font-size: 14px; color: #999">Maven</a> <a href="/tags/Memcached/" style="font-size: 14px; color: #999">Memcached</a> <a href="/tags/MySQL/" style="font-size: 20.67px; color: #6c6c6c">MySQL</a> <a href="/tags/Oracle/" style="font-size: 15.67px; color: #8e8e8e">Oracle</a> <a href="/tags/PHP/" style="font-size: 14px; color: #999">PHP</a> <a href="/tags/POST%E8%AF%B7%E6%B1%82/" style="font-size: 14px; color: #999">POST请求</a> <a href="/tags/RSA/" style="font-size: 14px; color: #999">RSA</a> <a href="/tags/Redis/" style="font-size: 17.33px; color: #828282">Redis</a> <a href="/tags/Requests/" style="font-size: 19px; color: #777">Requests</a> <a href="/tags/ThinkPHP/" style="font-size: 15.67px; color: #8e8e8e">ThinkPHP</a> <a href="/tags/VMware/" style="font-size: 14px; color: #999">VMware</a> <a href="/tags/Vue/" style="font-size: 17.33px; color: #828282">Vue</a> <a href="/tags/apache/" style="font-size: 14px; color: #999">apache</a> <a href="/tags/blog%E6%94%B9%E7%89%88/" style="font-size: 14px; color: #999">blog改版</a> <a href="/tags/clone/" style="font-size: 14px; color: #999">clone</a> <a href="/tags/component/" style="font-size: 14px; color: #999">component</a> <a href="/tags/container/" style="font-size: 14px; color: #999">container</a> <a href="/tags/css/" style="font-size: 20.67px; color: #6c6c6c">css</a> <a href="/tags/database/" style="font-size: 14px; color: #999">database</a> <a href="/tags/docker/" style="font-size: 17.33px; color: #828282">docker</a> <a href="/tags/echarts/" style="font-size: 14px; color: #999">echarts</a> <a href="/tags/fetchall/" style="font-size: 14px; color: #999">fetchall()</a> <a href="/tags/fetchone/" style="font-size: 14px; color: #999">fetchone()</a> <a href="/tags/float/" style="font-size: 14px; color: #999">float</a> <a href="/tags/front-matter/" style="font-size: 14px; color: #999">front-matter</a> <a href="/tags/git/" style="font-size: 14px; color: #999">git</a> <a href="/tags/git-pull-push/" style="font-size: 14px; color: #999">git pull/push</a> <a href="/tags/html/" style="font-size: 17.33px; color: #828282">html</a> <a href="/tags/images/" style="font-size: 14px; color: #999">images</a> <a href="/tags/index/" style="font-size: 14px; color: #999">index</a> <a href="/tags/jQuery/" style="font-size: 14px; color: #999">jQuery</a> <a href="/tags/js/" style="font-size: 20.67px; color: #6c6c6c">js</a> <a href="/tags/json/" style="font-size: 15.67px; color: #8e8e8e">json</a> <a href="/tags/js%E7%B2%BE%E7%A1%AE%E5%BA%A6%E4%B8%A2%E5%A4%B1/" style="font-size: 14px; color: #999">js精确度丢失</a> <a href="/tags/js%E9%80%86%E5%90%91/" style="font-size: 14px; color: #999">js逆向</a> <a href="/tags/lambda/" style="font-size: 14px; color: #999">lambda</a> <a href="/tags/margin/" style="font-size: 14px; color: #999">margin</a> <a href="/tags/matplotlib/" style="font-size: 15.67px; color: #8e8e8e">matplotlib</a> <a href="/tags/mysql/" style="font-size: 15.67px; color: #8e8e8e">mysql</a> <a href="/tags/nginx/" style="font-size: 15.67px; color: #8e8e8e">nginx</a> <a href="/tags/numpy/" style="font-size: 15.67px; color: #8e8e8e">numpy</a> <a href="/tags/pandas/" style="font-size: 14px; color: #999">pandas</a> <a href="/tags/php/" style="font-size: 14px; color: #999">php</a> <a href="/tags/push/" style="font-size: 14px; color: #999">push</a> <a href="/tags/python/" style="font-size: 22.33px; color: #606060">python</a> <a href="/tags/re/" style="font-size: 17.33px; color: #828282">re</a> <a href="/tags/read/" style="font-size: 14px; color: #999">read</a> <a href="/tags/readline/" style="font-size: 14px; color: #999">readline</a> <a href="/tags/readlines/" style="font-size: 14px; color: #999">readlines</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/requirement-txt/" style="font-size: 14px; color: #999">requirement.txt</a> <a href="/tags/salt/" style="font-size: 14px; color: #999">salt</a> <a href="/tags/token/" style="font-size: 14px; color: #999">token</a> <a href="/tags/union/" style="font-size: 14px; color: #999">union</a> <a href="/tags/vue-cli/" style="font-size: 17.33px; color: #828282">vue-cli</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E4%B8%8E%E5%AE%88%E6%8A%A4%E5%BC%8F%E5%88%9B%E5%BB%BA/" style="font-size: 14px; color: #999">交互式与守护式创建</a> <a href="/tags/%E5%85%83%E7%BB%84/" style="font-size: 14px; color: #999">元组</a> <a href="/tags/%E5%88%97%E8%A1%A8/" style="font-size: 14px; color: #999">列表</a> <a href="/tags/%E5%89%8D%E5%90%8E%E5%88%86%E7%A6%BB/" style="font-size: 14px; color: #999">前后分离</a> <a href="/tags/%E5%A4%8D%E6%9D%82%E5%BA%A6/" style="font-size: 14px; color: #999">复杂度</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 14px; color: #999">多线程</a> <a href="/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8B/" style="font-size: 14px; color: #999">多进程</a> <a href="/tags/%E5%AD%97%E5%85%B8/" style="font-size: 14px; color: #999">字典</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 14px; color: #999">字符串</a> <a href="/tags/%E5%AE%9A%E4%BD%8D%E7%85%A7%E7%89%87%E6%8B%8D%E6%91%84%E4%BD%8D%E7%BD%AE/" style="font-size: 14px; color: #999">定位照片拍摄位置</a> <a href="/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" style="font-size: 14px; color: #999">定时任务</a> <a href="/tags/%E5%AF%B9%E8%B1%A1/" style="font-size: 14px; color: #999">对象</a> <a href="/tags/%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">属性与方法</a> <a href="/tags/%E5%B8%B8%E8%A7%81%E5%BA%93/" style="font-size: 14px; color: #999">常见库</a> <a href="/tags/%E6%95%B0%E5%80%BC/" style="font-size: 14px; color: #999">数值</a> <a href="/tags/%E6%9E%81%E9%AA%8C%E6%BB%91%E5%8A%A8/" style="font-size: 14px; color: #999">极验滑动</a> <a href="/tags/%E8%A3%85%E9%A5%B0%E5%99%A8/" style="font-size: 14px; color: #999">装饰器</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%BA%93/" style="font-size: 14px; color: #999">解析库</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 14px; color: #999">负载均衡</a> <a href="/tags/%E9%80%86%E5%90%91%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">逆向爬虫</a> <a href="/tags/%E9%80%89%E6%8B%A9%E5%99%A8/" style="font-size: 14px; color: #999">选择器</a> <a href="/tags/%E9%80%9A%E7%94%A8%E8%BF%9E%E6%8E%A5/" style="font-size: 14px; color: #999">通用连接</a>
+      <a href="/tags/DDL/" style="font-size: 14px; color: #999">DDL</a> <a href="/tags/DML/" style="font-size: 14px; color: #999">DML</a> <a href="/tags/Django/" style="font-size: 20px; color: #707070">Django</a> <a href="/tags/Eval/" style="font-size: 14px; color: #999">Eval</a> <a href="/tags/Github-Page/" style="font-size: 14px; color: #999">Github Page</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/Hyper-V/" style="font-size: 14px; color: #999">Hyper-V</a> <a href="/tags/InnoDB/" style="font-size: 14px; color: #999">InnoDB</a> <a href="/tags/Java/" style="font-size: 24px; color: #555">Java</a> <a href="/tags/Jquery/" style="font-size: 14px; color: #999">Jquery</a> <a href="/tags/Linux/" style="font-size: 16px; color: #8b8b8b">Linux</a> <a href="/tags/Maven/" style="font-size: 14px; color: #999">Maven</a> <a href="/tags/Memcached/" style="font-size: 14px; color: #999">Memcached</a> <a href="/tags/MySQL/" style="font-size: 20px; color: #707070">MySQL</a> <a href="/tags/Oracle/" style="font-size: 16px; color: #8b8b8b">Oracle</a> <a href="/tags/RSA/" style="font-size: 14px; color: #999">RSA</a> <a href="/tags/Redis/" style="font-size: 18px; color: #7e7e7e">Redis</a> <a href="/tags/Requests/" style="font-size: 16px; color: #8b8b8b">Requests</a> <a href="/tags/ThinkPHP/" style="font-size: 16px; color: #8b8b8b">ThinkPHP</a> <a href="/tags/VMware/" style="font-size: 14px; color: #999">VMware</a> <a href="/tags/Vue/" style="font-size: 18px; color: #7e7e7e">Vue</a> <a href="/tags/apache/" style="font-size: 14px; color: #999">apache</a> <a href="/tags/blog%E6%94%B9%E7%89%88/" style="font-size: 14px; color: #999">blog改版</a> <a href="/tags/clone/" style="font-size: 14px; color: #999">clone</a> <a href="/tags/component/" style="font-size: 14px; color: #999">component</a> <a href="/tags/container/" style="font-size: 14px; color: #999">container</a> <a href="/tags/css/" style="font-size: 20px; color: #707070">css</a> <a href="/tags/database/" style="font-size: 14px; color: #999">database</a> <a href="/tags/docker/" style="font-size: 18px; color: #7e7e7e">docker</a> <a href="/tags/echarts/" style="font-size: 14px; color: #999">echarts</a> <a href="/tags/fetchall/" style="font-size: 14px; color: #999">fetchall()</a> <a href="/tags/fetchone/" style="font-size: 14px; color: #999">fetchone()</a> <a href="/tags/float/" style="font-size: 14px; color: #999">float</a> <a href="/tags/front-matter/" style="font-size: 14px; color: #999">front-matter</a> <a href="/tags/git/" style="font-size: 14px; color: #999">git</a> <a href="/tags/git-pull-push/" style="font-size: 14px; color: #999">git pull/push</a> <a href="/tags/html/" style="font-size: 18px; color: #7e7e7e">html</a> <a href="/tags/images/" style="font-size: 14px; color: #999">images</a> <a href="/tags/index/" style="font-size: 14px; color: #999">index</a> <a href="/tags/jQuery/" style="font-size: 14px; color: #999">jQuery</a> <a href="/tags/js/" style="font-size: 20px; color: #707070">js</a> <a href="/tags/json/" style="font-size: 16px; color: #8b8b8b">json</a> <a href="/tags/js%E7%B2%BE%E7%A1%AE%E5%BA%A6%E4%B8%A2%E5%A4%B1/" style="font-size: 14px; color: #999">js精确度丢失</a> <a href="/tags/js%E9%80%86%E5%90%91/" style="font-size: 14px; color: #999">js逆向</a> <a href="/tags/lambda/" style="font-size: 14px; color: #999">lambda</a> <a href="/tags/margin/" style="font-size: 14px; color: #999">margin</a> <a href="/tags/matplotlib/" style="font-size: 16px; color: #8b8b8b">matplotlib</a> <a href="/tags/mysql/" style="font-size: 16px; color: #8b8b8b">mysql</a> <a href="/tags/nginx/" style="font-size: 16px; color: #8b8b8b">nginx</a> <a href="/tags/numpy/" style="font-size: 16px; color: #8b8b8b">numpy</a> <a href="/tags/pandas/" style="font-size: 14px; color: #999">pandas</a> <a href="/tags/php/" style="font-size: 14px; color: #999">php</a> <a href="/tags/push/" style="font-size: 14px; color: #999">push</a> <a href="/tags/python/" style="font-size: 22px; color: #636363">python</a> <a href="/tags/re/" style="font-size: 14px; color: #999">re</a> <a href="/tags/read/" style="font-size: 14px; color: #999">read</a> <a href="/tags/readline/" style="font-size: 14px; color: #999">readline</a> <a href="/tags/readlines/" style="font-size: 14px; color: #999">readlines</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/union/" style="font-size: 14px; color: #999">union</a> <a href="/tags/vue-cli/" style="font-size: 18px; color: #7e7e7e">vue-cli</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E4%B8%8E%E5%AE%88%E6%8A%A4%E5%BC%8F%E5%88%9B%E5%BB%BA/" style="font-size: 14px; color: #999">交互式与守护式创建</a> <a href="/tags/%E5%85%83%E7%BB%84/" style="font-size: 14px; color: #999">元组</a> <a href="/tags/%E5%88%97%E8%A1%A8/" style="font-size: 14px; color: #999">列表</a> <a href="/tags/%E5%89%8D%E5%90%8E%E5%88%86%E7%A6%BB/" style="font-size: 14px; color: #999">前后分离</a> <a href="/tags/%E5%A4%8D%E6%9D%82%E5%BA%A6/" style="font-size: 14px; color: #999">复杂度</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 14px; color: #999">多线程</a> <a href="/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8B/" style="font-size: 14px; color: #999">多进程</a> <a href="/tags/%E5%AD%97%E5%85%B8/" style="font-size: 14px; color: #999">字典</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 14px; color: #999">字符串</a> <a href="/tags/%E5%AE%9A%E4%BD%8D%E7%85%A7%E7%89%87%E6%8B%8D%E6%91%84%E4%BD%8D%E7%BD%AE/" style="font-size: 14px; color: #999">定位照片拍摄位置</a> <a href="/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" style="font-size: 14px; color: #999">定时任务</a> <a href="/tags/%E5%AF%B9%E8%B1%A1/" style="font-size: 14px; color: #999">对象</a> <a href="/tags/%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">属性与方法</a> <a href="/tags/%E5%B8%B8%E8%A7%81%E5%BA%93/" style="font-size: 14px; color: #999">常见库</a> <a href="/tags/%E6%95%B0%E5%80%BC/" style="font-size: 14px; color: #999">数值</a> <a href="/tags/%E6%9E%81%E9%AA%8C%E6%BB%91%E5%8A%A8/" style="font-size: 14px; color: #999">极验滑动</a> <a href="/tags/%E8%A3%85%E9%A5%B0%E5%99%A8/" style="font-size: 14px; color: #999">装饰器</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%BA%93/" style="font-size: 14px; color: #999">解析库</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 14px; color: #999">负载均衡</a> <a href="/tags/%E9%80%86%E5%90%91%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">逆向爬虫</a> <a href="/tags/%E9%80%89%E6%8B%A9%E5%99%A8/" style="font-size: 14px; color: #999">选择器</a> <a href="/tags/%E9%80%9A%E7%94%A8%E8%BF%9E%E6%8E%A5/" style="font-size: 14px; color: #999">通用连接</a>
     </div>
   </section>
 
