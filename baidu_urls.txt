@@ -1,3 +1,5 @@
+https://ahrilove.top/2021/07/23/docker%E5%AE%B9%E5%99%A8%E8%99%9A%E6%8B%9F%E6%8A%80%E6%9C%AF(%E2%85%A3)/
+https://ahrilove.top/2021/07/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E4%B8%8E%E7%AE%97%E6%B3%95(%E4%BA%8C)/
 https://ahrilove.top/2021/04/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E4%B8%8E%E7%AE%97%E6%B3%95(%E4%B8%80)/
 https://ahrilove.top/2021/04/17/Redis%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E4%B8%89)/
 https://ahrilove.top/2021/04/10/Redis%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E4%BA%8C)/
@@ -6,5 +8,3 @@ https://ahrilove.top/2021/03/04/Redis%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%
 https://ahrilove.top/2021/02/03/Vue(%E4%BA%94)/
 https://ahrilove.top/2020/12/07/php(%E4%BA%8C)/
 https://ahrilove.top/2020/12/04/php(%E4%B8%80)/
-https://ahrilove.top/2020/11/23/Linux(%E2%85%A0)/
-https://ahrilove.top/2020/08/28/Django%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E5%9B%9B%EF%BC%89/
