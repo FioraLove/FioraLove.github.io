@@ -420,33 +420,41 @@
 
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JavaScript是一种属于网络的脚本语言,已经被广泛用于Web应用开发,常用来为网页添加各式各样的动态功能,为用户提供更流畅美观的浏览效果。通常JavaScript脚本是通过嵌入在HTML中来实现自身的功能的，一个前端项目必离不开HTML+CSS+JavaScript。</p>
-<blockquote>
-<p><font size=4 color=#FF0000>本文要点：</font><br>1.声明变量以及变量规范<br>2.js基本数据类型<br>3.js的对象<br>4.js的字符串<br>5.js对url进行编码和解码</p>
+        <blockquote>
+<p>1.变量声明及命名规范<br>2.基本数据类型<br>3.字符串<br>4.对象<br>5.数值<br>6.数组</p>
 </blockquote>
 <a id="more"></a>
 
-<h3 id="1-js的变量及数据类型"><a href="#1-js的变量及数据类型" class="headerlink" title="1. js的变量及数据类型"></a>1. js的变量及数据类型</h3><ul>
+<h3 id="1-变量及命名规范"><a href="#1-变量及命名规范" class="headerlink" title="1. 变量及命名规范"></a>1. 变量及命名规范</h3><p>在javascript中有三种声明变量的方式：<strong>var、let、const</strong></p>
+<p>JS中作用域有：全局作用域、函数作用域，但没有块作用域的概念。ECMAScript 6(简称ES6)中新增了块级作用域。块作用域由 { } 包括，if语句和for语句里面的{ }也属于块作用域。</p>
+<ol>
 <li>声明变量</li>
-</ul>
+</ol>
 <p><strong>js在创建变量或对象时，一定要声明其数据类型，否者会默认设置为全局变量，这是我们导入其它js等文件时就会造成污染数据</strong></p>
-<p><font color=#ed1941>2020-01-22 修改：js的变量作用域</font><br>（1）局部变量：在函数中通过var声明的变量。</p>
-<p>　　全局变量：在函数外通过var声明的变量。</p>
-<p>　　没有声明就使用的变量，默认为全局变量，不论这个变量在哪被使用。</p>
-<p>（2）var 可以先使用再定义。如下</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">5</span>; <span class="comment">// 变量 x 设置为 5</span></span><br><span class="line">elem = <span class="built_in">document</span>.getElementById(<span class="string">"spider案例"</span>); <span class="comment">// 查找元素 </span></span><br><span class="line">elem.innerHTML = x;                     <span class="comment">// 在元素中显示 x</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> x; <span class="comment">// 声明 x</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>var</li>
+</ol>
+<p>var 声明全局变量，换个角度理解：声明在for循环中的变量，跳出for循环同样可以使用。var在ES5，ES6中也同样适用<br>var 定义的变量可以修改，如果不初始化会输出undefined，不会报错</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="comment">// var a;   //不会报错</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'函数外var定义a：'</span> + a);<span class="comment">//可以输出a=1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">change</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    a = <span class="number">4</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'函数内var定义a：'</span> + a);<span class="comment">//可以输出a=4</span></span><br><span class="line">&#125; </span><br><span class="line">change();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'函数调用后var定义a为函数内部修改值：'</span> + a);<span class="comment">//可以输出a=4</span></span><br></pre></td></tr></table></figure>
 
-<p>(3)  let和const</p>
-<p>　　let 声明的变量只在 let 命令所在的代码块内有效。</p>
-<p>　　const 声明一个只读的常量，一旦声明，常量的值就不能改变。</p>
-<blockquote>
-<p>JavaScript数据类型分为：数值、字符串值、数组、对象等等</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> length = <span class="number">7</span>;                             <span class="comment">// 数字</span></span><br><span class="line"><span class="keyword">let</span> lastName = <span class="string">"Gates"</span>;                      <span class="comment">// 字符串</span></span><br><span class="line"><span class="keyword">let</span> cars = [<span class="string">"Porsche"</span>, <span class="string">"Volvo"</span>, <span class="string">"BMW"</span>];         <span class="comment">// 数组</span></span><br><span class="line"><span class="keyword">let</span> x = &#123;<span class="attr">firstName</span>:<span class="string">"Bill"</span>, <span class="attr">lastName</span>:<span class="string">"Gates"</span>&#125;;    <span class="comment">// 对象</span></span><br></pre></td></tr></table></figure>
-
+<ol start="3">
+<li>let</li>
+</ol>
 <ul>
-<li>命名规范</li>
+<li>必须先定义再使用，否则会报错</li>
+<li>循环体中可以用let，let声明的变量只在let命令所在的代码块内有效</li>
+<li>不能定义同名变量，否则会报错</li>
+<li>let是块级作用域，函数内部使用let定义后，对函数外部无影响</li>
 </ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> c = <span class="number">3</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'函数外let定义c：'</span> + c);<span class="comment">//输出c=3</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">change</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> c = <span class="number">6</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'函数内let定义c：'</span> + c);<span class="comment">//输出c=6</span></span><br><span class="line">&#125; </span><br><span class="line">change();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'函数调用后let定义c不受函数内部定义影响：'</span> + c);<span class="comment">//输出c=3</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>const</li>
+</ol>
+<p>const 声明一个只读的常量，一旦声明，常量的值就不能改变，而且必须初始化</p>
+<ol start="5">
+<li>命名规范</li>
+</ol>
 <p>一般很多代码语言的命名规则都是类似的，例如:</p>
 <ul>
 <li>变量和函数为小驼峰法标识, 即除第一个单词之外，其他单词首字母大写（ lowerCamelCase）</li>
@@ -454,7 +462,7 @@
 <li>常量 (如 PI) 为大写 (UPPERCASE )</li>
 <li>构造函数名与class名均使用大驼峰标识</li>
 </ul>
-<h3 id="2-js数据类型"><a href="#2-js数据类型" class="headerlink" title="2. js数据类型"></a>2. js数据类型</h3><p>在 JavaScript 中有 6 种不同的数据类型：</p>
+<h3 id="2-基本数据类型"><a href="#2-基本数据类型" class="headerlink" title="2. 基本数据类型"></a>2. 基本数据类型</h3><p>在 JavaScript 中有 6 种不同的数据类型：</p>
 <ul>
 <li>string</li>
 <li>number</li>
@@ -474,39 +482,17 @@
 <li>null</li>
 <li>undefined</li>
 </ul>
-<h3 id="3-js的对象"><a href="#3-js的对象" class="headerlink" title="3. js的对象"></a>3. js的对象</h3><p>对象的值以名称:值对的方式来书写（名称和值由冒号分隔）</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;  <span class="comment">//这里的person称为对象</span></span><br><span class="line">    firstName:<span class="string">"Bill"</span>,  <span class="comment">//  这是属性</span></span><br><span class="line">    lastName:<span class="string">"Gates"</span>, </span><br><span class="line">    age:<span class="number">62</span>, </span><br><span class="line">    eyeColor:<span class="string">"blue"</span>,</span><br><span class="line">    fullName : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;  <span class="comment">// 这就是方法</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.firstName + <span class="string">" "</span> + <span class="keyword">this</span>.lastName;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 对person对象中进行新增实例</span></span><br><span class="line">person.sex = <span class="string">"man"</span>;</span><br><span class="line">person.fullName();</span><br></pre></td></tr></table></figure>
-<p>JavaScript中的this关键词</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">在函数定义中，this 引用该函数的“拥有者”。</span><br><span class="line"></span><br><span class="line">在上面的例子中，this 指的是“拥有” fullName 函数的 person 对象。</span><br><span class="line"></span><br><span class="line">换言之，this.firstName 的意思是 this 对象的 firstName 属性。</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>对象的访问方式：</p>
-</blockquote>
-<p>对象名.属性名 或者<br>对象名[&quot;属性名&quot;]</p>
-<blockquote>
-<p><a href="https://www.jb51.net/article/188789.htm" target="_blank" rel="noopener">如何遍历js对象</a></p>
-</blockquote>
-<p>obj.hasOwnProperty(key):判断对象中是否含有目标属性名</p>
-<ul>
-<li>for in循环</li>
-<li>Object.keys() 是 ES5 新增的一个对象方法，该方法<strong>返回对象自身属性名组成的数组</strong></li>
-<li>Object.getOwnPropertyNames() 是 ES5 新增的一个对象方法，该方法<strong>返回对象自身属性名组成的数组</strong></li>
-<li>…</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> obj) &#123;</span><br><span class="line">    <span class="keyword">if</span> (obj.hasOwnProperty(key)) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(obj[key]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.keys(obj).forEach(<span class="function">(<span class="params">key</span>) =&gt;</span> &#123;</span><br><span class="line"> <span class="built_in">console</span>.log(obj[key]) <span class="comment">// foo</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-
-<p>案例：数据集构造</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">let</span> dimensions = [];  <span class="comment">//维度</span></span><br><span class="line"><span class="keyword">let</span> source = [];      <span class="comment">//数据集</span></span><br><span class="line"><span class="keyword">let</span> series = [];        <span class="comment">//图系列</span></span><br><span class="line"></span><br><span class="line">dimensions.push(<span class="string">"groupcus_name"</span>);</span><br><span class="line">dimensions.push(<span class="string">"剩余发出商品"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;response.Rows.length;i++)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> obj = &#123;&#125;;</span><br><span class="line">    obj[<span class="string">"groupcus_name"</span>] = response.Rows[i].groupcus_name;  <span class="comment">// 对象的调用方式obj["key_name"]或obj.key_name</span></span><br><span class="line">    obj[<span class="string">"剩余发出商品"</span>] = response.Rows[i].surplusp;</span><br><span class="line"></span><br><span class="line">    source.push(obj);   <span class="comment">// 记住push只适用于数组的元素添加，并返回数组元素个数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-js字符串"><a href="#4-js字符串" class="headerlink" title="4. js字符串"></a>4. js字符串</h3><blockquote>
-<p>4.1 js字符串长度</p>
+<h3 id="3-字符串"><a href="#3-字符串" class="headerlink" title="3. 字符串"></a>3. 字符串</h3><blockquote>
+<p>3.1 js字符串长度</p>
 </blockquote>
 <p>易混点：<br>JavaScript字符串长度：str.length<br>php的字符串长度：count(string)<br>Java的字符串的长度：str.length()<br>python的字符串长度：len(string)<br>jQuery中的length：表示query对象中元素个数 $(“div”).siblings().length=&gt;表示div标签的兄弟节点元素个数</p>
 <blockquote>
-<p>4.2 使用\ 转义字符</p>
+<p>3.2 使用 \ 转义字符</p>
 </blockquote>
-<p>转义字符是字符的一种间接表示方式。在特殊语境中，无法直接使用字符自身。例如，在字符串中包含说话内容。<br><code>&quot;子曰：&quot;学而不思则罔，思而不学则殆。&quot;&quot;</code><br>由于 JavaScript 已经赋予了双引号为字符串直接量的标识符，如果在字符串中包含双引号，就必须使用转义字符表示。<br>        ⬇<br><code>&quot;子曰：\&quot;学而不思则罔，思而不学则殆。\&quot;&quot;</code></p>
+<p>转义字符是字符的一种间接表示方式。在特殊语境中，无法直接使用字符自身。例如，在字符串中包含说话内容，由于js已经赋予了双引号为字符串直接量的标识符，如果在字符串中包含双引号，就必须使用转义字符表示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;子曰：&quot;学而不思则罔，思而不学则殆。&quot;&quot;</span><br><span class="line">&quot;子曰：\&quot;学而不思则罔，思而不学则殆。\&quot;&quot;</span><br></pre></td></tr></table></figure>
+
+
 <p>列举常见的JavaScript转义字符：</p>
 <table>
 <thead>
@@ -565,11 +551,7 @@
 </tr>
 </tbody></table>
 <blockquote>
-<p>4.3 比较运算符与逻辑运算符</p>
-</blockquote>
-<p>&quot;==&quot;:表示值相等<br>&quot;===&quot;:表示值相等基础上，数据类型也相同<br>&amp;&amp; :表示与运算<br>|| :表示或运算<br>! : 表示非运算 </p>
-<blockquote>
-<p>4.4 字符串的截取和替换</p>
+<p>3.3 字符串的截取</p>
 </blockquote>
 <ul>
 <li><p>str.slice(start，end)方法：提取字符串的某个部分并在新字符串中返回被提取的部分(起始索引值为0，且满足左闭右开)。该方法设置两个参数：起始索引（开始位置），终止索引（结束位置）。</p>
@@ -578,23 +560,48 @@
 </li>
 <li><p>str.substr(start,length)：start表示起始的索引值，默认为0。第二个参数规定被提取部分的长度，如果省略第二个参数，则该 substr() 将裁剪字符串的剩余部分。</p>
 </li>
-<li><p>str.replace(a,b) 在字符串str中用b替换a</p>
-</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">"this girl that i fall in love with her sister is about 18 years old"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typeof</span>(name);   <span class="comment">// 判断数据类型："string"</span></span><br><span class="line">name.length;    <span class="comment">// 判断字符长度：67</span></span><br><span class="line">name.slice(<span class="number">0</span>,<span class="number">4</span>);    <span class="comment">// 满足左闭右开，索引值默认从0开始："this"</span></span><br><span class="line">name.slice(<span class="number">-3</span>,<span class="number">-1</span>);  <span class="comment">// 从右至左，索引值默认为-1开始："ol"</span></span><br><span class="line">name.substring(<span class="number">-8</span>,<span class="number">2</span>);   <span class="comment">//  不接受负索引值："th"</span></span><br><span class="line">name.substring(<span class="number">-8</span>,<span class="number">-2</span>);  <span class="comment">// ""</span></span><br><span class="line">name.substr(<span class="number">2</span>,<span class="number">5</span>);       <span class="comment">// "is gi"</span></span><br><span class="line">name.replace(<span class="string">"sister"</span>,<span class="string">"young sister"</span>);  <span class="comment">// 替换："this girl that i fall in love with her young sister ..."</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">"this girl that i fall in love with her sister is about 18 years old"</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span>(name));   <span class="comment">// 判断数据类型："string"</span></span><br><span class="line">name.length;    <span class="comment">// 判断字符长度：67</span></span><br><span class="line">name.slice(<span class="number">0</span>,<span class="number">4</span>);    <span class="comment">// 满足左闭右开，索引值默认从0开始："this"</span></span><br><span class="line">name.slice(<span class="number">-3</span>,<span class="number">-1</span>);  <span class="comment">// 从右至左，索引值默认为-1开始："ol"</span></span><br><span class="line">name.substring(<span class="number">-8</span>,<span class="number">2</span>);   <span class="comment">//  不接受负索引值："th"</span></span><br><span class="line">name.substring(<span class="number">-8</span>,<span class="number">-2</span>);  <span class="comment">// ""</span></span><br><span class="line">name.substr(<span class="number">2</span>,<span class="number">5</span>);       <span class="comment">// "is gi"</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>4.5 转换为大小写</p>
+<p>3.4 字符串的替换</p>
+</blockquote>
+<ol>
+<li>简单替换：str.replace(a,b) 在字符串str中用b替换a，但<strong>只会替换字符串中第一次出现的目标</strong></li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">"dog is our friends, dog is cute!"</span>;</span><br><span class="line"><span class="keyword">let</span> str2 = str.replace(<span class="string">"dog"</span>,<span class="string">"cat"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(str2);  <span class="comment">// cat is our friends, dog is cute!</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>js中是没有replaceAll方法的，那么如何实现替换所有匹配的字符串呢</li>
+</ol>
+<ul>
+<li>使用具有全局标志g的正则表达式:</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">"dog and cat are cute, we all love dog and cat!"</span>;</span><br><span class="line"><span class="keyword">let</span> str2 = str.replace(<span class="regexp">/dog|cat/g</span>,<span class="string">"pig"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(str2); <span class="comment">// pig and pig are cute, we all love pig and pig!</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用另一种具有全局标志g的正则表达式的定义方法</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">"dogdogdog"</span>;</span><br><span class="line"><span class="keyword">var</span> str2 = str.replace(<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"dog"</span>,<span class="string">"gm"</span>),<span class="string">"cat"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(str2);</span><br></pre></td></tr></table></figure>
+
+<p>这里g表示执行全局匹配，m表示执行多次匹配</p>
+<ul>
+<li>给string对象添加原型方法replaceAll()</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span>.prototype.replaceAll = <span class="function"><span class="keyword">function</span>(<span class="params">s1, s2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.replace(<span class="keyword">new</span> <span class="built_in">RegExp</span>(s1, <span class="string">"gm"</span>), s2);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用</span></span><br><span class="line"><span class="keyword">var</span> str = <span class="string">"dogdogdog"</span>;</span><br><span class="line"><span class="keyword">var</span> str2 = str.replaceAll(<span class="string">"dog"</span>, <span class="string">"cat"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(str2);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>3.5 转换为大小写</p>
 </blockquote>
 <p>str.toUpperCase()<br>str.toLowerCase()</p>
 <blockquote>
-<p>4.6 str.trim()</p>
+<p>3.6 str.trim()</p>
 </blockquote>
 <p>str.trim() 方法<strong>仅能删除字符串两端的空白符</strong>，并不能删除指定的字符</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">" i love you"</span>;</span><br><span class="line">name.trim(<span class="string">"you"</span>) <span class="comment">// 返回结果"i love you"去除了首位的空格</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>4.7 str.split()：切割字符串，返回数组的形式</p>
+<p>3.7 str.split()：切割字符串，返回数组的形式</p>
 </blockquote>
 <p>这里有一个小知识点，</p>
 <ul>
@@ -606,7 +613,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> quote = <span class="string">"i love you because of you"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(quote.split());   <span class="comment">// ["i love you because of you"]</span></span><br><span class="line"><span class="built_in">console</span>.log(quote.split(<span class="string">""</span>));   </span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">["i", " ", "l", "o", "v", "e", " ", "y", "o", "u", " ", "b", "e", </span></span><br><span class="line"><span class="comment">"c", "a", "u", "s", "e", " ", "o", "f", " ", "y", "o", "u"]</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="built_in">console</span>.log(quote.split(<span class="string">"you"</span>));    <span class="comment">//["i love ", " because of ", ""]</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>4.8 转换为字符串</p>
+<p>3.8 转换为字符串</p>
 </blockquote>
 <ul>
 <li>Numbers.toFixed(number):保留小数点位数，并将数值型转换为字符串型</li>
@@ -614,14 +621,15 @@
 <li>String(Number):将数值型转换为字符串类型</li>
 </ul>
 <blockquote>
-<p>4.9 查询目标字符串索引</p>
+<p>3.9 查询目标字符串索引</p>
 </blockquote>
 <p><strong>indexOf() 方法</strong>：可以检索<strong>目标字符串在源字符串中首次出现的位置</strong>。如果没有在源字符串中检索到指定字符或者子字符串，则返回 -1 。</p>
 <p>字符串与数组类似，字符位置是从 0 开始计算。特别说明：此方法对大小写敏感。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="string">"hello world"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a.indexOf(<span class="string">"h"</span>)); <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">console</span>.log(a.indexOf(<span class="string">"cg"</span>)); <span class="comment">// -1</span></span><br></pre></td></tr></table></figure>
 
+<p>拓展：查找字符串中是否包含指定的字符串， <strong>includes()方法区分大小写</strong><br><strong>string.includes(search_value)</strong>:用于判断字符串是否包含指定的字符串，如果找到匹配的字符串则返回 true，否则返回 false。</p>
 <blockquote>
-<p>4.10 字符串判断开头或结尾是否是指定的字符</p>
+<p>3.10 字符串判断开头或结尾是否是指定的字符</p>
 </blockquote>
 <ul>
 <li>str.startsWith(&quot;&quot;):判定一个字符串是否以另一个字符串开头</li>
@@ -630,7 +638,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">"hello world"</span>;</span><br><span class="line"><span class="keyword">let</span> result = str.startsWith(<span class="string">"he"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(result); <span class="comment">//true</span></span><br><span class="line"><span class="comment">//当为两个参数时，第二个表示开始位数。</span></span><br><span class="line">result = str.startsWith(<span class="string">"he"</span>,<span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log(result);<span class="comment">//flase</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>4.11 返回指定位置的字符</p>
+<p>3.11 返回指定位置的字符</p>
 </blockquote>
 <ul>
 <li>str.charAt(index) 返回在指定index位置的字符，且起始索引为<strong>0</strong></li>
@@ -639,23 +647,17 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"HELLO WORLD!"</span>.charAt(<span class="number">0</span>);   <span class="comment">// H</span></span><br><span class="line"><span class="string">"HELLO WORLD!"</span>.charCodeAt(<span class="number">0</span>);   <span class="comment">// 72 (a:65 A:97)</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>4.12 查找字符串中是否包含指定的子字符串。</p>
-</blockquote>
-<p><strong>string.includes(search_value)</strong>:用于判断字符串是否包含指定的子字符串。</p>
-<p>如果找到匹配的字符串则返回 true，否则返回 false。</p>
-<p>注意： <em>includes() 方法区分大小写。</em></p>
-<blockquote>
-<p>4.13     复制字符串指定次数，并将它们连接在一起返回</p>
+<p>3.12     复制字符串指定次数，并将它们连接在一起返回</p>
 </blockquote>
 <p>string.repeat(count) =&gt; “woman”.repeat(2);</p>
 <blockquote>
-<p>4.14 fromCharCode生成字符串</p>
+<p>3.13 fromCharCode生成字符串</p>
 </blockquote>
 <p>可接受一个或多个指定的 Unicode 值，然后返回其字符串组合<br>语法：String.fromCharCode(numX,numX,…,numX)</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">String</span>.fromCharCode(<span class="number">72</span>,<span class="number">69</span>,<span class="number">76</span>,<span class="number">76</span>,<span class="number">79</span>));   <span class="comment">// HELLO</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>4.15 localeCompare 本地特定的顺序来比较两个字符串</p>
+<p>3.14 localeCompare 本地特定的顺序来比较两个字符串</p>
 </blockquote>
 <p>语法：stringObject.localeCompare(target)</p>
 <ul>
@@ -664,40 +666,132 @@
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str=[<span class="string">"dongtian"</span>, <span class="string">"陈"</span>, <span class="string">"浩"</span>, <span class="string">"东"</span>];</span><br><span class="line">str.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;<span class="keyword">return</span> a.localeCompare(b)&#125;);</span><br><span class="line"><span class="comment">//  ["陈", "东", "浩", "dongtian"]</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="5-js对url进行编码和解码"><a href="#5-js对url进行编码和解码" class="headerlink" title="5. js对url进行编码和解码"></a>5. js对url进行编码和解码</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在的信息网络都是数字的，很多东西要保存传输就得编码，比如你要保存一篇文章，里面的字就是一些二进制编码。编码就是如何把信息转换成数字序列，解码则是把数字序列转换成信息。<br>简单理解为：1. 编码（encode）是将人能够认识的信息转换为看不懂的。 2. 解码（decode）是将经过加密的对象转换为我们能够认识的信息</p>
+
+<h3 id="4-对象"><a href="#4-对象" class="headerlink" title="4. 对象"></a>4. 对象</h3><p>对象的值以名称:值对的方式来书写（名称和值由冒号分隔）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;  <span class="comment">//这里的person称为对象</span></span><br><span class="line">    firstName:<span class="string">"Bill"</span>,  <span class="comment">//  这是属性</span></span><br><span class="line">    lastName:<span class="string">"Gates"</span>, </span><br><span class="line">    age:<span class="number">62</span>, </span><br><span class="line">    eyeColor:<span class="string">"blue"</span>,</span><br><span class="line">    fullName : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;  <span class="comment">// 这就是方法</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.firstName + <span class="string">" "</span> + <span class="keyword">this</span>.lastName;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 对person对象中进行新增实例</span></span><br><span class="line">person.sex = <span class="string">"man"</span>;</span><br><span class="line">person.fullName();</span><br></pre></td></tr></table></figure>
+<p>JavaScript中的this关键词</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">在函数定义中，this 引用该函数的“拥有者”。</span><br><span class="line"></span><br><span class="line">在上面的例子中，this 指的是“拥有” fullName 函数的 person 对象。</span><br><span class="line"></span><br><span class="line">换言之，this.firstName 的意思是 this 对象的 firstName 属性。</span><br></pre></td></tr></table></figure>
+
 <blockquote>
-<p>1.encodeURI 和 decodeURI</p>
+<p>对象的访问方式</p>
 </blockquote>
-<p>原理：返回编码为有效的统一资源标识符 (URI) 的字符串，不会被编码的字符：! @ # $ &amp; * ( ) = : / ; ? + ‘</p>
-<p>　　   encodeURI()是Javascript中真正用来对URL编码的函数。</p>
-<p>编码：encodeURI(‘<a href="http://www.baidu.com?name=zhang@xiao@jie&amp;order=1&#39;" target="_blank" rel="noopener">http://www.baidu.com?name=zhang@xiao@jie&amp;order=1&#39;</a>)</p>
-<p>　　　结果：”<a href="http://www.baidu.com?name=zhang@xiao@jie&amp;order=1&quot;" target="_blank" rel="noopener">http://www.baidu.com?name=zhang@xiao@jie&amp;order=1&quot;</a></p>
-<p>解码：decodeURI(“http%3A//<a href="http://www.baidu.com%3Fname%3Dzhang@xiao@jie%26order%3D1&quot;" target="_blank" rel="noopener">www.baidu.com%3Fname%3Dzhang@xiao@jie%26order%3D1&quot;</a>)</p>
-<p>　　　结果：”http%3A//<a href="http://www.baidu.com%3Fname%3Dzhang@xiao@jie%26order%3D1&quot;" target="_blank" rel="noopener">www.baidu.com%3Fname%3Dzhang@xiao@jie%26order%3D1&quot;</a></p>
+<p>对象名.属性名 或者<br>对象名[&quot;属性名&quot;]</p>
 <blockquote>
-<p>2.encodeURIComponent 和 decodeURIComponent（推荐）</p>
+<p>遍历js对象</p>
 </blockquote>
+<p>obj.hasOwnProperty(key):判断对象中是否含有目标属性名</p>
 <ul>
-<li><p>原理：对URL的组成部分进行个别编码，而不用于对整个URL进行编码</p>
+<li>for…in循环</li>
+<li>Object.keys() 是 ES5 新增的一个对象方法，该方法<strong>返回对象自身属性名组成的数组</strong></li>
+<li>Object.getOwnPropertyNames() 是 ES5 新增的一个对象方法，该方法<strong>返回对象自身属性名组成的数组</strong></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> obj) &#123;</span><br><span class="line">    <span class="keyword">if</span> (obj.hasOwnProperty(key)) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(obj[key]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.keys(obj).forEach(<span class="function">(<span class="params">key</span>) =&gt;</span> &#123;</span><br><span class="line"> <span class="built_in">console</span>.log(obj[key]) <span class="comment">// foo</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-数值"><a href="#5-数值" class="headerlink" title="5. 数值"></a>5. 数值</h3><blockquote>
+<p>number.toString():将数值型转化为字符串型</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> n = <span class="number">15</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span>(n));  <span class="comment">// 为字数值类型number</span></span><br><span class="line">a = n.toString();  <span class="comment">// a为字符串类型</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>toFixed(number) 将数值保留为指定的小数位数，并再转化为String类型</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">9.656</span>;</span><br><span class="line">x.toFixed(<span class="number">0</span>);           <span class="comment">// 返回 10</span></span><br><span class="line">x.toFixed(<span class="number">2</span>);           <span class="comment">// 返回 9.66</span></span><br><span class="line">x.toFixed(<span class="number">4</span>);           <span class="comment">// 返回 9.6560</span></span><br><span class="line">x.toFixed(<span class="number">6</span>);           <span class="comment">// 返回 9.656000</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span>(x.toFixed(<span class="number">2</span>))) <span class="comment">// 返回"String"</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>把变量转换为数值</p>
+</blockquote>
+<p>这三种 JavaScript 方法可用于将变量转换为数字：</p>
+<ul>
+<li>Number()方法</li>
+<li>parseFloat(string)方法：指定字符串的首个字符是否是数字。如果首字符为数字，则对其进行解析直到完整取出第一个数值，并返回首个数值，如果首字符不是数字则直接返回NaN</li>
+<li>parseInt(string，radix)方法：指定字符串的首个字符是否是数字。如果首字符为数字，将字符串取出首个完整数值，并转化为指定radix进制，如果首字符不是数字，就直接返回NaN</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">"10.008"</span>);      <span class="comment">// 返回 10</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">"10 20 30"</span>);   <span class="comment">// 返回 10</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">"10 years"</span>);   <span class="comment">// 返回 10</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">"years 10"</span>);   <span class="comment">// 返回 NaN</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">"30"</span>,<span class="number">8</span>);       <span class="comment">// 返回24，将30转化为8进制</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">"10"</span>);         <span class="comment">// 返回 10</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">"10.33"</span>);      <span class="comment">// 返回 10.33</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">"10 20 30"</span>);   <span class="comment">// 返回 10</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">"10 years"</span>);   <span class="comment">// 返回 10</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">"years 10"</span>);   <span class="comment">// 返回 NaN</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-数组"><a href="#6-数组" class="headerlink" title="6. 数组"></a>6. 数组</h3><blockquote>
+<p>创建方式</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一种(推荐)</span></span><br><span class="line"><span class="keyword">let</span> A=[<span class="number">12</span>,<span class="number">78</span>,<span class="number">78</span>,<span class="number">78</span>,<span class="number">89</span>];</span><br><span class="line"><span class="built_in">console</span>.log(A);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二种</span></span><br><span class="line"><span class="keyword">let</span> B=<span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line">B[<span class="number">0</span>]=<span class="number">12</span>;</span><br><span class="line">B[<span class="number">1</span>]=<span class="number">34</span>;</span><br><span class="line"><span class="built_in">console</span>.log(B);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>数组访问与修改</p>
+</blockquote>
+<p>访问数组元素：通过索引（<strong>从0开始</strong>）来引用某个数组元素</p>
+<p>var name=car[0]  访问数组值<br>var car[0] = “Benz”  修改数组值，即新数组为[“Benz”,”Volvo”,”BMW”]</p>
+<blockquote>
+<p>数组属性和方法</p>
+</blockquote>
+<ol>
+<li><p>length:返回数组元素的数目</p>
 </li>
-<li><p>编码：encodeURIComponent(‘<a href="http://www.baidu.com?name=zhang@xiao@jie&amp;order=1&#39;" target="_blank" rel="noopener">http://www.baidu.com?name=zhang@xiao@jie&amp;order=1&#39;</a>)<br>　　　<br> 结果：http%3A%2F%2F<a href="http://www.baidu.com%3Fname%3Dzhang%40xiao%40jie%26order%3D1" target="_blank" rel="noopener">www.baidu.com%3Fname%3Dzhang%40xiao%40jie%26order%3D1</a></p>
+<li><p>遍历数组元素：最安全是使用for循环</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fruits;</span><br><span class="line">fruits = [<span class="string">"Banana"</span>, <span class="string">"Orange"</span>, <span class="string">"Apple"</span>, <span class="string">"Mango"</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; fruits.length; i++) &#123;</span><br><span class="line">     <span class="built_in">console</span>.log(fruits[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>解码：decodeURIComponent(“http%3A%2F%2F/<a href="http://www.baidu.com%3Fname%3Dzhang%40xiao%40jie%26order%3D1&quot;" target="_blank" rel="noopener">www.baidu.com%3Fname%3Dzhang%40xiao%40jie%26order%3D1&quot;</a>)</p>
-<p> 结果：<a href="http://www.baidu.com?name=zhang@xiao@jie&amp;order=1" target="_blank" rel="noopener">http://www.baidu.com?name=zhang@xiao@jie&amp;order=1</a></p>
+<li><p>push()和pop()</p>
 </li>
+</ol>
+<ul>
+<li>push(): 把里面的内容添加到数组末尾，并返回修改后的长度</li>
+<li>pop(): 移除数组最后一个元素，并返回该值</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fruits = [<span class="string">"Banana"</span>];</span><br><span class="line">fruits.push(<span class="string">"Lemon"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(fruits)   <span class="comment">// ["Banana", "Lemon"]</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>shift()和unshift()</li>
+</ol>
+<ul>
+<li>shift(): 移除数组第一个元素，并返回该值</li>
+<li>unshift(): 把里面的内容添加到数组开头，并返回修改后的长度</li>
+</ul>
+<ol start="5">
+<li><p>join()<br>格式：数组.join(“指定拼接符”) 将所有数组元素结合为一个字符串</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fruits = [<span class="string">"Banana"</span>, <span class="string">"Orange"</span>,<span class="string">"Apple"</span>, <span class="string">"Mango"</span>];</span><br><span class="line"><span class="built_in">console</span>.log(fruits.join(<span class="string">" * "</span>));</span><br><span class="line"><span class="comment">// Banana * Orange * Apple * Mango</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>sort(fun)方法以字母或数值对数组进行排序</strong></p>
+</li>
+</ol>
+<p>语法：array.sort(fun)；参数fun可选，规定排序顺序，必须是函数。</p>
+<ul>
+<li>如果调用该方法时没有使用参数，将按字母顺序对数组中的元素进行排序，说得更精确点，是<strong>按照ascii编码顺序进行排序</strong>。</li>
+<li>如果想按照其他规则进行排序，就需要提供比较函数，该函数要比较两个值，然后返回一个用于说明这两个值的相对顺序的数字。<strong>比较函数应该具有两个参数 a 和 b，比较函数两个参数a和b，返回a-b 升序，返回b-a 降序</strong></li>
+<li>数组中的对象也可按照某个属性值进行排列</li>
+<li><strong>原数组会发生改变</strong></li>
 </ul>
 <blockquote>
-<p>3.<a href="https://blog.csdn.net/chenlycly/article/details/51820727" target="_blank" rel="noopener">escape 编码URL特殊字符</a></p>
+<p>不传参数，将不会按照数值大小排序，按照字符编码的顺序进行排序</p>
 </blockquote>
-<p>当url地址中包含&amp;、+、%等特殊字符（主要是传递参数时，参数的内容中包含这些字符）时，地址无效。比如<a href="http://10.190.0.0:108/doc/test+desc2.bmp，若文件名中出现+/&amp;等特殊字符，后台会报404的错误，即web服务器找不到页面或者资源。" target="_blank" rel="noopener">http://10.190.0.0:108/doc/test+desc2.bmp，若文件名中出现+/&amp;等特殊字符，后台会报404的错误，即web服务器找不到页面或者资源。</a></p>
-<p>Javascript语言用于编码的函数，一共有三个，最古老的一个就是escape()。<strong>虽然这个函数现在已经不提倡使用了，但是由于历史原因，很多地方还在使用它</strong></p>
-<p>url的Unicode编码：出现这种 <em>\uXXXX</em> 就有可能是Unicode编码</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">escape</span>(<span class="string">"\u002F"</span>);  <span class="comment">// 结果为 /</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">'General'</span>,<span class="string">'Tom'</span>,<span class="string">'Bob'</span>,<span class="string">'John'</span>,<span class="string">'Army'</span>];</span><br><span class="line"><span class="keyword">let</span> resArr = arr.sort();</span><br><span class="line"><span class="built_in">console</span>.log(resArr);    <span class="comment">//输出   ["Army", "Bob", "General", "John", "Tom"]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr2 = [<span class="number">30</span>,<span class="number">10</span>,<span class="number">111</span>,<span class="number">35</span>,<span class="number">1899</span>,<span class="number">50</span>,<span class="number">45</span>];</span><br><span class="line"><span class="keyword">let</span> resArr2 = arr2.sort();</span><br><span class="line"><span class="built_in">console</span>.log(resArr2);   <span class="comment">//输出   [10, 111, 1899, 30, 35, 45, 50]</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>传入参数，实现升序，降序</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实现升序</span></span><br><span class="line"><span class="keyword">let</span> arr3 = [<span class="number">30</span>,<span class="number">10</span>,<span class="number">111</span>,<span class="number">35</span>,<span class="number">1899</span>,<span class="number">50</span>,<span class="number">45</span>];</span><br><span class="line">arr3.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a - b;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(arr3);<span class="comment">//输出  [10, 30, 35, 45, 50, 111, 1899]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 实现降序</span></span><br><span class="line"><span class="keyword">let</span> arr4 = [<span class="number">30</span>,<span class="number">10</span>,<span class="number">111</span>,<span class="number">35</span>,<span class="number">1899</span>,<span class="number">50</span>,<span class="number">45</span>];</span><br><span class="line">arr4.sort(<span class="function">(<span class="params">a,b</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> b - a;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(arr4);<span class="comment">//输出 [1899, 111, 50, 45, 35, 30, 10]</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>根据数组中的对象的某个属性值排序</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr5 = [&#123;<span class="attr">id</span>:<span class="number">10</span>&#125;,&#123;<span class="attr">id</span>:<span class="number">5</span>&#125;,&#123;<span class="attr">id</span>:<span class="number">6</span>&#125;,&#123;<span class="attr">id</span>:<span class="number">9</span>&#125;,&#123;<span class="attr">id</span>:<span class="number">2</span>&#125;,&#123;<span class="attr">id</span>:<span class="number">3</span>&#125;];</span><br><span class="line">arr5.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.id - b.id</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(arr5);</span><br><span class="line"><span class="comment">// 输出新的排序 [&#123;id: 2&#125;,&#123;id: 3&#125;,...,&#123;id: 10&#125;]</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>根据数组中的对象的某个属性值排序(字符串类型):localeCompare</p>
+</blockquote>
+<p>场景：<a href="https://www.cnblogs.com/goloving/p/7662676.html" target="_blank" rel="noopener">localeCompare()方法实现中文排序、sort方法实现数字英文混合排序</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr6 = [&#123;<span class="attr">id</span>: <span class="string">"General"</span>&#125;,&#123;<span class="attr">id</span>:<span class="string">"Tom"</span>&#125;,&#123;<span class="attr">id</span>:<span class="string">"Alice"</span>&#125;,&#123;<span class="attr">id</span>:<span class="string">"Bob"</span>&#125;,&#123;<span class="attr">id</span>:<span class="string">"Ahri"</span>&#125;,&#123;<span class="attr">id</span>:<span class="string">"Kiko"</span>&#125;];</span><br><span class="line">arr6.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.id.localeCompare(b.id);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(arr6);</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li><p>reverse()反转数组中的元素</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fruits = [<span class="string">"Banana"</span>, <span class="string">"Orange"</span>, <span class="string">"Apple"</span>, <span class="string">"Mango"</span>];</span><br><span class="line">fruits.sort();            <span class="comment">// 对 fruits 中的元素进行排序</span></span><br><span class="line">fruits.reverse();         <span class="comment">// 对数组元素进行反转</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>isNaN()全局函数来判断一个值是否是NaN值<br>isNaN(1000/“apple”) true<br>isNaN(1000) false</p>
+</li>
+<li><p>slice()截取数组<br>返回从原数组中指定开始下标到结束下标之间的项组成的新数组、不改变原数组、支持负索引(负索引加上数组长度就是正索引)、满足区间左闭右开原则</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">11</span>];</span><br><span class="line"><span class="keyword">let</span> arrCopy = arr.slice(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">let</span> arrCopy2 = arr.slice(<span class="number">1</span>,<span class="number">4</span>);</span><br><span class="line"><span class="keyword">let</span> arrCopy3 = arr.slice(<span class="number">1</span>,<span class="number">-2</span>);</span><br><span class="line"><span class="keyword">let</span> arrCopy4 = arr.slice(<span class="number">-4</span>,<span class="number">-1</span>);</span><br><span class="line"><span class="built_in">console</span>.log(arr); 　　　<span class="comment">//[1, 3, 5, 7, 9, 11](原数组没变)</span></span><br><span class="line"><span class="built_in">console</span>.log(arrCopy);   <span class="comment">//[3, 5, 7, 9, 11]</span></span><br><span class="line"><span class="built_in">console</span>.log(arrCopy2);  <span class="comment">//[3, 5, 7]</span></span><br><span class="line"><span class="built_in">console</span>.log(arrCopy3);  <span class="comment">//[3, 5, 7]</span></span><br><span class="line"><span class="built_in">console</span>.log(arrCopy4);  <span class="comment">//[5, 7, 9]</span></span><br></pre></td></tr></table></figure>
 
 
+</li>
+</ol>
 <h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
 <li><a href="https://www.runoob.com/js/js-type-conversion.html" target="_blank" rel="noopener">JavaScript基本数据类型以及详细使用</a></li>
-<li><a href="https://blog.csdn.net/xiongzaiabc/article/details/105012903" target="_blank" rel="noopener">python中demjson的详细使用教程，专治json解码、json编码</a></li>
 </ul>
 
       </div>
@@ -710,10 +804,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-04T19:09:39+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-27T15:31:34+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2021年5月4日</p>
+    <p>更新于 2021年8月27日</p>
   </a>
 </div>
 
@@ -722,7 +816,7 @@
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/clone/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>clone</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/push/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>push</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/javascript/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>javascript</p></a></div>
 
 
         
@@ -735,9 +829,8 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/11/20/Javascript%E7%AF%87%E7%AB%A0%E4%B8%80/&title=Javascript篇章一：JavaScript基本知识 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JavaScript是一种属于网络的脚本语言,已经被广泛用于Web应用开发,常用来为网页添加各式各样的动态功能,为用户提供更流畅美观的浏览效果。通常JavaScript脚本是通过嵌入在HTML中来实现自身的功能的，一个前端项目必离不开HTML+CSS+JavaScript。
-
-本文要点：1.声明变量以及变量规范2.js基本数据类型3.js的对象4.js的字符串5.js对url进行编码和解码
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/11/20/Javascript%E7%AF%87%E7%AB%A0%E4%B8%80/&title=Javascript篇章一：JavaScript基本知识 | AhriLove&summary=
+1.变量声明及命名规范2.基本数据类型3.字符串4.对象5.数值6.数组
 "
           
           >
@@ -750,9 +843,8 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/11/20/Javascript%E7%AF%87%E7%AB%A0%E4%B8%80/&title=Javascript篇章一：JavaScript基本知识 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JavaScript是一种属于网络的脚本语言,已经被广泛用于Web应用开发,常用来为网页添加各式各样的动态功能,为用户提供更流畅美观的浏览效果。通常JavaScript脚本是通过嵌入在HTML中来实现自身的功能的，一个前端项目必离不开HTML+CSS+JavaScript。
-
-本文要点：1.声明变量以及变量规范2.js基本数据类型3.js的对象4.js的字符串5.js对url进行编码和解码
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/11/20/Javascript%E7%AF%87%E7%AB%A0%E4%B8%80/&title=Javascript篇章一：JavaScript基本知识 | AhriLove&summary=
+1.变量声明及命名规范2.基本数据类型3.字符串4.对象5.数值6.数组
 "
           
           >
@@ -765,9 +857,8 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/11/20/Javascript%E7%AF%87%E7%AB%A0%E4%B8%80/&title=Javascript篇章一：JavaScript基本知识 | AhriLove&summary=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JavaScript是一种属于网络的脚本语言,已经被广泛用于Web应用开发,常用来为网页添加各式各样的动态功能,为用户提供更流畅美观的浏览效果。通常JavaScript脚本是通过嵌入在HTML中来实现自身的功能的，一个前端项目必离不开HTML+CSS+JavaScript。
-
-本文要点：1.声明变量以及变量规范2.js基本数据类型3.js的对象4.js的字符串5.js对url进行编码和解码
+          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/11/20/Javascript%E7%AF%87%E7%AB%A0%E4%B8%80/&title=Javascript篇章一：JavaScript基本知识 | AhriLove&summary=
+1.变量声明及命名规范2.基本数据类型3.字符串4.对象5.数值6.数组
 "
           
           >
@@ -796,16 +887,16 @@
                       <span class="art-item-left">
                           <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
                           <h4>
-                              <a href="/2019/11/21/Javascript%E7%AF%87%E7%AB%A0%E4%BA%8C/" rel="prev" title="Javascript篇章二：js计算精度丢失">
+                              <a href="/2019/11/22/Javascript%E7%AF%87%E7%AB%A0%E4%B8%89/" rel="prev" title="Javascript篇章三：常用函数">
                                 
-                                    Javascript篇章二：js计算精度丢失
+                                    Javascript篇章三：常用函数
                                 
                               </a>
                           </h4>
                           
                               
                               <h6 class="tags">
-                                  <a class="tag" href="/tags/js%E7%B2%BE%E7%A1%AE%E5%BA%A6%E4%B8%A2%E5%A4%B1/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> js精确度丢失</a>
+                                  <a class="tag" href="/tags/%E5%AF%B9%E8%B1%A1/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 对象</a> <a class="tag" href="/tags/%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 属性与方法</a>
                               </h6>
                           
                       </span>
@@ -949,7 +1040,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-js的变量及数据类型"><span class="toc-text">1. js的变量及数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-js数据类型"><span class="toc-text">2. js数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-js的对象"><span class="toc-text">3. js的对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-js字符串"><span class="toc-text">4. js字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-js对url进行编码和解码"><span class="toc-text">5. js对url进行编码和解码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-变量及命名规范"><span class="toc-text">1. 变量及命名规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-基本数据类型"><span class="toc-text">2. 基本数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-字符串"><span class="toc-text">3. 字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-对象"><span class="toc-text">4. 对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-数值"><span class="toc-text">5. 数值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-数组"><span class="toc-text">6. 数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
     </div>
   </section>
 
@@ -1188,7 +1279,7 @@
         
           <li><a class="flat-box" title="/categories/docker/" href="/categories/docker/"><div class='name'>docker</div><div class='badge'>(4)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/javascript/" href="/categories/javascript/"><div class='name'>javascript</div><div class='badge'>(12)</div></a></li>
+          <li><a class="flat-box" title="/categories/javascript/" href="/categories/javascript/"><div class='name'>javascript</div><div class='badge'>(8)</div></a></li>
         
           <li><a class="flat-box" title="/categories/json/" href="/categories/json/"><div class='name'>json</div><div class='badge'>(2)</div></a></li>
         
@@ -1254,7 +1345,7 @@
 </header>
 
     <div class='content material'>
-      <a href="/tags/DDL/" style="font-size: 14px; color: #999">DDL</a> <a href="/tags/DML/" style="font-size: 14px; color: #999">DML</a> <a href="/tags/Django/" style="font-size: 20.67px; color: #6c6c6c">Django</a> <a href="/tags/Eval/" style="font-size: 14px; color: #999">Eval</a> <a href="/tags/Github-Page/" style="font-size: 14px; color: #999">Github Page</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/InnoDB/" style="font-size: 14px; color: #999">InnoDB</a> <a href="/tags/Java/" style="font-size: 24px; color: #555">Java</a> <a href="/tags/Jquery/" style="font-size: 14px; color: #999">Jquery</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Maven/" style="font-size: 14px; color: #999">Maven</a> <a href="/tags/Memcached/" style="font-size: 14px; color: #999">Memcached</a> <a href="/tags/MySQL/" style="font-size: 20.67px; color: #6c6c6c">MySQL</a> <a href="/tags/Oracle/" style="font-size: 15.67px; color: #8e8e8e">Oracle</a> <a href="/tags/RSA/" style="font-size: 14px; color: #999">RSA</a> <a href="/tags/Redis/" style="font-size: 17.33px; color: #828282">Redis</a> <a href="/tags/Requests/" style="font-size: 14px; color: #999">Requests</a> <a href="/tags/ThinkPHP/" style="font-size: 15.67px; color: #8e8e8e">ThinkPHP</a> <a href="/tags/Vue/" style="font-size: 17.33px; color: #828282">Vue</a> <a href="/tags/apache/" style="font-size: 14px; color: #999">apache</a> <a href="/tags/blog%E6%94%B9%E7%89%88/" style="font-size: 14px; color: #999">blog改版</a> <a href="/tags/clone/" style="font-size: 14px; color: #999">clone</a> <a href="/tags/component/" style="font-size: 14px; color: #999">component</a> <a href="/tags/css/" style="font-size: 20.67px; color: #6c6c6c">css</a> <a href="/tags/database/" style="font-size: 14px; color: #999">database</a> <a href="/tags/docker/" style="font-size: 19px; color: #777">docker</a> <a href="/tags/echarts/" style="font-size: 14px; color: #999">echarts</a> <a href="/tags/fetchall/" style="font-size: 14px; color: #999">fetchall()</a> <a href="/tags/fetchone/" style="font-size: 14px; color: #999">fetchone()</a> <a href="/tags/float/" style="font-size: 14px; color: #999">float</a> <a href="/tags/front-matter/" style="font-size: 14px; color: #999">front-matter</a> <a href="/tags/git/" style="font-size: 14px; color: #999">git</a> <a href="/tags/git-pull-push/" style="font-size: 14px; color: #999">git pull/push</a> <a href="/tags/html/" style="font-size: 15.67px; color: #8e8e8e">html</a> <a href="/tags/index/" style="font-size: 14px; color: #999">index</a> <a href="/tags/jQuery/" style="font-size: 14px; color: #999">jQuery</a> <a href="/tags/js/" style="font-size: 20.67px; color: #6c6c6c">js</a> <a href="/tags/json/" style="font-size: 15.67px; color: #8e8e8e">json</a> <a href="/tags/js%E7%B2%BE%E7%A1%AE%E5%BA%A6%E4%B8%A2%E5%A4%B1/" style="font-size: 14px; color: #999">js精确度丢失</a> <a href="/tags/lambda/" style="font-size: 14px; color: #999">lambda</a> <a href="/tags/margin/" style="font-size: 14px; color: #999">margin</a> <a href="/tags/matplotlib/" style="font-size: 15.67px; color: #8e8e8e">matplotlib</a> <a href="/tags/mysql/" style="font-size: 15.67px; color: #8e8e8e">mysql</a> <a href="/tags/nginx/" style="font-size: 15.67px; color: #8e8e8e">nginx</a> <a href="/tags/numpy/" style="font-size: 15.67px; color: #8e8e8e">numpy</a> <a href="/tags/pandas/" style="font-size: 14px; color: #999">pandas</a> <a href="/tags/php/" style="font-size: 14px; color: #999">php</a> <a href="/tags/push/" style="font-size: 14px; color: #999">push</a> <a href="/tags/python/" style="font-size: 22.33px; color: #606060">python</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/union/" style="font-size: 14px; color: #999">union</a> <a href="/tags/vue-cli/" style="font-size: 17.33px; color: #828282">vue-cli</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/%E5%89%8D%E5%90%8E%E5%88%86%E7%A6%BB/" style="font-size: 14px; color: #999">前后分离</a> <a href="/tags/%E5%A4%8D%E6%9D%82%E5%BA%A6/" style="font-size: 14px; color: #999">复杂度</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 14px; color: #999">多线程</a> <a href="/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8B/" style="font-size: 14px; color: #999">多进程</a> <a href="/tags/%E5%AE%9A%E4%BD%8D%E7%85%A7%E7%89%87%E6%8B%8D%E6%91%84%E4%BD%8D%E7%BD%AE/" style="font-size: 14px; color: #999">定位照片拍摄位置</a> <a href="/tags/%E5%AF%B9%E8%B1%A1/" style="font-size: 14px; color: #999">对象</a> <a href="/tags/%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">属性与方法</a> <a href="/tags/%E5%B8%B8%E8%A7%81%E5%BA%93/" style="font-size: 14px; color: #999">常见库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 14px; color: #999">数据类型</a> <a href="/tags/%E6%9E%81%E9%AA%8C%E6%BB%91%E5%8A%A8/" style="font-size: 14px; color: #999">极验滑动</a> <a href="/tags/%E8%A3%85%E9%A5%B0%E5%99%A8/" style="font-size: 14px; color: #999">装饰器</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%BA%93/" style="font-size: 14px; color: #999">解析库</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 14px; color: #999">负载均衡</a> <a href="/tags/%E9%80%86%E5%90%91%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">逆向爬虫</a> <a href="/tags/%E9%80%89%E6%8B%A9%E5%99%A8/" style="font-size: 14px; color: #999">选择器</a> <a href="/tags/%E9%80%9A%E7%94%A8%E8%BF%9E%E6%8E%A5/" style="font-size: 14px; color: #999">通用连接</a>
+      <a href="/tags/DDL/" style="font-size: 14px; color: #999">DDL</a> <a href="/tags/DML/" style="font-size: 14px; color: #999">DML</a> <a href="/tags/Django/" style="font-size: 20.67px; color: #6c6c6c">Django</a> <a href="/tags/Github-Page/" style="font-size: 14px; color: #999">Github Page</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/InnoDB/" style="font-size: 14px; color: #999">InnoDB</a> <a href="/tags/Java/" style="font-size: 24px; color: #555">Java</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Maven/" style="font-size: 14px; color: #999">Maven</a> <a href="/tags/Memcached/" style="font-size: 14px; color: #999">Memcached</a> <a href="/tags/MySQL/" style="font-size: 20.67px; color: #6c6c6c">MySQL</a> <a href="/tags/Oracle/" style="font-size: 15.67px; color: #8e8e8e">Oracle</a> <a href="/tags/Redis/" style="font-size: 17.33px; color: #828282">Redis</a> <a href="/tags/Requests/" style="font-size: 14px; color: #999">Requests</a> <a href="/tags/ThinkPHP/" style="font-size: 15.67px; color: #8e8e8e">ThinkPHP</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a> <a href="/tags/apache/" style="font-size: 14px; color: #999">apache</a> <a href="/tags/blog%E6%94%B9%E7%89%88/" style="font-size: 14px; color: #999">blog改版</a> <a href="/tags/css/" style="font-size: 20.67px; color: #6c6c6c">css</a> <a href="/tags/database/" style="font-size: 14px; color: #999">database</a> <a href="/tags/docker/" style="font-size: 19px; color: #777">docker</a> <a href="/tags/echarts/" style="font-size: 14px; color: #999">echarts</a> <a href="/tags/fetchall/" style="font-size: 14px; color: #999">fetchall()</a> <a href="/tags/fetchone/" style="font-size: 14px; color: #999">fetchone()</a> <a href="/tags/float/" style="font-size: 14px; color: #999">float</a> <a href="/tags/front-matter/" style="font-size: 14px; color: #999">front-matter</a> <a href="/tags/git/" style="font-size: 14px; color: #999">git</a> <a href="/tags/git-pull-push/" style="font-size: 14px; color: #999">git pull/push</a> <a href="/tags/html/" style="font-size: 15.67px; color: #8e8e8e">html</a> <a href="/tags/index/" style="font-size: 14px; color: #999">index</a> <a href="/tags/javascript/" style="font-size: 14px; color: #999">javascript</a> <a href="/tags/js/" style="font-size: 19px; color: #777">js</a> <a href="/tags/json/" style="font-size: 15.67px; color: #8e8e8e">json</a> <a href="/tags/lambda/" style="font-size: 14px; color: #999">lambda</a> <a href="/tags/margin/" style="font-size: 14px; color: #999">margin</a> <a href="/tags/matplotlib/" style="font-size: 15.67px; color: #8e8e8e">matplotlib</a> <a href="/tags/mysql/" style="font-size: 15.67px; color: #8e8e8e">mysql</a> <a href="/tags/nginx/" style="font-size: 15.67px; color: #8e8e8e">nginx</a> <a href="/tags/numpy/" style="font-size: 15.67px; color: #8e8e8e">numpy</a> <a href="/tags/pandas/" style="font-size: 14px; color: #999">pandas</a> <a href="/tags/php/" style="font-size: 14px; color: #999">php</a> <a href="/tags/python/" style="font-size: 22.33px; color: #606060">python</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/union/" style="font-size: 14px; color: #999">union</a> <a href="/tags/vue/" style="font-size: 14px; color: #999">vue</a> <a href="/tags/vue-cli/" style="font-size: 17.33px; color: #828282">vue-cli</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/%E5%89%8D%E5%90%8E%E5%88%86%E7%A6%BB/" style="font-size: 14px; color: #999">前后分离</a> <a href="/tags/%E5%A4%8D%E6%9D%82%E5%BA%A6/" style="font-size: 14px; color: #999">复杂度</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 14px; color: #999">多线程</a> <a href="/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8B/" style="font-size: 14px; color: #999">多进程</a> <a href="/tags/%E5%AE%9A%E4%BD%8D%E7%85%A7%E7%89%87%E6%8B%8D%E6%91%84%E4%BD%8D%E7%BD%AE/" style="font-size: 14px; color: #999">定位照片拍摄位置</a> <a href="/tags/%E5%AF%B9%E8%B1%A1/" style="font-size: 14px; color: #999">对象</a> <a href="/tags/%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">属性与方法</a> <a href="/tags/%E5%B8%B8%E8%A7%81%E5%BA%93/" style="font-size: 14px; color: #999">常见库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 14px; color: #999">数据类型</a> <a href="/tags/%E6%9E%81%E9%AA%8C%E6%BB%91%E5%8A%A8/" style="font-size: 14px; color: #999">极验滑动</a> <a href="/tags/%E8%A3%85%E9%A5%B0%E5%99%A8/" style="font-size: 14px; color: #999">装饰器</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%BA%93/" style="font-size: 14px; color: #999">解析库</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 14px; color: #999">负载均衡</a> <a href="/tags/%E9%80%86%E5%90%91%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">逆向爬虫</a> <a href="/tags/%E9%80%89%E6%8B%A9%E5%99%A8/" style="font-size: 14px; color: #999">选择器</a> <a href="/tags/%E9%80%9A%E7%94%A8%E8%BF%9E%E6%8E%A5/" style="font-size: 14px; color: #999">通用连接</a>
     </div>
   </section>
 
