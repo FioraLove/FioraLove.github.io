@@ -434,18 +434,24 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @vue/cli </span><br><span class="line">yarn global add @vue/cli</span><br></pre></td></tr></table></figure>
 
 <ol start="4">
-<li>检查vue版本</li>
+<li><p>检查vue版本：<strong>vue -V</strong></p>
+</li>
+<li><p>npm安装时-S -D作用及区别</p>
+</li>
 </ol>
-<p><strong>vue -V</strong></p>
-<ol start="5">
-<li><strong>npm安装时-S -D作用及区别</strong></li>
-</ol>
-<p>-S：即save（保存）包名会被注册在package.json的dependencies里面，在生产环境下这个包的依赖依然存在</p>
-<p>-D：dev（生产）包名会被注册在package.json的devDependencies里面，仅在开发环境下存在的包用-D，如babel，sass-loader这些解析器</p>
 <ul>
-<li>啥也不写：包名不会进入package.json里面，因此别人不知道你安装了这个包（…智障）</li>
+<li><p>-S：即save（保存）包名会被注册在package.json的dependencies里面，在生产环境下这个包的依赖依然存在</p>
+</li>
+<li><p>-D：dev（生产）包名会被注册在package.json的devDependencies里面，仅在开发环境下存在的包用-D，如babel，sass-loader这些解析器</p>
+</li>
+</ul>
+<ul>
+<li>啥也不写：包名不会进入package.json里面，因此别人不知道你安装了这个包</li>
 </ul>
 <p>但是<code>npm install axios</code> 也不存在后缀，经测试会在vue-cli安装在package.json的dependencies里面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">node执行目标js文件</span><br><span class="line">1. 进入到目标文件路径</span><br><span class="line">2. 执行命令 node 文件名.js</span><br><span class="line"></span><br><span class="line">e.g,: C:\Users\CHD\Desktop&gt;node hello.js</span><br></pre></td></tr></table></figure>
+
+
 <h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><blockquote>
 <p>vue create 搭建新项目</p>
 </blockquote>
@@ -538,10 +544,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-06-09T16:23:40+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-30T19:06:10+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2021年6月9日</p>
+    <p>更新于 2021年8月30日</p>
   </a>
 </div>
 
