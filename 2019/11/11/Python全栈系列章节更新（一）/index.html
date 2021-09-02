@@ -465,7 +465,7 @@
 <p>str[a:b:c] 切片操作(左闭右开)</p>
 </blockquote>
 <p>[a:b:c]：a表示为索引起始位置（索引以0开始）；b表示为索引结束位置；c表示为跳跃间隔<br>案例如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; test=&quot;1234hello-world56789&quot;</span><br><span class="line">&gt;&gt;&gt; type(test)</span><br><span class="line">&lt;class &apos;str&apos;&gt;</span><br><span class="line">&gt;&gt;&gt; test[:]</span><br><span class="line">&apos;1234hello-world56789&apos;</span><br><span class="line">&gt;&gt;&gt; test[0:1]</span><br><span class="line">&apos;1&apos;</span><br><span class="line">&gt;&gt;&gt; test[0:2]</span><br><span class="line">&apos;12&apos;</span><br><span class="line">&gt;&gt;&gt; test[0:5:2]</span><br><span class="line">&apos;13h&apos;</span><br><span class="line">&gt;&gt;&gt; test[0:5]</span><br><span class="line">&apos;1234h&apos;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; test=&quot;1234hello-world56789&quot;</span><br><span class="line">&gt;&gt;&gt; type(test)</span><br><span class="line">&lt;class &apos;str&apos;&gt;</span><br><span class="line">&gt;&gt;&gt; test[:]</span><br><span class="line">&apos;1234hello-world56789&apos;</span><br><span class="line">&gt;&gt;&gt; test[0:1]</span><br><span class="line">&apos;1&apos;</span><br><span class="line">&gt;&gt;&gt; test[0:5:2]</span><br><span class="line">&apos;13h&apos;</span><br><span class="line">&gt;&gt;&gt; test[0:5]</span><br><span class="line">&apos;1234h&apos;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>string.capitalize()</p>
@@ -558,11 +558,9 @@
 </tr>
 </tbody></table>
 <hr>
-<font color=#ed1941>2019-12-2 新增：
-数组拆分：将一个含有m个数目的数组拆分成每n个一组，剩下的构成一个新数组
-</font>
+常见案例：列表拆分，列表破开
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将obj数组分割成每100个一组</span></span><br><span class="line">numbers=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,...,<span class="number">10000</span>]</span><br><span class="line">number =[]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(numbers), <span class="number">100</span>):</span><br><span class="line">    number.append(numbers[i:i + <span class="number">100</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将obj数组分割成每100个一组</span></span><br><span class="line">numbers=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,...,<span class="number">10000</span>]</span><br><span class="line">number =[]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(numbers), <span class="number">100</span>):</span><br><span class="line">    number.append(numbers[i:i + <span class="number">100</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列表破开平叠（递归）</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">flatten</span><span class="params">(arr)</span>:</span></span><br><span class="line">    res = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> arr:</span><br><span class="line">        <span class="keyword">if</span> isinstance(i, list):</span><br><span class="line">            <span class="comment"># 递归破开数组</span></span><br><span class="line">            res.extend(flatten(i))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            res.append(i)</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">target_list = [[<span class="number">12</span>, <span class="number">5</span>, <span class="number">6</span>], <span class="number">2</span>, <span class="number">6</span>, [<span class="number">13</span>], [<span class="number">66</span>, [[<span class="number">1</span>, <span class="number">0</span>]]], <span class="number">99</span>]</span><br><span class="line">result = flatten(arr=target_list)</span><br><span class="line"><span class="comment"># [12, 5, 6, 2, 6, 13, 66, 1, 0, 99]</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>列表的list.remove(obj)使用说明：</strong><br>移除列表的指定的某一项（PS：不是索引，是具体的值）</p>
 <pre>
@@ -636,11 +634,7 @@ a = [1, 2, 3, 10, 56, 110]
 </tr>
 </thead>
 <tbody><tr>
-<td>cmp(dict1, dict2)</td>
-<td align="center">比较字典元素值：如果两个字典的元素相同返回0，如果字典dict1大于字典dict2返回1，如果字典dict1小于字典dict2返回-1</td>
-</tr>
-<tr>
-<td>len()</td>
+<td>len(dict)</td>
 <td align="center">计算字典元素个数，即键的总数</td>
 </tr>
 <tr>
@@ -660,8 +654,12 @@ a = [1, 2, 3, 10, 56, 110]
 <td align="center">将字典的键值一一对应组合成一个元组，以列表的形式返回值</td>
 </tr>
 <tr>
-<td>dict.pop(key[,default])</td>
-<td align="center">删除字典给定键 key 所对应的值，返回值为被删除的值。key值必须给出。否则，返回default值。</td>
+<td>dict1.update(dict2)</td>
+<td align="center">合并字典，将dict2合并至dict1,键名相同时，会覆盖原值</td>
+</tr>
+<tr>
+<td>dict.pop(key)</td>
+<td align="center">删除字典给定键key所对应的值，返回值为被删除的值，key不可为空</td>
 </tr>
 </tbody></table>
 <p>拓：<a href="https://blog.csdn.net/qq_35178391/article/details/92836766" target="_blank" rel="noopener">Python遍历字典，获得字典键、值的函数</a>有：items/ iteritems/ keys/ iterkeys/ values/ itervalues</p>
@@ -681,8 +679,6 @@ a = [1, 2, 3, 10, 56, 110]
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> a_dict.keys():</span><br><span class="line">    <span class="keyword">print</span> k, a_dict[k]</span><br><span class="line"></span><br><span class="line">lang python</span><br><span class="line">website www.it.com</span><br><span class="line">name sir</span><br><span class="line">email sir@ gmail.com</span><br></pre></td></tr></table></figure>
 
-
-
 <h3 id="5-Number"><a href="#5-Number" class="headerlink" title="5.Number"></a>5.Number</h3><p>Python3 支持 int、float、bool、complex（复数）等数字类型。<br>对数字类型常见的操作为：</p>
 <ul>
 <li>数字类型转换：int(x),float(x),complex(x,y)表示将x转换为相应的数据类型</li>
@@ -693,7 +689,7 @@ a = [1, 2, 3, 10, 56, 110]
 </ul>
 <h3 id="6-集合"><a href="#6-集合" class="headerlink" title="6.集合"></a>6.集合</h3><p>集合set是一个无序的不重复的序列，可以使用大括号<code>{}</code>或者<code>set()</code>函数创建集合。<em>创建一个空集合必须用 set() 而不是 { }，因为 { } 是用来创建一个空字典</em></p>
 <p>创建格式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">param = &#123;&apos;apple&apos;,&apos;orange&apos;,&apos;pear&apos;&#125;</span><br><span class="line">或者</span><br><span class="line">set((&quot;Google&quot;, &quot;Runoob&quot;, &quot;Taobao&quot;))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">param = &#123;&apos;apple&apos;,&apos;orange&apos;,&apos;pear&apos;&#125;</span><br><span class="line">或者</span><br><span class="line">set((&quot;Google&quot;, &quot;Runoob&quot;, &quot;Taobao&quot;))</span><br><span class="line"></span><br><span class="line">因为集合的不重复性，也可用来去重：</span><br><span class="line">&gt;&gt;&gt; basket = &#123;&apos;apple&apos;, &apos;orange&apos;, &apos;apple&apos;, &apos;pear&apos;, &apos;orange&apos;&#125;</span><br><span class="line">&gt;&gt;&gt; print(basket)                      # 这里演示的是去重功能</span><br><span class="line">&#123;&apos;orange&apos;, &apos;pear&apos;, &apos;apple&apos;&#125;</span><br><span class="line">&gt;&gt;&gt; &apos;orange&apos; in basket                 # 快速判断元素是否在集合内</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; &apos;crabgrass&apos; in basket</span><br><span class="line">False</span><br></pre></td></tr></table></figure>
 
 <p>集合的基本操作：</p>
 <ol>
@@ -702,7 +698,10 @@ a = [1, 2, 3, 10, 56, 110]
 <li>pop()：随机删除集合中的一个元素</li>
 <li>len():计算集合的元素个数</li>
 <li>in：判断元素是否在集合中存在</li>
+<li>集合之间的运算（并集，交集，补集）</li>
 </ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a = set(&apos;abracadabra&apos;)</span><br><span class="line">&gt;&gt;&gt; b = set(&apos;alacazam&apos;)</span><br><span class="line">&gt;&gt;&gt; a                                  </span><br><span class="line">&#123;&apos;a&apos;, &apos;r&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;&#125;</span><br><span class="line">&gt;&gt;&gt; a - b     # 集合a中包含而集合b中不包含的元素</span><br><span class="line">&#123;&apos;r&apos;, &apos;d&apos;, &apos;b&apos;&#125;</span><br><span class="line">&gt;&gt;&gt; a | b    # 集合a或b中包含的所有元素</span><br><span class="line">&#123;&apos;a&apos;, &apos;c&apos;, &apos;r&apos;, &apos;d&apos;, &apos;b&apos;, &apos;m&apos;, &apos;z&apos;, &apos;l&apos;&#125;</span><br><span class="line">&gt;&gt;&gt; a &amp; b   # 集合a和b中都包含了的元素</span><br><span class="line">&#123;&apos;a&apos;, &apos;c&apos;&#125;</span><br><span class="line">&gt;&gt;&gt; a ^ b   # 不同时包含于a和b的元素</span><br><span class="line">&#123;&apos;r&apos;, &apos;d&apos;, &apos;b&apos;, &apos;m&apos;, &apos;z&apos;, &apos;l&apos;&#125;</span><br></pre></td></tr></table></figure>
+
 <h3 id="7-直接赋值，浅拷贝和深拷贝"><a href="#7-直接赋值，浅拷贝和深拷贝" class="headerlink" title="7.直接赋值，浅拷贝和深拷贝"></a>7.直接赋值，浅拷贝和深拷贝</h3><ul>
 <li><p>直接赋值：其实就是对象的引用（别名）。</p>
 </li>
@@ -771,10 +770,10 @@ a = [1, 2, 3, 10, 56, 110]
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-07-31T11:18:26+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-09-02T10:58:23+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2021年7月31日</p>
+    <p>更新于 2021年9月2日</p>
   </a>
 </div>
 
