@@ -427,38 +427,26 @@
 
 <p>线程顾名思义，就是一条流水线工作的过程（流水线的工作需要电源，电源就相当于cpu），而一条流水线必须属于一个车间，一个车间的工作过程是一个进程，车间负责把资源整合到一起，是一个资源单位，而一个车间内至少有一条流水线。<br>所以，<font color=#ef4136>进程只是用来把资源集中到一起（进程只是一个资源单位，或者说资源调度集合），而线程才是cpu上的执行单位</font></p>
 <h3 id="1-线程与进程的区别"><a href="#1-线程与进程的区别" class="headerlink" title="1.线程与进程的区别"></a>1.线程与进程的区别</h3><p>1、每启动一个进程，进程内都至少有一个线程。</p>
-<p>2、进程本身只是一个资源调度集合，并不能真正执行，进程内开的线程才是真正的运行单位。</p>
+<p>2、进程本身只是一个资源调度集合，并不能真正执行，进程内的线程才是真正的运行单位。</p>
 <p>3、一个进程内可以启动多个线程，同一进程内线程间共享资源。</p>
 <p><font color=#ef4136>4、启动线程的开销远远小于开进程。</font></p>
 <p>5、线程可以相当程度控制相同进程下的线程，进程只能控制其子进程。</p>
-<p>6、对主线程的更改（取消、优先级更改等）可能会进程的其他线程的行为；对父进程的修改则不会影响子进程。</p>
+<p>6、对主线程的更改（取消、优先级更改等）可能会影响其他线程的行为，对父进程的修改则不会影响子进程。</p>
 <p>7、进程之间是竞争关系，线程之间是协作关系</p>
 <h3 id="2-为何会选择多线程？"><a href="#2-为何会选择多线程？" class="headerlink" title="2.为何会选择多线程？"></a>2.为何会选择多线程？</h3><ul>
 <li>同一个进程内的多个线程共享该进程内的地址资源</li>
 <li>线程比进程更轻量级，线程比进程更容易创建可撤销</li>
 </ul>
 <p><strong>join方法：join 会卡住主线程，并让当前已经 start 的子线程继续运行，直到调用.join的这个线程运行完毕</strong></p>
-<h3 id="3-创建线程的方式★★★"><a href="#3-创建线程的方式★★★" class="headerlink" title="3.创建线程的方式★★★"></a>3.创建线程的方式★★★</h3><p>Python创建多线程主要有如下两种方法：</p>
-<ul>
-<li>函数</li>
-<li>类</li>
-</ul>
-<blockquote>
-<p>学会使用函数创建</p>
-</blockquote>
-<p>在Python3中，Python提供了一个内置模块 <code>threading.Thread</code>，可以很方便地让我们创建多线程。</p>
-<p>threading.Thread() 一般接收两个参数：</p>
+<h3 id="3-创建线程的方式★★★"><a href="#3-创建线程的方式★★★" class="headerlink" title="3.创建线程的方式★★★"></a>3.创建线程的方式★★★</h3><p>Python创建多线程主要有两种方法：<strong>函数式，类创建</strong></p>
+<h4 id="函数式创建"><a href="#函数式创建" class="headerlink" title="函数式创建"></a>函数式创建</h4><p>在Python3中，Python提供了一个内置模块 <code>threading.Thread</code>，可以很方便地让我们创建多线程。threading.Thread() 一般接收两个参数：</p>
 <ul>
 <li>线程函数名：要放置线程让其后台执行的函数，由我们自已定义，注意不要加()；</li>
-<li>线程函数的参数：线程函数名所需的参数，以元组的形式传入。若不需要参数，可以不指定</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> threading <span class="keyword">import</span> Thread, currentThread</span><br><span class="line"><span class="comment"># 简单多线程，解释：</span></span><br><span class="line"><span class="comment"># 1）一个工人只做一个任务，做完就撤了；</span></span><br><span class="line"><span class="comment"># 2）有多少个任务就得有多少个工人；</span></span><br><span class="line"><span class="comment"># 3）这个方式处理任务需要快，但人员成本开销高。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">task</span><span class="params">(taskId)</span>:</span></span><br><span class="line">    thread_name = currentThread().getName()</span><br><span class="line">    print(<span class="string">'工人【%s】正在处理任务【%d】：do something...'</span> % (thread_name, taskId))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    threads = []</span><br><span class="line">    <span class="comment"># 这里弄5个线程（一个线程相当于一个工人）</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">        <span class="comment"># target 参数指定线程要处理的任务函数，args 参数传递参数到任务函数去</span></span><br><span class="line">        t = Thread(target=task, args=(i+<span class="number">1</span>,))</span><br><span class="line">        threads.append(t)</span><br><span class="line">    <span class="comment"># 启动线程</span></span><br><span class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> threads:</span><br><span class="line">        t.start()</span><br><span class="line">    <span class="comment"># 阻塞线程</span></span><br><span class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> threads:</span><br><span class="line">        t.join()</span><br></pre></td></tr></table></figure>
+<li>线程函数的参数：线程函数名所需的参数，以元组的形式传入。若不需要参数，可以不指定<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> threading <span class="keyword">import</span> Thread, currentThread</span><br><span class="line"><span class="comment"># 简单多线程，解释：</span></span><br><span class="line"><span class="comment"># 1）一个工人只做一个任务，做完就撤了；</span></span><br><span class="line"><span class="comment"># 2）有多少个任务就得有多少个工人；</span></span><br><span class="line"><span class="comment"># 3）这个方式处理任务需要快，但人员成本开销高。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">task</span><span class="params">(taskId)</span>:</span></span><br><span class="line">    thread_name = currentThread().getName()</span><br><span class="line">    print(<span class="string">'工人【%s】正在处理任务【%d】：do something...'</span> % (thread_name, taskId))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    threads = []</span><br><span class="line">    <span class="comment"># 这里弄5个线程（一个线程相当于一个工人）</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">        <span class="comment"># target 参数指定线程要处理的任务函数，args 参数传递参数到任务函数去</span></span><br><span class="line">        t = Thread(target=task, args=(i+<span class="number">1</span>,))</span><br><span class="line">        threads.append(t)</span><br><span class="line">    <span class="comment"># 启动线程</span></span><br><span class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> threads:</span><br><span class="line">        t.start()</span><br><span class="line">    <span class="comment"># 阻塞线程</span></span><br><span class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> threads:</span><br><span class="line">        t.join()</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>使用类创建多线程</p>
-</blockquote>
-<p>相比较函数而言，使用类创建线程，会比较麻烦一点。</p>
-<p>首先，我们要自定义一个类，对于这个类有两点要求:</p>
+</li>
+</ul>
+<h4 id="类创建"><a href="#类创建" class="headerlink" title="类创建"></a>类创建</h4><p>相比较函数而言，使用类创建线程，会比较麻烦一点。首先，我们要自定义一个类，对于这个类有两点要求:</p>
 <ul>
 <li>必须继承 <code>threading.Thread</code> 这个父类</li>
 <li>必须覆写 <code>run</code> 方法</li>
@@ -482,13 +470,14 @@
 
 <h3 id="6-进程池和线程池"><a href="#6-进程池和线程池" class="headerlink" title="6.进程池和线程池"></a>6.进程池和线程池</h3><p>进程池和线程池的接口一模一样，用法也一样。池就是要对数目加以限制，保证机器一个可承受的范围，以一个健康的状态保证它的运行</p>
 <p>concurrent.futures   模块提供了高度封装的异步调用接口<br>ThreadPoolExecutor： 线程池，提供异步调用<br>ProcessPoolExecutor: 进程池，提供异步调用</p>
-<p>基本方法：<br>1、submit(fn, <em>args, *</em>kwargs)<br>异步提交任务</p>
-<p>2、map(func, *iterables, timeout=None, chunksize=1)<br>取代for循环submit的操作</p>
-<p>3、shutdown(wait=True)<br>相当于进程池的pool.close()+pool.join()操作<br>wait=True，等待池内所有任务执行完毕回收完资源后才继续<br>wait=False，立即返回，并不会等待池内的任务执行完毕<br>但不管wait参数为何值，整个程序都会等到所有任务执行完毕<br>submit和map必须在shutdown之前</p>
-<p>4、result(timeout=None)<br>取得结果</p>
-<p>5、add_done_callback(fn)<br>回调函数</p>
+<p>基本方法：</p>
+<p>1、submit(fn, <em>args, *</em>kwargs)异步提交任务</p>
+<p>2、map(func, *iterables, timeout=None, chunksize=1) 取代for循环submit的操作</p>
+<p>3、shutdown(wait=True) 相当于进程池的pool.close()+pool.join()操作<br>wait=True，等待池内所有任务执行完毕回收完资源后才继续<br>wait=False，立即返回，并不会等待池内的任务执行完毕<br><strong>但不管wait参数为何值，整个程序都会等到所有任务执行完毕，submit和map必须在shutdown之前</strong></p>
+<p>4、result(timeout=None) 取得结果</p>
+<p>5、add_done_callback(fn) 回调函数</p>
 <blockquote>
-<p>进程池</p>
+<p>线程池</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 线程池</span></span><br><span class="line"><span class="comment"># 解释：</span></span><br><span class="line"><span class="comment"># 1）一个工人同一时间只做一个任务，但做完一个任务可以接着做下一个任务；</span></span><br><span class="line"><span class="comment"># 2）可以分配多个任务给少量工人，减少人员成本开销。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">from</span> concurrent.futures <span class="keyword">import</span> ThreadPoolExecutor</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 任务</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">task</span><span class="params">(taskId)</span>:</span></span><br><span class="line">    thread_name = threading.current_thread().getName()</span><br><span class="line">    print(<span class="string">'工人【%s】正在处理任务【%d】：do something...'</span> % (thread_name, taskId))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 初始化线程池(商会)，定义好池里最多有几个工人</span></span><br><span class="line">    pool = ThreadPoolExecutor(max_workers=<span class="number">5</span>, thread_name_prefix=<span class="string">'自定义线程前缀名Thread'</span>)</span><br><span class="line">    <span class="comment"># 准备10个任务</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">        <span class="comment"># 提交任务到池子(商会)里（它会自动分配给工人）</span></span><br><span class="line">        pool.submit(task, i+<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 
@@ -499,7 +488,6 @@
 
 <h3 id="7-多线程，到底该设置多少个线程？"><a href="#7-多线程，到底该设置多少个线程？" class="headerlink" title="7.多线程，到底该设置多少个线程？"></a>7.多线程，到底该设置多少个线程？</h3><p>那我们如何分配线程？我们提供一个公式：</p>
 <p><font color=#d71345>最佳线程数目 = （（线程等待时间+线程CPU时间）/线程CPU时间 ）* CPU数目</font></p>
-<p>备注：这个公式也是前辈们分享的，当然之前看了淘宝前台系统优化实践的文章，和上面的公式很类似，不过在CPU数目那边，他们更细化了，上面的公式只是参考。不过不管什么公式，最终还是在生产环境中运行后，再优化调整。</p>
 <p>我们继续上面的任务，我们的服务器CPU核数为4核，一个任务线程cpu耗时为20ms，线程等待（网络IO、磁盘IO）耗时80ms，那最佳线程数目：( 80 + 20 )/20 * 4 = 20。也就是设置20个线程数最佳。</p>
 <p>从这个公式上面我们就得出，线程的等待时间越大，线程数就要设置越大，这个正好符合我们上面的分析，可提升CPU利用率。那从另一个角度上面说，线程数设置多大，是根据我们自身的业务的，需要自己去压力测试，设置一个合理的数值。</p>
 <blockquote>
@@ -530,8 +518,8 @@
 <li>Queue.qsize()：返回队列大小</li>
 <li>Queue.empty()：判断队列是否为空</li>
 <li>Queue.full()：判断队列是否满了</li>
-<li>Queue.get([block[,timeout]])：从队列头删除并返回一个item，<strong>block默认为True，表示当队列为空却去get的时候会阻塞线程，等待直到有item出现为止来get出这个item</strong>。如果是False的话表明当队列为空你却去get的时候，会引发异常。在block为True的情况下可以再设置timeout参数。表示当队列为空，get阻塞timeout指定的秒数之后还没有get到的话就引发Full异常</li>
-<li>Queue.put(item[,block[,timeout]])：向队尾插入一个item，同样<strong>若block=True的话队列满时就阻塞等待有空位出来再put</strong>，block=False时引发异常。同get的timeout，put的timeout是在block为True的时候进行超时设置的参数。</li>
+<li>Queue.get([block[,timeout]])：从队列头删除并返回一个item，当队列为空时继续执行get取值时就会引发异常</li>
+<li>Queue.put(item[,block[,timeout]])：向队尾插入一个item，同样若队列满时继续执行put填值时就会引发异常</li>
 <li>Queue.task_done()：从场景上来说，处理完一个get出来的item之后，调用task_done将向队列发出一个信号，表示本任务已经完成</li>
 <li>Queue.join()：监视所有item并阻塞主线程，直到所有item都调用了task_done之后主线程才继续向下执行。这么做的好处在于，假如一个线程开始处理最后一个任务，它从任务队列中拿走最后一个任务，此时任务队列就空了但最后那个线程还没处理完。当调用了join之后，主线程就不会因为队列空了而擅自结束，而是等待最后那个线程处理完成了。</li>
 <li>Queue.unfinished_tasks： 返回队列q.task_done()后的队列的大小</li>
@@ -541,7 +529,7 @@
 
 <h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
 <li><a href="https://www.jianshu.com/p/ab4a0a5895a2" target="_blank" rel="noopener">Python简单queue队列与多线程使用演示</a></li>
-<li><a href="https://www.cnblogs.com/ercilan/p/14245761.html" target="_blank" rel="noopener">Python 多线程控制台输出错乱</a></li>
+<li><a href="https://www.cnblogs.com/ercilan/p/14245761.html" target="_blank" rel="noopener">Python多线程控制台输出错乱</a></li>
 </ul>
 
       </div>
@@ -554,10 +542,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-09-02T17:09:42+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-09-06T17:01:19+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2021年9月2日</p>
+    <p>更新于 2021年9月6日</p>
   </a>
 </div>
 
@@ -790,7 +778,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-线程与进程的区别"><span class="toc-text">1.线程与进程的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-为何会选择多线程？"><span class="toc-text">2.为何会选择多线程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-创建线程的方式★★★"><span class="toc-text">3.创建线程的方式★★★</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-线程对象的属性和方法"><span class="toc-text">4.线程对象的属性和方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-守护线程"><span class="toc-text">5.守护线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-进程池和线程池"><span class="toc-text">6.进程池和线程池</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-多线程，到底该设置多少个线程？"><span class="toc-text">7.多线程，到底该设置多少个线程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-队列"><span class="toc-text">8.队列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-线程与进程的区别"><span class="toc-text">1.线程与进程的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-为何会选择多线程？"><span class="toc-text">2.为何会选择多线程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-创建线程的方式★★★"><span class="toc-text">3.创建线程的方式★★★</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#函数式创建"><span class="toc-text">函数式创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#类创建"><span class="toc-text">类创建</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-线程对象的属性和方法"><span class="toc-text">4.线程对象的属性和方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-守护线程"><span class="toc-text">5.守护线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-进程池和线程池"><span class="toc-text">6.进程池和线程池</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-多线程，到底该设置多少个线程？"><span class="toc-text">7.多线程，到底该设置多少个线程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-队列"><span class="toc-text">8.队列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
     </div>
   </section>
 

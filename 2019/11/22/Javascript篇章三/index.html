@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>Javascript篇章三：常用函数 | AhriLove</title>
+  <title>Javascript篇章三：基础知识 | AhriLove</title>
   
   
 
@@ -348,7 +348,7 @@
   
     <h1 class="title">
       <a href="/2019/11/22/Javascript%E7%AF%87%E7%AB%A0%E4%B8%89/">
-        Javascript篇章三：常用函数
+        Javascript篇章三：基础知识
       </a>
     </h1>
   
@@ -421,7 +421,7 @@
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
         <blockquote>
-<p>1.日期类<br>2.url编码和解码<br>3.进制转换<br>4.正则表达式<br>5.获取可视区域高度</p>
+<p>1.日期类<br>2.url编码和解码<br>3.进制转换<br>4.正则表达式</p>
 </blockquote>
 <a id="more"></a>
 <h3 id="1-日期"><a href="#1-日期" class="headerlink" title="1.日期"></a>1.日期</h3><p>var d = new Date(); 获取当前系统时间<br>d.getDate()/d.getFullYear()…</p>
@@ -525,11 +525,12 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 匹配从18到65年龄段所有的人</span></span><br><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/(18|19)|([2-5]\d)|(6[0-5])/</span>;</span><br><span class="line"><span class="built_in">console</span>.log(reg.test(<span class="string">"65"</span>));</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>str.match(reg) 如果匹配成功，就返回匹配成功的数组，如果匹配不成功，就返回null</p>
-</li>
-</ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">'abc123cba456aaa789'</span>;</span><br><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/\d+/g</span>;</span><br><span class="line"><span class="built_in">console</span>.log(reg.exec(str));</span><br><span class="line"><span class="comment">// ["123", index: 3, input: "abc123cba456aaa789"]</span></span><br><span class="line"><span class="built_in">console</span>.log(str.match(reg));</span><br><span class="line"><span class="comment">// ["123", "456", "789"]</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="5-js获取可视区域高度"><a href="#5-js获取可视区域高度" class="headerlink" title="5.js获取可视区域高度"></a>5.js获取可视区域高度</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">document.body.clientWidth ==&gt; BODY对象宽度</span><br><span class="line">document.body.clientHeight ==&gt; BODY对象高度</span><br><span class="line">document.documentElement.clientWidth ==&gt; 可见区域宽度</span><br><span class="line">document.documentElement.clientHeight ==&gt; 可见区域高度</span><br><span class="line">document.documentElement.scrollTop ==&gt; 滚动条垂直方向滚动距离</span><br><span class="line"></span><br><span class="line">网页可见区域宽： document.body.clientWidth</span><br><span class="line">网页可见区域高： document.body.clientHeight</span><br><span class="line">网页可见区域宽： document.body.offsetWidth (包括边线的宽)</span><br><span class="line">网页可见区域高： document.body.offsetHeight (包括边线的高)</span><br><span class="line">网页正文全文宽： document.body.scrollWidth</span><br><span class="line">网页正文全文高： document.body.scrollHeight</span><br><span class="line">网页被卷去的高： document.body.scrollTop</span><br><span class="line">网页被卷去的左： document.body.scrollLeft</span><br><span class="line">网页正文部分上： window.screenTop</span><br><span class="line">网页正文部分左： window.screenLeft</span><br><span class="line">屏幕分辨率的高： window.screen.height</span><br><span class="line">屏幕分辨率的宽： window.screen.width</span><br><span class="line">屏幕可用工作区高度： window.screen.availHeight</span><br><span class="line">屏幕可用工作区宽度： window.screen.availWidth</span><br><span class="line"></span><br><span class="line">HTML精确定位:</span><br><span class="line">scrollHeight: 获取对象的滚动高度。</span><br><span class="line">scrollLeft:设置或获取位于对象左边界和窗口中目前可见内容的最左端之间的距离</span><br><span class="line">scrollTop:设置或获取位于对象最顶端和窗口中可见内容的最顶端之间的距离</span><br><span class="line">scrollWidth:获取对象的滚动宽度</span><br><span class="line">offsetHeight:获取对象相对于版面或由父坐标 offsetParent 属性指定的父坐标的高度</span><br><span class="line">offsetLeft:获取对象相对于版面或由 offsetParent 属性指定的父坐标的计算左侧位置</span><br><span class="line">offsetTop:获取对象相对于版面或由 offsetTop 属性指定的父坐标的计算顶端位置</span><br><span class="line">event.clientX 相对文档的水平座标</span><br><span class="line">event.clientY 相对文档的垂直座标</span><br><span class="line">event.offsetX 相对容器的水平坐标</span><br><span class="line">event.offsetY 相对容器的垂直坐标</span><br><span class="line">event.clientX+document.documentElement.scrollTop 相对文档的水平座标+垂直方向滚动的量</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>举例说明：判断是否是mobile还是PC</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">IsPC</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">let</span> userAgentInfo = navigator.userAgent;</span><br><span class="line">     <span class="keyword">let</span> Agents = [<span class="string">"Android"</span>, <span class="string">"iPhone"</span>, <span class="string">"SymbianOS"</span>, <span class="string">"Windows Phone"</span>, <span class="string">"iPad"</span>, <span class="string">"iPod"</span>];</span><br><span class="line">     <span class="keyword">let</span> flag = <span class="literal">true</span>;</span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">let</span> v = <span class="number">0</span>; v &lt; Agents.length; v++) &#123;</span><br><span class="line">         <span class="keyword">if</span> (userAgentInfo.indexOf(Agents[v]) &gt; <span class="number">0</span>) &#123; flag = <span class="literal">false</span>; <span class="keyword">break</span>; &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> flag;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (<span class="regexp">/(iPhone|iPad|iPod|iOS)/i</span>.test(navigator.userAgent)) &#123;</span><br><span class="line">    <span class="comment">//alert(navigator.userAgent);  </span></span><br><span class="line">    <span class="built_in">window</span>.location.href =<span class="string">"iPhone.html"</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="regexp">/(Android)/i</span>.test(navigator.userAgent)) &#123;</span><br><span class="line">    <span class="comment">//alert(navigator.userAgent); </span></span><br><span class="line">    <span class="built_in">window</span>.location.href =<span class="string">"Android.html"</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">window</span>.location.href =<span class="string">"pc.html"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
 <li><a href="https://blog.csdn.net/chenlycly/article/details/51820727" target="_blank" rel="noopener">escape 编码URL特殊字符</a></li>
@@ -547,10 +548,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-09-01T09:15:35+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-09-11T09:18:16+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2021年9月1日</p>
+    <p>更新于 2021年9月11日</p>
   </a>
 </div>
 
@@ -572,8 +573,8 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/11/22/Javascript%E7%AF%87%E7%AB%A0%E4%B8%89/&title=Javascript篇章三：常用函数 | AhriLove&summary=
-1.日期类2.url编码和解码3.进制转换4.正则表达式5.获取可视区域高度
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/11/22/Javascript%E7%AF%87%E7%AB%A0%E4%B8%89/&title=Javascript篇章三：基础知识 | AhriLove&summary=
+1.日期类2.url编码和解码3.进制转换4.正则表达式
 "
           
           >
@@ -586,8 +587,8 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/11/22/Javascript%E7%AF%87%E7%AB%A0%E4%B8%89/&title=Javascript篇章三：常用函数 | AhriLove&summary=
-1.日期类2.url编码和解码3.进制转换4.正则表达式5.获取可视区域高度
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/11/22/Javascript%E7%AF%87%E7%AB%A0%E4%B8%89/&title=Javascript篇章三：基础知识 | AhriLove&summary=
+1.日期类2.url编码和解码3.进制转换4.正则表达式
 "
           
           >
@@ -600,8 +601,8 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/11/22/Javascript%E7%AF%87%E7%AB%A0%E4%B8%89/&title=Javascript篇章三：常用函数 | AhriLove&summary=
-1.日期类2.url编码和解码3.进制转换4.正则表达式5.获取可视区域高度
+          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/11/22/Javascript%E7%AF%87%E7%AB%A0%E4%B8%89/&title=Javascript篇章三：基础知识 | AhriLove&summary=
+1.日期类2.url编码和解码3.进制转换4.正则表达式
 "
           
           >
@@ -630,9 +631,9 @@
                       <span class="art-item-left">
                           <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
                           <h4>
-                              <a href="/2019/11/23/Javascript%E7%AF%87%E7%AB%A0%E5%9B%9B/" rel="prev" title="Javascript篇章四：事件">
+                              <a href="/2019/11/23/Javascript%E7%AF%87%E7%AB%A0%E5%9B%9B/" rel="prev" title="Javascript篇章四：浏览器对象模型BOM">
                                 
-                                    Javascript篇章四：事件
+                                    Javascript篇章四：浏览器对象模型BOM
                                 
                               </a>
                           </h4>
@@ -645,9 +646,9 @@
                       <span class="art-item-right" aria-hidden="true">
                           <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                           <h4>
-                              <a href="/2019/11/20/Javascript%E7%AF%87%E7%AB%A0%E4%B8%80/" rel="prev" title="Javascript篇章一：JavaScript基本知识">
+                              <a href="/2019/11/20/Javascript%E7%AF%87%E7%AB%A0%E4%B8%80/" rel="prev" title="Javascript篇章一：基本数据类型">
                                   
-                                      Javascript篇章一：JavaScript基本知识
+                                      Javascript篇章一：基本数据类型
                                   
                               </a>
                           </h4>
@@ -698,7 +699,7 @@
 
   <script>
     window.subData = {
-      title: 'Javascript篇章三：常用函数',
+      title: 'Javascript篇章三：基础知识',
       tools: true
     }
   </script>
@@ -778,7 +779,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-日期"><span class="toc-text">1.日期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-url编码和解码"><span class="toc-text">2. url编码和解码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-进制转换"><span class="toc-text">3.进制转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-正则表达式"><span class="toc-text">4.正则表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-js获取可视区域高度"><span class="toc-text">5.js获取可视区域高度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-日期"><span class="toc-text">1.日期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-url编码和解码"><span class="toc-text">2. url编码和解码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-进制转换"><span class="toc-text">3.进制转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-正则表达式"><span class="toc-text">4.正则表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
     </div>
   </section>
 

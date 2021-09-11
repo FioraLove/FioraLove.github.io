@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>Javascript篇章四：事件 | AhriLove</title>
+  <title>Javascript篇章四：浏览器对象模型BOM | AhriLove</title>
   
   
 
@@ -348,7 +348,7 @@
   
     <h1 class="title">
       <a href="/2019/11/23/Javascript%E7%AF%87%E7%AB%A0%E5%9B%9B/">
-        Javascript篇章四：事件
+        Javascript篇章四：浏览器对象模型BOM
       </a>
     </h1>
   
@@ -421,232 +421,108 @@
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
         <blockquote>
-<p>1.运算符☆☆<br>2.循环与跳出循环<br>3.浏览器对象window,navigator,Location<br>4.操作表单<br>5.Timing事件</p>
+<p>1.window<br>2.navigator<br>3.screen<br>4.location<br>5.history<br>6.弹出框<br>7.Timing事件<br>8.cookie与storage</p>
 </blockquote>
 <a id="more"></a>
-<h3 id="1-运算符"><a href="#1-运算符" class="headerlink" title="1.运算符"></a>1.运算符</h3><ol>
-<li>算术运算符</li>
-</ol>
-<ul>
-<li>+ - * / 加减乘除</li>
-<li>% 取余</li>
-<li>++ 自增</li>
-<li>-- 自减</li>
-</ul>
-<ol start="2">
-<li>赋值运算符</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>运算符</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>=</td>
-<td>简单赋值</td>
-</tr>
-<tr>
-<td>+=</td>
-<td>作和赋值</td>
-</tr>
-<tr>
-<td>-=</td>
-<td>作差赋值</td>
-</tr>
-<tr>
-<td>*=</td>
-<td>作乘赋值</td>
-</tr>
-<tr>
-<td>/=</td>
-<td>作除赋值</td>
-</tr>
-<tr>
-<td>%=</td>
-<td>取余赋值</td>
-</tr>
-</tbody></table>
-<ol start="3">
-<li>比较运算符</li>
-</ol>
-<ul>
-<li>== ：判断是否值相等</li>
-<li>=== ：判断值和数据类型是否相等</li>
-<li>！= ：不等于</li>
-<li>&gt; &lt; &gt;= &lt;= :基本判断</li>
-</ul>
-<ol start="4">
-<li>逻辑运算符</li>
-</ol>
-<ul>
-<li>&amp;&amp; ：逻辑与</li>
-<li>|| ：逻辑或</li>
-<li>！ ：逻辑非</li>
-</ul>
-<p><strong>在js逻辑运算中，0、&quot;&quot;、null、false、undefined、NaN都会判为false，其他都为true</strong></p>
-<ol start="5">
-<li>条件运算符</li>
-</ol>
-<p>(condition) ? value1 : value2 逻辑为真时，值为value1；逻辑为假时，同理 </p>
-<ol start="6">
-<li>位运算符</li>
-</ol>
-<p>位运算符工作于32位的数字上,任何数字操作都将转换为32位。结果会转换为JavaScript数字</p>
-<table>
-<thead>
-<tr>
-<th>运算符</th>
-<th>描述</th>
-<th>实例</th>
-<th>等同</th>
-<th>结果</th>
-<th>实际值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>&amp;</td>
-<td>AND</td>
-<td>x = 5 &amp; 1</td>
-<td>0101 &amp; 0001</td>
-<td>0001</td>
-<td>1</td>
-</tr>
-<tr>
-<td>竖线</td>
-<td>OR</td>
-<td>x = 5 竖线 1</td>
-<td>0101 竖线 0001</td>
-<td>0101</td>
-<td>5</td>
-</tr>
-<tr>
-<td>~</td>
-<td>取反</td>
-<td>x = ~ 5</td>
-<td>~0101</td>
-<td>1010</td>
-<td>-6</td>
-</tr>
-<tr>
-<td>^</td>
-<td>异或</td>
-<td>x = 5 ^ 1</td>
-<td>0101 ^ 0001</td>
-<td>0100</td>
-<td>4</td>
-</tr>
-<tr>
-<td>&lt;&lt;</td>
-<td>左移</td>
-<td>x = 5 &lt;&lt; 1</td>
-<td>0101 &lt;&lt; 1</td>
-<td>1010</td>
-<td>10</td>
-</tr>
-<tr>
-<td>&gt;&gt;</td>
-<td>右移</td>
-<td>x = 5 &gt;&gt; 1</td>
-<td>0101 &gt;&gt; 1</td>
-<td>0010</td>
-<td>2</td>
-</tr>
-</tbody></table>
-<p>常见几个短小却令人惊叹的 JavaScript 代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 随机数：Math.random()*1000|0 比 Math.floor() 写起来简单多了</span><br><span class="line">2. 判断奇偶性：222 % 2 == 0 还可以写成 (222 &amp; 1) == 0</span><br><span class="line">3. 取最近的偶数：(1111 | 1) - 1 结果为 1110，比写 if 判断奇偶再-1是不是更直接</span><br><span class="line">4. 除2取整：最基础Math.floor(5/2)，最快的方法 X&gt;&gt;1，起码可以提高60%运行效率+26%编程效率</span><br><span class="line">5. 向下取整: x &gt;&gt; 0 或者 ~~x 或者 x|0 均可以实现浮点数取整(等于Math.floor)</span><br></pre></td></tr></table></figure>
+<p>浏览器对象包括window、navigator、screen、location、history</p>
+<h3 id="1-window"><a href="#1-window" class="headerlink" title="1.window"></a>1.window</h3><p>所有浏览器都支持window对象，它代表浏览器的窗口。</p>
+<p>所有全局 JavaScript 对象，函数和变量自动成为 window 对象的成员。</p>
+<p>全局变量是window对象的属性，全局函数是window对象的方法，甚至（HTML DOM的）document对象也是 window 对象属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">window.document.getElementById(&quot;header&quot;);</span><br><span class="line">等同于：</span><br><span class="line">document.getElementById(&quot;header&quot;);</span><br></pre></td></tr></table></figure>
 
-<h3 id="2-循环与跳出循环"><a href="#2-循环与跳出循环" class="headerlink" title="2. 循环与跳出循环"></a>2. 循环与跳出循环</h3><blockquote>
-<p>条件判断</p>
-</blockquote>
-<p>if…else if…else if…else</p>
-<blockquote>
-<p>循环语句</p>
-</blockquote>
-<ol>
-<li>普通for循环</li>
-</ol>
-<p>for(let i=1;i&lt;=1000;i++){}</p>
-<ol start="2">
-<li>for-in循环</li>
-</ol>
-<p>for (key in items){ items[key] } for-in循环是为遍历对象而设计的，并不适用于遍历数组</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个js对象</span></span><br><span class="line"><span class="keyword">let</span> b = &#123;<span class="attr">name</span>: <span class="string">"chd"</span>, <span class="attr">age</span>: <span class="number">18</span>, <span class="attr">sex</span>: <span class="string">"man"</span>&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> index <span class="keyword">in</span> b)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(index+<span class="string">":"</span>+b[index]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 运行结果</span></span><br><span class="line"><span class="comment">name:chd</span></span><br><span class="line"><span class="comment">age:18</span></span><br><span class="line"><span class="comment">sex:man</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>forEach循环</li>
-</ol>
-<p>JavaScript5开始启用,回调函数中的value,index,array分别为值，索引，数组本身</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myArray = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="string">"hello world"</span>];</span><br><span class="line">myArray.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">value, index, array</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"索引："</span>+index+<span class="string">" =&gt; "</span>+value);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"数组本身："</span>+array);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 回调函数改为箭头函数（仅适用于ES6语法及以上）</span></span><br><span class="line">myArray.forEach(<span class="function">(<span class="params">value, index</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"索引："</span>+index+<span class="string">" =&gt; "</span>+value);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p><strong>forEach缺陷</strong>：不能中断循环(即不能使用break语句,continue语句或使用return语句)</p>
-<ol start="4">
-<li>for-of循环</li>
-</ol>
-<p>ES6新语法，适用于遍历可序列化数据结构，<strong>字符串、数组、Map、Set</strong></p>
-<p>for–of循环并不能直接使用在普通的对象上，但如果我们按对象所拥有的属性进行循环，可使用内置的Object.keys()方法</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> someObject = &#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">2</span>, <span class="attr">c</span>:<span class="number">3</span>&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">of</span> <span class="built_in">Object</span>.keys(someObject)) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(key + <span class="string">": "</span> + someObject[key]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>while循环</li>
-</ol>
-<p>while(true){} </p>
-<p>在循环体中，跳出循环常用三种：continue，break，return</p>
-<ol>
-<li>continue:无论在单层，多层循环中，都只会结束最里层循环中的本次循环</li>
-<li>break:无论在单层，多层循环中，都只会跳出最里层循环</li>
-<li>return:无论在单层，多层循环中，遇到return都会直接跳出函数，for循环后面的语句也不再执行</li>
-</ol>
-<h3 id="3-浏览器对象"><a href="#3-浏览器对象" class="headerlink" title="3.浏览器对象"></a>3.浏览器对象</h3><p>浏览器对象：window,navigator,screen,Location，document</p>
-<h4 id="window"><a href="#window" class="headerlink" title="window"></a>window</h4><p>window对象不仅充当全局作用域，而且表示浏览器的窗口</p>
 <p>常用事件：window.onresize()监听浏览器窗口高宽变化，注意要使用箭头函数</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// window.onresize()官方定义</span></span><br><span class="line"><span class="built_in">window</span>.onresize=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"浏览器窗口改变了!"</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-
-<p>window.event事件对象，例如触发event对象的元素、鼠标的位置及状态、按下的键等等。event对象只在事件发生的过程中才有效。event的某些属性只对特定的事件有意义</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通常写法</span></span><br><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">window</span>.onkeydown = <span class="function"><span class="keyword">function</span>(<span class="params">el</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> e = el || <span class="built_in">window</span>.event;</span><br><span class="line">    <span class="built_in">console</span>.log(e.keyCode);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="navigator"><a href="#navigator" class="headerlink" title="navigator"></a>navigator</h4><p>navigator对象表示浏览器信息：</p>
+<h3 id="2-navigator"><a href="#2-navigator" class="headerlink" title="2.navigator"></a>2.navigator</h3><p>window.navigator对象表示浏览器信息，可以不带window前缀</p>
 <p>navigator.appName：浏览器名称<br>navigator.appVersion：浏览器版本<br>navigator.language：浏览器设置的语言<br>navigator.platform：操作系统类型<br>navigator.userAgent：浏览器设定的User-Agent字符串<br>navigator.webdriver:返回浏览器是否被WebDriver驱动的布尔值（即判断是否是selenium控制爬虫程序）</p>
-<h4 id="screen"><a href="#screen" class="headerlink" title="screen"></a>screen</h4><p>screen表示屏幕信息：</p>
+<h3 id="3-screen"><a href="#3-screen" class="headerlink" title="3.screen"></a>3.screen</h3><p>window.screen表示屏幕信息，可以不带window前缀</p>
 <p>screen.width：屏幕宽度，以像素为单位<br>screen.height：屏幕高度，以像素为单位<br>screen.colorDepth：返回颜色位数，如8、16、24</p>
-<h4 id="Location"><a href="#Location" class="headerlink" title="Location"></a>Location</h4><p>Location对象表示当前页面的URL信息，即地址栏</p>
+<p>拓：获取可视区域高度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">document.body.clientWidth ==&gt; BODY对象宽度</span><br><span class="line">document.body.clientHeight ==&gt; BODY对象高度</span><br><span class="line">document.documentElement.clientWidth ==&gt; 可见区域宽度</span><br><span class="line">document.documentElement.clientHeight ==&gt; 可见区域高度</span><br><span class="line">document.documentElement.scrollTop ==&gt; 滚动条垂直方向滚动距离</span><br><span class="line"></span><br><span class="line">网页可见区域宽： document.body.clientWidth</span><br><span class="line">网页可见区域高： document.body.clientHeight</span><br><span class="line">网页可见区域宽： document.body.offsetWidth (包括边线的宽)</span><br><span class="line">网页可见区域高： document.body.offsetHeight (包括边线的高)</span><br><span class="line">网页正文全文宽： document.body.scrollWidth</span><br><span class="line">网页正文全文高： document.body.scrollHeight</span><br><span class="line">网页被卷去的高： document.body.scrollTop</span><br><span class="line">网页被卷去的左： document.body.scrollLeft</span><br><span class="line">网页正文部分上： window.screenTop</span><br><span class="line">网页正文部分左： window.screenLeft</span><br><span class="line">屏幕分辨率的高： window.screen.height</span><br><span class="line">屏幕分辨率的宽： window.screen.width</span><br><span class="line">屏幕可用工作区高度： window.screen.availHeight</span><br><span class="line">屏幕可用工作区宽度： window.screen.availWidth</span><br><span class="line"></span><br><span class="line">HTML精确定位:</span><br><span class="line">scrollHeight: 获取对象的滚动高度。</span><br><span class="line">scrollLeft:设置或获取位于对象左边界和窗口中目前可见内容的最左端之间的距离</span><br><span class="line">scrollTop:设置或获取位于对象最顶端和窗口中可见内容的最顶端之间的距离</span><br><span class="line">scrollWidth:获取对象的滚动宽度</span><br><span class="line">offsetHeight:获取对象相对于版面或由父坐标 offsetParent 属性指定的父坐标的高度</span><br><span class="line">offsetLeft:获取对象相对于版面或由 offsetParent 属性指定的父坐标的计算左侧位置</span><br><span class="line">offsetTop:获取对象相对于版面或由 offsetTop 属性指定的父坐标的计算顶端位置</span><br><span class="line">event.clientX 相对文档的水平座标</span><br><span class="line">event.clientY 相对文档的垂直座标</span><br><span class="line">event.offsetX 相对容器的水平坐标</span><br><span class="line">event.offsetY 相对容器的垂直坐标</span><br><span class="line">event.clientX+document.documentElement.scrollTop 相对文档的水平座标+垂直方向滚动的量</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-location"><a href="#4-location" class="headerlink" title="4.location"></a>4.location</h3><p>window.location对象表示当前页面的URL信息（即地址栏），可不带window前缀书写</p>
 <p>location.protocol; // ‘http’<br>location.host; // ‘<a href="http://www.example.com&#39;" target="_blank" rel="noopener">www.example.com&#39;</a><br>location.port; // ‘8080’<br>location.pathname; // ‘/path/index.html’<br>location.search; // ‘?a=1&amp;b=2’（<strong>查询字符串，携带参数向浏览器发送数据，必须带有‘？’</strong>）<br>location.hash; // ‘TOP’（<strong>锚点，url中的‘#’后面的数据</strong>）<br>location.href 获取完整url<br>window.location.href=&quot;新的跳转url”：跳转到指定的页面<br>location.assign(url)：加载一个新页面，在当前窗口跳转带这个url<br>location.replace(url)：原页面替换成新页面，在当前窗口替换带这个url，但不会产生历史记录，即无法后退<br>location.reload()：刷新当前窗口</p>
-<h4 id="document"><a href="#document" class="headerlink" title="document"></a>document</h4><p>当浏览器载入HTML文档, 它就会成为Document对象(Document对象是Window对象的一部分，可通过window.document属性对其进行访问)</p>
+<h3 id="5-history"><a href="#5-history" class="headerlink" title="5.history"></a>5.history</h3><p>window.history对象包含浏览器历史，可以不带window前缀，为了保护用户的隐私，JavaScript访问此对象存在限制。</p>
+<p>常用方法：</p>
 <ul>
-<li>document.getElementById() ：获取指定id的节点元素</li>
-<li>document.getElementByClassName()：获取指定类名的节点元素</li>
-<li>document.getElementByTagName()：获取指定标签名的节点元素</li>
+<li>history.back() - 等同于在浏览器点击后退按钮</li>
+<li>history.forward() - 等同于在浏览器中点击前进按钮</li>
 </ul>
-<p>举例说明：判断是否是mobile还是PC</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">IsPC</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">let</span> userAgentInfo = navigator.userAgent;</span><br><span class="line">     <span class="keyword">let</span> Agents = [<span class="string">"Android"</span>, <span class="string">"iPhone"</span>, <span class="string">"SymbianOS"</span>, <span class="string">"Windows Phone"</span>, <span class="string">"iPad"</span>, <span class="string">"iPod"</span>];</span><br><span class="line">     <span class="keyword">let</span> flag = <span class="literal">true</span>;</span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">let</span> v = <span class="number">0</span>; v &lt; Agents.length; v++) &#123;</span><br><span class="line">         <span class="keyword">if</span> (userAgentInfo.indexOf(Agents[v]) &gt; <span class="number">0</span>) &#123; flag = <span class="literal">false</span>; <span class="keyword">break</span>; &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> flag;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (<span class="regexp">/(iPhone|iPad|iPod|iOS)/i</span>.test(navigator.userAgent)) &#123;</span><br><span class="line">    <span class="comment">//alert(navigator.userAgent);  </span></span><br><span class="line">    <span class="built_in">window</span>.location.href =<span class="string">"iPhone.html"</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="regexp">/(Android)/i</span>.test(navigator.userAgent)) &#123;</span><br><span class="line">    <span class="comment">//alert(navigator.userAgent); </span></span><br><span class="line">    <span class="built_in">window</span>.location.href =<span class="string">"Android.html"</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">window</span>.location.href =<span class="string">"pc.html"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="6-弹出框"><a href="#6-弹出框" class="headerlink" title="6.弹出框"></a>6.弹出框</h3><p>JavaScript有三种类型的弹出框：警告框，确认框和提示框</p>
+<ol>
+<li><p>警告框<br>如果要确保信息传递给用户，通常会使用警告框。当警告框弹出时，用户将需要单击“确定”来继续<br>window.alert(“some text”); 可以不带window前缀</p>
+</li>
+<li><p>确认框<br>如果您希望用户验证或接受某个东西，则通常使用“确认”框。当确认框弹出时，用户将不得不单击“确定”或“取消”来继续进行。如果用户单击“确定”，该框返回 true。如果用户单击“取消”，该框返回 false。</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> r = confirm(<span class="string">"请按按钮"</span>);</span><br><span class="line"><span class="keyword">if</span> (r === <span class="literal">true</span>) &#123;</span><br><span class="line">    x = <span class="string">"您按了确认！"</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    x = <span class="string">"您按了取消！"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="4-操作表单"><a href="#4-操作表单" class="headerlink" title="4.操作表单"></a>4.操作表单</h3><p>文本框，对应的&lt;input type=”text”&gt;，用于输入文本；</p>
-<p>口令框，对应的&lt;input type=”password”&gt;，用于输入口令；</p>
-<p>单选框，对应的&lt;input type=”radio”&gt;，用于选择一项；</p>
-<p>复选框，对应的&lt;input type=”checkbox”&gt;，用于选择多项；</p>
-<p>下拉框，对应的&lt;select&gt;，用于选择一项；</p>
-<p>隐藏文本，对应的&lt;input type=”hidden”&gt;，用户不可见，但表单提交时会把隐藏文本发送到服务器。</p>
-<blockquote>
-<p>获取值</p>
-</blockquote>
-<p>如果我们获得了一个&lt;input&gt;节点的引用，就可以直接调用value获得对应的用户输入值，使用样例：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;变量名.value可以应用于text、password、hidden以及select。但是，对于单选框和复选框，value属性返回的永远是HTML预设的值，而我们需要获得的实际是用户是否“勾上了”选项，所以应该用checked判断：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &lt;label&gt;&lt;input type="radio" name="weekday" id="monday" value="1"&gt; Monday&lt;/label&gt;</span></span><br><span class="line"><span class="comment">// &lt;label&gt;&lt;input type="radio" name="weekday" id="tuesday" value="2"&gt; Tuesday&lt;/label&gt;</span></span><br><span class="line"><span class="keyword">let</span> mon = <span class="built_in">document</span>.getElementById(<span class="string">'monday'</span>);</span><br><span class="line"><span class="keyword">let</span> tue = <span class="built_in">document</span>.getElementById(<span class="string">'tuesday'</span>);</span><br><span class="line">mon.value; <span class="comment">// '1'</span></span><br><span class="line">tue.value; <span class="comment">// '2'</span></span><br><span class="line">mon.checked; <span class="comment">// true或者false</span></span><br><span class="line">tue.checked; <span class="comment">// true或者false</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="5-Timing事件"><a href="#5-Timing事件" class="headerlink" title="5.Timing事件"></a>5.Timing事件</h3><p>setTimeout(function,milliseconds):等待指定的毫秒数后执行函数<br>setInterval(function,milliseconds):等同于setTimeout()，但在每个给定的时间间隔内重复执行该函数</p>
+<ol start="3">
+<li>提示框<br>如果您希望用户在进入页面前输入值，通常会使用提示框。当提示框弹出时，用户将不得不输入值后单击“确定”或点击“取消”来继续进行。如果用户单击“确定”，该框返回输入值。如果用户单击“取消”，该框返回 NULL</li>
+</ol>
+<p>window.prompt(“some text”,”defaultText”); 可以不带window前缀</p>
+<h3 id="7-Timing事件"><a href="#7-Timing事件" class="headerlink" title="7.Timing事件"></a>7.Timing事件</h3><p>setTimeout(function,milliseconds):等待指定的毫秒数后执行函数<br>setInterval(function,milliseconds):等同于setTimeout()，但在每个给定的时间间隔内重复执行该函数</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myTimer</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> d = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    <span class="built_in">console</span>.log(d.getFullYear())</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// setInterval在每隔3秒就打印一次当前的月份</span></span><br><span class="line">setInterval(myTimer, <span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
 
 <p>clearTimeout(变量名)方法停止执行setTimeout()中规定的函数</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--使用setTimeout等待执行函数，clearTimeout停止执行函数---&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"myVar = setTimeout(myFunction, 3000)"</span>&gt;</span>试一试<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"clearTimeout(myVar)"</span>&gt;</span>停止执行<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
+<h3 id="8-cookie与storage"><a href="#8-cookie与storage" class="headerlink" title="8.cookie与storage"></a>8.cookie与storage</h3><blockquote>
+<p>cookie</p>
+</blockquote>
+<ol>
+<li>cookie的基础知识</li>
+</ol>
+<ul>
+<li>cookie是有大小限制的，每个cookie所存放的数据不能超过4kb，如果cookie字符串的长度超过4kb，则该属性将返回空字符串</li>
+<li>每个cookie的格式都是这样的：<code>&lt;cookie名&gt;=&lt;值&gt;;</code> 名称和值都必须是合法的标示符</li>
+<li>cookie是存在有效期的：在默认情况下，一个cookie的生命周期就是在浏览器关闭的时候结束。如果想要cookie能在浏览器关掉之后还可以使用，就必须要为该cookie设置有效期，也就是cookie的失效日期</li>
+<li>cookie的数据类型为String</li>
+</ul>
+<ol start="2">
+<li>设置cookie</li>
+</ol>
+<p>存储单个cookie值设置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置单个键值对（推荐）</span></span><br><span class="line"><span class="built_in">document</span>.cookie=<span class="string">"username=chd"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置多个键值对，使用分号加空格（; ） 隔开，经测试，只有第一对键值生效（废弃）</span></span><br><span class="line"><span class="built_in">document</span>.cookie=<span class="string">"userId=828; userName=hulk"</span>;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>删除cookie</li>
+</ol>
+<p>为了删除一个cookie，可以将其过期时间设定为一个过去的时间</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 法一</span></span><br><span class="line"><span class="comment">//获取当前时间</span></span><br><span class="line"><span class="keyword">let</span> date=<span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="comment">//将date设置为过去的时间</span></span><br><span class="line">date.setTime(date.getTime()<span class="number">-1</span>);</span><br><span class="line"><span class="comment">//将userId这个cookie删除</span></span><br><span class="line"><span class="built_in">document</span>.cookie=<span class="string">"userId=828; expire="</span>+date.toGMTString();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 法二（更简练）</span></span><br><span class="line"><span class="keyword">let</span> data = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="keyword">new</span> <span class="built_in">Date</span>().getTime() - <span class="number">24</span>*<span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>).toUTCString();</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">new Date().getTime() 表示获取当前时间戳【毫秒级】</span></span><br><span class="line"><span class="comment">toUTCString() 表示根据世界时 (UTC)把Date对象转换为字符串，并返回结果</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>设置cookie的有效时间</li>
+</ol>
+<p>cookie 的生命周期也就是有效期和失效期，即 cookie 的存在时间。在默认的情况下，cookie 会在浏览器关闭的时候自动清除，但是我们可以通过expires来设置 cookie 的有效期</p>
+<p>date值为GMT(格林威治时间)格式的日期型字符串,我们这个函数是按照天数来设置cookie的有效时间，如果想以其他单位（如：小时）来设置，那么改变第三行代码即可</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> _date = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="comment">// _date.setDate(_date.getDate()+30);</span></span><br><span class="line">_date.setDate(_date.getHours()+<span class="number">2</span>);</span><br><span class="line">_date.toGMTString();</span><br><span class="line"><span class="built_in">document</span>.cookie = <span class="string">"name=value;expires="</span>+_date;</span><br></pre></td></tr></table></figure>
+
+
+<p>在vue或js中直接操作cookie</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = &#123;</span><br><span class="line">    <span class="keyword">set</span>: function (name, value, days) &#123;</span><br><span class="line">        <span class="keyword">var</span> d = <span class="keyword">new</span> <span class="built_in">Date</span>;</span><br><span class="line">        d.setTime(d.getTime() + <span class="number">24</span>*<span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>*days);</span><br><span class="line">        <span class="built_in">window</span>.document.cookie = name + <span class="string">"="</span> + value + <span class="string">";path=/;expires="</span> + d.toGMTString();</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="keyword">get</span>: function (name)&#123;</span><br><span class="line">        <span class="keyword">var</span> v = <span class="built_in">window</span>.document.cookie.match(<span class="string">'(^|;) ?'</span> + name + <span class="string">'=([^;]*)(;|$)'</span>);</span><br><span class="line">        <span class="keyword">return</span> v ? v[<span class="number">2</span>] : <span class="literal">null</span>;</span><br><span class="line">    </span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span>: <span class="function"><span class="keyword">function</span> (<span class="params">name</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.set(name, <span class="string">''</span>, <span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>localStorage与sessionStorage</p>
+</blockquote>
+<p>HTML5种的web storage包含两种存储方式：localStorage和sessionStorage，这两种方式存储的数据不会自动发给服务器，仅仅是本地保存，有大小限制。</p>
+<ul>
+<li><p>localStorage 用于持久化的本地存储，除非主动删除数据，否则数据是永远不会过期的。同源可以读取并修改localStorage。注意，在IE8以上的IE版本才支持localStorage这个属性，且不能被爬虫爬到，<strong>localStorage的使用也是遵循统一『同源策略』的，所以不同的网站直接是不能共用相同的localStorage</strong>。</p>
+</li>
+<li><p>sessionStorage 用于本地存储一个会话（session）中的数据，这些数据只有在同一个会话中的页面才能访问，并且当会话结束后数据也随之销毁。因此sessionStorage不是一种持久化的本地存储，仅是会话级别的存储，只允许同一窗口访问。</p>
+</li>
+</ul>
+<p>localStorage与sessionStorage的封装（可设置过期时间）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//存储,可设置过期时间</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">set</span>(<span class="params">key, value, expires</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// console.log(key);</span></span><br><span class="line">    <span class="keyword">let</span> params = &#123; key, value, expires &#125;;</span><br><span class="line">    <span class="keyword">if</span> (expires) &#123;</span><br><span class="line">        <span class="comment">// 记录何时将值存入缓存，毫秒级</span></span><br><span class="line">        <span class="keyword">var</span> data = <span class="built_in">Object</span>.assign(params, &#123; <span class="attr">startTime</span>: <span class="keyword">new</span> <span class="built_in">Date</span>().getTime() &#125;);</span><br><span class="line">        localStorage.setItem(key, <span class="built_in">JSON</span>.stringify(data));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.toString.call(value) === <span class="string">'[object Object]'</span>) &#123;</span><br><span class="line">            value = <span class="built_in">JSON</span>.stringify(value);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.toString.call(value) === <span class="string">'[object Array]'</span>) &#123;</span><br><span class="line">            value = <span class="built_in">JSON</span>.stringify(value);</span><br><span class="line">        &#125;</span><br><span class="line">        localStorage.setItem(key, value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//取出</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get</span>(<span class="params">keys</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> item = localStorage.getItem(keys);</span><br><span class="line">    <span class="comment">// 先将拿到的试着进行json转为对象的形式</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> obj = <span class="built_in">JSON</span>.parse(item);</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">typeof</span>(obj) == <span class="string">'object'</span> &amp;&amp; obj )&#123;</span><br><span class="line">            item = obj;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'error：'</span>+keys+<span class="string">'!!!'</span>+error);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果有startTime的值，说明设置了失效时间</span></span><br><span class="line">    <span class="keyword">if</span> (item &amp;&amp; item.startTime) &#123;</span><br><span class="line">        <span class="keyword">let</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line">        <span class="comment">// 如果大于就是过期了，如果小于或等于就还没过期</span></span><br><span class="line">        <span class="keyword">if</span> (date - item.startTime &gt; item.expires) &#123;</span><br><span class="line">            localStorage.removeItem(item.key);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> item.value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> item;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//导出</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="keyword">set</span>,</span><br><span class="line">    localGet:<span class="keyword">get</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// 存值</span><br><span class="line">request.<span class="keyword">set</span>('uid',option.uid,43200000);  //时间单位毫秒级</span><br><span class="line">request.<span class="keyword">set</span>('token',option.token,43200000);</span><br><span class="line">// 取值</span><br><span class="line">let uid = request.localGet('uid');</span><br><span class="line">let token = request.localGet('token');</span><br></pre></td></tr></table></figure>
 
 
 <h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
 <li><a href="https://blog.csdn.net/xuxiaoyinliu/article/details/89166234" target="_blank" rel="noopener">JS Map对象排序</a></li>
-<li><a href="https://blog.csdn.net/example440982/article/details/90905730?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task" target="_blank" rel="noopener">js判断客户端是PC端还是移动端访问</a></li>
-<li><a href="https://www.cnblogs.com/beijingstruggle/p/5845781.html" target="_blank" rel="noopener">window.event对象详细介绍</a></li>
+<li><a href="https://blog.csdn.net/example440982/article/details/90905730" target="_blank" rel="noopener">js判断客户端是PC端还是移动端访问</a></li>
+<li><a href="https://blog.csdn.net/qq_33645229/article/details/81672167" target="_blank" rel="noopener">vue中操作cookie</a></li>
+<li><a href="https://blog.csdn.net/web_yzm/article/details/81669772" target="_blank" rel="noopener">关于js操作cookie</a></li>
+<li><a href="https://www.cnblogs.com/st-leslie/p/5617130.html" target="_blank" rel="noopener">localStorage使用总结</a></li>
+<li><a href="https://www.cnblogs.com/8023-CHD/p/11067141.html" target="_blank" rel="noopener">session和cookie的区别</a></li>
 </ul>
 
       </div>
@@ -659,10 +535,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-09-01T09:11:06+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-09-11T09:14:47+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2021年9月1日</p>
+    <p>更新于 2021年9月11日</p>
   </a>
 </div>
 
@@ -681,8 +557,8 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/11/23/Javascript%E7%AF%87%E7%AB%A0%E5%9B%9B/&title=Javascript篇章四：事件 | AhriLove&summary=
-1.运算符☆☆2.循环与跳出循环3.浏览器对象window,navigator,Location4.操作表单5.Timing事件
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/11/23/Javascript%E7%AF%87%E7%AB%A0%E5%9B%9B/&title=Javascript篇章四：浏览器对象模型BOM | AhriLove&summary=
+1.window2.navigator3.screen4.location5.history6.弹出框7.Timing事件8.cookie与storage
 "
           
           >
@@ -695,8 +571,8 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/11/23/Javascript%E7%AF%87%E7%AB%A0%E5%9B%9B/&title=Javascript篇章四：事件 | AhriLove&summary=
-1.运算符☆☆2.循环与跳出循环3.浏览器对象window,navigator,Location4.操作表单5.Timing事件
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/11/23/Javascript%E7%AF%87%E7%AB%A0%E5%9B%9B/&title=Javascript篇章四：浏览器对象模型BOM | AhriLove&summary=
+1.window2.navigator3.screen4.location5.history6.弹出框7.Timing事件8.cookie与storage
 "
           
           >
@@ -709,8 +585,8 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/11/23/Javascript%E7%AF%87%E7%AB%A0%E5%9B%9B/&title=Javascript篇章四：事件 | AhriLove&summary=
-1.运算符☆☆2.循环与跳出循环3.浏览器对象window,navigator,Location4.操作表单5.Timing事件
+          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/11/23/Javascript%E7%AF%87%E7%AB%A0%E5%9B%9B/&title=Javascript篇章四：浏览器对象模型BOM | AhriLove&summary=
+1.window2.navigator3.screen4.location5.history6.弹出框7.Timing事件8.cookie与storage
 "
           
           >
@@ -759,9 +635,9 @@
                       <span class="art-item-right" aria-hidden="true">
                           <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                           <h4>
-                              <a href="/2019/11/22/Javascript%E7%AF%87%E7%AB%A0%E4%B8%89/" rel="prev" title="Javascript篇章三：常用函数">
+                              <a href="/2019/11/22/Javascript%E7%AF%87%E7%AB%A0%E4%B8%89/" rel="prev" title="Javascript篇章三：基础知识">
                                   
-                                      Javascript篇章三：常用函数
+                                      Javascript篇章三：基础知识
                                   
                               </a>
                           </h4>
@@ -812,7 +688,7 @@
 
   <script>
     window.subData = {
-      title: 'Javascript篇章四：事件',
+      title: 'Javascript篇章四：浏览器对象模型BOM',
       tools: true
     }
   </script>
@@ -892,7 +768,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-运算符"><span class="toc-text">1.运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-循环与跳出循环"><span class="toc-text">2. 循环与跳出循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-浏览器对象"><span class="toc-text">3.浏览器对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#window"><span class="toc-text">window</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#navigator"><span class="toc-text">navigator</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#screen"><span class="toc-text">screen</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Location"><span class="toc-text">Location</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#document"><span class="toc-text">document</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-操作表单"><span class="toc-text">4.操作表单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Timing事件"><span class="toc-text">5.Timing事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-window"><span class="toc-text">1.window</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-navigator"><span class="toc-text">2.navigator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-screen"><span class="toc-text">3.screen</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-location"><span class="toc-text">4.location</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-history"><span class="toc-text">5.history</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-弹出框"><span class="toc-text">6.弹出框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-Timing事件"><span class="toc-text">7.Timing事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-cookie与storage"><span class="toc-text">8.cookie与storage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
     </div>
   </section>
 

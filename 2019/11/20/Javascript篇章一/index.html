@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>Javascript篇章一：JavaScript基本知识 | AhriLove</title>
+  <title>Javascript篇章一：基本数据类型 | AhriLove</title>
   
   
 
@@ -348,7 +348,7 @@
   
     <h1 class="title">
       <a href="/2019/11/20/Javascript%E7%AF%87%E7%AB%A0%E4%B8%80/">
-        Javascript篇章一：JavaScript基本知识
+        Javascript篇章一：基本数据类型
       </a>
     </h1>
   
@@ -434,7 +434,7 @@
 <ol start="2">
 <li>var</li>
 </ol>
-<p>var 声明全局变量，换个角度理解：声明在for循环中的变量，跳出for循环同样可以使用。var在ES5，ES6中也同样适用<br>var 定义的变量可以修改，如果不初始化会输出undefined，不会报错</p>
+<p>var 声明全局变量，换个角度理解：声明在for循环中的变量，跳出for循环同样可以使用，var在ES5，ES6中也同样适用。var 定义的变量可以修改，如果不初始化会输出undefined，不会报错</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="comment">// var a;   //不会报错</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'函数外var定义a：'</span> + a);<span class="comment">//可以输出a=1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">change</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    a = <span class="number">4</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'函数内var定义a：'</span> + a);<span class="comment">//可以输出a=4</span></span><br><span class="line">&#125; </span><br><span class="line">change();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'函数调用后var定义a为函数内部修改值：'</span> + a);<span class="comment">//可以输出a=4</span></span><br></pre></td></tr></table></figure>
 
 <ol start="3">
@@ -482,6 +482,37 @@
 <li>null</li>
 <li>undefined</li>
 </ul>
+<p><strong>typeof无法判断数组，null和对象，因为他会把这些都判断为Object</strong>，其余都可以正常判断<br>最理想的检测数组类型的方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isArrayFn</span> (<span class="params">o</span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(o) === <span class="string">'[object Array]'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>];</span><br><span class="line">alert(isArrayFn(arr));<span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>实例</th>
+<th align="center">测试结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[1,2,3,1]</td>
+<td align="center">[object Array]</td>
+</tr>
+<tr>
+<td>{a:”chenhaodong”,age:18}</td>
+<td align="center">[object Object]</td>
+</tr>
+<tr>
+<td>function a(){return null}</td>
+<td align="center">[object Function]</td>
+</tr>
+<tr>
+<td>“hello world”</td>
+<td align="center">[object String]</td>
+</tr>
+<tr>
+<td>null</td>
+<td align="center">[object Null]</td>
+</tr>
+</tbody></table>
 <h3 id="3-字符串"><a href="#3-字符串" class="headerlink" title="3. 字符串"></a>3. 字符串</h3><blockquote>
 <p>3.1 js字符串长度</p>
 </blockquote>
@@ -742,7 +773,7 @@
 </li>
 <li><p>isNaN()全局函数来判断一个值是否是NaN值<br>isNaN(1000/“apple”) true<br>isNaN(1000) false</p>
 </li>
-<li><p>slice()截取数组<br>返回从原数组中指定开始下标到结束下标之间的项组成的新数组、不改变原数组、支持负索引(负索引加上数组长度就是正索引)、满足区间左闭右开原则</p>
+<li><p>slice()截取数组，返回从原数组中指定开始下标到结束下标之间的项组成的新数组、不改变原数组、支持负索引(负索引加上数组长度就是正索引)、满足区间左闭右开原则</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">11</span>];</span><br><span class="line"><span class="keyword">let</span> arrCopy = arr.slice(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">let</span> arrCopy2 = arr.slice(<span class="number">1</span>,<span class="number">4</span>);</span><br><span class="line"><span class="keyword">let</span> arrCopy3 = arr.slice(<span class="number">1</span>,<span class="number">-2</span>);</span><br><span class="line"><span class="keyword">let</span> arrCopy4 = arr.slice(<span class="number">-4</span>,<span class="number">-1</span>);</span><br><span class="line"><span class="built_in">console</span>.log(arr); 　　　<span class="comment">//[1, 3, 5, 7, 9, 11](原数组没变)</span></span><br><span class="line"><span class="built_in">console</span>.log(arrCopy);   <span class="comment">//[3, 5, 7, 9, 11]</span></span><br><span class="line"><span class="built_in">console</span>.log(arrCopy2);  <span class="comment">//[3, 5, 7]</span></span><br><span class="line"><span class="built_in">console</span>.log(arrCopy3);  <span class="comment">//[3, 5, 7]</span></span><br><span class="line"><span class="built_in">console</span>.log(arrCopy4);  <span class="comment">//[5, 7, 9]</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>sort(fun)方法以字母或数值对数组进行排序<br>语法：array.sort(fun)；参数fun可选，规定排序顺序，必须是函数。</p>
@@ -789,10 +820,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-31T09:50:47+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-09-11T09:26:16+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2021年8月31日</p>
+    <p>更新于 2021年9月11日</p>
   </a>
 </div>
 
@@ -814,7 +845,7 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/11/20/Javascript%E7%AF%87%E7%AB%A0%E4%B8%80/&title=Javascript篇章一：JavaScript基本知识 | AhriLove&summary=
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/11/20/Javascript%E7%AF%87%E7%AB%A0%E4%B8%80/&title=Javascript篇章一：基本数据类型 | AhriLove&summary=
 1.变量声明及命名规范2.基本数据类型3.字符串4.对象5.数值6.数组
 "
           
@@ -828,7 +859,7 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/11/20/Javascript%E7%AF%87%E7%AB%A0%E4%B8%80/&title=Javascript篇章一：JavaScript基本知识 | AhriLove&summary=
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/11/20/Javascript%E7%AF%87%E7%AB%A0%E4%B8%80/&title=Javascript篇章一：基本数据类型 | AhriLove&summary=
 1.变量声明及命名规范2.基本数据类型3.字符串4.对象5.数值6.数组
 "
           
@@ -842,7 +873,7 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/11/20/Javascript%E7%AF%87%E7%AB%A0%E4%B8%80/&title=Javascript篇章一：JavaScript基本知识 | AhriLove&summary=
+          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/11/20/Javascript%E7%AF%87%E7%AB%A0%E4%B8%80/&title=Javascript篇章一：基本数据类型 | AhriLove&summary=
 1.变量声明及命名规范2.基本数据类型3.字符串4.对象5.数值6.数组
 "
           
@@ -872,9 +903,9 @@
                       <span class="art-item-left">
                           <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
                           <h4>
-                              <a href="/2019/11/22/Javascript%E7%AF%87%E7%AB%A0%E4%B8%89/" rel="prev" title="Javascript篇章三：常用函数">
+                              <a href="/2019/11/22/Javascript%E7%AF%87%E7%AB%A0%E4%B8%89/" rel="prev" title="Javascript篇章三：基础知识">
                                 
-                                    Javascript篇章三：常用函数
+                                    Javascript篇章三：基础知识
                                 
                               </a>
                           </h4>
@@ -945,7 +976,7 @@
 
   <script>
     window.subData = {
-      title: 'Javascript篇章一：JavaScript基本知识',
+      title: 'Javascript篇章一：基本数据类型',
       tools: true
     }
   </script>
