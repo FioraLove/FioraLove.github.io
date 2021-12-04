@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>Java（十一）：流(Stream)与文件(File) | AhriLove</title>
+  
+  
+
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/all.min.css">
+  
+
+  
+  <link rel="shortcut icon" type='image/x-icon' href="https://cdn.jsdelivr.net/gh/FioraLove/CDN@1.0/万圣节鬼魂.ico">
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.10.22/css/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+  <script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+    </script>
+</head>
+
+<!-- 样式二（飘动的彩带） -->
+<meta name="baidu-site-verification" content="iMtC1b2Kmy" />
+<script src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.0.2/js/instantclick-1.2.2.js" type="module"></script>
+
+<body>
+
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post half'>
+      
+        
+  <img class='logo' src='https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imagesaaa.png'/>
+
+
+  <div class="m_search">
+    <form name="searchform" class="form u-search-form">
+      <input type="text" class="input u-search-input" placeholder="搜索" />
+      <i class="icon fas fa-search fa-fw"></i>
+    </form>
+  </div>
+
+<div class='menu navgation'>
+  <ul class='h-list'>
+    
+      
+        <li>
+          <a class="nav home" href="/"
+            
+            
+            id="home">
+            <i class='fas fa-home fa-fw'></i>&nbsp;主页
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/friends/"
+            
+              rel="nofollow"
+            
+            
+            id="friends">
+            <i class='fas fa-users fa-fw'></i>&nbsp;朋友
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/about/"
+            
+              rel="nofollow"
+            
+            
+            id="about">
+            <i class='fas fa-info-circle fa-fw'></i>&nbsp;关于
+          </a>
+        </li>
+      
+    
+  </ul>
+</div>
+
+      
+    </cover>
+    <header class="l_header material">
+  <div id="loading-bar-wrapper">
+    <div id="loading-bar" class="material"></div>
+  </div>
+
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          AhriLove
+        
+      </a>
+			<div class='menu navgation'>
+				<ul class='h-list'>
+          
+  					
+  						<li>
+								<a class="nav flat-box" href="/"
+                  
+                  
+                  id="home">
+									<i class='fas fa-grin fa-fw'></i>&nbsp;博文
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/categories/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="categories">
+									<i class='fas fa-folder-open fa-fw'></i>&nbsp;分类
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/tags/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="tags">
+									<i class='fas fa-ribbon fa-fw'></i>&nbsp;标签
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/friends/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="friends">
+									<i class='fab fa-suse fa-fw'></i>&nbsp;友链
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/plan/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="plan">
+									<i class='fas fa-paper-plane fa-fw'></i>&nbsp;每日计划
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/mylist/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="mylist">
+									<i class='fas fa-archive fa-fw'></i>&nbsp;资料文档
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/feiyan2020/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="feiyan2020">
+									<i class='far fa-heart fa-fw'></i>&nbsp;肺炎疫情图
+								</a>
+							</li>
+      			
+      		
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<i class="icon fas fa-search fa-fw"></i>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+        
+          <li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+        
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu navgation">
+      <ul>
+        
+          
+            <li>
+							<a class="nav flat-box" href="/"
+                
+                
+                id="home">
+								<i class='fas fa-clock fa-fw'></i>&nbsp;近期文章
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/archives/"
+                
+                  rel="nofollow"
+                
+                
+                id="archives">
+								<i class='fas fa-archive fa-fw'></i>&nbsp;文章归档
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="https://github.com/FioraLove?tab=repositories"
+                
+                
+                id="https:github.comFioraLove?tab=repositories">
+								<i class='fas fa-code-branch fa-fw'></i>&nbsp;开源项目
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/friends/"
+                
+                  rel="nofollow"
+                
+                
+                id="friends">
+								<i class='fas fa-link fa-fw'></i>&nbsp;我的友链
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="https://xaoxuu.com/wiki/material-x/"
+                
+                  rel="nofollow"
+                
+                
+                id="https:xaoxuu.comwikimaterial-x">
+								<i class='fas fa-book fa-fw'></i>&nbsp;主题文档
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/feiyan2020/"
+                
+                  rel="nofollow"
+                
+                
+                id="feiyan2020">
+								<i class='far fa-heart fa-fw'></i>&nbsp;肺炎疫情图
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/about/"
+                
+                  rel="nofollow"
+                
+                
+                id="about">
+								<i class='fas fa-info-circle fa-fw'></i>&nbsp;关于小站
+							</a>
+            </li>
+          
+       
+      </ul>
+		</nav>
+    </header>
+	</aside>
+<script>setLoadingBarProgress(40);</script>
+
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      <div class='l_main'>
+  
+
+  <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+    
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  
+    <h1 class="title">
+      <a href="/2020/04/14/Java%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E5%8D%81%E4%B8%80)/">
+        Java（十一）：流(Stream)与文件(File)
+      </a>
+    </h1>
+  
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="/" rel="nofollow">
+        
+          <img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imagesNaruto.jpg">
+        
+        <p>Badwoman</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2020-04-14</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Java/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Java</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <p>本章内容：</p>
+<blockquote>
+<p>1.输入输出流<br>2.文件与目录管理File类<br>3.缓冲流<br>4.字节缓冲流<br>5.字符缓冲流</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="1-输入输出流"><a href="#1-输入输出流" class="headerlink" title="1.输入输出流"></a>1.输入输出流</h3><p>在前面的代码中，我们总是使用<code>System.out.println()</code>来向屏幕输出一些内容。println是print line的缩写，表示输出并换行。因此，如果输出后不想换行，可以用<code>System.out.print()</code><br><strong>格式化输出：</strong><br>如果要把数据显示成我们期望的格式，就需要使用格式化输出的功能。格式化输出使用<code>System.out.printf()</code>，通过使用占位符<code>%?</code>，printf()可以把后面的参数格式化成指定格式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">double</span> d = <span class="number">3.1415927</span>;</span><br><span class="line">        System.out.printf(<span class="string">"%.2f"</span>,d);  </span><br><span class="line">        System.out.printf(<span class="string">"%.4f"</span>,d);  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>占位符</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%d</td>
+<td align="center">格式化输出整数</td>
+</tr>
+<tr>
+<td>%x</td>
+<td align="center">格式化输出十六进制整数</td>
+</tr>
+<tr>
+<td>%f</td>
+<td align="center">格式化输出浮点数</td>
+</tr>
+<tr>
+<td>%e</td>
+<td align="center">格式化输出科学计数法表示的浮点数</td>
+</tr>
+<tr>
+<td>%s</td>
+<td align="center">格式化字符串</td>
+</tr>
+</tbody></table>
+<p><strong>输入：</strong> 直接看案例<br>输入类型：<br>方法&nbsp;&nbsp;&nbsp;&nbsp;    描述<br>nextBoolean()&nbsp;&nbsp;&nbsp;&nbsp;    从用户输入中读取1个 boolean 值<br>nextByte()    &nbsp;&nbsp;&nbsp;&nbsp;    从用户输入中读取1个 byte 值<br>nextDouble()&nbsp;&nbsp;&nbsp;&nbsp;    从用户输入中读取1个 double 值<br>nextFloat()&nbsp;&nbsp;&nbsp;&nbsp;    从用户输入中读取1个 float 值<br>nextInt()&nbsp;&nbsp;&nbsp;&nbsp;    从用户输入中读取1个 int 值<br>nextLine()&nbsp;&nbsp;&nbsp;&nbsp;    从用户输入中读取1个 String 值<br>nextLong()    &nbsp;&nbsp;&nbsp;&nbsp;从用户输入中读取1个 long 值<br>nextShort()    &nbsp;&nbsp;&nbsp;&nbsp;从用户输入中读取1个 short 值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner scanner = <span class="keyword">new</span> Scanner(System.in); <span class="comment">// 创建Scanner对象</span></span><br><span class="line">        System.out.print(<span class="string">"Input your name: "</span>); <span class="comment">// 打印提示</span></span><br><span class="line">        String name = scanner.nextLine(); <span class="comment">// 读取一行输入并获取字符串</span></span><br><span class="line">        System.out.print(<span class="string">"Input your age: "</span>); <span class="comment">// 打印提示</span></span><br><span class="line">        <span class="keyword">int</span> age = scanner.nextInt(); <span class="comment">// 读取一行输入并获取整数</span></span><br><span class="line">        System.out.printf(<span class="string">"Hi, %s, you are %d\n"</span>, name, age); <span class="comment">// 格式化输出</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>首先，我们通过import语句导入java.util.Scanner，import是导入某个类的语句，必须放到Java源代码的开头</p>
+<p>然后，创建Scanner对象并传入System.in。System.out代表标准输出流，而System.in代表标准输入流。直接使用System.in读取用户输入虽然是可以的，但需要更复杂的代码，而通过Scanner就可以简化后续的代码。</p>
+<p>有了Scanner对象后，要读取用户输入的字符串，使用<code>scanner.nextLine()</code>；要读取用户输入的整数，使用<code>scanner.nextInt()</code>。Scanner会自动转换数据类型，因此不必手动转换。</p>
+<h3 id="2-文件与目录管理"><a href="#2-文件与目录管理" class="headerlink" title="2.文件与目录管理"></a>2.文件与目录管理</h3><h4 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h4><p>Java的标准库java.io提供了File对象来操作文件和目录。我们从之前的知识可以推出java把电脑中的文件和文件夹(目录)封装为了一个File类,我们可以使用File类对文件和文件夹进行操作，并且类中存在构造函数，构造函数里传入的值为文件的路径。要构造一个file对象，需要传入文件路径：构造File对象时，可以是绝对路径（以根目录开头的完整路径），也可以是相对路径</p>
+<blockquote>
+<p>创建File类对象</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">File file = new File(path)：path表示文件路径</span><br><span class="line">File file = new File(parent-path，child-path)：将父子路径拼接成完成的文件路径</span><br><span class="line">File file = new File(File parent，child-path)：将File类型的父级路径和String类型的字节路径拼接成一个新路径，封装成File对象</span><br></pre></td></tr></table></figure>
+
+<p><font color=#d93a49>注意Windows平台使用\作为路径分隔符，在Java字符串中需要用\\表示一个\。Linux平台使用/作为路径分隔符：</font></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">linux: File f = new File(&quot;/usr/bin/javac&quot;);</span><br><span class="line">windows: File f = new File(&quot;C:\\Windows\\notepad.exe&quot;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>File类的动态路径</p>
+</blockquote>
+<ul>
+<li>separator：获取当前系统的文件路径分隔符，windows系统为<code>\</code> ，linux系统为”/“</li>
+<li>pathSeparator：获取当前系统的环境变量的路径分割符，在UNIX系统上字符为<code>:</code>, 而Windows系统上它是<code>;</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 操作路径:路径不能写死了(动态路径)</span></span><br><span class="line">String path = <span class="string">"C:"</span>+File.separator+<span class="string">"develop"</span>+File.separator+<span class="string">"a"</span>+File.separator+<span class="string">"a.txt"</span>;</span><br><span class="line">windows：path为C:\develop\a\a.txt</span><br><span class="line">linux：path为C:/develop/a/a.txt</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>File类的文件和目录操作方法</p>
+</blockquote>
+<p>File对象既可以表示文件，也可以表示目录。特别要注意的是，构造一个File对象，即使传入的文件或目录不存在，代码也不会出错，因为构造一个File对象，并不会导致任何磁盘操作。只有当我们调用File对象的某些方法的时候，才真正进行磁盘操作。</p>
+<ul>
+<li>boolean isFile()：判断File对象是否是文件</li>
+<li>boolean isDirectory()：判断该File对象是否是已存在的目录</li>
+<li>boolean canRead()：是否可读</li>
+<li>boolean canWrite()：是否可写</li>
+<li>boolean canExecute()：是否可执行</li>
+<li>long length()：文件字节大小</li>
+<li>boolean exists(): 判断文件或目录是否存在</li>
+<li>createNewFile()：当且仅当原文件不存在时才会创建一个新文件（需要处理IOException）</li>
+<li>mkdir()：创建一个文件夹或者说目录</li>
+<li>mkdirs()：既可以创建单级目录也可以创建多级目录，父目录不存在则会自动创建</li>
+<li>getAbsolutePath()：返回此File的绝对路径名字符串</li>
+<li>getPath()：获取文件完整路径</li>
+<li>getName()：返回由此File表示的文件或目录的名称</li>
+<li>delete()：删除该文件或目录（<strong>直接在硬盘上删除，不走回收站，无法找回，需要谨慎</strong>）</li>
+</ul>
+<h4 id="绝对路径与相对路径"><a href="#绝对路径与相对路径" class="headerlink" title="绝对路径与相对路径"></a>绝对路径与相对路径</h4><ul>
+<li>绝对路径:是一个完整的路径</li>
+<li>相对路径:相对路径指的是相对于当前项目的根目录</li>
+</ul>
+<p><strong>Java的相对路径读取文件方式</strong>：</p>
+<ol>
+<li>在Java开发工具的project中使用相对路径</li>
+</ol>
+<p>在project中，相对路径的根目录是project的根文件夹<br>创建文件的写法是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">File f = new File(&quot;src/com/lavasoft/res/a.txt&quot;);</span><br><span class="line">File f = new File(&quot;doc/b.txt&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>注意：路径不以“/”开头；脱离了IDE环境，这个写法就是错误的，也并非每个IDE都如此，但我见到的都是这样的。</p>
+<ol start="2">
+<li>通过CLASSPATH读取包内文件（推荐）<br>读取包内文件，使用的路径一定是相对的classpath路径，比如a，位于包内，此时可以创建读取a的字节流：</li>
+</ol>
+<p>InputStream in = ReadFile.class.getResourceAsStream(“/com/lavasoft/res/a.txt”);</p>
+<p>注意：这里必须以“/”开头；</p>
+<p>通过IDEA开发工具运行代码时，文件路径结果没问题，但<strong>如果换成控制台执行，那么使用了项目相对路径的读取方式会失败</strong>，原因是，此时已经脱离了项目的开发环境(经测试，确实会在命令行无法使用)—–这个问题常常困扰着一些初学者，代码在开发工具好好的，发布后执行就失败了！</p>
+<p>注意:<br>1.路径是不区分大小写<br>2.路径中的文件名称分隔符windows使用反斜杠,反斜杠是转义字符,两个反斜杠代表一个普通的反斜杠</p>
+<p>注：java不同于Python，HTML引入文件时可以使用<code>. ：当前文件</code>或 <code>.. ：当前文件的上一级目录</code>，Java的相对路径是以当前的项目的根目录为准。</p>
+<h4 id="遍历文件和目录"><a href="#遍历文件和目录" class="headerlink" title="遍历文件和目录"></a>遍历文件和目录</h4><p>File类遍历(文件夹)目录功能</p>
+<ul>
+<li>String[] list()：返回一个String数组，表示该File目录中的所有子文件或目录（获取相对路径）</li>
+<li>File[] listFiles()：返回一个File数组，表示该File目录中的所有的子文件或目录（获取绝对路径）</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 初始化File类对象</span></span><br><span class="line">        File f1 = <span class="keyword">new</span> File(<span class="string">"src/bytedance/com"</span>);</span><br><span class="line">        <span class="comment">// 获取相对路径的String数组</span></span><br><span class="line">        String[] f2 = f1.list();</span><br><span class="line">        <span class="keyword">if</span> (f2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (String subF: f2) &#123;</span><br><span class="line">                System.out.println(subF);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 获取绝对路径但File类数组</span></span><br><span class="line">        File[] f3 = f1.listFiles();</span><br><span class="line">        <span class="keyword">if</span> (f3 != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (File subF: f3) &#123;</span><br><span class="line">                System.out.println(subF);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">程序结果：</span></span><br><span class="line"><span class="comment">list类：</span></span><br><span class="line"><span class="comment">CollectionDemo.java</span></span><br><span class="line"><span class="comment">demo.txt</span></span><br><span class="line"><span class="comment">BasicDataType.java</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">File类：</span></span><br><span class="line"><span class="comment">src/bytedance/com/CollectionDemo.java</span></span><br><span class="line"><span class="comment">src/bytedance/com/demo.txt</span></span><br><span class="line"><span class="comment">src/bytedance/com/BasicDataType.java</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Path"><a href="#Path" class="headerlink" title="Path"></a>Path</h4><p>Java标准库还提供了一个Path对象，它位于java.nio.file包。Path对象和File对象类似，但操作更加简单。如果需要对目录进行复杂的拼接、遍历等操作，使用Path对象更方便：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        Path p1 = Paths.get(<span class="string">"."</span>, <span class="string">"project"</span>, <span class="string">"study"</span>); <span class="comment">// 构造一个Path对象</span></span><br><span class="line">        System.out.println(p1); <span class="comment">// .\project\study</span></span><br><span class="line">        Path p2 = p1.toAbsolutePath(); <span class="comment">// 转换为绝对路径</span></span><br><span class="line">        System.out.println(p2);  <span class="comment">// D:\data\demo2\.\project\study</span></span><br><span class="line">        Path p3 = p2.normalize(); <span class="comment">// 转换为规范路径</span></span><br><span class="line">        System.out.println(p3); <span class="comment">// D:\data\demo2\project\study</span></span><br><span class="line">        File f = p3.toFile(); <span class="comment">// 转换为File对象</span></span><br><span class="line">        System.out.println(f);  <span class="comment">// D:\data\demo2\project\study</span></span><br><span class="line">        <span class="keyword">for</span> (Path p : Paths.get(<span class="string">".."</span>).toAbsolutePath()) &#123; <span class="comment">// 可以直接遍历Path</span></span><br><span class="line">            System.out.println(<span class="string">"  "</span> + p);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-缓冲流"><a href="#3-缓冲流" class="headerlink" title="3.缓冲流"></a>3.缓冲流</h3><p>缓冲流,也叫高效流，是对4个基本的<code>FileXxx</code> 流的增强，所以也是4个流，按照数据类型分类：</p>
+<ul>
+<li>字节缓冲流：BufferedInputStream，BufferedOutputStream</li>
+<li>字符缓冲流：BufferedReader，BufferedWriter</li>
+</ul>
+<p><font color="orange">缓冲流的基本原理，是在创建流对象时，会创建一个内置的默认大小的缓冲区数组，通过缓冲区读写，减少系统IO次数，从而提高读写的效率。</font></p>
+<h3 id="4-字节缓冲流"><a href="#4-字节缓冲流" class="headerlink" title="4.字节缓冲流"></a>4.字节缓冲流</h3><p>创建方式：</p>
+<ul>
+<li>BufferedInputStream(InputStream in)：创建一个新的缓冲输入流 </li>
+<li>BufferedOutputStream(OutputStream out)：创建一个新的缓冲输出流</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建字节缓冲输入流</span></span><br><span class="line">BufferedInputStream bis = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">"bis.txt"</span>));</span><br><span class="line"><span class="comment">// 创建字节缓冲输出流</span></span><br><span class="line">BufferedOutputStream bos = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="string">"bos.txt"</span>));</span><br></pre></td></tr></table></figure>
+
+<h4 id="BufferedOutputStream"><a href="#BufferedOutputStream" class="headerlink" title="BufferedOutputStream"></a>BufferedOutputStream</h4><p>BufferedOutputStream表示字节缓冲输出流 </p>
+<ol>
+<li>继承自父类的共性成员方法:</li>
+</ol>
+<ul>
+<li>public void close()：关闭此输出流并释放与此流相关联的任何系统资源。</li>
+<li>public void flush()：刷新此输出流并强制任何缓冲的输出字节被写出。</li>
+<li>public void write(byte[] b)：将 b.length字节从指定的字节数组写入此输出流。</li>
+<li>public void write(byte[] b, int off, int len)：从指定的字节数组写入 len字节，从偏移量 off开始输出到此输出流。</li>
+<li>public abstract void write(int b)：将指定的字节输出流。</li>
+</ul>
+<ol start="2">
+<li>构造方法</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">BufferedOutputStream(OutputStream out)创建一个新的缓冲输出流，以将数据写入指定的底层输出流</span><br><span class="line">BufferedOutputStream(OutputStream out, int size)创建一个新的缓冲输出流，以将具有指定缓冲区大小的数据写入指定的底层输出流</span><br><span class="line"></span><br><span class="line">参数:</span><br><span class="line">OutputStream out:字节输出流，我们可以传递FileOutputStream，缓冲流会给FileOutputStream增加一个缓冲区，提高FileOutputStream的写入效率</span><br><span class="line">int size:指定缓冲流内部缓冲区的大小,不指定默认</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><strong>使用步骤(重点)</strong></li>
+</ol>
+<ul>
+<li>创建FileOutputStream对象,构造方法中绑定要输出的目的地</li>
+<li>创建BufferedOutputStream对象,构造方法中传递FileOutputStream对象对象,提高FileOutputStream对象效率</li>
+<li>使用BufferedOutputStream对象中的方法write,把数据写入到内部缓冲区中</li>
+<li>使用BufferedOutputStream对象中的方法flush,把内部缓冲区中的数据,刷新到文件中</li>
+<li>释放资源(会先调用flush方法刷新数据,第4部可以省略)</li>
+</ul>
+<h4 id="BufferedInputStream"><a href="#BufferedInputStream" class="headerlink" title="BufferedInputStream"></a>BufferedInputStream</h4><p>字节缓冲输入流</p>
+<ol>
+<li>继承自父类的成员方法:</li>
+</ol>
+<ul>
+<li>int read()从输入流中读取数据的下一个字节</li>
+<li>int read(byte[] b) 从输入流中读取一定数量的字节，并将其存储在缓冲区数组b中</li>
+<li>void close() 关闭此输入流并释放与该流关联的所有系统资源</li>
+</ul>
+<ol start="2">
+<li>构造方法:</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">BufferedInputStream(InputStream in) 创建一个 BufferedInputStream 并保存其参数，即输入流 in，以便将来使用。</span><br><span class="line">BufferedInputStream(InputStream in, int size) 创建具有指定缓冲区大小的 BufferedInputStream 并保存其参数，即输入流 in，以便将来使用。</span><br><span class="line">参数:</span><br><span class="line">    InputStream in:字节输入流,我们可以传递FileInputStream,缓冲流会给FileInputStream增加一个缓冲区,提高FileInputStream的读取效率</span><br><span class="line">    int size:指定缓冲流内部缓冲区的大小,不指定默认</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><strong>使用步骤(重点):</strong></li>
+</ol>
+<ul>
+<li>创建FileInputStream对象,构造方法中绑定要读取的数据源</li>
+<li>创建BufferedInputStream对象,构造方法中传递FileInputStream对象,提高FileInputStream对象的读取效率</li>
+<li>使用BufferedInputStream对象中的方法read,读取文件</li>
+<li>释放资源</li>
+</ul>
+<blockquote>
+<p>普通流与缓存流效率测试：</p>
+</blockquote>
+<p>查询API，缓冲流读写方法与基本的流是一致的，我们通过复制大文件（400MB），测试它的效率</p>
+<ol>
+<li>基本的io流，考虑到文件最好选择二进制的字节流来读写</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BufferedDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> FileNotFoundException </span>&#123;</span><br><span class="line">        <span class="comment">// 记录开始时间</span></span><br><span class="line">      	<span class="keyword">long</span> start = System.currentTimeMillis();</span><br><span class="line">		<span class="comment">// 创建流对象</span></span><br><span class="line">        <span class="keyword">try</span> (</span><br><span class="line">        	FileInputStream fis = <span class="keyword">new</span> FileInputStream(<span class="string">"jdk9.exe"</span>);</span><br><span class="line">        	FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">"copy.exe"</span>)</span><br><span class="line">        )&#123;</span><br><span class="line">        	<span class="comment">// 读写数据</span></span><br><span class="line">            <span class="keyword">int</span> b;</span><br><span class="line">            <span class="keyword">while</span> ((b = fis.read()) != -<span class="number">1</span>) &#123;</span><br><span class="line">                fos.write(b);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="comment">// 记录结束时间</span></span><br><span class="line">        <span class="keyword">long</span> end = System.currentTimeMillis();</span><br><span class="line">        System.out.println(<span class="string">"普通流复制时间:"</span>+(end - start)+<span class="string">" 毫秒"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">十几分钟过去了...</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>缓冲流，代码如下：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BufferedDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> FileNotFoundException </span>&#123;</span><br><span class="line">        <span class="comment">// 记录开始时间</span></span><br><span class="line">      	<span class="keyword">long</span> start = System.currentTimeMillis();</span><br><span class="line">		<span class="comment">// 创建流对象</span></span><br><span class="line">        <span class="keyword">try</span> (</span><br><span class="line">        	BufferedInputStream bis = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">"jdk9.exe"</span>));</span><br><span class="line">	     BufferedOutputStream bos = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="string">"copy.exe"</span>));</span><br><span class="line">        )&#123;</span><br><span class="line">        <span class="comment">// 读写数据</span></span><br><span class="line">            <span class="keyword">int</span> b;</span><br><span class="line">            <span class="keyword">while</span> ((b = bis.read()) != -<span class="number">1</span>) &#123;</span><br><span class="line">                bos.write(b);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="comment">// 记录结束时间</span></span><br><span class="line">        <span class="keyword">long</span> end = System.currentTimeMillis();</span><br><span class="line">        System.out.println(<span class="string">"缓冲流复制时间:"</span>+(end - start)+<span class="string">" 毫秒"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">缓冲流复制时间:<span class="number">8016</span> 毫秒</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>如何更快呢？使用数组的方式</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BufferedDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> FileNotFoundException </span>&#123;</span><br><span class="line">      	<span class="comment">// 记录开始时间</span></span><br><span class="line">        <span class="keyword">long</span> start = System.currentTimeMillis();</span><br><span class="line">		<span class="comment">// 创建流对象</span></span><br><span class="line">        <span class="keyword">try</span> (</span><br><span class="line">			BufferedInputStream bis = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">"jdk9.exe"</span>));</span><br><span class="line">		 BufferedOutputStream bos = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="string">"copy.exe"</span>));</span><br><span class="line">        )&#123;</span><br><span class="line">          	<span class="comment">// 读写数据</span></span><br><span class="line">            <span class="keyword">int</span> len;</span><br><span class="line">            <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">8</span>*<span class="number">1024</span>];</span><br><span class="line">            <span class="keyword">while</span> ((len = bis.read(bytes)) != -<span class="number">1</span>) &#123;</span><br><span class="line">                bos.write(bytes, <span class="number">0</span> , len);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="comment">// 记录结束时间</span></span><br><span class="line">        <span class="keyword">long</span> end = System.currentTimeMillis();</span><br><span class="line">        System.out.println(<span class="string">"缓冲流使用数组复制时间:"</span>+(end - start)+<span class="string">" 毫秒"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">缓冲流使用数组复制时间:<span class="number">666</span> 毫秒</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-字符缓冲流"><a href="#5-字符缓冲流" class="headerlink" title="5.字符缓冲流"></a>5.字符缓冲流</h3><h4 id="BufferedWriter"><a href="#BufferedWriter" class="headerlink" title="BufferedWriter"></a>BufferedWriter</h4><p>字符缓冲输出流</p>
+<ol>
+<li><p>继承自父类的共性成员方法:</p>
+<ul>
+<li>void write(int c) 写入单个字符</li>
+<li>void write(char[] ch)写入字符数组</li>
+<li>abstract void write(char[] ch, int off, int len)写入字符数组的某一部分,off数组的开始索引,len写的字符个数</li>
+<li>void write(String str)写入字符串</li>
+<li>void write(String str, int off, int len) 写入字符串的某一部分,off字符串的开始索引,len写的字符个数</li>
+<li>void flush()刷新该流的缓冲</li>
+<li>void close() 关闭此流，但要先刷新它</li>
+</ul>
+</li>
+<li><p>构造方法:</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">BufferedWriter(Writer out) 创建一个使用默认大小输出缓冲区的缓冲字符输出流。</span><br><span class="line">BufferedWriter(Writer out, int size) 创建一个使用给定大小输出缓冲区的新缓冲字符输出流。</span><br><span class="line">参数:</span><br><span class="line">    Writer out:字符输出流，我们可以传递FileWriter,缓冲流会给FileWriter增加一个缓冲区,提高FileWriter的写入效率</span><br><span class="line">    int size:指定缓冲区的大小，不写默认大小</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>使用步骤:<ul>
+<li>创建字符缓冲输出流对象,构造方法中传递字符输出流</li>
+<li>调用字符缓冲输出流中的方法write,把数据写入到内存缓冲区中</li>
+<li>调用字符缓冲输出流中的方法flush,把内存缓冲区中的数据,刷新到文件中</li>
+<li>释放资源</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo03BufferedWriter</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">//System.out.println();</span></span><br><span class="line">        <span class="comment">// 1.创建字符缓冲输出流对象,构造方法中传递字符输出流</span></span><br><span class="line">        BufferedWriter bw = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(<span class="string">"10_IO\\c.txt"</span>));</span><br><span class="line">        <span class="comment">// 2.调用字符缓冲输出流中的方法write,把数据写入到内存缓冲区中</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;<span class="number">10</span> ; i++) &#123;</span><br><span class="line">            bw.write(<span class="string">"传智播客"</span>);</span><br><span class="line">            <span class="comment">//bw.write("\r\n");</span></span><br><span class="line">            bw.newLine();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 3.调用字符缓冲输出流中的方法flush,把内存缓冲区中的数据,刷新到文件中</span></span><br><span class="line">        bw.flush();</span><br><span class="line">        <span class="comment">// 4.释放资源</span></span><br><span class="line">        bw.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="BufferedReader"><a href="#BufferedReader" class="headerlink" title="BufferedReader"></a>BufferedReader</h4><p>字符缓冲输入流</p>
+<ol>
+<li><p>继承自父类的共性成员方法:</p>
+<ul>
+<li>int read() 读取单个字符并返回</li>
+<li>int read(char[] ch)一次读取多个字符,将字符读入数组</li>
+<li>void close() 关闭该流并释放与之关联的所有资源</li>
+</ul>
+</li>
+<li><p>构造方法:</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">BufferedReader(Reader in)  创建一个使用默认大小输入缓冲区的缓冲字符输入流。</span><br><span class="line">BufferedReader(Reader in, int size)     创建一个使用指定大小输入缓冲区的缓冲字符输入流。</span><br><span class="line">参数:</span><br><span class="line">    Reader in:字符输入流，我们可以传递FileReader,缓冲流会给FileReader增加一个缓冲区,提高FileReader的读取效率</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>特有的成员方法:</li>
+</ol>
+<p>String readLine() 读取一个文本行。读取一行数据，通过下列字符之一即可认为某行已终止：换行 (‘\n’)、回车 (‘\r’) 或回车后直接跟着换行(\r\n)。<br>返回包含该行内容的字符串，不包含任何行终止符，如果已到达流末尾，则返回null</p>
+<ol start="4">
+<li>使用步骤:<ul>
+<li>创建字符缓冲输入流对象,构造方法中传递字符输入流</li>
+<li>使用字符缓冲输入流对象中的方法read/readLine读取文本</li>
+<li>释放资源</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo04BufferedReader</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 1.创建字符缓冲输入流对象,构造方法中传递字符输入流</span></span><br><span class="line">        BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(<span class="string">"10_IO\\c.txt"</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2.使用字符缓冲输入流对象中的方法read/readLine读取文本</span></span><br><span class="line">        <span class="comment">/*String line = br.readLine();</span></span><br><span class="line"><span class="comment">        System.out.println(line);</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        line = br.readLine();</span></span><br><span class="line"><span class="comment">        System.out.println(line);*/</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">            发现以上读取是一个重复的过程,所以可以使用循环优化</span></span><br><span class="line"><span class="comment">            不知道文件中有多少行数据,所以使用while循环</span></span><br><span class="line"><span class="comment">            while的结束条件,读取到null结束</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        String line;</span><br><span class="line">        <span class="keyword">while</span>((line = br.readLine())!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            System.out.println(line);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3.释放资源</span></span><br><span class="line">        br.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
+<li><a href="https://blog.51cto.com/lavasoft/265821" target="_blank" rel="noopener">Java相对路径读取文件</a></li>
+</ul>
+
+      </div>
+      
+        <br>
+        
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-10-16T11:02:24+08:00">
+  <a class='notlink'>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>更新于 2021年10月16日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Java/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>Java</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2020/04/14/Java%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E5%8D%81%E4%B8%80)/&title=Java（十一）：流(Stream)与文件(File) | AhriLove&summary=本章内容：
+
+1.输入输出流2.文件与目录管理File类3.缓冲流4.字节缓冲流5.字符缓冲流
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2020/04/14/Java%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E5%8D%81%E4%B8%80)/&title=Java（十一）：流(Stream)与文件(File) | AhriLove&summary=本章内容：
+
+1.输入输出流2.文件与目录管理File类3.缓冲流4.字节缓冲流5.字符缓冲流
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2020/04/14/Java%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E5%8D%81%E4%B8%80)/&title=Java（十一）：流(Stream)与文件(File) | AhriLove&summary=本章内容：
+
+1.输入输出流2.文件与目录管理File类3.缓冲流4.字节缓冲流5.字符缓冲流
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+      
+      
+          <div class="prev-next">
+              
+                  <section class="prev">
+                      <span class="art-item-left">
+                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                          <h4>
+                              <a href="/2020/04/14/Java%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E5%8D%81)/" rel="prev" title="Java(十)：Java字符流，字节流，IO">
+                                
+                                    Java(十)：Java字符流，字节流，IO
+                                
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/Java/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Java</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+              
+                  <section class="next">
+                      <span class="art-item-right" aria-hidden="true">
+                          <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                          <h4>
+                              <a href="/2020/04/09/sql%E7%B3%BB%E5%88%97%E6%9B%B4%E6%96%B0(%E4%BA%94)/" rel="prev" title="sql数据库引发的生产事故案例">
+                                  
+                                      sql数据库引发的生产事故案例
+                                  
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/MySQL/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> MySQL</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+          </div>
+      
+    </section>
+  </article>
+
+
+
+  <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      
+      
+        <section id="comments">
+          <div id="lv-container" data-id="city" data-uid="MTAyMC80NzQ0NS8yMzk0NQ==">
+            <noscript><div><i class='fas fa-exclamation-triangle'>&nbsp;无法加载Livere评论系统，请确保您的网络能够正常访问。</div></noscript>
+          </div>
+        </section>
+      
+      
+      
+    </section>
+  </article>
+
+
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'Java（十一）：流(Stream)与文件(File)',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+    
+    
+      
+      
+        
+          
+          
+            
+              <section class='widget author'>
+  <div class='content material'>
+    
+      <div class='avatar'>
+        <img class='avatar' src='https://cdn.jsdelivr.net/gh/FioraLove/CDN@1.0/Avatar.png'/>
+      </div>
+    
+    
+      <div class='text'>
+        
+          <h2>AHRILOVE' BLOG</h2>
+        
+        
+          <p>只有被明日的我们铭记 今天才有意义</p>
+
+        
+        
+      </div>
+    
+    
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget toc-wrapper'>
+    
+<header class='material'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目录</div>
+  
+    <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
+  
+</header>
+
+    <div class='content material'>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-输入输出流"><span class="toc-text">1.输入输出流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-文件与目录管理"><span class="toc-text">2.文件与目录管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#File类"><span class="toc-text">File类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#绝对路径与相对路径"><span class="toc-text">绝对路径与相对路径</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#遍历文件和目录"><span class="toc-text">遍历文件和目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Path"><span class="toc-text">Path</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-缓冲流"><span class="toc-text">3.缓冲流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-字节缓冲流"><span class="toc-text">4.字节缓冲流</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BufferedOutputStream"><span class="toc-text">BufferedOutputStream</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BufferedInputStream"><span class="toc-text">BufferedInputStream</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-字符缓冲流"><span class="toc-text">5.字符缓冲流</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BufferedWriter"><span class="toc-text">BufferedWriter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BufferedReader"><span class="toc-text">BufferedReader</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              <section class='widget grid'>
+  
+<header class='material'>
+  <div><i class="fas fa-address-card fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;关于博主</div>
+  
+</header>
+
+  <div class='content material'>
+    <ul class="grid navgation">
+      
+        <li><a class="flat-box" title="/game/" href="/game/"
+          
+            rel="nofollow"
+          
+          
+          id="game">
+          
+            <i class="fas fa-gamepad fa-fw" aria-hidden="true"></i>
+          
+          轻松一刻
+        </a></li>
+      
+        <li><a class="flat-box" title="/about/" href="/about/"
+          
+            rel="nofollow"
+          
+          
+          id="about">
+          
+            <i class="fas fa-paper-plane fa-fw" aria-hidden="true"></i>
+          
+          相册
+        </a></li>
+      
+        <li><a class="flat-box" title="/cv/" href="/cv/"
+          
+            rel="nofollow"
+          
+          
+          id="cv">
+          
+            <i class="fas fa-globe-asia fa-fw" aria-hidden="true"></i>
+          
+          个人简历
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+            
+              <section class='widget grid'>
+  
+<header class='material'>
+  <div><i class="fas fa-map-signs fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;站内导航</div>
+  
+</header>
+
+  <div class='content material'>
+    <ul class="grid navgation">
+      
+        <li><a class="flat-box" title="/" href="/"
+          
+          
+          id="home">
+          
+            <i class="fas fa-clock fa-fw" aria-hidden="true"></i>
+          
+          近期文章
+        </a></li>
+      
+        <li><a class="flat-box" title="/archives/" href="/archives/"
+          
+            rel="nofollow"
+          
+          
+          id="archives">
+          
+            <i class="fas fa-archive fa-fw" aria-hidden="true"></i>
+          
+          文章归档
+        </a></li>
+      
+        <li><a class="flat-box" title="https://github.com/FioraLove?tab=repositories" href="https://github.com/FioraLove?tab=repositories"
+          
+          
+          id="https:github.comFioraLove?tab=repositories">
+          
+            <i class="fas fa-code-branch fa-fw" aria-hidden="true"></i>
+          
+          开源项目
+        </a></li>
+      
+        <li><a class="flat-box" title="/friends/" href="/friends/"
+          
+            rel="nofollow"
+          
+          
+          id="friends">
+          
+            <i class="fas fa-link fa-fw" aria-hidden="true"></i>
+          
+          我的友链
+        </a></li>
+      
+        <li><a class="flat-box" title="https://xaoxuu.com/wiki/material-x/" href="https://xaoxuu.com/wiki/material-x/"
+          
+            rel="nofollow"
+          
+          
+          id="https:xaoxuu.comwikimaterial-x">
+          
+            <i class="fas fa-book fa-fw" aria-hidden="true"></i>
+          
+          主题文档
+        </a></li>
+      
+        <li><a class="flat-box" title="/plan/" href="/plan/"
+          
+            rel="nofollow"
+          
+          
+          id="plan">
+          
+            <i class="fas fa-info-circle fa-fw" aria-hidden="true"></i>
+          
+          开发日志
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget category'>
+    
+<header class='material'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分类</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/categories/"
+    title="categories/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content material'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Data-analysis/" href="/categories/Data-analysis/"><div class='name'>Data analysis</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Database/" href="/categories/Database/"><div class='name'>Database</div><div class='badge'>(10)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Django/" href="/categories/Django/"><div class='name'>Django</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Java/" href="/categories/Java/"><div class='name'>Java</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/PHP/" href="/categories/PHP/"><div class='name'>PHP</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Python/" href="/categories/Python/"><div class='name'>Python</div><div class='badge'>(14)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Redis/" href="/categories/Redis/"><div class='name'>Redis</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Vue/" href="/categories/Vue/"><div class='name'>Vue</div><div class='badge'>(6)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/docker/" href="/categories/docker/"><div class='name'>docker</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/javascript/" href="/categories/javascript/"><div class='name'>javascript</div><div class='badge'>(8)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/json/" href="/categories/json/"><div class='name'>json</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E5%89%8D%E7%AB%AF/" href="/categories/%E5%89%8D%E7%AB%AF/"><div class='name'>前端</div><div class='badge'>(8)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E5%8D%9A%E5%AE%A2Hexo/" href="/categories/%E5%8D%9A%E5%AE%A2Hexo/"><div class='name'>博客Hexo</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%B6%E6%9E%84/" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%B6%E6%9E%84/"><div class='name'>服务器架构</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E4%B8%8E%E7%AE%97%E6%B3%95/" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E4%B8%8E%E7%AE%97%E6%B3%95/"><div class='name'>计算机基础与算法</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E9%9A%8F%E7%AC%94/" href="/categories/%E9%9A%8F%E7%AC%94/"><div class='name'>随笔</div><div class='badge'>(5)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget tagcloud'>
+    
+<header class='material'>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/tags/"
+    title="tags/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content material'>
+      <a href="/tags/DDL/" style="font-size: 14px; color: #999">DDL</a> <a href="/tags/DML/" style="font-size: 14px; color: #999">DML</a> <a href="/tags/Django/" style="font-size: 20.67px; color: #6c6c6c">Django</a> <a href="/tags/Github-Page/" style="font-size: 14px; color: #999">Github Page</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/InnoDB/" style="font-size: 14px; color: #999">InnoDB</a> <a href="/tags/Java/" style="font-size: 24px; color: #555">Java</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Maven/" style="font-size: 14px; color: #999">Maven</a> <a href="/tags/Memcached/" style="font-size: 14px; color: #999">Memcached</a> <a href="/tags/MySQL/" style="font-size: 20.67px; color: #6c6c6c">MySQL</a> <a href="/tags/Oracle/" style="font-size: 15.67px; color: #8e8e8e">Oracle</a> <a href="/tags/Redis/" style="font-size: 17.33px; color: #828282">Redis</a> <a href="/tags/Requests/" style="font-size: 14px; color: #999">Requests</a> <a href="/tags/ThinkPHP/" style="font-size: 15.67px; color: #8e8e8e">ThinkPHP</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a> <a href="/tags/apache/" style="font-size: 14px; color: #999">apache</a> <a href="/tags/blog%E6%94%B9%E7%89%88/" style="font-size: 14px; color: #999">blog改版</a> <a href="/tags/css/" style="font-size: 20.67px; color: #6c6c6c">css</a> <a href="/tags/database/" style="font-size: 14px; color: #999">database</a> <a href="/tags/docker/" style="font-size: 19px; color: #777">docker</a> <a href="/tags/echarts/" style="font-size: 14px; color: #999">echarts</a> <a href="/tags/float/" style="font-size: 14px; color: #999">float</a> <a href="/tags/front-matter/" style="font-size: 14px; color: #999">front-matter</a> <a href="/tags/git/" style="font-size: 14px; color: #999">git</a> <a href="/tags/git-pull-push/" style="font-size: 14px; color: #999">git pull/push</a> <a href="/tags/html/" style="font-size: 15.67px; color: #8e8e8e">html</a> <a href="/tags/index/" style="font-size: 14px; color: #999">index</a> <a href="/tags/javascript/" style="font-size: 14px; color: #999">javascript</a> <a href="/tags/js/" style="font-size: 19px; color: #777">js</a> <a href="/tags/json/" style="font-size: 15.67px; color: #8e8e8e">json</a> <a href="/tags/lambda/" style="font-size: 14px; color: #999">lambda</a> <a href="/tags/margin/" style="font-size: 14px; color: #999">margin</a> <a href="/tags/matplotlib/" style="font-size: 15.67px; color: #8e8e8e">matplotlib</a> <a href="/tags/mysql/" style="font-size: 15.67px; color: #8e8e8e">mysql</a> <a href="/tags/nginx/" style="font-size: 15.67px; color: #8e8e8e">nginx</a> <a href="/tags/numpy/" style="font-size: 15.67px; color: #8e8e8e">numpy</a> <a href="/tags/pandas/" style="font-size: 14px; color: #999">pandas</a> <a href="/tags/php/" style="font-size: 14px; color: #999">php</a> <a href="/tags/python/" style="font-size: 22.33px; color: #606060">python</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/union/" style="font-size: 14px; color: #999">union</a> <a href="/tags/vue/" style="font-size: 14px; color: #999">vue</a> <a href="/tags/vue-cli/" style="font-size: 17.33px; color: #828282">vue-cli</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/%E5%89%8D%E5%90%8E%E5%88%86%E7%A6%BB/" style="font-size: 14px; color: #999">前后分离</a> <a href="/tags/%E5%A4%8D%E6%9D%82%E5%BA%A6/" style="font-size: 14px; color: #999">复杂度</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 14px; color: #999">多线程</a> <a href="/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8B/" style="font-size: 14px; color: #999">多进程</a> <a href="/tags/%E5%AE%9A%E4%BD%8D%E7%85%A7%E7%89%87%E6%8B%8D%E6%91%84%E4%BD%8D%E7%BD%AE/" style="font-size: 14px; color: #999">定位照片拍摄位置</a> <a href="/tags/%E5%AF%B9%E8%B1%A1/" style="font-size: 14px; color: #999">对象</a> <a href="/tags/%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">属性与方法</a> <a href="/tags/%E5%B8%B8%E8%A7%81%E5%BA%93/" style="font-size: 14px; color: #999">常见库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 14px; color: #999">数据类型</a> <a href="/tags/%E6%9E%81%E9%AA%8C%E6%BB%91%E5%8A%A8/" style="font-size: 14px; color: #999">极验滑动</a> <a href="/tags/%E8%A3%85%E9%A5%B0%E5%99%A8/" style="font-size: 14px; color: #999">装饰器</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%BA%93/" style="font-size: 14px; color: #999">解析库</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 14px; color: #999">负载均衡</a> <a href="/tags/%E9%80%86%E5%90%91%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">逆向爬虫</a> <a href="/tags/%E9%80%89%E6%8B%A9%E5%99%A8/" style="font-size: 14px; color: #999">选择器</a> <a href="/tags/%E9%80%9A%E7%94%A8%E8%BF%9E%E6%8E%A5/" style="font-size: 14px; color: #999">通用连接</a>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+    
+
+  
+</aside>
+
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+<script src="//instant.page/1.2.2" type="module" integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU"></script>
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+
+
+
+  
+  
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        if ('.cover') {
+          $('.cover').backstretch(
+          ["https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.2.1/images/background/021.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(1).jpg.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(8).jpg.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(6).jpg.webp", "https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imageskda.jpg.webp", "https://cdn.jsdelivr.net/gh/FioraLove/Images/531-bigskin-1.jpg"],
+          {
+            duration: "5000",
+            fade: "3000"
+          });
+        } else {
+          $.backstretch(
+          ["https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.2.1/images/background/021.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(1).jpg.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(8).jpg.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(6).jpg.webp", "https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imageskda.jpg.webp", "https://cdn.jsdelivr.net/gh/FioraLove/Images/531-bigskin-1.jpg"],
+          {
+            duration: "5000",
+            fade: "3000"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@3.1.0/js/app.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@3.1.0/js/search.js"></script>
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>复制</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+    <script  src="https://cdn.jsdelivr.net/gh/FioraLove/CDN@v1.2.7/ribbon_v1.js"></script>
+  <script>setLoadingBarProgress(100);</script>
+<div class="showarea-4" style="text-align: center;margin: 0 auto;">
+        <img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/footercopy.png">
+    </div>
+    <div style="text-align: center;background-color:rgb(12, 1, 3);">
+
+        <p style="font-size: 1.2em;margin: 0 auto;color:rgb(202, 197, 191);">联系我 | Contact with me</p>
+        <p style="font-size: 1em;margin: 0 auto;color:rgb(202, 197, 191);">Copyright © 2019-2020 谁知你知我，我知你知深。此恨经年深，比情度日久</p>
+        <p style="font-size: 1em;margin: 0 auto;color:rgb(202, 197, 191);">博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" style="text-decoration: none;color:rgb(202, 197, 191)">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+        <br>
+        <a href="http://AhriLove.top/" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/FioraLove/Images/hexo.png"
+                title="个人博客" style="width: 3.5em;color:rgb(202, 197, 191);"></a>&nbsp;&nbsp;
+        <a href="https://github.com/FioraLove?tab=repositories" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/FioraLove/Images/git.png"
+                title="GitHub" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="https://www.cnblogs.com/AhriLove-chen/" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/cnblogs.png"
+                title="博客园" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="https://www.zhihu.com/people/hui-li-yi-xiao-jie/activities" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/zhihu.png"
+                title="知乎" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="https://music.163.com/#/user/home?id=1398315803" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/netease.png"
+                title="网易云音乐" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="https://space.bilibili.com/215893581" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/bilibili.png"
+                title="哔哩哔哩" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="http://wpa.qq.com/msgrd?v=3&uin=980710425&site=qq&menu=yes" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/qq.png"
+                title="QQ" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="mailto:980710425@qq.com" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/mail.png"
+                title="邮件" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="javascript:;"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/telegram.png"
+                title="Telegram" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="javascript:;"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/twitter.png"
+                title="Twitter" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <!--<a href="https://www.facebook.com/profile.php?id=100039716302318" target="_blank"><img
+            src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/facebook.png" class="icon" title="Facebook" style="width: 3.5em"></a>&nbsp;&nbsp;-->
+        <script  src="https://cdn.jsdelivr.net/gh/FioraLove/CDN@v1.2.7/ribbon_v1.js"></script>
+    </div>
+</body>
+</html>

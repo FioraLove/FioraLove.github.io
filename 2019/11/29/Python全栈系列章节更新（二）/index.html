@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>Python全栈系列章节更新（二）：常见库模块 | AhriLove</title>
+  
+  
+
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/all.min.css">
+  
+
+  
+  <link rel="shortcut icon" type='image/x-icon' href="https://cdn.jsdelivr.net/gh/FioraLove/CDN@1.0/万圣节鬼魂.ico">
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.10.22/css/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+  <script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+    </script>
+</head>
+
+<!-- 样式二（飘动的彩带） -->
+<meta name="baidu-site-verification" content="iMtC1b2Kmy" />
+<script src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.0.2/js/instantclick-1.2.2.js" type="module"></script>
+
+<body>
+
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post half'>
+      
+        
+  <img class='logo' src='https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imagesaaa.png'/>
+
+
+  <div class="m_search">
+    <form name="searchform" class="form u-search-form">
+      <input type="text" class="input u-search-input" placeholder="搜索" />
+      <i class="icon fas fa-search fa-fw"></i>
+    </form>
+  </div>
+
+<div class='menu navgation'>
+  <ul class='h-list'>
+    
+      
+        <li>
+          <a class="nav home" href="/"
+            
+            
+            id="home">
+            <i class='fas fa-home fa-fw'></i>&nbsp;主页
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/friends/"
+            
+              rel="nofollow"
+            
+            
+            id="friends">
+            <i class='fas fa-users fa-fw'></i>&nbsp;朋友
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/about/"
+            
+              rel="nofollow"
+            
+            
+            id="about">
+            <i class='fas fa-info-circle fa-fw'></i>&nbsp;关于
+          </a>
+        </li>
+      
+    
+  </ul>
+</div>
+
+      
+    </cover>
+    <header class="l_header material">
+  <div id="loading-bar-wrapper">
+    <div id="loading-bar" class="material"></div>
+  </div>
+
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          AhriLove
+        
+      </a>
+			<div class='menu navgation'>
+				<ul class='h-list'>
+          
+  					
+  						<li>
+								<a class="nav flat-box" href="/"
+                  
+                  
+                  id="home">
+									<i class='fas fa-grin fa-fw'></i>&nbsp;博文
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/categories/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="categories">
+									<i class='fas fa-folder-open fa-fw'></i>&nbsp;分类
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/tags/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="tags">
+									<i class='fas fa-ribbon fa-fw'></i>&nbsp;标签
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/friends/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="friends">
+									<i class='fab fa-suse fa-fw'></i>&nbsp;友链
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/plan/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="plan">
+									<i class='fas fa-paper-plane fa-fw'></i>&nbsp;每日计划
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/mylist/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="mylist">
+									<i class='fas fa-archive fa-fw'></i>&nbsp;资料文档
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/feiyan2020/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="feiyan2020">
+									<i class='far fa-heart fa-fw'></i>&nbsp;肺炎疫情图
+								</a>
+							</li>
+      			
+      		
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<i class="icon fas fa-search fa-fw"></i>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+        
+          <li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+        
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu navgation">
+      <ul>
+        
+          
+            <li>
+							<a class="nav flat-box" href="/"
+                
+                
+                id="home">
+								<i class='fas fa-clock fa-fw'></i>&nbsp;近期文章
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/archives/"
+                
+                  rel="nofollow"
+                
+                
+                id="archives">
+								<i class='fas fa-archive fa-fw'></i>&nbsp;文章归档
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="https://github.com/FioraLove?tab=repositories"
+                
+                
+                id="https:github.comFioraLove?tab=repositories">
+								<i class='fas fa-code-branch fa-fw'></i>&nbsp;开源项目
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/friends/"
+                
+                  rel="nofollow"
+                
+                
+                id="friends">
+								<i class='fas fa-link fa-fw'></i>&nbsp;我的友链
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="https://xaoxuu.com/wiki/material-x/"
+                
+                  rel="nofollow"
+                
+                
+                id="https:xaoxuu.comwikimaterial-x">
+								<i class='fas fa-book fa-fw'></i>&nbsp;主题文档
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/feiyan2020/"
+                
+                  rel="nofollow"
+                
+                
+                id="feiyan2020">
+								<i class='far fa-heart fa-fw'></i>&nbsp;肺炎疫情图
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/about/"
+                
+                  rel="nofollow"
+                
+                
+                id="about">
+								<i class='fas fa-info-circle fa-fw'></i>&nbsp;关于小站
+							</a>
+            </li>
+          
+       
+      </ul>
+		</nav>
+    </header>
+	</aside>
+<script>setLoadingBarProgress(40);</script>
+
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      <div class='l_main'>
+  
+
+  <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+    
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  
+    <h1 class="title">
+      <a href="/2019/11/29/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">
+        Python全栈系列章节更新（二）：常见库模块
+      </a>
+    </h1>
+  
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://ahrilove.top" rel="nofollow">
+        
+          <i class="fas fa-user" aria-hidden="true"></i>
+        
+        <p>AhriLove</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-11-29</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Python/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Python</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <p>Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等</p>
+<blockquote>
+<p>1.time模块<br>2.datetime模块<br>3.ftplib模块<br>4.os模块<br>5.tqdm模块<br>6.PrettyTable模块<br>7.random模块<br>8.execjs模块<br>9.js2py模块<br>10.string模块<br>11.Logger模块<br>12.文件存储</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="1-time模块"><a href="#1-time模块" class="headerlink" title="1.time模块"></a>1.time模块</h2><p><code>time</code> 模块是一个大的类，里面包含诸多重要的函数，这里列举几个说明，详细请参看官方文档</p>
+<ol>
+<li>获取当前时间戳</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取当前时间戳（秒级，浮点型）</span></span><br><span class="line">time.time()</span><br><span class="line">int(time.time())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取当前时间戳（毫秒级，十三位）</span></span><br><span class="line">int(round(time.time() * <span class="number">1000</span>))</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>休眠</li>
+</ol>
+<p>time.sleep(seconds)</p>
+<ol start="3">
+<li>时间戳转换为时间元组格式</li>
+</ol>
+<p>time.localtime(seconds=None)，seconds为空时，默认为当前时间戳，最终会转换成这样时间元组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">time.localtime(1460073600.66)</span><br><span class="line"># 执行结果</span><br><span class="line">time.struct_time(tm_year=2016, tm_mon=4, tm_mday=8, tm_hour=8, tm_min=0, tm_sec=0, tm_wday=4, tm_yday=99, tm_isdst=0)</span><br><span class="line">属性                            值</span><br><span class="line">tm_year（年）                  比如2011 </span><br><span class="line">tm_mon（月）                   1 - 12</span><br><span class="line">tm_mday（日）                  1 - 31</span><br><span class="line">tm_hour（时）                  0 - 23</span><br><span class="line">tm_min（分）                   0 - 59</span><br><span class="line">tm_sec（秒）                   0 - 59</span><br><span class="line">tm_wday（weekday）             0 - 6（0表示周日）</span><br><span class="line">tm_yday（一年中的第几天）        1 - 366</span><br><span class="line">tm_isdst（是否是夏令时）        默认为-1</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>获取自定义的时间格式</li>
+</ol>
+<ul>
+<li>格式参数：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Commonly used format codes:</span><br><span class="line"></span><br><span class="line">%Y  Year with century as a decimal number.</span><br><span class="line">%m  Month as a decimal number [01,12].</span><br><span class="line">%d  Day of the month as a decimal number [01,31].</span><br><span class="line">%H  Hour (24-hour clock) as a decimal number [00,23].</span><br><span class="line">%M  Minute as a decimal number [00,59].</span><br><span class="line">%S  Second as a decimal number [00,61].</span><br><span class="line">%z  Time zone offset from UTC.</span><br><span class="line">%a  Locale&apos;s abbreviated weekday name.</span><br><span class="line">%A  Locale&apos;s full weekday name.</span><br><span class="line">%b  Locale&apos;s abbreviated month name.</span><br><span class="line">%B  Locale&apos;s full month name.</span><br><span class="line">%c  Locale&apos;s appropriate date and time representation.</span><br><span class="line">%I  Hour (12-hour clock) as a decimal number [01,12].</span><br><span class="line">%p  Locale&apos;s equivalent of either AM or PM.</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>语法</li>
+</ul>
+<p><code>time.strftime(format, p_tuple=None)</code></p>
+<p>format：表示时间格式参数<br>p_tuple：表示时间元组，<strong>为空则默认为当前时间</strong></p>
+<ul>
+<li>使用</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取当前自定义时间格式</span></span><br><span class="line">print(time.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>))   <span class="comment"># 2021-08-25 14:24:48</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 时间戳转换为自定义时间格式</span></span><br><span class="line">value = time.localtime(<span class="number">1460073600.0</span>)</span><br><span class="line">dt = time.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>, value)</span><br><span class="line">print(dt)   <span class="comment"># 2016-04-08 08:00:00</span></span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>自定义时间格式转换为时间戳</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment"># 必须要一一对应</span></span><br><span class="line">newTime = time.strptime(<span class="string">"2021-08-25 23:59:59"</span>, <span class="string">'%Y-%m-%d %H:%M:%S'</span>)</span><br><span class="line">s = time.mktime(newTime)</span><br><span class="line">print(s)    <span class="comment"># 1629907199.0</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-datetime模块"><a href="#2-datetime模块" class="headerlink" title="2.datetime模块"></a>2.datetime模块</h2><ol>
+<li>datetime.date：表示日期的类</li>
+<li>datetime.datetime：表示日期时间的类</li>
+<li>datetime.time：表示时间的类</li>
+<li>datetime.timedelta：表示时间间隔，即两个时间点的间隔</li>
+<li>datetime.tzinfo：时区的相关信息</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;datetime.datetime.now()</span><br><span class="line">当前系统时间：datetime.datetime(2019, 12, 3, 20, 31, 10, 740869)</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;datetime.datetime.now().year/month/day</span><br><span class="line">分别为：2019，12，3</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;datetime.datetime.now().weekday()</span><br><span class="line">1 表示在第几周</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;time1 = datetime.datetime(2016, 10, 20)</span><br><span class="line">&gt;&gt;&gt;time2 = datetime.datetime(2015, 11, 2)</span><br><span class="line"> </span><br><span class="line">&quot;&quot;&quot;计算天数差值&quot;&quot;&quot;</span><br><span class="line">print(time1-time2).days</span><br><span class="line"> </span><br><span class="line">&quot;&quot;&quot;计算两个日期之间相隔的秒数&quot;&quot;&quot;</span><br><span class="line">print (time1-time2).total_seconds()</span><br><span class="line"></span><br><span class="line"># 获取当前时间,并转化为字符串型</span><br><span class="line">&gt;&gt;&gt;time_new = str(datetime.datetime.now().date())  # &apos;2019-12-4&apos;</span><br><span class="line"></span><br><span class="line"># 以当天的09：00为开始时间（时间戳格式）</span><br><span class="line">&gt;&gt;&gt;time_on = time.mktime(time.strptime(time_new+ &apos; 09:00&apos;, &apos;%Y-%m-%d %H:%M&apos;))</span><br><span class="line"></span><br><span class="line"># 以当天的18：00为结束时间（时间戳格式）</span><br><span class="line">&gt;&gt;&gt;time_off = time.mktime(time.strptime(time_new+ &apos; 18:00&apos;, &apos;%Y-%m-%d %H:%M&apos;))</span><br><span class="line"></span><br><span class="line"># 当前星期几</span><br><span class="line">&gt;&gt;&gt;week_now = datetime.datetime.now().weekday()</span><br><span class="line"></span><br><span class="line"># 当前时间</span><br><span class="line">&gt;&gt;&gt;time_now = datetime.datetime.now()  # datetime.datetime(2019, 12, 4, 14, 57, 48, 988520)</span><br><span class="line"></span><br><span class="line"># 当前第几小时（24小时制）</span><br><span class="line">&gt;&gt;&gt;hour_now = datetime.datetime.now().hour  # 14</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>时间转换</p>
+</blockquote>
+<ul>
+<li>datetime转str格式：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; datetime.datetime.now().strftime(&quot;%Y-%m-%d %H:%M:%S&quot;)</span><br><span class="line">&apos;2018-06-18 16:58:46&apos;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>str格式转datetime格式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; print datetime.datetime.strptime(&quot;2018-06-18 16:58:46&quot;,&quot;%Y-%m-%d %H:%M:%S&quot;)</span><br><span class="line">2018-06-18 16:58:46</span><br><span class="line">&gt;&gt;&gt; print type(datetime.datetime.strptime(&quot;2018-06-18 16:58:46&quot;,&quot;%Y-%m-%d %H:%M:%S&quot;))</span><br><span class="line">&lt;type &apos;datetime.datetime&apos;&gt;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="3-ftplib库"><a href="#3-ftplib库" class="headerlink" title="3.ftplib库"></a>3.ftplib库</h2><p>ftplib模块是系统默认安装的，实现文件的上传与下载</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> ftplib <span class="keyword">import</span> FTP            <span class="comment">#加载ftp模块</span></span><br><span class="line">ftp=FTP()                         <span class="comment">#设置变量</span></span><br><span class="line">ftp.set_debuglevel(<span class="number">2</span>)             <span class="comment">#打开调试级别2，显示详细信息</span></span><br><span class="line">ftp.connect(<span class="string">"IP"</span>,<span class="string">"port"</span>)          <span class="comment">#连接的ftp sever和端口</span></span><br><span class="line">ftp.login(<span class="string">"user"</span>,<span class="string">"password"</span>)      <span class="comment">#连接的用户名，密码</span></span><br><span class="line">print(ftp.getwelcome())            <span class="comment">#打印出欢迎信息</span></span><br><span class="line"></span><br><span class="line">bufsize=<span class="number">1024</span>                      <span class="comment">#设置的缓冲区大小</span></span><br><span class="line">filename=<span class="string">"filename.txt"</span>           <span class="comment">#需要下载的文件</span></span><br><span class="line">file_handle=open(filename,<span class="string">"wb"</span>).write <span class="comment">#以写模式在本地打开文件</span></span><br><span class="line">ftp.retrbinaly(<span class="string">"RETR filename.txt"</span>,file_handle,bufsize) <span class="comment">#接收服务器上文件并写入本地文件</span></span><br><span class="line">ftp.set_debuglevel(<span class="number">0</span>)             <span class="comment">#关闭调试模式</span></span><br><span class="line">ftp.quit()                        <span class="comment">#退出ftp</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># ftp相关命令操作</span></span><br><span class="line">ftp.cwd(pathname)                 <span class="comment">#设置FTP当前操作的路径</span></span><br><span class="line">ftp.dir()                         <span class="comment">#显示目录下所有目录信息</span></span><br><span class="line">ftp.nlst()                        <span class="comment">#获取目录下的文件</span></span><br><span class="line">ftp.mkd(pathname)                 <span class="comment">#新建远程目录</span></span><br><span class="line">ftp.pwd()                         <span class="comment">#返回当前所在位置</span></span><br><span class="line">ftp.rmd(dirname)                  <span class="comment">#删除远程目录</span></span><br><span class="line">ftp.delete(filename)              <span class="comment">#删除远程文件</span></span><br><span class="line">ftp.rename(fromname, toname)<span class="comment">#将fromname修改名称为toname。</span></span><br><span class="line">ftp.storbinary(<span class="string">"STOR filename.txt"</span>,file_content,bufsize)  <span class="comment">#上传目标文件</span></span><br><span class="line">ftp.retrbinary(<span class="string">"RETR filename.txt"</span>,file_content,bufsize)  <span class="comment">#下载FTP文件</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="4-os模块"><a href="#4-os模块" class="headerlink" title="4.os模块"></a>4.os模块</h2><p>记下常用的os模块的操作指令</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>os.getcwd()</td>
+<td align="center">获取当前工作目录，即当前python脚本工作的目录路径,相当于shell的pwd</td>
+</tr>
+<tr>
+<td>os.chdir(“dirname”)</td>
+<td align="center">改变当前脚本工作目录；相当于shell下cd</td>
+</tr>
+<tr>
+<td>os.curdir</td>
+<td align="center">返回当前目录: (‘.’)</td>
+</tr>
+<tr>
+<td>os.pardir</td>
+<td align="center">获取当前目录的父目录字符串名：(‘..’)</td>
+</tr>
+<tr>
+<td>os.makedirs(‘dirname1/dirname2’)</td>
+<td align="center">可生成多层递归目录</td>
+</tr>
+<tr>
+<td>os.removedirs(‘dirname1’)</td>
+<td align="center">若目录为空，则删除，并递归到上一级目录，如若也为空，则删除，依此类推</td>
+</tr>
+<tr>
+<td>os.mkdir(‘dirname’)</td>
+<td align="center">生成单级目录；相当于shell中mkdir dirname</td>
+</tr>
+<tr>
+<td>os.rmdir(‘dirname’)</td>
+<td align="center">删除单级空目录，若目录不为空则无法删除，报错；相当于shell中rmdir dirname</td>
+</tr>
+<tr>
+<td>os.listdir(‘dirname’)</td>
+<td align="center">列出指定目录下的所有文件和子目录，包括隐藏文件，并以列表方式打印</td>
+</tr>
+<tr>
+<td>os.remove(path)</td>
+<td align="center">删除path指定的文件</td>
+</tr>
+<tr>
+<td>os.rename(“oldname”,”newname”)</td>
+<td align="center">重命名文件/目录</td>
+</tr>
+<tr>
+<td>os.stat(‘path/filename’)</td>
+<td align="center">获取文件/目录信息</td>
+</tr>
+<tr>
+<td>os.name</td>
+<td align="center">输出字符串指示当前使用平台。win-&gt;’nt’; Linux-&gt;’posix’</td>
+</tr>
+<tr>
+<td>os.system(“执行的命令”)</td>
+<td align="center">运行shell命令，直接显示,相当于直接在cmd命令中执行，<a href="https://blog.csdn.net/CDersTeam/article/details/51346911?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task" target="_blank" rel="noopener">Windows的cmd命令大全</a></td>
+</tr>
+<tr>
+<td>os.environ</td>
+<td align="center">获取系统环境变量</td>
+</tr>
+<tr>
+<td>os.path.abspath(path)</td>
+<td align="center">返回path规范化的绝对路径</td>
+</tr>
+<tr>
+<td>os.path.split(path)</td>
+<td align="center">将path分割成目录和文件名二元组返回</td>
+</tr>
+<tr>
+<td>os.path.dirname(path)</td>
+<td align="center">返回path的目录。其实就是os.path.split(path)的第一个元素</td>
+</tr>
+<tr>
+<td>os.path.basename(path)</td>
+<td align="center">返回path最后的文件名。如何path以／或\结尾，那么就会返回空值。即os.path.split(path)的第二个元素</td>
+</tr>
+<tr>
+<td>os.path.exists(path/file)</td>
+<td align="center">如果路径或文件存在，返回True；如果path不存在，返回False</td>
+</tr>
+<tr>
+<td>os.path.getsize(file)</td>
+<td align="center">返回文件大小，如果文件不存在就返回错误</td>
+</tr>
+<tr>
+<td>os.path.isabs(path)</td>
+<td align="center">如果path是绝对路径，返回True</td>
+</tr>
+<tr>
+<td>os.path.isfile(path)</td>
+<td align="center">如果path是一个存在的文件，返回True。否则返回False</td>
+</tr>
+<tr>
+<td>os.path.join(path1,path2,…,pathN)</td>
+<td align="center">将多个路径组合后返回</td>
+</tr>
+</tbody></table>
+<p>简要样例说明：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; os.path.split(&quot;/Users/hqs/PycharmProjects/startMyPython3.0&quot;)             </span><br><span class="line">(&apos;/Users/hqs/PycharmProjects&apos;, &apos;startMyPython3.0&apos;)</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; os.path.dirname(&apos;/Users/hqs/PycharmProjects/startMyPython3.0&apos;)</span><br><span class="line">&apos;/Users/hqs/PycharmProjects&apos;</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;os.system(&quot;ping 127.0.0.1&quot;)</span><br><span class="line">正在 Ping 127.0.0.1 具有 32 字节的数据:</span><br><span class="line">来自 127.0.0.1 的回复: 字节=32 时间&lt;1ms TTL=64</span><br><span class="line">来自 127.0.0.1 的回复: 字节=32 时间&lt;1ms TTL=64</span><br><span class="line">来自 127.0.0.1 的回复: 字节=32 时间&lt;1ms TTL=64</span><br><span class="line">来自 127.0.0.1 的回复: 字节=32 时间&lt;1ms TTL=64</span><br><span class="line"></span><br><span class="line">127.0.0.1 的 Ping 统计信息:</span><br><span class="line">    数据包: 已发送 = 4，已接收 = 4，丢失 = 0 (0% 丢失)，</span><br><span class="line">往返行程的估计时间(以毫秒为单位):</span><br><span class="line">    最短 = 0ms，最长 = 0ms，平均 = 0ms</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;os.path.abspath(__file__) </span><br><span class="line">当前文件的绝对路径</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;os.path.dirname(os.path.abspath(__file__))</span><br><span class="line">当前文件的上一层目录的绝对路径</span><br><span class="line"></span><br><span class="line">os.path.dirname(os.path.dirname(os.path.abspath(__file__)))</span><br><span class="line">当前文件的上上层目录的绝对路径</span><br></pre></td></tr></table></figure>
+<p>BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(_ _file_ _)))</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">__file__：表示当前文件名称</span><br><span class="line">os.path.abspath(__file__)：表示运行当前文件的完整绝对路径</span><br><span class="line">os.path.dirname：表示文件的上一级目录</span><br><span class="line">eg：目录结构：</span><br><span class="line">app|</span><br><span class="line">   | ---core.py</span><br><span class="line">   |---settings.json</span><br><span class="line">   | ---mangage.py</span><br><span class="line">    运行core.py文件十，调用settings.py文件为:</span><br><span class="line">    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # 获取了app目录的相对目录</span><br><span class="line">    dir =os.path.join(BASE.DIR,&apos;settings.py&apos;) # app目录拼接就为settings.py文件目录：app/settings.py</span><br></pre></td></tr></table></figure>
+
+
+<p>python路径拼接os.path.join()函数的用法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">os.path.join()函数：连接两个或更多的路径名组件</span><br><span class="line"></span><br><span class="line"> 1.如果各组件名首字母不包含’/’，则函数会自动加上</span><br><span class="line"></span><br><span class="line"> 2.如果有一个组件是一个绝对路径，则在它之前的所有组件均会被舍弃</span><br><span class="line"></span><br><span class="line"> 3.如果最后一个组件为空，则生成的路径以一个’/’分隔符结尾</span><br><span class="line"></span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line">Path1 = &apos;home&apos;</span><br><span class="line">Path2 = &apos;develop&apos;</span><br><span class="line">Path3 = &apos;code&apos;</span><br><span class="line"></span><br><span class="line">Path10 = Path1 + Path2 + Path3</span><br><span class="line">Path20 = os.path.join(Path1,Path2,Path3)</span><br><span class="line">print (&apos;Path10 = &apos;,Path10)</span><br><span class="line">print (&apos;Path20 = &apos;,Path20)</span><br><span class="line"></span><br><span class="line">输出</span><br><span class="line"></span><br><span class="line">Path10 = homedevelopcode</span><br><span class="line">Path20 = home\develop\code</span><br></pre></td></tr></table></figure>
+
+<p>python遍历指定目录下的所有文件和目录</p>
+<ul>
+<li><p><a href="https://blog.csdn.net/sinat_29957455/article/details/82778306" target="_blank" rel="noopener">python遍历目录下的所有文件和目录详细介绍</a></p>
+</li>
+<li><p><a href="https://www.jianshu.com/p/32e3364b22ee" target="_blank" rel="noopener">glob模块</a> :用通配符来获取文件或目录</p>
+</li>
+</ul>
+<p>举例说明：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">for fname in glob.glob(&quot;**/*.py&quot;,recursive=True):</span><br><span class="line">    print(fname)</span><br><span class="line"></span><br><span class="line">for fname in glob.glob(&quot;./file?.py&quot;):</span><br><span class="line">    print(fname)</span><br><span class="line"></span><br><span class="line"># 删除指定目录下的文件</span><br><span class="line">for pic in glob.glob(&quot;static/images/workflow/*.png&quot;):</span><br><span class="line">    os.remove(pic)</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-tqdm模块"><a href="#5-tqdm模块" class="headerlink" title="5.tqdm模块"></a>5.tqdm模块</h2><p>from tqdm import tqdm<br>使用方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> tqdm(range(<span class="number">1000</span>)):</span><br><span class="line">        time.sleep(<span class="number">0.5</span>)</span><br></pre></td></tr></table></figure>
+
+<p>拓：如何解决tqdm一直向下滚动的问题？<br>当我们使用控制台输出时，使用tqdm有可能会一直向下滚动，原因是进度条太长了，只能换行显示，此我们规定一下滚动条的长度<br><code>for i in tqdm(range(1000), ncols = 80)</code> :ncols规定长度为80</p>
+<h2 id="6-PrettyTable模块"><a href="#6-PrettyTable模块" class="headerlink" title="6.PrettyTable模块"></a>6.PrettyTable模块</h2><p><code>PrettyTable</code>是python中的一个第三方库，可用来生成美观的ASCII格式的表格</p>
+<ul>
+<li>安装方式</li>
+</ul>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install prettytable</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>基本使用</li>
+</ul>
+<p>如果你想要您的表格格式优美，请铭记【表头字段名称的长度一定要大于表行内容长度】</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> prettytable <span class="keyword">import</span> PrettyTable</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建表格对象</span></span><br><span class="line">tb = PrettyTable()</span><br><span class="line"><span class="comment"># 设置表头</span></span><br><span class="line">tb.field_names = [<span class="string">"field1"</span>, <span class="string">"fieldN"</span>]</span><br><span class="line"><span class="comment"># 按行添加数据</span></span><br><span class="line">tb.add_row([<span class="string">"colume1"</span>, <span class="string">"columeN"</span>])</span><br><span class="line"><span class="comment"># 按列添加数据</span></span><br><span class="line">tb.add_column(<span class="string">"row1"</span>, <span class="string">"rowN"</span>)</span><br><span class="line"><span class="comment"># 展示ASCII格式表格数据</span></span><br><span class="line">print(tb)</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">+-----------+------+------------+-----------------+</span></span><br><span class="line"><span class="string">| City name | Area | Population | Annual Rainfall |</span></span><br><span class="line"><span class="string">+-----------+------+------------+-----------------+</span></span><br><span class="line"><span class="string">|  Adelaide | 1295 |  1158259   |      600.5      |</span></span><br><span class="line"><span class="string">|  Brisbane | 5905 |  1857594   |      1146.4     |</span></span><br><span class="line"><span class="string">|   Darwin  | 112  |   120900   |      1714.7     |</span></span><br><span class="line"><span class="string">|   Hobart  | 1357 |   205556   |      619.5      |</span></span><br><span class="line"><span class="string">+-----------+------+------------+-----------------+</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="7-random模块"><a href="#7-random模块" class="headerlink" title="7.random模块"></a>7.random模块</h2><table>
+<thead>
+<tr>
+<th>函数</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>randint(a, b)</td>
+<td align="center">生成一个[a, b]之间的整数</td>
+</tr>
+<tr>
+<td>randrange(m, n[, k])</td>
+<td align="center">生成一个[m, n)之间以k为步长的随机整数</td>
+</tr>
+<tr>
+<td>getrandbits(k)</td>
+<td align="center">生成一个k比特长的随机整数</td>
+</tr>
+<tr>
+<td>uniform(a, b)</td>
+<td align="center">生成一个[a, b]之间的随机小数</td>
+</tr>
+<tr>
+<td>choice(seq)</td>
+<td align="center">从序列seq中随机选择一个元素</td>
+</tr>
+<tr>
+<td>choices(seq,k = n)</td>
+<td align="center">从序列seq中随机选择n个元素</td>
+</tr>
+<tr>
+<td>shuffle(seq)</td>
+<td align="center">将序列seq中元素随机排列，返回打乱后的序列(类似于洗牌)</td>
+</tr>
+<tr>
+<td>random()</td>
+<td align="center">生成一个[0.0, 1.0)之间的随机小数</td>
+</tr>
+</tbody></table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import random</span><br><span class="line"></span><br><span class="line">random.random()</span><br><span class="line">0.5</span><br><span class="line">random.randint(10, 100)</span><br><span class="line">64</span><br><span class="line">random.randrange(10, 100, 10)</span><br><span class="line">80</span><br><span class="line">random.getrandbits(16)</span><br><span class="line">37885</span><br><span class="line">random.uniform(10, 100)</span><br><span class="line">13.096321648808136</span><br><span class="line">random.choice([1,2,3,4,5,6,7,8,9])</span><br><span class="line">8</span><br><span class="line">s=[1,2,3,4,5,6,7,8,9];</span><br><span class="line">random.shuffle(s);</span><br><span class="line">print(s) # [3, 5, 8, 9, 6, 1, 2, 7, 4]</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-execjs模块"><a href="#8-execjs模块" class="headerlink" title="8.execjs模块"></a>8.execjs模块</h2><p>针对现在大部分的网站都是使用js加密，js加载的，并不能直接抓取出来，这时候就不得不适用一些三方类库来执行js语句。执行JS的类库：execjs，PyV8，selenium，node<br>安装： pip install PyExecJS</p>
+<p>js运行时环境：没有js环境会报错（Could not find an available JavaScript runtime），常见的js运行环境有PyV8，<strong>Node.js</strong>,PhantomJS</p>
+<p>执行js脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> execjs</span><br><span class="line"><span class="comment"># compile 编译执行复杂的js源代码</span></span><br><span class="line">x = execjs.compile(<span class="string">'''</span></span><br><span class="line"><span class="string">    // static 源代码</span></span><br><span class="line"><span class="string">    function get_time()&#123;</span></span><br><span class="line"><span class="string">        let d = new Date();</span></span><br><span class="line"><span class="string">        return d.getTime()</span></span><br><span class="line"><span class="string">    &#125;'''</span>)</span><br><span class="line"><span class="comment"># 执行目标函数</span></span><br><span class="line">x.call(<span class="string">"get_time"</span>)  <span class="comment"># 1587110199832</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 直接执行</span></span><br><span class="line">print(execjs.eval(<span class="string">' "a、b、c、d、e".split("、") '</span>))</span><br></pre></td></tr></table></figure>
+
+<p><strong>执行步骤：</strong></p>
+<ul>
+<li>execjs执行函数<ul>
+<li>compile(js源代码)先编译js源代码</li>
+<li>call(目标函数，实参) 开始执行目标函数，并传参</li>
+</ul>
+</li>
+<li>execjs执行变量<ul>
+<li>execjs.eval(js源代码)</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-js2py模块"><a href="#9-js2py模块" class="headerlink" title="9. js2py模块"></a>9. js2py模块</h2><ul>
+<li><p><a href="https://blog.csdn.net/weixin_40539892/article/details/88982332" target="_blank" rel="noopener">基本使用</a></p>
+</li>
+<li><p>用途：js2py模块可用于处理 <strong><a href="https://blog.csdn.net/weixin_42724172/article/details/85238999" target="_blank" rel="noopener">js的eval加密</a></strong></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> js2py</span><br><span class="line"></span><br><span class="line">js_eval = <span class="string">"""</span></span><br><span class="line"><span class="string">eval(function(p,a,c,k,e,r)&#123;e=String;if('0'.replace(0,e)==0)&#123;while(c--)r[e(c)]=k[c];k=[function(e)&#123;return r[e]||e&#125;];e=function()&#123;return'[02-4]'&#125;;c=1&#125;;</span></span><br><span class="line"><span class="string">while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);</span></span><br><span class="line"><span class="string">return p&#125;('var newImgs=["0://p.2.3/4/1388c000067768f7a5d44","0://p.2.3/4/138230001d1016dce93b9","0://p.2.3/4/138720000b6221ac47f3c",</span></span><br><span class="line"><span class="string">"0://p.2.3/4/138420004939fe476ea69"]',[],5,'https||pstatp|com|origin'.split('|'),0,&#123;&#125;))</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line">images = js2py.eval_js(js_eval)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>注意：js2py的返回值是 <strong>JSobjectWrapper类型</strong>，并不是我们通常认知的Dict类型，那么如何转换成我们熟知的Dict字典类型呢？</p>
+<p><code>js2py.eval_js(new_js_code).to_dict()</code> 利用to_dict方法得到就是一个字典了。</p>
+<p>参考： <a href="https://www.jianshu.com/p/d9c815a9fe16" target="_blank" rel="noopener">使用js2py.eval_js()获得<script></script>中的某一个变量的值，并转换为python中的字典</a></p>
+</li>
+</ul>
+<h2 id="10-string模块"><a href="#10-string模块" class="headerlink" title="10.string模块"></a>10.string模块</h2><ul>
+<li>string.digits: 数字字符串集</li>
+<li>string.ascii_letters: 字母字符串集</li>
+<li>string.ascii_lowercase: 小写字母字符串集</li>
+<li>string.ascii_uppercase: 大写字母字符串集</li>
+<li>string.ascii_punctuation: 特殊字符集（!”#$%&amp;&#39;()*+,-./:;&lt;=&gt;?@[\]^_`{|}~）</li>
+</ul>
+<h2 id="11-Logger模块"><a href="#11-Logger模块" class="headerlink" title="11. Logger模块"></a>11. Logger模块</h2><p>新建一个logger.py文件，内容如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"><span class="keyword">from</span> logging <span class="keyword">import</span> handlers</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">@IDE    ：PyCharm</span></span><br><span class="line"><span class="string">@Author ：Miss.985</span></span><br><span class="line"><span class="string">@Date   ：2021/8/12 16：30</span></span><br><span class="line"><span class="string">@Desc   ：封装logging日志模块</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Logger</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, filename, level=<span class="string">'info'</span>, when=<span class="string">'S'</span>, backCount=<span class="number">3</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                 fmt=<span class="string">'%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s'</span>)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        构造封装logging类</span></span><br><span class="line"><span class="string">        :param filename: 日志文件名</span></span><br><span class="line"><span class="string">        :param level: 日志级别</span></span><br><span class="line"><span class="string">        :param when: 时间间隔</span></span><br><span class="line"><span class="string">        :param backCount: 备份文件数</span></span><br><span class="line"><span class="string">        :param fmt: 日志记录格式</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.filename = filename</span><br><span class="line">        self.level = level</span><br><span class="line">        self.when = when</span><br><span class="line">        self.backCount = backCount</span><br><span class="line">        self.fmt = fmt</span><br><span class="line">        self.level_relations = &#123;</span><br><span class="line">            <span class="string">'info'</span>: logging.INFO,</span><br><span class="line">            <span class="string">'error'</span>: logging.ERROR,</span><br><span class="line">            <span class="string">'debug'</span>: logging.DEBUG,</span><br><span class="line">            <span class="string">'warning'</span>: logging.WARNING,</span><br><span class="line">            <span class="string">'critical'</span>: logging.CRITICAL</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mark</span><span class="params">(self)</span>:</span></span><br><span class="line">        logger = logging.getLogger(self.filename)</span><br><span class="line">        <span class="comment"># 设置日志格式</span></span><br><span class="line">        format_str = logging.Formatter(self.fmt)</span><br><span class="line">        <span class="comment"># 设置日志级别</span></span><br><span class="line">        logger.setLevel(self.level_relations.get(self.level))</span><br><span class="line">        <span class="comment"># 往屏幕上输出</span></span><br><span class="line">        sh = logging.StreamHandler()</span><br><span class="line">        <span class="comment"># 设置屏幕上显示的格式</span></span><br><span class="line">        sh.setFormatter(format_str)</span><br><span class="line">        <span class="comment"># 往文件里写入，指定间隔时间自动备份文件的处理器</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        1. interval是时间间隔</span></span><br><span class="line"><span class="string">        2. backupCount是备份文件的个数（如果超过备份数，就会自动删除）</span></span><br><span class="line"><span class="string">        3. when是间隔的时间单位</span></span><br><span class="line"><span class="string">            - S 秒</span></span><br><span class="line"><span class="string">            - M 分</span></span><br><span class="line"><span class="string">            - H 小时</span></span><br><span class="line"><span class="string">            - D 天</span></span><br><span class="line"><span class="string">            - W&#123;0-6&#125; 每周N(e.g.,:W0-每周一，W6-每周日)</span></span><br><span class="line"><span class="string">            - midnight 每天凌晨</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        th = handlers.TimedRotatingFileHandler(filename=self.filename, when=self.when,</span><br><span class="line">                                               backupCount=self.backCount, encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">        <span class="comment"># 设置文件里写入的格式</span></span><br><span class="line">        th.setFormatter(format_str)</span><br><span class="line">        <span class="comment"># 把对象加到logger里</span></span><br><span class="line">        logger.addHandler(sh)</span><br><span class="line">        logger.addHandler(th)</span><br><span class="line">        <span class="keyword">return</span> logger</span><br></pre></td></tr></table></figure>
+
+<p>那我们如何调用这个logger.py文件呢？</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> logger <span class="keyword">import</span> Logger</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对象实例化，设置日志登记</span></span><br><span class="line">log = Logger(<span class="string">"./note.log"</span>, level=<span class="string">'debug'</span>, when=<span class="string">"D"</span>)</span><br><span class="line"><span class="comment"># 开启日志记录</span></span><br><span class="line">ak = log.mark()</span><br><span class="line"><span class="comment"># 日志写入</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">11</span>):</span><br><span class="line">    ak.info(<span class="string">"▉"</span> * i)</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="12-文件存储"><a href="#12-文件存储" class="headerlink" title="12. 文件存储"></a>12. 文件存储</h2><h3 id="CSV文件存储"><a href="#CSV文件存储" class="headerlink" title="CSV文件存储"></a>CSV文件存储</h3><p><strong>CSV</strong>文件以<strong>纯文本形式</strong>存储表格数据，它比Excel更加简洁，XLS文本是电子表格，它包含了文本、数值、公式和格式等内容，而CSV中不包含这些内容，就是<strong>特定字符分隔的纯文本</strong>。</p>
+<p>Tips：</p>
+<ol>
+<li>Python3使用csv模块csv.writer().writerow(),保存csv文件，产生空行的问题</li>
+</ol>
+<p>解决方案：<strong>在open()内增加一个参数newline=””</strong> 即可，更改后代码结构如下</p>
+<ol start="2">
+<li>DictWriter结构化字典写入时，表头和每一行的键名必须要一一对应，<strong>每行的键名可少不可多</strong></li>
+</ol>
+<ul>
+<li>单行写入：<strong>writerow</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"./data.csv"</span>, <span class="string">'a+'</span>, encoding=<span class="string">"utf-8"</span>, newline=<span class="string">""</span>) <span class="keyword">as</span> csvfile:</span><br><span class="line">    writer = csv.writer(csvfile, delimiter=<span class="string">" "</span>) <span class="comment"># 初始化写入对象，delimiter表示分隔符，默认为逗号</span></span><br><span class="line">    writer.writerow([<span class="string">"id"</span>, <span class="string">"name"</span>, <span class="string">"age"</span>])</span><br><span class="line">    writer.writerow([<span class="string">"9527"</span>, <span class="string">"chd"</span>, <span class="string">"18"</span>])      <span class="comment"># 调用一次writerow，即可写入一行</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>多行写入：<strong>writerows</strong></li>
+</ul>
+<p>writerows的传入参数格式为<strong>数组</strong>，但此数组中可以包含子数组（<em>每一个子数组表示为一行</em>）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"./data.csv"</span>, <span class="string">'a+'</span>, encoding=<span class="string">"utf-8"</span>, newline=<span class="string">""</span>) <span class="keyword">as</span> csvfile:</span><br><span class="line">    writer = csv.writer(csvfile, delimiter=<span class="string">" "</span>)</span><br><span class="line">    writer.writerow([<span class="string">"id"</span>, <span class="string">"name"</span>, <span class="string">"age"</span>])</span><br><span class="line">    writer.writerows([[<span class="string">"9527"</span>, <span class="string">"chd"</span>, <span class="string">"18"</span>],[<span class="string">"4396"</span>, <span class="string">"lmm"</span>, <span class="string">"16"</span>], [<span class="string">"0001"</span>, <span class="string">"sxc"</span>, <span class="string">"20"</span>]])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>以结构化数据（字典）写入: <strong>DictWriter</strong></li>
+</ul>
+<p>一般情况下，爬取的数据都是结构化的数据，在csv中仍支持字典的写入方式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"./data.csv"</span>, <span class="string">'a+'</span>, encoding=<span class="string">"utf-8"</span>, newline=<span class="string">""</span>) <span class="keyword">as</span> csvfile:</span><br><span class="line">    field_names = [<span class="string">"id"</span>, <span class="string">"name"</span>, <span class="string">"age"</span>]</span><br><span class="line">    writer = csv.DictWriter(csvfile, fieldnames = field_names)</span><br><span class="line">    writer.writeheader()</span><br><span class="line">    <span class="comment"># 单行字典写入（键名与表头相比：可少不可多）</span></span><br><span class="line">    writer.writerow(&#123;<span class="string">"id"</span>:<span class="string">"chd"</span>, <span class="string">"age"</span>: <span class="number">18</span>&#125;)</span><br><span class="line">    <span class="comment"># 多行字典写入</span></span><br><span class="line">    writer.writerows([&#123;<span class="string">"id"</span>: <span class="string">"chd"</span>, <span class="string">"name"</span>: <span class="string">"lmm"</span>&#125;,</span><br><span class="line">                      &#123;<span class="string">"age"</span>: <span class="number">18</span>, <span class="string">"id"</span>: <span class="string">"love"</span>, <span class="string">"name"</span>: <span class="string">"badwoman"</span>&#125;])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>CSV读取</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"./data.csv"</span>, <span class="string">'r'</span>, encoding=<span class="string">"utf-8"</span>) <span class="keyword">as</span> csvfile:</span><br><span class="line">    reader = csv.writer(csvfile)</span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> reader:</span><br><span class="line">        print(row)</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Result:</span></span><br><span class="line"><span class="string">["id", "name", "age"]</span></span><br><span class="line"><span class="string">["9527", "chd", "18"]</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Excel"><a href="#Excel" class="headerlink" title="Excel"></a>Excel</h3><ol>
+<li>两大库xlrd，xlwt</li>
+</ol>
+<p>1).Python操作excel主要用到xlrd和xlwt这两个库</p>
+<p>即xlrd是读excel，xlwt是写excel的库,,xl是excel的缩写,rd是read,wt是write<br>xlrd可以解析微软的.xls and .xlsx两种各种的电子表格</p>
+<p>2).如何安装</p>
+<p>用pip install xlrd就可以安装xlrd模块</p>
+<p>用pip install xlwt就可以安装xlwt模块</p>
+<p>3).基本使用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#-*-coding:utf-8-*-</span></span><br><span class="line"><span class="keyword">import</span> xlrd</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义读取并打印表格中数据的函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_excel</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 打开excel文件读取数据</span></span><br><span class="line">    data = xlrd.open_workbook(<span class="string">"1.xlsx"</span>)</span><br><span class="line"> </span><br><span class="line">    <span class="comment"># 获取book中所有工作表的名称</span></span><br><span class="line">    print(data.sheet_names())   <span class="comment"># ['Sheet1']</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 根据工作表的名称获取工作表的内容</span></span><br><span class="line">    table = data.sheet_by_index(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 打印工作表的名称、行数和列数</span></span><br><span class="line">    print(table.name, table.nrows, table.ncols)</span><br><span class="line">    <span class="comment"># Sheet1 17 4</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取第4行的内容，以列表形式表示</span></span><br><span class="line">    row_4 = table.row_values(<span class="number">3</span>)</span><br><span class="line">    print(row_4)</span><br><span class="line">    <span class="comment"># [5.0, 6.0, 7.0, 8.0]</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取第3列的内容，以列表形式表示</span></span><br><span class="line">    col_3 = table.col_values(<span class="number">2</span>)</span><br><span class="line">    print(col_3)</span><br><span class="line">    <span class="comment"># [3.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, '', '']</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取工作表中单元格的3种方法</span></span><br><span class="line">    print(table.cell(<span class="number">1</span>, <span class="number">0</span>).value)</span><br><span class="line">    <span class="comment"># 5.0</span></span><br><span class="line">    print(table.cell_value(<span class="number">1</span>, <span class="number">0</span>))</span><br><span class="line">    <span class="comment"># 5.0</span></span><br><span class="line">    print(table.row(<span class="number">1</span>)[<span class="number">0</span>].value)</span><br><span class="line">    <span class="comment"># 5.0</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>openpyxl处理xlsx文件</li>
+</ol>
+<p>我们目前以openpyxl为例，可以浏览参考文章<a href="https://blog.csdn.net/Big_Pai/article/details/86704279" target="_blank" rel="noopener">python处理Excel文件的方法集合及性能对比</a></p>
+<p>Excel文件三个对象</p>
+<ul>
+<li>workbook： 工作簿，一个excel文件包含多个sheet。</li>
+<li>sheet：工作表，一个workbook有多个，表名识别，如“sheet1”,“sheet2”等。</li>
+<li>cell： 单元格，存储数据对象</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> openpyxl</span><br><span class="line"> </span><br><span class="line">save_dir=<span class="string">"D:\\python3_anaconda3\\学习\\test\\excel文件处理\\"</span></span><br><span class="line">open_filename=<span class="string">"openpyxl_test.xlsx"</span></span><br><span class="line"> </span><br><span class="line">out_workbook=openpyxl.Workbook()</span><br><span class="line">out_sheet=out_workbook.create_sheet(index=<span class="number">0</span>,title=<span class="string">"openpyxl_new"</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 注意，openpyxl中为了和Excel中的表达方式一致，并不和编程语言的习惯一样以0表示第一个值，在openpyxl中以1表示第一个值。</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">100</span>):</span><br><span class="line">    out_sheet.cell(row=i ,column=<span class="number">1</span>).value=i</span><br><span class="line"> </span><br><span class="line"><span class="comment"># openpyxl</span></span><br><span class="line">out_workbook.save(open_filename)</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li><a href="https://blog.csdn.net/qq_24753293/article/details/80954840" target="_blank" rel="noopener">datetime模块</a></li>
+<li><a href="https://blog.csdn.net/Big_Pai/article/details/86704279" target="_blank" rel="noopener">python处理Excel文件的方法集合及性能对比</a></li>
+</ul>
+
+      </div>
+      
+        <br>
+        
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-09-17T09:17:06+08:00">
+  <a class='notlink'>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>更新于 2021年9月17日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%B8%B8%E8%A7%81%E5%BA%93/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>常见库</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2019/11/29/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%BA%8C%EF%BC%89/&title=Python全栈系列章节更新（二）：常见库模块 | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等
+
+1.time模块2.datetime模块3.ftplib模块4.os模块5.tqdm模块6.PrettyTable模块7.random模块8.execjs模块9.js2py模块10.string模块11.Logger模块12.文件存储
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2019/11/29/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%BA%8C%EF%BC%89/&title=Python全栈系列章节更新（二）：常见库模块 | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等
+
+1.time模块2.datetime模块3.ftplib模块4.os模块5.tqdm模块6.PrettyTable模块7.random模块8.execjs模块9.js2py模块10.string模块11.Logger模块12.文件存储
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2019/11/29/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%BA%8C%EF%BC%89/&title=Python全栈系列章节更新（二）：常见库模块 | AhriLove&summary=Python是一个“优雅”、“明确”、“简单”的编程语言,主要流行于网络爬虫、数据分析挖掘、机器学习、人工智能以及运维等等
+
+1.time模块2.datetime模块3.ftplib模块4.os模块5.tqdm模块6.PrettyTable模块7.random模块8.execjs模块9.js2py模块10.string模块11.Logger模块12.文件存储
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+      
+      
+          <div class="prev-next">
+              
+                  <section class="prev">
+                      <span class="art-item-left">
+                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                          <h4>
+                              <a href="/2019/12/03/Python%E5%85%A8%E6%A0%88%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0%EF%BC%88%E4%B8%89%EF%BC%89/" rel="prev" title="Python全栈系列章节更新（三）：数据库">
+                                
+                                    Python全栈系列章节更新（三）：数据库
+                                
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/%E9%80%9A%E7%94%A8%E8%BF%9E%E6%8E%A5/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 通用连接</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+              
+                  <section class="next">
+                      <span class="art-item-right" aria-hidden="true">
+                          <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                          <h4>
+                              <a href="/2019/11/28/%E7%85%A7%E7%89%87%E7%9A%84GPS%E4%BF%A1%E6%81%AF%E5%AE%9A%E4%BD%8D/" rel="prev" title="技术小白教你如何定位照片拍摄位置">
+                                  
+                                      技术小白教你如何定位照片拍摄位置
+                                  
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/%E5%AE%9A%E4%BD%8D%E7%85%A7%E7%89%87%E6%8B%8D%E6%91%84%E4%BD%8D%E7%BD%AE/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> 定位照片拍摄位置</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+          </div>
+      
+    </section>
+  </article>
+
+
+
+  <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      
+      
+        <section id="comments">
+          <div id="lv-container" data-id="city" data-uid="MTAyMC80NzQ0NS8yMzk0NQ==">
+            <noscript><div><i class='fas fa-exclamation-triangle'>&nbsp;无法加载Livere评论系统，请确保您的网络能够正常访问。</div></noscript>
+          </div>
+        </section>
+      
+      
+      
+    </section>
+  </article>
+
+
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'Python全栈系列章节更新（二）：常见库模块',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+    
+    
+      
+      
+        
+          
+          
+            
+              <section class='widget author'>
+  <div class='content material'>
+    
+      <div class='avatar'>
+        <img class='avatar' src='https://cdn.jsdelivr.net/gh/FioraLove/CDN@1.0/Avatar.png'/>
+      </div>
+    
+    
+      <div class='text'>
+        
+          <h2>AHRILOVE' BLOG</h2>
+        
+        
+          <p>只有被明日的我们铭记 今天才有意义</p>
+
+        
+        
+      </div>
+    
+    
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget toc-wrapper'>
+    
+<header class='material'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目录</div>
+  
+    <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
+  
+</header>
+
+    <div class='content material'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-time模块"><span class="toc-text">1.time模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-datetime模块"><span class="toc-text">2.datetime模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-ftplib库"><span class="toc-text">3.ftplib库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-os模块"><span class="toc-text">4.os模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-tqdm模块"><span class="toc-text">5.tqdm模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-PrettyTable模块"><span class="toc-text">6.PrettyTable模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-random模块"><span class="toc-text">7.random模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-execjs模块"><span class="toc-text">8.execjs模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-js2py模块"><span class="toc-text">9. js2py模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-string模块"><span class="toc-text">10.string模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-Logger模块"><span class="toc-text">11. Logger模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-文件存储"><span class="toc-text">12. 文件存储</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CSV文件存储"><span class="toc-text">CSV文件存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Excel"><span class="toc-text">Excel</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              <section class='widget grid'>
+  
+<header class='material'>
+  <div><i class="fas fa-address-card fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;关于博主</div>
+  
+</header>
+
+  <div class='content material'>
+    <ul class="grid navgation">
+      
+        <li><a class="flat-box" title="/game/" href="/game/"
+          
+            rel="nofollow"
+          
+          
+          id="game">
+          
+            <i class="fas fa-gamepad fa-fw" aria-hidden="true"></i>
+          
+          轻松一刻
+        </a></li>
+      
+        <li><a class="flat-box" title="/about/" href="/about/"
+          
+            rel="nofollow"
+          
+          
+          id="about">
+          
+            <i class="fas fa-paper-plane fa-fw" aria-hidden="true"></i>
+          
+          相册
+        </a></li>
+      
+        <li><a class="flat-box" title="/cv/" href="/cv/"
+          
+            rel="nofollow"
+          
+          
+          id="cv">
+          
+            <i class="fas fa-globe-asia fa-fw" aria-hidden="true"></i>
+          
+          个人简历
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+            
+              <section class='widget grid'>
+  
+<header class='material'>
+  <div><i class="fas fa-map-signs fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;站内导航</div>
+  
+</header>
+
+  <div class='content material'>
+    <ul class="grid navgation">
+      
+        <li><a class="flat-box" title="/" href="/"
+          
+          
+          id="home">
+          
+            <i class="fas fa-clock fa-fw" aria-hidden="true"></i>
+          
+          近期文章
+        </a></li>
+      
+        <li><a class="flat-box" title="/archives/" href="/archives/"
+          
+            rel="nofollow"
+          
+          
+          id="archives">
+          
+            <i class="fas fa-archive fa-fw" aria-hidden="true"></i>
+          
+          文章归档
+        </a></li>
+      
+        <li><a class="flat-box" title="https://github.com/FioraLove?tab=repositories" href="https://github.com/FioraLove?tab=repositories"
+          
+          
+          id="https:github.comFioraLove?tab=repositories">
+          
+            <i class="fas fa-code-branch fa-fw" aria-hidden="true"></i>
+          
+          开源项目
+        </a></li>
+      
+        <li><a class="flat-box" title="/friends/" href="/friends/"
+          
+            rel="nofollow"
+          
+          
+          id="friends">
+          
+            <i class="fas fa-link fa-fw" aria-hidden="true"></i>
+          
+          我的友链
+        </a></li>
+      
+        <li><a class="flat-box" title="https://xaoxuu.com/wiki/material-x/" href="https://xaoxuu.com/wiki/material-x/"
+          
+            rel="nofollow"
+          
+          
+          id="https:xaoxuu.comwikimaterial-x">
+          
+            <i class="fas fa-book fa-fw" aria-hidden="true"></i>
+          
+          主题文档
+        </a></li>
+      
+        <li><a class="flat-box" title="/plan/" href="/plan/"
+          
+            rel="nofollow"
+          
+          
+          id="plan">
+          
+            <i class="fas fa-info-circle fa-fw" aria-hidden="true"></i>
+          
+          开发日志
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget category'>
+    
+<header class='material'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分类</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/categories/"
+    title="categories/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content material'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Data-analysis/" href="/categories/Data-analysis/"><div class='name'>Data analysis</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Database/" href="/categories/Database/"><div class='name'>Database</div><div class='badge'>(10)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Django/" href="/categories/Django/"><div class='name'>Django</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Java/" href="/categories/Java/"><div class='name'>Java</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/PHP/" href="/categories/PHP/"><div class='name'>PHP</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Python/" href="/categories/Python/"><div class='name'>Python</div><div class='badge'>(14)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Redis/" href="/categories/Redis/"><div class='name'>Redis</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Vue/" href="/categories/Vue/"><div class='name'>Vue</div><div class='badge'>(6)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/docker/" href="/categories/docker/"><div class='name'>docker</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/javascript/" href="/categories/javascript/"><div class='name'>javascript</div><div class='badge'>(8)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/json/" href="/categories/json/"><div class='name'>json</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E5%89%8D%E7%AB%AF/" href="/categories/%E5%89%8D%E7%AB%AF/"><div class='name'>前端</div><div class='badge'>(8)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E5%8D%9A%E5%AE%A2Hexo/" href="/categories/%E5%8D%9A%E5%AE%A2Hexo/"><div class='name'>博客Hexo</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%B6%E6%9E%84/" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%B6%E6%9E%84/"><div class='name'>服务器架构</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E4%B8%8E%E7%AE%97%E6%B3%95/" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E4%B8%8E%E7%AE%97%E6%B3%95/"><div class='name'>计算机基础与算法</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E9%9A%8F%E7%AC%94/" href="/categories/%E9%9A%8F%E7%AC%94/"><div class='name'>随笔</div><div class='badge'>(5)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget tagcloud'>
+    
+<header class='material'>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/tags/"
+    title="tags/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content material'>
+      <a href="/tags/DDL/" style="font-size: 14px; color: #999">DDL</a> <a href="/tags/DML/" style="font-size: 14px; color: #999">DML</a> <a href="/tags/Django/" style="font-size: 20.67px; color: #6c6c6c">Django</a> <a href="/tags/Github-Page/" style="font-size: 14px; color: #999">Github Page</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/InnoDB/" style="font-size: 14px; color: #999">InnoDB</a> <a href="/tags/Java/" style="font-size: 24px; color: #555">Java</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Maven/" style="font-size: 14px; color: #999">Maven</a> <a href="/tags/Memcached/" style="font-size: 14px; color: #999">Memcached</a> <a href="/tags/MySQL/" style="font-size: 20.67px; color: #6c6c6c">MySQL</a> <a href="/tags/Oracle/" style="font-size: 15.67px; color: #8e8e8e">Oracle</a> <a href="/tags/Redis/" style="font-size: 17.33px; color: #828282">Redis</a> <a href="/tags/Requests/" style="font-size: 14px; color: #999">Requests</a> <a href="/tags/ThinkPHP/" style="font-size: 15.67px; color: #8e8e8e">ThinkPHP</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a> <a href="/tags/apache/" style="font-size: 14px; color: #999">apache</a> <a href="/tags/blog%E6%94%B9%E7%89%88/" style="font-size: 14px; color: #999">blog改版</a> <a href="/tags/css/" style="font-size: 20.67px; color: #6c6c6c">css</a> <a href="/tags/database/" style="font-size: 14px; color: #999">database</a> <a href="/tags/docker/" style="font-size: 19px; color: #777">docker</a> <a href="/tags/echarts/" style="font-size: 14px; color: #999">echarts</a> <a href="/tags/float/" style="font-size: 14px; color: #999">float</a> <a href="/tags/front-matter/" style="font-size: 14px; color: #999">front-matter</a> <a href="/tags/git/" style="font-size: 14px; color: #999">git</a> <a href="/tags/git-pull-push/" style="font-size: 14px; color: #999">git pull/push</a> <a href="/tags/html/" style="font-size: 15.67px; color: #8e8e8e">html</a> <a href="/tags/index/" style="font-size: 14px; color: #999">index</a> <a href="/tags/javascript/" style="font-size: 14px; color: #999">javascript</a> <a href="/tags/js/" style="font-size: 19px; color: #777">js</a> <a href="/tags/json/" style="font-size: 15.67px; color: #8e8e8e">json</a> <a href="/tags/lambda/" style="font-size: 14px; color: #999">lambda</a> <a href="/tags/margin/" style="font-size: 14px; color: #999">margin</a> <a href="/tags/matplotlib/" style="font-size: 15.67px; color: #8e8e8e">matplotlib</a> <a href="/tags/mysql/" style="font-size: 15.67px; color: #8e8e8e">mysql</a> <a href="/tags/nginx/" style="font-size: 15.67px; color: #8e8e8e">nginx</a> <a href="/tags/numpy/" style="font-size: 15.67px; color: #8e8e8e">numpy</a> <a href="/tags/pandas/" style="font-size: 14px; color: #999">pandas</a> <a href="/tags/php/" style="font-size: 14px; color: #999">php</a> <a href="/tags/python/" style="font-size: 22.33px; color: #606060">python</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/union/" style="font-size: 14px; color: #999">union</a> <a href="/tags/vue/" style="font-size: 14px; color: #999">vue</a> <a href="/tags/vue-cli/" style="font-size: 17.33px; color: #828282">vue-cli</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/%E5%89%8D%E5%90%8E%E5%88%86%E7%A6%BB/" style="font-size: 14px; color: #999">前后分离</a> <a href="/tags/%E5%A4%8D%E6%9D%82%E5%BA%A6/" style="font-size: 14px; color: #999">复杂度</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 14px; color: #999">多线程</a> <a href="/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8B/" style="font-size: 14px; color: #999">多进程</a> <a href="/tags/%E5%AE%9A%E4%BD%8D%E7%85%A7%E7%89%87%E6%8B%8D%E6%91%84%E4%BD%8D%E7%BD%AE/" style="font-size: 14px; color: #999">定位照片拍摄位置</a> <a href="/tags/%E5%AF%B9%E8%B1%A1/" style="font-size: 14px; color: #999">对象</a> <a href="/tags/%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">属性与方法</a> <a href="/tags/%E5%B8%B8%E8%A7%81%E5%BA%93/" style="font-size: 14px; color: #999">常见库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 14px; color: #999">数据类型</a> <a href="/tags/%E6%9E%81%E9%AA%8C%E6%BB%91%E5%8A%A8/" style="font-size: 14px; color: #999">极验滑动</a> <a href="/tags/%E8%A3%85%E9%A5%B0%E5%99%A8/" style="font-size: 14px; color: #999">装饰器</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%BA%93/" style="font-size: 14px; color: #999">解析库</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 14px; color: #999">负载均衡</a> <a href="/tags/%E9%80%86%E5%90%91%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">逆向爬虫</a> <a href="/tags/%E9%80%89%E6%8B%A9%E5%99%A8/" style="font-size: 14px; color: #999">选择器</a> <a href="/tags/%E9%80%9A%E7%94%A8%E8%BF%9E%E6%8E%A5/" style="font-size: 14px; color: #999">通用连接</a>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+    
+
+  
+</aside>
+
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+<script src="//instant.page/1.2.2" type="module" integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU"></script>
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+
+
+
+  
+  
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        if ('.cover') {
+          $('.cover').backstretch(
+          ["https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.2.1/images/background/021.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(1).jpg.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(8).jpg.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(6).jpg.webp", "https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imageskda.jpg.webp", "https://cdn.jsdelivr.net/gh/FioraLove/Images/531-bigskin-1.jpg"],
+          {
+            duration: "5000",
+            fade: "3000"
+          });
+        } else {
+          $.backstretch(
+          ["https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.2.1/images/background/021.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(1).jpg.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(8).jpg.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(6).jpg.webp", "https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imageskda.jpg.webp", "https://cdn.jsdelivr.net/gh/FioraLove/Images/531-bigskin-1.jpg"],
+          {
+            duration: "5000",
+            fade: "3000"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@3.1.0/js/app.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@3.1.0/js/search.js"></script>
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>复制</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+    <script  src="https://cdn.jsdelivr.net/gh/FioraLove/CDN@v1.2.7/ribbon_v1.js"></script>
+  <script>setLoadingBarProgress(100);</script>
+<div class="showarea-4" style="text-align: center;margin: 0 auto;">
+        <img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/footercopy.png">
+    </div>
+    <div style="text-align: center;background-color:rgb(12, 1, 3);">
+
+        <p style="font-size: 1.2em;margin: 0 auto;color:rgb(202, 197, 191);">联系我 | Contact with me</p>
+        <p style="font-size: 1em;margin: 0 auto;color:rgb(202, 197, 191);">Copyright © 2019-2020 谁知你知我，我知你知深。此恨经年深，比情度日久</p>
+        <p style="font-size: 1em;margin: 0 auto;color:rgb(202, 197, 191);">博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" style="text-decoration: none;color:rgb(202, 197, 191)">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+        <br>
+        <a href="http://AhriLove.top/" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/FioraLove/Images/hexo.png"
+                title="个人博客" style="width: 3.5em;color:rgb(202, 197, 191);"></a>&nbsp;&nbsp;
+        <a href="https://github.com/FioraLove?tab=repositories" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/FioraLove/Images/git.png"
+                title="GitHub" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="https://www.cnblogs.com/AhriLove-chen/" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/cnblogs.png"
+                title="博客园" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="https://www.zhihu.com/people/hui-li-yi-xiao-jie/activities" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/zhihu.png"
+                title="知乎" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="https://music.163.com/#/user/home?id=1398315803" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/netease.png"
+                title="网易云音乐" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="https://space.bilibili.com/215893581" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/bilibili.png"
+                title="哔哩哔哩" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="http://wpa.qq.com/msgrd?v=3&uin=980710425&site=qq&menu=yes" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/qq.png"
+                title="QQ" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="mailto:980710425@qq.com" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/mail.png"
+                title="邮件" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="javascript:;"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/telegram.png"
+                title="Telegram" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="javascript:;"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/twitter.png"
+                title="Twitter" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <!--<a href="https://www.facebook.com/profile.php?id=100039716302318" target="_blank"><img
+            src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/facebook.png" class="icon" title="Facebook" style="width: 3.5em"></a>&nbsp;&nbsp;-->
+        <script  src="https://cdn.jsdelivr.net/gh/FioraLove/CDN@v1.2.7/ribbon_v1.js"></script>
+    </div>
+</body>
+</html>

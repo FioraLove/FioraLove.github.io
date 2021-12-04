@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>Java（四）：Java核心类 | AhriLove</title>
+  
+  
+
+  
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/all.min.css">
+  
+
+  
+  <link rel="shortcut icon" type='image/x-icon' href="https://cdn.jsdelivr.net/gh/FioraLove/CDN@1.0/万圣节鬼魂.ico">
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.10.22/css/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+  <script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+    </script>
+</head>
+
+<!-- 样式二（飘动的彩带） -->
+<meta name="baidu-site-verification" content="iMtC1b2Kmy" />
+<script src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.0.2/js/instantclick-1.2.2.js" type="module"></script>
+
+<body>
+
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post half'>
+      
+        
+  <img class='logo' src='https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imagesaaa.png'/>
+
+
+  <div class="m_search">
+    <form name="searchform" class="form u-search-form">
+      <input type="text" class="input u-search-input" placeholder="搜索" />
+      <i class="icon fas fa-search fa-fw"></i>
+    </form>
+  </div>
+
+<div class='menu navgation'>
+  <ul class='h-list'>
+    
+      
+        <li>
+          <a class="nav home" href="/"
+            
+            
+            id="home">
+            <i class='fas fa-home fa-fw'></i>&nbsp;主页
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/friends/"
+            
+              rel="nofollow"
+            
+            
+            id="friends">
+            <i class='fas fa-users fa-fw'></i>&nbsp;朋友
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/about/"
+            
+              rel="nofollow"
+            
+            
+            id="about">
+            <i class='fas fa-info-circle fa-fw'></i>&nbsp;关于
+          </a>
+        </li>
+      
+    
+  </ul>
+</div>
+
+      
+    </cover>
+    <header class="l_header material">
+  <div id="loading-bar-wrapper">
+    <div id="loading-bar" class="material"></div>
+  </div>
+
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          AhriLove
+        
+      </a>
+			<div class='menu navgation'>
+				<ul class='h-list'>
+          
+  					
+  						<li>
+								<a class="nav flat-box" href="/"
+                  
+                  
+                  id="home">
+									<i class='fas fa-grin fa-fw'></i>&nbsp;博文
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/categories/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="categories">
+									<i class='fas fa-folder-open fa-fw'></i>&nbsp;分类
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/tags/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="tags">
+									<i class='fas fa-ribbon fa-fw'></i>&nbsp;标签
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/friends/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="friends">
+									<i class='fab fa-suse fa-fw'></i>&nbsp;友链
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/plan/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="plan">
+									<i class='fas fa-paper-plane fa-fw'></i>&nbsp;每日计划
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/mylist/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="mylist">
+									<i class='fas fa-archive fa-fw'></i>&nbsp;资料文档
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/feiyan2020/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="feiyan2020">
+									<i class='far fa-heart fa-fw'></i>&nbsp;肺炎疫情图
+								</a>
+							</li>
+      			
+      		
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<i class="icon fas fa-search fa-fw"></i>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+        
+          <li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+        
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu navgation">
+      <ul>
+        
+          
+            <li>
+							<a class="nav flat-box" href="/"
+                
+                
+                id="home">
+								<i class='fas fa-clock fa-fw'></i>&nbsp;近期文章
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/archives/"
+                
+                  rel="nofollow"
+                
+                
+                id="archives">
+								<i class='fas fa-archive fa-fw'></i>&nbsp;文章归档
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="https://github.com/FioraLove?tab=repositories"
+                
+                
+                id="https:github.comFioraLove?tab=repositories">
+								<i class='fas fa-code-branch fa-fw'></i>&nbsp;开源项目
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/friends/"
+                
+                  rel="nofollow"
+                
+                
+                id="friends">
+								<i class='fas fa-link fa-fw'></i>&nbsp;我的友链
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="https://xaoxuu.com/wiki/material-x/"
+                
+                  rel="nofollow"
+                
+                
+                id="https:xaoxuu.comwikimaterial-x">
+								<i class='fas fa-book fa-fw'></i>&nbsp;主题文档
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/feiyan2020/"
+                
+                  rel="nofollow"
+                
+                
+                id="feiyan2020">
+								<i class='far fa-heart fa-fw'></i>&nbsp;肺炎疫情图
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/about/"
+                
+                  rel="nofollow"
+                
+                
+                id="about">
+								<i class='fas fa-info-circle fa-fw'></i>&nbsp;关于小站
+							</a>
+            </li>
+          
+       
+      </ul>
+		</nav>
+    </header>
+	</aside>
+<script>setLoadingBarProgress(40);</script>
+
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      <div class='l_main'>
+  
+
+  <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+    
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  
+    <h1 class="title">
+      <a href="/2021/10/04/Java%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E5%9B%9B)/">
+        Java（四）：Java核心类
+      </a>
+    </h1>
+  
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="/" rel="nofollow">
+        
+          <img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imagesNaruto.jpg">
+        
+        <p>Badwoman</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2021-10-04</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Java/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Java</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <p><strong>本章内容：</strong></p>
+<blockquote>
+<p>1.包装类<br>2.enum枚举类型<br>3.常用工具类<br>4.异常处理机制<br>5.Java集合<br>6.日期与时间</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="1-包装类"><a href="#1-包装类" class="headerlink" title="1. 包装类"></a>1. 包装类</h3><blockquote>
+<p>映射关系</p>
+</blockquote>
+<p>基本类型===&gt;    对应的引用类型<br>boolean    ===&gt; java.lang.Boolean<br>byte    ===&gt; java.lang.Byte<br>short    ===&gt; java.lang.Short<br>int        ===&gt; java.lang.Integer<br>long    ===&gt; java.lang.Long<br>float    ===&gt; java.lang.Float<br>double    ===&gt; java.lang.Double<br>char    ===&gt; java.lang.Character</p>
+<blockquote>
+<p>包装类的实际运用(以int和integer为例)</p>
+</blockquote>
+<ol>
+<li>int和integer类之间的转换：在实际转换时，使用Integer类的构造方法和Integer类内部的intValue方法实现这些类型之间的相互转换</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int n=5;</span><br><span class="line">Integer n1=new Integer(n);</span><br><span class="line">System.out.println(&quot;int类型转换为integer类：&quot;+n1);</span><br><span class="line"></span><br><span class="line">Integer i=new Integer(50);</span><br><span class="line">int i1 = i.intValue();</span><br><span class="line">System.out.println(&quot;integer类转换为int类型：&quot;+i1);</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Integer类内部的常用方法（Integer类的主要方法有：parseInt方法和toString方法）</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//parseInt方法： 数字字符串类型转成int类型</span><br><span class="line">String ss=&quot;123&quot;;</span><br><span class="line">int ii = Integer.parseInt(ss);</span><br><span class="line">System.out.println(&quot;字符类型转成整型：&quot;+ii);</span><br><span class="line"></span><br><span class="line">// parseInt(String s ,int radix)的目的是求&quot;radix&quot;进制数&quot;s&quot;的十进制数是多少</span><br><span class="line">System.out.println(Integer.parseInt(&quot;444&quot;,16);); // 表示16进制的0x444的十进制是多少</span><br><span class="line"></span><br><span class="line">//toString方法：int类型转成数字字符串类型</span><br><span class="line">int ii2=123;</span><br><span class="line">String ss2 = Integer.toString(ii2);</span><br><span class="line">System.out.println(&quot;int类型转成数字字符串类型:&quot;+ss);</span><br></pre></td></tr></table></figure>
+
+<p>拓：</p>
+<ul>
+<li>equals() 比较的是两个对象的值（内容）是否相同。</li>
+<li>== 比较的是两个对象的引用（内存地址）是否相同，也用来比较两个基本数据类型的变量值是否相等</li>
+</ul>
+<h3 id="3-enum枚举类"><a href="#3-enum枚举类" class="headerlink" title="3.enum枚举类"></a>3.enum枚举类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Weekday day = Weekday.SUN;</span><br><span class="line">        <span class="keyword">if</span> (day == Weekday.SAT || day == Weekday.SUN) &#123;</span><br><span class="line">            System.out.println(<span class="string">"Work at home!"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"Work at office!"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">enum</span> Weekday &#123;</span><br><span class="line">    SUN, MON, TUE, WED, THU, FRI, SAT;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-常用工具类"><a href="#4-常用工具类" class="headerlink" title="4.常用工具类"></a>4.常用工具类</h3><h4 id="Math：数学计算"><a href="#Math：数学计算" class="headerlink" title="Math：数学计算"></a>Math：数学计算</h4><p>Math.abs()求绝对值<br>Math.max/min()<br>Math.pow(a,b)计算a的次方<br>Math.sqrt()计算开方<br>Math.exp()计算e的次方<br>Math.PI 数学常量PI<br>Math.E  数学常量e<br>Math.random() 生成随机[0,1)的数</p>
+<h4 id="Random：随机数"><a href="#Random：随机数" class="headerlink" title="Random：随机数"></a>Random：随机数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 创建Random实例对象</span><br><span class="line">Random r = new Random(seed); // 种子数只是随机算法的起源数字，和生成的随机数的区间没有任何关系</span><br><span class="line">r.nextInt(); // 2071575453,每次都不一样</span><br><span class="line">r.nextInt(100); // 54,生成一个随机[0,100)的随机整数</span><br><span class="line">r.nextInt(10); // 5,生成一个[0,10)之间的int</span><br><span class="line">r.nextLong(); // 8811649292570369305,每次都不一样</span><br><span class="line">r.nextFloat(); // 0.54335...生成一个[0,1)之间的float</span><br><span class="line">r.nextDouble(); // 0.3716...生成一个[0,1)之间的double</span><br><span class="line"></span><br><span class="line">Random rand =new Random(25); // 预设种子数</span><br><span class="line">int i=rand.nextInt(100);</span><br><span class="line">System.out.println(i);</span><br></pre></td></tr></table></figure>
+<p>初始化时25并没有起直接作用（注意：不是没有起作用）,rand.nextInt(100);中的100是随机数的上限,产生的随机数为0-100的整数,不包括100</p>
+<p><strong>对于种子相同的Random对象，生成的随机数序列是一样的。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Random ran1 = <span class="keyword">new</span> Random(<span class="number">10</span>);</span><br><span class="line">System.out.println(<span class="string">"使用种子为10的Random对象生成[0,10)内随机整数序列: "</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    System.out.print(ran1.nextInt(<span class="number">10</span>) + <span class="string">" "</span>);</span><br><span class="line">   &#125;</span><br><span class="line">System.out.println();</span><br><span class="line">Random ran2 = <span class="keyword">new</span> Random(<span class="number">10</span>);</span><br><span class="line">System.out.println(<span class="string">"使用另一个种子为10的Random对象生成[0,10)内随机整数序列: "</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    System.out.print(ran2.nextInt(<span class="number">10</span>) + <span class="string">" "</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 输出结果为：</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 使用种子为10的Random对象生成[0,10)内随机整数序列:</span></span><br><span class="line"><span class="comment"> * 3 0 3 0 6 6 7 8 1 4</span></span><br><span class="line"><span class="comment"> * 使用另一个种子为10的Random对象生成[0,10)内随机整数序列:</span></span><br><span class="line"><span class="comment"> * 3 0 3 0 6 6 7 8 1 4</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="BigDecimal大数类"><a href="#BigDecimal大数类" class="headerlink" title="BigDecimal大数类"></a><a href="https://blog.csdn.net/weixin_37730482/article/details/73468042?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-6&utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-6" target="_blank" rel="noopener">BigDecimal大数类</a></h4><p><strong>float和double只能用来做科学计算或者是工程计算，在商业计算中我们要用 java.math.BigDecimal（大数类的运算效率肯定不如原生类型效率高，代价比较昂贵，需要结合具体的场景来使用）</strong><br>大数类的传入的值必须为字符串类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">BigDecimal a=new BigDecimal (&quot;4.5&quot;);</span><br><span class="line">BigDecimal b=new BigDecimal (&quot;1.5&quot;);</span><br><span class="line">a.add(b) // 6.0</span><br><span class="line">add(BigDecimal value)：加法，求两个BigDecimal类型数据的和。</span><br><span class="line">subtract(BigDecimal value)：减法，求两个BigDecimal类型数据的差。</span><br><span class="line">multiply(BigDecimal  value)：乘法，求两个BigDecimal类型数据的积。</span><br><span class="line">divide(BigDecimal divisor)：除法，求两个BigDecimal类型数据的商。</span><br><span class="line">remainder(BigDecimal divisor)：求余数，求BigDecimal类型数据除以divisor的余数。</span><br><span class="line">max(BigDecimal value)：最大数，求两个BigDecimal类型数据的最大值。</span><br><span class="line">min(BigDecimal value)：最小数，求两个BigDecimal类型数据的最小值。</span><br><span class="line">abs()：绝对值，求BigDecimal类型数据的绝对值。</span><br><span class="line">negate()：相反数，求BigDecimal类型数据的相反数。</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="5-异常处理机制"><a href="#5-异常处理机制" class="headerlink" title="5.异常处理机制"></a>5.异常处理机制</h3><p>在Java中，凡是可能抛出异常的语句，都可以用<code>try ... catch</code>捕获。把可能发生异常的语句放在try { … }中，然后使用catch捕获对应的Exception及其子类。</p>
+<p>在使用try…catch捕获处理异常时需要注意：</p>
+<ul>
+<li>不要过度使用异常，不能使用异常处理机制来代替正常的流程控制语句</li>
+<li>异常捕获时，一定要先捕获小异常，再捕获大异常。否则小异常将无法被捕获</li>
+<li>避免出现庞大的try块</li>
+<li>避免使用catch(Exception e){}</li>
+<li>不要忽略异常</li>
+</ul>
+<p>Exception类的常用的几种情况：系统IO异常/运行异常</p>
+<ol>
+<li><p>IOException有：<br>EOFException文件已结束异常<br>FileNotFoundException文件未找到异常</p>
+</li>
+<li><p>RuntimeException有：<br>IndexOutOfBoundsException索引越界异常；<br>ArrayIndexOutOfBoundsException数组索引越界异常；<br>ArithmeticException算数条件异常，譬如:整数除零等；<br>NullPointerException空指针异常；<br>NegativeArraySizeException数组长度为负异常；<br>ArrayStoreException数组存储异常，当向数组中存放非数组声明类型对象时抛出；<br>SecurityException违背安全原则异常；<br>IllegalArgumentException非法参数异常；<br>ClassCastException类型强制转换异常。<br>ReflectiveOperationException有：<br>ClassNotFoundException找不到类异常；<br>NoSuchMethodException方法未找到异常；<br>NoSuchFieldException找不到属性异常。</p>
+</li>
+<li><p>错误类Error：<br>一般是指与虚拟机相关的问题，如系统崩溃、虚拟机错误、动态链接失败<br>等，这种错误无法恢复或不可能捕获，将导致应用程序中断。所以不应该试图使用catch块来捕捉Error和不能在throws子句中声明该方法可能抛出Error及其任何子类</p>
+</li>
+</ol>
+<blockquote>
+<p>多catch语句</p>
+</blockquote>
+<p><strong>多catch语句:简单来说，多个catch语句只有一个能被执行</strong> 可以使用多个catch语句，每个catch分别捕获对应的Exception及其子类。JVM在捕获到异常后，会从上到下匹配catch语句，匹配到某个catch后，执行catch代码块，然后不再继续匹配。</p>
+<blockquote>
+<p>finally语句</p>
+</blockquote>
+<p>无论是否有异常发生，程序语句最终都要执行</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            process1();</span><br><span class="line">            process2();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (UnsupportedEncodingException e) &#123;</span><br><span class="line">            System.out.println(<span class="string">"Bad encoding"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            System.out.println(<span class="string">"IO error"</span>);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"END"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="6-集合"><a href="#6-集合" class="headerlink" title="6.集合"></a>6.集合</h3><blockquote>
+<p>collection接口</p>
+</blockquote>
+<p><strong>Java的集合与数组都是为了处理一类数据</strong>，但Java数组也存在很大的缺陷：</p>
+<ul>
+<li>数组初始化后大小不可变；</li>
+<li>数组只能按索引顺序存取。</li>
+</ul>
+<p><strong>Java集合类型分为Collection和Map，它们是Java集合的根接口</strong>，这两个接口又包含了一些子接口或实现类。Java的java.util包的collection主要提供了以下三种类型的集合：</p>
+<ul>
+<li>List接口：一种有序列表的集合，允许存储重复的元素，具体实现的类有ArrayList集合，LinkedList集合，Vector集合；</li>
+<li>Set接口：一种保证没有重复元素的集合，且没有索引（不能使用普通的for循环遍历集合），具体实现的类有TreeSet集合，HashSet集合，LinkedHashSet集合；</li>
+<li>Map：一种通过键值（key-value）查找的映射表集合。</li>
+</ul>
+<h4 id="List接口"><a href="#List接口" class="headerlink" title="List接口"></a>List接口</h4><p>创建List：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list = new ArrayList&lt;&gt;(); // 只能放入String类型</span><br><span class="line">List&lt;Integer&gt; list1 = new ArrayList&lt;&gt;(); // 只能放入Integer类型</span><br><span class="line">List&lt;Character&gt; list2 = new ArrayList&lt;&gt;(); // 只能放入Character类型</span><br><span class="line">拓展：根据给定的元素快速创建List</span><br><span class="line">List&lt;Integer&gt; list3 = List.of(1, 2, 5);</span><br></pre></td></tr></table></figure>
+<p><strong>collection接口的List接口的共性方法</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">在末尾或指定索引添加一个元素：add([index], E)</span><br><span class="line">删除指定索引处的元素值或指定的元素：remove(index) 或 remove(Object)</span><br><span class="line">获取指定索引的元素（不支持负索引）：get(index)</span><br><span class="line">更改指定索引对元素（不支持负索引）：set(index, element)</span><br><span class="line">获取List大小（包含元素的个数）：size()</span><br></pre></td></tr></table></figure>
+
+<p>List接口特点：</p>
+<ol>
+<li>它是一个元素存取有序的集合。例如，存元素的顺序是11、22、33。那么集合中，元素的存储就是按照11、22、33的顺序完成的）。</li>
+<li>它是一个带有索引的集合，通过索引就可以精确的操作集合中的元素（与数组的索引是一个道理）。</li>
+<li>集合中可以有重复的元素，通过元素的equals方法，来比较是否为重复的元素。</li>
+</ol>
+<blockquote>
+<p>ArrayList集合</p>
+</blockquote>
+<p>对于ArrayList来说，有一个尖括号<E>代表泛型（<strong>泛型：也就是装在集合中的所有元素，全部都是统一的什么类型。注意，泛型只能是引用数据类型，不能是基本类型</strong>）</p>
+<p><code>java.util.ArrayList</code>集合数据存储的结构是数组结构。元素增删慢，查找快，由于日常开发中使用最多的功能为查询数据、遍历数据，所以<code>ArrayList</code>是最常用的集合。</p>
+<ol>
+<li>创建ArrayList：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;String&gt; sites = new ArrayList&lt;&gt;();</span><br><span class="line">ArrayList&lt;Integer&gt; bite = new ArrayList&lt;&gt;();</span><br><span class="line">ArrayList&lt;Float&gt; byd = new ArrayList&lt;&gt;();</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>ArrayList的常用方法</li>
+</ol>
+<p>除了之前提到的共性方法之外，ArrayList还具有如下方法</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">addAll()</td>
+<td align="center">添加集合中的所有元素到arraylist中</td>
+</tr>
+<tr>
+<td align="center">clear()</td>
+<td align="center">删除集合所有元素</td>
+</tr>
+<tr>
+<td align="center">contains()</td>
+<td align="center">判断目标元素是否存在</td>
+</tr>
+<tr>
+<td align="center">indexOf()</td>
+<td align="center">返回目标元素的索引值，不存在返回-1</td>
+</tr>
+<tr>
+<td align="center">isEmpty()</td>
+<td align="center">判断有序数组是否为空</td>
+</tr>
+<tr>
+<td align="center">subList(start, end)</td>
+<td align="center">有序数组截取，满足<strong>左闭右开</strong>，不支持负索引</td>
+</tr>
+<tr>
+<td align="center">set(index, element)</td>
+<td align="center">对指定位置对元素进行更新</td>
+</tr>
+<tr>
+<td align="center">sort(type)</td>
+<td align="center">对动态数组进行排序（Comparator.naturalOrder()升序；Comparator.reverseOrder()降序）</td>
+</tr>
+<tr>
+<td align="center">toArray()</td>
+<td align="center">将arraylist转换为静态数组</td>
+</tr>
+<tr>
+<td align="center">toString()</td>
+<td align="center">将arraylist转换为字符串</td>
+</tr>
+<tr>
+<td align="center">forEach((x)-&gt;{…})</td>
+<td align="center">动态数组遍历，跟for-each循环不同</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>LinkedList集合</p>
+</blockquote>
+<p><code>java.util.LinkedList</code>集合数据存储的结构是链表结构。方便元素添加、删除的集合。</p>
+<p>LinkedList是一个双向链表，那么双向链表是什么样子的呢，我们用个图了解下<br><fancybox><img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/20200403114434.png" alt=""></fancybox></p>
+<ol>
+<li>创建LinkedList</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 引入 LinkedList 类</span><br><span class="line">import java.util.LinkedList;</span><br><span class="line">// 创建LinkedList类</span><br><span class="line">LinkedList&lt;E&gt; list = new LinkedList&lt;E&gt;();</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>常用方法</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">addFirst()</td>
+<td align="center">指定元素插入此列表的开头</td>
+</tr>
+<tr>
+<td align="center">addLast()</td>
+<td align="center">指定元素插入此列表的结尾</td>
+</tr>
+<tr>
+<td align="center">getFirst()</td>
+<td align="center">返回列表第一个元素</td>
+</tr>
+<tr>
+<td align="center">getLast()</td>
+<td align="center">返回列表最后一个元素</td>
+</tr>
+<tr>
+<td align="center">removeFirst()</td>
+<td align="center">移除列表第一个元素</td>
+</tr>
+<tr>
+<td align="center">removeLast()</td>
+<td align="center">移除列表最后一个元素</td>
+</tr>
+<tr>
+<td align="center">pop()/push()</td>
+<td align="center">移除或添加列表第一个元素</td>
+</tr>
+<tr>
+<td align="center">indexOf()</td>
+<td align="center">判断目标元素是否存在</td>
+</tr>
+<tr>
+<td align="center">isEmpty()</td>
+<td align="center">判断是否为空列表</td>
+</tr>
+</tbody></table>
+<h4 id="Set接口"><a href="#Set接口" class="headerlink" title="Set接口"></a>Set接口</h4><p><code>Set</code>接口中元素无序，允许有null值，并且会以某种规则保证存入的元素不出现重复。HashSet不是线程安全对，若多个线程同时修改HashSet，其结果并不能保证安全的。</p>
+<blockquote>
+<p>HashSet</p>
+</blockquote>
+<p>HashSet是根据对象的哈希值来确定元素在集合中的存储位置，因此具有良好的存取和查找性能。保证元素唯一性的方式依赖于：<code>hashCode</code>与<code>equals</code>方法。</p>
+<ol>
+<li>创建HashSet</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashSetDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建 Set集合</span></span><br><span class="line">        HashSet&lt;String&gt;  set = <span class="keyword">new</span> HashSet&lt;String&gt;();</span><br><span class="line">        set.add(<span class="string">"cba"</span>);</span><br><span class="line">        <span class="comment">//遍历</span></span><br><span class="line">        <span class="keyword">for</span> (String name : set) &#123;</span><br><span class="line">            System.out.println(name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>常用方法</li>
+</ol>
+<p>HashSet的常用方法此处不会仔细描述，常用到的方法：add,remove,clear,contains,size</p>
+<blockquote>
+<p>LinkedHashSet</p>
+</blockquote>
+<p>我们知道HashSet保证元素唯一，可是元素存放进去是没有顺序的，那么我们要保证有序，怎么办呢？</p>
+<p>在HashSet下面有一个子类<code>java.util.LinkedHashSet</code>，它是链表和哈希表组合的一个数据存储结构。</p>
+<p>演示代码如下:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedHashSetDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Set&lt;String&gt; set = <span class="keyword">new</span> LinkedHashSet&lt;String&gt;();</span><br><span class="line">		set.add(<span class="string">"bbb"</span>);</span><br><span class="line">		set.add(<span class="string">"aaa"</span>);</span><br><span class="line">		set.add(<span class="string">"abc"</span>);</span><br><span class="line">		set.add(<span class="string">"bbc"</span>);</span><br><span class="line">        Iterator&lt;String&gt; it = set.iterator();</span><br><span class="line">		<span class="keyword">while</span> (it.hasNext()) &#123;</span><br><span class="line">			System.out.println(it.next());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">结果：</span><br><span class="line">bbb</span><br><span class="line">aaa</span><br><span class="line">abc</span><br><span class="line">bbc</span><br></pre></td></tr></table></figure>
+
+<h4 id="Map接口"><a href="#Map接口" class="headerlink" title="Map接口"></a>Map接口</h4><p><strong>collection接口的Map接口的共性方法</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">map.put(key,value):在末尾添加一组键值对</span><br><span class="line">map.get(key):通过指定的key值获取相应的value值</span><br><span class="line">map.containerKey(key):查询某个Key是否存在</span><br><span class="line">map.containerValue(value):查询某个value是否存在</span><br><span class="line">map.size():获取Map中键值对的元素个数</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>HashMap</p>
+</blockquote>
+<p>前面已经讲解了List接口下的ArrayList类，接下来我们开始了解Map接口的HashMap类（Map&lt;K, V&gt;是一种键-值映射表，<strong>Map中不存在重复的key，因为放入相同的key，只会把原有的key-value对应的value给替换掉。</strong>）</p>
+<ol>
+<li>创建HashMap类</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Map&lt;键Key的引用数据类型, 值Value的引用数据类型&gt; map = new HashMap&lt;&gt;();</span></span><br><span class="line">Map&lt;String, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历输出 key 和 value</span></span><br><span class="line"><span class="keyword">for</span> (Integer i : Sites.keySet()) &#123;</span><br><span class="line">    System.out.println(<span class="string">"key: "</span> + i + <span class="string">" value: "</span> + Sites.get(i));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 遍历返回所有 value 值</span></span><br><span class="line"><span class="keyword">for</span>(String value: Sites.values()) &#123;</span><br><span class="line">  <span class="comment">// 输出每一个value</span></span><br><span class="line">  System.out.print(value + <span class="string">", "</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>常用方法</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">put(k, v)</td>
+<td align="center">添加键值对</td>
+</tr>
+<tr>
+<td align="center">get(k)</td>
+<td align="center">获取key对应的value</td>
+</tr>
+<tr>
+<td align="center">remove(key)</td>
+<td align="center">删除key对应的键值对</td>
+</tr>
+<tr>
+<td align="center">clear()</td>
+<td align="center">清空map</td>
+</tr>
+<tr>
+<td align="center">size()</td>
+<td align="center">获取map大小</td>
+</tr>
+</tbody></table>
+<p>关于HashMap的小结：</p>
+<ul>
+<li>对Map来说，要遍历key可以使用for-each循环遍历Map实例的keySet()方法返回的Set集合，它包含不重复的key的集合</li>
+<li>同时遍历key和value可以使用for-each循环遍历Map对象的entrySet()集合，它包含每一个key-value映射</li>
+</ul>
+<h4 id="Iterator迭代器接口"><a href="#Iterator迭代器接口" class="headerlink" title="Iterator迭代器接口"></a>Iterator迭代器接口</h4><p>collection接口下有各种各样的集合，不同的集合存储方式不同，相应的集合取值方式也不同，这时就需要Iterator迭代器接口了。<br>我们要始终坚持使用迭代器Iterator来访问List。Iterator本身也是一个对象，但它是由List的实例调用iterator()方法的时候创建的。Iterator对象知道如何遍历一个List，并且不同的List类型，返回的Iterator对象实现也是不同的，但总是具有最高的访问效率。</p>
+<p>Iterator对象有两个方法：boolean hasNext()判断是否有下一个元素，E next()返回下一个元素。因此，使用Iterator遍历List代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; list = List.of(<span class="string">"apple"</span>, <span class="string">"pear"</span>, <span class="string">"banana"</span>);</span><br><span class="line">        <span class="keyword">for</span> (Iterator&lt;String&gt; it = list.iterator(); it.hasNext(); ) &#123;</span><br><span class="line">            String s = it.next();</span><br><span class="line">            System.out.println(s);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>童鞋可能觉得使用Iterator访问List的代码比使用索引更复杂。但是，要记住，通过Iterator遍历List永远是最高效的方式。并且，由于Iterator遍历是如此常用，所以，Java的for each循环本身就可以帮我们使用Iterator遍历</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; list = List.of(<span class="string">"apple"</span>, <span class="string">"pear"</span>, <span class="string">"banana"</span>);</span><br><span class="line">        <span class="keyword">for</span> (String s : list) &#123;</span><br><span class="line">            System.out.println(s);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="6-日期与时间类"><a href="#6-日期与时间类" class="headerlink" title="6.日期与时间类"></a>6.日期与时间类</h3><p>我们再来看一下Java标准库提供的API。Java标准库有两套处理日期和时间的API：</p>
+<ul>
+<li>定义在java.util这个包里面，主要包括Date、Calendar和TimeZone这几个类(这里面有很多方法已经过时，废弃了，会报出warning)；</li>
+<li>新的API是在Java 8引入的，定义在java.time这个包里面，主要包括LocalDateTime、ZonedDateTime、ZoneId等（推荐使用这个API）</li>
+</ul>
+<h4 id="Date类"><a href="#Date类" class="headerlink" title="Date类"></a>Date类</h4><p>Date类目前已经过时废弃了很多方法，仅推荐getTime()方法:把日期对象转换成对应的时间毫秒值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Date date = new Date();</span><br><span class="line">// 1586141801899(十三位数，毫秒级，与js的时间戳相同)</span><br><span class="line">System.out.println(date.getTime());</span><br></pre></td></tr></table></figure>
+
+<h4 id="Calendar"><a href="#Calendar" class="headerlink" title="Calendar"></a>Calendar</h4><p>Calendar可以用于获取并设置年、月、日、时、分、秒，它和Date比，主要多了一个可以做简单的日期和时间运算的功能</p>
+<p><strong>概念</strong></p>
+<p>日历我们都见过,<code>java.util.Calendar</code>是日历类，在Date后出现，替换掉了许多Date的方法。该类将所有可能用到的时间信息封装为静态成员变量，方便获取。日历类就是方便获取各个时间属性的。</p>
+<p><strong>获取方式</strong></p>
+<p>Calendar为抽象类，由于语言敏感性，Calendar类在创建对象时并非直接创建，而是通过静态方法创建，返回子类对象，如下：</p>
+<ol>
+<li><p>Calendar静态方法</p>
+<p><code>public static Calendar getInstance()</code>：使用默认时区和语言环境获得一个日历</p>
+</li>
+</ol>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo06CalendarInit</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Calendar cal = Calendar.getInstance();</span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>常用方法</li>
+</ol>
+<p>根据Calendar类的API文档，常用方法有：</p>
+<ul>
+<li><code>public int get(int field)</code>：返回给定日历字段的值。</li>
+<li><code>public void set(int field, int value)</code>：将给定的日历字段设置为给定值。</li>
+<li><code>public abstract void add(int field, int amount)</code>：根据日历的规则，为给定的日历字段添加或减去指定的时间量。</li>
+<li><code>public Date getTime()</code>：返回一个表示此Calendar时间值（从历元到现在的毫秒偏移量）的Date对象。</li>
+</ul>
+<p>Calendar类中提供很多成员常量，代表给定的日历字段：</p>
+<table>
+<thead>
+<tr>
+<th>字段值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>YEAR</td>
+<td>年</td>
+</tr>
+<tr>
+<td>MONTH</td>
+<td>月（从0开始，可以+1使用）</td>
+</tr>
+<tr>
+<td>DAY_OF_MONTH</td>
+<td>月中的天（几号）</td>
+</tr>
+<tr>
+<td>HOUR</td>
+<td>时（12小时制）</td>
+</tr>
+<tr>
+<td>HOUR_OF_DAY</td>
+<td>时（24小时制）</td>
+</tr>
+<tr>
+<td>MINUTE</td>
+<td>分</td>
+</tr>
+<tr>
+<td>SECOND</td>
+<td>秒</td>
+</tr>
+<tr>
+<td>DAY_OF_WEEK</td>
+<td>周中的天（周几，周日为1，可以-1使用）</td>
+</tr>
+</tbody></table>
+<br>
+
+<ul>
+<li>get/set方法</li>
+</ul>
+<p>get方法用来获取指定字段的值，代码使用演示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalendarUtil</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 创建Calendar对象</span></span><br><span class="line">        Calendar cal = Calendar.getInstance();</span><br><span class="line">        <span class="comment">// 设置年 </span></span><br><span class="line">        <span class="keyword">int</span> year = cal.get(Calendar.YEAR);</span><br><span class="line">        <span class="comment">// 设置月</span></span><br><span class="line">        <span class="keyword">int</span> month = cal.get(Calendar.MONTH) + <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// 设置日</span></span><br><span class="line">        <span class="keyword">int</span> dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);</span><br><span class="line">        System.out.print(year + <span class="string">"年"</span> + month + <span class="string">"月"</span> + dayOfMonth + <span class="string">"日"</span>);</span><br><span class="line">        <span class="comment">// 2020年4月6日</span></span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>set方法用来设置指定字段的值，代码使用演示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo07CalendarMethod</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Calendar cal = Calendar.getInstance();</span><br><span class="line">        cal.set(Calendar.YEAR, <span class="number">2020</span>);</span><br><span class="line">        System.out.print(year + <span class="string">"年"</span> + month + <span class="string">"月"</span> + dayOfMonth + <span class="string">"日"</span>); <span class="comment">// 2020年1月17日</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>add方法</li>
+</ul>
+<p>add方法可以对指定日历字段的值进行加减操作，如果第二个参数为正数则加上偏移量，如果为负数则减去偏移量。代码如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo08CalendarMethod</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Calendar cal = Calendar.getInstance();</span><br><span class="line">        System.out.print(year + <span class="string">"年"</span> + month + <span class="string">"月"</span> + dayOfMonth + <span class="string">"日"</span>); <span class="comment">// 2018年1月17日</span></span><br><span class="line">        <span class="comment">// 使用add方法</span></span><br><span class="line">        cal.add(Calendar.DAY_OF_MONTH, <span class="number">2</span>); <span class="comment">// 加2天</span></span><br><span class="line">        cal.add(Calendar.YEAR, -<span class="number">3</span>); <span class="comment">// 减3年</span></span><br><span class="line">        System.out.print(year + <span class="string">"年"</span> + month + <span class="string">"月"</span> + dayOfMonth + <span class="string">"日"</span>); <span class="comment">// 2015年1月18日; </span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>getTime方法</li>
+</ul>
+<p>Calendar中的getTime方法并不是获取毫秒时刻，而是拿到对应的Date对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo09CalendarMethod</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Calendar cal = Calendar.getInstance();</span><br><span class="line">        Date date = cal.getTime();</span><br><span class="line">        System.out.println(date); <span class="comment">// Tue Jan 16 16:03:09 CST 2018</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>小贴士：西方星期的开始为周日，中国为周一。在Calendar类中，月份的表示是以0-11代表1-12月。日期是有大小关系的，时间靠后，时间越大。</p>
+<p>从Java 8开始，java.time包提供了新的日期和时间API，主要涉及的类型有：</p>
+<ol>
+<li>本地日期和时间：LocalDateTime，LocalDate，LocalTime；</li>
+<li>带时区的日期和时间：ZonedDateTime；</li>
+<li>时刻：Instant；</li>
+<li>时区：ZoneId，ZoneOffset；</li>
+<li>时间间隔：Duration。</li>
+<li>以及一套新的用于取代SimpleDateFormat的格式化类型DateTimeFormatter。</li>
+</ol>
+<p>和旧的API相比，新API严格区分了时刻、本地日期、本地时间和带时区的日期时间，并且，对日期和时间进行运算更加方便。</p>
+<p><font color=#ed1941>此外，新API修正了旧API不合理的常量设计：</p>
+<p>Month的范围用1~12表示1月到12月；<br>Week的范围用1~7表示周一到周日。<br>最后，新API的类型几乎全部是不变类型（和String类似），可以放心使用不必担心被修改。</font></p>
+<h4 id="DateFormat类"><a href="#DateFormat类" class="headerlink" title="DateFormat类"></a>DateFormat类</h4><p><code>java.text.DateFormat</code> 是日期/时间格式化子类的抽象类，我们通过这个类可以帮我们完成日期和文本之间的转换,也就是可以在Date对象与String对象之间进行来回转换。</p>
+<ul>
+<li><strong>格式化</strong>：按照指定的格式，从Date对象转换为String对象。</li>
+<li><strong>解析</strong>：按照指定的格式，从String对象转换为Date对象。</li>
+</ul>
+<p>常用的格式规则为：</p>
+<table>
+<thead>
+<tr>
+<th align="center">标识字母（区分大小写）</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">y</td>
+<td align="center">年</td>
+</tr>
+<tr>
+<td align="center">M</td>
+<td align="center">月</td>
+</tr>
+<tr>
+<td align="center">d</td>
+<td align="center">日</td>
+</tr>
+<tr>
+<td align="center">H/h</td>
+<td align="center">时</td>
+</tr>
+<tr>
+<td align="center">m</td>
+<td align="center">分</td>
+</tr>
+<tr>
+<td align="center">s</td>
+<td align="center">秒</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>format方法</p>
+</blockquote>
+<p>format方法是将Date对象格式化为字符串</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> 把Date对象转换成String</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo03DateFormatMethod</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 获取当前的日期对象</span></span><br><span class="line">        Date date = <span class="keyword">new</span> Date();</span><br><span class="line">        <span class="comment">// 创建日期格式化对象,在获取格式化对象时可以指定风格</span></span><br><span class="line">        DateFormat df = <span class="keyword">new</span> SimpleDateFormat(<span class="string">""</span>yyyy-MM-dd HH:mm:ss<span class="string">""</span>);</span><br><span class="line">        String str = df.format(date);</span><br><span class="line">        System.out.println(str); <span class="comment">// 2020-04-06 10:23:54</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>parse方法</p>
+</blockquote>
+<p>使用parse方法的代码为：把目标String转换成相应的Date对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.DateFormat;</span><br><span class="line"><span class="keyword">import</span> java.text.ParseException;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo04DateFormatMethod</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ParseException </span>&#123;</span><br><span class="line">        SimpleDateFormat ft = <span class="keyword">new</span> SimpleDateFormat (<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line">        String input = <span class="string">"2015-11-11 22:18:18"</span> ;</span><br><span class="line">        System.out.println(date); <span class="comment">// Tue Dec 11 00:00:00 CST 2018</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
+<li><a href="https://blog.csdn.net/qq_36850813/article/details/90900744" target="_blank" rel="noopener">JAVA中的Random()</a></li>
+<li><a href="https://blog.csdn.net/weixin_42359237/article/details/89502035" target="_blank" rel="noopener">异常处理机制</a></li>
+<li><a href="https://blog.csdn.net/lianghl8090/article/details/20539301" target="_blank" rel="noopener">File类的操作大全</a></li>
+</ul>
+
+      </div>
+      
+        <br>
+        
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-11-08T10:21:48+08:00">
+  <a class='notlink'>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>更新于 2021年11月8日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Java/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>Java</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2021/10/04/Java%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E5%9B%9B)/&title=Java（四）：Java核心类 | AhriLove&summary=本章内容：
+
+1.包装类2.enum枚举类型3.常用工具类4.异常处理机制5.Java集合6.日期与时间
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2021/10/04/Java%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E5%9B%9B)/&title=Java（四）：Java核心类 | AhriLove&summary=本章内容：
+
+1.包装类2.enum枚举类型3.常用工具类4.异常处理机制5.Java集合6.日期与时间
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2021/10/04/Java%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E5%9B%9B)/&title=Java（四）：Java核心类 | AhriLove&summary=本章内容：
+
+1.包装类2.enum枚举类型3.常用工具类4.异常处理机制5.Java集合6.日期与时间
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+      
+      
+          <div class="prev-next">
+              
+                  <section class="prev">
+                      <span class="art-item-left">
+                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                          <h4>
+                              <a href="/2021/10/05/Java%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E4%BA%94)/" rel="prev" title="Java（五）：类与对象">
+                                
+                                    Java（五）：类与对象
+                                
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/Java/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Java</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+              
+                  <section class="next">
+                      <span class="art-item-right" aria-hidden="true">
+                          <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                          <h4>
+                              <a href="/2021/10/03/Java%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E4%B8%89)/" rel="prev" title="Java(三)：流程控制">
+                                  
+                                      Java(三)：流程控制
+                                  
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/Java/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Java</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+          </div>
+      
+    </section>
+  </article>
+
+
+
+  <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      
+      
+        <section id="comments">
+          <div id="lv-container" data-id="city" data-uid="MTAyMC80NzQ0NS8yMzk0NQ==">
+            <noscript><div><i class='fas fa-exclamation-triangle'>&nbsp;无法加载Livere评论系统，请确保您的网络能够正常访问。</div></noscript>
+          </div>
+        </section>
+      
+      
+      
+    </section>
+  </article>
+
+
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'Java（四）：Java核心类',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+    
+    
+      
+      
+        
+          
+          
+            
+              <section class='widget author'>
+  <div class='content material'>
+    
+      <div class='avatar'>
+        <img class='avatar' src='https://cdn.jsdelivr.net/gh/FioraLove/CDN@1.0/Avatar.png'/>
+      </div>
+    
+    
+      <div class='text'>
+        
+          <h2>AHRILOVE' BLOG</h2>
+        
+        
+          <p>只有被明日的我们铭记 今天才有意义</p>
+
+        
+        
+      </div>
+    
+    
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget toc-wrapper'>
+    
+<header class='material'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目录</div>
+  
+    <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
+  
+</header>
+
+    <div class='content material'>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-包装类"><span class="toc-text">1. 包装类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-enum枚举类"><span class="toc-text">3.enum枚举类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-常用工具类"><span class="toc-text">4.常用工具类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Math：数学计算"><span class="toc-text">Math：数学计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Random：随机数"><span class="toc-text">Random：随机数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BigDecimal大数类"><span class="toc-text">BigDecimal大数类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-异常处理机制"><span class="toc-text">5.异常处理机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-集合"><span class="toc-text">6.集合</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#List接口"><span class="toc-text">List接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Set接口"><span class="toc-text">Set接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Map接口"><span class="toc-text">Map接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Iterator迭代器接口"><span class="toc-text">Iterator迭代器接口</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-日期与时间类"><span class="toc-text">6.日期与时间类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Date类"><span class="toc-text">Date类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Calendar"><span class="toc-text">Calendar</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DateFormat类"><span class="toc-text">DateFormat类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              <section class='widget grid'>
+  
+<header class='material'>
+  <div><i class="fas fa-address-card fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;关于博主</div>
+  
+</header>
+
+  <div class='content material'>
+    <ul class="grid navgation">
+      
+        <li><a class="flat-box" title="/game/" href="/game/"
+          
+            rel="nofollow"
+          
+          
+          id="game">
+          
+            <i class="fas fa-gamepad fa-fw" aria-hidden="true"></i>
+          
+          轻松一刻
+        </a></li>
+      
+        <li><a class="flat-box" title="/about/" href="/about/"
+          
+            rel="nofollow"
+          
+          
+          id="about">
+          
+            <i class="fas fa-paper-plane fa-fw" aria-hidden="true"></i>
+          
+          相册
+        </a></li>
+      
+        <li><a class="flat-box" title="/cv/" href="/cv/"
+          
+            rel="nofollow"
+          
+          
+          id="cv">
+          
+            <i class="fas fa-globe-asia fa-fw" aria-hidden="true"></i>
+          
+          个人简历
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+            
+              <section class='widget grid'>
+  
+<header class='material'>
+  <div><i class="fas fa-map-signs fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;站内导航</div>
+  
+</header>
+
+  <div class='content material'>
+    <ul class="grid navgation">
+      
+        <li><a class="flat-box" title="/" href="/"
+          
+          
+          id="home">
+          
+            <i class="fas fa-clock fa-fw" aria-hidden="true"></i>
+          
+          近期文章
+        </a></li>
+      
+        <li><a class="flat-box" title="/archives/" href="/archives/"
+          
+            rel="nofollow"
+          
+          
+          id="archives">
+          
+            <i class="fas fa-archive fa-fw" aria-hidden="true"></i>
+          
+          文章归档
+        </a></li>
+      
+        <li><a class="flat-box" title="https://github.com/FioraLove?tab=repositories" href="https://github.com/FioraLove?tab=repositories"
+          
+          
+          id="https:github.comFioraLove?tab=repositories">
+          
+            <i class="fas fa-code-branch fa-fw" aria-hidden="true"></i>
+          
+          开源项目
+        </a></li>
+      
+        <li><a class="flat-box" title="/friends/" href="/friends/"
+          
+            rel="nofollow"
+          
+          
+          id="friends">
+          
+            <i class="fas fa-link fa-fw" aria-hidden="true"></i>
+          
+          我的友链
+        </a></li>
+      
+        <li><a class="flat-box" title="https://xaoxuu.com/wiki/material-x/" href="https://xaoxuu.com/wiki/material-x/"
+          
+            rel="nofollow"
+          
+          
+          id="https:xaoxuu.comwikimaterial-x">
+          
+            <i class="fas fa-book fa-fw" aria-hidden="true"></i>
+          
+          主题文档
+        </a></li>
+      
+        <li><a class="flat-box" title="/plan/" href="/plan/"
+          
+            rel="nofollow"
+          
+          
+          id="plan">
+          
+            <i class="fas fa-info-circle fa-fw" aria-hidden="true"></i>
+          
+          开发日志
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget category'>
+    
+<header class='material'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分类</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/categories/"
+    title="categories/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content material'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Data-analysis/" href="/categories/Data-analysis/"><div class='name'>Data analysis</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Database/" href="/categories/Database/"><div class='name'>Database</div><div class='badge'>(10)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Django/" href="/categories/Django/"><div class='name'>Django</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Java/" href="/categories/Java/"><div class='name'>Java</div><div class='badge'>(16)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/PHP/" href="/categories/PHP/"><div class='name'>PHP</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Python/" href="/categories/Python/"><div class='name'>Python</div><div class='badge'>(14)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Redis/" href="/categories/Redis/"><div class='name'>Redis</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Vue/" href="/categories/Vue/"><div class='name'>Vue</div><div class='badge'>(6)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/docker/" href="/categories/docker/"><div class='name'>docker</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/javascript/" href="/categories/javascript/"><div class='name'>javascript</div><div class='badge'>(8)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/json/" href="/categories/json/"><div class='name'>json</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E5%89%8D%E7%AB%AF/" href="/categories/%E5%89%8D%E7%AB%AF/"><div class='name'>前端</div><div class='badge'>(8)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E5%8D%9A%E5%AE%A2Hexo/" href="/categories/%E5%8D%9A%E5%AE%A2Hexo/"><div class='name'>博客Hexo</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%B6%E6%9E%84/" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%B6%E6%9E%84/"><div class='name'>服务器架构</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E4%B8%8E%E7%AE%97%E6%B3%95/" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E4%B8%8E%E7%AE%97%E6%B3%95/"><div class='name'>计算机基础与算法</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/%E9%9A%8F%E7%AC%94/" href="/categories/%E9%9A%8F%E7%AC%94/"><div class='name'>随笔</div><div class='badge'>(5)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget tagcloud'>
+    
+<header class='material'>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/tags/"
+    title="tags/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content material'>
+      <a href="/tags/DDL/" style="font-size: 14px; color: #999">DDL</a> <a href="/tags/DML/" style="font-size: 14px; color: #999">DML</a> <a href="/tags/Django/" style="font-size: 20.67px; color: #6c6c6c">Django</a> <a href="/tags/Github-Page/" style="font-size: 14px; color: #999">Github Page</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/InnoDB/" style="font-size: 14px; color: #999">InnoDB</a> <a href="/tags/Java/" style="font-size: 24px; color: #555">Java</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Maven/" style="font-size: 14px; color: #999">Maven</a> <a href="/tags/Memcached/" style="font-size: 14px; color: #999">Memcached</a> <a href="/tags/MySQL/" style="font-size: 20.67px; color: #6c6c6c">MySQL</a> <a href="/tags/Oracle/" style="font-size: 15.67px; color: #8e8e8e">Oracle</a> <a href="/tags/Redis/" style="font-size: 17.33px; color: #828282">Redis</a> <a href="/tags/Requests/" style="font-size: 14px; color: #999">Requests</a> <a href="/tags/ThinkPHP/" style="font-size: 15.67px; color: #8e8e8e">ThinkPHP</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a> <a href="/tags/apache/" style="font-size: 14px; color: #999">apache</a> <a href="/tags/blog%E6%94%B9%E7%89%88/" style="font-size: 14px; color: #999">blog改版</a> <a href="/tags/css/" style="font-size: 20.67px; color: #6c6c6c">css</a> <a href="/tags/database/" style="font-size: 14px; color: #999">database</a> <a href="/tags/docker/" style="font-size: 19px; color: #777">docker</a> <a href="/tags/echarts/" style="font-size: 14px; color: #999">echarts</a> <a href="/tags/float/" style="font-size: 14px; color: #999">float</a> <a href="/tags/front-matter/" style="font-size: 14px; color: #999">front-matter</a> <a href="/tags/git/" style="font-size: 14px; color: #999">git</a> <a href="/tags/git-pull-push/" style="font-size: 14px; color: #999">git pull/push</a> <a href="/tags/html/" style="font-size: 15.67px; color: #8e8e8e">html</a> <a href="/tags/index/" style="font-size: 14px; color: #999">index</a> <a href="/tags/javascript/" style="font-size: 14px; color: #999">javascript</a> <a href="/tags/js/" style="font-size: 19px; color: #777">js</a> <a href="/tags/json/" style="font-size: 15.67px; color: #8e8e8e">json</a> <a href="/tags/lambda/" style="font-size: 14px; color: #999">lambda</a> <a href="/tags/margin/" style="font-size: 14px; color: #999">margin</a> <a href="/tags/matplotlib/" style="font-size: 15.67px; color: #8e8e8e">matplotlib</a> <a href="/tags/mysql/" style="font-size: 15.67px; color: #8e8e8e">mysql</a> <a href="/tags/nginx/" style="font-size: 15.67px; color: #8e8e8e">nginx</a> <a href="/tags/numpy/" style="font-size: 15.67px; color: #8e8e8e">numpy</a> <a href="/tags/pandas/" style="font-size: 14px; color: #999">pandas</a> <a href="/tags/php/" style="font-size: 14px; color: #999">php</a> <a href="/tags/python/" style="font-size: 22.33px; color: #606060">python</a> <a href="/tags/redis/" style="font-size: 14px; color: #999">redis</a> <a href="/tags/union/" style="font-size: 14px; color: #999">union</a> <a href="/tags/vue/" style="font-size: 14px; color: #999">vue</a> <a href="/tags/vue-cli/" style="font-size: 17.33px; color: #828282">vue-cli</a> <a href="/tags/webpack/" style="font-size: 14px; color: #999">webpack</a> <a href="/tags/%E5%89%8D%E5%90%8E%E5%88%86%E7%A6%BB/" style="font-size: 14px; color: #999">前后分离</a> <a href="/tags/%E5%A4%8D%E6%9D%82%E5%BA%A6/" style="font-size: 14px; color: #999">复杂度</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 14px; color: #999">多线程</a> <a href="/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8B/" style="font-size: 14px; color: #999">多进程</a> <a href="/tags/%E5%AE%9A%E4%BD%8D%E7%85%A7%E7%89%87%E6%8B%8D%E6%91%84%E4%BD%8D%E7%BD%AE/" style="font-size: 14px; color: #999">定位照片拍摄位置</a> <a href="/tags/%E5%AF%B9%E8%B1%A1/" style="font-size: 14px; color: #999">对象</a> <a href="/tags/%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #999">属性与方法</a> <a href="/tags/%E5%B8%B8%E8%A7%81%E5%BA%93/" style="font-size: 14px; color: #999">常见库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 14px; color: #999">数据类型</a> <a href="/tags/%E6%9E%81%E9%AA%8C%E6%BB%91%E5%8A%A8/" style="font-size: 14px; color: #999">极验滑动</a> <a href="/tags/%E8%A3%85%E9%A5%B0%E5%99%A8/" style="font-size: 14px; color: #999">装饰器</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%BA%93/" style="font-size: 14px; color: #999">解析库</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 14px; color: #999">负载均衡</a> <a href="/tags/%E9%80%86%E5%90%91%E7%88%AC%E8%99%AB/" style="font-size: 14px; color: #999">逆向爬虫</a> <a href="/tags/%E9%80%89%E6%8B%A9%E5%99%A8/" style="font-size: 14px; color: #999">选择器</a> <a href="/tags/%E9%80%9A%E7%94%A8%E8%BF%9E%E6%8E%A5/" style="font-size: 14px; color: #999">通用连接</a>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+    
+
+  
+</aside>
+
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+<script src="//instant.page/1.2.2" type="module" integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU"></script>
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+
+
+
+  
+  
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        if ('.cover') {
+          $('.cover').backstretch(
+          ["https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.2.1/images/background/021.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(1).jpg.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(8).jpg.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(6).jpg.webp", "https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imageskda.jpg.webp", "https://cdn.jsdelivr.net/gh/FioraLove/Images/531-bigskin-1.jpg"],
+          {
+            duration: "5000",
+            fade: "3000"
+          });
+        } else {
+          $.backstretch(
+          ["https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.2.1/images/background/021.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(1).jpg.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(8).jpg.webp", "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(6).jpg.webp", "https://cdn.jsdelivr.net/gh/FioraLove/Images/D:/data/imageskda.jpg.webp", "https://cdn.jsdelivr.net/gh/FioraLove/Images/531-bigskin-1.jpg"],
+          {
+            duration: "5000",
+            fade: "3000"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@3.1.0/js/app.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@3.1.0/js/search.js"></script>
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>复制</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+    <script  src="https://cdn.jsdelivr.net/gh/FioraLove/CDN@v1.2.7/ribbon_v1.js"></script>
+  <script>setLoadingBarProgress(100);</script>
+<div class="showarea-4" style="text-align: center;margin: 0 auto;">
+        <img src="https://cdn.jsdelivr.net/gh/FioraLove/Images/footercopy.png">
+    </div>
+    <div style="text-align: center;background-color:rgb(12, 1, 3);">
+
+        <p style="font-size: 1.2em;margin: 0 auto;color:rgb(202, 197, 191);">联系我 | Contact with me</p>
+        <p style="font-size: 1em;margin: 0 auto;color:rgb(202, 197, 191);">Copyright © 2019-2020 谁知你知我，我知你知深。此恨经年深，比情度日久</p>
+        <p style="font-size: 1em;margin: 0 auto;color:rgb(202, 197, 191);">博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" style="text-decoration: none;color:rgb(202, 197, 191)">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+        <br>
+        <a href="http://AhriLove.top/" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/FioraLove/Images/hexo.png"
+                title="个人博客" style="width: 3.5em;color:rgb(202, 197, 191);"></a>&nbsp;&nbsp;
+        <a href="https://github.com/FioraLove?tab=repositories" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/FioraLove/Images/git.png"
+                title="GitHub" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="https://www.cnblogs.com/AhriLove-chen/" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/cnblogs.png"
+                title="博客园" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="https://www.zhihu.com/people/hui-li-yi-xiao-jie/activities" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/zhihu.png"
+                title="知乎" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="https://music.163.com/#/user/home?id=1398315803" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/netease.png"
+                title="网易云音乐" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="https://space.bilibili.com/215893581" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/bilibili.png"
+                title="哔哩哔哩" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="http://wpa.qq.com/msgrd?v=3&uin=980710425&site=qq&menu=yes" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/qq.png"
+                title="QQ" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="mailto:980710425@qq.com" target="_blank"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/mail.png"
+                title="邮件" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="javascript:;"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/telegram.png"
+                title="Telegram" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <a href="javascript:;"><img
+                class="icon" src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/twitter.png"
+                title="Twitter" style="width: 3.5em"></a>&nbsp;&nbsp;
+        <!--<a href="https://www.facebook.com/profile.php?id=100039716302318" target="_blank"><img
+            src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.4/about/icon/facebook.png" class="icon" title="Facebook" style="width: 3.5em"></a>&nbsp;&nbsp;-->
+        <script  src="https://cdn.jsdelivr.net/gh/FioraLove/CDN@v1.2.7/ribbon_v1.js"></script>
+    </div>
+</body>
+</html>
