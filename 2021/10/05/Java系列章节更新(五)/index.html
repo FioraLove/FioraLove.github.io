@@ -422,30 +422,36 @@
       <div class="article-entry" itemprop="articleBody">
         <p><strong>本章内容</strong>：</p>
 <blockquote>
-<p>1.类(class)与实例(instance)<br>2.方法<br>3.构造方法★★<br>4.方法重载Overload<br>6.继承<br>7.多态<br>8.抽象类<br>9.接口<br>10.package包<br>11.作用域</p>
+<p>1.类与实例<br>2.方法<br>3.构造方法★★<br>4.方法重载Overload<br>5.对象<br>6.抽象类<br>7.接口<br>8.package包</p>
 </blockquote>
 <a id="more"></a>
-<h3 id="1-类-class-与实例-instance"><a href="#1-类-class-与实例-instance" class="headerlink" title="1.类(class)与实例(instance)"></a>1.类(class)与实例(instance)</h3><p>现实世界中，我们定义了“人”这种抽象概念，而具体的人则是“小明”、“小红”、“小军”等一个个具体的人。所以，“人”可以定义为一个类（class），而具体的人则是实例（instance）</p>
-<p><strong>类必须先定义才能使用</strong>。类是创建对象的模板，创建对象也叫类的实例化。instance是对象实例，instance是根据class创建的实例，可以创建多个instance，每个instance类型相同，但各自属性可能不相同</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span></span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="keyword">int</span> age;</span><br><span class="line">   </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">bark</span><span class="params">()</span></span>&#123;  <span class="comment">// 汪汪叫</span></span><br><span class="line">        System.out.println(<span class="string">"汪汪，不要过来"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hungry</span><span class="params">()</span></span>&#123;  <span class="comment">// 饥饿</span></span><br><span class="line">        System.out.println(<span class="string">"主人，我饿了"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-类与实例"><a href="#1-类与实例" class="headerlink" title="1.类与实例"></a>1.类与实例</h3><p>现实世界中，我们定义了“人”这种抽象概念，而具体的人则是“小明”、“小红”、“小军”等一个个具体的人。所以，“人”可以定义为一个类（class），而具体的人则是实例（instance）</p>
+<p><strong>类必须先定义才能使用</strong>。类是创建对象的模板，创建对象也叫类的实例化。instance是对象实例，instance是根据class创建的实例，可以创建多个instance，每个instance类型相同，但各自属性可能不相同，完整语法为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[public][abstract|final]class&lt;class_name&gt;[extends&lt;class_name&gt;][implements&lt;interface_name&gt;] &#123;</span><br><span class="line">    <span class="comment">// 定义属性部分</span></span><br><span class="line">    &lt;property_type&gt;&lt;property1&gt;;</span><br><span class="line">    &lt;property_type&gt;&lt;property2&gt;;</span><br><span class="line">    &lt;property_type&gt;&lt;property3&gt;;</span><br><span class="line">    …</span><br><span class="line">    <span class="comment">// 定义方法部分</span></span><br><span class="line">    function1();</span><br><span class="line">    function2();</span><br><span class="line">    function3();</span><br><span class="line">    …</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>提示：上述语法中，中括号“[]”中的部分表示可以省略，竖线“|”表示“或关系”，例如 abstract|final，说明可以使用abstract或final关键字，但是两个关键字不能同时出现</p>
 <p>对实例的说明：</p>
 <ul>
-<li>public是类的修饰符，表示该类是公共类，可以被其它类访问</li>
-<li>class是定义类的关键字</li>
-<li>Dog是类的名称</li>
-<li>name，age是类的成员变量，也叫做属性</li>
-<li>bark()，hungry()是类中的函数，也叫做方法</li>
+<li><code>public</code>：表示“共有”的意思。如果使用public修饰，则可以被其他类和程序访问。每个Java程序的主类都必须是public类，作为公共工具供其他类和程序使用的类应定义为public类</li>
+<li><code>abstract</code>：如果类被abstract修饰，则该类为抽象类，抽象类不能被实例化，但抽象类中可以有抽象方法（使用abstract修饰的方法）和具体方法（没有使用abstract修饰的方法）。继承该抽象类的所有子类都必须实现该抽象类中的所有抽象方法（除非子类也是抽象类）</li>
+<li><code>final</code>：如果类被final修饰，则不允许被继承</li>
+<li><code>class</code>：声明类的关键字</li>
+<li><code>class_name</code>：类的名称</li>
+<li><code>extends</code>：表示继承其他类</li>
+<li><code>implements</code>：表示实现某些接口</li>
+<li><code>property_type</code>：表示成员变量的类型</li>
+<li><code>property</code>：表示成员变量名称</li>
+<li><code>function()</code>：表示成员方法名称</li>
 </ul>
-<p>一个类可以包含以下类型变量：</p>
+<h3 id="2-方法"><a href="#2-方法" class="headerlink" title="2.方法"></a>2.方法</h3><p>方法method是一段用来完成特定功能的代码块，类似于其它语言中的函数function。方法用于定义该类或该类的实例的行为特征和功能实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class Test &#123;</span><br><span class="line">    [public|private|protected][static]&lt;void|return_type&gt;&lt;method_name&gt;([paramList]) &#123;</span><br><span class="line">        // 方法体</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>方法返回值通过return语句实现，如果没有返回值，返回类型设置为void，可以省略return</strong>。return作用：1. 返回值 2.结束程序运行</p>
+<p>各修饰符含义如下：</p>
 <ul>
-<li><strong>局部变量</strong>：在方法或者语句块中定义的变量被。变量声明和初始化都是在方法中，方法结束后，变量就会自动销毁</li>
-<li><strong>成员变量</strong>：是定义在类中、方法体之外的变量。这种变量在创建对象的时候实例化（分配内存），不过没有static修饰符</li>
-<li><strong>类变量</strong>：也声明在类中，方法体之外，但必须声明为static类型</li>
+<li>public、private、protected：表示成员方法的访问权限</li>
+<li>static：表示限定该成员方法为静态方法</li>
+<li>final：表示限定该成员方法不能被重写或重载</li>
+<li>abstract：表示限定该成员方法为抽象方法。抽象方法不提供具体的实现，并且所属类型必须为抽象类</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class Variable&#123;</span><br><span class="line">    static int allClicks=0;    // 类变量</span><br><span class="line">    String str=&quot;hello world&quot;;  // 成员变量</span><br><span class="line">    public void method()&#123;</span><br><span class="line">        int i =0;  // 局部变量</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-方法"><a href="#2-方法" class="headerlink" title="2.方法"></a>2.方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">修饰符 方法返回类型 方法名(方法参数列表) &#123;</span><br><span class="line">    若干方法语句;</span><br><span class="line">    return 方法返回值;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>方法返回值通过return语句实现，如果没有返回值，返回类型设置为void，可以省略return</strong>。</p>
 <p>方法的参数有实参和形参之分，我们现在深入思考一下，方法中可以传递什么类型的值</p>
 <ul>
 <li><p>基本数据类型：整型，字符型，浮点型，布尔型</p>
@@ -493,7 +499,21 @@
 <li>声明为final的方法不能被重载。</li>
 <li>声明为static的方法不能被重载，但是能够被再次声明。</li>
 </ul>
-<h3 id="8-抽象类"><a href="#8-抽象类" class="headerlink" title="8.抽象类"></a>8.抽象类</h3><p>由于多态的存在，每个子类都可以覆写父类的方法，例如：</p>
+<h3 id="5-对象"><a href="#5-对象" class="headerlink" title="5.对象"></a>5.对象</h3><p>对象创建方式：<code>类名 对象名 = new 类名()</code></p>
+<p>Java虚拟机在创建一个对象时都包含以下步骤：</p>
+<ul>
+<li>给对象分配内存。</li>
+<li>将对象的实例变量自动初始化为其变量类型的默认值。</li>
+<li>初始化对象，给实例变量赋予正确的初始值。</li>
+</ul>
+<p>注意：每个对象都是相互独立的，在内存中占有独立的内存地址，并且每个对象都具有自己的生命周期，当一个对象的生命周期结束时，对象就变成了垃圾，由Java虚拟机自带的垃圾回收机制处理。</p>
+<blockquote>
+<p>匿名对象</p>
+</blockquote>
+<p>通过前面的知识我们已经了解到了，每次new都相当于开辟了一个新的对象，并开辟了一个新的物理内存空间。如果一个对象只需要使用唯一的一次，就可以使用匿名对象，匿名对象还可以作为实际参数传递。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String name; <span class="comment">// 姓名</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> age; <span class="comment">// 年龄</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义构造方法，为属性初始化</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取信息的方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tell</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"姓名："</span> + name + <span class="string">"，年龄："</span> + age);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Person(<span class="string">"张三"</span>, <span class="number">30</span>).tell(); <span class="comment">// 匿名对象 =&gt; 姓名：张三，年龄：30</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-抽象类"><a href="#6-抽象类" class="headerlink" title="6.抽象类"></a>6.抽象类</h3><p>由于多态的存在，每个子类都可以覆写父类的方法，例如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123; … &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123; … &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Teacher</span> <span class="keyword">extends</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123; … &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>定义：<br><strong>抽象类：抽象方法所在的类，必须是抽象类才行，在class前写上abstract即可</strong><br><strong>抽象方法：就是在方法强加上abstract关键字，然后去掉大括号，直接分号结束</strong></p>
 <p>使用方法：</p>
@@ -512,7 +532,7 @@
 <li><p>抽象类无法被实例化（即className 变量名 = new className()）</p>
 </li>
 </ul>
-<h3 id="9-接口"><a href="#9-接口" class="headerlink" title="9.接口"></a>9.接口</h3><h4 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h4><p><strong>如果一个抽象类没有字段或者说没有属性，所有方法全部都是抽象方法</strong>【抽象方法：修饰符 abstract 返回值类型 方法名()】，就可以把该抽象类改写为接口：<code>interface</code></p>
+<h3 id="7-接口"><a href="#7-接口" class="headerlink" title="7.接口"></a>7.接口</h3><h4 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h4><p><strong>如果一个抽象类没有字段或者说没有属性，所有方法全部都是抽象方法</strong>【抽象方法：修饰符 abstract 返回值类型 方法名()】，就可以把该抽象类改写为接口：<code>interface</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 抽象类</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> String <span class="title">getName</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> String <span class="title">getName</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>在Java中，可以使用interface可以声明一个接口：</p>
@@ -527,26 +547,11 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Hello</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hello</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Person</span> <span class="keyword">extends</span> <span class="title">Hello</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">String <span class="title">getName</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>此时，Person接口继承自Hello接口，因此，Person接口现在实际上有3个抽象方法签名，其中一个来自继承的Hello接口。</p>
-<h3 id="10-package包"><a href="#10-package包" class="headerlink" title="10.package包"></a>10.package包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">程序目录结构：</span><br><span class="line">package_sample</span><br><span class="line">└─ src</span><br><span class="line">    ├─ hong</span><br><span class="line">    │  └─ Person.java</span><br><span class="line">    │  ming</span><br><span class="line">    │  └─ Person.java</span><br><span class="line">    └─ mr</span><br><span class="line">       └─ jun</span><br><span class="line">          └─ Arrays.java</span><br></pre></td></tr></table></figure>
+<h3 id="8-package包"><a href="#8-package包" class="headerlink" title="8.package包"></a>8.package包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">程序目录结构：</span><br><span class="line">package_sample</span><br><span class="line">└─ src</span><br><span class="line">    ├─ hong</span><br><span class="line">    │  └─ Person.java</span><br><span class="line">    │  ming</span><br><span class="line">    │  └─ Person.java</span><br><span class="line">    └─ mr</span><br><span class="line">       └─ jun</span><br><span class="line">          └─ Arrays.java</span><br></pre></td></tr></table></figure>
 <p>使用<code>import</code>导入相关包</p>
 <ul>
 <li>方式一：import 包名.某一类名</li>
 <li>方式二：import 包名.*</li>
-</ul>
-<h3 id="11-作用域"><a href="#11-作用域" class="headerlink" title="11.作用域"></a>11.作用域</h3><p>priavte          本类可见</p>
-<p>public            所有类可见</p>
-<p>protected      作用于继承关系，定义为protected的字段和方法可以被子类访问，以及子类的子类</p>
-<p>default          本包可见（即默认的形式）（本包中的子类非子类均可访问，不同包中的类及子类均不能访问）</p>
-<p><strong>小结</strong></p>
-<ul>
-<li><p>Java内建的访问权限包括public、protected、private和package权限；</p>
-</li>
-<li><p>Java在方法内部定义的变量是局部变量，局部变量的作用域从变量声明开始，到一个块结束；</p>
-</li>
-<li><p>final修饰符不是访问权限，它可以修饰class、field和method；</p>
-</li>
-<li><p>一个.java文件只能包含一个public类，但可以包含多个非public类。如果有public类，文件名必须和public类的名字相同。</p>
-<h3 id="12-未完待续…"><a href="#12-未完待续…" class="headerlink" title="12.未完待续…"></a>12.未完待续…</h3></li>
 </ul>
 
       </div>
@@ -559,10 +564,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-12-04T08:47:03+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-01-07T17:48:08+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2021年12月4日</p>
+    <p>更新于 2022年1月7日</p>
   </a>
 </div>
 
@@ -586,7 +591,7 @@
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2021/10/05/Java%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E4%BA%94)/&title=Java（五）：类与对象 | AhriLove&summary=本章内容：
 
-1.类(class)与实例(instance)2.方法3.构造方法★★4.方法重载Overload6.继承7.多态8.抽象类9.接口10.package包11.作用域
+1.类与实例2.方法3.构造方法★★4.方法重载Overload5.对象6.抽象类7.接口8.package包
 "
           
           >
@@ -601,7 +606,7 @@
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2021/10/05/Java%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E4%BA%94)/&title=Java（五）：类与对象 | AhriLove&summary=本章内容：
 
-1.类(class)与实例(instance)2.方法3.构造方法★★4.方法重载Overload6.继承7.多态8.抽象类9.接口10.package包11.作用域
+1.类与实例2.方法3.构造方法★★4.方法重载Overload5.对象6.抽象类7.接口8.package包
 "
           
           >
@@ -616,7 +621,7 @@
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2021/10/05/Java%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E4%BA%94)/&title=Java（五）：类与对象 | AhriLove&summary=本章内容：
 
-1.类(class)与实例(instance)2.方法3.构造方法★★4.方法重载Overload6.继承7.多态8.抽象类9.接口10.package包11.作用域
+1.类与实例2.方法3.构造方法★★4.方法重载Overload5.对象6.抽象类7.接口8.package包
 "
           
           >
@@ -798,7 +803,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-类-class-与实例-instance"><span class="toc-text">1.类(class)与实例(instance)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-方法"><span class="toc-text">2.方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-构造方法"><span class="toc-text">3.构造方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Overload方法重载"><span class="toc-text">4.Overload方法重载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-抽象类"><span class="toc-text">8.抽象类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-接口"><span class="toc-text">9.接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#含义"><span class="toc-text">含义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实现方式"><span class="toc-text">实现方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#类实现多接口"><span class="toc-text">类实现多接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#接口继承"><span class="toc-text">接口继承</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-package包"><span class="toc-text">10.package包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-作用域"><span class="toc-text">11.作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-未完待续…"><span class="toc-text">12.未完待续…</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-类与实例"><span class="toc-text">1.类与实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-方法"><span class="toc-text">2.方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-构造方法"><span class="toc-text">3.构造方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Overload方法重载"><span class="toc-text">4.Overload方法重载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-对象"><span class="toc-text">5.对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-抽象类"><span class="toc-text">6.抽象类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-接口"><span class="toc-text">7.接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#含义"><span class="toc-text">含义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实现方式"><span class="toc-text">实现方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#类实现多接口"><span class="toc-text">类实现多接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#接口继承"><span class="toc-text">接口继承</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-package包"><span class="toc-text">8.package包</span></a></li></ol>
     </div>
   </section>
 

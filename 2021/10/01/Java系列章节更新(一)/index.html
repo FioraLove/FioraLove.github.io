@@ -422,7 +422,7 @@
       <div class="article-entry" itemprop="articleBody">
         <p>Java具有简单性、面向对象、分布式、健壮性、安全性、平台独立与可移植性、多线程、动态性等特点 。Java可以编写桌面应用程序、Web应用程序、分布式系统和嵌入式系统应用程序等</p>
 <blockquote>
-<p>1.Java基础结构<br>2.命名规范与注释<br>3.常量<br>4.访问修饰符<br>5.运算符</p>
+<p>1.Java基础结构<br>2.命名规范与注释<br>3.常量<br>4.变量<br>5.访问修饰符<br>6.运算符</p>
 </blockquote>
 <a id="more"></a>
 <h3 id="1-Java基础结构"><a href="#1-Java基础结构" class="headerlink" title="1.Java基础结构"></a>1.Java基础结构</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 类名与Java文件名相同</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123; <span class="comment">// 方法名是main，main方法表示为入口文件</span></span><br><span class="line">        <span class="comment">// 方法代码...</span></span><br><span class="line">    &#125; <span class="comment">// 方法定义结束</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -431,17 +431,135 @@
 <p>① 包名: 多单词组成时所有字母都小写:xxxyyyzzz<br>② 类名、接口名: 多单词组成时，所有单词的首字母大写:XxxYyyZzz<br>③ 变量名、方法名: 多单词组成时，第一个单词首字母小写，第二个单词开始每个单词首字母大写: xxxYyyZzz<br>④ 常量名:所有字母都大写。多单词时每个单词用下划线连接:XXX_YYY_zzz</p>
 <p>补充：<a href="https://blog.csdn.net/weixin_39723544/article/details/82144280" target="_blank" rel="noopener">【python的命名规范】</a></p>
 <p>单行注释：\\<br>多行注释：\* content *\<br>从Java 13开始，字符串可以用<code>&quot;&quot;&quot;...&quot;&quot;&quot;</code>表示多行字符串（Text Blocks）</p>
-<h3 id="3-常量"><a href="#3-常量" class="headerlink" title="3.常量"></a>3.常量</h3><p>定义变量(通常大写)的时候，如果加上final修饰符，这个变量就变成了常量：</p>
+<h3 id="3-常量"><a href="#3-常量" class="headerlink" title="3.常量"></a>3.常量</h3><p>常量是指在程序的整个运行过程中值保持不变的量。在这里要注意常量和常量值是不同的概念，常量值是常量的具体和直观的表现形式，常量是形式化的表现。通常在程序中既可以直接使用常量值，也可以使用常量。</p>
+<p>下面我们来系统地认识一下 Java 中的常量值，以及定义常量的方法</p>
+<blockquote>
+<p>常量值</p>
+</blockquote>
+<ol>
+<li>整型常量值</li>
+</ol>
+<p>Java 的整型常量值主要有如下3种形式：</p>
+<ul>
+<li>二进制数形式：0b101、0b1001</li>
+<li>十进制数形式：如 54、-67、0</li>
+<li>八进制数形式：表示<strong>以0开头</strong>，如 0125 表示十进制数 85，-013 表示十进制数 -11。</li>
+<li>十六进制数形式：表示<strong>以0x或0X开头</strong>，如 0x100表示十进制数256，-0x16表示十进制数-22。</li>
+</ul>
+<ol start="2">
+<li>整型（int）常量</li>
+</ol>
+<p>默认在内存中占 32 位，是具有整数类型的值，当运算过程中所需值超过 32 位长度时，可以把它表示为长整型（long）数值。长整型类型则要在数字后面加 L 或 l， 如 697L，表示一个长整型数，它在内存中占 64 位。</p>
+<ol start="3">
+<li>实型常量值</li>
+</ol>
+<p>Java 的实型常量值主要有如下两种形式：</p>
+<ul>
+<li>十进制数形式：由数字和小数点组成，且必须有小数点，如 12.34、-98.0。</li>
+<li>科学记数法形式：如 1.75e5 或 32&amp;E3，其中 e 或 E 之前必须有数字，且 e 或 E 之后的数字必须为整数。</li>
+</ul>
+<ol start="4">
+<li>布尔型常量值</li>
+</ol>
+<p>Java 的布尔型常量只有两个值，即 false（假）和 true（真）。</p>
+<ol start="5">
+<li>字符型和字符串常量值</li>
+</ol>
+<p>Java 的字符型常量值是用单引号引起来的一个字符，如 ‘e’、E’。需要注意的是，Java 字符串常量值中的单引号和双引号不可混用。双引号用来表示字符串，像 “11”、”d” 等都是表示单个字符的字符串。</p>
+<blockquote>
+<p>定义常量</p>
+</blockquote>
+<p>常量不同于常量值，它可以在程序中用符号来代替常量值使用，因此在使用前必须先定义，即在声明常量的同时要赋予一个初始值。</p>
+<p>定义常量(通常大写)的时候，如果加上final修饰符，这个变量就变成了常量：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="keyword">double</span> PI = <span class="number">3.14</span>; <span class="comment">// PI是一个常量</span></span><br><span class="line"><span class="keyword">double</span> r = <span class="number">5.0</span>;</span><br><span class="line"><span class="keyword">double</span> area = PI * r * r;</span><br><span class="line">PI = <span class="number">300</span>; <span class="comment">// compile error! 常量在定义时进行初始化后就不可再次赋值，再次赋值会导致编译错误。</span></span><br></pre></td></tr></table></figure>
 <p>注意：</p>
 <ul>
 <li>变量可重新赋值，等号是赋值语句，不是数学意义的等号。</li>
 <li>常量在初始化后不可重新赋值，使用常量便于理解程序意图。</li>
 </ul>
-<p>Java 语言使用 final 关键字来定义一个常量（常量有三种类型：静态常量、成员常量和局部常量。），其语法如下所示：<br><strong>final dataType variableName = value</strong></p>
+<p>Java 语言使用 final 关键字来定义一个常量（常量有三种类型：静态常量、成员常量和局部常量。），其语法：<code>final dataType variableName = value</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 静态常量</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">double</span> PI = <span class="number">3.14</span>;</span><br><span class="line">    <span class="comment">// 声明成员常量</span></span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> y = <span class="number">10</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 声明局部常量</span></span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">double</span> x = <span class="number">3.3</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="4-访问修饰符"><a href="#4-访问修饰符" class="headerlink" title="4.访问修饰符"></a>4.访问修饰符</h3><table>
+<h3 id="4-变量"><a href="#4-变量" class="headerlink" title="4.变量"></a>4.变量</h3><h4 id="变量声明和赋值"><a href="#变量声明和赋值" class="headerlink" title="变量声明和赋值"></a>变量声明和赋值</h4><p>Java 语言是强类型（Strongly Typed）语言，强类型包含以下两方面的含义：</p>
+<ul>
+<li>所有的变量必须先声明、后使用。</li>
+<li>指定类型的变量只能接受类型与之匹配的值</li>
+</ul>
+<p>基本语法：<br><code>DataType identifier=value;</code> 或者 <code>DataType identifier;</code></p>
+<p>初始化变量是指为变量指定一个明确的初始值。初始化变量有两种方式：<strong>一种是声明时直接赋值，一种是先声明、后赋值</strong><br>另外，<strong>多个同类型的变量可以同时定义或者初始化，但是多个变量中间要使用逗号分隔，声明结束时用分号分隔</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> usersex=<span class="string">'女'</span>;    <span class="comment">// 直接赋值</span></span><br><span class="line"></span><br><span class="line">String username;    <span class="comment">// 先声明</span></span><br><span class="line">username =<span class="string">"琪琪"</span>;    <span class="comment">// 后赋值</span></span><br><span class="line"></span><br><span class="line">String username,address,phone,tel;    <span class="comment">// 同时声明多个变量</span></span><br><span class="line"><span class="keyword">int</span> num1=<span class="number">12</span>,num2=<span class="number">23</span>,result=<span class="number">35</span>;    <span class="comment">// 声明并初始化多个变量</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a1 = <span class="number">1</span>, a2 = <span class="number">2</span>, a3 = <span class="number">2</span>; <span class="comment">// 同时初始化多个变量</span></span><br><span class="line">System.out.println(a1 + a2 + a3);</span><br></pre></td></tr></table></figure>
+
+<h4 id="变量作用域"><a href="#变量作用域" class="headerlink" title="变量作用域"></a>变量作用域</h4><p>变量的作用域规定了变量所能使用的范围，只有在作用域范围内变量才能被使用。根据变量声明地点的不同，变量的作用域也不同。</p>
+<p>根据作用域的不同，<strong>一般将变量分为不同的类型：成员变量和局部变量</strong></p>
+<blockquote>
+<p>成员变量</p>
+</blockquote>
+<p>Java 的成员变量有两种，分别是<strong>全局变量(实例变量)和静态变量（类变量）</strong>。定义在方法体和语句块之外，不属于任何一个方法，作用域是整个类。</p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">修饰</th>
+<th align="center">访问</th>
+<th align="center">生命周期</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">全局变量（实例变量）</td>
+<td align="center">无 static 修饰</td>
+<td align="center">对象名.变量名</td>
+<td align="center">只要对象被当作引用，实例变量就将存在</td>
+</tr>
+<tr>
+<td align="center">静态变量（类变量）</td>
+<td align="center">用 static 修饰</td>
+<td align="center">类名.变量名或对象名.变量名</td>
+<td align="center">其生命周期取决于类的生命周期。类被垃圾回收机制彻底回收时才会被销毁</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> bytedance.com;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BasicTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 创建类的对象</span></span><br><span class="line">        DataClass dc = <span class="keyword">new</span> DataClass();</span><br><span class="line">        <span class="comment">// 对象名.变量名调用实例变量（全局变量）</span></span><br><span class="line">        System.out.println(dc.name);</span><br><span class="line">        System.out.println(dc.age);</span><br><span class="line">        <span class="comment">// 类名.变量名调用静态变量（类变量）</span></span><br><span class="line">        System.out.println(DataClass.website);</span><br><span class="line">        System.out.println(DataClass.URL);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DataClass</span> </span>&#123;</span><br><span class="line">    String name; <span class="comment">// 成员变量、实例变量</span></span><br><span class="line">    <span class="keyword">int</span> age; <span class="comment">// 成员变量、实例变量</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> String website = <span class="string">"C语言中文网"</span>; <span class="comment">// 成员变量、静态变量(类变量)</span></span><br><span class="line">    <span class="keyword">static</span> String URL = <span class="string">"http://c.biancheng.net"</span>; <span class="comment">// 成员变量、静态变量(类变量)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>静态变量与实例变量的区别如下：</p>
+<p>1）静态变量</p>
+<ul>
+<li>运行时，Java 虚拟机只为静态变量分配一次内存，在加载类的过程中完成静态变量的内存分配。</li>
+<li>在类的内部，可以在任何方法内直接访问静态变量。</li>
+<li>在其他类中，可以通过类名访问该类中的静态变量。</li>
+</ul>
+<p>2）实例变量</p>
+<ul>
+<li>每创建一个实例，Java 虚拟机就会为实例变量分配一次内存。</li>
+<li>在类的内部，可以在非静态方法中直接访问实例变量。</li>
+<li>在本类的静态方法或其他类中则需要通过类的实例对象进行访问。</li>
+</ul>
+<blockquote>
+<p>局部变量</p>
+</blockquote>
+<p>局部变量是<strong>指在方法或者方法代码块中定义的变量</strong>，其作用域是其所在的代码块。可分为以下三种：</p>
+<ul>
+<li>方法参数变量（形参）：在整个方法内有效</li>
+<li>方法局部变量（方法内定义）： 从定义这个变量开始到方法结束这一段时间内有效</li>
+<li>代码块局部变量（代码块内定义）：从定义这个变量开始到代码块结束这一段时间内有效</li>
+</ul>
+<ol>
+<li>方法局部变量</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">7</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="number">5</span> &gt; <span class="number">3</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> s = <span class="number">3</span>; <span class="comment">// 声明一个 int 类型的局部变量</span></span><br><span class="line">            System.out.println(<span class="string">"s="</span> + s);</span><br><span class="line">            System.out.println(<span class="string">"a="</span> + a);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"a="</span> + a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>方法参数变量</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test3</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testFun</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"n="</span> + n);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        testFun(<span class="number">3</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>代码块局部变量</li>
+</ol>
+<p>代码块局部变量常用于try-catch代码块中，成为异常处理参数变量。</p>
+<p>异常处理参数变量的作用域是在异常处理块中，该变量是将异常处理参数传递给异常处理块，与方法参数变量类似</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test4</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"Hello!Exception!"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123; <span class="comment">// 异常处理块，参数为 Exception 类型</span></span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        test();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="5-访问修饰符"><a href="#5-访问修饰符" class="headerlink" title="5.访问修饰符"></a>5.访问修饰符</h3><table>
 <thead>
 <tr>
 <th>作用域</th>
@@ -485,10 +603,13 @@
 <p>protected 可以理解为，只有自己一个村的邻居和子女，以及远嫁出去的子女可以访问</p>
 <p>default 可以理解为，只有自己同村的可以范围，如果子女和自己是同村，也可以使用。如果子女远嫁出去，不在自己的村庄了，很抱歉，远水解不了近渴，远亲不如近邻。</p>
 <p>private 可以理解为，私有财产不可侵犯，有些事情，除了自己，绝不能让其他人访问，例如银行密码。</p>
-<h3 id="5-运算符"><a href="#5-运算符" class="headerlink" title="5.运算符"></a>5.运算符</h3><ol>
+<h3 id="6-运算符"><a href="#6-运算符" class="headerlink" title="6.运算符"></a>6.运算符</h3><ol>
 <li>数学运算符</li>
 </ol>
 <p>加减乘除：<code>+ - * /</code><br>取余：<code>%</code><br>自增，自建：<code>++ --</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">12</span>;</span><br><span class="line">System.out.println(-a); <span class="comment">// 12</span></span><br><span class="line"><span class="keyword">int</span> b = a++;</span><br><span class="line">System.out.println(b); <span class="comment">// 12</span></span><br><span class="line">b = ++a;</span><br><span class="line">System.out.println(b); <span class="comment">// 14</span></span><br></pre></td></tr></table></figure>
+
+<p>上述代码第 2 行是 -a，是把 a 变量取反，结果输出是 -12。第 4 行代码是先把 a 赋值给 b 变量再加一，即先赋值后++，因此输出结果是 12。第 6 行代码是把 a 加一，然后把 a 赋值给 b 变量，即先 ++ 后赋值，因此输出结果是 14。</p>
 <ol start="2">
 <li>关系运算符</li>
 </ol>
@@ -517,33 +638,18 @@
 </tr>
 <tr>
 <td align="center">&lt;=</td>
-<td align="center">小</td>
-<td align="center">于等于    6 &lt;= 1</td>
+<td align="center">小于等于</td>
+<td align="center">6 &lt;= 1</td>
 </tr>
 <tr>
 <td align="center">==</td>
-<td align="center">等</td>
-<td align="center">于    2 == 2</td>
+<td align="center">等于</td>
+<td align="center">2 == 2</td>
 </tr>
 <tr>
-<td align="center">!</td>
-<td align="center">=</td>
+<td align="center">!=</td>
 <td align="center">不等于</td>
-</tr>
-<tr>
-<td align="center">&amp;&amp;</td>
-<td align="center">与</td>
-<td align="center">true &amp;&amp; false</td>
-</tr>
-<tr>
-<td align="center">｜｜</td>
-<td align="center">或</td>
-<td align="center">(3 &gt; 1) ｜｜ (2 == 1)</td>
-</tr>
-<tr>
-<td align="center">!</td>
-<td align="center">非</td>
-<td align="center">!true</td>
+<td align="center">2 != 2</td>
 </tr>
 </tbody></table>
 <ol start="3">
@@ -589,9 +695,39 @@
 </tr>
 </tbody></table>
 <ol start="4">
+<li>逻辑运算符</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">运算符</th>
+<th align="center">说明</th>
+<th align="center">举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">&amp;&amp;</td>
+<td align="center">与</td>
+<td align="center">true &amp;&amp; false</td>
+</tr>
+<tr>
+<td align="center">｜｜</td>
+<td align="center">或</td>
+<td align="center">(3 &gt; 1) ｜｜ (2 == 1)</td>
+</tr>
+<tr>
+<td align="center">!</td>
+<td align="center">非</td>
+<td align="center">!true</td>
+</tr>
+</tbody></table>
+<ol start="5">
 <li>条件运算符</li>
 </ol>
 <p>condition ? x1 : x2<br>condition为一个boolean值，根据condition，取x1或x2的值</p>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
+<li><a href="https://blog.csdn.net/qq_36325121/article/details/56850462" target="_blank" rel="noopener">java中不同数据类型的运算</a></li>
+</ul>
 
       </div>
       
@@ -603,10 +739,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-11-08T09:20:56+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-01-07T14:50:22+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2021年11月8日</p>
+    <p>更新于 2022年1月7日</p>
   </a>
 </div>
 
@@ -630,7 +766,7 @@
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2021/10/01/Java%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E4%B8%80)/&title=Java（一）：程序基础 | AhriLove&summary=Java具有简单性、面向对象、分布式、健壮性、安全性、平台独立与可移植性、多线程、动态性等特点 。Java可以编写桌面应用程序、Web应用程序、分布式系统和嵌入式系统应用程序等
 
-1.Java基础结构2.命名规范与注释3.常量4.访问修饰符5.运算符
+1.Java基础结构2.命名规范与注释3.常量4.变量5.访问修饰符6.运算符
 "
           
           >
@@ -645,7 +781,7 @@
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2021/10/01/Java%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E4%B8%80)/&title=Java（一）：程序基础 | AhriLove&summary=Java具有简单性、面向对象、分布式、健壮性、安全性、平台独立与可移植性、多线程、动态性等特点 。Java可以编写桌面应用程序、Web应用程序、分布式系统和嵌入式系统应用程序等
 
-1.Java基础结构2.命名规范与注释3.常量4.访问修饰符5.运算符
+1.Java基础结构2.命名规范与注释3.常量4.变量5.访问修饰符6.运算符
 "
           
           >
@@ -660,7 +796,7 @@
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2021/10/01/Java%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E4%B8%80)/&title=Java（一）：程序基础 | AhriLove&summary=Java具有简单性、面向对象、分布式、健壮性、安全性、平台独立与可移植性、多线程、动态性等特点 。Java可以编写桌面应用程序、Web应用程序、分布式系统和嵌入式系统应用程序等
 
-1.Java基础结构2.命名规范与注释3.常量4.访问修饰符5.运算符
+1.Java基础结构2.命名规范与注释3.常量4.变量5.访问修饰符6.运算符
 "
           
           >
@@ -842,7 +978,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Java基础结构"><span class="toc-text">1.Java基础结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-命名规范与注释"><span class="toc-text">2.命名规范与注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-常量"><span class="toc-text">3.常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-访问修饰符"><span class="toc-text">4.访问修饰符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-运算符"><span class="toc-text">5.运算符</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Java基础结构"><span class="toc-text">1.Java基础结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-命名规范与注释"><span class="toc-text">2.命名规范与注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-常量"><span class="toc-text">3.常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-变量"><span class="toc-text">4.变量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#变量声明和赋值"><span class="toc-text">变量声明和赋值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#变量作用域"><span class="toc-text">变量作用域</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-访问修饰符"><span class="toc-text">5.访问修饰符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-运算符"><span class="toc-text">6.运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
     </div>
   </section>
 

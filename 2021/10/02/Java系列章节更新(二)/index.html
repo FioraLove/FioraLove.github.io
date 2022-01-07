@@ -428,17 +428,17 @@
 <h3 id="1-数据类型"><a href="#1-数据类型" class="headerlink" title="1.数据类型"></a>1.数据类型</h3><p>在Java中，变量分为两种：<code>基本类型的变量</code>和<code>引用类型的变量</code></p>
 <p>基本数据类型（基本数据类型是CPU可以直接进行运算的类型）：</p>
 <ul>
-<li>整数类型：byte，short，int，long</li>
-<li>浮点数类型：float，double</li>
+<li>整数类型：byte、short、int(默认)、long</li>
+<li>浮点数类型：float、double(默认)</li>
 <li>字符类型：char</li>
-<li>布尔类型：boolean（默认值为false）</li>
+<li>布尔类型：true、false(默认)</li>
 </ul>
 <p>引用数据类型：</p>
 <ul>
-<li>字符串类型：String</li>
 <li>类：class</li>
-<li>接口：Interface</li>
 <li>数组：Array</li>
+<li>字符串：String</li>
+<li>接口：Interface</li>
 </ul>
 <p>注意点：</p>
 <ul>
@@ -446,6 +446,7 @@
 <li>float类型<strong>有效数字最长为7位</strong>，有效数字长度包括了整数部分和小数部分，float的后缀要加<code>F/f</code>，标志着它是float类型</li>
 <li>double类型<strong>有效数字最长为15位</strong>，与 float 类型一样，double 后面也带有标志“D”或“d”</li>
 <li>不带任何标志的浮点型数据，系统默认是 double 类型</li>
+<li>一个值要能被真正看作 float，它必须以 f（或 F）后缓结束；否则，会被当作double值。对double值来说，d（或D）后缀是可选的</li>
 </ul>
 <h3 id="2-基本数据类型"><a href="#2-基本数据类型" class="headerlink" title="2.基本数据类型"></a>2.基本数据类型</h3><p>Java语言内置了八种基本类型。六种数字类型（四个整数型，两个浮点型），一种字符类型，还有一种布尔型。</p>
 <h4 id="对字符型的说明"><a href="#对字符型的说明" class="headerlink" title="对字符型的说明"></a>对字符型的说明</h4><p>字符类型：字符char是基本数据类型，一个char保存一个Unicode字符</p>
@@ -456,8 +457,27 @@
 <p>字符串类型：<br>和char类型不同，字符串类型String是引用类型，常常使用双引号包裹起来</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String s = &quot;&quot;; // 空字符串，包含0个字符</span><br><span class="line">String s1 = &quot;A&quot;; // 包含一个字符</span><br><span class="line">String s2 = &quot;ABC&quot;; // 包含3个字符</span><br><span class="line">String s3 = &quot;中文 ABC&quot;; // 包含6个字符，其中有一个空格</span><br></pre></td></tr></table></figure>
 
-<h3 id="3-字符串String"><a href="#3-字符串String" class="headerlink" title="3.字符串String"></a>3.字符串String</h3><p><strong>String</strong>，<a href="https://ahrilove.top/2019/11/20/Javascript%E7%AF%87%E7%AB%A0%E4%B8%80/">【与js，python的字符串操作对比】</a></p>
-<p>在Java中，String是一个引用类型，它本身也是一个class。但是，Java编译器对String有特殊处理，即可以直接用”…”来表示一个字符串。</p>
+<h4 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h4><ol>
+<li>自动类型转换</li>
+</ol>
+<p>当满足这两种条件时，将会执行自动转换：</p>
+<ul>
+<li>两种数据类型彼此兼容</li>
+<li>目标类型的取值范围大于源数据类型（低级类型数据转换成高级类型数据）</li>
+</ul>
+<p>在运算过程中，由于不同的数据类型会转换成同一种数据类型，所以整型、浮点型以及字符型都可以参与混合运算。自动转换的规则是从低级类型数据转换成高级类型数据。转换规则如下：</p>
+<ul>
+<li>数值型数据的转换：byte→short→int→long→float→double。</li>
+<li>字符型转换为整型：char→int。</li>
+</ul>
+<ol start="2">
+<li>强制类型转换</li>
+</ol>
+<p>所以当两种数据类型不兼容，或目标类型的取值范围小于源类型时，自动转换将无法进行，这时就需要进行强制类型转换，会造成精度丢失。其语法格式如下：</p>
+<p><code>(type)variableName</code></p>
+<p>在强制类型转换中，如果是将浮点类型的值转换为整数，直接去掉小数点后边的所有数字；而如果是整数类型强制转换为浮点类型时，将在小数点后面补零。</p>
+<p>不同数据类型之间计算规则：<br>不同的数据类型运算，从前往后计算，如果是整型，正常的10进制计算，遇到字符转成10进制的ascii码值计算，一旦遇到字符串就直接拼接字符，后面都默认为字符串，就没必要转化</p>
+<h3 id="3-字符串String"><a href="#3-字符串String" class="headerlink" title="3.字符串String"></a>3.字符串String</h3><p>在Java中，String是一个引用类型，它本身也是一个class。但是，Java编译器对String有特殊处理，即可以直接用”…”来表示一个字符串。</p>
 <blockquote>
 <p>创建字符串</p>
 </blockquote>
@@ -468,22 +488,35 @@
 <p>字符串相关方法</p>
 </blockquote>
 <ol>
-<li><p>字符串比较：比较字符串的内容是否相同。必须使用<code>equals()</code>方法而不能用<code>==</code><br>str1.equals(str2):判断两个字符串的是否相同</p>
-</li>
+<li>字符串比较：比较字符串的内容是否相同。必须使用<code>equals()</code>方法而不能用<code>==</code></li>
+</ol>
+<ul>
+<li>str1.equals(str2):判断两个字符串的是否相同,如果两个字符串<strong>具有相同的字符、长度和大小写</strong>，它返回true，否则返回false</li>
+<li>str1.equalsIgnoreCase(str2):与equals用法相同，但不区分大小写</li>
+<li>str1.compareTo(str2):用于按字典顺序比较两个字符串的大小（基于各个字符的Unicode值），如果按字典顺序str1位于str2参数之前，比较结果为一个负整数；如果str1位于str2之后，比较结果为一个正整数；如果两个字符串相等，则结果为0</li>
+</ul>
+<ol start="2">
 <li><p>字符索引查找<br>字符串.indexOf(“目标字符或字符串”)：返回指定字符在字符串中第一次出现的索引，<strong>如果此字符串中没有这样的字符，则返回 -1</strong></p>
 </li>
-<li><p>判断以什么开头结尾<br>字符串.startsWith(“目标字符串”):判断是否以目标字符串开头<br>字符串.endsWith(“目标字符串”):判断是否以目标目标字符串结尾</p>
+<li><p>判断以什么开头结尾<br>字符串.startsWith(“目标字符串”):判断是否以目标字符串开头<br>字符串.endsWith(“目标字符串”):判断是否以目标字符串结尾</p>
 </li>
-<li><p>字符串的截取<br>字符串.substring(起始索引，结束索引)：截取目标字符串，索引从0开始</p>
+<li><p>字符串的截取<br>字符串.substring(起始索引，结束索引)：截取目标字符串，索引从0开始，左闭右开</p>
 </li>
-<li><p>去掉首尾空白字符<br>字符串.trim()<br>字符串.strip():也可以移除字符串首尾空白字符。它和trim()不同的是，类似中文的空格字符<code>\u3000</code>也会被移除</p>
+<li><p>去掉首尾空白字符<br>字符串.trim()<br>字符串.strip():也可以移除字符串首尾空白字符。它和trim()不同的是，类似中文的空格字符<code>\u3000</code>也会被移除(基于Java11+)</p>
 </li>
-<li><p>替换字符串<br>字符串.replace(a,b):返回一个新字符串，用字符b替换所有的字符a，全局替换</p>
+<li><p>替换字符串</p>
 </li>
+</ol>
+<ul>
+<li>字符串.replace(a,b):返回一个新字符串，<strong>用字符b替换所有的字符a，全局替换</strong></li>
+<li>字符串.replaceFirst(a,b):返回一个新字符串，用字符b替换第一个子字符串字符a</li>
+<li>字符串.replaceAll(a,b):返回一个新字符串，用字符b替换所有的字符a，全局替换</li>
+</ul>
+<ol start="7">
 <li><p>拼接字符串<br>拼接字符串使用静态方法<code>String.join</code>,它用指定的字符串连接字符串数组</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String arr = &#123;&quot;A&quot;, &quot;B&quot;, &quot;C&quot;&#125;;</span><br><span class="line">String s = String.join(&quot;***&quot;, arr); // &quot;A***B***C&quot;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>字符串大小写<br>str.toLowerCase()：将字符串转换为小写<br>str.toUpperCase()：将字符串转换为小写</p>
+<li><p>字符串大小写<br>str.toLowerCase()：将字符串转换为小写<br>str.toUpperCase()：将字符串转换为大写</p>
 </li>
 <li><p>判断字符串是否为空<br>str.isEmpty()</p>
 </li>
@@ -498,12 +531,21 @@
 </li>
 <li><p>是否包含子字符串<br>字符串.contains(“目标字符串”)：返回结果true 或者 false</p>
 </li>
-<li><p>分割字符串<br>字符串.split(“指定字符串”) =&gt; 数组格式。按指定字符（串）或正则去分割某个字符串，<strong>结果以字符串数组形式返回</strong>，记住：返回结果是数组，数组无法直接打印</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String s = <span class="string">"hello world java!!!"</span>;</span><br><span class="line">String[] aa = s.split(<span class="string">" "</span>);</span><br><span class="line">System.out.println(aa[<span class="number">2</span>]);</span><br></pre></td></tr></table></figure>
+<li><p>分割字符串<br>按指定字符（串）或正则去分割某个字符串，<strong>结果以字符串数组形式返回</strong>，记住：返回结果是数组，数组无法直接打印</p>
 </li>
+</ol>
+<p>语法：<code>str.split(String sign)</code> 或 <code>str.split(String sign,int limit)</code></p>
+<ul>
+<li>str为需要分割的目标字符串。</li>
+<li>sign为指定的分割符，可以是任意字符串。</li>
+<li>limit表示分割后<strong>生成的字符串的限制个数</strong>，如果不指定，则表示不限制，直到将整个目标字符串完全分割为止。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String s = <span class="string">"hello world java!!!"</span>;</span><br><span class="line">String[] aa = s.split(<span class="string">" "</span>);</span><br><span class="line">System.out.println(aa[<span class="number">2</span>]);</span><br></pre></td></tr></table></figure>
+
+<ol start="14">
 <li><p>返回字符串长度<br>字符串.length()：无论是字母、数字、还是汉字，每个字符的长度都为一</p>
 </li>
-<li><p>charAt()<br>返回指定索引处的 char 值</p>
+<li><p>charAt()<br>返回指定索引处的char值</p>
 </li>
 <li><p>转换为字符串</p>
 </li>
@@ -516,9 +558,15 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dataType[] arrayRefVar;   // 首选的方法</span><br><span class="line">或</span><br><span class="line">dataType arrayRefVar[];  // 效果相同，但不是首选方法</span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>创建数组</p>
+<p>创建一维数组</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 数组的创建方式一</span></span><br><span class="line">        <span class="keyword">int</span>[] grades = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>];</span><br><span class="line">        grades[<span class="number">0</span>] = <span class="number">98</span>;</span><br><span class="line">        grades[<span class="number">1</span>] = <span class="number">96</span>;</span><br><span class="line">        grades[<span class="number">2</span>] = <span class="number">99</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 数组的创建方式二</span></span><br><span class="line">        <span class="keyword">int</span> grades = &#123;<span class="number">98</span> , <span class="number">96</span>, <span class="number">99</span>&#125;;</span><br><span class="line">        System.out.println(Arrays.toString(grades));  <span class="comment">// 直接打印数组</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 数组的创建方式一</span></span><br><span class="line">        <span class="keyword">int</span>[] grades = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>];</span><br><span class="line">        grades[<span class="number">0</span>] = <span class="number">98</span>;</span><br><span class="line">        grades[<span class="number">1</span>] = <span class="number">96</span>;</span><br><span class="line">        grades[<span class="number">2</span>] = <span class="number">99</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 数组的创建方式二</span></span><br><span class="line">        <span class="keyword">int</span>[] grades = &#123;<span class="number">98</span>, <span class="number">96</span>, <span class="number">99</span>&#125;;</span><br><span class="line">        System.out.println(Arrays.toString(grades));  <span class="comment">// 直接打印数组</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>创建二维数组</p>
+</blockquote>
+<p>创建语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type[][] arrayName = new type[][]&#123;值 1,值 2,值 3,…,值 n&#125;;    // 在定义时初始化</span><br><span class="line">type[][] arrayName = new type[size1][size2];    // 给定空间，在赋值</span><br><span class="line">type[][] arrayName = new type[size][];    // 数组第二维长度为空，可变化</span><br></pre></td></tr></table></figure>
 
 <p>Java的数组有几个特点：</p>
 <ul>
@@ -534,6 +582,15 @@
 <li>如果想在运行程序时改变容量，就需要用到数组列表(ArrayList，也称动态数组)或向量(Vector)。</li>
 <li>正是由于静态数组容量固定的缺点，实际开发中使用频率不高，被 ArrayList 或 Vector 代替，因为实际开发中经常需要向数组中添加或删除元素，而它的容量不好预估。</li>
 </ul>
+<blockquote>
+<p>Arrays工具类（了解）</p>
+</blockquote>
+<p>Arrays类是一个工具类，其中包含了数组操作的很多方法。这个Arrays类里均为static修饰的方法（static 修饰的方法可以直接通过类名调用），可以直接通过 Arrays.xxx的形式调用方法</p>
+<ul>
+<li>Arrays.equals(arrayA, arrayB)：数组相等的条件不仅要求数组元素的个数必须相等，而且要求对应位置的元素也相等</li>
+<li>Arrays.fill(array,value)：用同一种目标元素填充满数组，填充多个会被覆盖掉</li>
+<li>Arrays.toString(array)：Java中数组无法直接被打印出来，需要转换成字符串</li>
+</ul>
 <h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
 <li><a href="https://blog.csdn.net/wu1226419614/article/details/80870120" target="_blank" rel="noopener">python的列表List与python的数组的区别</a>：</li>
 </ul>
@@ -548,10 +605,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-11-08T10:14:01+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-01-05T14:40:04+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2021年11月8日</p>
+    <p>更新于 2022年1月5日</p>
   </a>
 </div>
 
@@ -787,7 +844,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-数据类型"><span class="toc-text">1.数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-基本数据类型"><span class="toc-text">2.基本数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#对字符型的说明"><span class="toc-text">对字符型的说明</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-字符串String"><span class="toc-text">3.字符串String</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-数组Array"><span class="toc-text">4.数组Array</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-数据类型"><span class="toc-text">1.数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-基本数据类型"><span class="toc-text">2.基本数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#对字符型的说明"><span class="toc-text">对字符型的说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据类型转换"><span class="toc-text">数据类型转换</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-字符串String"><span class="toc-text">3.字符串String</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-数组Array"><span class="toc-text">4.数组Array</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol>
     </div>
   </section>
 
