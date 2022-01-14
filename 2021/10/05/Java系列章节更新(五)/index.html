@@ -547,7 +547,14 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Hello</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hello</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Person</span> <span class="keyword">extends</span> <span class="title">Hello</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">String <span class="title">getName</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>此时，Person接口继承自Hello接口，因此，Person接口现在实际上有3个抽象方法签名，其中一个来自继承的Hello接口。</p>
-<h3 id="8-package包"><a href="#8-package包" class="headerlink" title="8.package包"></a>8.package包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">程序目录结构：</span><br><span class="line">package_sample</span><br><span class="line">└─ src</span><br><span class="line">    ├─ hong</span><br><span class="line">    │  └─ Person.java</span><br><span class="line">    │  ming</span><br><span class="line">    │  └─ Person.java</span><br><span class="line">    └─ mr</span><br><span class="line">       └─ jun</span><br><span class="line">          └─ Arrays.java</span><br></pre></td></tr></table></figure>
+<h3 id="8-package包"><a href="#8-package包" class="headerlink" title="8.package包"></a>8.package包</h3><p>Java包的命名规范：</p>
+<ul>
+<li>包名全部由小写字母（多个单词也全部小写）</li>
+<li>如果包名包含多个层次，每个层次用“.”分割</li>
+<li>包名一般由倒置的域名开头，比如com.baidu，不要有www</li>
+<li>自定义包不能java开头</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">程序目录结构：</span><br><span class="line">package_sample</span><br><span class="line">└─ src</span><br><span class="line">    ├─ com.hong</span><br><span class="line">    │  └─ Person.java</span><br><span class="line">    │  com.ming</span><br><span class="line">    │  └─ Person.java</span><br><span class="line">    └─ com.mr</span><br><span class="line">       └─ jun</span><br><span class="line">          └─ Arrays.java</span><br></pre></td></tr></table></figure>
 <p>使用<code>import</code>导入相关包</p>
 <ul>
 <li>方式一：import 包名.某一类名</li>
@@ -564,10 +571,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-01-07T17:48:08+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-01-10T15:22:56+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2022年1月7日</p>
+    <p>更新于 2022年1月10日</p>
   </a>
 </div>
 
