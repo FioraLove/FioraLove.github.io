@@ -422,7 +422,7 @@
       <div class="article-entry" itemprop="articleBody">
         <p><strong>本章内容</strong>：</p>
 <blockquote>
-<p>1.继承的概念与实现<br>2.super关键词<br>3.多态<br>4.instanceof运算符<br>5.final关键字<br>6.static关键字</p>
+<p>1.继承的概念与实现<br>2.super关键词<br>3.多态<br>4.Java对象类型转换<br>5.final关键字<br>6.static关键字</p>
 </blockquote>
 <a id="more"></a>
 <h3 id="1-继承的概念与实现"><a href="#1-继承的概念与实现" class="headerlink" title="1.继承的概念与实现"></a>1.继承的概念与实现</h3><p>继承是类与类之间的关系，是一个很简单很直观的概念，与现实世界中的继承（例如儿子继承父亲财产）类似。</p>
@@ -437,6 +437,7 @@
 </ul>
 <p>继承实例：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 此处省略setter与getter</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 不要重复定义name和age字段/方法，只需要定义新增score字段/方法:</span></span><br><span class="line">    <span class="keyword">private</span> String category;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String name, <span class="keyword">int</span> age, String category)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(name, age);</span><br><span class="line">        <span class="keyword">this</span>.category = category;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 此处省略setter与getter</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
 <h3 id="2-super关键字"><a href="#2-super关键字" class="headerlink" title="2.super关键字"></a>2.super关键字</h3><p>super关键字与this类似，this用来表示当前类的实例，super用来表示父类</p>
 <p>super关键字表示父类（超类）。子类引用父类的字段时，可以用<code>super.fieldName</code><br>实际上，这里使用<code>super.name</code>，或者<code>this.name</code>，或者<code>name</code>，效果都是一样的。编译器会自动定位到父类的name字段</p>
@@ -467,16 +468,25 @@
 </ul>
 <h3 id="4-Java对象类型转换"><a href="#4-Java对象类型转换" class="headerlink" title="4. Java对象类型转换"></a>4. Java对象类型转换</h3><p>将一个类型强制转换成另一个类型的过程被称为类型转换。本节所说的对象类型转换，是指存在继承关系的对象，不是任意类型的对象。当对不存在继承关系的对象进行强制类型转换时，会抛出Java强制类型转换（java.lang.ClassCastException）异常</p>
 <p>Java语言允许某个类型的引用变量引用子类的实例，而且可以对这个引用变量进行类型转换。Java中引用类型之间的类型转换（前提是两个类是父子关系）主要有两种，<strong>分别是向上转型（upcasting）和向下转型（downcasting）</strong></p>
+<p><fancybox><img src="https://img-blog.csdnimg.cn/20200707142011661.png" alt=""></fancybox></p>
 <ol>
 <li>向上转型</li>
 </ol>
 <p>父类引用指向子类对象为向上转型，语法格式如下：<br><code>fatherClass obj = new sonClass();</code></p>
 <p>向上转型就是把子类对象直接赋给父类引用，不用强制转换。使用向上转型可以调用父类类型中的所有成员，不能调用子类类型中特有成员，最终运行效果看子类的具体实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Animal an1=new Cat(); //将Cat 对象当作Animal 类型来使用</span><br><span class="line">Animal an2=new Dog(); //将Dog 对象当作Animal 类型来使用</span><br><span class="line"></span><br><span class="line">将子类对象当作父类使用时不需要任何显式地声明，需要注意的是，此时不能通过父类变量去调用子类中的某些方法</span><br></pre></td></tr></table></figure>
+
 <ol start="2">
 <li>向下转型</li>
 </ol>
 <p>与向上转型相反，子类对象指向父类引用为向下转型，语法格式如下：<br><code>sonClass obj = (sonClass) fatherClass;</code></p>
-<h3 id="4-instanceof运算符"><a href="#4-instanceof运算符" class="headerlink" title="4.instanceof运算符"></a>4.instanceof运算符</h3><p>多态性带来了一个问题，就是如何判断一个变量所实际引用的对象的类型。Java使用instanceof操作符，用来判断一个变量所引用的对象的实际类型，注意是它引用的对象的类型，不是变量的类型</p>
+<p>注意：不能直接将父类的对象强制转换为子类类型，只能将向上转型后的子类对象再次转换为子类类型。也就是说，<strong>子类对象必须向上转型后，才能再向下转型</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">        SuperClass superObj = <span class="keyword">new</span> SuperClass();</span><br><span class="line">        SonClass sonObj = <span class="keyword">new</span> SonClass();</span><br><span class="line">        <span class="comment">// 下面的代码运行时会抛出异常，不能将父类对象直接转换为子类类型</span></span><br><span class="line">        <span class="comment">// SonClass sonObj2 = (SonClass)superObj;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 先向上转型，再向下转型</span></span><br><span class="line">        superObj = sonObj;</span><br><span class="line">        SonClass sonObj1 = (SonClass)superObj;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SuperClass</span></span>&#123; &#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SonClass</span> <span class="keyword">extends</span> <span class="title">SuperClass</span></span>&#123; &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>instanceof运算符</p>
+</blockquote>
+<p>多态性带来了一个问题，就是如何判断一个变量所实际引用的对象的类型。Java使用instanceof操作符，用来判断一个变量所引用的对象的实际类型，注意是它引用的对象的类型，不是变量的类型</p>
 <p>实例：<code>obj instanceof ClassName</code> ，可以直白理解为 <code>实例obj是ClassName类或是其子类？</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">public final class Demo&#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        // 引用 People 类的实例</span><br><span class="line">        People obj = new People();</span><br><span class="line">        if(obj instanceof Object)&#123; // Person实例的obj是Object类的子类</span><br><span class="line">            System.out.println(&quot;我是一个对象&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        if(obj instanceof People)&#123; // obj等于Person类</span><br><span class="line">            System.out.println(&quot;我是人类&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        if(obj instanceof Teacher)&#123; // obj是Teacher类的父类，判断语句为错误</span><br><span class="line">            System.out.println(&quot;我是一名教师&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(&quot;-----------&quot;);  // 分界线</span><br><span class="line">        // 引用 Teacher 类的实例</span><br><span class="line">        obj = new Teacher();</span><br><span class="line">        if(obj instanceof Object)&#123;</span><br><span class="line">            System.out.println(&quot;我是一个对象&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        if(obj instanceof People)&#123;</span><br><span class="line">            System.out.println(&quot;我是人类&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        if(obj instanceof Teacher)&#123;</span><br><span class="line">            System.out.println(&quot;我是一名教师&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        if(obj instanceof President)&#123;</span><br><span class="line">            System.out.println(&quot;我是校长&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class People&#123; &#125;</span><br><span class="line">class Teacher extends People&#123; &#125;</span><br><span class="line">class President extends Teacher&#123; &#125;</span><br></pre></td></tr></table></figure>
 
@@ -484,7 +494,7 @@
 <hr>
 <p>我是一个对象<br>我是人类<br>我是一名教师</p>
 <p>可以看出，<strong>如果变量引用的是当前类或它的子类的实例，instanceof 返回true，否则返回false</strong>。</p>
-<h3 id="5-final关键字"><a href="#5-final关键字" class="headerlink" title="5.final关键字"></a>5.final关键字</h3><p>在 Java 中，声明类、变量和方法时，可使用关键字final来修饰。final所修饰的数据具有“终态”的特征，表示“最终的”意思。具体规定如下：</p>
+<h3 id="5-final关键字"><a href="#5-final关键字" class="headerlink" title="5.final关键字"></a>5.final关键字</h3><p>在Java中，声明类、变量和方法时，可使用关键字final来修饰。final所修饰的数据具有“终态”的特征，表示“最终的”意思。具体规定如下：</p>
 <ul>
 <li>final用在变量的前面表示修饰的变量不可被改变，一旦获得了初始值，该final变量的值就不能被重新赋值，此时该变量可以被称为常量。</li>
 <li>final用在方法的前面表示方法不可以被重写（子类中如果创建了一个与父类中相同名称、相同返回值类型、相同参数列表的方法，只是方法体中的实现不同，以实现不同于父类的功能，这种方式被称为方法重写，又称为方法覆盖。这里了解即可，教程后面我们会详细讲解）。</li>
@@ -585,10 +595,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-01-11T16:32:18+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-01-22T08:53:04+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2022年1月11日</p>
+    <p>更新于 2022年1月22日</p>
   </a>
 </div>
 
@@ -612,7 +622,7 @@
           
           href="http://connect.qq.com/widget/shareqq/index.html?url=https://ahrilove.top/2021/10/06/Java%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E5%85%AD)/&title=Java（六）：继承与多态 | AhriLove&summary=本章内容：
 
-1.继承的概念与实现2.super关键词3.多态4.instanceof运算符5.final关键字6.static关键字
+1.继承的概念与实现2.super关键词3.多态4.Java对象类型转换5.final关键字6.static关键字
 "
           
           >
@@ -627,7 +637,7 @@
           
           href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://ahrilove.top/2021/10/06/Java%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E5%85%AD)/&title=Java（六）：继承与多态 | AhriLove&summary=本章内容：
 
-1.继承的概念与实现2.super关键词3.多态4.instanceof运算符5.final关键字6.static关键字
+1.继承的概念与实现2.super关键词3.多态4.Java对象类型转换5.final关键字6.static关键字
 "
           
           >
@@ -642,7 +652,7 @@
           
           href="http://service.weibo.com/share/share.php?url=https://ahrilove.top/2021/10/06/Java%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E5%85%AD)/&title=Java（六）：继承与多态 | AhriLove&summary=本章内容：
 
-1.继承的概念与实现2.super关键词3.多态4.instanceof运算符5.final关键字6.static关键字
+1.继承的概念与实现2.super关键词3.多态4.Java对象类型转换5.final关键字6.static关键字
 "
           
           >
@@ -671,9 +681,9 @@
                       <span class="art-item-left">
                           <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
                           <h4>
-                              <a href="/2021/10/08/Java%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E4%B8%83)/" rel="prev" title="Java（七）：面向对象高级特性">
+                              <a href="/2021/10/08/Java%E7%B3%BB%E5%88%97%E7%AB%A0%E8%8A%82%E6%9B%B4%E6%96%B0(%E4%B8%83)/" rel="prev" title="Java（七）：Java面向对象的补充">
                                 
-                                    Java（七）：面向对象高级特性
+                                    Java（七）：Java面向对象的补充
                                 
                               </a>
                           </h4>
@@ -824,7 +834,7 @@
 </header>
 
     <div class='content material'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-继承的概念与实现"><span class="toc-text">1.继承的概念与实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-super关键字"><span class="toc-text">2.super关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-多态"><span class="toc-text">3.多态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Java对象类型转换"><span class="toc-text">4. Java对象类型转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-instanceof运算符"><span class="toc-text">4.instanceof运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-final关键字"><span class="toc-text">5.final关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-static关键字"><span class="toc-text">6.static关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文献"><span class="toc-text">参考文献</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-继承的概念与实现"><span class="toc-text">1.继承的概念与实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-super关键字"><span class="toc-text">2.super关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-多态"><span class="toc-text">3.多态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Java对象类型转换"><span class="toc-text">4. Java对象类型转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-final关键字"><span class="toc-text">5.final关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-static关键字"><span class="toc-text">6.static关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文献"><span class="toc-text">参考文献</span></a></li></ol>
     </div>
   </section>
 
@@ -1051,7 +1061,7 @@
         
           <li><a class="flat-box" title="/categories/Django/" href="/categories/Django/"><div class='name'>Django</div><div class='badge'>(5)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Java/" href="/categories/Java/"><div class='name'>Java</div><div class='badge'>(16)</div></a></li>
+          <li><a class="flat-box" title="/categories/Java/" href="/categories/Java/"><div class='name'>Java</div><div class='badge'>(12)</div></a></li>
         
           <li><a class="flat-box" title="/categories/PHP/" href="/categories/PHP/"><div class='name'>PHP</div><div class='badge'>(4)</div></a></li>
         
